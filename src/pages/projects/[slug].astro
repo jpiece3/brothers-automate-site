@@ -7,10 +7,12 @@ import { getAllProjects, getProjectBySlug } from '../../data/projects';
 
 export function getStaticPaths() {
   const projects = getAllProjects();
-  return projects.map(project => ({
-    params: { slug: project.slug },
-    props: { project }
-  }));
+  return projects
+    .filter(project => project.slug !== 'quiz-funnels')
+    .map(project => ({
+      params: { slug: project.slug },
+      props: { project }
+    }));
 }
 
 const { project } = Astro.props;

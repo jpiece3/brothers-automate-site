@@ -1,0 +1,1072 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const deliverables = [
+  {
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+    title: 'Interactive Quiz Application',
+    items: [
+      'SEO-optimized landing page that drives quiz starts',
+      '6-12 custom questions designed to segment your audience',
+      'Email capture form before results',
+      '3 result pages for hot, warm, and cold leads',
+      'Progress bar and animated transitions',
+      'Mobile-responsive on all devices'
+    ]
+  },
+  {
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    title: '26 Automated Emails',
+    items: [
+      '3 Welcome emails for all quiz takers',
+      '4 Cold Nurture emails for low scorers',
+      '3 Warm Activation emails with social proof',
+      '2 Hot Path emails with direct CTA',
+      '2 Win-Back emails for non-openers',
+      'Personalization tags and scheduled sending'
+    ]
+  },
+  {
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+    title: 'Analytics Dashboard',
+    items: [
+      'KPI cards: views, start rate, completion rate, captures',
+      'Visual conversion funnel with drop-off tracking',
+      'Hot/warm/cold lead distribution chart',
+      'Daily activity timeline over 30 days',
+      'Answer distribution breakdown',
+      'UTM source tracking for marketing channels'
+    ]
+  },
+  {
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+    title: 'Backend Infrastructure',
+    items: [
+      '6 database tables: leads, responses, products, email log, templates, analytics',
+      '4 API endpoints for quiz submission, analytics, and email',
+      '5-factor scoring engine (Fit, Need, Timeline, Economics, Authority)',
+      'Hourly cron job for scheduled email delivery',
+      'Full documentation and walkthrough'
+    ]
+  }
+];
+
+const process = [
+  { number: 1, title: 'Discovery Call', days: 'Day 1', desc: '30-minute call to map your bottleneck, understand your audience, and define quiz strategy.' },
+  { number: 2, title: 'Research & Design', days: 'Days 2-3', desc: 'We analyze your market, competitors, and customers. Then architect the quiz flow, scoring model, and email sequences.' },
+  { number: 3, title: 'Build & Test', days: 'Days 4-7', desc: 'Custom development of your quiz, emails, analytics, and integrations. Internal testing and edge case handling.' },
+  { number: 4, title: 'Deploy & Handoff', days: 'Days 7-10', desc: 'Launch on your domain with full documentation. Walkthrough call plus 30-day support window.' }
+];
+
+const faqs = [
+  {
+    question: 'What do I actually get?',
+    answer: 'A fully custom quiz funnel deployed on your domain: interactive quiz with 6-12 questions, smart lead scoring, 26 automated follow-up emails across 5 sequences, a real-time analytics dashboard, and complete documentation. Everything is built specifically for your business.'
+  },
+  {
+    question: 'How long does it take?',
+    answer: '7-10 business days from kickoff call to live deployment. Day 1 is discovery, days 2-3 are research and design, days 4-7 are build and test, and days 7-10 are deployment and handoff.'
+  },
+  {
+    question: 'How much does it cost?',
+    answer: 'Quiz funnel projects fall in our Custom Build tier: $3,497 - $4,997 depending on complexity. One flat fee. No monthly retainer. No surprise invoices. If you need the full system with research, ads, and nurture pipeline, that\'s our Full System tier at $7,997+.'
+  },
+  {
+    question: 'Is this a template?',
+    answer: 'No. Every quiz is custom-built from scratch. We research your market, write your quiz questions, design your scoring model, write all 26 emails, and build your analytics dashboard. The quiz, copy, design, and logic are all specific to your business.'
+  },
+  {
+    question: 'What tools do you integrate with?',
+    answer: 'Whatever you\'re already using. We commonly integrate with Mailchimp, ConvertKit, ActiveCampaign, HubSpot, Calendly, Cal.com, Stripe, Zapier, and more. If it has an API, we can connect it.'
+  },
+  {
+    question: 'What if it doesn\'t work?',
+    answer: 'We include a 30-day guarantee. If the system doesn\'t do what we scoped, we fix it free. We define exact deliverables before writing a single line of code, so we\'re both clear on what "done" looks like.'
+  },
+  {
+    question: 'Do I need to provide anything?',
+    answer: 'Just a 30-minute kickoff call and access to your existing tools (email platform, CRM, etc.). We handle the research, strategy, copywriting, design, development, and deployment. You approve along the way.'
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Quiz Funnels", "item": `${SITE_URL}/projects/quiz-funnels` }
+  ]
+};
+---
+
+<Layout
+  title="Quiz Funnels | Done-for-You Lead Qualification System | Brothers Automate"
+  description="Stop chasing unqualified leads. Get a custom quiz funnel with smart scoring, 26 automated emails, and real-time analytics. Live in 7-10 days. From $3,497."
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="qf-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="qf-hero-content" data-animate="fade-up">
+          <span class="badge">Our Most Popular System</span>
+          <h1>Your Leads Deserve Better<br />Than a PDF Download</h1>
+          <p class="qf-hero-sub">We build custom quiz funnels that score, segment, and follow up with every lead automatically. So you only talk to people who are ready to buy.</p>
+          <div class="qf-hero-cta">
+            <a
+              href="#"
+              class="btn btn-primary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Book Your Strategy Call</a>
+            <a href="https://quiz.brothersautomate.com" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Try a Live Quiz</a>
+          </div>
+          <div class="qf-hero-stats">
+            <div class="qf-stat">
+              <span class="qf-stat-num">2-3x</span>
+              <span class="qf-stat-label">More Qualified Leads</span>
+            </div>
+            <div class="qf-stat-divider"></div>
+            <div class="qf-stat">
+              <span class="qf-stat-num">26</span>
+              <span class="qf-stat-label">Automated Emails</span>
+            </div>
+            <div class="qf-stat-divider"></div>
+            <div class="qf-stat">
+              <span class="qf-stat-num">7-10</span>
+              <span class="qf-stat-label">Days to Live</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="qf-problem">
+      <div class="container">
+        <div class="qf-problem-inner" data-animate="fade-up">
+          <span class="section-label">The Problem</span>
+          <h2>Your leads are slipping through the cracks</h2>
+          <p class="qf-problem-desc">You're getting leads, but half of them aren't qualified and the other half never hear from you fast enough. Manual follow-up doesn't scale.</p>
+          <div class="pain-points" data-animate-stagger>
+            <div class="pain-point">
+              <span class="pain-x">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </span>
+              <span>Leads come in but nobody follows up within the first 2 minutes</span>
+            </div>
+            <div class="pain-point">
+              <span class="pain-x">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </span>
+              <span>You can't tell who's ready to buy vs. who's just browsing</span>
+            </div>
+            <div class="pain-point">
+              <span class="pain-x">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </span>
+              <span>Follow-up emails get written once and forgotten</span>
+            </div>
+            <div class="pain-point">
+              <span class="pain-x">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </span>
+              <span>Your calendar fills up with tire-kickers and price shoppers</span>
+            </div>
+          </div>
+          <div class="problem-bottom">
+            <p>You're great at what you do. But between client work and operations, leads keep falling through. <strong>It doesn't have to be this way.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="qf-solution">
+      <div class="container">
+        <div data-animate="fade-up">
+          <span class="section-label">The Solution</span>
+          <h2>A quiz that qualifies leads while you serve clients</h2>
+          <p class="qf-solution-desc">We build an interactive quiz that makes prospects self-identify their problem and readiness to buy. The system scores them, routes them to the right follow-up, and nurtures them automatically.</p>
+        </div>
+        <div class="solution-grid" data-animate-stagger>
+          <div class="solution-card">
+            <div class="solution-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <h3>Smart Scoring</h3>
+            <p>5-factor scoring engine classifies every lead as hot, warm, or cold based on their quiz responses.</p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <h3>26 Automated Emails</h3>
+            <p>Five nurture sequences that follow up based on lead temperature. No manual work needed.</p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            </div>
+            <h3>Analytics Dashboard</h3>
+            <p>Real-time funnel metrics so you know exactly what's working and where leads drop off.</p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path></svg>
+            </div>
+            <h3>Your Domain, Your Brand</h3>
+            <p>Hosted on your domain, branded to your business. Not a generic SaaS widget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="qf-deliverables">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-label">What You Get</span>
+          <h2>Complete Deliverables Breakdown</h2>
+          <p class="deliverables-sub">This isn't a template. Every quiz funnel is custom-built with deep market research, brand-matched design, and production-grade infrastructure.</p>
+        </div>
+
+        <div class="deliverables-grid" data-animate-stagger>
+          {deliverables.map((del) => (
+            <div class="deliverable-card">
+              <div class="deliverable-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={del.icon}></path>
+                </svg>
+              </div>
+              <h3>{del.title}</h3>
+              <ul>
+                {del.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div class="deliverable-stats" data-animate="fade-up">
+          <div class="del-stat"><span class="del-stat-num">50+</span><span class="del-stat-label">Production Files</span></div>
+          <div class="del-stat"><span class="del-stat-num">26</span><span class="del-stat-label">Email Sequences</span></div>
+          <div class="del-stat"><span class="del-stat-num">6</span><span class="del-stat-label">Database Tables</span></div>
+          <div class="del-stat"><span class="del-stat-num">4</span><span class="del-stat-label">API Endpoints</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="qf-process">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-label">How We Build It</span>
+          <h2>From First Call to Live System in 10 Days</h2>
+          <p class="process-sub">No scope creep, no discovery marathons. Just a clear process with defined deliverables at every step.</p>
+        </div>
+
+        <div class="timeline" data-animate-stagger>
+          {process.map((phase, index) => (
+            <div class="phase">
+              <div class="phase-marker">{phase.number}</div>
+              <div class="phase-content">
+                <div class="phase-header">
+                  <h3>{phase.title}</h3>
+                  <span class="phase-days">{phase.days}</span>
+                </div>
+                <p>{phase.desc}</p>
+              </div>
+              {index < process.length - 1 && <div class="phase-connector"></div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Anti-Agency / Pricing -->
+    <section class="qf-pricing">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-label">Pricing</span>
+          <h2>Simple Pricing. No Surprises.</h2>
+        </div>
+
+        <div class="pricing-card" data-animate="fade-up">
+          <div class="pricing-top">
+            <span class="pricing-badge">Quiz Funnel Package</span>
+            <span class="pricing-price">$3,497 - $4,997</span>
+            <span class="pricing-timeline">7-10 business days</span>
+          </div>
+          <div class="pricing-includes">
+            <h4>Everything included:</h4>
+            <ul>
+              <li>Custom interactive quiz (6-12 questions)</li>
+              <li>5-factor lead scoring engine</li>
+              <li>26 automated email sequences</li>
+              <li>Real-time analytics dashboard</li>
+              <li>Custom design system matched to your brand</li>
+              <li>Full backend infrastructure and API</li>
+              <li>Strategy documentation package</li>
+              <li>Deployment on your domain</li>
+              <li>Walkthrough call and 30-day support</li>
+            </ul>
+          </div>
+          <div class="pricing-cta">
+            <a
+              href="#"
+              class="btn btn-primary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Book Your Strategy Call</a>
+          </div>
+        </div>
+
+        <div class="guarantees" data-animate="fade-up">
+          <div class="guarantee">
+            <strong>Flat fee.</strong>
+            <span>You pay once. We build it. Done.</span>
+          </div>
+          <div class="guarantee">
+            <strong>Full documentation.</strong>
+            <span>You understand exactly how everything works.</span>
+          </div>
+          <div class="guarantee">
+            <strong>No scope creep.</strong>
+            <span>Defined deliverables before we start.</span>
+          </div>
+          <div class="guarantee">
+            <strong>30-day guarantee.</strong>
+            <span>If it doesn't work, we fix it free.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="qf-faq">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>Questions & Answers</h2>
+        </div>
+
+        <div class="faq-list" data-animate-stagger>
+          {faqs.map((faq, index) => (
+            <div class="faq-item">
+              <input type="checkbox" id={`faq-${index}`} class="faq-toggle" />
+              <label for={`faq-${index}`} class="faq-question">
+                <span>{faq.question}</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </label>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* Hero */
+  .qf-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .qf-hero-content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .qf-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .qf-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .qf-hero-cta {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+  }
+
+  .qf-hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .qf-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .qf-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--navy); line-height: 1; }
+  .qf-stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+  .qf-stat-divider { width: 1px; height: 36px; background: var(--border); }
+
+  /* Section Label */
+  .section-label {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .section-header h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Problem */
+  .qf-problem {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface-alt);
+  }
+
+  .qf-problem-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .qf-problem h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .qf-problem-desc {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+  }
+
+  .pain-points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .pain-point {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+
+  .pain-x {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pain-point span:last-child {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .problem-bottom {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    text-align: center;
+  }
+
+  .problem-bottom p {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .problem-bottom strong {
+    color: var(--orange);
+  }
+
+  /* Solution */
+  .qf-solution {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface);
+  }
+
+  .qf-solution h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .qf-solution-desc {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .solution-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .solution-card {
+    padding: var(--space-xl);
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition);
+  }
+
+  .solution-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .solution-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: var(--space-md);
+  }
+
+  .solution-card h3 {
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .solution-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Deliverables */
+  .qf-deliverables {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface-alt);
+  }
+
+  .deliverables-sub {
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--space-xl);
+  }
+
+  .deliverable-card {
+    padding: var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .deliverable-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    margin-bottom: var(--space-md);
+  }
+
+  .deliverable-card h3 {
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-md);
+  }
+
+  .deliverable-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .deliverable-card li {
+    position: relative;
+    padding: var(--space-xs) 0 var(--space-xs) var(--space-lg);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .deliverable-card li:last-child {
+    border-bottom: none;
+  }
+
+  .deliverable-card li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .deliverable-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .del-stat { text-align: center; }
+  .del-stat-num { display: block; font-size: 2rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 4px; }
+  .del-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+
+  /* Process */
+  .qf-process {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface);
+  }
+
+  .process-sub {
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .phase {
+    position: relative;
+    padding-left: 80px;
+    padding-bottom: var(--space-xl);
+  }
+
+  .phase:last-child { padding-bottom: 0; }
+
+  .phase-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--bg-primary);
+    border: 3px solid var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-weight: 800;
+    font-size: 1.25rem;
+    z-index: 2;
+  }
+
+  .phase-connector {
+    position: absolute;
+    left: 27px;
+    top: 56px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--orange) 0%, var(--blue) 100%);
+    opacity: 0.3;
+  }
+
+  .phase-content {
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .phase-header h3 {
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--navy);
+  }
+
+  .phase-days {
+    font-size: 0.8125rem;
+    color: var(--orange);
+    font-weight: 600;
+    background: rgba(237, 137, 54, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 100px;
+  }
+
+  .phase-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* Pricing */
+  .qf-pricing {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface-alt);
+  }
+
+  .pricing-card {
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    background: var(--bg-surface);
+    border: 2px solid var(--orange);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .pricing-top {
+    text-align: center;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
+    color: white;
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(237, 137, 54, 0.2);
+    border: 1px solid rgba(237, 137, 54, 0.4);
+    color: var(--orange-light);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-price {
+    display: block;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+  }
+
+  .pricing-timeline {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .pricing-includes {
+    padding: var(--space-xl);
+  }
+
+  .pricing-includes h4 {
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-includes ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pricing-includes li {
+    position: relative;
+    padding: var(--space-xs) 0 var(--space-xs) var(--space-lg);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .pricing-includes li:last-child { border-bottom: none; }
+
+  .pricing-includes li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .pricing-cta {
+    padding: 0 var(--space-xl) var(--space-xl);
+    text-align: center;
+  }
+
+  .pricing-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .guarantees {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm) var(--space-lg);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .guarantee {
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--orange);
+  }
+
+  .guarantee strong {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--navy);
+  }
+
+  .guarantee span {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  /* FAQ */
+  .qf-faq {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface);
+  }
+
+  .faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-toggle { display: none; }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--navy);
+    transition: color var(--transition);
+  }
+
+  .faq-question:hover { color: var(--orange); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+  }
+
+  .faq-toggle:checked + .faq-question .faq-icon {
+    transform: rotate(45deg);
+    background: var(--orange);
+    border-color: var(--orange);
+    color: white;
+  }
+
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .faq-answer > p {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .faq-toggle:checked ~ .faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-toggle:checked ~ .faq-answer > p {
+    padding: 0 0 var(--space-lg) 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .qf-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .qf-hero-stats {
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+    }
+
+    .qf-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .qf-hero-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .solution-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .deliverables-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .deliverable-stats {
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+    }
+
+    .phase {
+      padding-left: 64px;
+    }
+
+    .phase-marker {
+      width: 44px;
+      height: 44px;
+      font-size: 1rem;
+    }
+
+    .phase-connector {
+      left: 21px;
+      top: 44px;
+    }
+
+    .guarantees {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
