@@ -1,0 +1,144 @@
+---
+interface Props {
+  headline: string;
+  subheadline: string;
+  sampleQuestions: {
+    questionNumber: number;
+    questionText: string;
+    questionType: string;
+    options: string[];
+  }[];
+  quizUrl: string;
+}
+
+const { headline, subheadline, sampleQuestions, quizUrl } = Astro.props;
+
+const typeLabels: Record<string, string> = {
+  card_selection: 'Select One',
+  multiple_choice: 'Choose One',
+  scale_slider: 'Rate Yourself',
+};
+---
+
+<section class="v-quiz-preview bg-surface">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+      <p>{subheadline}</p>
+    </div>
+
+    <div class="questions-grid" data-animate-stagger>
+      {sampleQuestions.map((q) => (
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">Q{q.questionNumber}</span>
+            <span class="question-type">{typeLabels[q.questionType] || q.questionType}</span>
+          </div>
+          <h3 class="question-text">{q.questionText}</h3>
+          <div class="options-list">
+            {q.options.map((opt) => (
+              <div class="option-pill">{opt}</div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a href={quizUrl} class="btn btn-primary" target="_blank" rel="noopener">Take the Full Quiz</a>
+      <p class="cta-note">2 minutes. Completely free. Personalized results.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-quiz-preview {
+    padding: var(--space-4xl) 0;
+  }
+
+  .questions-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .questions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .question-card {
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .question-number {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  .question-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+
+  .question-text {
+    font-size: 1.0625rem;
+    margin: 0;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .option-pill {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+  }
+
+  .question-card:hover .option-pill:first-child {
+    border-color: var(--blue);
+    color: var(--navy);
+    background: rgba(49, 130, 206, 0.05);
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+
+  .cta-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+  }
+</style>

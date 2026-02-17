@@ -1,0 +1,161 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="/logo.png" alt="Brothers Automate" width="115" height="36" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="/projects/quiz-funnels">Quiz Funnels</a></li>
+            <li><a href="/projects/brand-research">Brand Research</a></li>
+            <li><a href="/projects/daily-ads">Daily Ads</a></li>
+            <li><a href="/projects/screenfast">ScreenFast</a></li>
+            <li><a href="/projects/google-review-response">Review Response</a></li>
+            <li><a href="/projects/route-simply">Route Simply</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="/for/coaches">Coaches & Consultants</a></li>
+            <li><a href="/for/financial-advisors">Financial Advisors</a></li>
+            <li><a href="/for/real-estate">Real Estate</a></li>
+            <li><a href="/for/home-services">Home Services</a></li>
+            <li><a href="/for/ecommerce">E-commerce</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <a
+                href="#"
+                data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+                data-cal-namespace="free-quiz-audit-automation-brothers"
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              >Book a Call</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {year} Brothers Automate. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    padding: var(--space-2xl) 0 var(--space-xl);
+  }
+
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .footer-top {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  .footer-logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+  }
+
+  .footer-col h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col li {
+    margin-bottom: var(--space-xs);
+  }
+
+  .footer-col a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-col a:hover {
+    color: var(--orange);
+  }
+
+  .footer-bottom {
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-copyright {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .footer-top {
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-links {
+      justify-content: center;
+    }
+
+    .footer-bottom {
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,156 @@
+---
+interface Props {
+  phases: {
+    number: number;
+    title: string;
+    days: string;
+    tasks: string[];
+  }[];
+}
+
+const { phases } = Astro.props;
+---
+
+<section class="v-process bg-surface" id="process">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>1-3 Weeks From Kickoff to Live System</h2>
+      <p>A thorough process that delivers a complete system, not a rushed template job.</p>
+    </div>
+
+    <div class="timeline" data-animate-stagger>
+      {phases.map((phase, index) => (
+        <div class="phase">
+          <div class="phase-marker">{phase.number}</div>
+          <div class="phase-content">
+            <div class="phase-header">
+              <h3>{phase.title}</h3>
+              <span class="phase-days">{phase.days}</span>
+            </div>
+            <ul class="phase-list">
+              {phase.tasks.map((task) => (
+                <li>{task}</li>
+              ))}
+            </ul>
+          </div>
+          {index < phases.length - 1 && <div class="phase-connector"></div>}
+        </div>
+      ))}
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a
+        href="#"
+        class="btn btn-primary"
+        data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        data-cal-namespace="free-quiz-audit-automation-brothers"
+        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+      >Let's Get Started</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-process { padding: var(--space-4xl) 0; }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .phase {
+    position: relative;
+    padding-left: 80px;
+    padding-bottom: var(--space-xl);
+  }
+
+  .phase:last-child { padding-bottom: 0; }
+
+  .phase-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--bg-primary);
+    border: 3px solid var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-weight: 800;
+    font-size: 1.25rem;
+    z-index: 2;
+  }
+
+  .phase-connector {
+    position: absolute;
+    left: 27px;
+    top: 56px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--orange) 0%, var(--blue) 100%);
+    opacity: 0.3;
+  }
+
+  .phase-content {
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .phase-header h3 { font-size: 1.125rem; margin: 0; color: var(--navy); }
+
+  .phase-days {
+    font-size: 0.8125rem;
+    color: var(--orange);
+    font-weight: 600;
+    background: rgba(237, 137, 54, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 100px;
+  }
+
+  .phase-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .phase-list li {
+    position: relative;
+    padding-left: var(--space-lg);
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .phase-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .phase { padding-left: 64px; }
+    .phase-marker { width: 44px; height: 44px; font-size: 1rem; }
+    .phase-connector { left: 21px; top: 44px; }
+    .phase-header { flex-direction: column; gap: var(--space-xs); }
+  }
+
+  .section-cta { text-align: center; margin-top: var(--space-2xl); }
+</style>

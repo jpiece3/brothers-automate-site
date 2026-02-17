@@ -1,0 +1,91 @@
+---
+---
+
+<section class="tools bg-surface-alt">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>Tools We Use to Automate</h2>
+      <p>We build with the best AI tools so your systems are fast, reliable, and smart.</p>
+    </div>
+
+    <div class="tools-grid" data-animate-stagger>
+      <div class="tool-card card">
+        <div class="tool-logo">
+          <img src="/tools/claude-logo.svg" alt="Claude Code by Anthropic" width="48" height="48" loading="lazy" />
+        </div>
+        <div class="tool-info">
+          <h3>Claude Code</h3>
+          <p>Anthropic's agentic coding tool. We use Claude Code to build, debug, and deploy your AI systems faster, with the same model powering the intelligence in your automations.</p>
+        </div>
+      </div>
+
+      <div class="tool-card card">
+        <div class="tool-logo">
+          <img src="/tools/gumloop-logo.svg" alt="Gumloop AI Automation" width="48" height="48" loading="lazy" />
+        </div>
+        <div class="tool-info">
+          <h3>Gumloop</h3>
+          <p>AI workflow automation platform. We use Gumloop to wire together multi-step automations that handle your lead routing, content generation, screening, and more. All running 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tools {
+    padding: var(--space-3xl) 0;
+  }
+
+  .tools-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-xl);
+    gap: var(--space-md);
+  }
+
+  .tool-logo {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-sm);
+  }
+
+  .tool-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .tool-info h3 {
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .tool-info p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

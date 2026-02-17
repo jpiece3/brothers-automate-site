@@ -1,0 +1,291 @@
+---
+const tiers = [
+  {
+    name: "Quick Fix",
+    price: "$1,497",
+    timeline: "3-5 days",
+    description: "One targeted automation that saves you hours every week.",
+    features: [
+      "Single workflow automation",
+      "Connect 2-3 existing tools",
+      "Setup + documentation",
+      "14-day support window"
+    ],
+    examples: "Email sequences, inventory sync, appointment reminders, form-to-CRM",
+    highlighted: false
+  },
+  {
+    name: "Custom Build",
+    price: "$3,497 - $4,997",
+    timeline: "1-2 weeks",
+    description: "A complete system built around your biggest bottleneck.",
+    features: [
+      "End-to-end custom system",
+      "Multi-tool integration",
+      "Analytics dashboard",
+      "Documentation + walkthrough",
+      "30-day support window"
+    ],
+    examples: "Quiz funnels, client screening, lead nurture pipelines, ad generation",
+    highlighted: true
+  },
+  {
+    name: "Full System",
+    price: "$7,997+",
+    timeline: "2-4 weeks",
+    description: "Your entire client lifecycle, automated from capture to close.",
+    features: [
+      "Multi-stage automation pipeline",
+      "Research & strategy phase included",
+      "Custom analytics + reporting",
+      "Full documentation + training",
+      "Quarterly check-in included"
+    ],
+    examples: "Capture + qualify + nurture + analytics + ads. The whole engine.",
+    highlighted: false
+  }
+];
+---
+
+<section class="offer bg-surface" id="offer">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>Simple Pricing. No Surprises.</h2>
+      <p>Every project is custom, but our pricing is straightforward. Pick the tier that matches your problem.</p>
+    </div>
+
+    <div class="pricing-grid" data-animate-stagger>
+      {tiers.map((tier) => (
+        <div class={`pricing-card card ${tier.highlighted ? 'pricing-card-featured' : ''}`}>
+          {tier.highlighted && <span class="featured-badge">Most Popular</span>}
+          <div class="pricing-header">
+            <h3>{tier.name}</h3>
+            <span class="pricing-price">{tier.price}</span>
+            <span class="pricing-timeline">{tier.timeline}</span>
+          </div>
+          <p class="pricing-description">{tier.description}</p>
+          <ul class="pricing-features">
+            {tier.features.map((feature) => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <p class="pricing-examples"><strong>Examples:</strong> {tier.examples}</p>
+          <a
+            href="#"
+            class={`btn ${tier.highlighted ? 'btn-primary' : 'btn-secondary'} pricing-cta-btn`}
+            data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            data-cal-namespace="free-quiz-audit-automation-brothers"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          >Talk to the Brothers</a>
+        </div>
+      ))}
+    </div>
+
+    <div class="pricing-guarantee" data-animate="fade-up">
+      <div class="anti-agency-block">
+        <div class="anti-point">
+          <strong>Flat fee per project.</strong>
+          <span>You pay once. We build it. Done.</span>
+        </div>
+        <div class="anti-point">
+          <strong>Full documentation.</strong>
+          <span>You understand exactly how everything works.</span>
+        </div>
+        <div class="anti-point">
+          <strong>No scope creep.</strong>
+          <span>Defined deliverables before we start.</span>
+        </div>
+        <div class="anti-point">
+          <strong>30-day guarantee.</strong>
+          <span>If it doesn't work, we fix it free.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a href="/pricing" class="btn btn-secondary">See Full Pricing Details</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer {
+    padding: var(--space-4xl) 0;
+  }
+
+  .pricing-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+    }
+  }
+
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    position: relative;
+    height: 100%;
+  }
+
+  .pricing-card-featured {
+    border: 2px solid var(--orange);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 768px) {
+    .pricing-card-featured {
+      transform: scale(1.04);
+    }
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: white;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-header h3 {
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .pricing-price {
+    display: block;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+  }
+
+  .pricing-timeline {
+    font-size: 0.8125rem;
+    color: var(--orange);
+    font-weight: 600;
+    background: rgba(237, 137, 54, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 100px;
+  }
+
+  .pricing-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-features svg {
+    flex-shrink: 0;
+    color: var(--blue);
+    margin-top: 2px;
+  }
+
+  .pricing-examples {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-sm);
+    background: var(--bg-surface-alt);
+    border-radius: var(--radius);
+  }
+
+  .pricing-examples strong {
+    color: var(--navy);
+  }
+
+  .pricing-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Anti-agency block */
+  .pricing-guarantee {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .anti-agency-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm) var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-surface-alt);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .anti-point {
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--orange);
+  }
+
+  .anti-point strong {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--navy);
+  }
+
+  .anti-point span {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .anti-agency-block {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+</style>

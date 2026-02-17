@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/how-we-work", "destination": "/#process", "statusCode": 301 },
+    { "source": "/compare", "destination": "/pricing", "statusCode": 301 },
+    { "source": "/what-you-get", "destination": "/projects", "statusCode": 301 },
+    { "source": "/solutions", "destination": "/projects", "statusCode": 301 },
+    { "source": "/solutions/:path*", "destination": "/projects", "statusCode": 301 },
+    { "source": "/resources", "destination": "/blog", "statusCode": 301 }
+  ]
+}

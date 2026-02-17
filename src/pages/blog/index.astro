@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts sorted by date (newest first)
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+// Get unique categories
+const categories = [...new Set(posts.map(post => post.data.category))];
+---
+
+<Layout
+  title="Blog | Quiz Funnel & Lead Generation Insights | Brothers Automate"
+  description="Learn how to capture, score, and nurture leads with quiz funnels. Expert insights on lead magnets, email sequences, and conversion optimization."
+>
+  <Header />
+
+  <main>
+    <section class="blog-hero">
+      <div class="container">
+        <p class="eyebrow">Blog</p>
+        <h1>Insights for Lead Generation</h1>
+        <p class="hero-subtitle">Expert guides on quiz funnels, lead magnets, and converting visitors into customers.</p>
+      </div>
+    </section>
+
+    <section class="blog-listing">
+      <div class="container">
+        {posts.length > 0 ? (
+          <div class="blog-grid" data-animate-stagger>
+            {posts.map((post) => (
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                category={post.data.category}
+                slug={post.slug}
+                image={post.data.image}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <p>New articles coming soon. Check back later!</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="blog-cta bg-navy">
+      <div class="container text-center">
+        <h2>Skip the Learning Curve</h2>
+        <p>Get a complete quiz funnel built for you in 7 days. Landing page, quiz, 26 email sequences. Done.</p>
+        <a href="/#offer" class="btn btn-white btn-lg">See What's Included</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-hero {
+    text-align: center;
+    padding: var(--space-3xl) 0 var(--space-xl);
+    background: var(--bg-surface-alt);
+  }
+
+  .blog-hero h1 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .blog-listing {
+    padding: var(--space-2xl) 0 var(--space-3xl);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+  }
+
+  .empty-state p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+  }
+
+  .blog-cta {
+    padding: var(--space-3xl) 0;
+  }
+
+  .blog-cta h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .blog-cta p {
+    max-width: 500px;
+    margin: 0 auto var(--space-lg);
+  }
+</style>

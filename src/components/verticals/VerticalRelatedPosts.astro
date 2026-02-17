@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  relatedTags: string[];
+  verticalLabel: string;
+}
+
+const { relatedTags, verticalLabel } = Astro.props;
+
+const allPosts = await getCollection('blog');
+
+// Find posts matching any of the related tags (case-insensitive)
+const lowerTags = relatedTags.map(t => t.toLowerCase());
+const relatedPosts = allPosts
+  .filter(post => {
+    const postTags = (post.data.tags || []).map((t: string) => t.toLowerCase());
+    return lowerTags.some(tag => postTags.includes(tag));
+  })
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// If not enough tag matches, fill with recent posts
+const posts = relatedPosts.length >= 3
+  ? relatedPosts
+  : [
+      ...relatedPosts,
+      ...allPosts
+        .filter(p => !relatedPosts.includes(p))
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .slice(0, 3 - relatedPosts.length)
+    ];
+---
+
+{posts.length > 0 && (
+  <section class="v-related bg-surface">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <h2>Resources for {verticalLabel}</h2>
+        <p>Actionable guides to help you generate more leads.</p>
+      </div>
+
+      <div class="posts-grid" data-animate-stagger>
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="post-card card">
+            <span class="post-category">{post.data.category}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="post-link">Read more &rarr;</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="section-cta" data-animate="fade-up">
+        <a href="/blog" class="btn btn-secondary">View All Articles</a>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .v-related { padding: var(--space-4xl) 0; }
+
+  .posts-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-lg);
+  }
+
+  .post-card:hover {
+    color: inherit;
+  }
+
+  .post-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--blue);
+  }
+
+  .post-card h3 {
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .post-card p {
+    font-size: 0.9375rem;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-top: auto;
+  }
+
+  .post-card:hover .post-link { text-decoration: underline; }
+
+  .section-cta { text-align: center; }
+</style>

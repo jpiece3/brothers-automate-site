@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProjectsGrid from '../../components/ProjectsGrid.astro';
+import CTA from '../../components/CTA.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` }
+  ]
+};
+---
+
+<Layout
+  title="Our Projects | AI Systems That Work | Brothers Automate"
+  description="See the AI systems we've built for service businesses: quiz funnels, ad creative, resume screening, review response, brand research, and route optimization."
+>
+  <Header />
+  <main>
+    <section class="projects-hero">
+      <div class="container">
+        <div class="projects-hero-content" data-animate="fade-up">
+          <span class="badge">What We Build</span>
+          <h1>AI Systems That Save You<br />Time and Money</h1>
+          <p class="projects-hero-sub">Every project is built custom for your business. Here's what we've built, and the results they've delivered.</p>
+        </div>
+      </div>
+    </section>
+
+    <ProjectsGrid />
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  .projects-hero {
+    padding-top: 160px;
+    padding-bottom: var(--space-xl);
+    background: var(--bg-primary);
+    text-align: center;
+  }
+
+  .projects-hero-content {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .projects-hero h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .projects-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 767px) {
+    .projects-hero {
+      padding-top: 120px;
+    }
+  }
+</style>

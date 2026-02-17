@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import VerticalHero from '../../components/verticals/VerticalHero.astro';
+import VerticalPainPoints from '../../components/verticals/VerticalPainPoints.astro';
+import VerticalSolution from '../../components/verticals/VerticalSolution.astro';
+import VerticalSystemsPreview from '../../components/verticals/VerticalSystemsPreview.astro';
+import VerticalSocialProof from '../../components/verticals/VerticalSocialProof.astro';
+import VerticalProcess from '../../components/verticals/VerticalProcess.astro';
+import VerticalFAQ from '../../components/verticals/VerticalFAQ.astro';
+import VerticalCTA from '../../components/verticals/VerticalCTA.astro';
+import VerticalRelatedPosts from '../../components/verticals/VerticalRelatedPosts.astro';
+import { verticals, getVerticalSlugs } from '../../data/verticals';
+import type { VerticalData } from '../../data/verticals';
+
+export function getStaticPaths() {
+  return getVerticalSlugs();
+}
+
+const { vertical } = Astro.params;
+const data = verticals[vertical as string] as VerticalData;
+
+if (!data) {
+  return Astro.redirect('/for/');
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `AI Automation for ${data.label}`,
+  "description": data.meta.description,
+  "serviceType": data.schema.serviceType,
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": data.schema.targetAudience
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "1497",
+    "highPrice": "7997",
+    "priceCurrency": "USD",
+    "description": "Custom AI automation systems, 1-3 weeks delivery"
+  },
+  "areaServed": "Worldwide"
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Industries", "item": `${SITE_URL}/for/` },
+    { "@type": "ListItem", "position": 3, "name": data.label, "item": `${SITE_URL}/for/${data.slug}` }
+  ]
+};
+---
+
+<Layout
+  title={data.meta.title}
+  description={data.meta.description}
+  canonicalUrl={`${SITE_URL}/for/${data.slug}`}
+>
+  <Header />
+  <main>
+    <VerticalHero
+      badge={data.hero.badge}
+      headline={data.hero.headline}
+      headlineGradient={data.hero.headlineGradient}
+      subheadline={data.hero.subheadline}
+      stats={data.hero.stats}
+      trustSignal={data.hero.trustSignal}
+    />
+    <VerticalPainPoints
+      headline={data.painPoints.headline}
+      stats={data.painPoints.stats}
+      bottomStat={data.painPoints.bottomStat}
+      conclusion={data.painPoints.conclusion}
+    />
+    <VerticalSolution
+      headline={data.solution.headline}
+      headlineHighlight={data.solution.headlineHighlight}
+      features={data.solution.features}
+      conclusion={data.solution.conclusion}
+      callout={data.solution.callout}
+    />
+    <VerticalSystemsPreview
+      headline={data.systemsPreview.headline}
+      subheadline={data.systemsPreview.subheadline}
+      systems={data.systemsPreview.systems}
+    />
+    <VerticalSocialProof
+      headline={data.socialProof.headline}
+      stats={data.socialProof.stats}
+    />
+    <VerticalProcess phases={data.process.phases} />
+    <VerticalFAQ faq={data.faq} />
+    <VerticalRelatedPosts
+      relatedTags={data.relatedTags}
+      verticalLabel={data.label}
+    />
+    <VerticalCTA
+      headline={data.cta.headline}
+      headlineHighlight={data.cta.headlineHighlight}
+      subheadline={data.cta.subheadline}
+    />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>

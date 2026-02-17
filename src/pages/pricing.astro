@@ -1,0 +1,525 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Pricing", "item": `${SITE_URL}/pricing` }
+  ]
+};
+
+const tiers = [
+  {
+    name: "Quick Fix",
+    price: "$1,497",
+    timeline: "3-5 days",
+    description: "One targeted automation that saves you hours every week.",
+    features: [
+      "Single workflow automation",
+      "Connect 2-3 existing tools",
+      "Setup + documentation",
+      "14-day support window",
+      "Full documentation included"
+    ],
+    examples: [
+      "Email sequence automation",
+      "Inventory sync (Notion, Airtable, Sheets)",
+      "Appointment reminder workflows",
+      "Form-to-CRM integration",
+      "Report generation automation"
+    ],
+    highlighted: false
+  },
+  {
+    name: "Custom Build",
+    price: "$3,497 - $4,997",
+    timeline: "1-2 weeks",
+    description: "A complete system built around your biggest bottleneck.",
+    features: [
+      "End-to-end custom system",
+      "Multi-tool integration",
+      "Analytics dashboard",
+      "Documentation + walkthrough call",
+      "30-day support window",
+      "Full documentation included"
+    ],
+    examples: [
+      "Quiz funnel with lead scoring + email nurture",
+      "Client screening and ranking system",
+      "Lead qualification pipeline",
+      "AI ad creative generation",
+      "Content autopilot (blog + social)"
+    ],
+    highlighted: true
+  },
+  {
+    name: "Full System",
+    price: "$7,997+",
+    timeline: "2-4 weeks",
+    description: "Your entire client lifecycle, automated from capture to close.",
+    features: [
+      "Multi-stage automation pipeline",
+      "Research & strategy phase included",
+      "Custom analytics + reporting dashboard",
+      "Full documentation + team training",
+      "Quarterly check-in included",
+      "Full documentation included"
+    ],
+    examples: [
+      "Capture + qualify + nurture + analytics + ads",
+      "Full onboarding automation with task triggers",
+      "Multi-channel lead gen with scoring + routing",
+      "Complete content engine (blog + social + email + ads)"
+    ],
+    highlighted: false
+  }
+];
+
+const includes = [
+  { title: "Custom-built", description: "No templates, no plugins. Built from scratch for your business." },
+  { title: "Deployed on your domain", description: "Runs under your accounts with full access and documentation." },
+  { title: "Documentation", description: "Plain-English docs so you (or your team) understand how everything works." },
+  { title: "Flat fee per project", description: "Clear pricing upfront. Pay once, get the system, done." },
+  { title: "30-day guarantee", description: "If it doesn't do what we scoped, we fix it free." },
+  { title: "Walkthrough call", description: "We walk you through everything before handoff." }
+];
+
+const comparison = [
+  { label: "Cost", agency: "$10K-50K+/mo", freelancer: "$2K-8K", diy: '"Free" + your time', brothers: "$1,497-$12K one-time" },
+  { label: "Timeline", agency: "6-12 weeks", freelancer: "2-6 weeks", diy: "Weeks of learning", brothers: "3 days - 4 weeks" },
+  { label: "Custom to you", agency: "Sometimes", freelancer: "Usually", diy: "Template-based", brothers: "Always" },
+  { label: "Documentation", agency: "Minimal", freelancer: "Varies", diy: "Platform docs only", brothers: "Full plain-English docs" },
+  { label: "Pricing model", agency: "Monthly retainer", freelancer: "Hourly / retainer", diy: "SaaS subscriptions", brothers: "Flat fee per project" },
+  { label: "Who builds it", agency: "Junior staff", freelancer: "One person", diy: "You", brothers: "Two brothers, personally" }
+];
+---
+
+<Layout
+  title="Pricing | AI Automation Projects | Brothers Automate"
+  description="One price. One system. No surprises. See our project tiers from $1,497 Quick Fixes to $7,997+ Full Systems. Every project is custom-built for your business."
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="pricing-hero">
+      <div class="container">
+        <div class="pricing-hero-content" data-animate="fade-up">
+          <span class="badge">Pricing</span>
+          <h1>One Price. One System.<br />No Surprises.</h1>
+          <p class="pricing-hero-sub">Every project is custom-built for your business. Pick the tier that matches your problem, and we'll scope it on a call.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="pricing-tiers bg-surface">
+      <div class="container">
+        <div class="pricing-grid" data-animate-stagger>
+          {tiers.map((tier) => (
+            <div class={`pricing-card card ${tier.highlighted ? 'pricing-card-featured' : ''}`}>
+              {tier.highlighted && <span class="featured-badge">Most Popular</span>}
+              <div class="pricing-header">
+                <h3>{tier.name}</h3>
+                <span class="pricing-price">{tier.price}</span>
+                <span class="pricing-timeline">{tier.timeline}</span>
+              </div>
+              <p class="pricing-description">{tier.description}</p>
+              <h4 class="pricing-section-label">What's included:</h4>
+              <ul class="pricing-features">
+                {tier.features.map((feature) => (
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <h4 class="pricing-section-label">Example projects:</h4>
+              <ul class="pricing-examples-list">
+                {tier.examples.map((example) => (
+                  <li>{example}</li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                class={`btn ${tier.highlighted ? 'btn-primary' : 'btn-secondary'} pricing-cta-btn`}
+                data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+                data-cal-namespace="free-quiz-audit-automation-brothers"
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              >Talk to the Brothers</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- What Every Tier Includes -->
+    <section class="pricing-includes bg-surface-alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>What Every Tier Includes</h2>
+        </div>
+        <div class="includes-grid" data-animate-stagger>
+          {includes.map((item) => (
+            <div class="include-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div>
+                <strong>{item.title}</strong>
+                <span>{item.description}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How We Compare -->
+    <section class="pricing-compare bg-surface">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>How We Compare</h2>
+        </div>
+        <div class="compare-table-wrap" data-animate="fade-up">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Agency</th>
+                <th>Freelancer</th>
+                <th>DIY / No-Code</th>
+                <th class="highlight-col">Brothers Automate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparison.map((row) => (
+                <tr>
+                  <td class="row-label">{row.label}</td>
+                  <td>{row.agency}</td>
+                  <td>{row.freelancer}</td>
+                  <td>{row.diy}</td>
+                  <td class="highlight-col">{row.brothers}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  .pricing-hero {
+    padding-top: 160px;
+    padding-bottom: var(--space-xl);
+    background: var(--bg-primary);
+    text-align: center;
+  }
+
+  .pricing-hero-content {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-hero h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Pricing Tiers */
+  .pricing-tiers {
+    padding: var(--space-2xl) 0 var(--space-4xl);
+  }
+
+  .pricing-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+    }
+  }
+
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    position: relative;
+    height: 100%;
+  }
+
+  .pricing-card-featured {
+    border: 2px solid var(--orange);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 768px) {
+    .pricing-card-featured {
+      transform: scale(1.04);
+    }
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: white;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-header h3 {
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .pricing-price {
+    display: block;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+  }
+
+  .pricing-timeline {
+    font-size: 0.8125rem;
+    color: var(--orange);
+    font-weight: 600;
+    background: rgba(237, 137, 54, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 100px;
+  }
+
+  .pricing-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-section-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--navy);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-features svg {
+    flex-shrink: 0;
+    color: var(--blue);
+    margin-top: 2px;
+  }
+
+  .pricing-examples-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
+  }
+
+  .pricing-examples-list li {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: var(--space-md);
+    position: relative;
+  }
+
+  .pricing-examples-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+
+  .pricing-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* What Every Tier Includes */
+  .pricing-includes {
+    padding: var(--space-4xl) 0;
+  }
+
+  .includes-grid {
+    display: grid;
+    gap: var(--space-md);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .includes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .includes-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .include-card {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .include-card svg {
+    flex-shrink: 0;
+    color: var(--blue);
+    margin-top: 2px;
+  }
+
+  .include-card strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .include-card span {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Comparison Table */
+  .pricing-compare {
+    padding: var(--space-4xl) 0;
+  }
+
+  .compare-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: var(--space-md) var(--space-lg);
+    text-align: left;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-table th {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--bg-surface-alt);
+  }
+
+  .compare-table td {
+    color: var(--text-secondary);
+  }
+
+  .row-label {
+    font-weight: 600;
+    color: var(--navy) !important;
+  }
+
+  .highlight-col {
+    background: rgba(237, 137, 54, 0.05);
+    color: var(--navy) !important;
+    font-weight: 600;
+  }
+
+  th.highlight-col {
+    color: var(--orange) !important;
+  }
+
+  @media (max-width: 767px) {
+    .pricing-hero {
+      padding-top: 120px;
+    }
+  }
+</style>

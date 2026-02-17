@@ -1,0 +1,300 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": `${SITE_URL}/about` }
+  ]
+};
+---
+
+<Layout
+  title="About | Brothers Automate"
+  description="We ran a service business for 5 years. Now we build AI systems that handle the busywork for service businesses doing $1-5M, so owners can focus on what they do best."
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-grid">
+          <div class="about-hero-image" data-animate="slide-left">
+            <img src="/brothers.png" alt="James and Brendan, founders of Brothers Automate" width="400" height="400" loading="eager" />
+          </div>
+          <div class="about-hero-content" data-animate="slide-right">
+            <span class="badge">Our Story</span>
+            <h1>Built by Operators,<br />for Operators</h1>
+            <p class="about-hero-sub">We're James and Brendan, two brothers who've been in business together for 5 years. We started by running our own service businesses, and we got tired of the busywork eating our weekends.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="about-story bg-surface">
+      <div class="container">
+        <div class="story-content" data-animate="fade-up">
+          <h2>The Short Version</h2>
+          <p>You started a business to do the thing you're good at. Now you spend most of your time doing everything else.</p>
+          <p>We lived it. We ran a service business for 5 years. You want to meet clients, close deals, deliver great work. But instead you're manually logging leads, writing follow-up emails, posting on social media. Your inbox is a mess and opportunities slip through the cracks.</p>
+          <p>We built AI systems to handle that work automatically, and do it better than a human could. AI can't close your deals or deliver your service, but it can segment and follow up with your leads, create your ads, screen your applicants, and keep your pipeline moving while you focus on what matters.</p>
+          <p>We know what to automate because we were operators ourselves. We spent years figuring out what actually moves the needle.</p>
+          <p>Agencies charge $10K/month for this work. Hiring someone costs the same or more. Learning it yourself takes hundreds of hours you don't have.</p>
+          <p><strong>We build the systems so you don't have to pay agency prices or sacrifice your time.</strong> Talk to us about your business, then go back to doing what only you can do.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="about-values bg-surface-alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>How We Think About This</h2>
+        </div>
+        <div class="values-grid" data-animate-stagger>
+          <div class="value-card card">
+            <h3>Transparent Deliverables</h3>
+            <p>Full documentation, clear infrastructure, and a system you understand. We build it, explain it, and hand it over.</p>
+          </div>
+          <div class="value-card card">
+            <h3>Flat Fee Per Project</h3>
+            <p>Clear pricing upfront. One project, one price, done. The system runs on its own after handoff.</p>
+          </div>
+          <div class="value-card card">
+            <h3>Custom, Not Template</h3>
+            <p>Your business isn't a template. We research your specific workflow, your tools, your bottleneck, then build something that fits.</p>
+          </div>
+          <div class="value-card card">
+            <h3>Ship Fast, Ship Right</h3>
+            <p>1-3 weeks from kickoff to live system. Not because we cut corners, but because we've done this enough times to move fast without breaking things.</p>
+          </div>
+          <div class="value-card card">
+            <h3>Operator-First Language</h3>
+            <p>We write documentation in plain English. We explain how things work, not just what they do. Because you should understand your own systems.</p>
+          </div>
+          <div class="value-card card">
+            <h3>Two Brothers, Zero Account Managers</h3>
+            <p>You talk to us. The same people who design, build, and deploy your system. No junior staff, no handoffs, no telephone game.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Build -->
+    <section class="about-builds bg-surface">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <h2>What We've Built</h2>
+          <p>A sampling of the kinds of systems we ship.</p>
+        </div>
+        <div class="builds-grid" data-animate-stagger>
+          <a href="/projects/quiz-funnels" class="build-item">
+            <strong>Quiz Funnels</strong>
+            <span>Automated lead qualification with scoring, 26-email nurture sequences, and real-time analytics</span>
+          </a>
+          <a href="/projects/brand-research" class="build-item">
+            <strong>Brand Research</strong>
+            <span>AI-powered audience analysis, competitor intel, and positioning strategy in 48 hours</span>
+          </a>
+          <a href="/projects/daily-ads" class="build-item">
+            <strong>Daily Ads</strong>
+            <span>Fresh ad creative generated daily in 21 formats. Static and video, matched to your brand</span>
+          </a>
+          <a href="/projects/screenfast" class="build-item">
+            <strong>ScreenFast</strong>
+            <span>AI resume screening that reads, scores, and ranks candidates in seconds. Built for YMCA</span>
+          </a>
+          <a href="/projects/google-review-response" class="build-item">
+            <strong>Google Review Response</strong>
+            <span>Automated, personalized review responses that keep your reputation strong 24/7</span>
+          </a>
+          <a href="/projects/route-simply" class="build-item">
+            <strong>Route Simply</strong>
+            <span>AI-optimized routing that cuts drive time by 30% and fits more jobs into every day</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  .about-hero {
+    padding-top: 160px;
+    padding-bottom: var(--space-2xl);
+    background: var(--bg-primary);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .about-hero-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-hero-grid {
+      grid-template-columns: 300px 1fr;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .about-hero-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-hero-image img {
+    width: 280px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .about-hero h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .about-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Story */
+  .about-story {
+    padding: var(--space-4xl) 0;
+  }
+
+  .story-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .story-content h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .story-content p {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+
+  .story-content strong {
+    color: var(--navy);
+  }
+
+  /* Values */
+  .about-values {
+    padding: var(--space-4xl) 0;
+  }
+
+  .values-grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .value-card {
+    padding: var(--space-lg);
+  }
+
+  .value-card h3 {
+    font-size: 1.0625rem;
+    color: var(--navy);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .value-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* What We Build */
+  .about-builds {
+    padding: var(--space-4xl) 0;
+  }
+
+  .builds-grid {
+    display: grid;
+    gap: var(--space-md);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .builds-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .build-item {
+    padding: var(--space-md);
+    border-left: 2px solid var(--orange);
+  }
+
+  .build-item strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .build-item span {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 767px) {
+    .about-hero {
+      padding-top: 120px;
+      text-align: center;
+    }
+
+    .about-hero-image img {
+      width: 220px;
+    }
+  }
+</style>

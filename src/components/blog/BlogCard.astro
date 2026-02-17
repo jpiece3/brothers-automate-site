@@ -1,0 +1,136 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+  image?: string;
+}
+
+const { title, description, date, category, slug, image } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<a href={`/blog/${slug}`} class="blog-card">
+  {image && (
+    <div class="blog-card-image">
+      <img src={image} alt={title} loading="lazy" />
+    </div>
+  )}
+  <div class="blog-card-content">
+    <div class="blog-card-meta">
+      <span class="category-badge">{category}</span>
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="read-more">Read article →</span>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .blog-card-image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg-surface-alt);
+  }
+
+  .blog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .blog-card:hover .blog-card-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-card-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(49, 130, 206, 0.1);
+    color: var(--blue);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-card-meta time {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .blog-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+    color: var(--navy);
+    line-height: 1.3;
+    transition: color var(--transition);
+  }
+
+  .blog-card:hover h3 {
+    color: var(--blue);
+  }
+
+  .blog-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    margin-top: var(--space-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--orange);
+    transition: color var(--transition);
+  }
+
+  .blog-card:hover .read-more {
+    color: var(--orange-hover);
+  }
+</style>

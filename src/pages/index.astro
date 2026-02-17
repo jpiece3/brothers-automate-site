@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import ProjectsGrid from '../components/ProjectsGrid.astro';
+import Process from '../components/Process.astro';
+import Origin from '../components/Origin.astro';
+import Tools from '../components/Tools.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+// WebSite Schema for sitelinks and search appearance
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Brothers Automate",
+  "url": SITE_URL,
+  "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork: lead follow-up, ad creative, hiring, reviews, and more.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${SITE_URL}/blog/?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Automation for Service Businesses",
+  "description": "Custom AI automation systems for service businesses doing $1-5M. Lead follow-up, ad creative, resume screening, review response, brand research, and route optimization. Built by operators, for operators.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL
+  },
+  "serviceType": "AI Automation Development",
+  "areaServed": "Worldwide"
+};
+---
+
+<Layout
+  title="AI Automations for Service Businesses | Brothers Automate"
+  description="We build AI systems that handle your busywork: lead follow-up, ad creative, hiring, reviews, routing. So you can focus on what you do best. Built by two brothers who ran a service business for 5 years."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Problem />
+    <ProjectsGrid />
+    <Process />
+    <Tools />
+    <Origin />
+    <FAQ />
+    <CTA />
+  </main>
+  <Footer />
+
+  <!-- WebSite Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</Layout>

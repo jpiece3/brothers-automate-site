@@ -1,0 +1,128 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  type?: 'website' | 'article';
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
+const DEFAULT_DESCRIPTION = "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more. Built by operators, for operators.";
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  image = DEFAULT_IMAGE,
+  canonicalUrl,
+  type = 'website'
+} = Astro.props;
+
+const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;
+
+// Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Brothers Automate",
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/logo.png`,
+  "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more.",
+  "sameAs": []
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S4S0F38JN"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5S4S0F38JN');
+  </script>
+
+  <meta name="description" content={description}>
+  <title>{title}</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={currentUrl}>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type}>
+  <meta property="og:url" content={currentUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={image}>
+  <meta property="og:site_name" content="Brothers Automate">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content={currentUrl}>
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={image}>
+
+  <!-- Additional Meta -->
+  <meta name="theme-color" content="#1a365d">
+  <meta name="author" content="Brothers Automate">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Resource hints for third-party services -->
+  <link rel="preconnect" href="https://app.cal.com">
+  <link rel="dns-prefetch" href="https://app.cal.com">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+  <!-- Cal.com Embed -->
+  <script type="text/javascript" is:inline>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "free-quiz-audit-automation-brothers", {origin:"https://app.cal.com"});
+    Cal.ns["free-quiz-audit-automation-brothers"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+
+  <!-- Styles -->
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+</head>
+<body>
+  <slot />
+
+  <script>
+    // Scroll animation observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -80px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('[data-animate], [data-animate-stagger]').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

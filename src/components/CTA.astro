@@ -1,0 +1,119 @@
+---
+---
+
+<section class="cta-section bg-navy" id="cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2 data-animate="fade-up">Talk to Us About <span class="text-highlight">Your Business</span></h2>
+      <p class="cta-subhead" data-animate="fade-up">Tell us what's eating your time. We'll show you exactly which systems we'd build to fix it.</p>
+
+      <div class="cta-buttons" data-animate="scale-up">
+        <a
+          href="#"
+          class="btn btn-primary btn-lg"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+        <a href="/projects" class="btn btn-secondary btn-lg cta-secondary">See Our Projects</a>
+      </div>
+
+      <p class="cta-note" data-animate="fade-in">Free consultation &bull; No obligation &bull; Custom-built for your business</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: var(--space-4xl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(237, 137, 54, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--space-md);
+  }
+
+  .text-highlight {
+    color: var(--orange);
+  }
+
+  .cta-subhead {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 480px) {
+    .cta-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .cta-buttons .btn-primary {
+    background: var(--orange);
+    color: white;
+    padding: var(--space-md) var(--space-2xl);
+    font-size: 1.125rem;
+    box-shadow: 0 0 30px rgba(237, 137, 54, 0.3);
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: var(--orange-hover);
+    box-shadow: 0 0 50px rgba(237, 137, 54, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .cta-secondary {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
+  .cta-secondary:hover {
+    border-color: white;
+    color: white;
+  }
+
+  .cta-note {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  @media (max-width: 479px) {
+    .cta-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

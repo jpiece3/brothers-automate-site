@@ -1,0 +1,111 @@
+---
+import { getAllVerticals } from '../data/verticals';
+
+interface Props {
+  compact?: boolean; // true = homepage variant (smaller), false = hub page variant
+}
+
+const { compact = false } = Astro.props;
+const verticals = getAllVerticals();
+---
+
+<div class={`industries-grid ${compact ? 'industries-grid--compact' : ''}`} data-animate-stagger>
+  {verticals.map((v) => (
+    <a href={`/for/${v.slug}`} class="industry-card card">
+      <span class="industry-icon icon-circle icon-circle-blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d={v.icon}></path>
+        </svg>
+      </span>
+      <div class="industry-text">
+        <h3>{v.label}</h3>
+        <p>{v.tagline}</p>
+      </div>
+      <span class="industry-arrow">&rarr;</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .industries-grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .industries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .industries-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .industry-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition);
+  }
+
+  .industry-card:hover {
+    color: inherit;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .industry-card:hover .industry-arrow {
+    transform: translateX(4px);
+    color: var(--orange);
+  }
+
+  .industry-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  .industry-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .industry-text h3 {
+    font-size: 1.0625rem;
+    margin: 0 0 4px;
+    color: var(--navy);
+  }
+
+  .industry-text p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .industry-arrow {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all var(--transition);
+  }
+
+  /* Compact variant for homepage section */
+  .industries-grid--compact .industry-card {
+    padding: var(--space-md);
+  }
+
+  .industries-grid--compact .industry-text h3 {
+    font-size: 1rem;
+  }
+
+  .industries-grid--compact .industry-text p {
+    font-size: 0.8125rem;
+  }
+</style>

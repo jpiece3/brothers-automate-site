@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProjectPage from '../../components/ProjectPage.astro';
+import Footer from '../../components/Footer.astro';
+import { getAllProjects, getProjectBySlug } from '../../data/projects';
+
+export function getStaticPaths() {
+  const projects = getAllProjects();
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": project.name, "item": `${SITE_URL}/projects/${project.slug}` }
+  ]
+};
+---
+
+<Layout
+  title={project.meta.title}
+  description={project.meta.description}
+>
+  <Header />
+  <main>
+    <ProjectPage project={project} />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>

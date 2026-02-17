@@ -1,0 +1,8 @@
+# Robots.txt for Brothers Automate
+# https://brothersautomate.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://brothersautomate.com/sitemap.xml

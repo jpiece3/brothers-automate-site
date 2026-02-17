@@ -1,0 +1,267 @@
+---
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <img src="/logo.png" alt="Brothers Automate" width="140" height="44" fetchpriority="high" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav desktop-nav">
+      <a href="/projects">Projects</a>
+      <a href="/for">Industries</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+    </nav>
+
+    <div class="header-ctas">
+      <!-- Desktop CTA -->
+      <a
+        href="#"
+        class="btn btn-primary desktop-cta"
+        data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        data-cal-namespace="free-quiz-audit-automation-brothers"
+        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+      >Talk to the Brothers</a>
+
+      <!-- Mobile CTA -->
+      <a
+        href="#"
+        class="btn btn-primary mobile-cta"
+        data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        data-cal-namespace="free-quiz-audit-automation-brothers"
+        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+      >Book Call</a>
+
+      <!-- Hamburger menu button -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav dropdown -->
+  <nav class="mobile-nav">
+    <a href="/projects">Projects</a>
+    <a href="/for">Industries</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/about">About</a>
+    <a href="/blog">Blog</a>
+  </nav>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const header = document.querySelector('.header');
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('is-open');
+      menuToggle.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close menu when clicking a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('is-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!header.contains(e.target as Node)) {
+        mobileNav.classList.remove('is-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 1000px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    height: 44px;
+    width: auto;
+  }
+
+  /* Desktop nav */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .desktop-nav a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+
+  .desktop-nav a:hover {
+    color: var(--navy);
+  }
+
+  /* Header CTAs */
+  .header-ctas {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .header-ctas .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  /* Desktop/Mobile CTA visibility */
+  .desktop-cta {
+    display: inline-flex;
+  }
+
+  .mobile-cta {
+    display: none;
+  }
+
+  /* Hamburger menu toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile nav dropdown */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 0 var(--space-md) var(--space-md);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .mobile-nav a {
+    padding: var(--space-sm) 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--orange);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 767px) {
+    .header {
+      top: 12px;
+      width: calc(100% - 24px);
+    }
+
+    .header-inner {
+      height: 56px;
+      padding: 0 var(--space-md);
+    }
+
+    .logo img {
+      height: 32px;
+    }
+
+    /* Hide desktop nav on mobile */
+    .desktop-nav {
+      display: none;
+    }
+
+    /* Show hamburger on mobile */
+    .menu-toggle {
+      display: flex;
+    }
+
+    /* Switch CTA visibility */
+    .desktop-cta {
+      display: none;
+    }
+
+    .mobile-cta {
+      display: inline-flex;
+      padding: 0.5rem 0.875rem;
+      font-size: 0.875rem;
+    }
+
+    /* Mobile nav when open */
+    .mobile-nav.is-open {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,94 @@
+---
+interface Props {
+  headline: string;
+  headlineHighlight: string;
+  features: { title: string; description: string; icon: string }[];
+  conclusion: string;
+  callout: string;
+}
+
+const { headline, headlineHighlight, features, conclusion, callout } = Astro.props;
+---
+
+<section class="v-solution" id="solution">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}<br><span class="text-highlight">{headlineHighlight}</span></h2>
+    </div>
+
+    <div class="features-grid" data-animate-stagger>
+      {features.map((feature) => (
+        <div class="feature-card card">
+          <span class="icon-circle icon-circle-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d={feature.icon}></path>
+            </svg>
+          </span>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="solution-conclusion" data-animate="fade-up">{conclusion}</p>
+
+    <div class="solution-callout" data-animate="fade-up">
+      <p>{callout}</p>
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a href="/projects" class="btn btn-primary">See Our Projects</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-solution { background: var(--bg-surface-alt); }
+
+  .text-highlight { color: var(--orange); }
+
+  .features-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .features-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .feature-card .icon-circle { margin: 0 auto; width: 64px; height: 64px; }
+  .feature-card .icon-circle svg { width: 28px; height: 28px; }
+  .feature-card h3 { font-size: 1.25rem; margin: 0; color: var(--navy); }
+  .feature-card p { margin: 0; font-size: 0.9375rem; line-height: 1.6; }
+
+  .solution-conclusion {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--navy);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  .solution-callout {
+    background: var(--bg-surface);
+    border-left: 4px solid var(--orange);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    max-width: 700px;
+    margin: var(--space-xl) auto 0;
+  }
+
+  .solution-callout p { margin: 0; font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
+
+  .section-cta { text-align: center; margin-top: var(--space-xl); }
+</style>

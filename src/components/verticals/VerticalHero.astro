@@ -1,0 +1,173 @@
+---
+interface Props {
+  badge: string;
+  headline: string;
+  headlineGradient: string;
+  subheadline: string;
+  stats: { number: string; label: string }[];
+  trustSignal: string;
+}
+
+const { badge, headline, headlineGradient, subheadline, stats, trustSignal } = Astro.props;
+---
+
+<section class="v-hero" id="hero">
+  <div class="container">
+    <div class="v-hero-content">
+      <span class="badge" data-animate="fade-up">{badge}</span>
+      <h1 data-animate="fade-up">{headline}<br /><span class="text-gradient">{headlineGradient}</span></h1>
+      <p class="v-hero-subheadline" data-animate="fade-up">{subheadline}</p>
+
+      <div class="stats-bar" data-animate-stagger>
+        {stats.map((stat) => (
+          <div class="stat">
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="v-hero-cta" data-animate="fade-up">
+        <a
+          href="#"
+          class="btn btn-primary btn-lg"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+        <a href="/projects" class="btn btn-secondary btn-lg">See Our Projects</a>
+      </div>
+      <p class="trust-signal" data-animate="fade-in">{trustSignal}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 140px;
+    padding-bottom: var(--space-3xl);
+    background: var(--bg-primary);
+  }
+
+  .v-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge {
+    display: inline-block;
+    align-self: center;
+    width: fit-content;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-lg);
+  }
+
+  .v-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .text-gradient {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .v-hero-subheadline {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .stat { text-align: center; }
+
+  .stat-number {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .v-hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 480px) {
+    .v-hero-cta {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .trust-signal {
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .stats-bar { gap: var(--space-lg); }
+    .stat-number { font-size: 2rem; }
+  }
+
+  @media (max-width: 767px) {
+    .v-hero {
+      padding-top: 90px;
+      padding-bottom: var(--space-xl);
+      min-height: auto;
+      align-items: flex-start;
+    }
+    .badge { order: 1; margin-bottom: var(--space-sm); }
+    .v-hero h1 { order: 2; margin-bottom: var(--space-sm); }
+    .v-hero-subheadline { order: 3; margin-bottom: var(--space-md); font-size: 1rem; line-height: 1.6; }
+    .v-hero-cta { order: 4; margin-bottom: var(--space-lg); }
+    .stats-bar { order: 5; padding: var(--space-md) 0; margin-bottom: var(--space-sm); }
+    .trust-signal { order: 6; }
+    .v-hero-cta .btn { width: 100%; justify-content: center; }
+  }
+</style>

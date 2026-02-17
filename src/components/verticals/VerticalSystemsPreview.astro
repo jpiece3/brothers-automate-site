@@ -1,0 +1,113 @@
+---
+interface Props {
+  headline: string;
+  subheadline: string;
+  systems: {
+    slug: string;
+    name: string;
+    description: string;
+  }[];
+}
+
+const { headline, subheadline, systems } = Astro.props;
+---
+
+<section class="v-systems-preview bg-surface">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+      <p>{subheadline}</p>
+    </div>
+
+    <div class="systems-grid" data-animate-stagger>
+      {systems.map((system) => (
+        <a href={`/projects/${system.slug}`} class="system-card card">
+          <h3>{system.name}</h3>
+          <p>{system.description}</p>
+          <span class="system-link">
+            Learn more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a href="/projects" class="btn btn-secondary">See All Projects</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-systems-preview {
+    padding: var(--space-4xl) 0;
+  }
+
+  .systems-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .systems-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .system-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid var(--border);
+  }
+
+  .system-card:hover {
+    border-color: var(--orange);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .system-card h3 {
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .system-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .system-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-top: var(--space-sm);
+  }
+
+  .system-card:hover .system-link svg {
+    transform: translateX(4px);
+  }
+
+  .system-link svg {
+    transition: transform var(--transition);
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+---
+
+<section class="origin" id="origin">
+  <div class="container">
+    <div class="origin-grid">
+      <div class="origin-image" data-animate="slide-left">
+        <img src="/brothers.png" alt="James and Brendan, founders of Brothers Automate" width="280" height="280" loading="lazy" decoding="async" />
+      </div>
+      <div class="origin-content" data-animate="slide-right">
+        <h2>Built by Operators, for Operators</h2>
+        <p>We ran a service business for 5 years. We lived it. The 14-hour days, the manual grind, the leads slipping through cracks while you're busy doing the actual work.</p>
+        <p>
+          We built AI systems to handle that work automatically, and do it better than a human could. AI can't close your deals or deliver your service, but it can follow up with your leads, create your ads, and keep your pipeline moving.
+        </p>
+        <p>
+          Agencies charge $10K/month for this work. Hiring someone costs the same or more. Learning it yourself takes hundreds of hours you don't have.
+        </p>
+        <p class="origin-cta">
+          <strong>We build the systems so you don't have to pay agency prices or sacrifice your time.</strong>
+        </p>
+        <div class="origin-button">
+          <a
+            href="#"
+            class="btn btn-primary"
+            data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            data-cal-namespace="free-quiz-audit-automation-brothers"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          >Talk to the Brothers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .origin {
+    background: var(--bg-surface-alt);
+  }
+
+  .origin-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .origin-grid {
+      grid-template-columns: 300px 1fr;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .origin-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .origin-image img {
+    width: 250px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 768px) {
+    .origin-image img {
+      width: 280px;
+    }
+  }
+
+  .origin-content h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .origin-content p {
+    margin-bottom: var(--space-sm);
+  }
+
+  .origin-cta {
+    margin-top: var(--space-md);
+  }
+
+  .origin-cta strong {
+    color: var(--navy);
+    font-size: 1.0625rem;
+  }
+
+  .origin-button {
+    margin-top: var(--space-lg);
+  }
+</style>

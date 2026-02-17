@@ -1,0 +1,316 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  author?: string;
+  image?: string;
+  category: string;
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const {
+  title,
+  description,
+  date,
+  author = 'Brothers Automate',
+  image,
+  category
+} = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const isoDate = date.toISOString();
+const articleImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/logo.png`;
+
+// Article Schema
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": articleImage,
+  "datePublished": isoDate,
+  "dateModified": isoDate,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE_URL}/logo.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}${Astro.url.pathname}`
+  }
+};
+
+// Breadcrumb Schema for better navigation in search results
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE_URL
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": `${SITE_URL}/blog/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": title,
+      "item": `${SITE_URL}${Astro.url.pathname}`
+    }
+  ]
+};
+---
+
+<Layout
+  title={`${title} | Brothers Automate`}
+  description={description}
+  image={articleImage}
+  type="article"
+>
+  <Header />
+
+  <main class="blog-article">
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-meta">
+            <span class="category-badge">{category}</span>
+            <time datetime={isoDate}>{formattedDate}</time>
+          </div>
+          <h1>{title}</h1>
+          <p class="article-description">{description}</p>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <div class="container content-narrow">
+          <slot />
+        </div>
+      </div>
+
+      <footer class="article-footer">
+        <div class="container content-narrow">
+          <div class="cta-box">
+            <h3>Ready to Automate Your Business?</h3>
+            <p>See how we build AI systems for service businesses like yours: lead follow-up, ad creative, hiring, and more.</p>
+            <a href="/projects" class="btn btn-primary">See Our Projects</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <Footer />
+
+  <!-- Article Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  .blog-article {
+    padding-top: var(--space-xl);
+  }
+
+  .article-header {
+    text-align: center;
+    padding: var(--space-2xl) 0 var(--space-xl);
+    background: var(--bg-surface-alt);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(49, 130, 206, 0.1);
+    color: var(--blue);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .article-meta time {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .article-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    max-width: 800px;
+    margin: 0 auto var(--space-md);
+  }
+
+  .article-description {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+  }
+
+  .article-content {
+    padding: var(--space-2xl) 0;
+  }
+
+  .content-narrow {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Article Typography */
+  .article-content :global(h2) {
+    font-size: 1.75rem;
+    margin: var(--space-2xl) 0 var(--space-md);
+    color: var(--navy);
+  }
+
+  .article-content :global(h3) {
+    font-size: 1.375rem;
+    margin: var(--space-xl) 0 var(--space-sm);
+    color: var(--navy);
+  }
+
+  .article-content :global(p) {
+    margin-bottom: var(--space-md);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+  }
+
+  .article-content :global(li) {
+    margin-bottom: var(--space-xs);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 4px solid var(--orange);
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(237, 137, 54, 0.05);
+    margin: var(--space-lg) 0;
+    font-style: italic;
+  }
+
+  .article-content :global(blockquote p) {
+    margin-bottom: 0;
+    color: var(--navy);
+  }
+
+  .article-content :global(code) {
+    background: var(--bg-surface-alt);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--orange);
+  }
+
+  .article-content :global(pre) {
+    background: var(--navy);
+    color: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+  }
+
+  .article-content :global(pre code) {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  .article-content :global(a) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .article-content :global(a:hover) {
+    color: var(--orange);
+  }
+
+  .article-content :global(img) {
+    border-radius: var(--radius-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .article-content :global(strong) {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* CTA Box */
+  .article-footer {
+    padding: var(--space-2xl) 0 var(--space-3xl);
+  }
+
+  .cta-box {
+    background: var(--bg-surface-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .cta-box h3 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-md);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .article-header {
+      padding: var(--space-xl) 0;
+    }
+
+    .article-content {
+      padding: var(--space-xl) 0;
+    }
+  }
+</style>

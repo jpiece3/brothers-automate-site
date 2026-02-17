@@ -1,0 +1,69 @@
+---
+interface Props {
+  headline: string;
+  stats: { number: string; label: string; context: string }[];
+}
+
+const { headline, stats } = Astro.props;
+---
+
+<section class="v-proof bg-surface-alt">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+    </div>
+
+    <div class="proof-grid" data-animate-stagger>
+      {stats.map((stat) => (
+        <div class="proof-card">
+          <span class="proof-number">{stat.number}</span>
+          <span class="proof-label">{stat.label}</span>
+          <span class="proof-context">{stat.context}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-proof { padding: var(--space-3xl) 0; }
+
+  .proof-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .proof-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .proof-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .proof-number {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .proof-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--orange);
+  }
+
+  .proof-context {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+</style>
