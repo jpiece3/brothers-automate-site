@@ -1,11 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import ProjectsGrid from '../../components/ProjectsGrid.astro';
+import { getAllProjects } from '../../data/projects';
 import CTA from '../../components/CTA.astro';
 import Footer from '../../components/Footer.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
+const projects = getAllProjects();
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -23,17 +24,92 @@ const breadcrumbSchema = {
 >
   <Header />
   <main>
+    <!-- Hero with animated gradient background -->
     <section class="projects-hero">
+      <div class="hero-bg-grid"></div>
       <div class="container">
         <div class="projects-hero-content" data-animate="fade-up">
           <span class="badge">What We Build</span>
-          <h1>AI Systems That Save You<br />Time and Money</h1>
-          <p class="projects-hero-sub">Every project is built custom for your business. Here's what we've built, and the results they've delivered.</p>
+          <h1>Six AI Systems.<br /><span class="gradient-text">Real Results.</span></h1>
+          <p class="projects-hero-sub">Each system solves a specific problem for service businesses. No templates. No plugins. Custom-built and running 24/7.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">6</span>
+              <span class="hero-stat-label">Live Systems</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">85%</span>
+              <span class="hero-stat-label">Avg. Time Saved</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">24/7</span>
+              <span class="hero-stat-label">Always Running</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <ProjectsGrid />
+    <!-- Featured project (full-width card) -->
+    <section class="featured-project">
+      <div class="container">
+        <a href={`/projects/${projects[0].slug}`} class="featured-card" data-animate="fade-up">
+          <div class="featured-left">
+            <span class="featured-label">Most Popular</span>
+            <h2>{projects[0].name}</h2>
+            <p class="featured-tagline">{projects[0].tagline}</p>
+            <p class="featured-desc">{projects[0].description}</p>
+            <span class="featured-cta">{projects[0].ctaLabel} &rarr;</span>
+          </div>
+          <div class="featured-right">
+            <div class="featured-stats-grid">
+              {projects[0].results.stats.map((stat) => (
+                <div class="featured-stat-card">
+                  <span class="featured-stat-num">{stat.number}</span>
+                  <span class="featured-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Rest of the projects in a grid -->
+    <section class="projects-section">
+      <div class="container">
+        <div class="projects-grid" data-animate-stagger>
+          {projects.slice(1).map((project, i) => (
+            <a href={`/projects/${project.slug}`} class="project-card">
+              <div class="card-top">
+                <div class="project-icon-wrap">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={project.icon}></path>
+                  </svg>
+                </div>
+                <span class="card-number">0{i + 2}</span>
+              </div>
+              <h3>{project.name}</h3>
+              <p class="card-tagline">{project.tagline}</p>
+              <p class="card-desc">{project.description}</p>
+              <div class="card-stats">
+                {project.results.stats.slice(0, 2).map((stat) => (
+                  <div class="card-stat">
+                    <span class="card-stat-num">{stat.number}</span>
+                    <span class="card-stat-label">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+              <span class="card-cta">{project.ctaLabel} &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <CTA />
   </main>
   <Footer />
@@ -42,14 +118,29 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
+  /* Hero */
   .projects-hero {
+    position: relative;
     padding-top: 160px;
-    padding-bottom: var(--space-xl);
-    background: var(--bg-primary);
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
     text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   }
 
   .projects-hero-content {
+    position: relative;
     max-width: 750px;
     margin: 0 auto;
   }
@@ -70,17 +161,349 @@ const breadcrumbSchema = {
 
   .projects-hero h1 {
     margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .projects-hero-sub {
     font-size: clamp(1.0625rem, 2vw, 1.25rem);
     color: var(--text-secondary);
     line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* Featured project */
+  .featured-project {
+    padding: 0 0 var(--space-2xl);
+    margin-top: calc(-1 * var(--space-lg));
+  }
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: white;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .featured-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+    color: white;
+  }
+
+  .featured-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(237, 137, 54, 0.2);
+    border: 1px solid rgba(237, 137, 54, 0.4);
+    color: var(--orange-light);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-card h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-xs);
+    color: white;
+  }
+
+  .featured-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+  }
+
+  .featured-cta {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--orange-light);
+    transition: color var(--transition);
+  }
+
+  .featured-card:hover .featured-cta {
+    color: var(--orange);
+  }
+
+  .featured-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .featured-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    width: 100%;
+  }
+
+  .featured-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .featured-stat-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .featured-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+
+  .featured-stat-label {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  /* Projects grid */
+  .projects-section {
+    padding: var(--space-xl) 0 var(--space-3xl);
+  }
+
+  .projects-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 100%);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .project-card:hover {
+    color: inherit;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .card-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .project-card h3 {
+    font-size: 1.25rem;
+    margin: 0 0 var(--space-xs);
+    color: var(--navy);
+  }
+
+  .card-tagline {
+    font-size: 0.875rem;
+    color: var(--orange);
+    font-weight: 600;
+    margin: 0 0 var(--space-sm);
+  }
+
+  .card-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 var(--space-lg);
+    flex: 1;
+  }
+
+  .card-stats {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--border-light);
+    margin-bottom: var(--space-md);
+  }
+
+  .card-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .card-stat-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .card-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .card-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--blue);
+    transition: color var(--transition);
+  }
+
+  .project-card:hover .card-cta {
+    color: var(--orange);
+  }
+
+  /* Responsive */
   @media (max-width: 767px) {
     .projects-hero {
       padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .featured-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+    }
+
+    .featured-stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .featured-stat-card:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .featured-stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-stat-card:last-child {
+      grid-column: auto;
     }
   }
 </style>
