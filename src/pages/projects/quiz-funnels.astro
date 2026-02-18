@@ -243,6 +243,34 @@ const breadcrumbSchema = {
       </div>
     </section>
 
+    <!-- Video Walkthrough -->
+    <section class="qf-video">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-label">See It In Action</span>
+          <h2>Full Walkthrough</h2>
+        </div>
+        <div class="video-embed" data-animate="scale-up">
+          <iframe
+            src="https://www.youtube.com/embed/FRZjVr_BrrA"
+            title="Quiz Funnel Walkthrough"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="sample-quizzes" data-animate="fade-up">
+          <p class="samples-label">Try live examples:</p>
+          <div class="samples-grid">
+            <a href="https://uphill-athlete-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Uphill Athlete</a>
+            <a href="https://analog-company-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Analog Company</a>
+            <a href="https://humblytics-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Humblytics</a>
+            <a href="https://lansing-adv-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Lansing Adventures</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- What You Get -->
     <section class="qf-deliverables">
       <div class="container">
@@ -640,6 +668,64 @@ const breadcrumbSchema = {
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.6;
+  }
+
+  /* Video */
+  .qf-video {
+    padding: var(--space-4xl) 0;
+    background: var(--bg-surface-alt);
+  }
+
+  .video-embed {
+    max-width: 720px;
+    margin: 0 auto var(--space-xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .video-embed iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sample-quizzes {
+    text-align: center;
+  }
+
+  .samples-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+    font-weight: 500;
+  }
+
+  .samples-grid {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .sample-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .sample-link:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
   }
 
   /* Deliverables */

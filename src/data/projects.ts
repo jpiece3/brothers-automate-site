@@ -99,6 +99,7 @@ export const projects: Project[] = [
       headline: 'Stop losing leads to slow follow-up',
       description: 'Let\'s build a quiz funnel that qualifies and nurtures your leads automatically.'
     },
+    videoUrl: 'https://www.youtube.com/embed/FRZjVr_BrrA',
     productUrl: 'https://quiz.brothersautomate.com'
   },
   {
@@ -107,8 +108,8 @@ export const projects: Project[] = [
     tagline: 'AI-powered audience and competitor intelligence',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
     description: 'Agency: completed full brand research, competitor analysis, and positioning strategy in 48 hours instead of 4 weeks.',
-    ctaLabel: 'Learn More',
-    ctaType: 'book-call',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
     meta: {
       title: 'Brand Research | AI-Powered Market Intelligence | Brothers Automate',
       description: 'Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In days, not months.'
@@ -144,7 +145,8 @@ export const projects: Project[] = [
     cta: {
       headline: 'Know your market before your competitors do',
       description: 'Let\'s build a research package that gives you an unfair advantage.'
-    }
+    },
+    productUrl: 'https://brandintel.up.railway.app/'
   },
   {
     slug: 'daily-ads',
@@ -189,7 +191,8 @@ export const projects: Project[] = [
     cta: {
       headline: 'Stop letting creative fatigue kill your ads',
       description: 'Let\'s set up a daily ad engine that keeps your campaigns fresh.'
-    }
+    },
+    productUrl: 'https://daily-ads-saas-production.up.railway.app/'
   },
   {
     slug: 'screenfast',
@@ -197,8 +200,8 @@ export const projects: Project[] = [
     tagline: 'AI-powered resume screening and candidate ranking',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
     description: 'YMCA: reduced resume screening time by 85% while improving candidate quality for seasonal hiring.',
-    ctaLabel: 'Read Case Study',
-    ctaType: 'case-study',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
     meta: {
       title: 'ScreenFast | AI Resume Screening | Brothers Automate',
       description: 'Stop spending hours reading resumes. ScreenFast uses AI to screen, score, and rank candidates so you interview the right people first.'
@@ -234,7 +237,8 @@ export const projects: Project[] = [
     cta: {
       headline: 'Stop spending hours reading resumes',
       description: 'Let\'s build a screening system that surfaces your best candidates automatically.'
-    }
+    },
+    productUrl: 'https://screenfast.replit.app/'
   },
   {
     slug: 'google-review-response',
