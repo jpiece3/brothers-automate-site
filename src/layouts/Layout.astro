@@ -31,6 +31,7 @@ const organizationSchema = {
   "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more.",
   "sameAs": []
 };
+import FloatingGuide from '../components/FloatingGuide.astro';
 ---
 
 <!DOCTYPE html>
@@ -102,6 +103,7 @@ const organizationSchema = {
 </head>
 <body>
   <slot />
+  <FloatingGuide />
 
   <script>
     // Scroll animation observer
