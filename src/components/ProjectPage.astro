@@ -10,11 +10,37 @@ const { project } = Astro.props;
 
 <!-- Project Hero -->
 <section class="project-hero">
+  <div class="hero-bg-grid"></div>
   <div class="container">
     <div class="project-hero-content" data-animate="fade-up">
       <span class="badge">{project.tagline}</span>
-      <h1>{project.name}</h1>
+      <h1>{project.name}.<br /><span class="gradient-text">{project.results.stats[0].number} {project.results.stats[0].label}.</span></h1>
       <p class="project-hero-sub">{project.meta.description}</p>
+
+      <div class="hero-stats">
+        {project.results.stats.map((stat, i) => (
+          <>
+            {i > 0 && <div class="hero-stat-divider"></div>}
+            <div class="hero-stat">
+              <span class="hero-stat-number">{stat.number}</span>
+              <span class="hero-stat-label">{stat.label}</span>
+            </div>
+          </>
+        ))}
+      </div>
+
+      <div class="hero-buttons">
+        {project.productUrl && (
+          <a href={project.productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+        )}
+        <a
+          href="#"
+          class="btn btn-secondary btn-lg"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
     </div>
   </div>
 </section>
@@ -130,13 +156,27 @@ const { project } = Astro.props;
 <style>
   /* Project Hero */
   .project-hero {
+    position: relative;
     padding-top: 160px;
-    padding-bottom: var(--space-2xl);
-    background: var(--bg-primary);
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
     text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   }
 
   .project-hero-content {
+    position: relative;
     max-width: 750px;
     margin: 0 auto;
   }
@@ -157,12 +197,76 @@ const { project } = Astro.props;
 
   .project-hero h1 {
     margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .project-hero-sub {
     font-size: clamp(1.0625rem, 2vw, 1.25rem);
     color: var(--text-secondary);
     line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 
   /* Section Labels */
@@ -410,13 +514,26 @@ const { project } = Astro.props;
   @media (max-width: 767px) {
     .project-hero {
       padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
     }
 
     .results-stats {
       gap: var(--space-lg);
     }
 
-    .project-cta-buttons .btn {
+    .project-cta-buttons .btn,
+    .hero-buttons .btn {
       width: 100%;
       justify-content: center;
     }

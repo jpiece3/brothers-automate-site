@@ -241,49 +241,96 @@ export const projects: Project[] = [
     productUrl: 'https://screenfast.replit.app/'
   },
   {
-    slug: 'google-review-response',
-    name: 'Google Review Response',
-    tagline: 'Automated review management and responses',
-    icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
-    description: 'Restaurant: 100% review response rate with personalized, on-brand replies, without the owner touching a keyboard.',
-    ctaLabel: 'See How It Works',
-    ctaType: 'book-call',
+    slug: 'signal-engine',
+    name: 'Signal Engine',
+    tagline: 'AI-powered prospect scoring and outreach',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    description: 'B2B sales: upload your ideal customer profile and a company list. Get back ranked prospects with outreach angles — scored in minutes, not weeks.',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
     meta: {
-      title: 'Google Review Response | Automated Review Management | Brothers Automate',
-      description: 'Never miss another Google review. Our AI responds to every review with personalized, on-brand replies. Automatically.'
+      title: 'Signal Engine | AI Prospect Scoring | Brothers Automate',
+      description: 'Stop researching prospects manually. Signal Engine scans websites, news, and job postings to find your best-fit companies and generate personalized outreach angles.'
     },
     problem: {
-      headline: 'Your reviews are going unanswered',
-      description: 'Every unanswered review is a missed opportunity. Happy customers feel ignored. Negative reviews fester. And Google notices when you don\'t engage.',
+      headline: 'You\'re guessing which prospects are worth your time',
+      description: 'Your sales team spends hours Googling companies, reading LinkedIn, and trying to figure out who\'s actually a fit. Most of that research leads nowhere.',
       painPoints: [
-        'Reviews pile up and you never get around to responding',
-        'Negative reviews sit unanswered for days, damaging your reputation',
-        'Writing thoughtful responses takes 10-15 minutes per review',
-        'Google\'s algorithm rewards businesses that actively respond to reviews'
+        'Manually researching prospects eats hours every week',
+        'You can\'t tell who\'s ready to buy vs. who\'s a dead end',
+        'Your outreach sounds generic because you don\'t have time to personalize',
+        'By the time you research a company, someone else has already reached out'
       ]
     },
     solution: {
-      headline: 'AI that responds to every review, every time',
-      description: 'Our system monitors your Google reviews and generates personalized, on-brand responses, thanking happy customers and professionally addressing concerns. You approve or it auto-posts.',
+      headline: 'AI that scores your prospects and writes the opener',
+      description: 'Upload your ideal customer profile and a company list. Signal Engine scans their websites, news, job postings, and funding data through a 4-tier waterfall. You get back a ranked list with scores, evidence, and a personalized outreach angle for each company.',
       features: [
-        { title: 'Real-Time Monitoring', description: 'New reviews detected and responded to within minutes' },
-        { title: 'On-Brand Voice', description: 'Responses match your business personality and tone' },
-        { title: 'Smart Escalation', description: 'Negative reviews flagged for your personal attention' },
-        { title: 'Auto or Approval Mode', description: 'Choose full automation or review-before-posting' }
+        { title: 'ICP-Based Scoring', description: 'Upload a PDF describing your ideal customer. AI generates 15-25 detection signals automatically.' },
+        { title: '4-Tier Waterfall', description: 'Cheapest checks first — spreadsheet filters, website scans, web search, then deep enrichment.' },
+        { title: 'Outreach Angles', description: 'Every qualified company gets a 2-3 sentence personalized opener connecting their situation to your offer.' },
+        { title: 'Weekly Monitoring', description: 'Re-scan your list weekly to catch new signals, score changes, and newly qualified companies.' }
       ]
     },
     results: {
-      headline: 'Every review gets a response. Automatically.',
+      headline: 'Prospect research that used to take weeks.',
       stats: [
-        { number: '100%', label: 'Response Rate', context: 'Every review answered' },
-        { number: '<5min', label: 'Response Time', context: 'From review to reply' },
-        { number: '0', label: 'Hours Spent', context: 'On manual responses' }
+        { number: '100s', label: 'Companies Scored', context: 'In a single scan' },
+        { number: 'Minutes', label: 'Not Weeks', context: 'Full prospect research' },
+        { number: '4-Tier', label: 'Waterfall', context: 'Cheap checks first' }
       ]
     },
     cta: {
-      headline: 'Stop letting reviews go unanswered',
-      description: 'Let\'s set up automated review responses that protect your reputation 24/7.'
-    }
+      headline: 'Stop guessing which prospects are worth your time',
+      description: 'Let Signal Engine score your list and tell you exactly who to call first.'
+    },
+    productUrl: 'https://signal-engine-production-6674.up.railway.app/'
+  },
+  {
+    slug: 'onboarding-workflow',
+    name: 'Onboarding Workflow',
+    tagline: 'Automated client onboarding for service businesses',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
+    description: 'Paving company: automated the entire new-client onboarding flow — comms, scheduling, and docs — same steps every time, zero manual work.',
+    ctaLabel: 'Watch the Demo',
+    ctaType: 'video',
+    meta: {
+      title: 'Onboarding Workflow | Automated Client Onboarding | Brothers Automate',
+      description: 'Stop doing the same onboarding steps manually for every new client. We automate the entire flow — emails, scheduling, documents — pulled from your database.'
+    },
+    problem: {
+      headline: 'Every new client means the same manual work',
+      description: 'New project comes in. You pull the client info, send the welcome email, schedule the walkthrough, prep the docs. Same steps every time — different client, different address, different details. All done by hand.',
+      painPoints: [
+        'Every new client triggers the same 10-step onboarding process',
+        'Client details get copied and pasted between systems manually',
+        'Steps get missed when things get busy and clients notice',
+        'You know the process could run itself but nobody\'s built it yet'
+      ]
+    },
+    solution: {
+      headline: 'Your onboarding flow, fully automated',
+      description: 'We build a system that pulls client info from your database and runs the entire onboarding sequence automatically. Emails go out, appointments get scheduled, documents get prepped — same flow every time, zero manual work.',
+      features: [
+        { title: 'Database-Driven', description: 'Pulls client name, address, project details, and preferences automatically' },
+        { title: 'Automated Comms', description: 'Welcome emails, scheduling confirmations, and follow-ups sent on time, every time' },
+        { title: 'Document Prep', description: 'Contracts, checklists, and project docs generated with the right details filled in' },
+        { title: 'Custom to Your Flow', description: 'Built around the exact steps your business already follows' }
+      ]
+    },
+    results: {
+      headline: 'Built for a paving company. Works for any service business.',
+      stats: [
+        { number: '0', label: 'Manual Steps', context: 'Fully automated flow' },
+        { number: '100%', label: 'Consistency', context: 'Same process, every client' },
+        { number: 'Hours', label: 'Saved Per Client', context: 'No more copy-paste' }
+      ]
+    },
+    cta: {
+      headline: 'Stop doing the same onboarding steps by hand',
+      description: 'Let\'s automate your client onboarding so every new project starts the same way — without you lifting a finger.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/2rGAhxD5Hdk'
   },
   {
     slug: 'route-simply',
@@ -291,8 +338,8 @@ export const projects: Project[] = [
     tagline: 'AI-optimized routing and scheduling',
     icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
     description: 'Contractor: cut drive time by 30% and fit 2 more jobs per week with AI-optimized routing.',
-    ctaLabel: 'Learn More',
-    ctaType: 'book-call',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
     meta: {
       title: 'Route Simply | AI Route Optimization | Brothers Automate',
       description: 'Stop wasting time on inefficient routes. Route Simply uses AI to optimize your daily schedule. More jobs, less driving, less fuel.'
@@ -328,7 +375,54 @@ export const projects: Project[] = [
     cta: {
       headline: 'Stop wasting time on the road',
       description: 'Let\'s optimize your routes so you can fit more jobs into every day.'
-    }
+    },
+    productUrl: 'https://grizzdms.replit.app/admin'
+  },
+  {
+    slug: 'automated-inventory',
+    name: 'Automated Inventory',
+    tagline: 'Daily inventory sync and reporting via Square',
+    icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+    description: 'Pet store: daily automated inventory updates and reports pulled straight from Square. No logging in, no spreadsheets, no guessing what\'s in stock.',
+    ctaLabel: 'Watch the Demo',
+    ctaType: 'video',
+    meta: {
+      title: 'Automated Inventory | Square POS Sync & Reporting | Brothers Automate',
+      description: 'Stop manually tracking inventory in Square. We automate daily inventory updates and send you a clean report every morning. Built for a pet store in Haddonfield, NJ.'
+    },
+    problem: {
+      headline: 'Square is great for sales. Terrible for inventory.',
+      description: 'You love Square for ringing up customers. But keeping inventory accurate? Pulling reports? That means logging in, exporting CSVs, and hoping the numbers are right. Nobody has time for that every day.',
+      painPoints: [
+        'Square inventory gets out of sync because nobody updates it daily',
+        'Pulling inventory reports means logging in and exporting spreadsheets',
+        'You don\'t know what\'s low until you physically check the shelf',
+        'Tracking trends over time means building your own spreadsheets from scratch'
+      ]
+    },
+    solution: {
+      headline: 'A daily inventory system that runs itself',
+      description: 'We built a system that calls the Square API at the end of every day. It pulls your latest sales data, updates inventory counts, and sends a clean daily report straight to the owner. No logging in. No spreadsheets. Just open your email.',
+      features: [
+        { title: 'Daily Square Sync', description: 'Automated API call at end of day pulls all sales and updates inventory counts' },
+        { title: 'Owner Reports', description: 'Clean daily email with what sold, what\'s low, and what needs reordering' },
+        { title: 'Trend Analysis', description: 'Historical data stored so you can spot patterns and plan ahead' },
+        { title: 'Zero Manual Work', description: 'Runs every day automatically. You just read the report.' }
+      ]
+    },
+    results: {
+      headline: 'Built for a pet store. Works for any retail business.',
+      stats: [
+        { number: 'Daily', label: 'Auto Reports', context: 'Delivered to your inbox' },
+        { number: '0', label: 'Manual Updates', context: 'System handles it' },
+        { number: '100%', label: 'Inventory Accuracy', context: 'Synced every night' }
+      ]
+    },
+    cta: {
+      headline: 'Stop guessing what\'s on your shelves',
+      description: 'Let\'s set up automated inventory tracking and daily reports so you always know exactly where things stand.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/mV9VePjnCrA'
   }
 ];
 

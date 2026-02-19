@@ -1,0 +1,127 @@
+---
+const services = [
+  {
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
+    name: "Lead Generation & Follow-Up",
+    description: "Quiz funnels that qualify leads while you sleep. Signal detection that finds your best prospects before you pick up the phone. The system follows up in minutes, not days.",
+    ctaLabel: "See how we do it"
+  },
+  {
+    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
+    name: "Marketing & Creative",
+    description: "Fresh ad creative daily. Brand and competitor research in 48 hours. Your marketing stops feeling like guessing and starts looking like you have a team behind it.",
+    ctaLabel: "See how we do it"
+  },
+  {
+    icon: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18",
+    name: "Operations & Admin",
+    description: "Resume screening in seconds. Client onboarding that runs itself. The admin work that eats your week — handled, automatically.",
+    ctaLabel: "See how we do it"
+  },
+  {
+    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+    name: "Custom Projects",
+    description: "Route optimization, inventory tracking, or something we haven't built yet. If you can describe the process, we can probably automate it.",
+    ctaLabel: "Talk to the brothers"
+  }
+];
+---
+
+<section class="services-grid-section" id="services">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>What We Build</h2>
+      <p>Four areas where we build AI systems that handle the work for you.</p>
+    </div>
+
+    <div class="services-grid" data-animate-stagger>
+      {services.map((service) => (
+        <a href="/projects" class="service-card card">
+          <div class="service-icon-area">
+            <span class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d={service.icon}></path>
+              </svg>
+            </span>
+          </div>
+          <h3>{service.name}</h3>
+          <p>{service.description}</p>
+          <span class="service-cta">{service.ctaLabel} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid-section {
+    padding: var(--space-4xl) 0;
+  }
+
+  .services-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition);
+  }
+
+  .service-card:hover {
+    color: inherit;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .service-card:hover .service-cta {
+    color: var(--orange);
+  }
+
+  .service-icon-area {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-icon {
+    color: white;
+    display: flex;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--navy);
+  }
+
+  .service-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .service-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--blue);
+    transition: color var(--transition);
+  }
+</style>
