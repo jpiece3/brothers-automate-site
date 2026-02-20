@@ -8,7 +8,7 @@ import { getAllProjects, getProjectBySlug } from '../../data/projects';
 export function getStaticPaths() {
   const projects = getAllProjects();
   return projects
-    .filter(project => project.slug !== 'quiz-funnels')
+    .filter(project => project.slug !== 'quiz-funnels' && project.slug !== 'signal-engine')
     .map(project => ({
       params: { slug: project.slug },
       props: { project }

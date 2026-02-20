@@ -1,0 +1,1192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://signal-engine-production-6674.up.railway.app/';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Signal Engine", "item": `${SITE_URL}/projects/signal-engine` }
+  ]
+};
+---
+
+<Layout
+  title="Signal Engine | AI Prospect Scoring | Brothers Automate"
+  description="Stop researching prospects manually. Signal Engine scans websites, news, and job postings to find your best-fit companies and generate personalized outreach angles."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Powered Prospect Scoring and Outreach</span>
+          <h1>Signal Engine.<br /><span class="gradient-text">100s Companies Scored.</span></h1>
+          <p class="project-hero-sub">Stop researching prospects manually. Signal Engine scans websites, news, and job postings to find your best-fit companies and generate personalized outreach angles.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">100s</span>
+              <span class="hero-stat-label">Companies Scored</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">Minutes</span>
+              <span class="hero-stat-label">Not Weeks</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">4-Tier</span>
+              <span class="hero-stat-label">Waterfall</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Scan Terminal Box -->
+          <div class="se-scan-box">
+            <div class="se-scan-bar">
+              <div class="se-scan-dot" style="background:#e8b4a0"></div>
+              <div class="se-scan-dot" style="background:#ddd6c8"></div>
+              <div class="se-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">signal-engine / scan terminal</span>
+            </div>
+            <div class="se-scan-input-row">
+              <input class="se-scan-input" id="scanInput" placeholder="company-list.xlsx · 500 companies" />
+              <button class="se-scan-btn" onclick="runScan()">&#9654; RUN SCAN</button>
+            </div>
+            <div class="se-scan-log" id="scanLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="se-ticker">
+      <div class="se-ticker-inner">
+        ICP &rarr; SIGNALS &nbsp;&middot;&nbsp; XLSX FILTER &nbsp;&middot;&nbsp; WEBSITE SCRAPE &nbsp;&middot;&nbsp; WEB SEARCH &nbsp;&middot;&nbsp; DEEP ENRICHMENT &nbsp;&middot;&nbsp; SCORE &nbsp;&middot;&nbsp; QUALIFY &nbsp;&middot;&nbsp; OUTREACH &nbsp;&middot;&nbsp; PIPELINE &nbsp;&middot;&nbsp; WIN &nbsp;&middot;&nbsp;
+        ICP &rarr; SIGNALS &nbsp;&middot;&nbsp; XLSX FILTER &nbsp;&middot;&nbsp; WEBSITE SCRAPE &nbsp;&middot;&nbsp; WEB SEARCH &nbsp;&middot;&nbsp; DEEP ENRICHMENT &nbsp;&middot;&nbsp; SCORE &nbsp;&middot;&nbsp; QUALIFY &nbsp;&middot;&nbsp; OUTREACH &nbsp;&middot;&nbsp; PIPELINE &nbsp;&middot;&nbsp; WIN &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — HOW IT WORKS -->
+    <section class="se-section" id="se-section-1">
+      <div class="se-section-label">01 — How It Works</div>
+      <h2 class="se-section-title">Four steps.<br><span class="se-accent">One closed loop.</span></h2>
+      <p class="se-section-sub">From ICP document to qualified prospect with AI-generated outreach — click each step to see what happens under the hood.</p>
+
+      <div class="se-loop">
+        <div class="se-loop-card active" onclick="toggleLoop(this)">
+          <div class="se-loop-num">01</div>
+          <div class="se-loop-title">Signal Generation</div>
+          <div class="se-loop-desc">ICP PDF &rarr; AI-extracted buying signals</div>
+          <div class="se-loop-detail">
+            &rarr; Upload any ICP document as PDF<br>
+            &rarr; LLM extracts structured "signals"<br>
+            &rarr; Grouped into 4 tiers by detection cost<br>
+            &rarr; Each signal: name, weight, method<br>
+            &rarr; Output: machine-readable signal config
+          </div>
+        </div>
+        <div class="se-loop-card" onclick="toggleLoop(this)">
+          <div class="se-loop-num">02</div>
+          <div class="se-loop-title">Tiered Scanning</div>
+          <div class="se-loop-desc">Cheapest-first enrichment pipeline</div>
+          <div class="se-loop-detail">
+            &rarr; T0: Free XLSX column checks<br>
+            &rarr; T1: $0.005 website scrape (Firecrawl)<br>
+            &rarr; T2: $0.01 web search (Tavily)<br>
+            &rarr; T3: $0.08 deep LLM analysis (Opus)<br>
+            &rarr; ~60% filtered at each tier
+          </div>
+        </div>
+        <div class="se-loop-card" onclick="toggleLoop(this)">
+          <div class="se-loop-num">03</div>
+          <div class="se-loop-title">Scoring</div>
+          <div class="se-loop-desc">0&ndash;100 ICP score + qualification status</div>
+          <div class="se-loop-detail">
+            &rarr; Weighted signal match scoring<br>
+            &rarr; Status: qualified / disqualified / maybe<br>
+            &rarr; Per-signal confidence (0&ndash;1)<br>
+            &rarr; Evidence summary in plain language<br>
+            &rarr; Disqualifying signals auto-reject
+          </div>
+        </div>
+        <div class="se-loop-card" onclick="toggleLoop(this)">
+          <div class="se-loop-num">04</div>
+          <div class="se-loop-title">Outreach</div>
+          <div class="se-loop-desc">Personalized emails from detected signals</div>
+          <div class="se-loop-detail">
+            &rarr; Signal data becomes email hooks<br>
+            &rarr; Choose: cold / follow-up / breakup<br>
+            &rarr; Choose: pain point / social proof / curiosity<br>
+            &rarr; One-click copy to clipboard<br>
+            &rarr; Every email references real findings
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — THE TIER SYSTEM -->
+    <section class="se-section" id="se-section-2">
+      <div class="se-section-label">02 — The Tier System</div>
+      <h2 class="se-section-title">Cost control<br><span class="se-accent">baked in.</span></h2>
+      <p class="se-section-sub">~60% of companies get filtered at each tier. You don't spend $0.08 on deep research for a company that a free spreadsheet filter would've caught. Click a tier to see what it detects.</p>
+
+      <div class="se-tier-table">
+        <div class="se-tier-header">
+          <div>Tier</div>
+          <div>Method</div>
+          <div>Cost / co.</div>
+          <div>Typical filter</div>
+        </div>
+        <div class="se-tier-row" onclick="highlightTier(this)">
+          <div><div class="se-tier-badge se-t0">T0</div></div>
+          <div class="se-tier-info">
+            <div class="se-tier-name">XLSX Filter</div>
+            <div class="se-tier-source">Checks spreadsheet columns directly</div>
+          </div>
+          <div class="se-tier-cost">Free</div>
+          <div class="se-tier-filter">Industry, size, location</div>
+        </div>
+        <div class="se-tier-row" onclick="highlightTier(this)">
+          <div><div class="se-tier-badge se-t1">T1</div></div>
+          <div class="se-tier-info">
+            <div class="se-tier-name">Website Scrape</div>
+            <div class="se-tier-source">Firecrawl &middot; content + tech stack</div>
+          </div>
+          <div class="se-tier-cost">$0.005</div>
+          <div class="se-tier-filter">Messaging, tech, hiring</div>
+        </div>
+        <div class="se-tier-row" onclick="highlightTier(this)">
+          <div><div class="se-tier-badge se-t2">T2</div></div>
+          <div class="se-tier-info">
+            <div class="se-tier-name">Web Search</div>
+            <div class="se-tier-source">Tavily &middot; news, funding, signals</div>
+          </div>
+          <div class="se-tier-cost">$0.01</div>
+          <div class="se-tier-filter">Funding, growth, intent</div>
+        </div>
+        <div class="se-tier-row" onclick="highlightTier(this)">
+          <div><div class="se-tier-badge se-t3">T3</div></div>
+          <div class="se-tier-info">
+            <div class="se-tier-name">Deep Enrichment</div>
+            <div class="se-tier-source">Opus LLM &middot; full synthesis</div>
+          </div>
+          <div class="se-tier-cost">$0.08</div>
+          <div class="se-tier-filter">Strategic fit, full score</div>
+        </div>
+      </div>
+
+      <div class="se-stat-row">
+        <div class="se-stat">
+          <div class="se-stat-num">60%</div>
+          <div class="se-stat-label">avg filtered per tier before spending more</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-num">$0.08</div>
+          <div class="se-stat-label">max per company for full deep enrichment</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-num">0&ndash;100</div>
+          <div class="se-stat-label">ICP score with weighted signal matching</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — SCORING & RESULTS -->
+    <section class="se-section" id="se-section-3">
+      <div class="se-section-label">03 — Scoring & Results</div>
+      <h2 class="se-section-title">Yes, no, maybe &mdash;<br><span class="se-accent">with evidence.</span></h2>
+      <p class="se-section-sub">Raw enrichment data is useless without interpretation. Every company gets a score, a status, per-signal confidence, and a plain-language evidence summary you can verify.</p>
+
+      <div class="se-score-demo">
+        <div class="se-score-card" onclick="this.classList.toggle('expanded')">
+          <div class="se-score-card-top">
+            <div class="se-score-company">Acme SaaS Co.</div>
+            <div class="se-score-badge se-status-qual">Qualified</div>
+          </div>
+          <div class="se-score-num se-high">87</div>
+          <div class="se-score-evidence">Series B &middot; 120 employees &middot; hiring SDRs &middot; recently migrated to AWS &middot; PLG motion detected on homepage</div>
+          <div class="se-score-signals">
+            <div class="se-sig-line"><span class="se-sig-check" style="color:var(--se-green)">&check;</span> Funding stage match <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:92%;background:var(--se-green)"></div></div> 0.92</div>
+            <div class="se-sig-line"><span class="se-sig-check" style="color:var(--se-green)">&check;</span> Team size 50&ndash;200 <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:88%;background:var(--se-green)"></div></div> 0.88</div>
+            <div class="se-sig-line"><span class="se-sig-check" style="color:var(--se-accent)">~</span> Stack alignment <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:61%;background:var(--se-accent)"></div></div> 0.61</div>
+          </div>
+        </div>
+        <div class="se-score-card" onclick="this.classList.toggle('expanded')">
+          <div class="se-score-card-top">
+            <div class="se-score-company">Widgets Inc.</div>
+            <div class="se-score-badge se-status-disq">Disqualified</div>
+          </div>
+          <div class="se-score-num se-low">12</div>
+          <div class="se-score-evidence">On-premise only &middot; no SaaS products &middot; 8 employees &middot; no engineering team signals detected</div>
+          <div class="se-score-signals">
+            <div class="se-sig-line"><span class="se-sig-check" style="color:#c0392b">&cross;</span> Cloud infrastructure <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:8%;background:#c0392b"></div></div> 0.08</div>
+            <div class="se-sig-line"><span class="se-sig-check" style="color:#c0392b">&cross;</span> Funding stage match <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:5%;background:#c0392b"></div></div> 0.05</div>
+            <div class="se-sig-line"><span class="se-sig-check" style="color:#c0392b">&cross;</span> Team size 50&ndash;200 <div class="se-sig-bar-mini"><div class="se-sig-fill" style="width:12%;background:#c0392b"></div></div> 0.12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="se-quote-block">
+        <div class="se-quote-text">"Disqualifying signals auto-reject a company regardless of score. If a required trait is absent, the system stops spending — and tells you exactly why."</div>
+        <div class="se-quote-attr">Scoring logic</div>
+      </div>
+    </section>
+
+    <!-- 04 — SIGNAL CONFIGS -->
+    <section class="se-section" id="se-section-4">
+      <div class="se-section-label">04 — Signal Configs</div>
+      <h2 class="se-section-title">Signals that<br><span class="se-accent">get smarter.</span></h2>
+      <p class="se-section-sub">After every scan, Signal Engine tracks which signals actually predicted qualification. Detection rate, confidence, and qualification correlation — so you know what to keep and what to cut.</p>
+
+      <div class="se-signal-grid">
+        <div class="se-signal-card">
+          <div class="se-signal-top">
+            <div class="se-signal-name">Series A/B Funding</div>
+            <div class="se-signal-weight">W: 0.9</div>
+          </div>
+          <div class="se-signal-desc">Company has raised Series A or B in last 24 months — indicates growth mode and budget availability.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar se-bar-green" style="width:87%"></div></div>
+          <div class="se-signal-meta"><span>87% detect rate</span><span>78% qual rate</span></div>
+        </div>
+        <div class="se-signal-card">
+          <div class="se-signal-top">
+            <div class="se-signal-name">SDR/BDR Hiring</div>
+            <div class="se-signal-weight">W: 0.8</div>
+          </div>
+          <div class="se-signal-desc">Active job postings for sales development roles signal investment in outbound pipeline building.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar se-bar-green" style="width:74%"></div></div>
+          <div class="se-signal-meta"><span>74% detect rate</span><span>71% qual rate</span></div>
+        </div>
+        <div class="se-signal-card">
+          <div class="se-signal-top">
+            <div class="se-signal-name">PLG Messaging</div>
+            <div class="se-signal-weight">W: 0.7</div>
+          </div>
+          <div class="se-signal-desc">Homepage or pricing page surfaces product-led growth language — free trial, self-serve, no sales required.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar" style="width:61%"></div></div>
+          <div class="se-signal-meta"><span>61% detect rate</span><span>58% qual rate</span></div>
+        </div>
+        <div class="se-signal-card">
+          <div class="se-signal-top">
+            <div class="se-signal-name">AWS/GCP Stack</div>
+            <div class="se-signal-weight">W: 0.6</div>
+          </div>
+          <div class="se-signal-desc">Cloud-native infrastructure detected via tech stack scrape — indicates modern architecture and integration compatibility.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar" style="width:55%"></div></div>
+          <div class="se-signal-meta"><span>55% detect rate</span><span>52% qual rate</span></div>
+        </div>
+        <div class="se-signal-card">
+          <div class="se-signal-top">
+            <div class="se-signal-name">50&ndash;500 Employees</div>
+            <div class="se-signal-weight">W: 0.85</div>
+          </div>
+          <div class="se-signal-desc">Team size in the sweet spot — large enough to have budget, small enough to move fast on purchasing decisions.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar se-bar-green" style="width:92%"></div></div>
+          <div class="se-signal-meta"><span>92% detect rate</span><span>81% qual rate</span></div>
+        </div>
+        <div class="se-signal-card se-signal-disq">
+          <div class="se-signal-top">
+            <div class="se-signal-name" style="color:#c0392b">On-Premise Only</div>
+            <div class="se-signal-weight" style="background:rgba(192,57,43,0.1);color:#c0392b">Disqualify</div>
+          </div>
+          <div class="se-signal-desc">No cloud products detected. Company operates exclusively on-premise — hard incompatibility with our integration requirements.</div>
+          <div class="se-signal-bar-wrap"><div class="se-signal-bar" style="width:23%;background:#c0392b"></div></div>
+          <div class="se-signal-meta"><span>23% detect rate</span><span style="color:#c0392b">auto-reject</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — THE PIPELINE -->
+    <section class="se-section" id="se-section-5">
+      <div class="se-section-label">05 — The Pipeline</div>
+      <h2 class="se-section-title">Qualified leads<br><span class="se-accent">go somewhere.</span></h2>
+      <p class="se-section-sub">Qualifying leads into a CSV is where most tools stop. Signal Engine drops them straight into a 6-stage Kanban CRM with activity timelines, deal values, and AI-generated outreach built in.</p>
+
+      <div class="se-pipeline">
+        <div class="se-pipe-stage active" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&#128229;</div>
+          <div class="se-pipe-name">New</div>
+          <div class="se-pipe-count">24 leads</div>
+        </div>
+        <div class="se-pipe-stage" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&#128228;</div>
+          <div class="se-pipe-name">Contacted</div>
+          <div class="se-pipe-count">18 leads</div>
+        </div>
+        <div class="se-pipe-stage" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&#128172;</div>
+          <div class="se-pipe-name">Replied</div>
+          <div class="se-pipe-count">11 leads</div>
+        </div>
+        <div class="se-pipe-stage" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&#128197;</div>
+          <div class="se-pipe-name">Meeting</div>
+          <div class="se-pipe-count">7 leads</div>
+        </div>
+        <div class="se-pipe-stage se-won" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&#127942;</div>
+          <div class="se-pipe-name">Won</div>
+          <div class="se-pipe-count">4 leads</div>
+        </div>
+        <div class="se-pipe-stage se-lost" onclick="togglePipe(this)">
+          <div class="se-pipe-icon">&times;</div>
+          <div class="se-pipe-name">Lost</div>
+          <div class="se-pipe-count">3 leads</div>
+        </div>
+      </div>
+
+      <div class="se-stat-row" style="margin-top:32px">
+        <div class="se-stat">
+          <div class="se-stat-num">67</div>
+          <div class="se-stat-label">total leads across pipeline</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-num">57%</div>
+          <div class="se-stat-label">win rate on deals reaching Meeting stage</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-num">$124K</div>
+          <div class="se-stat-label">total pipeline value tracked</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="se-cta-section" id="se-section-6">
+      <div class="se-section-label" style="justify-content:center;margin-bottom:28px">06 — Get Started</div>
+      <h2 class="se-cta-title">ICP in.<br>Pipeline out.<br><span style="color:var(--se-accent)">Automatically.</span></h2>
+      <p class="se-cta-sub">Upload your ICP document. Get a signal config, a scored prospect list, and AI-drafted outreach — in one scan.</p>
+      <div class="se-cta-btn-row">
+        <a href={productUrl} class="se-btn-p" target="_blank" rel="noopener">Start a Scan &rarr;</a>
+        <a
+          href="#"
+          class="se-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--se-muted);margin-top:28px;font-family:var(--se-mono)">Signal Engine &middot; B2B lead qualification &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== SCAN TERMINAL BOX ===== */
+  .se-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .se-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .se-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .se-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .se-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .se-scan-input::placeholder { color: var(--text-muted); }
+  .se-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .se-scan-btn:hover { background: var(--orange-hover); }
+  .se-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .se-scan-log.visible { display: block; animation: seFadeUp 0.3s ease; }
+
+  /* ===== SIGNAL ENGINE CUSTOM VARIABLES ===== */
+  :root {
+    --se-bg: #f2ede4;
+    --se-surface: #faf7f2;
+    --se-surface2: #eee8dc;
+    --se-border: #ddd6c8;
+    --se-accent: #e07b39;
+    --se-accent2: #c4622a;
+    --se-navy: #1e3557;
+    --se-navy2: #2a4a72;
+    --se-blue-gray: #7a95b0;
+    --se-text: #1e3557;
+    --se-muted: #8a9ab0;
+    --se-green: #3a9e6e;
+    --se-green-bg: #e8f5ef;
+    --se-mono: 'DM Mono', monospace;
+    --se-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .se-ticker {
+    background: var(--se-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .se-ticker-inner {
+    display: inline-block;
+    animation: seTicker 25s linear infinite;
+    font-family: var(--se-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes seTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .se-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--se-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .se-section.visible { opacity: 1; transform: none; }
+
+  .se-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--se-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .se-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--se-border);
+  }
+
+  .se-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--se-navy);
+    letter-spacing: -0.025em;
+  }
+  .se-accent { color: var(--se-accent); }
+  .se-section-sub {
+    font-size: 13px;
+    color: var(--se-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== LOOP STEPS ===== */
+  .se-loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .se-loop-card {
+    background: var(--se-surface);
+    border: 1.5px solid var(--se-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .se-loop-card::after {
+    content: '\2192';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--se-accent);
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .se-loop-card:last-child::after { display: none; }
+  .se-loop-card:hover, .se-loop-card.active {
+    border-color: var(--se-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .se-loop-num {
+    font-family: var(--se-mono);
+    font-size: 10px;
+    color: var(--se-muted);
+    margin-bottom: 10px;
+  }
+  .se-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--se-navy);
+    margin-bottom: 6px;
+  }
+  .se-loop-desc { font-size: 11px; color: var(--se-blue-gray); line-height: 1.7; }
+  .se-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--se-blue-gray);
+    line-height: 1.9;
+    font-family: var(--se-mono);
+  }
+  .se-loop-card.active .se-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--se-border);
+  }
+
+  /* ===== TIER TABLE ===== */
+  .se-tier-table {
+    margin-top: 48px;
+    border: 1.5px solid var(--se-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .se-tier-header {
+    display: grid;
+    grid-template-columns: 70px 1fr 120px 120px;
+    background: var(--se-surface2);
+    border-bottom: 1.5px solid var(--se-border);
+    padding: 12px 22px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--se-muted);
+    font-weight: 600;
+  }
+  .se-tier-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 120px 120px;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--se-border);
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    background: var(--se-surface);
+  }
+  .se-tier-row:last-child { border-bottom: none; }
+  .se-tier-row:hover { background: #fff; }
+  .se-tier-row.highlight { background: rgba(224,123,57,0.04); }
+  .se-tier-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    font-family: var(--se-mono);
+  }
+  .se-t0 { background: var(--se-green-bg); color: var(--se-green); }
+  .se-t1 { background: rgba(122,149,176,0.15); color: var(--se-blue-gray); }
+  .se-t2 { background: rgba(224,123,57,0.1); color: var(--se-accent); }
+  .se-t3 { background: rgba(30,53,87,0.1); color: var(--se-navy); }
+  .se-tier-info { padding: 0 16px; }
+  .se-tier-name { font-weight: 700; font-size: 13px; color: var(--se-navy); margin-bottom: 2px; }
+  .se-tier-source { font-size: 11px; color: var(--se-blue-gray); font-family: var(--se-mono); }
+  .se-tier-cost {
+    font-family: var(--se-mono);
+    font-size: 12px;
+    color: var(--se-text);
+    font-weight: 500;
+  }
+  .se-tier-filter {
+    font-size: 11px;
+    color: var(--se-muted);
+  }
+
+  /* ===== STAT ROW ===== */
+  .se-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .se-stat {
+    background: var(--se-surface);
+    border: 1.5px solid var(--se-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .se-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--se-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .se-stat-label { font-size: 12px; color: var(--se-blue-gray); line-height: 1.5; }
+
+  /* ===== SCORE DEMO ===== */
+  .se-score-demo {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .se-score-card {
+    background: var(--se-surface);
+    border: 1.5px solid var(--se-border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .se-score-card:hover { border-color: var(--se-accent); }
+  .se-score-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .se-score-company { font-weight: 800; font-size: 15px; color: var(--se-navy); }
+  .se-score-badge {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-family: var(--se-mono);
+  }
+  .se-status-qual { background: var(--se-green-bg); color: var(--se-green); }
+  .se-status-disq { background: rgba(192,57,43,0.1); color: #c0392b; }
+  .se-score-num {
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--se-accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+  .se-score-num.se-high { color: var(--se-green); }
+  .se-score-num.se-low { color: #c0392b; }
+  .se-score-evidence { font-size: 11px; color: var(--se-blue-gray); line-height: 1.7; font-family: var(--se-mono); }
+  .se-score-signals {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .se-sig-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--se-muted);
+  }
+  .se-sig-check { font-size: 12px; }
+  .se-sig-bar-mini {
+    flex: 1;
+    height: 3px;
+    background: var(--se-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .se-sig-fill { height: 100%; border-radius: 999px; }
+
+  /* ===== QUOTE ===== */
+  .se-quote-block {
+    margin-top: 28px;
+    border-left: 4px solid var(--se-accent);
+    padding: 24px 28px;
+    background: var(--se-surface);
+    border-radius: 0 16px 16px 0;
+  }
+  .se-quote-text {
+    font-size: clamp(14px, 2vw, 19px);
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--se-navy);
+    margin-bottom: 10px;
+  }
+  .se-quote-attr { font-size: 10px; color: var(--se-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--se-mono); }
+
+  /* ===== SIGNAL CARDS ===== */
+  .se-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .se-signal-card {
+    background: var(--se-surface);
+    border: 1.5px solid var(--se-border);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .se-signal-card:hover { border-color: var(--se-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
+  .se-signal-disq {
+    border-color: rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.03);
+  }
+  .se-signal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .se-signal-name { font-weight: 700; font-size: 13px; color: var(--se-navy); }
+  .se-signal-weight {
+    font-family: var(--se-mono);
+    font-size: 10px;
+    color: var(--se-accent);
+    background: rgba(224,123,57,0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .se-signal-desc { font-size: 11px; color: var(--se-blue-gray); line-height: 1.6; margin-bottom: 12px; }
+  .se-signal-bar-wrap {
+    height: 4px;
+    background: var(--se-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .se-signal-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--se-accent);
+    transition: width 0.6s ease;
+  }
+  .se-bar-green { background: var(--se-green); }
+  .se-signal-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--se-muted);
+    font-family: var(--se-mono);
+  }
+
+  /* ===== PIPELINE ===== */
+  .se-pipeline {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .se-pipe-stage {
+    flex: 1;
+    min-width: 110px;
+    background: var(--se-surface);
+    border-top: 3px solid var(--se-border);
+    border-right: 1px solid var(--se-border);
+    border-bottom: 1.5px solid var(--se-border);
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .se-pipe-stage:first-child { border-left: 1.5px solid var(--se-border); border-radius: 16px 0 0 16px; }
+  .se-pipe-stage:last-child { border-right: 1.5px solid var(--se-border); border-radius: 0 16px 16px 0; }
+  .se-pipe-stage:hover, .se-pipe-stage.active { border-top-color: var(--se-accent); background: #fff; }
+  .se-pipe-stage.se-won { border-top-color: var(--se-green); }
+  .se-pipe-stage.se-lost { border-top-color: #c0392b; }
+  .se-pipe-icon { font-size: 20px; margin-bottom: 8px; }
+  .se-pipe-name { font-weight: 700; font-size: 11px; color: var(--se-navy); }
+  .se-pipe-count { font-size: 10px; color: var(--se-muted); margin-top: 4px; font-family: var(--se-mono); }
+
+  /* ===== CTA ===== */
+  .se-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--se-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .se-cta-section.visible { opacity: 1; transform: none; }
+  .se-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--se-navy);
+    letter-spacing: -0.03em;
+  }
+  .se-cta-sub {
+    font-size: 16px;
+    color: var(--se-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .se-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .se-btn-p {
+    display: inline-block;
+    background: var(--se-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--se-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .se-btn-p:hover { background: var(--se-accent2); }
+  .se-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--se-navy);
+    border: 2px solid var(--se-navy);
+    padding: 16px 34px;
+    font-family: var(--se-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .se-btn-s:hover { background: var(--se-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes seFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .se-loop { grid-template-columns: 1fr 1fr; }
+    .se-loop-card::after { display: none; }
+    .se-signal-grid { grid-template-columns: 1fr 1fr; }
+    .se-score-demo { grid-template-columns: 1fr; }
+    .se-tier-header, .se-tier-row { grid-template-columns: 50px 1fr 90px; }
+    .se-tier-filter { display: none; }
+    .se-stat-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- DM Mono font for signal engine sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Scan demo
+  const scanLines = [
+    ['se-log-working', '\u27F6 Parsing company-list.xlsx \u00B7 500 companies'],
+    ['se-log-ok', '\u2713 Signal config loaded \u00B7 6 signals \u00B7 4 tiers'],
+    ['se-log-ok', '\u2713 T0 XLSX filter \u00B7 214 companies eliminated (free)'],
+    ['se-log-working', '\u27F6 T1 website scrape \u00B7 286 companies \u00B7 Firecrawl'],
+    ['se-log-ok', '\u2713 168 eliminated \u00B7 118 advancing to T2 ($1.43 spent)'],
+    ['se-log-working', '\u27F6 T2 web search \u00B7 118 companies \u00B7 Tavily'],
+    ['se-log-ok', '\u2713 71 eliminated \u00B7 47 advancing to T3 ($1.18 spent)'],
+    ['se-log-working', '\u27F6 T3 deep enrichment \u00B7 47 companies \u00B7 Opus'],
+    ['se-log-ok', '\u2713 Scoring complete \u00B7 $3.76 total'],
+    ['se-log-qual', '\u2192 31 qualified \u00B7 12 needs_more \u00B7 4 errors'],
+    ['se-log-qual', '\u2192 Generating AI outreach for 31 leads...'],
+    ['se-log-ok', '\u2713 Pipeline updated \u00B7 31 leads added to New'],
+    ['se-log-ok', '\u26A1 Scan complete \u00B7 total cost: $6.37'],
+  ];
+
+  function runScan() {
+    const log = document.getElementById('scanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= scanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = scanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 280);
+  }
+
+  const scanInput = document.getElementById('scanInput');
+  if (scanInput) {
+    scanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runScan();
+    });
+  }
+
+  // Loop card toggle
+  function toggleLoop(el) {
+    document.querySelectorAll('.se-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Tier highlight
+  function highlightTier(el) {
+    document.querySelectorAll('.se-tier-row').forEach(r => r.classList.remove('highlight'));
+    el.classList.add('highlight');
+  }
+
+  // Pipeline toggle
+  function togglePipe(el) {
+    document.querySelectorAll('.se-pipe-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const seObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.se-section, .se-cta-section').forEach(el => seObs.observe(el));
+
+  // Animate signal bars on scroll
+  const signalObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.se-signal-bar').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.se-signal-grid').forEach(g => signalObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.runScan = runScan;
+  window.toggleLoop = toggleLoop;
+  window.highlightTier = highlightTier;
+  window.togglePipe = togglePipe;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .se-log-ok { color: #3a9e6e; }
+  .se-log-working { color: #e07b39; }
+  .se-log-qual { color: #1e3557; font-weight: 500; }
+</style>
