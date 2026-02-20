@@ -1,0 +1,1067 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://grizzdms.replit.app/admin';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Route Simply", "item": `${SITE_URL}/projects/route-simply` }
+  ]
+};
+---
+
+<Layout
+  title="Route Simply | AI Route Optimization | Brothers Automate"
+  description="Stop wasting time on inefficient routes. Route Simply uses AI to optimize your daily schedule. More jobs, less driving, less fuel."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Optimized Routing and Scheduling</span>
+          <h1>Route Simply.<br /><span class="gradient-text">30% Less Drive Time.</span></h1>
+          <p class="project-hero-sub">Stop wasting time on inefficient routes. Route Simply uses AI to optimize your daily schedule. More jobs, less driving, less fuel.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">30%</span>
+              <span class="hero-stat-label">Less Drive Time</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">+2</span>
+              <span class="hero-stat-label">Extra Jobs/Week</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">$$</span>
+              <span class="hero-stat-label">Fuel Saved</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Route Optimization Terminal Box -->
+          <div class="rs-scan-box">
+            <div class="rs-scan-bar">
+              <div class="rs-scan-dot" style="background:#e8b4a0"></div>
+              <div class="rs-scan-dot" style="background:#ddd6c8"></div>
+              <div class="rs-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">route-simply / optimization terminal</span>
+            </div>
+            <div class="rs-scan-input-row">
+              <input class="rs-scan-input" id="rsInput" placeholder="tuesday-jobs.csv &middot; 8 stops" />
+              <button class="rs-scan-btn" onclick="rsRunOptimize()">&#9654; OPTIMIZE</button>
+            </div>
+            <div class="rs-scan-log" id="rsLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="rs-ticker">
+      <div class="rs-ticker-inner">
+        DAILY JOBS &rarr; GEOCODE &nbsp;&middot;&nbsp; OPTIMIZE &nbsp;&middot;&nbsp; SEQUENCE &nbsp;&middot;&nbsp; TRAFFIC CHECK &nbsp;&middot;&nbsp; CLUSTER &nbsp;&middot;&nbsp; ROUTE &nbsp;&middot;&nbsp; DISPATCH &nbsp;&middot;&nbsp; MORE JOBS &nbsp;&middot;&nbsp;
+        DAILY JOBS &rarr; GEOCODE &nbsp;&middot;&nbsp; OPTIMIZE &nbsp;&middot;&nbsp; SEQUENCE &nbsp;&middot;&nbsp; TRAFFIC CHECK &nbsp;&middot;&nbsp; CLUSTER &nbsp;&middot;&nbsp; ROUTE &nbsp;&middot;&nbsp; DISPATCH &nbsp;&middot;&nbsp; MORE JOBS &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — BEFORE & AFTER -->
+    <section class="rs-section" id="rs-section-1">
+      <div class="rs-section-label">01 — Before & After</div>
+      <h2 class="rs-section-title">Same jobs.<br><span class="rs-accent">Less driving.</span></h2>
+      <p class="rs-section-sub">Same 8 jobs. One route wastes your time criss-crossing town. The other clusters stops and sequences for minimum drive time.</p>
+
+      <div class="rs-score-demo">
+        <div class="rs-score-card rs-card-bad" onclick="this.classList.toggle('expanded')">
+          <div class="rs-score-card-top">
+            <div class="rs-score-company">Unoptimized Route</div>
+            <div class="rs-score-badge rs-status-bad">Inefficient</div>
+          </div>
+          <div class="rs-score-num rs-low">87</div>
+          <div class="rs-score-label">miles &middot; 3hr 12min</div>
+          <div class="rs-score-evidence">Back-and-forth across town &middot; no logical sequence &middot; 6 jobs completed before running out of time &middot; $18 fuel cost</div>
+          <div class="rs-score-signals">
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:#c0392b">&cross;</span> Drive efficiency <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:35%;background:#c0392b"></div></div> 0.35</div>
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:var(--rs-accent)">&cross;</span> Job capacity <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:75%;background:var(--rs-accent)"></div></div> 0.75</div>
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:#c0392b">&cross;</span> Fuel cost <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:15%;background:#c0392b"></div></div> 0.15</div>
+          </div>
+        </div>
+        <div class="rs-score-card rs-card-good" onclick="this.classList.toggle('expanded')">
+          <div class="rs-score-card-top">
+            <div class="rs-score-company">Optimized Route</div>
+            <div class="rs-score-badge rs-status-good">Optimized</div>
+          </div>
+          <div class="rs-score-num rs-high">61</div>
+          <div class="rs-score-label">miles &middot; 2hr 15min</div>
+          <div class="rs-score-evidence">Cluster-based sequencing &middot; traffic-aware routing &middot; 8 jobs completed with time to spare &middot; $12 fuel cost</div>
+          <div class="rs-score-signals">
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:var(--rs-green)">&check;</span> Drive efficiency <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:92%;background:var(--rs-green)"></div></div> 0.92</div>
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:var(--rs-green)">&check;</span> Job capacity <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:95%;background:var(--rs-green)"></div></div> 0.95</div>
+            <div class="rs-sig-line"><span class="rs-sig-check" style="color:var(--rs-green)">&check;</span> Fuel cost <div class="rs-sig-bar-mini"><div class="rs-sig-fill" style="width:88%;background:var(--rs-green)"></div></div> 0.88</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rs-stat-row">
+        <div class="rs-stat">
+          <div class="rs-stat-num">30%</div>
+          <div class="rs-stat-label">less drive time on same jobs</div>
+        </div>
+        <div class="rs-stat">
+          <div class="rs-stat-num">+2</div>
+          <div class="rs-stat-label">extra jobs you can fit per week</div>
+        </div>
+        <div class="rs-stat">
+          <div class="rs-stat-num">$$</div>
+          <div class="rs-stat-label">fuel saved every single month</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — YOUR DAY OPTIMIZED -->
+    <section class="rs-section" id="rs-section-2">
+      <div class="rs-section-label">02 — Your Day Optimized</div>
+      <h2 class="rs-section-title">Every job sequenced.<br><span class="rs-accent">Maximum efficiency.</span></h2>
+      <p class="rs-section-sub">Click any job to highlight it. Notice how each stop clusters with nearby locations to minimize driving between jobs.</p>
+
+      <div class="rs-schedule-table">
+        <div class="rs-schedule-header">
+          <div>Time</div>
+          <div>Job</div>
+          <div>Location</div>
+          <div>Distance</div>
+          <div>Duration</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">8:00 AM</div>
+          <div class="rs-schedule-job">Johnson Driveway</div>
+          <div class="rs-schedule-loc">123 Oak St</div>
+          <div class="rs-schedule-dist">&mdash;</div>
+          <div class="rs-schedule-dur">45 min</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">9:00 AM</div>
+          <div class="rs-schedule-job">Smith Walkway</div>
+          <div class="rs-schedule-loc">456 Elm St</div>
+          <div class="rs-schedule-dist">1.3 mi</div>
+          <div class="rs-schedule-dur">30 min</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">9:45 AM</div>
+          <div class="rs-schedule-job">Garcia Patio</div>
+          <div class="rs-schedule-loc">789 Pine St</div>
+          <div class="rs-schedule-dist">0.8 mi</div>
+          <div class="rs-schedule-dur">60 min</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">11:00 AM</div>
+          <div class="rs-schedule-job">Williams Pool Deck</div>
+          <div class="rs-schedule-loc">321 Maple Ave</div>
+          <div class="rs-schedule-dist">3.2 mi</div>
+          <div class="rs-schedule-dur">90 min</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">1:30 PM</div>
+          <div class="rs-schedule-job">Brown Steps</div>
+          <div class="rs-schedule-loc">654 Cedar Ln</div>
+          <div class="rs-schedule-dist">1.1 mi</div>
+          <div class="rs-schedule-dur">45 min</div>
+        </div>
+        <div class="rs-schedule-row" onclick="rsHighlightRow(this)">
+          <div class="rs-schedule-time">2:30 PM</div>
+          <div class="rs-schedule-job">Davis Retaining Wall</div>
+          <div class="rs-schedule-loc">987 Birch Rd</div>
+          <div class="rs-schedule-dist">0.5 mi</div>
+          <div class="rs-schedule-dur">60 min</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — THE NUMBERS -->
+    <section class="rs-section" id="rs-section-3">
+      <div class="rs-section-label">03 — The Numbers</div>
+      <h2 class="rs-section-title">Time and money<br><span class="rs-accent">you get back.</span></h2>
+      <p class="rs-section-sub">Route optimization doesn't just save time. It lets you fit more jobs in each day, burn less fuel, and reduce wear on your vehicles.</p>
+
+      <div class="rs-big-stats">
+        <div class="rs-big-stat">
+          <div class="rs-big-stat-num">57 min</div>
+          <div class="rs-big-stat-label">saved per day</div>
+          <div class="rs-big-stat-sub">That's nearly 5 hours per week</div>
+        </div>
+        <div class="rs-big-stat">
+          <div class="rs-big-stat-num">+2 jobs</div>
+          <div class="rs-big-stat-label">extra per week</div>
+          <div class="rs-big-stat-sub">At $500/job = $4,000/month</div>
+        </div>
+        <div class="rs-big-stat">
+          <div class="rs-big-stat-num">$200+</div>
+          <div class="rs-big-stat-label">fuel saved monthly</div>
+          <div class="rs-big-stat-sub">Less miles = less fuel + less wear</div>
+        </div>
+      </div>
+
+      <div class="rs-quote-block">
+        <div class="rs-quote-text">"Before Route Simply, I'd spend 20 minutes every morning figuring out my day. Now I just look at the app and go."</div>
+        <div class="rs-quote-attr">Paving contractor</div>
+      </div>
+    </section>
+
+    <!-- 04 — SMART FEATURES -->
+    <section class="rs-section" id="rs-section-4">
+      <div class="rs-section-label">04 — Smart Features</div>
+      <h2 class="rs-section-title">Not just directions.<br><span class="rs-accent">Intelligence.</span></h2>
+      <p class="rs-section-sub">Click each feature to see how it works under the hood.</p>
+
+      <div class="rs-loop">
+        <div class="rs-loop-card active" onclick="rsToggleLoop(this)">
+          <div class="rs-loop-num">01</div>
+          <div class="rs-loop-title">Smart Sequencing</div>
+          <div class="rs-loop-desc">Jobs ordered for minimum drive time</div>
+          <div class="rs-loop-detail">
+            &rarr; Analyzes all job locations<br>
+            &rarr; Groups into geographic clusters<br>
+            &rarr; Sequences within clusters for shortest path<br>
+            &rarr; Considers job time windows and priorities<br>
+            &rarr; Recalculates when jobs are added or removed
+          </div>
+        </div>
+        <div class="rs-loop-card" onclick="rsToggleLoop(this)">
+          <div class="rs-loop-num">02</div>
+          <div class="rs-loop-title">Real-Time Updates</div>
+          <div class="rs-loop-desc">Routes adjust when schedules change</div>
+          <div class="rs-loop-detail">
+            &rarr; GPS-aware traffic monitoring<br>
+            &rarr; Automatic rerouting around delays<br>
+            &rarr; Push notification when route changes<br>
+            &rarr; Handles cancellations and additions<br>
+            &rarr; Re-optimizes remaining stops in real-time
+          </div>
+        </div>
+        <div class="rs-loop-card" onclick="rsToggleLoop(this)">
+          <div class="rs-loop-num">03</div>
+          <div class="rs-loop-title">Fuel Savings</div>
+          <div class="rs-loop-desc">Less miles = less money spent</div>
+          <div class="rs-loop-detail">
+            &rarr; Tracks actual miles driven per day<br>
+            &rarr; Compares optimized vs. unoptimized routes<br>
+            &rarr; Monthly fuel cost reduction report<br>
+            &rarr; Vehicle wear reduction estimates<br>
+            &rarr; ROI calculation per month
+          </div>
+        </div>
+        <div class="rs-loop-card" onclick="rsToggleLoop(this)">
+          <div class="rs-loop-num">04</div>
+          <div class="rs-loop-title">Capacity Planning</div>
+          <div class="rs-loop-desc">See how many more jobs you can fit</div>
+          <div class="rs-loop-detail">
+            &rarr; Daily capacity analysis<br>
+            &rarr; Shows available time slots<br>
+            &rarr; Suggests optimal job scheduling<br>
+            &rarr; Accounts for drive time between stops<br>
+            &rarr; Helps quote realistic timelines
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rs-cta-section" id="rs-section-5">
+      <div class="rs-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="rs-cta-title">Jobs in.<br>Optimized route out.<br><span style="color:var(--rs-accent)">Every morning.</span></h2>
+      <p class="rs-cta-sub">Upload your daily jobs. Get an optimized route with cluster-based sequencing and traffic-aware directions.</p>
+      <div class="rs-cta-btn-row">
+        <a href={productUrl} class="rs-btn-p" target="_blank" rel="noopener">Try It Live &rarr;</a>
+        <a
+          href="#"
+          class="rs-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--rs-muted);margin-top:28px;font-family:var(--rs-mono)">Route Simply &middot; AI route optimization &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== OPTIMIZATION TERMINAL BOX ===== */
+  .rs-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .rs-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .rs-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .rs-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .rs-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .rs-scan-input::placeholder { color: var(--text-muted); }
+  .rs-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .rs-scan-btn:hover { background: var(--orange-hover); }
+  .rs-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .rs-scan-log.visible { display: block; animation: rsFadeUp 0.3s ease; }
+
+  /* ===== ROUTE SIMPLY CUSTOM VARIABLES ===== */
+  :root {
+    --rs-bg: #f2ede4;
+    --rs-surface: #faf7f2;
+    --rs-surface2: #eee8dc;
+    --rs-border: #ddd6c8;
+    --rs-accent: #e07b39;
+    --rs-accent2: #c4622a;
+    --rs-navy: #1e3557;
+    --rs-navy2: #2a4a72;
+    --rs-blue-gray: #7a95b0;
+    --rs-text: #1e3557;
+    --rs-muted: #8a9ab0;
+    --rs-green: #3a9e6e;
+    --rs-green-bg: #e8f5ef;
+    --rs-red: #c0392b;
+    --rs-red-bg: rgba(192,57,43,0.06);
+    --rs-mono: 'DM Mono', monospace;
+    --rs-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .rs-ticker {
+    background: var(--rs-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .rs-ticker-inner {
+    display: inline-block;
+    animation: rsTicker 25s linear infinite;
+    font-family: var(--rs-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes rsTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .rs-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--rs-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .rs-section.visible { opacity: 1; transform: none; }
+
+  .rs-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--rs-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .rs-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rs-border);
+  }
+
+  .rs-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--rs-navy);
+    letter-spacing: -0.025em;
+  }
+  .rs-accent { color: var(--rs-accent); }
+  .rs-section-sub {
+    font-size: 13px;
+    color: var(--rs-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== SCORE CARDS (Before / After) ===== */
+  .rs-score-demo {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .rs-score-card {
+    background: var(--rs-surface);
+    border: 1.5px solid var(--rs-border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .rs-score-card:hover { border-color: var(--rs-accent); }
+  .rs-card-bad {
+    background: var(--rs-red-bg);
+    border-color: rgba(192,57,43,0.2);
+  }
+  .rs-card-bad:hover { border-color: var(--rs-red); }
+  .rs-card-good {
+    background: var(--rs-green-bg);
+    border-color: rgba(58,158,110,0.2);
+  }
+  .rs-card-good:hover { border-color: var(--rs-green); }
+  .rs-score-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .rs-score-company { font-weight: 800; font-size: 15px; color: var(--rs-navy); }
+  .rs-score-badge {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-family: var(--rs-mono);
+  }
+  .rs-status-bad { background: rgba(192,57,43,0.1); color: #c0392b; }
+  .rs-status-good { background: var(--rs-green-bg); color: var(--rs-green); }
+  .rs-score-num {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .rs-score-num.rs-high { color: var(--rs-green); }
+  .rs-score-num.rs-low { color: #c0392b; }
+  .rs-score-label {
+    font-size: 13px;
+    color: var(--rs-blue-gray);
+    font-family: var(--rs-mono);
+    margin-bottom: 12px;
+  }
+  .rs-score-evidence { font-size: 11px; color: var(--rs-blue-gray); line-height: 1.7; font-family: var(--rs-mono); }
+  .rs-score-signals {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .rs-sig-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--rs-muted);
+  }
+  .rs-sig-check { font-size: 12px; }
+  .rs-sig-bar-mini {
+    flex: 1;
+    height: 3px;
+    background: var(--rs-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .rs-sig-fill { height: 100%; border-radius: 999px; }
+
+  /* ===== STAT ROW ===== */
+  .rs-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .rs-stat {
+    background: var(--rs-surface);
+    border: 1.5px solid var(--rs-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .rs-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--rs-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .rs-stat-label { font-size: 12px; color: var(--rs-blue-gray); line-height: 1.5; }
+
+  /* ===== SCHEDULE TABLE ===== */
+  .rs-schedule-table {
+    margin-top: 48px;
+    border: 1.5px solid var(--rs-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .rs-schedule-header {
+    display: grid;
+    grid-template-columns: 100px 1fr 140px 100px 100px;
+    background: var(--rs-surface2);
+    border-bottom: 1.5px solid var(--rs-border);
+    padding: 12px 22px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rs-muted);
+    font-weight: 600;
+  }
+  .rs-schedule-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 140px 100px 100px;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--rs-border);
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    background: var(--rs-surface);
+  }
+  .rs-schedule-row:last-child { border-bottom: none; }
+  .rs-schedule-row:hover { background: #fff; }
+  .rs-schedule-row.highlight { background: rgba(224,123,57,0.04); border-left: 3px solid var(--rs-accent); }
+  .rs-schedule-time {
+    font-family: var(--rs-mono);
+    font-size: 12px;
+    color: var(--rs-accent);
+    font-weight: 600;
+  }
+  .rs-schedule-job {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--rs-navy);
+  }
+  .rs-schedule-loc {
+    font-size: 11px;
+    color: var(--rs-blue-gray);
+    font-family: var(--rs-mono);
+  }
+  .rs-schedule-dist {
+    font-family: 'DM Mono', var(--rs-mono);
+    font-size: 12px;
+    color: var(--rs-text);
+    font-weight: 500;
+  }
+  .rs-schedule-dur {
+    font-size: 11px;
+    color: var(--rs-muted);
+    font-family: var(--rs-mono);
+  }
+
+  /* ===== BIG STAT CARDS ===== */
+  .rs-big-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .rs-big-stat {
+    background: var(--rs-surface);
+    border: 1.5px solid var(--rs-border);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .rs-big-stat:hover {
+    border-color: var(--rs-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.1);
+  }
+  .rs-big-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--rs-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .rs-big-stat-label {
+    font-size: 14px;
+    color: var(--rs-navy);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .rs-big-stat-sub {
+    font-size: 11px;
+    color: var(--rs-blue-gray);
+    font-family: var(--rs-mono);
+    line-height: 1.5;
+  }
+
+  /* ===== QUOTE ===== */
+  .rs-quote-block {
+    margin-top: 40px;
+    border-left: 4px solid var(--rs-accent);
+    padding: 24px 28px;
+    background: var(--rs-surface);
+    border-radius: 0 16px 16px 0;
+  }
+  .rs-quote-text {
+    font-size: clamp(14px, 2vw, 19px);
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--rs-navy);
+    margin-bottom: 10px;
+  }
+  .rs-quote-attr { font-size: 10px; color: var(--rs-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--rs-mono); }
+
+  /* ===== LOOP STEPS (Smart Features) ===== */
+  .rs-loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .rs-loop-card {
+    background: var(--rs-surface);
+    border: 1.5px solid var(--rs-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .rs-loop-card::after {
+    content: '\2192';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rs-accent);
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .rs-loop-card:last-child::after { display: none; }
+  .rs-loop-card:hover, .rs-loop-card.active {
+    border-color: var(--rs-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .rs-loop-num {
+    font-family: var(--rs-mono);
+    font-size: 10px;
+    color: var(--rs-muted);
+    margin-bottom: 10px;
+  }
+  .rs-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--rs-navy);
+    margin-bottom: 6px;
+  }
+  .rs-loop-desc { font-size: 11px; color: var(--rs-blue-gray); line-height: 1.7; }
+  .rs-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--rs-blue-gray);
+    line-height: 1.9;
+    font-family: var(--rs-mono);
+  }
+  .rs-loop-card.active .rs-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rs-border);
+  }
+
+  /* ===== CTA ===== */
+  .rs-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--rs-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .rs-cta-section.visible { opacity: 1; transform: none; }
+  .rs-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--rs-navy);
+    letter-spacing: -0.03em;
+  }
+  .rs-cta-sub {
+    font-size: 16px;
+    color: var(--rs-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .rs-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .rs-btn-p {
+    display: inline-block;
+    background: var(--rs-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--rs-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .rs-btn-p:hover { background: var(--rs-accent2); }
+  .rs-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--rs-navy);
+    border: 2px solid var(--rs-navy);
+    padding: 16px 34px;
+    font-family: var(--rs-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .rs-btn-s:hover { background: var(--rs-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes rsFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rs-loop { grid-template-columns: 1fr 1fr; }
+    .rs-loop-card::after { display: none; }
+    .rs-score-demo { grid-template-columns: 1fr; }
+    .rs-stat-row { grid-template-columns: 1fr; }
+    .rs-big-stats { grid-template-columns: 1fr; }
+    .rs-schedule-header, .rs-schedule-row {
+      grid-template-columns: 80px 1fr 80px;
+    }
+    .rs-schedule-loc { display: none; }
+    .rs-schedule-dur { display: none; }
+  }
+</style>
+
+<!-- DM Mono font for route simply sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Route optimization demo
+  const rsLines = [
+    ['rs-log-working', '\u27F6 Loading daily jobs \u00B7 8 stops \u00B7 Tuesday'],
+    ['rs-log-ok', '\u2713 Addresses geocoded \u00B7 8 of 8'],
+    ['rs-log-working', '\u27F6 Calculating optimal sequence...'],
+    ['rs-log-ok', '\u2713 Original route: 87 miles \u00B7 3hr 12min drive time'],
+    ['rs-log-ok', '\u2713 Optimized route: 61 miles \u00B7 2hr 15min drive time'],
+    ['rs-log-working', '\u27F6 Checking real-time traffic...'],
+    ['rs-log-ok', '\u2713 Route adjusted \u00B7 I-95 congestion avoided'],
+    ['rs-log-qual', '\u2192 26 miles saved \u00B7 57 min saved \u00B7 2 extra job slots'],
+    ['rs-log-ok', '\u26A1 Route optimized \u00B7 30% less drive time'],
+  ];
+
+  function rsRunOptimize() {
+    const log = document.getElementById('rsLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= rsLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = rsLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 350);
+  }
+
+  const rsInput = document.getElementById('rsInput');
+  if (rsInput) {
+    rsInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') rsRunOptimize();
+    });
+  }
+
+  // Loop card toggle
+  function rsToggleLoop(el) {
+    document.querySelectorAll('.rs-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Schedule row highlight
+  function rsHighlightRow(el) {
+    document.querySelectorAll('.rs-schedule-row').forEach(r => r.classList.remove('highlight'));
+    el.classList.add('highlight');
+  }
+
+  // Section scroll animations
+  const rsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.rs-section, .rs-cta-section').forEach(el => rsObs.observe(el));
+
+  // Animate signal bars on scroll
+  const rsSigObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.rs-sig-fill').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.rs-score-demo').forEach(g => rsSigObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.rsRunOptimize = rsRunOptimize;
+  window.rsToggleLoop = rsToggleLoop;
+  window.rsHighlightRow = rsHighlightRow;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .rs-log-ok { color: #3a9e6e; }
+  .rs-log-working { color: #e07b39; }
+  .rs-log-qual { color: #1e3557; font-weight: 500; }
+</style>

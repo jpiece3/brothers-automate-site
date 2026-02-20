@@ -1,0 +1,1317 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const videoUrl = 'https://www.youtube.com/embed/mV9VePjnCrA';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Automated Inventory", "item": `${SITE_URL}/projects/automated-inventory` }
+  ]
+};
+---
+
+<Layout
+  title="Automated Inventory | Square POS Sync & Reporting | Brothers Automate"
+  description="Stop manually tracking inventory in Square. We automate daily inventory updates and send you a clean report every morning. Built for a pet store in Haddonfield, NJ."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">Daily Inventory Sync and Reporting via Square</span>
+          <h1>Automated Inventory.<br /><span class="gradient-text">Daily Auto Reports.</span></h1>
+          <p class="project-hero-sub">Stop manually tracking inventory in Square. We automate daily inventory updates and send you a clean report every morning.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">Daily</span>
+              <span class="hero-stat-label">Auto Reports</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">0</span>
+              <span class="hero-stat-label">Manual Updates</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">100%</span>
+              <span class="hero-stat-label">Inventory Accuracy</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#ai-video" class="btn btn-primary btn-lg">Watch the Demo</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Inventory Sync Terminal Box -->
+          <div class="ai-scan-box">
+            <div class="ai-scan-bar">
+              <div class="ai-scan-dot" style="background:#e8b4a0"></div>
+              <div class="ai-scan-dot" style="background:#ddd6c8"></div>
+              <div class="ai-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">auto-inventory / sync terminal</span>
+            </div>
+            <div class="ai-scan-input-row">
+              <input class="ai-scan-input" id="syncInput" placeholder="haddonfield-pet-supply · daily sync" />
+              <button class="ai-scan-btn" onclick="aiRunSync()">&#9654; RUN SYNC</button>
+            </div>
+            <div class="ai-scan-log" id="syncLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ai-ticker">
+      <div class="ai-ticker-inner">
+        SQUARE API &rarr; SALES DATA &nbsp;&middot;&nbsp; INVENTORY UPDATE &nbsp;&middot;&nbsp; TREND ANALYSIS &nbsp;&middot;&nbsp; LOW-STOCK ALERT &nbsp;&middot;&nbsp; DAILY REPORT &nbsp;&middot;&nbsp; OWNER EMAIL &nbsp;&middot;&nbsp; ZERO MANUAL WORK &nbsp;&middot;&nbsp;
+        SQUARE API &rarr; SALES DATA &nbsp;&middot;&nbsp; INVENTORY UPDATE &nbsp;&middot;&nbsp; TREND ANALYSIS &nbsp;&middot;&nbsp; LOW-STOCK ALERT &nbsp;&middot;&nbsp; DAILY REPORT &nbsp;&middot;&nbsp; OWNER EMAIL &nbsp;&middot;&nbsp; ZERO MANUAL WORK &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — DAILY REPORT PREVIEW -->
+    <section class="ai-section" id="ai-section-1">
+      <div class="ai-section-label">01 — Daily Report Preview</div>
+      <h2 class="ai-section-title">Your daily report.<br><span class="ai-accent">Open your email. Know your inventory.</span></h2>
+      <p class="ai-section-sub">Every morning, the owner gets a clean report with everything they need to know. No logging into Square. No spreadsheets.</p>
+
+      <div class="ai-report-card">
+        <div class="ai-report-header">
+          <div class="ai-report-header-left">
+            <div class="ai-report-title">Daily Inventory Report — Feb 20, 2026</div>
+            <div class="ai-report-store">Haddonfield Pet Supply</div>
+          </div>
+          <div class="ai-report-logo">&#128230;</div>
+        </div>
+
+        <div class="ai-report-summary">
+          <div class="ai-report-stat">
+            <div class="ai-report-stat-num">83</div>
+            <div class="ai-report-stat-label">Items Sold</div>
+          </div>
+          <div class="ai-report-stat">
+            <div class="ai-report-stat-num">$2,847</div>
+            <div class="ai-report-stat-label">Revenue</div>
+          </div>
+          <div class="ai-report-stat">
+            <div class="ai-report-stat-num">8</div>
+            <div class="ai-report-stat-label">Low Stock</div>
+          </div>
+          <div class="ai-report-stat">
+            <div class="ai-report-stat-num">2</div>
+            <div class="ai-report-stat-label">Out of Stock</div>
+          </div>
+        </div>
+
+        <div class="ai-report-tabs">
+          <button class="ai-report-tab active" onclick="aiSwitchReport(this)" data-tab="top-sellers">Top Sellers</button>
+          <button class="ai-report-tab" onclick="aiSwitchReport(this)" data-tab="low-stock">Low Stock</button>
+          <button class="ai-report-tab" onclick="aiSwitchReport(this)" data-tab="trends">Trends</button>
+        </div>
+
+        <div class="ai-report-body">
+          <!-- Top Sellers Tab -->
+          <div class="ai-tab-panel active" data-panel="top-sellers">
+            <table class="ai-report-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Qty Sold</th>
+                  <th>Remaining</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Premium Dog Food 30lb</td>
+                  <td>12</td>
+                  <td>45</td>
+                </tr>
+                <tr>
+                  <td>Cat Litter Multi-Cat</td>
+                  <td>8</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>Dental Chews Large</td>
+                  <td>7</td>
+                  <td>34</td>
+                </tr>
+                <tr>
+                  <td>Goldfish Flakes</td>
+                  <td>6</td>
+                  <td>67</td>
+                </tr>
+                <tr>
+                  <td>Dog Toy Rope Tug</td>
+                  <td>5</td>
+                  <td>23</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Low Stock Tab -->
+          <div class="ai-tab-panel" data-panel="low-stock">
+            <table class="ai-report-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Remaining</th>
+                  <th>Reorder Point</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cat Litter Multi-Cat</td>
+                  <td>12</td>
+                  <td>20</td>
+                  <td><span class="ai-badge-orange">Low</span></td>
+                </tr>
+                <tr>
+                  <td>Fish Tank Filter</td>
+                  <td>3</td>
+                  <td>10</td>
+                  <td><span class="ai-badge-red">Critical</span></td>
+                </tr>
+                <tr>
+                  <td>Bird Seed Mix 5lb</td>
+                  <td>8</td>
+                  <td>15</td>
+                  <td><span class="ai-badge-orange">Low</span></td>
+                </tr>
+                <tr>
+                  <td>Hamster Bedding</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td><span class="ai-badge-red">Critical</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Trends Tab -->
+          <div class="ai-tab-panel" data-panel="trends">
+            <div class="ai-trend-cards">
+              <div class="ai-trend-card ai-trend-up">
+                <div class="ai-trend-icon">&#8593;</div>
+                <div class="ai-trend-text">Dog food sales up <strong>23%</strong> vs. last Tuesday — consider increasing order</div>
+              </div>
+              <div class="ai-trend-card ai-trend-down">
+                <div class="ai-trend-icon">&#8595;</div>
+                <div class="ai-trend-text">Cat litter trending down <strong>12%</strong> this month — seasonal pattern from last year</div>
+              </div>
+              <div class="ai-trend-card ai-trend-steady">
+                <div class="ai-trend-icon">&#8594;</div>
+                <div class="ai-trend-text">Fish supplies steady — no action needed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — HOW IT WORKS -->
+    <section class="ai-section" id="ai-section-2">
+      <div class="ai-section-label">02 — How It Works</div>
+      <h2 class="ai-section-title">Square API<br><span class="ai-accent">to your inbox. Every night.</span></h2>
+      <p class="ai-section-sub">Five automated steps. Zero manual work. The system runs every day whether you think about it or not.</p>
+
+      <div class="ai-pipeline">
+        <div class="ai-pipe-stage active" onclick="aiTogglePipe(this)">
+          <div class="ai-pipe-icon">&#128225;</div>
+          <div class="ai-pipe-name">Square API</div>
+          <div class="ai-pipe-desc">End-of-day sales data pull</div>
+        </div>
+        <div class="ai-pipe-stage" onclick="aiTogglePipe(this)">
+          <div class="ai-pipe-icon">&#9881;</div>
+          <div class="ai-pipe-name">Data Processing</div>
+          <div class="ai-pipe-desc">Transaction matching + inventory adjustment</div>
+        </div>
+        <div class="ai-pipe-stage" onclick="aiTogglePipe(this)">
+          <div class="ai-pipe-icon">&#128202;</div>
+          <div class="ai-pipe-name">Analysis</div>
+          <div class="ai-pipe-desc">Trend detection + low-stock flagging</div>
+        </div>
+        <div class="ai-pipe-stage" onclick="aiTogglePipe(this)">
+          <div class="ai-pipe-icon">&#128203;</div>
+          <div class="ai-pipe-name">Report</div>
+          <div class="ai-pipe-desc">Clean summary generated</div>
+        </div>
+        <div class="ai-pipe-stage" onclick="aiTogglePipe(this)">
+          <div class="ai-pipe-icon">&#128231;</div>
+          <div class="ai-pipe-name">Email</div>
+          <div class="ai-pipe-desc">Delivered to owner's inbox</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — ALWAYS CURRENT -->
+    <section class="ai-section" id="ai-section-3">
+      <div class="ai-section-label">03 — Always Current</div>
+      <h2 class="ai-section-title">Stock levels<br><span class="ai-accent">you can trust.</span></h2>
+      <p class="ai-section-sub">Every SKU updated nightly. Low-stock alerts before you run out. No more checking shelves to know what you have.</p>
+
+      <div class="ai-inventory-grid">
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Dog Food</div>
+            <span class="ai-inv-badge ai-inv-healthy">Healthy</span>
+          </div>
+          <div class="ai-inv-count">45 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-green" data-width="75%"></div></div>
+          <div class="ai-inv-note">Steady demand &middot; reorder in 2 weeks</div>
+        </div>
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Cat Litter</div>
+            <span class="ai-inv-badge ai-inv-low">Low Stock</span>
+          </div>
+          <div class="ai-inv-count">12 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-orange" data-width="20%"></div></div>
+          <div class="ai-inv-note">Down 12% this month &middot; reorder now</div>
+        </div>
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Fish Supplies</div>
+            <span class="ai-inv-badge ai-inv-critical">Critical</span>
+          </div>
+          <div class="ai-inv-count">8 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-red" data-width="13%"></div></div>
+          <div class="ai-inv-note">Below reorder point &middot; auto-alert sent</div>
+        </div>
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Dog Toys</div>
+            <span class="ai-inv-badge ai-inv-healthy">Healthy</span>
+          </div>
+          <div class="ai-inv-count">67 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-green" data-width="85%"></div></div>
+          <div class="ai-inv-note">Up 8% this week &middot; seasonal trend</div>
+        </div>
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Bird Seed</div>
+            <span class="ai-inv-badge ai-inv-low">Moderate</span>
+          </div>
+          <div class="ai-inv-count">23 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-orange" data-width="38%"></div></div>
+          <div class="ai-inv-note">Approaching reorder point</div>
+        </div>
+        <div class="ai-inv-card">
+          <div class="ai-inv-top">
+            <div class="ai-inv-name">Treats & Chews</div>
+            <span class="ai-inv-badge ai-inv-critical">Critical</span>
+          </div>
+          <div class="ai-inv-count">3 <span>units</span></div>
+          <div class="ai-inv-bar-wrap"><div class="ai-inv-bar ai-bar-red" data-width="5%"></div></div>
+          <div class="ai-inv-note">Nearly out &middot; urgent reorder needed</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — SEE IT IN ACTION -->
+    <section class="ai-section" id="ai-video">
+      <div class="ai-section-label">04 — See It In Action</div>
+      <h2 class="ai-section-title">Full system<br><span class="ai-accent">walkthrough.</span></h2>
+      <p class="ai-section-sub">See exactly how the daily sync, reporting, and alerts work.</p>
+
+      <div class="ai-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/mV9VePjnCrA"
+          title="Automated Inventory System Walkthrough"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="ai-stat-row">
+        <div class="ai-stat">
+          <div class="ai-stat-num">Daily</div>
+          <div class="ai-stat-label">Auto Reports</div>
+        </div>
+        <div class="ai-stat">
+          <div class="ai-stat-num">0</div>
+          <div class="ai-stat-label">Manual Updates</div>
+        </div>
+        <div class="ai-stat">
+          <div class="ai-stat-num">100%</div>
+          <div class="ai-stat-label">Inventory Accuracy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="ai-cta-section" id="ai-section-5">
+      <div class="ai-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="ai-cta-title">Square connected.<br>Inventory current.<br><span style="color:var(--ai-accent)">Report in your inbox.</span></h2>
+      <p class="ai-cta-sub">Stop guessing what's on your shelves. Automated inventory tracking and daily reports.</p>
+      <div class="ai-cta-btn-row">
+        <a href="#ai-video" class="ai-btn-p">Watch the Demo &rarr;</a>
+        <a
+          href="#"
+          class="ai-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--ai-muted);margin-top:28px;font-family:var(--ai-mono)">Automated Inventory &middot; Square POS integration &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== SYNC TERMINAL BOX ===== */
+  .ai-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .ai-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .ai-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ai-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .ai-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .ai-scan-input::placeholder { color: var(--text-muted); }
+  .ai-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .ai-scan-btn:hover { background: var(--orange-hover); }
+  .ai-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .ai-scan-log.visible { display: block; animation: aiFadeUp 0.3s ease; }
+
+  /* ===== AUTOMATED INVENTORY CUSTOM VARIABLES ===== */
+  :root {
+    --ai-bg: #f2ede4;
+    --ai-surface: #faf7f2;
+    --ai-surface2: #eee8dc;
+    --ai-border: #ddd6c8;
+    --ai-accent: #e07b39;
+    --ai-accent2: #c4622a;
+    --ai-navy: #1e3557;
+    --ai-navy2: #2a4a72;
+    --ai-blue-gray: #7a95b0;
+    --ai-text: #1e3557;
+    --ai-muted: #8a9ab0;
+    --ai-green: #3a9e6e;
+    --ai-green-bg: #e8f5ef;
+    --ai-orange: #e07b39;
+    --ai-orange-bg: rgba(224,123,57,0.1);
+    --ai-red: #c0392b;
+    --ai-red-bg: rgba(192,57,43,0.08);
+    --ai-mono: 'DM Mono', monospace;
+    --ai-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .ai-ticker {
+    background: var(--ai-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ai-ticker-inner {
+    display: inline-block;
+    animation: aiTicker 30s linear infinite;
+    font-family: var(--ai-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes aiTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .ai-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--ai-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ai-section.visible { opacity: 1; transform: none; }
+
+  .ai-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ai-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .ai-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ai-border);
+  }
+
+  .ai-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--ai-navy);
+    letter-spacing: -0.025em;
+  }
+  .ai-accent { color: var(--ai-accent); }
+  .ai-section-sub {
+    font-size: 13px;
+    color: var(--ai-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== REPORT CARD ===== */
+  .ai-report-card {
+    margin-top: 48px;
+    background: var(--ai-surface);
+    border: 1.5px solid var(--ai-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.08);
+  }
+  .ai-report-header {
+    background: var(--ai-surface2);
+    border-bottom: 1.5px solid var(--ai-border);
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ai-report-header-left {
+    text-align: left;
+  }
+  .ai-report-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ai-navy);
+    margin-bottom: 2px;
+  }
+  .ai-report-store {
+    font-size: 11px;
+    color: var(--ai-blue-gray);
+    font-family: var(--ai-mono);
+    letter-spacing: 0.05em;
+  }
+  .ai-report-logo {
+    font-size: 28px;
+    opacity: 0.6;
+  }
+
+  .ai-report-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1.5px solid var(--ai-border);
+  }
+  .ai-report-stat {
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid var(--ai-border);
+  }
+  .ai-report-stat:last-child { border-right: none; }
+  .ai-report-stat-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--ai-navy);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .ai-report-stat-label {
+    font-size: 10px;
+    color: var(--ai-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .ai-report-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 16px 28px 0;
+  }
+  .ai-report-tab {
+    background: transparent;
+    border: 1.5px solid var(--ai-border);
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-family: var(--ai-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ai-blue-gray);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ai-report-tab:hover {
+    border-color: var(--ai-accent);
+    color: var(--ai-accent);
+  }
+  .ai-report-tab.active {
+    background: var(--ai-accent);
+    border-color: var(--ai-accent);
+    color: #fff;
+  }
+
+  .ai-report-body {
+    padding: 20px 28px 28px;
+  }
+
+  .ai-tab-panel {
+    display: none;
+  }
+  .ai-tab-panel.active {
+    display: block;
+    animation: aiFadeUp 0.3s ease;
+  }
+
+  /* Report Table */
+  .ai-report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .ai-report-table thead th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ai-muted);
+    font-weight: 600;
+    padding: 10px 12px;
+    border-bottom: 1.5px solid var(--ai-border);
+  }
+  .ai-report-table tbody tr {
+    border-bottom: 1px solid rgba(221,214,200,0.5);
+    transition: background 0.15s;
+  }
+  .ai-report-table tbody tr:last-child { border-bottom: none; }
+  .ai-report-table tbody tr:hover { background: rgba(224,123,57,0.03); }
+  .ai-report-table tbody td {
+    padding: 12px 12px;
+    color: var(--ai-text);
+    font-weight: 500;
+  }
+  .ai-report-table tbody td:first-child {
+    font-weight: 700;
+    color: var(--ai-navy);
+  }
+
+  /* Status Badges */
+  .ai-badge-orange {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--ai-orange-bg);
+    color: var(--ai-orange);
+  }
+  .ai-badge-red {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--ai-red-bg);
+    color: var(--ai-red);
+  }
+
+  /* Trend Cards */
+  .ai-trend-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ai-trend-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1.5px solid var(--ai-border);
+    background: var(--ai-surface);
+    transition: border-color 0.15s;
+  }
+  .ai-trend-card:hover { border-color: var(--ai-accent); }
+  .ai-trend-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .ai-trend-up .ai-trend-icon { background: var(--ai-green-bg); color: var(--ai-green); }
+  .ai-trend-down .ai-trend-icon { background: var(--ai-orange-bg); color: var(--ai-orange); }
+  .ai-trend-steady .ai-trend-icon { background: rgba(122,149,176,0.12); color: var(--ai-blue-gray); }
+  .ai-trend-text {
+    font-size: 13px;
+    color: var(--ai-text);
+    line-height: 1.6;
+  }
+  .ai-trend-text strong {
+    color: var(--ai-navy);
+    font-weight: 800;
+  }
+
+  /* ===== PIPELINE STAGES ===== */
+  .ai-pipeline {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .ai-pipe-stage {
+    flex: 1;
+    min-width: 130px;
+    background: var(--ai-surface);
+    border-top: 3px solid var(--ai-border);
+    border-right: 1px solid var(--ai-border);
+    border-bottom: 1.5px solid var(--ai-border);
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .ai-pipe-stage:first-child {
+    border-left: 1.5px solid var(--ai-border);
+    border-radius: 16px 0 0 16px;
+  }
+  .ai-pipe-stage:last-child {
+    border-right: 1.5px solid var(--ai-border);
+    border-radius: 0 16px 16px 0;
+  }
+  .ai-pipe-stage:not(:last-child)::after {
+    content: '\2192';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ai-accent);
+    font-size: 14px;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .ai-pipe-stage:hover,
+  .ai-pipe-stage.active {
+    border-top-color: var(--ai-accent);
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+  }
+  .ai-pipe-icon { font-size: 24px; margin-bottom: 10px; }
+  .ai-pipe-name {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--ai-navy);
+    margin-bottom: 4px;
+  }
+  .ai-pipe-desc {
+    font-size: 10px;
+    color: var(--ai-blue-gray);
+    line-height: 1.5;
+    font-family: var(--ai-mono);
+  }
+
+  /* ===== INVENTORY CARDS ===== */
+  .ai-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .ai-inv-card {
+    background: var(--ai-surface);
+    border: 1.5px solid var(--ai-border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .ai-inv-card:hover {
+    border-color: var(--ai-accent);
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+  }
+  .ai-inv-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .ai-inv-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ai-navy);
+  }
+  .ai-inv-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: var(--ai-mono);
+  }
+  .ai-inv-healthy { background: var(--ai-green-bg); color: var(--ai-green); }
+  .ai-inv-low { background: var(--ai-orange-bg); color: var(--ai-orange); }
+  .ai-inv-critical { background: var(--ai-red-bg); color: var(--ai-red); }
+  .ai-inv-count {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--ai-navy);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+  }
+  .ai-inv-count span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ai-muted);
+    letter-spacing: 0;
+  }
+  .ai-inv-bar-wrap {
+    height: 6px;
+    background: var(--ai-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .ai-inv-bar {
+    height: 100%;
+    border-radius: 999px;
+    width: 0;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ai-bar-green { background: var(--ai-green); }
+  .ai-bar-orange { background: var(--ai-orange); }
+  .ai-bar-red { background: var(--ai-red); }
+  .ai-inv-note {
+    font-size: 11px;
+    color: var(--ai-blue-gray);
+    line-height: 1.5;
+    font-family: var(--ai-mono);
+  }
+
+  /* ===== VIDEO ===== */
+  .ai-video-wrap {
+    margin-top: 48px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1.5px solid var(--ai-border);
+    box-shadow: 0 4px 24px rgba(30,53,87,0.08);
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .ai-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ===== STAT ROW ===== */
+  .ai-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .ai-stat {
+    background: var(--ai-surface);
+    border: 1.5px solid var(--ai-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .ai-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--ai-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .ai-stat-label {
+    font-size: 12px;
+    color: var(--ai-blue-gray);
+    line-height: 1.5;
+  }
+
+  /* ===== CTA ===== */
+  .ai-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--ai-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ai-cta-section.visible { opacity: 1; transform: none; }
+  .ai-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--ai-navy);
+    letter-spacing: -0.03em;
+  }
+  .ai-cta-sub {
+    font-size: 16px;
+    color: var(--ai-blue-gray);
+    max-width: 440px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .ai-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .ai-btn-p {
+    display: inline-block;
+    background: var(--ai-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--ai-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .ai-btn-p:hover { background: var(--ai-accent2); color: #fff; }
+  .ai-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--ai-navy);
+    border: 2px solid var(--ai-navy);
+    padding: 16px 34px;
+    font-family: var(--ai-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .ai-btn-s:hover { background: var(--ai-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes aiFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ai-report-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ai-report-stat {
+      border-bottom: 1px solid var(--ai-border);
+    }
+    .ai-report-stat:nth-child(2) { border-right: none; }
+    .ai-report-stat:nth-child(3),
+    .ai-report-stat:nth-child(4) { border-bottom: none; }
+
+    .ai-report-tabs {
+      padding: 16px 16px 0;
+    }
+
+    .ai-report-body {
+      padding: 16px 16px 20px;
+    }
+
+    .ai-report-table {
+      font-size: 12px;
+    }
+
+    .ai-report-header {
+      padding: 16px 16px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ai-section {
+      padding: 60px 20px;
+    }
+
+    .ai-inventory-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ai-pipeline {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ai-pipe-stage {
+      min-width: calc(50% - 4px);
+      border-radius: 12px !important;
+      border: 1.5px solid var(--ai-border);
+    }
+    .ai-pipe-stage::after { display: none; }
+
+    .ai-stat-row {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-report-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-report-table thead th:last-child,
+    .ai-report-table tbody td:last-child {
+      text-align: right;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ai-inventory-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-report-tabs {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ai-report-tab {
+      font-size: 11px;
+      padding: 6px 14px;
+    }
+  }
+</style>
+
+<!-- DM Mono font for terminal and code sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Sync terminal demo
+  const syncLines = [
+    ['ai-log-working', '\u27F6 Connecting to Square API \u00B7 Haddonfield Pet Supply'],
+    ['ai-log-ok', '\u2713 Authentication successful \u00B7 OAuth token valid'],
+    ['ai-log-working', '\u27F6 Pulling today\u0027s sales data...'],
+    ['ai-log-ok', '\u2713 47 transactions \u00B7 83 items sold'],
+    ['ai-log-working', '\u27F6 Updating inventory counts...'],
+    ['ai-log-ok', '\u2713 312 SKUs updated \u00B7 8 low-stock alerts'],
+    ['ai-log-working', '\u27F6 Generating daily report...'],
+    ['ai-log-ok', '\u2713 Report ready \u00B7 emailing to owner'],
+    ['ai-log-qual', '\u2192 83 items sold \u00B7 $2,847 revenue \u00B7 8 low-stock'],
+    ['ai-log-ok', '\u26A1 Daily sync complete \u00B7 0 manual work'],
+  ];
+
+  function aiRunSync() {
+    const log = document.getElementById('syncLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= syncLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = syncLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 320);
+  }
+
+  const syncInput = document.getElementById('syncInput');
+  if (syncInput) {
+    syncInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') aiRunSync();
+    });
+  }
+
+  // Report tab switching
+  function aiSwitchReport(el) {
+    const tabName = el.getAttribute('data-tab');
+    // Update tab buttons
+    document.querySelectorAll('.ai-report-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    // Update panels
+    document.querySelectorAll('.ai-tab-panel').forEach(p => p.classList.remove('active'));
+    const targetPanel = document.querySelector(`.ai-tab-panel[data-panel="${tabName}"]`);
+    if (targetPanel) targetPanel.classList.add('active');
+  }
+
+  // Pipeline stage toggle
+  function aiTogglePipe(el) {
+    document.querySelectorAll('.ai-pipe-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const aiSectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.ai-section, .ai-cta-section').forEach(el => aiSectionObs.observe(el));
+
+  // Animate inventory bars on scroll
+  const invBarObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.ai-inv-bar').forEach(bar => {
+          const targetWidth = bar.getAttribute('data-width');
+          // Reset then animate
+          bar.style.width = '0';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              bar.style.width = targetWidth;
+            });
+          });
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.ai-inventory-grid').forEach(g => invBarObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.aiRunSync = aiRunSync;
+  window.aiSwitchReport = aiSwitchReport;
+  window.aiTogglePipe = aiTogglePipe;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .ai-log-ok { color: #3a9e6e; }
+  .ai-log-working { color: #e07b39; }
+  .ai-log-qual { color: #1e3557; font-weight: 500; }
+</style>

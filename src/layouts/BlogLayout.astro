@@ -41,10 +41,9 @@ const articleSchema = {
   "image": articleImage,
   "datePublished": isoDate,
   "dateModified": isoDate,
-  "author": {
-    "@type": "Organization",
-    "name": author
-  },
+  "author": author === 'Brothers Automate'
+    ? { "@type": "Organization", "name": "Brothers Automate" }
+    : { "@type": "Person", "name": author, "url": "https://brothersautomate.com/about" },
   "publisher": {
     "@type": "Organization",
     "name": "Brothers Automate",

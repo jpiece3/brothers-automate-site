@@ -1,0 +1,1042 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Onboarding Workflow", "item": `${SITE_URL}/projects/onboarding-workflow` }
+  ]
+};
+---
+
+<Layout
+  title="Onboarding Workflow | Automated Client Onboarding | Brothers Automate"
+  description="Stop doing the same onboarding steps manually for every new client. We automate the entire flow — emails, scheduling, documents — pulled from your database."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">Automated Client Onboarding for Service Businesses</span>
+          <h1>Onboarding Workflow.<br /><span class="gradient-text">0 Manual Steps.</span></h1>
+          <p class="project-hero-sub">Stop doing the same onboarding steps manually for every new client. We automate the entire flow — emails, scheduling, documents — pulled from your database.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">0</span>
+              <span class="hero-stat-label">Manual Steps</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">100%</span>
+              <span class="hero-stat-label">Consistency</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">Hours</span>
+              <span class="hero-stat-label">Saved Per Client</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#ow-video" class="btn btn-primary btn-lg">Watch the Demo</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Onboarding Terminal Box -->
+          <div class="ow-scan-box">
+            <div class="ow-scan-bar">
+              <div class="ow-scan-dot" style="background:#e8b4a0"></div>
+              <div class="ow-scan-dot" style="background:#ddd6c8"></div>
+              <div class="ow-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">onboarding / workflow terminal</span>
+            </div>
+            <div class="ow-scan-input-row">
+              <input class="ow-scan-input" id="owInput" placeholder="new-client &middot; Johnson Paving" />
+              <button class="ow-scan-btn" onclick="owRunOnboard()">&#9654; RUN ONBOARD</button>
+            </div>
+            <div class="ow-scan-log" id="owLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ow-ticker">
+      <div class="ow-ticker-inner">
+        NEW CLIENT &rarr; DATA PULL &nbsp;&middot;&nbsp; WELCOME EMAIL &nbsp;&middot;&nbsp; SCHEDULE &nbsp;&middot;&nbsp; DOCUMENTS &nbsp;&middot;&nbsp; CHECKLIST &nbsp;&middot;&nbsp; CONFIRM &nbsp;&middot;&nbsp; ZERO MANUAL STEPS &nbsp;&middot;&nbsp;
+        NEW CLIENT &rarr; DATA PULL &nbsp;&middot;&nbsp; WELCOME EMAIL &nbsp;&middot;&nbsp; SCHEDULE &nbsp;&middot;&nbsp; DOCUMENTS &nbsp;&middot;&nbsp; CHECKLIST &nbsp;&middot;&nbsp; CONFIRM &nbsp;&middot;&nbsp; ZERO MANUAL STEPS &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — MANUAL VS AUTOMATED -->
+    <section class="ow-section" id="ow-section-1">
+      <div class="ow-section-label">01 — Manual vs Automated</div>
+      <h2 class="ow-section-title">Same steps.<br><span class="ow-accent">Zero manual work.</span></h2>
+      <p class="ow-section-sub">Every step you used to do by hand now runs automatically. See the before and after side by side.</p>
+
+      <div class="ow-compare">
+        <div class="ow-compare-card ow-compare-before">
+          <div class="ow-compare-header">
+            <div class="ow-compare-label">Before: Manual Process</div>
+          </div>
+          <div class="ow-compare-num ow-num-red">55</div>
+          <div class="ow-compare-unit">minutes per client</div>
+          <div class="ow-step-list">
+            <div class="ow-step-line">
+              <span class="ow-step-num">01</span>
+              <span class="ow-step-desc">Copy client info from email</span>
+              <span class="ow-step-time ow-time-red">5 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">02</span>
+              <span class="ow-step-desc">Write and send welcome email</span>
+              <span class="ow-step-time ow-time-red">10 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">03</span>
+              <span class="ow-step-desc">Schedule walkthrough on calendar</span>
+              <span class="ow-step-time ow-time-red">5 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">04</span>
+              <span class="ow-step-desc">Open contract template, fill details</span>
+              <span class="ow-step-time ow-time-red">15 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">05</span>
+              <span class="ow-step-desc">Create project checklist</span>
+              <span class="ow-step-time ow-time-red">10 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">06</span>
+              <span class="ow-step-desc">Assign crew and resources</span>
+              <span class="ow-step-time ow-time-red">5 min</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">07</span>
+              <span class="ow-step-desc">Send confirmation to client</span>
+              <span class="ow-step-time ow-time-red">5 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ow-compare-card ow-compare-after">
+          <div class="ow-compare-header">
+            <div class="ow-compare-label">After: Automated</div>
+          </div>
+          <div class="ow-compare-num ow-num-green">0</div>
+          <div class="ow-compare-unit">minutes per client</div>
+          <div class="ow-step-list">
+            <div class="ow-step-line">
+              <span class="ow-step-num">01</span>
+              <span class="ow-step-desc">Client added to database</span>
+              <span class="ow-step-time ow-time-green">trigger</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">02</span>
+              <span class="ow-step-desc">Welcome email sent</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">03</span>
+              <span class="ow-step-desc">Walkthrough scheduled</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">04</span>
+              <span class="ow-step-desc">Contract generated with details</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">05</span>
+              <span class="ow-step-desc">Checklist created automatically</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">06</span>
+              <span class="ow-step-desc">Resources assigned by rules</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+            <div class="ow-step-line">
+              <span class="ow-step-num">07</span>
+              <span class="ow-step-desc">Confirmation sent to client</span>
+              <span class="ow-step-time ow-time-green">instant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — THE WORKFLOW -->
+    <section class="ow-section" id="ow-section-2">
+      <div class="ow-section-label">02 — The Workflow</div>
+      <h2 class="ow-section-title">Every step.<br><span class="ow-accent">Every time. Automatically.</span></h2>
+      <p class="ow-section-sub">Six automated stages from new client to ready-to-start. Click each step to see what happens under the hood.</p>
+
+      <div class="ow-loop">
+        <div class="ow-loop-card active" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">01</div>
+          <div class="ow-loop-title">Trigger</div>
+          <div class="ow-loop-desc">New client record created</div>
+          <div class="ow-loop-detail">
+            &rarr; Client added to database manually or via form<br>
+            &rarr; System detects new record<br>
+            &rarr; Pulls all client fields automatically<br>
+            &rarr; Validates required data is present<br>
+            &rarr; Initiates onboarding sequence
+          </div>
+        </div>
+        <div class="ow-loop-card" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">02</div>
+          <div class="ow-loop-title">Data Pull</div>
+          <div class="ow-loop-desc">Name, address, project details</div>
+          <div class="ow-loop-detail">
+            &rarr; Client name and contact info<br>
+            &rarr; Project address and type<br>
+            &rarr; Scope and specifications<br>
+            &rarr; Client preferences and notes<br>
+            &rarr; Assigns internal project ID
+          </div>
+        </div>
+        <div class="ow-loop-card" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">03</div>
+          <div class="ow-loop-title">Communications</div>
+          <div class="ow-loop-desc">Welcome email + scheduling link</div>
+          <div class="ow-loop-detail">
+            &rarr; Personalized welcome email with client name<br>
+            &rarr; Includes company intro and next steps<br>
+            &rarr; Scheduling link for walkthrough<br>
+            &rarr; Follow-up reminder queued for 24hr<br>
+            &rarr; All emails logged in client record
+          </div>
+        </div>
+        <div class="ow-loop-card" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">04</div>
+          <div class="ow-loop-title">Documents</div>
+          <div class="ow-loop-desc">Contract and checklist generated</div>
+          <div class="ow-loop-detail">
+            &rarr; Contract template populated with details<br>
+            &rarr; Project scope and timeline included<br>
+            &rarr; Checklist created from project type rules<br>
+            &rarr; All documents attached to client record<br>
+            &rarr; Ready for review and signature
+          </div>
+        </div>
+        <div class="ow-loop-card" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">05</div>
+          <div class="ow-loop-title">Scheduling</div>
+          <div class="ow-loop-desc">Appointments added to calendar</div>
+          <div class="ow-loop-detail">
+            &rarr; Walkthrough date proposed based on availability<br>
+            &rarr; Calendar invite sent to client<br>
+            &rarr; Internal team notified<br>
+            &rarr; Project milestones added<br>
+            &rarr; Reminder sequence activated
+          </div>
+        </div>
+        <div class="ow-loop-card" onclick="owToggleLoop(this)">
+          <div class="ow-loop-num">06</div>
+          <div class="ow-loop-title">Confirmation</div>
+          <div class="ow-loop-desc">Client gets everything in one email</div>
+          <div class="ow-loop-detail">
+            &rarr; Summary email with all details<br>
+            &rarr; Contract attached for review<br>
+            &rarr; Walkthrough confirmation<br>
+            &rarr; Checklist preview<br>
+            &rarr; Single point of reference for client
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — CONNECTED SYSTEMS -->
+    <section class="ow-section" id="ow-section-3">
+      <div class="ow-section-label">03 — Connected Systems</div>
+      <h2 class="ow-section-title">Your database.<br><span class="ow-accent">Your tools. One flow.</span></h2>
+      <p class="ow-section-sub">The system connects to the tools you already use. Data flows between them automatically.</p>
+
+      <div class="ow-pipeline">
+        <div class="ow-pipe-stage active" onclick="owToggleIntegration(this)">
+          <div class="ow-pipe-icon">&#128190;</div>
+          <div class="ow-pipe-name">Database</div>
+          <div class="ow-pipe-desc">Client records, project details, preferences</div>
+        </div>
+        <div class="ow-pipe-stage" onclick="owToggleIntegration(this)">
+          <div class="ow-pipe-icon">&#128231;</div>
+          <div class="ow-pipe-name">Email Platform</div>
+          <div class="ow-pipe-desc">Welcome emails, confirmations, follow-ups</div>
+        </div>
+        <div class="ow-pipe-stage" onclick="owToggleIntegration(this)">
+          <div class="ow-pipe-icon">&#128197;</div>
+          <div class="ow-pipe-name">Calendar</div>
+          <div class="ow-pipe-desc">Walkthrough scheduling, milestones, reminders</div>
+        </div>
+        <div class="ow-pipe-stage" onclick="owToggleIntegration(this)">
+          <div class="ow-pipe-icon">&#128196;</div>
+          <div class="ow-pipe-name">Documents</div>
+          <div class="ow-pipe-desc">Contracts, checklists, project templates</div>
+        </div>
+      </div>
+
+      <div class="ow-quote-block">
+        <div class="ow-quote-text">"Every new client used to mean an hour of setup work. Now they're fully onboarded before I finish my coffee."</div>
+        <div class="ow-quote-attr">Paving company owner</div>
+      </div>
+    </section>
+
+    <!-- 04 — SEE IT IN ACTION -->
+    <section class="ow-section" id="ow-video">
+      <div class="ow-section-label">04 — See It In Action</div>
+      <h2 class="ow-section-title">Full system<br><span class="ow-accent">walkthrough.</span></h2>
+      <p class="ow-section-sub">See exactly how the onboarding automation works from trigger to completion.</p>
+
+      <div class="ow-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/2rGAhxD5Hdk"
+          title="Onboarding Workflow Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="ow-stat-row">
+        <div class="ow-stat">
+          <div class="ow-stat-num">0</div>
+          <div class="ow-stat-label">manual steps per client onboarding</div>
+        </div>
+        <div class="ow-stat">
+          <div class="ow-stat-num">100%</div>
+          <div class="ow-stat-label">consistency across every single client</div>
+        </div>
+        <div class="ow-stat">
+          <div class="ow-stat-num">Hours</div>
+          <div class="ow-stat-label">saved per client onboarded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="ow-cta-section" id="ow-section-5">
+      <div class="ow-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="ow-cta-title">New client in.<br>Onboarding done.<br><span style="color:var(--ow-accent)">Automatically.</span></h2>
+      <p class="ow-cta-sub">Stop doing the same onboarding steps by hand. Let the system handle it the same way, every time.</p>
+      <div class="ow-cta-btn-row">
+        <a href="#ow-video" class="ow-btn-p">Watch the Demo &rarr;</a>
+        <a
+          href="#"
+          class="ow-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--ow-muted);margin-top:28px;font-family:var(--ow-mono)">Onboarding Workflow &middot; automated client onboarding &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== ONBOARDING TERMINAL BOX ===== */
+  .ow-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .ow-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .ow-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ow-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .ow-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .ow-scan-input::placeholder { color: var(--text-muted); }
+  .ow-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .ow-scan-btn:hover { background: var(--orange-hover); }
+  .ow-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .ow-scan-log.visible { display: block; animation: owFadeUp 0.3s ease; }
+
+  /* ===== ONBOARDING WORKFLOW CUSTOM VARIABLES ===== */
+  :root {
+    --ow-bg: #f2ede4;
+    --ow-surface: #faf7f2;
+    --ow-surface2: #eee8dc;
+    --ow-border: #ddd6c8;
+    --ow-accent: #e07b39;
+    --ow-accent2: #c4622a;
+    --ow-navy: #1e3557;
+    --ow-navy2: #2a4a72;
+    --ow-blue-gray: #7a95b0;
+    --ow-text: #1e3557;
+    --ow-muted: #8a9ab0;
+    --ow-green: #3a9e6e;
+    --ow-green-bg: #e8f5ef;
+    --ow-red: #c0392b;
+    --ow-red-bg: rgba(192,57,43,0.06);
+    --ow-mono: 'DM Mono', monospace;
+    --ow-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .ow-ticker {
+    background: var(--ow-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ow-ticker-inner {
+    display: inline-block;
+    animation: owTicker 28s linear infinite;
+    font-family: var(--ow-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes owTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .ow-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--ow-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ow-section.visible { opacity: 1; transform: none; }
+
+  .ow-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ow-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .ow-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ow-border);
+  }
+
+  .ow-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--ow-navy);
+    letter-spacing: -0.025em;
+  }
+  .ow-accent { color: var(--ow-accent); }
+  .ow-section-sub {
+    font-size: 13px;
+    color: var(--ow-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== COMPARISON CARDS (Section 01) ===== */
+  .ow-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .ow-compare-card {
+    background: var(--ow-surface);
+    border: 1.5px solid var(--ow-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.2s;
+  }
+  .ow-compare-before {
+    border-color: rgba(192,57,43,0.25);
+    background: var(--ow-red-bg);
+  }
+  .ow-compare-after {
+    border-color: rgba(58,158,110,0.25);
+    background: var(--ow-green-bg);
+  }
+  .ow-compare-header {
+    margin-bottom: 16px;
+  }
+  .ow-compare-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ow-muted);
+    font-family: var(--ow-mono);
+  }
+  .ow-compare-num {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .ow-num-red { color: var(--ow-red); }
+  .ow-num-green { color: var(--ow-green); }
+  .ow-compare-unit {
+    font-size: 12px;
+    color: var(--ow-blue-gray);
+    margin-bottom: 20px;
+    font-family: var(--ow-mono);
+  }
+
+  .ow-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ow-step-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    font-size: 11px;
+  }
+  .ow-step-line:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+  .ow-step-num {
+    font-family: var(--ow-mono);
+    font-size: 9px;
+    color: var(--ow-muted);
+    min-width: 18px;
+    font-weight: 500;
+  }
+  .ow-step-desc {
+    flex: 1;
+    color: var(--ow-navy);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .ow-step-time {
+    font-family: var(--ow-mono);
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .ow-time-red { color: var(--ow-red); }
+  .ow-time-green { color: var(--ow-green); }
+
+  /* ===== WORKFLOW LOOP CARDS (Section 02) ===== */
+  .ow-loop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .ow-loop-card {
+    background: var(--ow-surface);
+    border: 1.5px solid var(--ow-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .ow-loop-card:hover, .ow-loop-card.active {
+    border-color: var(--ow-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .ow-loop-num {
+    font-family: var(--ow-mono);
+    font-size: 10px;
+    color: var(--ow-muted);
+    margin-bottom: 10px;
+  }
+  .ow-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--ow-navy);
+    margin-bottom: 6px;
+  }
+  .ow-loop-desc { font-size: 11px; color: var(--ow-blue-gray); line-height: 1.7; }
+  .ow-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--ow-blue-gray);
+    line-height: 1.9;
+    font-family: var(--ow-mono);
+  }
+  .ow-loop-card.active .ow-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ow-border);
+  }
+
+  /* ===== INTEGRATION PIPELINE (Section 03) ===== */
+  .ow-pipeline {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .ow-pipe-stage {
+    flex: 1;
+    min-width: 140px;
+    background: var(--ow-surface);
+    border-top: 3px solid var(--ow-border);
+    border-right: 1px solid var(--ow-border);
+    border-bottom: 1.5px solid var(--ow-border);
+    padding: 24px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ow-pipe-stage:first-child { border-left: 1.5px solid var(--ow-border); border-radius: 16px 0 0 16px; }
+  .ow-pipe-stage:last-child { border-right: 1.5px solid var(--ow-border); border-radius: 0 16px 16px 0; }
+  .ow-pipe-stage:hover, .ow-pipe-stage.active { border-top-color: var(--ow-accent); background: #fff; }
+  .ow-pipe-icon { font-size: 24px; margin-bottom: 10px; }
+  .ow-pipe-name { font-weight: 700; font-size: 13px; color: var(--ow-navy); margin-bottom: 6px; }
+  .ow-pipe-desc { font-size: 10px; color: var(--ow-muted); line-height: 1.5; font-family: var(--ow-mono); }
+
+  /* ===== QUOTE ===== */
+  .ow-quote-block {
+    margin-top: 40px;
+    border-left: 4px solid var(--ow-accent);
+    padding: 24px 28px;
+    background: var(--ow-surface);
+    border-radius: 0 16px 16px 0;
+  }
+  .ow-quote-text {
+    font-size: clamp(14px, 2vw, 19px);
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--ow-navy);
+    margin-bottom: 10px;
+  }
+  .ow-quote-attr { font-size: 10px; color: var(--ow-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--ow-mono); }
+
+  /* ===== VIDEO EMBED (Section 04) ===== */
+  .ow-video-wrap {
+    margin-top: 48px;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1.5px solid var(--ow-border);
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+    background: var(--ow-surface);
+  }
+  .ow-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ===== STAT ROW ===== */
+  .ow-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .ow-stat {
+    background: var(--ow-surface);
+    border: 1.5px solid var(--ow-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .ow-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--ow-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .ow-stat-label { font-size: 12px; color: var(--ow-blue-gray); line-height: 1.5; }
+
+  /* ===== CTA ===== */
+  .ow-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--ow-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ow-cta-section.visible { opacity: 1; transform: none; }
+  .ow-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--ow-navy);
+    letter-spacing: -0.03em;
+  }
+  .ow-cta-sub {
+    font-size: 16px;
+    color: var(--ow-blue-gray);
+    max-width: 420px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .ow-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .ow-btn-p {
+    display: inline-block;
+    background: var(--ow-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--ow-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .ow-btn-p:hover { background: var(--ow-accent2); }
+  .ow-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--ow-navy);
+    border: 2px solid var(--ow-navy);
+    padding: 16px 34px;
+    font-family: var(--ow-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .ow-btn-s:hover { background: var(--ow-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes owFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ow-compare { grid-template-columns: 1fr; }
+    .ow-loop { grid-template-columns: 1fr; }
+    .ow-pipeline { flex-direction: column; }
+    .ow-pipe-stage { min-width: unset; }
+    .ow-pipe-stage:first-child { border-radius: 16px 16px 0 0; border-left: 1.5px solid var(--ow-border); }
+    .ow-pipe-stage:last-child { border-radius: 0 0 16px 16px; border-right: 1px solid var(--ow-border); }
+    .ow-stat-row { grid-template-columns: 1fr; }
+    .ow-section { padding: 60px 20px; }
+    .ow-cta-section { padding: 60px 20px 80px; }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .ow-loop { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<!-- DM Mono font for terminal and data sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Onboarding terminal demo
+  const owLines = [
+    ['ow-log-working', '\u27F6 New client added \u00B7 Johnson Paving \u00B7 123 Main St'],
+    ['ow-log-ok', '\u2713 Client data pulled \u00B7 name, address, project type'],
+    ['ow-log-working', '\u27F6 Running onboarding sequence...'],
+    ['ow-log-ok', '\u2713 Welcome email sent \u00B7 john@example.com'],
+    ['ow-log-ok', '\u2713 Walkthrough scheduled \u00B7 March 15, 10:00 AM'],
+    ['ow-log-ok', '\u2713 Contract generated \u00B7 scope: driveway resurfacing'],
+    ['ow-log-ok', '\u2713 Checklist created \u00B7 8 items \u00B7 crew assigned'],
+    ['ow-log-ok', '\u2713 Follow-up queued \u00B7 24hr reminder'],
+    ['ow-log-qual', '\u2192 6 steps completed \u00B7 0 manual work'],
+    ['ow-log-ok', '\u26A1 Onboarding complete \u00B7 client ready to start'],
+  ];
+
+  function owRunOnboard() {
+    const log = document.getElementById('owLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= owLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = owLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 320);
+  }
+
+  const owInput = document.getElementById('owInput');
+  if (owInput) {
+    owInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') owRunOnboard();
+    });
+  }
+
+  // Loop card toggle
+  function owToggleLoop(el) {
+    document.querySelectorAll('.ow-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Integration pipeline toggle
+  function owToggleIntegration(el) {
+    document.querySelectorAll('.ow-pipe-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const owObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.ow-section, .ow-cta-section').forEach(el => owObs.observe(el));
+
+  // Make functions available globally for inline onclick handlers
+  window.owRunOnboard = owRunOnboard;
+  window.owToggleLoop = owToggleLoop;
+  window.owToggleIntegration = owToggleIntegration;
+</script>
+
+<style is:global>
+  /* Terminal log colors - need to be global since they're added dynamically */
+  .ow-log-ok { color: #3a9e6e; }
+  .ow-log-working { color: #e07b39; }
+  .ow-log-qual { color: #1e3557; font-weight: 500; }
+</style>

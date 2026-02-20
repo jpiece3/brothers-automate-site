@@ -1,0 +1,915 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://screenfast.replit.app/';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "ScreenFast", "item": `${SITE_URL}/projects/screenfast` }
+  ]
+};
+---
+
+<Layout
+  title="ScreenFast | AI Resume Screening | Brothers Automate"
+  description="Stop spending hours reading resumes. ScreenFast uses AI to screen, score, and rank candidates so you interview the right people first."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Powered Resume Screening and Candidate Ranking</span>
+          <h1>ScreenFast.<br /><span class="gradient-text">85% Less Screening Time.</span></h1>
+          <p class="project-hero-sub">Stop spending hours reading resumes. ScreenFast uses AI to screen, score, and rank candidates so you interview the right people first.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">85%</span>
+              <span class="hero-stat-label">Less Screening Time</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">Seconds</span>
+              <span class="hero-stat-label">Per Resume</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">100s</span>
+              <span class="hero-stat-label">Resumes Processed</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Screening Terminal Box -->
+          <div class="sf-scan-box">
+            <div class="sf-scan-bar">
+              <div class="sf-scan-dot" style="background:#e8b4a0"></div>
+              <div class="sf-scan-dot" style="background:#ddd6c8"></div>
+              <div class="sf-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">screenfast / screening terminal</span>
+            </div>
+            <div class="sf-scan-input-row">
+              <input class="sf-scan-input" id="sfScanInput" placeholder="resumes-lifeguard.zip &middot; 247 files" />
+              <button class="sf-scan-btn" onclick="sfRunScreen()">&#9654; RUN SCREEN</button>
+            </div>
+            <div class="sf-scan-log" id="sfScanLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="sf-ticker">
+      <div class="sf-ticker-inner">
+        UPLOAD RESUMES &rarr; CRITERIA MATCH &nbsp;&middot;&nbsp; INSTANT SCORING &nbsp;&middot;&nbsp; RANKED SHORTLIST &nbsp;&middot;&nbsp; BIAS REDUCTION &nbsp;&middot;&nbsp; SEASONAL HIRING &nbsp;&middot;&nbsp; TOP CANDIDATES FIRST &nbsp;&middot;&nbsp;
+        UPLOAD RESUMES &rarr; CRITERIA MATCH &nbsp;&middot;&nbsp; INSTANT SCORING &nbsp;&middot;&nbsp; RANKED SHORTLIST &nbsp;&middot;&nbsp; BIAS REDUCTION &nbsp;&middot;&nbsp; SEASONAL HIRING &nbsp;&middot;&nbsp; TOP CANDIDATES FIRST &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — TIME COMPARISON -->
+    <section class="sf-section" id="sf-section-1">
+      <div class="sf-section-label">01 — Time Comparison</div>
+      <h2 class="sf-section-title">Hours vs.<br><span class="sf-accent">seconds.</span></h2>
+      <p class="sf-section-sub">Same 247 resumes. One takes all day. The other takes 38 seconds.</p>
+
+      <div class="sf-score-demo">
+        <div class="sf-score-card sf-card-red" onclick="this.classList.toggle('expanded')">
+          <div class="sf-score-card-top">
+            <div class="sf-score-company">Manual Screening</div>
+          </div>
+          <div class="sf-score-num sf-low">6+</div>
+          <div class="sf-score-label">hours to screen</div>
+          <div class="sf-score-evidence">9:00 AM &mdash; Open email, download 247 resumes &middot; 9:30 AM &mdash; Start reading resume #1 &middot; 11:00 AM &mdash; 30 resumes reviewed, need coffee &middot; 1:00 PM &mdash; 80 resumes in, losing focus &middot; 3:30 PM &mdash; Finally done, probably missed some</div>
+        </div>
+        <div class="sf-score-card sf-card-green" onclick="this.classList.toggle('expanded')">
+          <div class="sf-score-card-top">
+            <div class="sf-score-company">ScreenFast</div>
+          </div>
+          <div class="sf-score-num sf-high">38</div>
+          <div class="sf-score-label">seconds to screen</div>
+          <div class="sf-score-evidence">9:00 AM &mdash; Upload 247 resumes &middot; 9:01 AM &mdash; Screening complete &middot; 9:02 AM &mdash; Review ranked shortlist of top 15 &middot; 9:15 AM &mdash; Schedule interviews with top 5 &middot; 9:16 AM &mdash; Back to your actual job</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — SCORING & RANKING -->
+    <section class="sf-section" id="sf-section-2">
+      <div class="sf-section-label">02 — Scoring & Ranking</div>
+      <h2 class="sf-section-title">Every resume scored.<br><span class="sf-accent">Best candidates first.</span></h2>
+      <p class="sf-section-sub">Raw applications are useless without ranking. Every candidate gets a score, a status, per-criteria confidence, and a plain-language summary you can verify.</p>
+
+      <div class="sf-score-demo">
+        <div class="sf-score-card" onclick="this.classList.toggle('expanded')">
+          <div class="sf-score-card-top">
+            <div class="sf-score-company">Sarah M.</div>
+            <div class="sf-score-badge sf-status-qual">Top Candidate</div>
+          </div>
+          <div class="sf-score-num sf-high">94</div>
+          <div class="sf-score-evidence">WSI Certified &middot; 3 years lifeguard experience &middot; CPR/First Aid current &middot; available June&ndash;August &middot; team lead at previous pool</div>
+          <div class="sf-score-signals">
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:var(--sf-green)">&check;</span> Certification match <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:97%;background:var(--sf-green)"></div></div> 0.97</div>
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:var(--sf-green)">&check;</span> Experience level <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:91%;background:var(--sf-green)"></div></div> 0.91</div>
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:var(--sf-green)">&check;</span> Availability <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:88%;background:var(--sf-green)"></div></div> 0.88</div>
+          </div>
+        </div>
+        <div class="sf-score-card" onclick="this.classList.toggle('expanded')">
+          <div class="sf-score-card-top">
+            <div class="sf-score-company">James K.</div>
+            <div class="sf-score-badge sf-status-disq">Does Not Meet</div>
+          </div>
+          <div class="sf-score-num sf-low">18</div>
+          <div class="sf-score-evidence">No certifications listed &middot; no relevant experience &middot; only available September &middot; no references provided</div>
+          <div class="sf-score-signals">
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:#c0392b">&cross;</span> Certification match <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:5%;background:#c0392b"></div></div> 0.05</div>
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:#c0392b">&cross;</span> Experience level <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:12%;background:#c0392b"></div></div> 0.12</div>
+            <div class="sf-sig-line"><span class="sf-sig-check" style="color:#c0392b">&cross;</span> Availability <div class="sf-sig-bar-mini"><div class="sf-sig-fill" style="width:8%;background:#c0392b"></div></div> 0.08</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — CUSTOM CRITERIA -->
+    <section class="sf-section" id="sf-section-3">
+      <div class="sf-section-label">03 — Custom Criteria</div>
+      <h2 class="sf-section-title">You define what matters.<br><span class="sf-accent">The system enforces it.</span></h2>
+      <p class="sf-section-sub">Set your screening criteria once. Every resume gets evaluated against the same standards. No inconsistency, no bias, no shortcuts.</p>
+
+      <div class="sf-signal-grid">
+        <div class="sf-signal-card">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name">WSI Certification</div>
+            <div class="sf-signal-weight">W: 0.9</div>
+          </div>
+          <div class="sf-signal-desc">Water Safety Instructor certification &mdash; required for all lifeguard positions at YMCA facilities.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar sf-bar-green" style="width:95%"></div></div>
+          <div class="sf-signal-meta"><span>95% detect rate</span><span>89% match rate</span></div>
+        </div>
+        <div class="sf-signal-card">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name">2+ Years Experience</div>
+            <div class="sf-signal-weight">W: 0.85</div>
+          </div>
+          <div class="sf-signal-desc">Minimum two years of lifeguard or aquatic safety experience at a certified facility.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar sf-bar-green" style="width:88%"></div></div>
+          <div class="sf-signal-meta"><span>88% detect rate</span><span>82% match rate</span></div>
+        </div>
+        <div class="sf-signal-card">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name">CPR/First Aid Current</div>
+            <div class="sf-signal-weight">W: 0.8</div>
+          </div>
+          <div class="sf-signal-desc">Current CPR and First Aid certification. Must not expire before end of season.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar sf-bar-green" style="width:76%"></div></div>
+          <div class="sf-signal-meta"><span>76% detect rate</span><span>71% match rate</span></div>
+        </div>
+        <div class="sf-signal-card">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name">Summer Availability</div>
+            <div class="sf-signal-weight">W: 0.7</div>
+          </div>
+          <div class="sf-signal-desc">Available for full summer season June through August. Part-time applicants flagged separately.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar" style="width:82%"></div></div>
+          <div class="sf-signal-meta"><span>82% detect rate</span><span>75% match rate</span></div>
+        </div>
+        <div class="sf-signal-card">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name">Leadership Experience</div>
+            <div class="sf-signal-weight">W: 0.65</div>
+          </div>
+          <div class="sf-signal-desc">Previous team lead, shift supervisor, or head lifeguard experience at any facility.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar" style="width:58%"></div></div>
+          <div class="sf-signal-meta"><span>58% detect rate</span><span>52% match rate</span></div>
+        </div>
+        <div class="sf-signal-card sf-signal-disq">
+          <div class="sf-signal-top">
+            <div class="sf-signal-name" style="color:#c0392b">No Certifications</div>
+            <div class="sf-signal-weight" style="background:rgba(192,57,43,0.1);color:#c0392b">Disqualify</div>
+          </div>
+          <div class="sf-signal-desc">Applicant has no relevant safety certifications listed. Auto-rejected regardless of other qualifications.</div>
+          <div class="sf-signal-bar-wrap"><div class="sf-signal-bar" style="width:23%;background:#c0392b"></div></div>
+          <div class="sf-signal-meta"><span>23% detect rate</span><span style="color:#c0392b">auto-reject</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — BUILT FOR YMCA -->
+    <section class="sf-section" id="sf-section-4">
+      <div class="sf-section-label">04 — Built for YMCA</div>
+      <h2 class="sf-section-title">Built for the YMCA.<br><span class="sf-accent">Proven at scale.</span></h2>
+      <p class="sf-section-sub">ScreenFast was purpose-built for the YMCA's seasonal hiring challenge. Hundreds of applications, tight timelines, consistent standards.</p>
+
+      <div class="sf-quote-block">
+        <div class="sf-quote-text">"We went from spending an entire day on resume screening to having a ranked shortlist in minutes. The consistency alone was worth it."</div>
+        <div class="sf-quote-attr">YMCA Hiring Manager</div>
+      </div>
+
+      <div class="sf-stat-row">
+        <div class="sf-stat">
+          <div class="sf-stat-num">85%</div>
+          <div class="sf-stat-label">Less Screening Time</div>
+        </div>
+        <div class="sf-stat">
+          <div class="sf-stat-num">$0</div>
+          <div class="sf-stat-label">Per Resume (vs. $5&ndash;10 manual)</div>
+        </div>
+        <div class="sf-stat">
+          <div class="sf-stat-num">100s</div>
+          <div class="sf-stat-label">Resumes Per Cycle</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="sf-cta-section" id="sf-section-5">
+      <div class="sf-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="sf-cta-title">Resumes in.<br>Shortlist out.<br><span style="color:var(--sf-accent)">In seconds.</span></h2>
+      <p class="sf-cta-sub">Upload your resumes and screening criteria. Get a ranked candidate list with scores and evidence.</p>
+      <div class="sf-cta-btn-row">
+        <a href={productUrl} class="sf-btn-p" target="_blank" rel="noopener">Try It Live &rarr;</a>
+        <a
+          href="#"
+          class="sf-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--sf-muted);margin-top:28px;font-family:var(--sf-mono)">ScreenFast &middot; AI resume screening &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== SCREENING TERMINAL BOX ===== */
+  .sf-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .sf-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .sf-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .sf-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .sf-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .sf-scan-input::placeholder { color: var(--text-muted); }
+  .sf-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .sf-scan-btn:hover { background: var(--orange-hover); }
+  .sf-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .sf-scan-log.visible { display: block; animation: sfFadeUp 0.3s ease; }
+
+  /* ===== SCREENFAST CUSTOM VARIABLES ===== */
+  :root {
+    --sf-bg: #f2ede4;
+    --sf-surface: #faf7f2;
+    --sf-surface2: #eee8dc;
+    --sf-border: #ddd6c8;
+    --sf-accent: #e07b39;
+    --sf-accent2: #c4622a;
+    --sf-navy: #1e3557;
+    --sf-navy2: #2a4a72;
+    --sf-blue-gray: #7a95b0;
+    --sf-text: #1e3557;
+    --sf-muted: #8a9ab0;
+    --sf-green: #3a9e6e;
+    --sf-green-bg: #e8f5ef;
+    --sf-red: #c0392b;
+    --sf-red-bg: rgba(192,57,43,0.06);
+    --sf-mono: 'DM Mono', monospace;
+    --sf-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .sf-ticker {
+    background: var(--sf-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .sf-ticker-inner {
+    display: inline-block;
+    animation: sfTicker 25s linear infinite;
+    font-family: var(--sf-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes sfTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .sf-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--sf-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .sf-section.visible { opacity: 1; transform: none; }
+
+  .sf-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--sf-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .sf-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sf-border);
+  }
+
+  .sf-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--sf-navy);
+    letter-spacing: -0.025em;
+  }
+  .sf-accent { color: var(--sf-accent); }
+  .sf-section-sub {
+    font-size: 13px;
+    color: var(--sf-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== SCORE DEMO / COMPARISON CARDS ===== */
+  .sf-score-demo {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .sf-score-card {
+    background: var(--sf-surface);
+    border: 1.5px solid var(--sf-border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sf-score-card:hover { border-color: var(--sf-accent); }
+  .sf-score-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .sf-score-company { font-weight: 800; font-size: 15px; color: var(--sf-navy); }
+  .sf-score-badge {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-family: var(--sf-mono);
+  }
+  .sf-status-qual { background: var(--sf-green-bg); color: var(--sf-green); }
+  .sf-status-disq { background: rgba(192,57,43,0.1); color: #c0392b; }
+  .sf-score-num {
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--sf-accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .sf-score-num.sf-high { color: var(--sf-green); }
+  .sf-score-num.sf-low { color: #c0392b; }
+  .sf-score-label {
+    font-size: 12px;
+    color: var(--sf-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    font-family: var(--sf-mono);
+  }
+  .sf-score-evidence { font-size: 11px; color: var(--sf-blue-gray); line-height: 1.7; font-family: var(--sf-mono); }
+  .sf-score-signals {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sf-sig-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--sf-muted);
+  }
+  .sf-sig-check { font-size: 12px; }
+  .sf-sig-bar-mini {
+    flex: 1;
+    height: 3px;
+    background: var(--sf-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .sf-sig-fill { height: 100%; border-radius: 999px; }
+
+  /* ===== COMPARISON CARD TINTS ===== */
+  .sf-card-red {
+    background: var(--sf-red-bg);
+    border-color: rgba(192,57,43,0.2);
+  }
+  .sf-card-red:hover { border-color: rgba(192,57,43,0.4); }
+  .sf-card-green {
+    background: rgba(58,158,110,0.04);
+    border-color: rgba(58,158,110,0.2);
+  }
+  .sf-card-green:hover { border-color: rgba(58,158,110,0.4); }
+
+  /* ===== QUOTE ===== */
+  .sf-quote-block {
+    margin-top: 48px;
+    border-left: 4px solid var(--sf-accent);
+    padding: 24px 28px;
+    background: var(--sf-surface);
+    border-radius: 0 16px 16px 0;
+  }
+  .sf-quote-text {
+    font-size: clamp(14px, 2vw, 19px);
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--sf-navy);
+    margin-bottom: 10px;
+  }
+  .sf-quote-attr { font-size: 10px; color: var(--sf-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--sf-mono); }
+
+  /* ===== STAT ROW ===== */
+  .sf-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .sf-stat {
+    background: var(--sf-surface);
+    border: 1.5px solid var(--sf-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .sf-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--sf-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .sf-stat-label { font-size: 12px; color: var(--sf-blue-gray); line-height: 1.5; }
+
+  /* ===== SIGNAL CARDS (CRITERIA) ===== */
+  .sf-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .sf-signal-card {
+    background: var(--sf-surface);
+    border: 1.5px solid var(--sf-border);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sf-signal-card:hover { border-color: var(--sf-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
+  .sf-signal-disq {
+    border-color: rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.03);
+  }
+  .sf-signal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .sf-signal-name { font-weight: 700; font-size: 13px; color: var(--sf-navy); }
+  .sf-signal-weight {
+    font-family: var(--sf-mono);
+    font-size: 10px;
+    color: var(--sf-accent);
+    background: rgba(224,123,57,0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .sf-signal-desc { font-size: 11px; color: var(--sf-blue-gray); line-height: 1.6; margin-bottom: 12px; }
+  .sf-signal-bar-wrap {
+    height: 4px;
+    background: var(--sf-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .sf-signal-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--sf-accent);
+    transition: width 0.6s ease;
+  }
+  .sf-bar-green { background: var(--sf-green); }
+  .sf-signal-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--sf-muted);
+    font-family: var(--sf-mono);
+  }
+
+  /* ===== CTA ===== */
+  .sf-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--sf-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .sf-cta-section.visible { opacity: 1; transform: none; }
+  .sf-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--sf-navy);
+    letter-spacing: -0.03em;
+  }
+  .sf-cta-sub {
+    font-size: 16px;
+    color: var(--sf-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .sf-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .sf-btn-p {
+    display: inline-block;
+    background: var(--sf-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--sf-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .sf-btn-p:hover { background: var(--sf-accent2); }
+  .sf-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--sf-navy);
+    border: 2px solid var(--sf-navy);
+    padding: 16px 34px;
+    font-family: var(--sf-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .sf-btn-s:hover { background: var(--sf-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes sfFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sf-signal-grid { grid-template-columns: 1fr 1fr; }
+    .sf-score-demo { grid-template-columns: 1fr; }
+    .sf-stat-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- DM Mono font for screenfast sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Screening demo
+  const sfScanLines = [
+    ['sf-log-working', '\u27F6 Uploading resumes \u00B7 247 PDFs \u00B7 Lifeguard Position'],
+    ['sf-log-ok', '\u2713 Screening criteria loaded \u00B7 8 requirements'],
+    ['sf-log-working', '\u27F6 Processing resumes...'],
+    ['sf-log-ok', '\u2713 50 of 247 processed \u00B7 12 qualified so far'],
+    ['sf-log-ok', '\u2713 150 of 247 processed \u00B7 28 qualified so far'],
+    ['sf-log-ok', '\u2713 247 of 247 processed \u00B7 41 qualified'],
+    ['sf-log-working', '\u27F6 Ranking candidates by score...'],
+    ['sf-log-ok', '\u2713 Shortlist ready \u00B7 top 15 candidates'],
+    ['sf-log-qual', '\u2192 41 qualified \u00B7 178 not a fit \u00B7 28 partial match'],
+    ['sf-log-ok', '\u26A1 Screening complete \u00B7 247 resumes \u00B7 38 seconds'],
+  ];
+
+  function sfRunScreen() {
+    const log = document.getElementById('sfScanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= sfScanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = sfScanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 280);
+  }
+
+  const sfScanInput = document.getElementById('sfScanInput');
+  if (sfScanInput) {
+    sfScanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sfRunScreen();
+    });
+  }
+
+  // Loop card toggle
+  function sfToggleLoop(el) {
+    document.querySelectorAll('.sf-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Row highlight
+  function sfHighlightRow(el) {
+    document.querySelectorAll('.sf-tier-row').forEach(r => r.classList.remove('highlight'));
+    el.classList.add('highlight');
+  }
+
+  // Section scroll animations
+  const sfObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.sf-section, .sf-cta-section').forEach(el => sfObs.observe(el));
+
+  // Animate signal bars on scroll
+  const sfSignalObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.sf-signal-bar').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.sf-signal-grid').forEach(g => sfSignalObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.sfRunScreen = sfRunScreen;
+  window.sfToggleLoop = sfToggleLoop;
+  window.sfHighlightRow = sfHighlightRow;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .sf-log-ok { color: #3a9e6e; }
+  .sf-log-working { color: #e07b39; }
+  .sf-log-qual { color: #1e3557; font-weight: 500; }
+</style>

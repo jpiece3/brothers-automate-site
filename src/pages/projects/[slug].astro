@@ -8,7 +8,7 @@ import { getAllProjects, getProjectBySlug } from '../../data/projects';
 export function getStaticPaths() {
   const projects = getAllProjects();
   return projects
-    .filter(project => project.slug !== 'quiz-funnels' && project.slug !== 'signal-engine')
+    .filter(project => !['quiz-funnels', 'signal-engine', 'brand-research', 'daily-ads', 'screenfast', 'onboarding-workflow', 'route-simply', 'automated-inventory'].includes(project.slug))
     .map(project => ({
       params: { slug: project.slug },
       props: { project }

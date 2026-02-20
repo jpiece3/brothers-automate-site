@@ -1,0 +1,1149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://brandintel.up.railway.app/';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Brand Research", "item": `${SITE_URL}/projects/brand-research` }
+  ]
+};
+---
+
+<Layout
+  title="Brand Research | AI-Powered Market Intelligence | Brothers Automate"
+  description="Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In days, not months."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Powered Audience and Competitor Intelligence</span>
+          <h1>Brand Research.<br /><span class="gradient-text">48hr Turnaround.</span></h1>
+          <p class="project-hero-sub">Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In days, not months.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">48hr</span>
+              <span class="hero-stat-label">Turnaround</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">10+</span>
+              <span class="hero-stat-label">Competitor Profiles</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">90%</span>
+              <span class="hero-stat-label">Time Saved</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Research Terminal Box -->
+          <div class="br-scan-box">
+            <div class="br-scan-bar">
+              <div class="br-scan-dot" style="background:#e8b4a0"></div>
+              <div class="br-scan-dot" style="background:#ddd6c8"></div>
+              <div class="br-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">brand-research / analysis terminal</span>
+            </div>
+            <div class="br-scan-input-row">
+              <input class="br-scan-input" id="brScanInput" placeholder="acme-roofing.com &middot; enter your URL" />
+              <button class="br-scan-btn" onclick="brRunResearch()">&#9654; RUN RESEARCH</button>
+            </div>
+            <div class="br-scan-log" id="brScanLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="br-ticker">
+      <div class="br-ticker-inner">
+        URL &rarr; SCRAPE &nbsp;&middot;&nbsp; COMPETITOR ANALYSIS &nbsp;&middot;&nbsp; AUDIENCE PROFILING &nbsp;&middot;&nbsp; POSITIONING &nbsp;&middot;&nbsp; CONTENT PILLARS &nbsp;&middot;&nbsp; MESSAGING GAPS &nbsp;&middot;&nbsp; INTELLIGENCE PACKAGE &nbsp;&middot;&nbsp;
+        URL &rarr; SCRAPE &nbsp;&middot;&nbsp; COMPETITOR ANALYSIS &nbsp;&middot;&nbsp; AUDIENCE PROFILING &nbsp;&middot;&nbsp; POSITIONING &nbsp;&middot;&nbsp; CONTENT PILLARS &nbsp;&middot;&nbsp; MESSAGING GAPS &nbsp;&middot;&nbsp; INTELLIGENCE PACKAGE &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — WHAT YOU GET -->
+    <section class="br-section" id="br-section-1">
+      <div class="br-section-label">01 — What You Get</div>
+      <h2 class="br-section-title">Four reports.<br><span class="br-accent">One intelligence package.</span></h2>
+      <p class="br-section-sub">Click each deliverable to see exactly what's included. Every report is custom-built from research on your specific market.</p>
+
+      <div class="br-tabs">
+        <div class="br-tab-nav">
+          <button class="br-tab-btn active" onclick="brSwitchTab(this)" data-tab="0">Audience Analysis</button>
+          <button class="br-tab-btn" onclick="brSwitchTab(this)" data-tab="1">Competitor Intel</button>
+          <button class="br-tab-btn" onclick="brSwitchTab(this)" data-tab="2">Positioning Strategy</button>
+          <button class="br-tab-btn" onclick="brSwitchTab(this)" data-tab="3">Content Direction</button>
+        </div>
+        <div class="br-tab-panels">
+          <div class="br-tab-panel active" data-panel="0">
+            <div class="br-panel-title">Audience Analysis</div>
+            <div class="br-panel-desc">Deep profiling of your ideal customers, their pain points, and buying triggers.</div>
+            <ul class="br-panel-list">
+              <li>Demographics and psychographics breakdown</li>
+              <li>Pain point hierarchy ranked by urgency</li>
+              <li>Buying trigger identification</li>
+              <li>Decision-making process map</li>
+              <li>Channel preference analysis</li>
+            </ul>
+          </div>
+          <div class="br-tab-panel" data-panel="1">
+            <div class="br-panel-title">Competitor Intel</div>
+            <div class="br-panel-desc">Detailed breakdown of competitor positioning, pricing, and messaging gaps.</div>
+            <ul class="br-panel-list">
+              <li>10+ competitor profiles with SWOT analysis</li>
+              <li>Pricing strategy comparison</li>
+              <li>Messaging and positioning analysis</li>
+              <li>Gap identification and opportunities</li>
+              <li>Content strategy teardown</li>
+            </ul>
+          </div>
+          <div class="br-tab-panel" data-panel="2">
+            <div class="br-panel-title">Positioning Strategy</div>
+            <div class="br-panel-desc">Differentiated angles that set you apart from the pack.</div>
+            <ul class="br-panel-list">
+              <li>3-5 unique positioning angles</li>
+              <li>Messaging framework with proof points</li>
+              <li>Value proposition refinement</li>
+              <li>Brand voice recommendations</li>
+              <li>Differentiation map vs. competitors</li>
+            </ul>
+          </div>
+          <div class="br-tab-panel" data-panel="3">
+            <div class="br-panel-title">Content Direction</div>
+            <div class="br-panel-desc">Keyword opportunities, content pillars, and messaging frameworks.</div>
+            <ul class="br-panel-list">
+              <li>Keyword opportunity analysis</li>
+              <li>Content pillar recommendations</li>
+              <li>Blog topic clusters</li>
+              <li>Social media content themes</li>
+              <li>SEO-optimized messaging templates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — THE RESEARCH PIPELINE -->
+    <section class="br-section" id="br-section-2">
+      <div class="br-section-label">02 — The Research Pipeline</div>
+      <h2 class="br-section-title">From URL<br><span class="br-accent">to intelligence.</span></h2>
+      <p class="br-section-sub">Four phases of AI-powered research — click each step to see what happens under the hood.</p>
+
+      <div class="br-loop">
+        <div class="br-loop-card active" onclick="brToggleLoop(this)">
+          <div class="br-loop-num">01</div>
+          <div class="br-loop-title">Input</div>
+          <div class="br-loop-desc">Your URL + industry keywords</div>
+          <div class="br-loop-detail">
+            &rarr; Submit your website URL<br>
+            &rarr; Add 3-5 industry keywords<br>
+            &rarr; Define your target market<br>
+            &rarr; Specify any known competitors<br>
+            &rarr; Output: research brief for AI agents
+          </div>
+        </div>
+        <div class="br-loop-card" onclick="brToggleLoop(this)">
+          <div class="br-loop-num">02</div>
+          <div class="br-loop-title">Scrape &amp; Analyze</div>
+          <div class="br-loop-desc">AI agents crawl competitors, audience data, review sites</div>
+          <div class="br-loop-detail">
+            &rarr; Website content and messaging extracted<br>
+            &rarr; Competitor sites identified and scraped<br>
+            &rarr; Review sites and forums analyzed<br>
+            &rarr; Social media presence evaluated<br>
+            &rarr; Tech stack and tools detected
+          </div>
+        </div>
+        <div class="br-loop-card" onclick="brToggleLoop(this)">
+          <div class="br-loop-num">03</div>
+          <div class="br-loop-title">Synthesize</div>
+          <div class="br-loop-desc">LLM processes raw data into structured intelligence</div>
+          <div class="br-loop-detail">
+            &rarr; Raw data cleaned and categorized<br>
+            &rarr; Patterns and trends identified<br>
+            &rarr; Gaps and opportunities surfaced<br>
+            &rarr; Positioning angles generated<br>
+            &rarr; Content recommendations built
+          </div>
+        </div>
+        <div class="br-loop-card" onclick="brToggleLoop(this)">
+          <div class="br-loop-num">04</div>
+          <div class="br-loop-title">Deliver</div>
+          <div class="br-loop-desc">Complete brand package in 48 hours</div>
+          <div class="br-loop-detail">
+            &rarr; 4 structured reports delivered<br>
+            &rarr; Executive summary with key findings<br>
+            &rarr; Actionable recommendations<br>
+            &rarr; Implementation priority list<br>
+            &rarr; 30-minute walkthrough call
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — COMPETITOR INTEL -->
+    <section class="br-section" id="br-section-3">
+      <div class="br-section-label">03 — Competitor Intel</div>
+      <h2 class="br-section-title">See what they see.<br><span class="br-accent">Know what they don't.</span></h2>
+      <p class="br-section-sub">Every competitor analyzed for positioning, messaging, and gaps. Click a row to highlight.</p>
+
+      <div class="br-comp-table">
+        <div class="br-comp-header">
+          <div>Company</div>
+          <div>Positioning</div>
+          <div>Weakness</div>
+          <div>Your Opportunity</div>
+        </div>
+        <div class="br-comp-row" onclick="brHighlightRow(this)">
+          <div class="br-comp-name">RoofPro Solutions</div>
+          <div class="br-comp-cell">Premium quality, 25yr warranty</div>
+          <div class="br-comp-cell">No online presence</div>
+          <div class="br-comp-opp">Dominate local SEO</div>
+        </div>
+        <div class="br-comp-row" onclick="brHighlightRow(this)">
+          <div class="br-comp-name">FastRoof Inc.</div>
+          <div class="br-comp-cell">Speed and low price</div>
+          <div class="br-comp-cell">No reviews or trust signals</div>
+          <div class="br-comp-opp">Lead with social proof</div>
+        </div>
+        <div class="br-comp-row" onclick="brHighlightRow(this)">
+          <div class="br-comp-name">Heritage Roofing</div>
+          <div class="br-comp-cell">Family-owned, 50 years</div>
+          <div class="br-comp-cell">Outdated website, no content</div>
+          <div class="br-comp-opp">Modern content strategy</div>
+        </div>
+        <div class="br-comp-row" onclick="brHighlightRow(this)">
+          <div class="br-comp-name">TopShield Co.</div>
+          <div class="br-comp-cell">Commercial-only focus</div>
+          <div class="br-comp-cell">Ignoring residential market</div>
+          <div class="br-comp-opp">Own the residential space</div>
+        </div>
+      </div>
+
+      <div class="br-stat-row">
+        <div class="br-stat">
+          <div class="br-stat-num">10+</div>
+          <div class="br-stat-label">Competitor Profiles</div>
+        </div>
+        <div class="br-stat">
+          <div class="br-stat-num">48hr</div>
+          <div class="br-stat-label">Turnaround</div>
+        </div>
+        <div class="br-stat">
+          <div class="br-stat-num">90%</div>
+          <div class="br-stat-label">Time Saved</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — SAMPLE DELIVERABLES -->
+    <section class="br-section" id="br-section-4">
+      <div class="br-section-label">04 — Sample Deliverables</div>
+      <h2 class="br-section-title">Signals that<br><span class="br-accent">drive decisions.</span></h2>
+      <p class="br-section-sub">Real intelligence output. Not generic slide decks. Every finding is specific to your market.</p>
+
+      <div class="br-signal-grid">
+        <div class="br-signal-card">
+          <div class="br-signal-top">
+            <div class="br-signal-name">Homeowners 35-55</div>
+            <div class="br-signal-weight">W: High</div>
+          </div>
+          <div class="br-signal-desc">Primary audience segment. Homeowners in suburban areas, income $75K+, concerned about curb appeal and home value protection.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar br-bar-green" style="width:92%"></div></div>
+          <div class="br-signal-meta"><span>92% relevance</span></div>
+        </div>
+        <div class="br-signal-card">
+          <div class="br-signal-top">
+            <div class="br-signal-name">Pain: Storm Damage Fear</div>
+            <div class="br-signal-weight">W: 0.9</div>
+          </div>
+          <div class="br-signal-desc">Top buying trigger. Homeowners search for roofing after major storms. 68% of inquiries come within 2 weeks of weather events.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar br-bar-green" style="width:87%"></div></div>
+          <div class="br-signal-meta"><span>87% relevance</span></div>
+        </div>
+        <div class="br-signal-card">
+          <div class="br-signal-top">
+            <div class="br-signal-name">Gap: No One Owns 'Fast Response'</div>
+            <div class="br-signal-weight">W: 0.85</div>
+          </div>
+          <div class="br-signal-desc">None of your competitors position around emergency response time. First-mover advantage available.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar br-bar-green" style="width:78%"></div></div>
+          <div class="br-signal-meta"><span>78% relevance</span></div>
+        </div>
+        <div class="br-signal-card">
+          <div class="br-signal-top">
+            <div class="br-signal-name">Content: 'Roof Inspection' Cluster</div>
+            <div class="br-signal-weight">W: 0.7</div>
+          </div>
+          <div class="br-signal-desc">High-volume, low-competition keyword cluster. 2,400 monthly searches with only 3 ranking pages.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar" style="width:65%"></div></div>
+          <div class="br-signal-meta"><span>65% relevance</span></div>
+        </div>
+        <div class="br-signal-card">
+          <div class="br-signal-top">
+            <div class="br-signal-name">Channel: Google Local Pack</div>
+            <div class="br-signal-weight">W: 0.8</div>
+          </div>
+          <div class="br-signal-desc">73% of roofing searches have local intent. Google Business Profile optimization is underutilized by competitors.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar" style="width:71%"></div></div>
+          <div class="br-signal-meta"><span>71% relevance</span></div>
+        </div>
+        <div class="br-signal-card br-signal-disq">
+          <div class="br-signal-top">
+            <div class="br-signal-name" style="color:#c0392b">Competing on Price Only</div>
+            <div class="br-signal-weight" style="background:rgba(192,57,43,0.1);color:#c0392b">Disqualify</div>
+          </div>
+          <div class="br-signal-desc">Race-to-bottom positioning detected in 2 competitors. Avoid this angle — margins collapse and customer loyalty drops.</div>
+          <div class="br-signal-bar-wrap"><div class="br-signal-bar" style="width:15%;background:#c0392b"></div></div>
+          <div class="br-signal-meta"><span>15% relevance</span><span style="color:#c0392b">avoid this</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="br-cta-section" id="br-section-5">
+      <div class="br-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="br-cta-title">URL in.<br>Intelligence out.<br><span style="color:var(--br-accent)">In 48 hours.</span></h2>
+      <p class="br-cta-sub">Submit your URL and get a complete brand intelligence package. Research that would take a team weeks.</p>
+      <div class="br-cta-btn-row">
+        <a href={productUrl} class="br-btn-p" target="_blank" rel="noopener">Start Your Research &rarr;</a>
+        <a
+          href="#"
+          class="br-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--br-muted);margin-top:28px;font-family:var(--br-mono)">Brand Research &middot; AI-powered intelligence &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== RESEARCH TERMINAL BOX ===== */
+  .br-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .br-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .br-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .br-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .br-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .br-scan-input::placeholder { color: var(--text-muted); }
+  .br-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .br-scan-btn:hover { background: var(--orange-hover); }
+  .br-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .br-scan-log.visible { display: block; animation: brFadeUp 0.3s ease; }
+
+  /* ===== BRAND RESEARCH CUSTOM VARIABLES ===== */
+  :root {
+    --br-bg: #f2ede4;
+    --br-surface: #faf7f2;
+    --br-surface2: #eee8dc;
+    --br-border: #ddd6c8;
+    --br-accent: #e07b39;
+    --br-accent2: #c4622a;
+    --br-navy: #1e3557;
+    --br-navy2: #2a4a72;
+    --br-blue-gray: #7a95b0;
+    --br-text: #1e3557;
+    --br-muted: #8a9ab0;
+    --br-green: #3a9e6e;
+    --br-green-bg: #e8f5ef;
+    --br-mono: 'DM Mono', monospace;
+    --br-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .br-ticker {
+    background: var(--br-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .br-ticker-inner {
+    display: inline-block;
+    animation: brTicker 25s linear infinite;
+    font-family: var(--br-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes brTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .br-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--br-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .br-section.visible { opacity: 1; transform: none; }
+
+  .br-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--br-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .br-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--br-border);
+  }
+
+  .br-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--br-navy);
+    letter-spacing: -0.025em;
+  }
+  .br-accent { color: var(--br-accent); }
+  .br-section-sub {
+    font-size: 13px;
+    color: var(--br-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== TABBED DELIVERABLES ===== */
+  .br-tabs {
+    margin-top: 48px;
+    border: 1.5px solid var(--br-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .br-tab-nav {
+    display: flex;
+    background: var(--br-surface2);
+    border-bottom: 1.5px solid var(--br-border);
+    overflow-x: auto;
+  }
+  .br-tab-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--br-sans);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--br-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .br-tab-btn:hover { color: var(--br-navy); background: rgba(255,255,255,0.5); }
+  .br-tab-btn.active {
+    color: var(--br-accent);
+    border-bottom-color: var(--br-accent);
+    background: rgba(255,255,255,0.6);
+  }
+  .br-tab-panels {
+    background: var(--br-surface);
+  }
+  .br-tab-panel {
+    display: none;
+    padding: 32px 28px;
+    animation: brFadeUp 0.3s ease;
+  }
+  .br-tab-panel.active { display: block; }
+  .br-panel-title {
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--br-navy);
+    margin-bottom: 8px;
+  }
+  .br-panel-desc {
+    font-size: 13px;
+    color: var(--br-blue-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .br-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .br-panel-list li {
+    font-size: 13px;
+    color: var(--br-text);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.6;
+    font-family: var(--br-mono);
+  }
+  .br-panel-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--br-accent);
+    font-weight: 700;
+  }
+
+  /* ===== LOOP STEPS ===== */
+  .br-loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .br-loop-card {
+    background: var(--br-surface);
+    border: 1.5px solid var(--br-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .br-loop-card::after {
+    content: '\2192';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--br-accent);
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .br-loop-card:last-child::after { display: none; }
+  .br-loop-card:hover, .br-loop-card.active {
+    border-color: var(--br-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .br-loop-num {
+    font-family: var(--br-mono);
+    font-size: 10px;
+    color: var(--br-muted);
+    margin-bottom: 10px;
+  }
+  .br-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--br-navy);
+    margin-bottom: 6px;
+  }
+  .br-loop-desc { font-size: 11px; color: var(--br-blue-gray); line-height: 1.7; }
+  .br-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--br-blue-gray);
+    line-height: 1.9;
+    font-family: var(--br-mono);
+  }
+  .br-loop-card.active .br-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--br-border);
+  }
+
+  /* ===== COMPETITOR TABLE ===== */
+  .br-comp-table {
+    margin-top: 48px;
+    border: 1.5px solid var(--br-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .br-comp-header {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr 1fr;
+    background: var(--br-surface2);
+    border-bottom: 1.5px solid var(--br-border);
+    padding: 12px 22px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--br-muted);
+    font-weight: 600;
+  }
+  .br-comp-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr 1fr;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--br-border);
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    background: var(--br-surface);
+  }
+  .br-comp-row:last-child { border-bottom: none; }
+  .br-comp-row:hover { background: #fff; }
+  .br-comp-row.highlight { background: rgba(224,123,57,0.04); }
+  .br-comp-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--br-navy);
+  }
+  .br-comp-cell {
+    font-size: 12px;
+    color: var(--br-blue-gray);
+    padding-right: 12px;
+  }
+  .br-comp-opp {
+    font-size: 12px;
+    color: var(--br-accent);
+    font-weight: 600;
+  }
+
+  /* ===== STAT ROW ===== */
+  .br-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .br-stat {
+    background: var(--br-surface);
+    border: 1.5px solid var(--br-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .br-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--br-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .br-stat-label { font-size: 12px; color: var(--br-blue-gray); line-height: 1.5; }
+
+  /* ===== SIGNAL CARDS ===== */
+  .br-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .br-signal-card {
+    background: var(--br-surface);
+    border: 1.5px solid var(--br-border);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .br-signal-card:hover { border-color: var(--br-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
+  .br-signal-disq {
+    border-color: rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.03);
+  }
+  .br-signal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .br-signal-name { font-weight: 700; font-size: 13px; color: var(--br-navy); }
+  .br-signal-weight {
+    font-family: var(--br-mono);
+    font-size: 10px;
+    color: var(--br-accent);
+    background: rgba(224,123,57,0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .br-signal-desc { font-size: 11px; color: var(--br-blue-gray); line-height: 1.6; margin-bottom: 12px; }
+  .br-signal-bar-wrap {
+    height: 4px;
+    background: var(--br-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .br-signal-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--br-accent);
+    transition: width 0.6s ease;
+  }
+  .br-bar-green { background: var(--br-green); }
+  .br-signal-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--br-muted);
+    font-family: var(--br-mono);
+  }
+
+  /* ===== CTA ===== */
+  .br-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--br-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .br-cta-section.visible { opacity: 1; transform: none; }
+  .br-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--br-navy);
+    letter-spacing: -0.03em;
+  }
+  .br-cta-sub {
+    font-size: 16px;
+    color: var(--br-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .br-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .br-btn-p {
+    display: inline-block;
+    background: var(--br-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--br-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .br-btn-p:hover { background: var(--br-accent2); }
+  .br-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--br-navy);
+    border: 2px solid var(--br-navy);
+    padding: 16px 34px;
+    font-family: var(--br-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .br-btn-s:hover { background: var(--br-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes brFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .br-tab-btn {
+      min-width: 110px;
+      padding: 12px 14px;
+      font-size: 10px;
+    }
+
+    .br-comp-header, .br-comp-row {
+      grid-template-columns: 120px 1fr 1fr;
+    }
+    .br-comp-row .br-comp-cell:nth-child(4),
+    .br-comp-header div:nth-child(4) {
+      /* keep opportunity visible on mobile */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .br-loop { grid-template-columns: 1fr 1fr; }
+    .br-loop-card::after { display: none; }
+    .br-signal-grid { grid-template-columns: 1fr 1fr; }
+    .br-stat-row { grid-template-columns: 1fr; }
+    .br-comp-header, .br-comp-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .br-comp-row .br-comp-cell:nth-child(3),
+    .br-comp-header div:nth-child(3) {
+      display: none;
+    }
+    .br-tab-nav {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .br-loop { grid-template-columns: 1fr; }
+    .br-signal-grid { grid-template-columns: 1fr; }
+    .br-comp-header, .br-comp-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .br-comp-header div:nth-child(2),
+    .br-comp-header div:nth-child(3),
+    .br-comp-header div:nth-child(4) {
+      display: none;
+    }
+    .br-comp-row {
+      padding: 16px 18px;
+    }
+    .br-comp-cell, .br-comp-opp {
+      font-size: 11px;
+    }
+  }
+</style>
+
+<!-- DM Mono font for brand research sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Research terminal demo
+  const brScanLines = [
+    ['br-log-working', '\u27F6 Analyzing acme-roofing.com...'],
+    ['br-log-working', '\u27F6 Scraping website content and messaging...'],
+    ['br-log-ok', '\u2713 3 primary competitors identified'],
+    ['br-log-working', '\u27F6 Running competitor positioning analysis...'],
+    ['br-log-ok', '\u2713 8 messaging gaps found'],
+    ['br-log-working', '\u27F6 Building audience profile...'],
+    ['br-log-ok', '\u2713 3 ideal customer segments identified'],
+    ['br-log-working', '\u27F6 Generating positioning strategy...'],
+    ['br-log-ok', '\u2713 Complete brand intel package ready'],
+    ['br-log-qual', '\u2192 10 competitors \u00B7 3 segments \u00B7 5 positioning angles'],
+    ['br-log-ok', '\u26A1 Research delivered \u00B7 48 hours \u00B7 full intelligence package'],
+  ];
+
+  function brRunResearch() {
+    const log = document.getElementById('brScanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= brScanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = brScanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 320);
+  }
+
+  const brScanInput = document.getElementById('brScanInput');
+  if (brScanInput) {
+    brScanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') brRunResearch();
+    });
+  }
+
+  // Tab switching
+  function brSwitchTab(el) {
+    const tabIndex = el.getAttribute('data-tab');
+    // Update buttons
+    document.querySelectorAll('.br-tab-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+    // Update panels
+    document.querySelectorAll('.br-tab-panel').forEach(panel => panel.classList.remove('active'));
+    const target = document.querySelector(`.br-tab-panel[data-panel="${tabIndex}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  // Loop card toggle
+  function brToggleLoop(el) {
+    document.querySelectorAll('.br-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Table row highlight
+  function brHighlightRow(el) {
+    document.querySelectorAll('.br-comp-row').forEach(r => r.classList.remove('highlight'));
+    el.classList.add('highlight');
+  }
+
+  // Section scroll animations
+  const brObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.br-section, .br-cta-section').forEach(el => brObs.observe(el));
+
+  // Animate signal bars on scroll
+  const brSignalObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.br-signal-bar').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.br-signal-grid').forEach(g => brSignalObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.brRunResearch = brRunResearch;
+  window.brSwitchTab = brSwitchTab;
+  window.brToggleLoop = brToggleLoop;
+  window.brHighlightRow = brHighlightRow;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .br-log-ok { color: #3a9e6e; }
+  .br-log-working { color: #e07b39; }
+  .br-log-qual { color: #1e3557; font-weight: 500; }
+</style>

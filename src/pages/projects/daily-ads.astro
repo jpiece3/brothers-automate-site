@@ -1,0 +1,1160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://daily-ads-saas-production.up.railway.app/';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Daily Ads", "item": `${SITE_URL}/projects/daily-ads` }
+  ]
+};
+---
+
+<Layout
+  title="Daily Ads | AI Ad Creative Generator | Brothers Automate"
+  description="Get fresh, on-brand ad creative generated daily in 15+ formats. Stop paying designers $5K/month for static that goes stale in a week."
+>
+  <Header />
+  <main>
+
+    <!-- HERO (site-style from ProjectPage.astro) -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Generated Ad Creative on Autopilot</span>
+          <h1>Daily Ads.<br /><span class="gradient-text">21 Formats. Fresh Daily.</span></h1>
+          <p class="project-hero-sub">Get fresh, on-brand ad creative generated daily in 15+ formats. Stop paying designers $5K/month for static that goes stale in a week.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">21</span>
+              <span class="hero-stat-label">Ad Formats</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">Daily</span>
+              <span class="hero-stat-label">Fresh Creative</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">80%</span>
+              <span class="hero-stat-label">Cost Reduction</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Creative Engine Terminal Box -->
+          <div class="da-scan-box">
+            <div class="da-scan-bar">
+              <div class="da-scan-dot" style="background:#e8b4a0"></div>
+              <div class="da-scan-dot" style="background:#ddd6c8"></div>
+              <div class="da-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">daily-ads / creative engine</span>
+            </div>
+            <div class="da-scan-input-row">
+              <input class="da-scan-input" id="daInput" placeholder="brand-assets.zip &middot; Acme Plumbing" />
+              <button class="da-scan-btn" onclick="daRunCreative()">&#9654; GENERATE</button>
+            </div>
+            <div class="da-scan-log" id="daLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="da-ticker">
+      <div class="da-ticker-inner">
+        BRAND INPUT &rarr; STATIC ADS &nbsp;&middot;&nbsp; VIDEO ADS &nbsp;&middot;&nbsp; TESTIMONIAL CARDS &nbsp;&middot;&nbsp; BEFORE/AFTER &nbsp;&middot;&nbsp; FEATURE HIGHLIGHTS &nbsp;&middot;&nbsp; STORY CARDS &nbsp;&middot;&nbsp; ANIMATED REVEALS &nbsp;&middot;&nbsp; FRESH DAILY &nbsp;&middot;&nbsp;
+        BRAND INPUT &rarr; STATIC ADS &nbsp;&middot;&nbsp; VIDEO ADS &nbsp;&middot;&nbsp; TESTIMONIAL CARDS &nbsp;&middot;&nbsp; BEFORE/AFTER &nbsp;&middot;&nbsp; FEATURE HIGHLIGHTS &nbsp;&middot;&nbsp; STORY CARDS &nbsp;&middot;&nbsp; ANIMATED REVEALS &nbsp;&middot;&nbsp; FRESH DAILY &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — FORMAT GALLERY -->
+    <section class="da-section" id="da-section-1">
+      <div class="da-section-label">01 — Format Gallery</div>
+      <h2 class="da-section-title">21 formats.<br><span class="da-accent">Fresh daily.</span></h2>
+      <p class="da-section-sub">Every format matched to your brand. Click Static or Video to see what's included.</p>
+
+      <div class="da-tabs" style="margin-top:36px">
+        <button class="da-tab active" onclick="daSwitchTab(this)" data-tab="da-panel-static">Static Formats (15)</button>
+        <button class="da-tab" onclick="daSwitchTab(this)" data-tab="da-panel-video">Video Formats (6)</button>
+      </div>
+
+      <div class="da-tab-panel active" id="da-panel-static">
+        <div class="da-format-grid">
+          <div class="da-format-card">
+            <div class="da-format-name">Testimonial Card</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Before/After Split</div>
+            <div class="da-format-dims">1200 &times; 628</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Feature Highlight</div>
+            <div class="da-format-dims">1080 &times; 1350</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Social Proof Banner</div>
+            <div class="da-format-dims">1200 &times; 628</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Pain Point Card</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Offer Announcement</div>
+            <div class="da-format-dims">1080 &times; 1350</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Question Hook</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Stat Callout</div>
+            <div class="da-format-dims">1200 &times; 628</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Review Screenshot</div>
+            <div class="da-format-dims">1080 &times; 1350</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Comparison Grid</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Tips Carousel</div>
+            <div class="da-format-dims">1080 &times; 1350</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Quote Card</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Case Study Mini</div>
+            <div class="da-format-dims">1200 &times; 628</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Countdown Timer</div>
+            <div class="da-format-dims">1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Brand Story</div>
+            <div class="da-format-dims">1080 &times; 1350</div>
+            <div class="da-format-badge da-badge-static">Static</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="da-tab-panel" id="da-panel-video">
+        <div class="da-format-grid">
+          <div class="da-format-card">
+            <div class="da-format-name">Animated Reveal</div>
+            <div class="da-format-dims">15s &middot; 1080 &times; 1920</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Text Overlay</div>
+            <div class="da-format-dims">10s &middot; 1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Product Showcase</div>
+            <div class="da-format-dims">20s &middot; 1080 &times; 1920</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Testimonial Clip</div>
+            <div class="da-format-dims">15s &middot; 1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Before/After Motion</div>
+            <div class="da-format-dims">12s &middot; 1080 &times; 1920</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+          <div class="da-format-card">
+            <div class="da-format-name">Stats Animation</div>
+            <div class="da-format-dims">8s &middot; 1080 &times; 1080</div>
+            <div class="da-format-badge da-badge-video">Video</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — COST COMPARISON -->
+    <section class="da-section" id="da-section-2">
+      <div class="da-section-label">02 — Cost Comparison</div>
+      <h2 class="da-section-title">Agency creative<br><span class="da-accent">vs. autopilot.</span></h2>
+      <p class="da-section-sub">The same creative output. A fraction of the cost. Zero designer dependency.</p>
+
+      <div class="da-compare-grid">
+        <div class="da-compare-card da-compare-agency">
+          <div class="da-compare-header">Agency Creative</div>
+          <div class="da-compare-number" style="color:#c0392b">$5K</div>
+          <div class="da-compare-label">per month</div>
+          <div class="da-compare-evidence">3&ndash;5 new creatives per week &middot; 2&ndash;3 day turnaround per batch &middot; Same designer, same style fatigue &middot; $60K+ per year</div>
+          <div class="da-compare-signals">
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#c0392b">&cross;</span>
+              <span class="da-sig-label">Creative volume</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:15%;background:#c0392b"></div></div>
+            </div>
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#c0392b">&cross;</span>
+              <span class="da-sig-label">Turnaround speed</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:20%;background:#c0392b"></div></div>
+            </div>
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#c0392b">&cross;</span>
+              <span class="da-sig-label">Format variety</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:10%;background:#c0392b"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="da-compare-card da-compare-daily">
+          <div class="da-compare-header">Daily Ads</div>
+          <div class="da-compare-number" style="color:#3a9e6e">80%</div>
+          <div class="da-compare-label">cost reduction</div>
+          <div class="da-compare-evidence">21 fresh creatives daily &middot; Instant generation &middot; AI never fatigues &middot; Brand-matched every time</div>
+          <div class="da-compare-signals">
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#3a9e6e">&check;</span>
+              <span class="da-sig-label">Creative volume</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:95%;background:#3a9e6e"></div></div>
+            </div>
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#3a9e6e">&check;</span>
+              <span class="da-sig-label">Turnaround speed</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:98%;background:#3a9e6e"></div></div>
+            </div>
+            <div class="da-sig-line">
+              <span class="da-sig-icon" style="color:#3a9e6e">&check;</span>
+              <span class="da-sig-label">Format variety</span>
+              <div class="da-sig-bar-wrap"><div class="da-sig-fill" style="width:92%;background:#3a9e6e"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="da-stat-row">
+        <div class="da-stat">
+          <div class="da-stat-num">21</div>
+          <div class="da-stat-label">Ad Formats</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-stat-num">Daily</div>
+          <div class="da-stat-label">Fresh Creative</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-stat-num">80%</div>
+          <div class="da-stat-label">Cost Reduction</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — THE PIPELINE -->
+    <section class="da-section" id="da-section-3">
+      <div class="da-section-label">03 — The Pipeline</div>
+      <h2 class="da-section-title">Brand in.<br><span class="da-accent">Creative out. Every day.</span></h2>
+      <p class="da-section-sub">Five stages from brand assets to upload-ready creative. Fully automated.</p>
+
+      <div class="da-pipeline">
+        <div class="da-pipe-stage active" onclick="daTogglePipe(this)">
+          <div class="da-pipe-icon">&#127912;</div>
+          <div class="da-pipe-name">Brand Assets</div>
+          <div class="da-pipe-desc">Colors, fonts, voice</div>
+        </div>
+        <div class="da-pipe-stage" onclick="daTogglePipe(this)">
+          <div class="da-pipe-icon">&#129504;</div>
+          <div class="da-pipe-name">AI Analysis</div>
+          <div class="da-pipe-desc">Pattern recognition</div>
+        </div>
+        <div class="da-pipe-stage" onclick="daTogglePipe(this)">
+          <div class="da-pipe-icon">&#128444;</div>
+          <div class="da-pipe-name">Generation</div>
+          <div class="da-pipe-desc">21 formats rendered</div>
+        </div>
+        <div class="da-pipe-stage" onclick="daTogglePipe(this)">
+          <div class="da-pipe-icon">&#9989;</div>
+          <div class="da-pipe-name">Review</div>
+          <div class="da-pipe-desc">Quality check</div>
+        </div>
+        <div class="da-pipe-stage" onclick="daTogglePipe(this)">
+          <div class="da-pipe-icon">&#128640;</div>
+          <div class="da-pipe-name">Deploy</div>
+          <div class="da-pipe-desc">Upload-ready files</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — GETS SMARTER -->
+    <section class="da-section" id="da-section-4">
+      <div class="da-section-label">04 — Gets Smarter</div>
+      <h2 class="da-section-title">Performance<br><span class="da-accent">learning built in.</span></h2>
+      <p class="da-section-sub">The system tracks which formats drive engagement. Over time, it generates more of what works and less of what doesn't.</p>
+
+      <div class="da-signal-grid">
+        <div class="da-signal-card">
+          <div class="da-signal-top">
+            <div class="da-signal-name">Testimonial Cards</div>
+            <div class="da-signal-weight">W: 0.9</div>
+          </div>
+          <div class="da-signal-desc">User testimonials with branded background. Consistently highest engagement across platforms.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar da-bar-green" style="width:87%"></div></div>
+          <div class="da-signal-meta"><span>87% engagement</span><span>82% click rate</span></div>
+        </div>
+        <div class="da-signal-card">
+          <div class="da-signal-top">
+            <div class="da-signal-name">Before/After Splits</div>
+            <div class="da-signal-weight">W: 0.85</div>
+          </div>
+          <div class="da-signal-desc">Side-by-side transformation images. Strong performer for service businesses.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar da-bar-green" style="width:81%"></div></div>
+          <div class="da-signal-meta"><span>81% engagement</span><span>76% click rate</span></div>
+        </div>
+        <div class="da-signal-card">
+          <div class="da-signal-top">
+            <div class="da-signal-name">Feature Highlights</div>
+            <div class="da-signal-weight">W: 0.8</div>
+          </div>
+          <div class="da-signal-desc">Single feature callout with bold text overlay. Clean and direct.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar da-bar-green" style="width:74%"></div></div>
+          <div class="da-signal-meta"><span>74% engagement</span><span>69% click rate</span></div>
+        </div>
+        <div class="da-signal-card">
+          <div class="da-signal-top">
+            <div class="da-signal-name">Animated Reveals</div>
+            <div class="da-signal-weight">W: 0.75</div>
+          </div>
+          <div class="da-signal-desc">15-second reveal videos with branded transitions. High watch-through rate.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar" style="width:68%"></div></div>
+          <div class="da-signal-meta"><span>68% engagement</span><span>63% click rate</span></div>
+        </div>
+        <div class="da-signal-card">
+          <div class="da-signal-top">
+            <div class="da-signal-name">Pain Point Cards</div>
+            <div class="da-signal-weight">W: 0.7</div>
+          </div>
+          <div class="da-signal-desc">Problem-agitation format highlighting customer pain points.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar" style="width:61%"></div></div>
+          <div class="da-signal-meta"><span>61% engagement</span><span>55% click rate</span></div>
+        </div>
+        <div class="da-signal-card da-signal-decline">
+          <div class="da-signal-top">
+            <div class="da-signal-name" style="color:#c0392b">Stock Photo Ads</div>
+            <div class="da-signal-weight" style="background:rgba(192,57,43,0.1);color:#c0392b">Declining</div>
+          </div>
+          <div class="da-signal-desc">Generic stock imagery performs 45% worse than custom branded creative. The system avoids this pattern.</div>
+          <div class="da-signal-bar-wrap"><div class="da-signal-bar" style="width:23%;background:#c0392b"></div></div>
+          <div class="da-signal-meta"><span>23% engagement</span><span style="color:#c0392b">avoid</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="da-cta-section" id="da-section-5">
+      <div class="da-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="da-cta-title">Brand in.<br>Creative out.<br><span style="color:var(--da-accent)">Daily.</span></h2>
+      <p class="da-cta-sub">Upload your brand assets. Get 21 fresh, on-brand ad creatives every day.</p>
+      <div class="da-cta-btn-row">
+        <a href={productUrl} class="da-btn-p" target="_blank" rel="noopener">Try It Live &rarr;</a>
+        <a
+          href="#"
+          class="da-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--da-muted);margin-top:28px;font-family:var(--da-mono)">Daily Ads &middot; AI creative generation &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== CREATIVE ENGINE TERMINAL BOX ===== */
+  .da-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .da-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .da-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .da-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .da-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .da-scan-input::placeholder { color: var(--text-muted); }
+  .da-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .da-scan-btn:hover { background: var(--orange-hover); }
+  .da-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .da-scan-log.visible { display: block; animation: daFadeUp 0.3s ease; }
+
+  /* ===== DAILY ADS CUSTOM VARIABLES ===== */
+  :root {
+    --da-bg: #f2ede4;
+    --da-surface: #faf7f2;
+    --da-surface2: #eee8dc;
+    --da-border: #ddd6c8;
+    --da-accent: #e07b39;
+    --da-accent2: #c4622a;
+    --da-navy: #1e3557;
+    --da-navy2: #2a4a72;
+    --da-blue-gray: #7a95b0;
+    --da-text: #1e3557;
+    --da-muted: #8a9ab0;
+    --da-green: #3a9e6e;
+    --da-green-bg: #e8f5ef;
+    --da-mono: 'DM Mono', monospace;
+    --da-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .da-ticker {
+    background: var(--da-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .da-ticker-inner {
+    display: inline-block;
+    animation: daTicker 25s linear infinite;
+    font-family: var(--da-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes daTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .da-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--da-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .da-section.visible { opacity: 1; transform: none; }
+
+  .da-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--da-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .da-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--da-border);
+  }
+
+  .da-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--da-navy);
+    letter-spacing: -0.025em;
+  }
+  .da-accent { color: var(--da-accent); }
+  .da-section-sub {
+    font-size: 13px;
+    color: var(--da-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== TABS ===== */
+  .da-tabs {
+    display: flex;
+    gap: 0;
+    border: 1.5px solid var(--da-border);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 360px;
+  }
+  .da-tab {
+    flex: 1;
+    background: var(--da-surface);
+    border: none;
+    padding: 12px 20px;
+    font-family: var(--da-sans);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--da-blue-gray);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .da-tab:not(:last-child) {
+    border-right: 1.5px solid var(--da-border);
+  }
+  .da-tab.active {
+    background: var(--da-accent);
+    color: #fff;
+  }
+  .da-tab:hover:not(.active) {
+    background: #fff;
+  }
+
+  /* ===== TAB PANELS ===== */
+  .da-tab-panel {
+    display: none;
+    margin-top: 24px;
+  }
+  .da-tab-panel.active { display: block; animation: daFadeUp 0.3s ease; }
+
+  /* ===== FORMAT GRID ===== */
+  .da-format-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .da-format-card {
+    background: var(--da-surface);
+    border: 1.5px solid var(--da-border);
+    border-radius: 14px;
+    padding: 18px 16px;
+    transition: all 0.2s;
+  }
+  .da-format-card:hover {
+    border-color: var(--da-accent);
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+    background: #fff;
+  }
+  .da-format-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--da-navy);
+    margin-bottom: 4px;
+  }
+  .da-format-dims {
+    font-family: var(--da-mono);
+    font-size: 10px;
+    color: var(--da-muted);
+    margin-bottom: 10px;
+  }
+  .da-format-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-family: var(--da-mono);
+  }
+  .da-badge-static {
+    background: rgba(224,123,57,0.1);
+    color: var(--da-accent);
+  }
+  .da-badge-video {
+    background: rgba(58,158,110,0.1);
+    color: var(--da-green);
+  }
+
+  /* ===== COST COMPARISON ===== */
+  .da-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .da-compare-card {
+    background: var(--da-surface);
+    border: 1.5px solid var(--da-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.2s;
+  }
+  .da-compare-card:hover {
+    box-shadow: 0 4px 20px rgba(30,53,87,0.08);
+  }
+  .da-compare-agency {
+    border-color: rgba(192,57,43,0.25);
+    background: rgba(192,57,43,0.02);
+  }
+  .da-compare-daily {
+    border-color: rgba(58,158,110,0.25);
+    background: rgba(58,158,110,0.02);
+  }
+  .da-compare-header {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--da-muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .da-compare-number {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .da-compare-label {
+    font-size: 13px;
+    color: var(--da-blue-gray);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .da-compare-evidence {
+    font-size: 11px;
+    color: var(--da-blue-gray);
+    line-height: 1.7;
+    font-family: var(--da-mono);
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--da-border);
+  }
+  .da-compare-signals {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .da-sig-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--da-muted);
+  }
+  .da-sig-icon { font-size: 12px; flex-shrink: 0; }
+  .da-sig-label { min-width: 110px; font-size: 11px; }
+  .da-sig-bar-wrap {
+    flex: 1;
+    height: 4px;
+    background: var(--da-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .da-sig-fill { height: 100%; border-radius: 999px; transition: width 0.6s ease; }
+
+  /* ===== STAT ROW ===== */
+  .da-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .da-stat {
+    background: var(--da-surface);
+    border: 1.5px solid var(--da-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .da-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--da-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .da-stat-label { font-size: 12px; color: var(--da-blue-gray); line-height: 1.5; }
+
+  /* ===== PIPELINE ===== */
+  .da-pipeline {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .da-pipe-stage {
+    flex: 1;
+    min-width: 110px;
+    background: var(--da-surface);
+    border-top: 3px solid var(--da-border);
+    border-right: 1px solid var(--da-border);
+    border-bottom: 1.5px solid var(--da-border);
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .da-pipe-stage:first-child { border-left: 1.5px solid var(--da-border); border-radius: 16px 0 0 16px; }
+  .da-pipe-stage:last-child { border-right: 1.5px solid var(--da-border); border-radius: 0 16px 16px 0; }
+  .da-pipe-stage:hover, .da-pipe-stage.active { border-top-color: var(--da-accent); background: #fff; }
+  .da-pipe-icon { font-size: 20px; margin-bottom: 8px; }
+  .da-pipe-name { font-weight: 700; font-size: 11px; color: var(--da-navy); }
+  .da-pipe-desc { font-size: 10px; color: var(--da-muted); margin-top: 4px; font-family: var(--da-mono); }
+
+  /* ===== SIGNAL CARDS ===== */
+  .da-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .da-signal-card {
+    background: var(--da-surface);
+    border: 1.5px solid var(--da-border);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .da-signal-card:hover { border-color: var(--da-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
+  .da-signal-decline {
+    border-color: rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.03);
+  }
+  .da-signal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .da-signal-name { font-weight: 700; font-size: 13px; color: var(--da-navy); }
+  .da-signal-weight {
+    font-family: var(--da-mono);
+    font-size: 10px;
+    color: var(--da-accent);
+    background: rgba(224,123,57,0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .da-signal-desc { font-size: 11px; color: var(--da-blue-gray); line-height: 1.6; margin-bottom: 12px; }
+  .da-signal-bar-wrap {
+    height: 4px;
+    background: var(--da-surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .da-signal-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--da-accent);
+    transition: width 0.6s ease;
+  }
+  .da-bar-green { background: var(--da-green); }
+  .da-signal-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--da-muted);
+    font-family: var(--da-mono);
+  }
+
+  /* ===== CTA ===== */
+  .da-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--da-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .da-cta-section.visible { opacity: 1; transform: none; }
+  .da-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--da-navy);
+    letter-spacing: -0.03em;
+  }
+  .da-cta-sub {
+    font-size: 16px;
+    color: var(--da-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .da-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .da-btn-p {
+    display: inline-block;
+    background: var(--da-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--da-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .da-btn-p:hover { background: var(--da-accent2); }
+  .da-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--da-navy);
+    border: 2px solid var(--da-navy);
+    padding: 16px 34px;
+    font-family: var(--da-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .da-btn-s:hover { background: var(--da-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes daFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .da-format-grid { grid-template-columns: 1fr 1fr; }
+    .da-compare-grid { grid-template-columns: 1fr; }
+    .da-signal-grid { grid-template-columns: 1fr 1fr; }
+    .da-stat-row { grid-template-columns: 1fr; }
+    .da-pipeline { flex-wrap: wrap; }
+    .da-pipe-stage { min-width: calc(33.33% - 1px); border-radius: 0 !important; }
+    .da-pipe-stage:first-child { border-radius: 16px 0 0 0 !important; }
+    .da-pipe-stage:nth-child(3) { border-radius: 0 16px 0 0 !important; }
+    .da-pipe-stage:nth-child(4) { border-radius: 0 0 0 16px !important; }
+    .da-pipe-stage:last-child { border-radius: 0 0 16px 0 !important; }
+    .da-tabs { max-width: 100%; }
+  }
+</style>
+
+<!-- DM Mono font for daily-ads sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Creative engine demo
+  const daCreativeLines = [
+    ['da-log-working', '\u27F6 Loading brand assets \u00B7 Acme Plumbing'],
+    ['da-log-ok', '\u2713 Color palette extracted \u00B7 3 brand colors'],
+    ['da-log-ok', '\u2713 Voice profile loaded \u00B7 casual-professional'],
+    ['da-log-working', '\u27F6 Generating static formats...'],
+    ['da-log-ok', '\u2713 Testimonial Card \u00B7 1080x1080 \u00B7 generated'],
+    ['da-log-ok', '\u2713 Before/After Split \u00B7 1200x628 \u00B7 generated'],
+    ['da-log-ok', '\u2713 Feature Highlight \u00B7 1080x1350 \u00B7 generated'],
+    ['da-log-working', '\u27F6 Generating video formats...'],
+    ['da-log-ok', '\u2713 Animated Reveal \u00B7 15s \u00B7 1080x1920 \u00B7 rendered'],
+    ['da-log-ok', '\u2713 Text Overlay \u00B7 10s \u00B7 1080x1080 \u00B7 rendered'],
+    ['da-log-qual', '\u2192 15 static + 6 video = 21 creatives ready'],
+    ['da-log-ok', '\u26A1 Creative batch complete \u00B7 ready for upload'],
+  ];
+
+  function daRunCreative() {
+    const log = document.getElementById('daLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= daCreativeLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = daCreativeLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 280);
+  }
+
+  const daInput = document.getElementById('daInput');
+  if (daInput) {
+    daInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') daRunCreative();
+    });
+  }
+
+  // Tab switching
+  function daSwitchTab(el) {
+    document.querySelectorAll('.da-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const targetId = el.getAttribute('data-tab');
+    document.querySelectorAll('.da-tab-panel').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(targetId);
+    if (target) target.classList.add('active');
+  }
+
+  // Pipeline toggle
+  function daTogglePipe(el) {
+    document.querySelectorAll('.da-pipe-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const daObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.da-section, .da-cta-section').forEach(el => daObs.observe(el));
+
+  // Animate signal bars on scroll
+  const daSignalObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.da-signal-bar, .da-sig-fill').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.da-signal-grid, .da-compare-grid').forEach(g => daSignalObs.observe(g));
+
+  // Make functions available globally for inline onclick handlers
+  window.daRunCreative = daRunCreative;
+  window.daSwitchTab = daSwitchTab;
+  window.daTogglePipe = daTogglePipe;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .da-log-ok { color: #3a9e6e; }
+  .da-log-working { color: #e07b39; }
+  .da-log-qual { color: #1e3557; font-weight: 500; }
+</style>
