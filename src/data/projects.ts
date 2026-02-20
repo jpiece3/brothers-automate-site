@@ -107,12 +107,12 @@ export const projects: Project[] = [
     name: 'Brand Research',
     tagline: 'AI-powered audience and competitor intelligence',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
-    description: 'Agency: completed full brand research, competitor analysis, and positioning strategy in 48 hours instead of 4 weeks.',
+    description: 'Agency: completed full brand research, competitor analysis, and positioning strategy in 10 minutes instead of 4 weeks.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
       title: 'Brand Research | AI-Powered Market Intelligence | Brothers Automate',
-      description: 'Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In days, not months.'
+      description: 'Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In minutes, not months.'
     },
     problem: {
       headline: 'You\'re guessing instead of knowing',
@@ -135,9 +135,9 @@ export const projects: Project[] = [
       ]
     },
     results: {
-      headline: 'Research in days, not months',
+      headline: 'Research in minutes, not months',
       stats: [
-        { number: '48hr', label: 'Turnaround', context: 'Full brand research delivered' },
+        { number: '10min', label: 'Turnaround', context: 'Full brand research delivered' },
         { number: '10+', label: 'Competitor Profiles', context: 'Analyzed per project' },
         { number: '90%', label: 'Time Saved', context: 'vs. traditional research' }
       ]
