@@ -1,0 +1,103 @@
+---
+interface Props {
+  headline: string;
+  painPoints: string[];
+  costOfInaction: string;
+}
+
+const { headline, painPoints, costOfInaction } = Astro.props;
+---
+
+<section class="s-problem bg-surface" id="problem">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+    </div>
+
+    <div class="pain-grid" data-animate-stagger>
+      {painPoints.map((point) => (
+        <div class="pain-card">
+          <span class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </span>
+          <p>{point}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="cost-callout" data-animate="fade-up">
+      <p>{costOfInaction}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .s-problem { padding: var(--space-4xl) 0; }
+
+  .pain-grid {
+    display: grid;
+    gap: var(--space-md);
+    max-width: 800px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .pain-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .pain-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .pain-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(220, 38, 38, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc2626;
+  }
+
+  .pain-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    align-self: center;
+  }
+
+  .cost-callout {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-2xl);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cost-callout p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  @media (max-width: 767px) {
+    .pain-grid { gap: var(--space-sm); }
+    .pain-card { padding: var(--space-md); }
+    .cost-callout { padding: var(--space-lg); }
+  }
+</style>

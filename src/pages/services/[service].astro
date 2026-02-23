@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceProblem from '../../components/services/ServiceProblem.astro';
+import ServiceSolution from '../../components/services/ServiceSolution.astro';
+import ServiceRelatedProjects from '../../components/services/ServiceRelatedProjects.astro';
+import ServiceRelatedIndustries from '../../components/services/ServiceRelatedIndustries.astro';
+import ServiceSocialProof from '../../components/services/ServiceSocialProof.astro';
+import ServiceFAQ from '../../components/services/ServiceFAQ.astro';
+import ServiceCTA from '../../components/services/ServiceCTA.astro';
+import { services, getServiceSlugs } from '../../data/services';
+import type { ServiceData } from '../../data/services';
+
+export function getStaticPaths() {
+  return getServiceSlugs();
+}
+
+const { service } = Astro.params;
+const data = services[service as string] as ServiceData;
+
+if (!data) {
+  return Astro.redirect('/services/');
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": data.name,
+  "description": data.schema.description,
+  "serviceType": data.schema.serviceType,
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "1497",
+    "highPrice": "7997",
+    "priceCurrency": "USD",
+    "description": "Custom AI automation systems, 1-3 weeks delivery"
+  },
+  "areaServed": "Worldwide"
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${SITE_URL}/services/` },
+    { "@type": "ListItem", "position": 3, "name": data.name, "item": `${SITE_URL}/services/${data.slug}` }
+  ]
+};
+---
+
+<Layout
+  title={data.meta.title}
+  description={data.meta.description}
+  canonicalUrl={`${SITE_URL}/services/${data.slug}`}
+>
+  <Header />
+  <main>
+    <ServiceHero
+      badge={data.hero.badge}
+      headline={data.hero.headline}
+      headlineGradient={data.hero.headlineGradient}
+      subheadline={data.hero.subheadline}
+      stats={data.hero.stats}
+      trustSignal={data.hero.trustSignal}
+    />
+    <ServiceProblem
+      headline={data.problem.headline}
+      painPoints={data.problem.painPoints}
+      costOfInaction={data.problem.costOfInaction}
+    />
+    <ServiceSolution
+      headline={data.solution.headline}
+      headlineHighlight={data.solution.headlineHighlight}
+      description={data.solution.description}
+      features={data.solution.features}
+      conclusion={data.solution.conclusion}
+      callout={data.solution.callout}
+    />
+    <ServiceRelatedProjects projects={data.relatedProjects} />
+    <ServiceRelatedIndustries industries={data.relatedIndustries} />
+    <ServiceSocialProof
+      headline={data.socialProof.headline}
+      stats={data.socialProof.stats}
+    />
+    <ServiceFAQ faq={data.faq} />
+    <ServiceCTA
+      headline={data.cta.headline}
+      headlineHighlight={data.cta.headlineHighlight}
+      subheadline={data.cta.subheadline}
+    />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>

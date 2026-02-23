@@ -1,0 +1,73 @@
+---
+interface Props {
+  headline: string;
+  stats: { number: string; label: string; context: string }[];
+}
+
+const { headline, stats } = Astro.props;
+---
+
+<section class="l-stats bg-surface">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+    </div>
+
+    <div class="stats-grid" data-animate-stagger>
+      {stats.map((stat) => (
+        <div class="stat-card">
+          <span class="stat-number">{stat.number}</span>
+          <span class="stat-label">{stat.label}</span>
+          <span class="stat-context">{stat.context}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .l-stats {
+    padding: var(--space-3xl) 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .stat-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--orange);
+  }
+
+  .stat-context {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+</style>

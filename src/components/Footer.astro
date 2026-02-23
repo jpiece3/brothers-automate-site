@@ -1,5 +1,13 @@
 ---
+import { projects } from '../data/projects';
+import { getAllServices } from '../data/services';
+import { getAllVerticals } from '../data/verticals';
+import { getAllLocations } from '../data/locations';
+
 const year = new Date().getFullYear();
+const services = getAllServices();
+const verticals = getAllVerticals();
+const locations = getAllLocations();
 ---
 
 <footer class="footer">
@@ -13,25 +21,37 @@ const year = new Date().getFullYear();
         <div class="footer-col">
           <h4>Projects</h4>
           <ul>
-            <li><a href="/projects/quiz-funnels">Quiz Funnels</a></li>
-            <li><a href="/projects/signal-engine">Signal Engine</a></li>
-            <li><a href="/projects/brand-research">Brand Research</a></li>
-            <li><a href="/projects/daily-ads">Daily Ads</a></li>
-            <li><a href="/projects/screenfast">ScreenFast</a></li>
-            <li><a href="/projects/onboarding-workflow">Onboarding Workflow</a></li>
-            <li><a href="/projects/route-simply">Route Simply</a></li>
-            <li><a href="/projects/automated-inventory">Automated Inventory</a></li>
+            {projects.map(p => (
+              <li><a href={`/projects/${p.slug}`}>{p.name}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            {services.map(s => (
+              <li><a href={`/services/${s.slug}`}>{s.name}</a></li>
+            ))}
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Industries</h4>
           <ul>
-            <li><a href="/for/coaches">Coaches & Consultants</a></li>
-            <li><a href="/for/financial-advisors">Financial Advisors</a></li>
-            <li><a href="/for/real-estate">Real Estate</a></li>
-            <li><a href="/for/home-services">Home Services</a></li>
-            <li><a href="/for/ecommerce">E-commerce</a></li>
+            {verticals.map(v => (
+              <li><a href={`/for/${v.slug}`}>{v.shortLabel}</a></li>
+            ))}
+            <li><a href="/for/" class="view-all">View All &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            {locations.map(l => (
+              <li><a href={`/in/${l.slug}`}>{l.name}</a></li>
+            ))}
           </ul>
         </div>
 
@@ -39,14 +59,7 @@ const year = new Date().getFullYear();
           <h4>Company</h4>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/pricing">Pricing</a></li>
             <li><a href="/blog">Blog</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
             <li>
               <a
                 href="#"
@@ -96,9 +109,16 @@ const year = new Date().getFullYear();
   }
 
   .footer-links {
-    display: flex;
-    gap: var(--space-2xl);
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .footer-links {
+      grid-template-columns: repeat(5, auto);
+      gap: var(--space-2xl);
+    }
   }
 
   .footer-col h4 {
@@ -123,12 +143,20 @@ const year = new Date().getFullYear();
   .footer-col a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     transition: color 0.2s ease;
   }
 
   .footer-col a:hover {
     color: var(--orange);
+  }
+
+  .view-all {
+    font-weight: 600;
+    color: var(--orange) !important;
+    font-size: 0.8125rem !important;
+    margin-top: var(--space-xs);
+    display: inline-block;
   }
 
   .footer-bottom {
@@ -149,10 +177,6 @@ const year = new Date().getFullYear();
 
     .footer-logo {
       display: flex;
-      justify-content: center;
-    }
-
-    .footer-links {
       justify-content: center;
     }
 

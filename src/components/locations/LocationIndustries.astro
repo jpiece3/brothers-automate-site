@@ -1,0 +1,104 @@
+---
+interface Props {
+  headline: string;
+  subheadline: string;
+  industries: {
+    slug: string;
+    name: string;
+    blurb: string;
+  }[];
+}
+
+const { headline, subheadline, industries } = Astro.props;
+---
+
+<section class="l-industries bg-surface">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <h2>{headline}</h2>
+      <p>{subheadline}</p>
+    </div>
+
+    <div class="industries-grid" data-animate-stagger>
+      {industries.map((industry) => (
+        <a href={`/for/${industry.slug}`} class="industry-card card">
+          <h3>{industry.name}</h3>
+          <p>{industry.blurb}</p>
+          <span class="industry-link">
+            Learn more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .l-industries {
+    padding: var(--space-4xl) 0;
+  }
+
+  .industries-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .industries-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .industry-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid var(--border);
+  }
+
+  .industry-card:hover {
+    border-color: var(--orange);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .industry-card h3 {
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .industry-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .industry-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-top: var(--space-sm);
+  }
+
+  .industry-card:hover .industry-link svg {
+    transform: translateX(4px);
+  }
+
+  .industry-link svg {
+    transition: transform var(--transition);
+  }
+</style>

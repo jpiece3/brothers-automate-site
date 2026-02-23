@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LocationHero from '../../components/locations/LocationHero.astro';
+import LocationStats from '../../components/locations/LocationStats.astro';
+import LocationServices from '../../components/locations/LocationServices.astro';
+import LocationIndustries from '../../components/locations/LocationIndustries.astro';
+import LocationCTA from '../../components/locations/LocationCTA.astro';
+import { locations, getLocationSlugs } from '../../data/locations';
+import type { LocationData } from '../../data/locations';
+
+export function getStaticPaths() {
+  return getLocationSlugs();
+}
+
+const { location } = Astro.params;
+const data = locations[location as string] as LocationData;
+
+if (!data) {
+  return Astro.redirect('/in/');
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+
+// LocalBusiness Schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `AI Automation for ${data.name} Businesses`,
+  "description": data.meta.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": `${data.name}, ${data.region}`
+  }
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Locations", "item": `${SITE_URL}/in/` },
+    { "@type": "ListItem", "position": 3, "name": data.name, "item": `${SITE_URL}/in/${data.slug}` }
+  ]
+};
+---
+
+<Layout
+  title={data.meta.title}
+  description={data.meta.description}
+  canonicalUrl={`${SITE_URL}/in/${data.slug}`}
+>
+  <Header />
+  <main>
+    <LocationHero
+      badge={data.hero.badge}
+      headline={data.hero.headline}
+      headlineGradient={data.hero.headlineGradient}
+      subheadline={data.hero.subheadline}
+      stats={data.hero.stats}
+    />
+    <LocationStats
+      headline={data.localStats.headline}
+      stats={data.localStats.stats}
+    />
+    <LocationServices
+      headline={data.topServices.headline}
+      subheadline={data.topServices.subheadline}
+      services={data.topServices.services}
+    />
+    <LocationIndustries
+      headline={data.topIndustries.headline}
+      subheadline={data.topIndustries.subheadline}
+      industries={data.topIndustries.industries}
+    />
+    <LocationCTA
+      headline={data.cta.headline}
+      headlineHighlight={data.cta.headlineHighlight}
+      subheadline={data.cta.subheadline}
+    />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
