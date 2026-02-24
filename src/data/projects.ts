@@ -423,6 +423,52 @@ export const projects: Project[] = [
       description: 'Let\'s set up automated inventory tracking and daily reports so you always know exactly where things stand.'
     },
     videoUrl: 'https://www.youtube.com/embed/mV9VePjnCrA'
+  },
+  {
+    slug: 'equipment-identifier',
+    name: 'Equipment Identifier',
+    tagline: 'AI-powered equipment cataloging from photos',
+    icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
+    description: 'Auction company: AI identifies heavy equipment from photos in seconds. Lot titles that used to take minutes per item — done in a batch, instantly.',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
+    meta: {
+      title: 'Equipment Identifier | AI Equipment Cataloging | Brothers Automate',
+      description: 'Upload photos of heavy equipment, get back auction-ready lot titles in seconds. AI vision identifies manufacturer, model, year, and category from a single photo.'
+    },
+    problem: {
+      headline: 'Your catalogers are typing lot titles by hand',
+      description: 'Every piece of equipment that comes through the yard needs a lot title. Someone looks at the machine, squints at the nameplate, and types it into a spreadsheet. Multiply that by hundreds of lots per auction.',
+      painPoints: [
+        'Cataloging a single lot takes 2-5 minutes of manual data entry',
+        'Misspelled manufacturers and wrong model numbers end up in listings',
+        'New hires don\'t know a PC290LC from a PC360LC',
+        'No one wants to walk the yard twice to double-check what they typed'
+      ]
+    },
+    solution: {
+      headline: 'Upload a photo. Get a lot title.',
+      description: 'Drag and drop equipment photos. AI vision reads nameplates, decals, and serial prefixes to generate structured lot titles in the standard auction format. Review, correct, and export — all from one screen.',
+      features: [
+        { title: 'Batch Processing', description: 'Upload entire folders of photos. AI identifies them all in parallel.' },
+        { title: '51 Equipment Categories', description: 'From hydraulic excavators to aerial lifts — every category an auction house needs.' },
+        { title: 'Learns From Corrections', description: 'Thumbs down a result and correct it. The AI uses your corrections for the rest of the batch.' },
+        { title: '4 Export Targets', description: 'CSV, Google Sheets with photo formulas, Notion, or Airtable. Ready for your auction software.' }
+      ]
+    },
+    results: {
+      headline: 'Built for an auction company. Runs on pennies.',
+      stats: [
+        { number: '~1sec', label: 'Per Photo', context: 'vs. 2-5 minutes manual' },
+        { number: '51', label: 'Categories', context: 'Full equipment taxonomy' },
+        { number: '$0.001', label: 'Per ID', context: '1,000 IDs = ~$1' }
+      ]
+    },
+    cta: {
+      headline: 'Stop typing lot titles by hand',
+      description: 'Let\'s set up AI equipment identification so your catalogers can process a yard in minutes instead of days.'
+    },
+    productUrl: 'https://equipment-identifier.vercel.app'
   }
 ];
 

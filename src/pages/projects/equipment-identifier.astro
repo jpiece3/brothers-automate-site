@@ -1,0 +1,1033 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://equipment-identifier.vercel.app';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "Equipment Identifier", "item": `${SITE_URL}/projects/equipment-identifier` }
+  ]
+};
+---
+
+<Layout
+  title="Equipment Identifier | AI Equipment Cataloging | Brothers Automate"
+  description="Upload photos of heavy equipment, get back auction-ready lot titles in seconds. AI vision identifies manufacturer, model, year, and category from a single photo."
+>
+  <Header />
+  <main>
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Powered Equipment Cataloging</span>
+          <h1>Equipment Identifier.<br /><span class="gradient-text">Photo In. Lot Title Out.</span></h1>
+          <p class="project-hero-sub">Upload photos of heavy equipment. Get back auction-ready lot titles in seconds. No manual data entry. No guessing models.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">~1sec</span>
+              <span class="hero-stat-label">Per Photo</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">51</span>
+              <span class="hero-stat-label">Categories</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">$0.001</span>
+              <span class="hero-stat-label">Per ID</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Vision Engine Terminal Box -->
+          <div class="ei-scan-box">
+            <div class="ei-scan-bar">
+              <div class="ei-scan-dot" style="background:#e8b4a0"></div>
+              <div class="ei-scan-dot" style="background:#ddd6c8"></div>
+              <div class="ei-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">equipment-identifier / vision engine</span>
+            </div>
+            <div class="ei-scan-input-row">
+              <input class="ei-scan-input" id="eiScanInput" placeholder="equipment-photos.zip &middot; drag and drop" />
+              <button class="ei-scan-btn" onclick="eiRunIdentify()">&#9654; IDENTIFY</button>
+            </div>
+            <div class="ei-scan-log" id="eiScanLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ei-ticker">
+      <div class="ei-ticker-inner">
+        PHOTO UPLOAD &rarr; AI VISION &nbsp;&middot;&nbsp; MANUFACTURER &nbsp;&middot;&nbsp; MODEL &nbsp;&middot;&nbsp; YEAR &nbsp;&middot;&nbsp; CATEGORY &nbsp;&middot;&nbsp; LOT TITLE &nbsp;&middot;&nbsp; CSV EXPORT &nbsp;&middot;&nbsp; BATCH PROCESSING &nbsp;&middot;&nbsp;
+        PHOTO UPLOAD &rarr; AI VISION &nbsp;&middot;&nbsp; MANUFACTURER &nbsp;&middot;&nbsp; MODEL &nbsp;&middot;&nbsp; YEAR &nbsp;&middot;&nbsp; CATEGORY &nbsp;&middot;&nbsp; LOT TITLE &nbsp;&middot;&nbsp; CSV EXPORT &nbsp;&middot;&nbsp; BATCH PROCESSING &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — HOW IT WORKS -->
+    <section class="ei-section" id="ei-section-1">
+      <div class="ei-section-label">01 — How It Works</div>
+      <h2 class="ei-section-title">Four steps.<br><span class="ei-accent">Photo to export.</span></h2>
+      <p class="ei-section-sub">Upload, identify, review, export. Click each step to see what happens under the hood.</p>
+
+      <div class="ei-loop">
+        <div class="ei-loop-card active" onclick="eiToggleStep(this)">
+          <div class="ei-loop-num">01</div>
+          <div class="ei-loop-title">Upload</div>
+          <div class="ei-loop-desc">Drag photos or entire folders</div>
+          <div class="ei-loop-detail">
+            &rarr; JPEG, PNG, WebP, HEIC supported<br>
+            &rarr; Up to 10MB per photo<br>
+            &rarr; Batch upload — process dozens at once<br>
+            &rarr; Name your batch for easy tracking<br>
+            &rarr; Photos stored securely in cloud storage
+          </div>
+        </div>
+        <div class="ei-loop-card" onclick="eiToggleStep(this)">
+          <div class="ei-loop-num">02</div>
+          <div class="ei-loop-title">Identify</div>
+          <div class="ei-loop-desc">AI reads nameplates, decals, serial prefixes</div>
+          <div class="ei-loop-detail">
+            &rarr; Gemini 2.5 Flash vision model<br>
+            &rarr; Reads every visible nameplate and sticker<br>
+            &rarr; Decodes serial number prefixes for year<br>
+            &rarr; Maps common names to auction-standard terms<br>
+            &rarr; Up to 5 photos processed in parallel
+          </div>
+        </div>
+        <div class="ei-loop-card" onclick="eiToggleStep(this)">
+          <div class="ei-loop-num">03</div>
+          <div class="ei-loop-title">Review</div>
+          <div class="ei-loop-desc">Confidence-scored results with inline corrections</div>
+          <div class="ei-loop-detail">
+            &rarr; Color-coded confidence badges<br>
+            &rarr; Thumbs up/down per identification<br>
+            &rarr; Correct any field inline<br>
+            &rarr; AI learns from your corrections mid-batch<br>
+            &rarr; Photo lightbox for detailed inspection
+          </div>
+        </div>
+        <div class="ei-loop-card" onclick="eiToggleStep(this)">
+          <div class="ei-loop-num">04</div>
+          <div class="ei-loop-title">Export</div>
+          <div class="ei-loop-desc">CSV, Google Sheets, Notion, or Airtable</div>
+          <div class="ei-loop-detail">
+            &rarr; Standard CSV with 17 columns<br>
+            &rarr; Google Sheets with =IMAGE() formulas<br>
+            &rarr; Push directly to Notion databases<br>
+            &rarr; Push directly to Airtable bases<br>
+            &rarr; User corrections override AI in exports
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — WHAT YOU GET BACK -->
+    <section class="ei-section" id="ei-section-2">
+      <div class="ei-section-label">02 — What You Get Back</div>
+      <h2 class="ei-section-title">Structured data.<br><span class="ei-accent">Not guesswork.</span></h2>
+      <p class="ei-section-sub">Every photo returns a complete identification. Click each tab to see the output.</p>
+
+      <div class="ei-tabs">
+        <div class="ei-tab-nav">
+          <button class="ei-tab-btn active" onclick="eiSwitchTab(this)" data-tab="0">Lot Title</button>
+          <button class="ei-tab-btn" onclick="eiSwitchTab(this)" data-tab="1">Equipment Data</button>
+          <button class="ei-tab-btn" onclick="eiSwitchTab(this)" data-tab="2">Condition Notes</button>
+          <button class="ei-tab-btn" onclick="eiSwitchTab(this)" data-tab="3">Batch Intelligence</button>
+        </div>
+        <div class="ei-tab-panels">
+          <div class="ei-tab-panel active" data-panel="0">
+            <div class="ei-panel-title">Lot Title</div>
+            <div class="ei-panel-desc">Standard auction format every cataloger recognizes. Ready to paste into your listing.</div>
+            <ul class="ei-panel-list">
+              <li>Format: {'{'} YEAR {'}'} {'{'} MANUFACTURER {'}'} {'{'} MODEL {'}'} {'{'} EQUIPMENT_TYPE {'}'}</li>
+              <li>Example: 2019 Komatsu PC290LC-11 Hydraulic Excavator</li>
+              <li>Model suffixes preserved (LGP, LC, GC, XE, LT)</li>
+              <li>Common names mapped to auction-standard terms</li>
+              <li>AI reasoning shown for transparency</li>
+            </ul>
+          </div>
+          <div class="ei-tab-panel" data-panel="1">
+            <div class="ei-panel-title">Equipment Data</div>
+            <div class="ei-panel-desc">Every field an auction listing needs, extracted from a single photo.</div>
+            <ul class="ei-panel-list">
+              <li>Manufacturer and model number</li>
+              <li>Model year (from data plates, DOT stickers, serial decode)</li>
+              <li>Category and subcategory (51 types)</li>
+              <li>Serial number and plate text (when visible)</li>
+              <li>Confidence score (0-100%) with color coding</li>
+            </ul>
+          </div>
+          <div class="ei-tab-panel" data-panel="2">
+            <div class="ei-panel-title">Condition Notes</div>
+            <div class="ei-panel-desc">AI observations about the equipment's visible condition.</div>
+            <ul class="ei-panel-list">
+              <li>Visible wear, dents, rust, or damage</li>
+              <li>Missing components or attachments</li>
+              <li>Track/tire condition indicators</li>
+              <li>Operational status clues (lights, fluid leaks)</li>
+              <li>Notable features and aftermarket additions</li>
+            </ul>
+          </div>
+          <div class="ei-tab-panel" data-panel="3">
+            <div class="ei-panel-title">Batch Intelligence</div>
+            <div class="ei-panel-desc">Aggregate stats across your entire batch — useful for auction planning.</div>
+            <ul class="ei-panel-list">
+              <li>Category breakdown (how many excavators, loaders, etc.)</li>
+              <li>Manufacturer distribution across the batch</li>
+              <li>Average confidence score</li>
+              <li>Completion rate and failure tracking</li>
+              <li>Processing time per identification</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — 51 EQUIPMENT CATEGORIES -->
+    <section class="ei-section" id="ei-section-3">
+      <div class="ei-section-label">03 — Equipment Categories</div>
+      <h2 class="ei-section-title">51 categories.<br><span class="ei-accent">Built for auctions.</span></h2>
+      <p class="ei-section-sub">Every equipment type an auction house catalogs. From excavators to generators — the AI knows the taxonomy.</p>
+
+      <div class="ei-cat-grid">
+        <div class="ei-cat-tag">Hydraulic Excavator</div>
+        <div class="ei-cat-tag">Wheel Loader</div>
+        <div class="ei-cat-tag">Crawler Tractor</div>
+        <div class="ei-cat-tag">Motor Grader</div>
+        <div class="ei-cat-tag">Articulated Dump Truck</div>
+        <div class="ei-cat-tag">Skid Steer Loader</div>
+        <div class="ei-cat-tag">Backhoe Loader</div>
+        <div class="ei-cat-tag">Compact Track Loader</div>
+        <div class="ei-cat-tag">Crawler Carrier</div>
+        <div class="ei-cat-tag">Mini Excavator</div>
+        <div class="ei-cat-tag">Rough Terrain Crane</div>
+        <div class="ei-cat-tag">Aerial Lift</div>
+        <div class="ei-cat-tag">Telehandler</div>
+        <div class="ei-cat-tag">Compactor</div>
+        <div class="ei-cat-tag">Asphalt Paver</div>
+        <div class="ei-cat-tag">Cold Planer</div>
+        <div class="ei-cat-tag">Crawler Crane</div>
+        <div class="ei-cat-tag">All Terrain Crane</div>
+        <div class="ei-cat-tag">Rigid Dump Truck</div>
+        <div class="ei-cat-tag">Scraper</div>
+        <div class="ei-cat-tag">Forklift</div>
+        <div class="ei-cat-tag">Generator Set</div>
+        <div class="ei-cat-tag">Air Compressor</div>
+        <div class="ei-cat-tag">Light Tower</div>
+        <div class="ei-cat-tag ei-cat-more">+27 more categories</div>
+      </div>
+
+      <div class="ei-stat-row">
+        <div class="ei-stat">
+          <div class="ei-stat-num">51</div>
+          <div class="ei-stat-label">Equipment Categories</div>
+        </div>
+        <div class="ei-stat">
+          <div class="ei-stat-num">~1sec</div>
+          <div class="ei-stat-label">Per Identification</div>
+        </div>
+        <div class="ei-stat">
+          <div class="ei-stat-num">$0.001</div>
+          <div class="ei-stat-label">Per Photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — PROJECTS & SPREADSHEET -->
+    <section class="ei-section" id="ei-section-4">
+      <div class="ei-section-label">04 — Projects &amp; Spreadsheet</div>
+      <h2 class="ei-section-title">Organize by auction.<br><span class="ei-accent">Edit like Excel.</span></h2>
+      <p class="ei-section-sub">Group batches into named auction projects. Review everything in a spreadsheet view with inline editing.</p>
+
+      <div class="ei-feature-grid">
+        <div class="ei-feature-card">
+          <div class="ei-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="ei-feature-title">Named Projects</div>
+          <div class="ei-feature-desc">Create projects like "Spring Auction 2026" and assign batches. Keep your yard organized.</div>
+        </div>
+        <div class="ei-feature-card">
+          <div class="ei-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+          </div>
+          <div class="ei-feature-title">Spreadsheet View</div>
+          <div class="ei-feature-desc">Sortable columns, text search, batch filtering. See every identification across all batches in one table.</div>
+        </div>
+        <div class="ei-feature-card">
+          <div class="ei-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="ei-feature-title">Inline Editing</div>
+          <div class="ei-feature-desc">Click any cell to edit. Tab to the next field. Corrections save instantly — no page reload needed.</div>
+        </div>
+        <div class="ei-feature-card">
+          <div class="ei-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div class="ei-feature-title">Project Export</div>
+          <div class="ei-feature-desc">Export the entire project as one CSV. User corrections override AI results automatically.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="ei-cta-section" id="ei-section-5">
+      <div class="ei-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="ei-cta-title">Photo in.<br>Lot title out.<br><span style="color:var(--ei-accent)">For ~$0.001 per photo.</span></h2>
+      <p class="ei-cta-sub">Upload equipment photos and get auction-ready identifications in seconds. No cataloging expertise required.</p>
+      <div class="ei-cta-btn-row">
+        <a href={productUrl} class="ei-btn-p" target="_blank" rel="noopener">Try It Live &rarr;</a>
+        <a
+          href="#"
+          class="ei-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--ei-muted);margin-top:28px;font-family:var(--ei-mono)">Equipment Identifier &middot; AI-powered cataloging &middot; built for operators</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== VISION ENGINE TERMINAL BOX ===== */
+  .ei-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .ei-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .ei-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ei-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .ei-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .ei-scan-input::placeholder { color: var(--text-muted); }
+  .ei-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .ei-scan-btn:hover { background: var(--orange-hover); }
+  .ei-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .ei-scan-log.visible { display: block; animation: eiFadeUp 0.3s ease; }
+
+  /* ===== EQUIPMENT IDENTIFIER CUSTOM VARIABLES ===== */
+  :root {
+    --ei-bg: #f2ede4;
+    --ei-surface: #faf7f2;
+    --ei-surface2: #eee8dc;
+    --ei-border: #ddd6c8;
+    --ei-accent: #e07b39;
+    --ei-accent2: #c4622a;
+    --ei-navy: #1e3557;
+    --ei-navy2: #2a4a72;
+    --ei-blue-gray: #7a95b0;
+    --ei-text: #1e3557;
+    --ei-muted: #8a9ab0;
+    --ei-green: #3a9e6e;
+    --ei-green-bg: #e8f5ef;
+    --ei-mono: 'DM Mono', monospace;
+    --ei-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .ei-ticker {
+    background: var(--ei-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ei-ticker-inner {
+    display: inline-block;
+    animation: eiTicker 25s linear infinite;
+    font-family: var(--ei-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes eiTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .ei-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--ei-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ei-section.visible { opacity: 1; transform: none; }
+
+  .ei-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ei-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .ei-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ei-border);
+  }
+
+  .ei-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--ei-navy);
+    letter-spacing: -0.025em;
+  }
+  .ei-accent { color: var(--ei-accent); }
+  .ei-section-sub {
+    font-size: 13px;
+    color: var(--ei-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== LOOP STEPS ===== */
+  .ei-loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .ei-loop-card {
+    background: var(--ei-surface);
+    border: 1.5px solid var(--ei-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .ei-loop-card::after {
+    content: '\2192';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ei-accent);
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .ei-loop-card:last-child::after { display: none; }
+  .ei-loop-card:hover, .ei-loop-card.active {
+    border-color: var(--ei-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .ei-loop-num {
+    font-family: var(--ei-mono);
+    font-size: 10px;
+    color: var(--ei-muted);
+    margin-bottom: 10px;
+  }
+  .ei-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--ei-navy);
+    margin-bottom: 6px;
+  }
+  .ei-loop-desc { font-size: 11px; color: var(--ei-blue-gray); line-height: 1.7; }
+  .ei-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--ei-blue-gray);
+    line-height: 1.9;
+    font-family: var(--ei-mono);
+  }
+  .ei-loop-card.active .ei-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ei-border);
+  }
+
+  /* ===== TABBED DELIVERABLES ===== */
+  .ei-tabs {
+    margin-top: 48px;
+    border: 1.5px solid var(--ei-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .ei-tab-nav {
+    display: flex;
+    background: var(--ei-surface2);
+    border-bottom: 1.5px solid var(--ei-border);
+    overflow-x: auto;
+  }
+  .ei-tab-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--ei-sans);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--ei-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .ei-tab-btn:hover { color: var(--ei-navy); background: rgba(255,255,255,0.5); }
+  .ei-tab-btn.active {
+    color: var(--ei-accent);
+    border-bottom-color: var(--ei-accent);
+    background: rgba(255,255,255,0.6);
+  }
+  .ei-tab-panels {
+    background: var(--ei-surface);
+  }
+  .ei-tab-panel {
+    display: none;
+    padding: 32px 28px;
+    animation: eiFadeUp 0.3s ease;
+  }
+  .ei-tab-panel.active { display: block; }
+  .ei-panel-title {
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--ei-navy);
+    margin-bottom: 8px;
+  }
+  .ei-panel-desc {
+    font-size: 13px;
+    color: var(--ei-blue-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .ei-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ei-panel-list li {
+    font-size: 13px;
+    color: var(--ei-text);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.6;
+    font-family: var(--ei-mono);
+  }
+  .ei-panel-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--ei-accent);
+    font-weight: 700;
+  }
+
+  /* ===== CATEGORY GRID ===== */
+  .ei-cat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 48px;
+  }
+  .ei-cat-tag {
+    background: var(--ei-surface);
+    border: 1.5px solid var(--ei-border);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ei-navy);
+    font-family: var(--ei-mono);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .ei-cat-tag:hover {
+    border-color: var(--ei-accent);
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(224,123,57,0.1);
+  }
+  .ei-cat-more {
+    background: rgba(224,123,57,0.08);
+    border-color: rgba(224,123,57,0.3);
+    color: var(--ei-accent);
+    font-weight: 700;
+  }
+
+  /* ===== STAT ROW ===== */
+  .ei-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .ei-stat {
+    background: var(--ei-surface);
+    border: 1.5px solid var(--ei-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .ei-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--ei-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .ei-stat-label { font-size: 12px; color: var(--ei-blue-gray); line-height: 1.5; }
+
+  /* ===== FEATURE GRID ===== */
+  .ei-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .ei-feature-card {
+    background: var(--ei-surface);
+    border: 1.5px solid var(--ei-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.2s;
+  }
+  .ei-feature-card:hover {
+    border-color: var(--ei-accent);
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+    background: #fff;
+  }
+  .ei-feature-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(224,123,57,0.1);
+    border-radius: 12px;
+    color: var(--ei-accent);
+    margin-bottom: 16px;
+  }
+  .ei-feature-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--ei-navy);
+    margin-bottom: 8px;
+  }
+  .ei-feature-desc {
+    font-size: 12px;
+    color: var(--ei-blue-gray);
+    line-height: 1.7;
+  }
+
+  /* ===== CTA ===== */
+  .ei-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--ei-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ei-cta-section.visible { opacity: 1; transform: none; }
+  .ei-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--ei-navy);
+    letter-spacing: -0.03em;
+  }
+  .ei-cta-sub {
+    font-size: 16px;
+    color: var(--ei-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .ei-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .ei-btn-p {
+    display: inline-block;
+    background: var(--ei-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--ei-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .ei-btn-p:hover { background: var(--ei-accent2); }
+  .ei-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--ei-navy);
+    border: 2px solid var(--ei-navy);
+    padding: 16px 34px;
+    font-family: var(--ei-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .ei-btn-s:hover { background: var(--ei-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes eiFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ei-tab-btn {
+      min-width: 110px;
+      padding: 12px 14px;
+      font-size: 10px;
+    }
+
+    .ei-feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ei-loop { grid-template-columns: 1fr 1fr; }
+    .ei-loop-card::after { display: none; }
+    .ei-stat-row { grid-template-columns: 1fr; }
+    .ei-tab-nav {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ei-loop { grid-template-columns: 1fr; }
+    .ei-cat-grid { gap: 6px; }
+    .ei-cat-tag { padding: 8px 14px; font-size: 11px; }
+  }
+</style>
+
+<!-- DM Mono font for equipment identifier sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Vision engine terminal demo
+  const eiScanLines = [
+    ['ei-log-working', '\u27F6 Uploading 12 photos...'],
+    ['ei-log-ok', '\u2713 Batch created: Yard A - Feb 23'],
+    ['ei-log-working', '\u27F6 Identifying: IMG_0847.jpg...'],
+    ['ei-log-ok', '\u2713 Komatsu PC290LC-11 \u00B7 Hydraulic Excavator \u00B7 0.94'],
+    ['ei-log-working', '\u27F6 Identifying: IMG_0848.jpg...'],
+    ['ei-log-ok', '\u2713 2019 CAT D6T LGP \u00B7 Crawler Tractor \u00B7 0.91'],
+    ['ei-log-working', '\u27F6 Identifying: IMG_0849.jpg...'],
+    ['ei-log-ok', '\u2713 John Deere 333G \u00B7 Compact Track Loader \u00B7 0.88'],
+    ['ei-log-working', '\u27F6 Processing remaining 9 photos...'],
+    ['ei-log-ok', '\u2713 12/12 complete \u00B7 avg confidence: 0.91'],
+    ['ei-log-qual', '\u2192 4 Excavators \u00B7 3 Loaders \u00B7 2 Tractors \u00B7 2 Cranes \u00B7 1 Grader'],
+    ['ei-log-ok', '\u26A1 Batch ready \u00B7 export to CSV, Sheets, Notion, or Airtable'],
+  ];
+
+  function eiRunIdentify() {
+    const log = document.getElementById('eiScanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= eiScanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = eiScanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 380);
+  }
+
+  const eiScanInput = document.getElementById('eiScanInput');
+  if (eiScanInput) {
+    eiScanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') eiRunIdentify();
+    });
+  }
+
+  // Tab switching
+  function eiSwitchTab(el) {
+    const tabIndex = el.getAttribute('data-tab');
+    document.querySelectorAll('.ei-tab-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.ei-tab-panel').forEach(panel => panel.classList.remove('active'));
+    const target = document.querySelector(`.ei-tab-panel[data-panel="${tabIndex}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  // Step card toggle
+  function eiToggleStep(el) {
+    document.querySelectorAll('.ei-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const eiObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.ei-section, .ei-cta-section').forEach(el => eiObs.observe(el));
+
+  // Make functions available globally for inline onclick handlers
+  window.eiRunIdentify = eiRunIdentify;
+  window.eiSwitchTab = eiSwitchTab;
+  window.eiToggleStep = eiToggleStep;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .ei-log-ok { color: #3a9e6e; }
+  .ei-log-working { color: #e07b39; }
+  .ei-log-qual { color: #1e3557; font-weight: 500; }
+</style>
