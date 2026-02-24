@@ -185,7 +185,7 @@ export const projects: Project[] = [
       stats: [
         { number: '<15s', label: 'Response Time', context: 'Average first reply' },
         { number: '24/7', label: 'Always On', context: 'No missed inquiries' },
-        { number: '$297', label: 'Per Month', context: 'vs. $1,600+/night lost' }
+        { number: '$297', label: 'Per Month', context: 'vs. $1,600+/month lost' }
       ]
     },
     cta: {
