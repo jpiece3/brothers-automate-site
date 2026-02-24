@@ -2,66 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import CTA from '../../components/CTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
-
-const deliverables = [
-  {
-    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-    title: 'Interactive Quiz Application',
-    items: [
-      'SEO-optimized landing page that drives quiz starts',
-      '6-12 custom questions designed to segment your audience',
-      'Email capture form before results',
-      '3 result pages for hot, warm, and cold leads',
-      'Progress bar and animated transitions',
-      'Mobile-responsive on all devices'
-    ]
-  },
-  {
-    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-    title: '26 Automated Emails',
-    items: [
-      '3 Welcome emails for all quiz takers',
-      '4 Cold Nurture emails for low scorers',
-      '3 Warm Activation emails with social proof',
-      '2 Hot Path emails with direct CTA',
-      '2 Win-Back emails for non-openers',
-      'Personalization tags and scheduled sending'
-    ]
-  },
-  {
-    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
-    title: 'Analytics Dashboard',
-    items: [
-      'KPI cards: views, start rate, completion rate, captures',
-      'Visual conversion funnel with drop-off tracking',
-      'Hot/warm/cold lead distribution chart',
-      'Daily activity timeline over 30 days',
-      'Answer distribution breakdown',
-      'UTM source tracking for marketing channels'
-    ]
-  },
-  {
-    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
-    title: 'Backend Infrastructure',
-    items: [
-      '6 database tables: leads, responses, products, email log, templates, analytics',
-      '4 API endpoints for quiz submission, analytics, and email',
-      '5-factor scoring engine (Fit, Need, Timeline, Economics, Authority)',
-      'Hourly cron job for scheduled email delivery',
-      'Full documentation and walkthrough'
-    ]
-  }
-];
-
-const process = [
-  { number: 1, title: 'Discovery Call', days: 'Day 1', desc: '30-minute call to map your bottleneck, understand your audience, and define quiz strategy.' },
-  { number: 2, title: 'Research & Design', days: 'Days 2-3', desc: 'We analyze your market, competitors, and customers. Then architect the quiz flow, scoring model, and email sequences.' },
-  { number: 3, title: 'Build & Test', days: 'Days 4-7', desc: 'Custom development of your quiz, emails, analytics, and integrations. Internal testing and edge case handling.' },
-  { number: 4, title: 'Deploy & Handoff', days: 'Days 7-10', desc: 'Launch on your domain with full documentation. Walkthrough call plus 30-day support window.' }
-];
+const productUrl = 'https://quiz.brothersautomate.com';
 
 const faqs = [
   {
@@ -124,306 +67,338 @@ const breadcrumbSchema = {
 >
   <Header />
   <main>
-    <!-- Hero -->
-    <section class="qf-hero">
+
+    <!-- HERO -->
+    <section class="project-hero">
       <div class="hero-bg-grid"></div>
       <div class="container">
-        <div class="qf-hero-content" data-animate="fade-up">
-          <span class="badge">Our Most Popular System</span>
-          <h1>Your Leads Deserve Better<br />Than a PDF Download</h1>
-          <p class="qf-hero-sub">We build custom quiz funnels that score, segment, and follow up with every lead automatically. So you only talk to people who are ready to buy.</p>
-          <div class="qf-hero-cta">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">Done-for-You Lead Qualification System</span>
+          <h1>Quiz Funnels.<br /><span class="gradient-text">Qualify Leads While You Sleep.</span></h1>
+          <p class="project-hero-sub">We build custom quiz funnels that score, segment, and follow up with every lead automatically. So you only talk to people who are ready to buy.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">2-3x</span>
+              <span class="hero-stat-label">More Qualified Leads</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">26</span>
+              <span class="hero-stat-label">Automated Emails</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">7-10</span>
+              <span class="hero-stat-label">Days to Live</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try a Live Quiz</a>
             <a
               href="#"
-              class="btn btn-primary btn-lg"
+              class="btn btn-secondary btn-lg"
               data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
               data-cal-namespace="free-quiz-audit-automation-brothers"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Book Your Strategy Call</a>
-            <a href="https://quiz.brothersautomate.com" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Try a Live Quiz</a>
+            >Talk to the Brothers</a>
           </div>
-          <div class="qf-hero-stats">
-            <div class="qf-stat">
-              <span class="qf-stat-num">2-3x</span>
-              <span class="qf-stat-label">More Qualified Leads</span>
+
+          <!-- Qualification Terminal Box -->
+          <div class="qf-scan-box">
+            <div class="qf-scan-bar">
+              <div class="qf-scan-dot" style="background:#e8b4a0"></div>
+              <div class="qf-scan-dot" style="background:#ddd6c8"></div>
+              <div class="qf-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">quiz-funnels / qualification engine</span>
             </div>
-            <div class="qf-stat-divider"></div>
-            <div class="qf-stat">
-              <span class="qf-stat-num">26</span>
-              <span class="qf-stat-label">Automated Emails</span>
+            <div class="qf-scan-input-row">
+              <input class="qf-scan-input" id="qfScanInput" placeholder="acme-plumbing.com &middot; enter your business" />
+              <button class="qf-scan-btn" onclick="qfRunBuild()">&#9654; BUILD QUIZ</button>
             </div>
-            <div class="qf-stat-divider"></div>
-            <div class="qf-stat">
-              <span class="qf-stat-num">7-10</span>
-              <span class="qf-stat-label">Days to Live</span>
-            </div>
+            <div class="qf-scan-log" id="qfScanLog"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Problem -->
-    <section class="qf-problem">
-      <div class="container">
-        <div class="qf-problem-inner" data-animate="fade-up">
-          <span class="section-label">The Problem</span>
-          <h2>Your leads are slipping through the cracks</h2>
-          <p class="qf-problem-desc">You're getting leads, but half of them aren't qualified and the other half never hear from you fast enough. Manual follow-up doesn't scale.</p>
-          <div class="pain-points" data-animate-stagger>
-            <div class="pain-point">
-              <span class="pain-x">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </span>
-              <span>Leads come in but nobody follows up within the first 2 minutes</span>
-            </div>
-            <div class="pain-point">
-              <span class="pain-x">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </span>
-              <span>You can't tell who's ready to buy vs. who's just browsing</span>
-            </div>
-            <div class="pain-point">
-              <span class="pain-x">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </span>
-              <span>Follow-up emails get written once and forgotten</span>
-            </div>
-            <div class="pain-point">
-              <span class="pain-x">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </span>
-              <span>Your calendar fills up with tire-kickers and price shoppers</span>
-            </div>
-          </div>
-          <div class="problem-bottom">
-            <p>You're great at what you do. But between client work and operations, leads keep falling through. <strong>It doesn't have to be this way.</strong></p>
-          </div>
-        </div>
+    <!-- TICKER -->
+    <div class="qf-ticker">
+      <div class="qf-ticker-inner">
+        QUIZ QUESTIONS &rarr; SCORING ENGINE &nbsp;&middot;&nbsp; EMAIL SEQUENCES &nbsp;&middot;&nbsp; ANALYTICS &nbsp;&middot;&nbsp; LEAD SEGMENTS &nbsp;&middot;&nbsp; FOLLOW-UP &nbsp;&middot;&nbsp; DEPLOY &nbsp;&middot;&nbsp;
+        QUIZ QUESTIONS &rarr; SCORING ENGINE &nbsp;&middot;&nbsp; EMAIL SEQUENCES &nbsp;&middot;&nbsp; ANALYTICS &nbsp;&middot;&nbsp; LEAD SEGMENTS &nbsp;&middot;&nbsp; FOLLOW-UP &nbsp;&middot;&nbsp; DEPLOY &nbsp;&middot;&nbsp;
       </div>
-    </section>
+    </div>
 
-    <!-- Solution -->
-    <section class="qf-solution">
-      <div class="container">
-        <div data-animate="fade-up">
-          <span class="section-label">The Solution</span>
-          <h2>A quiz that qualifies leads while you serve clients</h2>
-          <p class="qf-solution-desc">We build an interactive quiz that makes prospects self-identify their problem and readiness to buy. The system scores them, routes them to the right follow-up, and nurtures them automatically.</p>
-        </div>
-        <div class="solution-grid" data-animate-stagger>
-          <div class="solution-card">
-            <div class="solution-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </div>
-            <h3>Smart Scoring</h3>
-            <p>5-factor scoring engine classifies every lead as hot, warm, or cold based on their quiz responses.</p>
-          </div>
-          <div class="solution-card">
-            <div class="solution-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            </div>
-            <h3>26 Automated Emails</h3>
-            <p>Five nurture sequences that follow up based on lead temperature. No manual work needed.</p>
-          </div>
-          <div class="solution-card">
-            <div class="solution-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            </div>
-            <h3>Analytics Dashboard</h3>
-            <p>Real-time funnel metrics so you know exactly what's working and where leads drop off.</p>
-          </div>
-          <div class="solution-card">
-            <div class="solution-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path></svg>
-            </div>
-            <h3>Your Domain, Your Brand</h3>
-            <p>Hosted on your domain, branded to your business. Not a generic SaaS widget.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 01 — WHAT YOU GET -->
+    <section class="qf-section" id="qf-section-1">
+      <div class="qf-section-label">01 — What You Get</div>
+      <h2 class="qf-section-title">Four deliverables.<br><span class="qf-accent">One complete system.</span></h2>
+      <p class="qf-section-sub">Click each tab to see exactly what's included. Every component is custom-built for your business.</p>
 
-    <!-- Video Walkthrough -->
-    <section class="qf-video">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <span class="section-label">See It In Action</span>
-          <h2>Full Walkthrough</h2>
+      <div class="qf-tabs">
+        <div class="qf-tab-nav">
+          <button class="qf-tab-btn active" onclick="qfSwitchTab(this)" data-tab="0">Quiz App</button>
+          <button class="qf-tab-btn" onclick="qfSwitchTab(this)" data-tab="1">Email Sequences</button>
+          <button class="qf-tab-btn" onclick="qfSwitchTab(this)" data-tab="2">Analytics</button>
+          <button class="qf-tab-btn" onclick="qfSwitchTab(this)" data-tab="3">Backend</button>
         </div>
-        <div class="video-embed" data-animate="scale-up">
-          <iframe
-            src="https://www.youtube.com/embed/FRZjVr_BrrA"
-            title="Quiz Funnel Walkthrough"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="sample-quizzes" data-animate="fade-up">
-          <p class="samples-label">Try live examples:</p>
-          <div class="samples-grid">
-            <a href="https://uphill-athlete-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Uphill Athlete</a>
-            <a href="https://analog-company-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Analog Company</a>
-            <a href="https://humblytics-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Humblytics</a>
-            <a href="https://lansing-adv-quiz.vercel.app/" target="_blank" rel="noopener" class="sample-link">Lansing Adventures</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- What You Get -->
-    <section class="qf-deliverables">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <span class="section-label">What You Get</span>
-          <h2>Complete Deliverables Breakdown</h2>
-          <p class="deliverables-sub">This isn't a template. Every quiz funnel is custom-built with deep market research, brand-matched design, and production-grade infrastructure.</p>
-        </div>
-
-        <div class="deliverables-grid" data-animate-stagger>
-          {deliverables.map((del) => (
-            <div class="deliverable-card">
-              <div class="deliverable-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={del.icon}></path>
-                </svg>
-              </div>
-              <h3>{del.title}</h3>
-              <ul>
-                {del.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div class="deliverable-stats" data-animate="fade-up">
-          <div class="del-stat"><span class="del-stat-num">50+</span><span class="del-stat-label">Production Files</span></div>
-          <div class="del-stat"><span class="del-stat-num">26</span><span class="del-stat-label">Email Sequences</span></div>
-          <div class="del-stat"><span class="del-stat-num">6</span><span class="del-stat-label">Database Tables</span></div>
-          <div class="del-stat"><span class="del-stat-num">4</span><span class="del-stat-label">API Endpoints</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process -->
-    <section class="qf-process">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <span class="section-label">How We Build It</span>
-          <h2>From First Call to Live System in 10 Days</h2>
-          <p class="process-sub">No scope creep, no discovery marathons. Just a clear process with defined deliverables at every step.</p>
-        </div>
-
-        <div class="timeline" data-animate-stagger>
-          {process.map((phase, index) => (
-            <div class="phase">
-              <div class="phase-marker">{phase.number}</div>
-              <div class="phase-content">
-                <div class="phase-header">
-                  <h3>{phase.title}</h3>
-                  <span class="phase-days">{phase.days}</span>
-                </div>
-                <p>{phase.desc}</p>
-              </div>
-              {index < process.length - 1 && <div class="phase-connector"></div>}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Anti-Agency / Pricing -->
-    <section class="qf-pricing">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <span class="section-label">Pricing</span>
-          <h2>Simple Pricing. No Surprises.</h2>
-        </div>
-
-        <div class="pricing-card" data-animate="fade-up">
-          <div class="pricing-top">
-            <span class="pricing-badge">Quiz Funnel Package</span>
-            <span class="pricing-price">$3,497 - $4,997</span>
-            <span class="pricing-timeline">7-10 business days</span>
-          </div>
-          <div class="pricing-includes">
-            <h4>Everything included:</h4>
-            <ul>
-              <li>Custom interactive quiz (6-12 questions)</li>
-              <li>5-factor lead scoring engine</li>
-              <li>26 automated email sequences</li>
-              <li>Real-time analytics dashboard</li>
-              <li>Custom design system matched to your brand</li>
-              <li>Full backend infrastructure and API</li>
-              <li>Strategy documentation package</li>
-              <li>Deployment on your domain</li>
-              <li>Walkthrough call and 30-day support</li>
+        <div class="qf-tab-panels">
+          <div class="qf-tab-panel active" data-panel="0">
+            <div class="qf-panel-title">Interactive Quiz Application</div>
+            <div class="qf-panel-desc">SEO-optimized, mobile-responsive quiz that turns visitors into qualified leads.</div>
+            <ul class="qf-panel-list">
+              <li>SEO-optimized landing page that drives quiz starts</li>
+              <li>6-12 custom questions designed to segment your audience</li>
+              <li>Email capture form before results</li>
+              <li>3 result pages for hot, warm, and cold leads</li>
+              <li>Progress bar and animated transitions</li>
+              <li>Mobile-responsive on all devices</li>
             </ul>
           </div>
-          <div class="pricing-cta">
-            <a
-              href="#"
-              class="btn btn-primary btn-lg"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Book Your Strategy Call</a>
+          <div class="qf-tab-panel" data-panel="1">
+            <div class="qf-panel-title">26 Automated Emails</div>
+            <div class="qf-panel-desc">Five nurture sequences that follow up based on lead temperature. No manual work.</div>
+            <ul class="qf-panel-list">
+              <li>3 Welcome emails for all quiz takers</li>
+              <li>4 Cold Nurture emails for low scorers</li>
+              <li>3 Warm Activation emails with social proof</li>
+              <li>2 Hot Path emails with direct CTA</li>
+              <li>2 Win-Back emails for non-openers</li>
+              <li>Personalization tags and scheduled sending</li>
+            </ul>
+          </div>
+          <div class="qf-tab-panel" data-panel="2">
+            <div class="qf-panel-title">Analytics Dashboard</div>
+            <div class="qf-panel-desc">Real-time funnel metrics so you know exactly what's working and where leads drop off.</div>
+            <ul class="qf-panel-list">
+              <li>KPI cards: views, start rate, completion rate, captures</li>
+              <li>Visual conversion funnel with drop-off tracking</li>
+              <li>Hot/warm/cold lead distribution chart</li>
+              <li>Daily activity timeline over 30 days</li>
+              <li>Answer distribution breakdown</li>
+              <li>UTM source tracking for marketing channels</li>
+            </ul>
+          </div>
+          <div class="qf-tab-panel" data-panel="3">
+            <div class="qf-panel-title">Backend Infrastructure</div>
+            <div class="qf-panel-desc">Production-grade backend with full documentation and walkthrough.</div>
+            <ul class="qf-panel-list">
+              <li>6 database tables: leads, responses, products, email log, templates, analytics</li>
+              <li>4 API endpoints for quiz submission, analytics, and email</li>
+              <li>5-factor scoring engine (Fit, Need, Timeline, Economics, Authority)</li>
+              <li>Hourly cron job for scheduled email delivery</li>
+              <li>Full documentation and walkthrough</li>
+            </ul>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="guarantees" data-animate="fade-up">
-          <div class="guarantee">
-            <strong>Flat fee.</strong>
-            <span>You pay once. We build it. Done.</span>
+    <!-- 02 — HOW IT WORKS -->
+    <section class="qf-section" id="qf-section-2">
+      <div class="qf-section-label">02 — How It Works</div>
+      <h2 class="qf-section-title">From first call<br><span class="qf-accent">to live in 10 days.</span></h2>
+      <p class="qf-section-sub">Four phases with defined deliverables at every step. No scope creep, no discovery marathons.</p>
+
+      <div class="qf-loop">
+        <div class="qf-loop-card active" onclick="qfToggleLoop(this)">
+          <div class="qf-loop-num">01</div>
+          <div class="qf-loop-title">Discovery Call</div>
+          <div class="qf-loop-desc">Day 1 &middot; Map your bottleneck</div>
+          <div class="qf-loop-detail">
+            &rarr; 30-minute call to understand your audience<br>
+            &rarr; Define quiz strategy and scoring criteria<br>
+            &rarr; Review your current lead gen process<br>
+            &rarr; Output: quiz blueprint and project scope
           </div>
-          <div class="guarantee">
-            <strong>Full documentation.</strong>
-            <span>You understand exactly how everything works.</span>
+        </div>
+        <div class="qf-loop-card" onclick="qfToggleLoop(this)">
+          <div class="qf-loop-num">02</div>
+          <div class="qf-loop-title">Research &amp; Design</div>
+          <div class="qf-loop-desc">Days 2-3 &middot; Strategy + architecture</div>
+          <div class="qf-loop-detail">
+            &rarr; Analyze your market and competitors<br>
+            &rarr; Architect quiz flow and question logic<br>
+            &rarr; Build scoring model and thresholds<br>
+            &rarr; Write all 26 email sequences
           </div>
-          <div class="guarantee">
-            <strong>No scope creep.</strong>
-            <span>Defined deliverables before we start.</span>
+        </div>
+        <div class="qf-loop-card" onclick="qfToggleLoop(this)">
+          <div class="qf-loop-num">03</div>
+          <div class="qf-loop-title">Build &amp; Test</div>
+          <div class="qf-loop-desc">Days 4-7 &middot; Development + QA</div>
+          <div class="qf-loop-detail">
+            &rarr; Custom quiz development and styling<br>
+            &rarr; Email integration and scheduling<br>
+            &rarr; Analytics dashboard build<br>
+            &rarr; Internal testing and edge case handling
           </div>
-          <div class="guarantee">
-            <strong>30-day guarantee.</strong>
-            <span>If it doesn't work, we fix it free.</span>
+        </div>
+        <div class="qf-loop-card" onclick="qfToggleLoop(this)">
+          <div class="qf-loop-num">04</div>
+          <div class="qf-loop-title">Deploy &amp; Handoff</div>
+          <div class="qf-loop-desc">Days 7-10 &middot; Go live</div>
+          <div class="qf-loop-detail">
+            &rarr; Deploy on your domain<br>
+            &rarr; Full documentation package<br>
+            &rarr; Walkthrough call with your team<br>
+            &rarr; 30-day support window included
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — SEE IT LIVE -->
+    <section class="qf-section" id="qf-section-3">
+      <div class="qf-section-label">03 — See It Live</div>
+      <h2 class="qf-section-title">Watch the full<br><span class="qf-accent">walkthrough.</span></h2>
+      <p class="qf-section-sub">See the quiz, email sequences, analytics, and scoring in action.</p>
+
+      <div class="qf-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/FRZjVr_BrrA"
+          title="Quiz Funnel Walkthrough"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="qf-samples">
+        <p class="qf-samples-label">Try live examples:</p>
+        <div class="qf-samples-grid">
+          <a href="https://quiz.brothersautomate.com" target="_blank" rel="noopener" class="qf-sample-pill">Brothers Automate</a>
+          <a href="https://uphill-athlete-quiz.vercel.app/" target="_blank" rel="noopener" class="qf-sample-pill">Uphill Athlete</a>
+          <a href="https://analog-company-quiz.vercel.app/" target="_blank" rel="noopener" class="qf-sample-pill">Analog Company</a>
+          <a href="https://humblytics-quiz.vercel.app/" target="_blank" rel="noopener" class="qf-sample-pill">Humblytics</a>
+          <a href="https://lansing-adv-quiz.vercel.app/" target="_blank" rel="noopener" class="qf-sample-pill">Lansing Adventures</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — THE SCORING ENGINE -->
+    <section class="qf-section" id="qf-section-4">
+      <div class="qf-section-label">04 — The Scoring Engine</div>
+      <h2 class="qf-section-title">Five factors.<br><span class="qf-accent">Every lead scored.</span></h2>
+      <p class="qf-section-sub">The system classifies every lead as hot, warm, or cold based on five weighted criteria.</p>
+
+      <div class="qf-signal-grid">
+        <div class="qf-signal-card">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name">Product Fit</div>
+            <div class="qf-signal-weight">W: 0.9</div>
+          </div>
+          <div class="qf-signal-desc">Does the prospect match your ideal customer profile? Quiz responses reveal alignment with your offer, industry, and business size.</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar qf-bar-green" style="width:92%"></div></div>
+          <div class="qf-signal-meta"><span>92% weight</span></div>
+        </div>
+        <div class="qf-signal-card">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name">Need Urgency</div>
+            <div class="qf-signal-weight">W: 0.85</div>
+          </div>
+          <div class="qf-signal-desc">How pressing is their problem? Questions about timeline, current pain level, and failed solutions reveal urgency to buy.</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar qf-bar-green" style="width:87%"></div></div>
+          <div class="qf-signal-meta"><span>87% weight</span></div>
+        </div>
+        <div class="qf-signal-card">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name">Timeline</div>
+            <div class="qf-signal-weight">W: 0.8</div>
+          </div>
+          <div class="qf-signal-desc">When do they need a solution? Leads who need help this month score higher than those "just exploring."</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar qf-bar-green" style="width:78%"></div></div>
+          <div class="qf-signal-meta"><span>78% weight</span></div>
+        </div>
+        <div class="qf-signal-card">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name">Economics</div>
+            <div class="qf-signal-weight">W: 0.7</div>
+          </div>
+          <div class="qf-signal-desc">Can they afford your solution? Budget-related questions filter out price shoppers before they hit your calendar.</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar" style="width:71%"></div></div>
+          <div class="qf-signal-meta"><span>71% weight</span></div>
+        </div>
+        <div class="qf-signal-card">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name">Authority</div>
+            <div class="qf-signal-weight">W: 0.65</div>
+          </div>
+          <div class="qf-signal-desc">Are they the decision maker? Leads who can sign off score higher than researchers and gatekeepers.</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar" style="width:65%"></div></div>
+          <div class="qf-signal-meta"><span>65% weight</span></div>
+        </div>
+        <div class="qf-signal-card qf-signal-disq">
+          <div class="qf-signal-top">
+            <div class="qf-signal-name" style="color:#c0392b">Low Engagement</div>
+            <div class="qf-signal-weight" style="background:rgba(192,57,43,0.1);color:#c0392b">Disqualify</div>
+          </div>
+          <div class="qf-signal-desc">Prospect abandoned quiz early or scored below threshold on 3+ factors. Routed to cold nurture instead of your calendar.</div>
+          <div class="qf-signal-bar-wrap"><div class="qf-signal-bar" style="width:15%;background:#c0392b"></div></div>
+          <div class="qf-signal-meta"><span>15% score</span><span style="color:#c0392b">cold nurture</span></div>
+        </div>
+      </div>
+
+      <div class="qf-stat-row">
+        <div class="qf-stat">
+          <div class="qf-stat-num">$3,497-$4,997</div>
+          <div class="qf-stat-label">One Flat Fee</div>
+        </div>
+        <div class="qf-stat">
+          <div class="qf-stat-num">26</div>
+          <div class="qf-stat-label">Automated Emails</div>
+        </div>
+        <div class="qf-stat">
+          <div class="qf-stat-num">7-10</div>
+          <div class="qf-stat-label">Days to Live</div>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="qf-faq">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>Questions & Answers</h2>
-        </div>
-
-        <div class="faq-list" data-animate-stagger>
-          {faqs.map((faq, index) => (
-            <div class="faq-item">
-              <input type="checkbox" id={`faq-${index}`} class="faq-toggle" />
-              <label for={`faq-${index}`} class="faq-question">
-                <span>{faq.question}</span>
-                <span class="faq-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                </span>
-              </label>
-              <div class="faq-answer">
-                <p>{faq.answer}</p>
-              </div>
+    <section class="qf-section qf-faq-section" id="qf-faq">
+      <div class="qf-section-label">Questions &amp; Answers</div>
+      <div class="qf-faq-list">
+        {faqs.map((faq, index) => (
+          <div class="qf-faq-item">
+            <input type="checkbox" id={`qf-faq-${index}`} class="qf-faq-toggle" />
+            <label for={`qf-faq-${index}`} class="qf-faq-question">
+              <span>{faq.question}</span>
+              <span class="qf-faq-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </label>
+            <div class="qf-faq-answer">
+              <p>{faq.answer}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
 
-    <CTA />
+    <!-- 05 — CTA -->
+    <section class="qf-cta-section" id="qf-section-5">
+      <div class="qf-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="qf-cta-title">Leads in.<br>Qualified leads out.<br><span style="color:var(--qf-accent)">While you sleep.</span></h2>
+      <p class="qf-cta-sub">Get a custom quiz funnel that scores, segments, and follows up with every lead automatically.</p>
+      <div class="qf-cta-btn-row">
+        <a href={productUrl} class="qf-btn-p" target="_blank" rel="noopener">Try a Live Quiz &rarr;</a>
+        <a
+          href="#"
+          class="qf-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--qf-muted);margin-top:28px;font-family:var(--qf-mono)">Quiz Funnels &middot; done-for-you lead qualification &middot; built for operators</p>
+    </section>
+
   </main>
   <Footer />
 
@@ -432,8 +407,8 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
-  /* Hero */
-  .qf-hero {
+  /* ===== HERO ===== */
+  .project-hero {
     position: relative;
     padding-top: 160px;
     padding-bottom: var(--space-3xl);
@@ -453,9 +428,9 @@ const breadcrumbSchema = {
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   }
 
-  .qf-hero-content {
+  .project-hero-content {
     position: relative;
-    max-width: 800px;
+    max-width: 750px;
     margin: 0 auto;
   }
 
@@ -473,686 +448,763 @@ const breadcrumbSchema = {
     margin-bottom: var(--space-md);
   }
 
-  .qf-hero h1 {
+  .project-hero h1 {
     margin-bottom: var(--space-md);
     font-size: clamp(2rem, 5vw, 3.25rem);
     line-height: 1.15;
   }
 
-  .qf-hero-sub {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
     font-size: clamp(1.0625rem, 2vw, 1.25rem);
     color: var(--text-secondary);
     line-height: 1.7;
-    max-width: 650px;
-    margin: 0 auto var(--space-xl);
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
   }
 
-  .qf-hero-cta {
-    display: flex;
-    gap: var(--space-sm);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: var(--space-xl);
-  }
-
-  .qf-hero-stats {
+  .hero-stats {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-lg);
-    padding: var(--space-md) var(--space-xl);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow);
   }
 
-  .qf-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .qf-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--navy); line-height: 1; }
-  .qf-stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
-  .qf-stat-divider { width: 1px; height: 36px; background: var(--border); }
+  .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .hero-stat-number { font-size: 1.75rem; font-weight: 800; color: var(--navy); line-height: 1; }
+  .hero-stat-label { font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; }
+  .hero-stat-divider { width: 1px; height: 40px; background: var(--border); }
 
-  /* Section Label */
-  .section-label {
-    display: inline-block;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
-  }
-
-  .section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto var(--space-xl);
-  }
-
-  .section-header h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  /* Problem */
-  .qf-problem {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface-alt);
-  }
-
-  .qf-problem-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .qf-problem h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .qf-problem-desc {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: var(--space-xl);
-  }
-
-  .pain-points {
+  .hero-buttons {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
-    margin-bottom: var(--space-xl);
-  }
-
-  .pain-point {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-surface);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
-  }
-
-  .pain-x {
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    display: flex;
     align-items: center;
-    justify-content: center;
-  }
-
-  .pain-point span:last-child {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.5;
-  }
-
-  .problem-bottom {
-    background: var(--navy);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg) var(--space-xl);
-    text-align: center;
-  }
-
-  .problem-bottom p {
-    font-size: 1.0625rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    line-height: 1.7;
-  }
-
-  .problem-bottom strong {
-    color: var(--orange);
-  }
-
-  /* Solution */
-  .qf-solution {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface);
-  }
-
-  .qf-solution h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .qf-solution-desc {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 700px;
     margin-bottom: var(--space-xl);
   }
 
-  .solution-grid {
-    display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 480px) {
+    .hero-buttons { flex-direction: row; justify-content: center; }
   }
 
-  .solution-card {
-    padding: var(--space-xl);
+  /* ===== TERMINAL BOX ===== */
+  .qf-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .qf-scan-bar {
     background: var(--bg-surface-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition);
-  }
-
-  .solution-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .solution-icon-wrap {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    margin-bottom: var(--space-md);
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
   }
-
-  .solution-card h3 {
-    font-size: 1.125rem;
+  .qf-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .qf-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .qf-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
     color: var(--navy);
-    margin: 0 0 var(--space-xs);
+  }
+  .qf-scan-input::placeholder { color: var(--text-muted); }
+  .qf-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .qf-scan-btn:hover { background: var(--orange-hover); }
+  .qf-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .qf-scan-log.visible { display: block; animation: qfFadeUp 0.3s ease; }
+
+  /* ===== CUSTOM VARIABLES ===== */
+  :root {
+    --qf-bg: #f2ede4;
+    --qf-surface: #faf7f2;
+    --qf-surface2: #eee8dc;
+    --qf-border: #ddd6c8;
+    --qf-accent: #e07b39;
+    --qf-accent2: #c4622a;
+    --qf-navy: #1e3557;
+    --qf-navy2: #2a4a72;
+    --qf-blue-gray: #7a95b0;
+    --qf-text: #1e3557;
+    --qf-muted: #8a9ab0;
+    --qf-green: #3a9e6e;
+    --qf-green-bg: #e8f5ef;
+    --qf-red: #c0392b;
+    --qf-red-bg: rgba(192,57,43,0.06);
+    --qf-mono: 'DM Mono', monospace;
+    --qf-sans: 'Plus Jakarta Sans', sans-serif;
   }
 
-  .solution-card p {
-    margin: 0;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
+  /* ===== TICKER ===== */
+  .qf-ticker {
+    background: var(--qf-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .qf-ticker-inner {
+    display: inline-block;
+    animation: qfTicker 25s linear infinite;
+    font-family: var(--qf-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes qfTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .qf-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--qf-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .qf-section.visible { opacity: 1; transform: none; }
+
+  .qf-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--qf-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .qf-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--qf-border);
+  }
+
+  .qf-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--qf-navy);
+    letter-spacing: -0.025em;
+  }
+  .qf-accent { color: var(--qf-accent); }
+  .qf-section-sub {
+    font-size: 13px;
+    color: var(--qf-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== TABS ===== */
+  .qf-tabs {
+    margin-top: 48px;
+    border: 1.5px solid var(--qf-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .qf-tab-nav {
+    display: flex;
+    background: var(--qf-surface2);
+    border-bottom: 1.5px solid var(--qf-border);
+    overflow-x: auto;
+  }
+  .qf-tab-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--qf-sans);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--qf-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .qf-tab-btn:hover { color: var(--qf-navy); background: rgba(255,255,255,0.5); }
+  .qf-tab-btn.active {
+    color: var(--qf-accent);
+    border-bottom-color: var(--qf-accent);
+    background: rgba(255,255,255,0.6);
+  }
+  .qf-tab-panels { background: var(--qf-surface); }
+  .qf-tab-panel {
+    display: none;
+    padding: 32px 28px;
+    animation: qfFadeUp 0.3s ease;
+  }
+  .qf-tab-panel.active { display: block; }
+  .qf-panel-title {
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--qf-navy);
+    margin-bottom: 8px;
+  }
+  .qf-panel-desc {
+    font-size: 13px;
+    color: var(--qf-blue-gray);
+    margin-bottom: 20px;
     line-height: 1.6;
   }
-
-  /* Video */
-  .qf-video {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface-alt);
+  .qf-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .qf-panel-list li {
+    font-size: 13px;
+    color: var(--qf-text);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.6;
+    font-family: var(--qf-mono);
+  }
+  .qf-panel-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--qf-accent);
+    font-weight: 700;
   }
 
-  .video-embed {
+  /* ===== LOOP CARDS ===== */
+  .qf-loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .qf-loop-card {
+    background: var(--qf-surface);
+    border: 1.5px solid var(--qf-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .qf-loop-card::after {
+    content: '\2192';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--qf-accent);
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .qf-loop-card:last-child::after { display: none; }
+  .qf-loop-card:hover, .qf-loop-card.active {
+    border-color: var(--qf-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .qf-loop-num {
+    font-family: var(--qf-mono);
+    font-size: 10px;
+    color: var(--qf-muted);
+    margin-bottom: 10px;
+  }
+  .qf-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--qf-navy);
+    margin-bottom: 6px;
+  }
+  .qf-loop-desc { font-size: 11px; color: var(--qf-blue-gray); line-height: 1.7; }
+  .qf-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--qf-blue-gray);
+    line-height: 1.9;
+    font-family: var(--qf-mono);
+  }
+  .qf-loop-card.active .qf-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--qf-border);
+  }
+
+  /* ===== VIDEO ===== */
+  .qf-video-wrap {
+    margin-top: 48px;
     max-width: 720px;
-    margin: 0 auto var(--space-xl);
-    border-radius: var(--radius-lg);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 18px;
     overflow: hidden;
     aspect-ratio: 16/9;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 4px 24px rgba(30,53,87,0.12);
+    border: 1.5px solid var(--qf-border);
   }
+  .qf-video-wrap iframe { width: 100%; height: 100%; }
 
-  .video-embed iframe {
-    width: 100%;
-    height: 100%;
-  }
-
-  .sample-quizzes {
+  .qf-samples {
     text-align: center;
+    margin-top: 40px;
   }
-
-  .samples-label {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    margin-bottom: var(--space-md);
+  .qf-samples-label {
+    font-size: 12px;
+    color: var(--qf-muted);
+    margin-bottom: 16px;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
-
-  .samples-grid {
+  .qf-samples-grid {
     display: flex;
-    gap: var(--space-sm);
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
   }
-
-  .sample-link {
+  .qf-sample-pill {
     display: inline-block;
     padding: 8px 20px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
+    background: var(--qf-surface);
+    border: 1.5px solid var(--qf-border);
     border-radius: 9999px;
-    font-size: 0.875rem;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--navy);
+    color: var(--qf-navy);
     text-decoration: none;
     transition: all 0.2s;
+    font-family: var(--qf-sans);
   }
-
-  .sample-link:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+  .qf-sample-pill:hover {
+    border-color: var(--qf-accent);
+    color: var(--qf-accent);
     transform: translateY(-1px);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 12px rgba(224,123,57,0.12);
   }
 
-  /* Deliverables */
-  .qf-deliverables {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface-alt);
-  }
-
-  .deliverables-sub {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-  }
-
-  .deliverables-grid {
+  /* ===== SIGNAL CARDS ===== */
+  .qf-signal-grid {
     display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: var(--space-xl);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
   }
-
-  .deliverable-card {
-    padding: var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+  .qf-signal-card {
+    background: var(--qf-surface);
+    border: 1.5px solid var(--qf-border);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
   }
-
-  .deliverable-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.2);
+  .qf-signal-card:hover { border-color: var(--qf-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
+  .qf-signal-disq {
+    border-color: rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.03);
+  }
+  .qf-signal-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--orange);
-    margin-bottom: var(--space-md);
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
   }
-
-  .deliverable-card h3 {
-    font-size: 1.125rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-md);
+  .qf-signal-name { font-weight: 700; font-size: 13px; color: var(--qf-navy); }
+  .qf-signal-weight {
+    font-family: var(--qf-mono);
+    font-size: 10px;
+    color: var(--qf-accent);
+    background: rgba(224,123,57,0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-left: 8px;
   }
-
-  .deliverable-card ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .deliverable-card li {
-    position: relative;
-    padding: var(--space-xs) 0 var(--space-xs) var(--space-lg);
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .deliverable-card li:last-child {
-    border-bottom: none;
-  }
-
-  .deliverable-card li::before {
-    content: '\2713';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-weight: 700;
-  }
-
-  .deliverable-stats {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2xl);
-    padding: var(--space-lg);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-  }
-
-  .del-stat { text-align: center; }
-  .del-stat-num { display: block; font-size: 2rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 4px; }
-  .del-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
-
-  /* Process */
-  .qf-process {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface);
-  }
-
-  .process-sub {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-  }
-
-  .timeline {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .phase {
-    position: relative;
-    padding-left: 80px;
-    padding-bottom: var(--space-xl);
-  }
-
-  .phase:last-child { padding-bottom: 0; }
-
-  .phase-marker {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 56px;
-    height: 56px;
-    background: var(--bg-primary);
-    border: 3px solid var(--orange);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--orange);
-    font-weight: 800;
-    font-size: 1.25rem;
-    z-index: 2;
-  }
-
-  .phase-connector {
-    position: absolute;
-    left: 27px;
-    top: 56px;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--orange) 0%, var(--blue) 100%);
-    opacity: 0.3;
-  }
-
-  .phase-content {
-    background: var(--bg-surface-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-  }
-
-  .phase-header {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-md);
-    margin-bottom: var(--space-sm);
-    flex-wrap: wrap;
-  }
-
-  .phase-header h3 {
-    font-size: 1.125rem;
-    margin: 0;
-    color: var(--navy);
-  }
-
-  .phase-days {
-    font-size: 0.8125rem;
-    color: var(--orange);
-    font-weight: 600;
-    background: rgba(237, 137, 54, 0.1);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: 100px;
-  }
-
-  .phase-content p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  /* Pricing */
-  .qf-pricing {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface-alt);
-  }
-
-  .pricing-card {
-    max-width: 600px;
-    margin: 0 auto var(--space-xl);
-    background: var(--bg-surface);
-    border: 2px solid var(--orange);
-    border-radius: var(--radius-xl);
+  .qf-signal-desc { font-size: 11px; color: var(--qf-blue-gray); line-height: 1.6; margin-bottom: 12px; }
+  .qf-signal-bar-wrap {
+    height: 4px;
+    background: var(--qf-surface2);
+    border-radius: 999px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+  }
+  .qf-signal-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--qf-accent);
+    transition: width 0.6s ease;
+  }
+  .qf-bar-green { background: var(--qf-green); }
+  .qf-signal-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--qf-muted);
+    font-family: var(--qf-mono);
   }
 
-  .pricing-top {
-    text-align: center;
-    padding: var(--space-xl);
-    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
-    color: white;
-  }
-
-  .pricing-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(237, 137, 54, 0.2);
-    border: 1px solid rgba(237, 137, 54, 0.4);
-    color: var(--orange-light);
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-md);
-  }
-
-  .pricing-price {
-    display: block;
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: var(--space-xs);
-  }
-
-  .pricing-timeline {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .pricing-includes {
-    padding: var(--space-xl);
-  }
-
-  .pricing-includes h4 {
-    font-size: 1rem;
-    color: var(--navy);
-    margin-bottom: var(--space-md);
-  }
-
-  .pricing-includes ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .pricing-includes li {
-    position: relative;
-    padding: var(--space-xs) 0 var(--space-xs) var(--space-lg);
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .pricing-includes li:last-child { border-bottom: none; }
-
-  .pricing-includes li::before {
-    content: '\2713';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-weight: 700;
-  }
-
-  .pricing-cta {
-    padding: 0 var(--space-xl) var(--space-xl);
-    text-align: center;
-  }
-
-  .pricing-cta .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .guarantees {
+  /* ===== STAT ROW ===== */
+  .qf-stat-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-sm) var(--space-lg);
-    max-width: 700px;
-    margin: 0 auto;
-    padding: var(--space-lg);
-    background: var(--bg-surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
   }
-
-  .guarantee {
-    padding-left: var(--space-md);
-    border-left: 2px solid var(--orange);
+  .qf-stat {
+    background: var(--qf-surface);
+    border: 1.5px solid var(--qf-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
   }
-
-  .guarantee strong {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--navy);
+  .qf-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--qf-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
   }
+  .qf-stat-label { font-size: 12px; color: var(--qf-blue-gray); line-height: 1.5; }
 
-  .guarantee span {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+  /* ===== FAQ ===== */
+  .qf-faq-section {
+    padding-bottom: 40px;
   }
-
-  /* FAQ */
-  .qf-faq {
-    padding: var(--space-4xl) 0;
-    background: var(--bg-surface);
-  }
-
-  .faq-list {
+  .qf-faq-list {
     max-width: 750px;
-    margin: 0 auto;
   }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
+  .qf-faq-item {
+    border-bottom: 1px solid var(--qf-border);
   }
-
-  .faq-item:last-child { border-bottom: none; }
-
-  .faq-toggle { display: none; }
-
-  .faq-question {
+  .qf-faq-item:last-child { border-bottom: none; }
+  .qf-faq-toggle { display: none; }
+  .qf-faq-question {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-md);
-    padding: var(--space-lg) 0;
+    gap: 16px;
+    padding: 20px 0;
     cursor: pointer;
-    font-size: 1.0625rem;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--navy);
-    transition: color var(--transition);
+    color: var(--qf-navy);
+    transition: color 0.2s;
   }
-
-  .faq-question:hover { color: var(--orange); }
-
-  .faq-icon {
+  .qf-faq-question:hover { color: var(--qf-accent); }
+  .qf-faq-icon {
     flex-shrink: 0;
     width: 32px;
     height: 32px;
-    border: 2px solid var(--border);
+    border: 2px solid var(--qf-border);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
-    transition: all var(--transition);
+    color: var(--qf-blue-gray);
+    transition: all 0.2s;
   }
-
-  .faq-toggle:checked + .faq-question .faq-icon {
+  .qf-faq-toggle:checked + .qf-faq-question .qf-faq-icon {
     transform: rotate(45deg);
-    background: var(--orange);
-    border-color: var(--orange);
+    background: var(--qf-accent);
+    border-color: var(--qf-accent);
     color: white;
   }
-
-  .faq-answer {
+  .qf-faq-answer {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.3s ease;
   }
-
-  .faq-answer > p {
+  .qf-faq-answer > p {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    color: var(--text-secondary);
+    color: var(--qf-blue-gray);
     line-height: 1.7;
+    font-size: 13px;
   }
-
-  .faq-toggle:checked ~ .faq-answer {
+  .qf-faq-toggle:checked ~ .qf-faq-answer {
     grid-template-rows: 1fr;
   }
-
-  .faq-toggle:checked ~ .faq-answer > p {
-    padding: 0 0 var(--space-lg) 0;
+  .qf-faq-toggle:checked ~ .qf-faq-answer > p {
+    padding: 0 0 20px 0;
   }
 
-  /* Responsive */
+  /* ===== CTA ===== */
+  .qf-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--qf-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .qf-cta-section.visible { opacity: 1; transform: none; }
+  .qf-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--qf-navy);
+    letter-spacing: -0.03em;
+  }
+  .qf-cta-sub {
+    font-size: 16px;
+    color: var(--qf-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .qf-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .qf-btn-p {
+    display: inline-block;
+    background: var(--qf-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--qf-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .qf-btn-p:hover { background: var(--qf-accent2); }
+  .qf-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--qf-navy);
+    border: 2px solid var(--qf-navy);
+    padding: 16px 34px;
+    font-family: var(--qf-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .qf-btn-s:hover { background: var(--qf-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes qfFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
   @media (max-width: 767px) {
-    .qf-hero {
+    .project-hero {
       padding-top: 120px;
       padding-bottom: var(--space-2xl);
     }
 
-    .qf-hero-stats {
+    .hero-stats {
       flex-direction: column;
-      gap: var(--space-sm);
+      gap: var(--space-md);
       padding: var(--space-md);
     }
 
-    .qf-stat-divider {
+    .hero-stat-divider {
       width: 60px;
       height: 1px;
     }
 
-    .qf-hero-cta .btn {
+    .hero-buttons .btn {
       width: 100%;
       justify-content: center;
     }
 
-    .solution-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .deliverables-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .deliverable-stats {
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-    }
-
-    .phase {
-      padding-left: 64px;
-    }
-
-    .phase-marker {
-      width: 44px;
-      height: 44px;
-      font-size: 1rem;
-    }
-
-    .phase-connector {
-      left: 21px;
-      top: 44px;
-    }
-
-    .guarantees {
-      grid-template-columns: 1fr;
+    .qf-tab-btn {
+      min-width: 110px;
+      padding: 12px 14px;
+      font-size: 10px;
     }
   }
+
+  @media (max-width: 640px) {
+    .qf-loop { grid-template-columns: 1fr 1fr; }
+    .qf-loop-card::after { display: none; }
+    .qf-signal-grid { grid-template-columns: 1fr 1fr; }
+    .qf-stat-row { grid-template-columns: 1fr; }
+    .qf-tab-nav {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .qf-stat-num { font-size: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .qf-loop { grid-template-columns: 1fr; }
+    .qf-signal-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- DM Mono font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Terminal demo
+  const qfScanLines = [
+    ['qf-log-working', '\u27F6 Analyzing acme-plumbing.com...'],
+    ['qf-log-working', '\u27F6 Building quiz questions... 8 questions generated'],
+    ['qf-log-ok', '\u2713 Scoring engine configured \u00B7 5 factors'],
+    ['qf-log-working', '\u27F6 Generating email sequences...'],
+    ['qf-log-ok', '\u2713 Welcome sequence \u00B7 3 emails'],
+    ['qf-log-ok', '\u2713 Cold nurture \u00B7 4 emails'],
+    ['qf-log-ok', '\u2713 Warm activation \u00B7 3 emails'],
+    ['qf-log-ok', '\u2713 Hot path \u00B7 2 emails'],
+    ['qf-log-ok', '\u2713 Win-back \u00B7 2 emails'],
+    ['qf-log-working', '\u27F6 Deploying analytics dashboard...'],
+    ['qf-log-ok', '\u2713 Dashboard live \u00B7 quiz.yourdomain.com'],
+    ['qf-log-qual', '\u2192 8 questions \u00B7 26 emails \u00B7 5-factor scoring \u00B7 ready'],
+    ['qf-log-ok', '\u26A1 Quiz funnel deployed \u00B7 7 days \u00B7 live on your domain'],
+  ];
+
+  function qfRunBuild() {
+    const log = document.getElementById('qfScanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= qfScanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = qfScanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 300);
+  }
+
+  const qfScanInput = document.getElementById('qfScanInput');
+  if (qfScanInput) {
+    qfScanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') qfRunBuild();
+    });
+  }
+
+  // Tab switching
+  function qfSwitchTab(el) {
+    const tabIndex = el.getAttribute('data-tab');
+    document.querySelectorAll('.qf-tab-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.qf-tab-panel').forEach(panel => panel.classList.remove('active'));
+    const target = document.querySelector(`.qf-tab-panel[data-panel="${tabIndex}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  // Loop card toggle
+  function qfToggleLoop(el) {
+    document.querySelectorAll('.qf-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const qfObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.qf-section, .qf-cta-section').forEach(el => qfObs.observe(el));
+
+  // Animate signal bars on scroll
+  const qfSignalObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.qf-signal-bar').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.qf-signal-grid').forEach(g => qfSignalObs.observe(g));
+
+  // Expose functions globally for inline onclick handlers
+  window.qfRunBuild = qfRunBuild;
+  window.qfSwitchTab = qfSwitchTab;
+  window.qfToggleLoop = qfToggleLoop;
+</script>
+
+<style is:global>
+  .qf-log-ok { color: #3a9e6e; }
+  .qf-log-working { color: #e07b39; }
+  .qf-log-qual { color: #1e3557; font-weight: 500; }
 </style>
