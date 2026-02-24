@@ -149,6 +149,52 @@ export const projects: Project[] = [
     productUrl: 'https://equipment-identifier.vercel.app'
   },
   {
+    slug: 'after-hours-agent',
+    name: 'After Hours Agent',
+    tagline: 'AI chat that captures leads while you sleep',
+    icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
+    description: 'Service business: AI chat widget qualifies leads, gives quotes, and books appointments 24/7. No missed inquiries, no after-hours gaps.',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
+    meta: {
+      title: 'After Hours Agent | AI Lead Capture Chat | Brothers Automate',
+      description: 'Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep — embedded on your website in one line of code.'
+    },
+    problem: {
+      headline: 'You\'re losing leads every night',
+      description: 'A potential customer visits your site at 9pm. They have questions, they want a quote, they\'re ready to book. But nobody\'s there. By morning, they\'ve already called your competitor.',
+      painPoints: [
+        'After-hours inquiries go unanswered until the next business day',
+        'Potential customers leave your site and call someone who responds faster',
+        'You can\'t afford a 24/7 receptionist but you can\'t afford to miss leads either',
+        'Contact forms collect info but don\'t qualify, quote, or book appointments'
+      ]
+    },
+    solution: {
+      headline: 'An AI agent that handles leads while you sleep',
+      description: 'A chat widget that lives on your website and talks to visitors 24/7. It qualifies their needs, gives accurate quotes based on your pricing, checks your real calendar for availability, and books appointments — all while you\'re off the clock.',
+      features: [
+        { title: 'Lead Qualification', description: 'Asks the right questions to determine if a visitor is a real prospect before booking' },
+        { title: 'Real-Time Quotes', description: 'Uses your actual service menu and pricing to give accurate estimates on the spot' },
+        { title: 'Calendar Integration', description: 'Checks your Google Calendar for real availability and books without double-booking' },
+        { title: 'Instant Notifications', description: 'Email and SMS alerts the moment a lead is qualified or an appointment is booked' }
+      ]
+    },
+    results: {
+      headline: 'Leads captured. Appointments booked. While you sleep.',
+      stats: [
+        { number: '<15s', label: 'Response Time', context: 'Average first reply' },
+        { number: '24/7', label: 'Always On', context: 'No missed inquiries' },
+        { number: '$297', label: 'Per Month', context: 'vs. $1,600+/night lost' }
+      ]
+    },
+    cta: {
+      headline: 'Stop losing leads after hours',
+      description: 'Let\'s put an AI agent on your site that qualifies, quotes, and books — even when you\'re asleep.'
+    },
+    productUrl: 'https://after-hours-agent.vercel.app'
+  },
+  {
     slug: 'brand-research',
     name: 'Brand Research',
     tagline: 'AI-powered audience and competitor intelligence',

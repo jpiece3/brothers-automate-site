@@ -1,0 +1,1056 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const productUrl = 'https://after-hours-agent.vercel.app';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "After Hours Agent", "item": `${SITE_URL}/projects/after-hours-agent` }
+  ]
+};
+---
+
+<Layout
+  title="After Hours Agent | AI Lead Capture Chat | Brothers Automate"
+  description="Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep — embedded on your website in one line of code."
+>
+  <Header />
+  <main>
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">AI-Powered Lead Capture</span>
+          <h1>After Hours Agent.<br /><span class="gradient-text">Leads While You Sleep.</span></h1>
+          <p class="project-hero-sub">An AI chat widget that qualifies visitors, gives quotes, and books appointments 24/7. One line of code on your site. No missed inquiries.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">&lt;15s</span>
+              <span class="hero-stat-label">Response Time</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">24/7</span>
+              <span class="hero-stat-label">Always On</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">$297</span>
+              <span class="hero-stat-label">Per Month</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Chat Terminal Box -->
+          <div class="ah-scan-box">
+            <div class="ah-scan-bar">
+              <div class="ah-scan-dot" style="background:#e8b4a0"></div>
+              <div class="ah-scan-dot" style="background:#ddd6c8"></div>
+              <div class="ah-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">after-hours-agent / chat engine</span>
+            </div>
+            <div class="ah-scan-input-row">
+              <input class="ah-scan-input" id="ahScanInput" placeholder="acme-plumbing.com &middot; enter your URL" />
+              <button class="ah-scan-btn" onclick="ahRunChat()">&#9654; RUN DEMO</button>
+            </div>
+            <div class="ah-scan-log" id="ahScanLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ah-ticker">
+      <div class="ah-ticker-inner">
+        VISITOR ARRIVES &rarr; AI CHAT &nbsp;&middot;&nbsp; QUALIFY &nbsp;&middot;&nbsp; QUOTE &nbsp;&middot;&nbsp; SCHEDULE &nbsp;&middot;&nbsp; BOOK APPOINTMENT &nbsp;&middot;&nbsp; EMAIL ALERT &nbsp;&middot;&nbsp; SMS ALERT &nbsp;&middot;&nbsp; CRM ENTRY &nbsp;&middot;&nbsp;
+        VISITOR ARRIVES &rarr; AI CHAT &nbsp;&middot;&nbsp; QUALIFY &nbsp;&middot;&nbsp; QUOTE &nbsp;&middot;&nbsp; SCHEDULE &nbsp;&middot;&nbsp; BOOK APPOINTMENT &nbsp;&middot;&nbsp; EMAIL ALERT &nbsp;&middot;&nbsp; SMS ALERT &nbsp;&middot;&nbsp; CRM ENTRY &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 — HOW IT WORKS -->
+    <section class="ah-section" id="ah-section-1">
+      <div class="ah-section-label">01 — How It Works</div>
+      <h2 class="ah-section-title">Six steps.<br><span class="ah-accent">Visitor to booked appointment.</span></h2>
+      <p class="ah-section-sub">From the first message to a confirmed calendar slot. Click each step to see what happens.</p>
+
+      <div class="ah-loop">
+        <div class="ah-loop-card active" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">01</div>
+          <div class="ah-loop-title">Engage</div>
+          <div class="ah-loop-desc">Visitor opens chat widget on your site</div>
+          <div class="ah-loop-detail">
+            &rarr; Widget embeds with one line of code<br>
+            &rarr; Shadow DOM — no CSS conflicts<br>
+            &rarr; Greeting matches your brand tone<br>
+            &rarr; Works on mobile and desktop
+          </div>
+        </div>
+        <div class="ah-loop-card" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">02</div>
+          <div class="ah-loop-title">Qualify</div>
+          <div class="ah-loop-desc">AI asks the right questions to assess fit</div>
+          <div class="ah-loop-detail">
+            &rarr; Service type, property details, urgency<br>
+            &rarr; Checks if visitor is in your service area<br>
+            &rarr; Filters out non-serious inquiries<br>
+            &rarr; Extracts job requirements automatically
+          </div>
+        </div>
+        <div class="ah-loop-card" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">03</div>
+          <div class="ah-loop-title">Quote</div>
+          <div class="ah-loop-desc">Provides an accurate estimate from your pricing</div>
+          <div class="ah-loop-detail">
+            &rarr; Uses your actual service menu and rates<br>
+            &rarr; Supports fixed, per-unit, range, and estimate<br>
+            &rarr; Shows price range, not a fixed commitment<br>
+            &rarr; Adjusts based on property size and details
+          </div>
+        </div>
+        <div class="ah-loop-card" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">04</div>
+          <div class="ah-loop-title">Schedule</div>
+          <div class="ah-loop-desc">Checks your real calendar for open slots</div>
+          <div class="ah-loop-detail">
+            &rarr; Google Calendar integration<br>
+            &rarr; Respects business hours and blocked time<br>
+            &rarr; Prevents double-booking automatically<br>
+            &rarr; Timezone-aware for you and the visitor
+          </div>
+        </div>
+        <div class="ah-loop-card" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">05</div>
+          <div class="ah-loop-title">Book</div>
+          <div class="ah-loop-desc">Collects contact info and confirms the slot</div>
+          <div class="ah-loop-detail">
+            &rarr; Name, email, phone number captured<br>
+            &rarr; Appointment created on your calendar<br>
+            &rarr; Visitor gets confirmation details<br>
+            &rarr; Lead stored in your dashboard
+          </div>
+        </div>
+        <div class="ah-loop-card" onclick="ahToggleStep(this)">
+          <div class="ah-loop-num">06</div>
+          <div class="ah-loop-title">Notify</div>
+          <div class="ah-loop-desc">You get an instant alert with all the details</div>
+          <div class="ah-loop-detail">
+            &rarr; Email notification with full transcript<br>
+            &rarr; SMS alert to your phone<br>
+            &rarr; Lead details, quote given, slot booked<br>
+            &rarr; Full conversation transcript attached
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — WHAT THE AI HANDLES -->
+    <section class="ah-section" id="ah-section-2">
+      <div class="ah-section-label">02 — What the AI Handles</div>
+      <h2 class="ah-section-title">Not a chatbot.<br><span class="ah-accent">A virtual employee.</span></h2>
+      <p class="ah-section-sub">This isn't a canned FAQ bot. It's a conversational AI that handles the full intake process. Click each tab to see what it does.</p>
+
+      <div class="ah-tabs">
+        <div class="ah-tab-nav">
+          <button class="ah-tab-btn active" onclick="ahSwitchTab(this)" data-tab="0">Lead Qualification</button>
+          <button class="ah-tab-btn" onclick="ahSwitchTab(this)" data-tab="1">Quoting</button>
+          <button class="ah-tab-btn" onclick="ahSwitchTab(this)" data-tab="2">Scheduling</button>
+          <button class="ah-tab-btn" onclick="ahSwitchTab(this)" data-tab="3">Owner Dashboard</button>
+        </div>
+        <div class="ah-tab-panels">
+          <div class="ah-tab-panel active" data-panel="0">
+            <div class="ah-panel-title">Lead Qualification</div>
+            <div class="ah-panel-desc">Asks the same questions your best receptionist would. Filters out tire-kickers before they reach your inbox.</div>
+            <ul class="ah-panel-list">
+              <li>Identifies service type from natural conversation</li>
+              <li>Checks if the job is in your service area</li>
+              <li>Assesses urgency (emergency vs. scheduled)</li>
+              <li>Extracts property details: bedrooms, sqft, stories</li>
+              <li>Tags leads as qualified or unqualified automatically</li>
+            </ul>
+          </div>
+          <div class="ah-tab-panel" data-panel="1">
+            <div class="ah-panel-title">Quoting</div>
+            <div class="ah-panel-desc">Uses your actual pricing menu to give real estimates. No guessing, no placeholder numbers.</div>
+            <ul class="ah-panel-list">
+              <li>Pulls from your service menu (you set the prices)</li>
+              <li>Supports fixed, per-unit, range, and estimate pricing</li>
+              <li>Adjusts quotes based on property size and job scope</li>
+              <li>Always presents as an estimate, not a binding commitment</li>
+              <li>Quote range captured and stored with each lead</li>
+            </ul>
+          </div>
+          <div class="ah-tab-panel" data-panel="2">
+            <div class="ah-panel-title">Scheduling</div>
+            <div class="ah-panel-desc">Reads your actual calendar. Books real slots. No double-booking, no manual back-and-forth.</div>
+            <ul class="ah-panel-list">
+              <li>Google Calendar integration with OAuth 2.0</li>
+              <li>Fetches real-time free/busy data before offering slots</li>
+              <li>Respects your business hours and blocked time</li>
+              <li>Creates calendar events with job details in the description</li>
+              <li>Handles timezone differences automatically</li>
+            </ul>
+          </div>
+          <div class="ah-tab-panel" data-panel="3">
+            <div class="ah-panel-title">Owner Dashboard</div>
+            <div class="ah-panel-desc">Everything you need in one place. Leads, conversations, appointments, and performance metrics.</div>
+            <ul class="ah-panel-list">
+              <li>KPIs: impressions, conversations, leads, appointments, revenue</li>
+              <li>Full conversation transcripts for every visitor</li>
+              <li>Lead list with contact info, service details, and quotes</li>
+              <li>Upcoming appointments calendar view</li>
+              <li>One-click widget code to embed on your site</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — THE NUMBERS -->
+    <section class="ah-section" id="ah-section-3">
+      <div class="ah-section-label">03 — The Numbers</div>
+      <h2 class="ah-section-title">$1,600 per night.<br><span class="ah-accent">That's what you're losing.</span></h2>
+      <p class="ah-section-sub">The average service business loses $1,600+ in potential revenue every night from unanswered inquiries. The After Hours Agent recovers those leads for $297/month.</p>
+
+      <div class="ah-math-grid">
+        <div class="ah-math-card">
+          <div class="ah-math-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="ah-math-num">8+</div>
+          <div class="ah-math-label">After-hours inquiries per night (avg.)</div>
+        </div>
+        <div class="ah-math-card">
+          <div class="ah-math-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="ah-math-num">~$200</div>
+          <div class="ah-math-label">Average value per qualified lead</div>
+        </div>
+        <div class="ah-math-card">
+          <div class="ah-math-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="ah-math-num">$297</div>
+          <div class="ah-math-label">Monthly cost — pays for itself in 2 leads</div>
+        </div>
+      </div>
+
+      <div class="ah-stat-row">
+        <div class="ah-stat">
+          <div class="ah-stat-num">&lt;15s</div>
+          <div class="ah-stat-label">Average Response Time</div>
+        </div>
+        <div class="ah-stat">
+          <div class="ah-stat-num">24/7</div>
+          <div class="ah-stat-label">Always Available</div>
+        </div>
+        <div class="ah-stat">
+          <div class="ah-stat-num">1 line</div>
+          <div class="ah-stat-label">Of Code to Install</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — SETUP & EMBED -->
+    <section class="ah-section" id="ah-section-4">
+      <div class="ah-section-label">04 — Setup &amp; Embed</div>
+      <h2 class="ah-section-title">Live in minutes.<br><span class="ah-accent">Not weeks.</span></h2>
+      <p class="ah-section-sub">Configure your business, connect your calendar, copy one line of code. The widget handles everything else.</p>
+
+      <div class="ah-feature-grid">
+        <div class="ah-feature-card">
+          <div class="ah-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="ah-feature-title">Setup Wizard</div>
+          <div class="ah-feature-desc">Walk through a guided setup: business name, services, pricing, service area, hours, and brand tone. Takes 5 minutes.</div>
+        </div>
+        <div class="ah-feature-card">
+          <div class="ah-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="ah-feature-title">Google Calendar Sync</div>
+          <div class="ah-feature-desc">Connect via OAuth. The AI checks your real availability and creates events with full job details in the description.</div>
+        </div>
+        <div class="ah-feature-card">
+          <div class="ah-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="ah-feature-title">One-Line Embed</div>
+          <div class="ah-feature-desc">Copy a single script tag. Paste it on any page. The widget is fully self-contained — no dependencies, no conflicts.</div>
+        </div>
+        <div class="ah-feature-card">
+          <div class="ah-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="ah-feature-title">Brand-Matched Tone</div>
+          <div class="ah-feature-desc">Choose from 4 tones: friendly-professional, warm-casual, formal, or energetic. The AI matches your brand voice in every reply.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — CTA -->
+    <section class="ah-cta-section" id="ah-section-5">
+      <div class="ah-section-label" style="justify-content:center;margin-bottom:28px">05 — Get Started</div>
+      <h2 class="ah-cta-title">Stop losing leads<br>after hours.<br><span style="color:var(--ah-accent)">$297/month. Pays for itself in 2 leads.</span></h2>
+      <p class="ah-cta-sub">One line of code. AI that qualifies, quotes, and books — while you sleep.</p>
+      <div class="ah-cta-btn-row">
+        <a href={productUrl} class="ah-btn-p" target="_blank" rel="noopener">Try It Live &rarr;</a>
+        <a
+          href="#"
+          class="ah-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--ah-muted);margin-top:28px;font-family:var(--ah-mono)">After Hours Agent &middot; AI-powered lead capture &middot; built for service businesses</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* ===== CHAT TERMINAL BOX ===== */
+  .ah-scan-box {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .ah-scan-bar {
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', var(--font-mono);
+  }
+  .ah-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ah-scan-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 12px 12px 18px;
+  }
+  .ah-scan-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .ah-scan-input::placeholder { color: var(--text-muted); }
+  .ah-scan-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    animation: btnPulse 2.5s ease-in-out infinite;
+  }
+  .ah-scan-btn:hover { background: var(--orange-hover); animation: none; }
+  @keyframes btnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,57,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(224,123,57,0); }
+  }
+  .ah-scan-log {
+    padding: 0 18px 18px;
+    font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px;
+    line-height: 2.1;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .ah-scan-log.visible { display: block; animation: ahFadeUp 0.3s ease; }
+
+  /* ===== AFTER HOURS AGENT CUSTOM VARIABLES ===== */
+  :root {
+    --ah-bg: #f2ede4;
+    --ah-surface: #faf7f2;
+    --ah-surface2: #eee8dc;
+    --ah-border: #ddd6c8;
+    --ah-accent: #e07b39;
+    --ah-accent2: #c4622a;
+    --ah-navy: #1e3557;
+    --ah-navy2: #2a4a72;
+    --ah-blue-gray: #7a95b0;
+    --ah-text: #1e3557;
+    --ah-muted: #8a9ab0;
+    --ah-green: #3a9e6e;
+    --ah-green-bg: #e8f5ef;
+    --ah-mono: 'DM Mono', monospace;
+    --ah-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .ah-ticker {
+    background: var(--ah-navy);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ah-ticker-inner {
+    display: inline-block;
+    animation: ahTicker 25s linear infinite;
+    font-family: var(--ah-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  @keyframes ahTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .ah-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid var(--ah-border);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ah-section.visible { opacity: 1; transform: none; }
+
+  .ah-section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ah-muted);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .ah-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ah-border);
+  }
+
+  .ah-section-title {
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--ah-navy);
+    letter-spacing: -0.025em;
+  }
+  .ah-accent { color: var(--ah-accent); }
+  .ah-section-sub {
+    font-size: 13px;
+    color: var(--ah-blue-gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* ===== LOOP STEPS ===== */
+  .ah-loop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .ah-loop-card {
+    background: var(--ah-surface);
+    border: 1.5px solid var(--ah-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+    position: relative;
+  }
+  .ah-loop-card:hover, .ah-loop-card.active {
+    border-color: var(--ah-accent);
+    box-shadow: 0 4px 20px rgba(224,123,57,0.14);
+    background: #fff;
+  }
+  .ah-loop-num {
+    font-family: var(--ah-mono);
+    font-size: 10px;
+    color: var(--ah-muted);
+    margin-bottom: 10px;
+  }
+  .ah-loop-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--ah-navy);
+    margin-bottom: 6px;
+  }
+  .ah-loop-desc { font-size: 11px; color: var(--ah-blue-gray); line-height: 1.7; }
+  .ah-loop-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    font-size: 11px;
+    color: var(--ah-blue-gray);
+    line-height: 1.9;
+    font-family: var(--ah-mono);
+  }
+  .ah-loop-card.active .ah-loop-detail {
+    max-height: 200px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ah-border);
+  }
+
+  /* ===== TABBED SECTIONS ===== */
+  .ah-tabs {
+    margin-top: 48px;
+    border: 1.5px solid var(--ah-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,53,87,0.06);
+  }
+  .ah-tab-nav {
+    display: flex;
+    background: var(--ah-surface2);
+    border-bottom: 1.5px solid var(--ah-border);
+    overflow-x: auto;
+  }
+  .ah-tab-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--ah-sans);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--ah-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .ah-tab-btn:hover { color: var(--ah-navy); background: rgba(255,255,255,0.5); }
+  .ah-tab-btn.active {
+    color: var(--ah-accent);
+    border-bottom-color: var(--ah-accent);
+    background: rgba(255,255,255,0.6);
+  }
+  .ah-tab-panels {
+    background: var(--ah-surface);
+  }
+  .ah-tab-panel {
+    display: none;
+    padding: 32px 28px;
+    animation: ahFadeUp 0.3s ease;
+  }
+  .ah-tab-panel.active { display: block; }
+  .ah-panel-title {
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--ah-navy);
+    margin-bottom: 8px;
+  }
+  .ah-panel-desc {
+    font-size: 13px;
+    color: var(--ah-blue-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .ah-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ah-panel-list li {
+    font-size: 13px;
+    color: var(--ah-text);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.6;
+    font-family: var(--ah-mono);
+  }
+  .ah-panel-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--ah-accent);
+    font-weight: 700;
+  }
+
+  /* ===== MATH GRID ===== */
+  .ah-math-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .ah-math-card {
+    background: var(--ah-surface);
+    border: 1.5px solid var(--ah-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .ah-math-card:hover {
+    border-color: var(--ah-accent);
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+    background: #fff;
+  }
+  .ah-math-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(224,123,57,0.1);
+    border-radius: 12px;
+    color: var(--ah-accent);
+    margin: 0 auto 16px;
+  }
+  .ah-math-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--ah-navy);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .ah-math-label {
+    font-size: 12px;
+    color: var(--ah-blue-gray);
+    line-height: 1.5;
+  }
+
+  /* ===== STAT ROW ===== */
+  .ah-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .ah-stat {
+    background: var(--ah-surface);
+    border: 1.5px solid var(--ah-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .ah-stat-num {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--ah-accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .ah-stat-label { font-size: 12px; color: var(--ah-blue-gray); line-height: 1.5; }
+
+  /* ===== FEATURE GRID ===== */
+  .ah-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .ah-feature-card {
+    background: var(--ah-surface);
+    border: 1.5px solid var(--ah-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.2s;
+  }
+  .ah-feature-card:hover {
+    border-color: var(--ah-accent);
+    box-shadow: 0 4px 16px rgba(224,123,57,0.1);
+    background: #fff;
+  }
+  .ah-feature-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(224,123,57,0.1);
+    border-radius: 12px;
+    color: var(--ah-accent);
+    margin-bottom: 16px;
+  }
+  .ah-feature-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--ah-navy);
+    margin-bottom: 8px;
+  }
+  .ah-feature-desc {
+    font-size: 12px;
+    color: var(--ah-blue-gray);
+    line-height: 1.7;
+  }
+
+  /* ===== CTA ===== */
+  .ah-cta-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    border-top: 1px solid var(--ah-border);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ah-cta-section.visible { opacity: 1; transform: none; }
+  .ah-cta-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    margin-bottom: 18px;
+    color: var(--ah-navy);
+    letter-spacing: -0.03em;
+  }
+  .ah-cta-sub {
+    font-size: 16px;
+    color: var(--ah-blue-gray);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .ah-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .ah-btn-p {
+    display: inline-block;
+    background: var(--ah-accent);
+    color: #fff;
+    border: none;
+    padding: 16px 34px;
+    font-family: var(--ah-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3);
+    text-decoration: none;
+  }
+  .ah-btn-p:hover { background: var(--ah-accent2); }
+  .ah-btn-s {
+    display: inline-block;
+    background: transparent;
+    color: var(--ah-navy);
+    border: 2px solid var(--ah-navy);
+    padding: 16px 34px;
+    font-family: var(--ah-sans);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .ah-btn-s:hover { background: var(--ah-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes ahFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .hero-stat-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ah-tab-btn {
+      min-width: 110px;
+      padding: 12px 14px;
+      font-size: 10px;
+    }
+
+    .ah-feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ah-math-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ah-loop { grid-template-columns: 1fr 1fr; }
+    .ah-stat-row { grid-template-columns: 1fr; }
+    .ah-tab-nav {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ah-loop { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- DM Mono font for terminal/monospace sections -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Chat engine terminal demo
+  const ahScanLines = [
+    ['ah-log-working', '\u27F6 Deploying chat widget...'],
+    ['ah-log-ok', '\u2713 Widget live on acme-plumbing.com'],
+    ['ah-log-working', '\u27F6 Visitor opened chat at 9:47 PM...'],
+    ['ah-log-ok', '\u2713 AI: "Hi! Looking for plumbing help? I can get you a quote."'],
+    ['ah-log-working', '\u27F6 Visitor: "Kitchen sink is leaking badly"'],
+    ['ah-log-ok', '\u2713 Service identified: Emergency Plumbing Repair'],
+    ['ah-log-working', '\u27F6 Checking pricing menu...'],
+    ['ah-log-qual', '\u2192 Quote: $150 \u2013 $300 (based on standard leak repair)'],
+    ['ah-log-working', '\u27F6 Fetching calendar availability...'],
+    ['ah-log-ok', '\u2713 3 slots available tomorrow morning'],
+    ['ah-log-working', '\u27F6 Visitor selected: Tomorrow 9:00 AM'],
+    ['ah-log-ok', '\u2713 Contact captured: Mike R. \u00B7 mike@email.com \u00B7 (555) 123-4567'],
+    ['ah-log-ok', '\u26A1 Appointment booked \u00B7 email + SMS sent to owner'],
+  ];
+
+  function ahRunChat() {
+    const log = document.getElementById('ahScanLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= ahScanLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = ahScanLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 420);
+  }
+
+  const ahScanInput = document.getElementById('ahScanInput');
+  if (ahScanInput) {
+    ahScanInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') ahRunChat();
+    });
+  }
+
+  // Tab switching
+  function ahSwitchTab(el) {
+    const tabIndex = el.getAttribute('data-tab');
+    document.querySelectorAll('.ah-tab-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.ah-tab-panel').forEach(panel => panel.classList.remove('active'));
+    const target = document.querySelector(`.ah-tab-panel[data-panel="${tabIndex}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  // Step card toggle
+  function ahToggleStep(el) {
+    document.querySelectorAll('.ah-loop-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const ahObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.ah-section, .ah-cta-section').forEach(el => ahObs.observe(el));
+
+  // Make functions available globally for inline onclick handlers
+  window.ahRunChat = ahRunChat;
+  window.ahSwitchTab = ahSwitchTab;
+  window.ahToggleStep = ahToggleStep;
+</script>
+
+<style is:global>
+  /* Scan log colors - need to be global since they're added dynamically */
+  .ah-log-ok { color: #3a9e6e; }
+  .ah-log-working { color: #e07b39; }
+  .ah-log-qual { color: #1e3557; font-weight: 500; }
+</style>
