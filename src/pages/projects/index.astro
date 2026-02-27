@@ -7,6 +7,7 @@ import Footer from '../../components/Footer.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const allProjects = getAllProjects();
+const featuredProject = allProjects.find(p => p.slug === 'quiz-funnels')!;
 
 function getProjectsBySlug(slugs: string[]): Project[] {
   return slugs
@@ -19,7 +20,7 @@ const categories = [
     id: 'leads',
     heading: 'Get More and Better Leads',
     description: 'Systems that capture, qualify, and follow up with leads — automatically, around the clock.',
-    projects: getProjectsBySlug(['quiz-funnels', 'after-hours-agent', 'signal-engine', 'daily-ads']),
+    projects: getProjectsBySlug(['after-hours-agent', 'signal-engine', 'daily-ads']),
   },
   {
     id: 'admin',
@@ -57,8 +58,8 @@ const breadcrumbSchema = {
       <div class="container">
         <div class="projects-hero-content" data-animate="fade-up">
           <span class="badge">AI Automations for Service Businesses</span>
-          <h1>More Qualified Leads.<br /><span class="gradient-text">Less Manual Work.</span></h1>
-          <p class="projects-hero-sub">Done-for-you AI systems for home service, professional service, and local businesses doing $1-5M. They handle lead follow-up, admin, and operations — running 24/7 while you focus on clients.</p>
+          <h1>Everyone's Talking About AI.<br /><span class="gradient-text">Here's What It Actually Does.</span></h1>
+          <p class="projects-hero-sub">Done-for-you automation for small service teams. We build the systems that handle your follow-up, scheduling, admin, and reporting, so you can take on more clients without hiring more people.</p>
 
           <div class="hero-ctas">
             <a
@@ -88,6 +89,31 @@ const breadcrumbSchema = {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Featured project -->
+    <section class="featured-project">
+      <div class="container">
+        <a href={`/projects/${featuredProject.slug}`} class="featured-card" data-animate="fade-up">
+          <div class="featured-left">
+            <span class="featured-label">Most Popular</span>
+            <h2>{featuredProject.name}</h2>
+            <p class="featured-tagline">{featuredProject.tagline}</p>
+            <p class="featured-desc">{featuredProject.description}</p>
+            <span class="featured-cta">See how this works &rarr;</span>
+          </div>
+          <div class="featured-right">
+            <div class="featured-stats-grid">
+              {featuredProject.results.stats.map((stat) => (
+                <div class="featured-stat-card">
+                  <span class="featured-stat-num">{stat.number}</span>
+                  <span class="featured-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -254,6 +280,115 @@ const breadcrumbSchema = {
     background: var(--border);
   }
 
+  /* Featured project */
+  .featured-project {
+    padding: 0 0 var(--space-2xl);
+    margin-top: calc(-1 * var(--space-lg));
+  }
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: white;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .featured-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+    color: white;
+  }
+
+  .featured-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(237, 137, 54, 0.2);
+    border: 1px solid rgba(237, 137, 54, 0.4);
+    color: var(--orange-light);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-card h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-xs);
+    color: white;
+  }
+
+  .featured-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+  }
+
+  .featured-cta {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--orange-light);
+    transition: color var(--transition);
+  }
+
+  .featured-card:hover .featured-cta {
+    color: var(--orange);
+  }
+
+  .featured-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .featured-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    width: 100%;
+  }
+
+  .featured-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .featured-stat-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .featured-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+
+  .featured-stat-label {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
   /* Projects grid */
   .projects-section {
     padding: var(--space-xl) 0 var(--space-3xl);
@@ -416,6 +551,12 @@ const breadcrumbSchema = {
     .hero-ctas .btn {
       width: 100%;
       justify-content: center;
+    }
+
+    .featured-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
     }
 
     .category-group {
