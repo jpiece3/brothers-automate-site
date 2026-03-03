@@ -238,7 +238,7 @@ export const projects: Project[] = [
       headline: 'Know your market before your competitors do',
       description: 'Let\'s build a research package that gives you an unfair advantage.'
     },
-    productUrl: 'https://brandintel.up.railway.app/'
+    productUrl: 'https://brothers-brand-intel.up.railway.app/'
   },
   {
     slug: 'daily-ads',
@@ -376,7 +376,7 @@ export const projects: Project[] = [
       headline: 'Stop guessing which prospects are worth your time',
       description: 'Let Signal Engine score your list and tell you exactly who to call first.'
     },
-    productUrl: 'https://signal-engine-production-6674.up.railway.app/'
+    productUrl: 'https://signal-engine.up.railway.app/'
   },
   {
     slug: 'onboarding-workflow',
