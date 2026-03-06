@@ -906,8 +906,14 @@ import Footer from '../../components/Footer.astro';
   /* ===== SAFETY LIST ===== */
   .cpq-safety-list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .cpq-safety-list {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .cpq-safety-item {
@@ -949,9 +955,15 @@ import Footer from '../../components/Footer.astro';
   /* ===== STEPS ===== */
   .cpq-steps {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--space-md);
     margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .cpq-steps {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .cpq-step-item {
@@ -1072,12 +1084,5 @@ import Footer from '../../components/Footer.astro';
       padding: var(--space-sm) var(--space-md);
     }
 
-    .cpq-safety-list {
-      grid-template-columns: 1fr;
-    }
-
-    .cpq-steps {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
