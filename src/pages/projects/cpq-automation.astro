@@ -374,10 +374,10 @@ import Footer from '../../components/Footer.astro';
     <!-- 07 — NEXT STEPS -->
     <section class="cpq-section bg-surface-alt" id="cpq-next">
       <div class="container">
-        <div class="cpq-section-header" data-animate="fade-up" style="text-align: center;">
+        <div class="cpq-section-header" data-animate="fade-up">
           <div class="cpq-label">07 &mdash; What's Next</div>
           <h2>Working prototype <span class="gradient-text">built this week</span></h2>
-          <p class="cpq-sub" style="margin-left: auto; margin-right: auto;">The core system is functional. Here's what's needed to go live for a client.</p>
+          <p class="cpq-sub">The core system is functional. Here's what's needed to go live for a client.</p>
         </div>
 
         <div class="cpq-steps" data-animate-stagger>
@@ -537,7 +537,8 @@ import Footer from '../../components/Footer.astro';
 
   .cpq-section-header {
     max-width: 750px;
-    margin-bottom: var(--space-xl);
+    margin: 0 auto var(--space-xl);
+    text-align: center;
   }
 
   .cpq-label {
@@ -558,6 +559,8 @@ import Footer from '../../components/Footer.astro';
     color: var(--text-secondary);
     line-height: 1.7;
     max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ===== PAIN POINTS ===== */
@@ -566,7 +569,7 @@ import Footer from '../../components/Footer.astro';
     flex-direction: column;
     gap: var(--space-sm);
     max-width: 750px;
-    margin-bottom: var(--space-xl);
+    margin: 0 auto var(--space-xl);
   }
 
   .cpq-pain-point {
@@ -606,6 +609,7 @@ import Footer from '../../components/Footer.astro';
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow);
     max-width: 500px;
+    margin: 0 auto;
   }
 
   .cpq-callout-context {
@@ -684,6 +688,7 @@ import Footer from '../../components/Footer.astro';
     padding: var(--space-lg);
     text-align: center;
     max-width: 750px;
+    margin: 0 auto;
   }
 
   .cpq-result-card p {
@@ -701,6 +706,7 @@ import Footer from '../../components/Footer.astro';
     overflow: hidden;
     box-shadow: var(--shadow-md);
     max-width: 800px;
+    margin: 0 auto;
   }
 
   .deal-header {
@@ -781,7 +787,7 @@ import Footer from '../../components/Footer.astro';
     flex-direction: column;
     gap: var(--space-sm);
     max-width: 750px;
-    margin-bottom: var(--space-lg);
+    margin: 0 auto var(--space-lg);
   }
 
   .cpq-filter-item {
@@ -903,6 +909,7 @@ import Footer from '../../components/Footer.astro';
     flex-direction: column;
     gap: var(--space-sm);
     max-width: 750px;
+    margin: 0 auto;
   }
 
   .cpq-safety-item {
