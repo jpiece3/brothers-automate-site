@@ -17,273 +17,99 @@ import Footer from '../../components/Footer.astro';
       <div class="container">
         <div class="project-hero-content" data-animate="fade-up">
           <span class="badge">After-Hours Quote Automation</span>
-          <h1>Leads at 9 PM.<br /><span class="gradient-text">Pipeline by 8 AM.</span></h1>
-          <p class="project-hero-sub">An AI agent that qualifies leads, looks up real pricing, books sales calls, and pushes deals to your CRM &mdash; while your team sleeps.</p>
-
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-number">35-45%</span>
-              <span class="hero-stat-label">After-Hours Inquiries</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">21x</span>
-              <span class="hero-stat-label">More Likely to Qualify</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">$24K</span>
-              <span class="hero-stat-label">Lost Per Month</span>
-            </div>
-          </div>
-
-          <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0;">Prepared for CohnReznick &middot; March 2026</p>
+          <h1>Your sales team goes home at 5.<br /><span class="gradient-text">Your website doesn't have to.</span></h1>
+          <p class="project-hero-sub">35-45% of B2B inquiries arrive outside business hours. Those leads hit a contact form and sit until morning. By then, the prospect has already talked to a competitor.</p>
+          <p class="project-hero-sub" style="margin-top: 0;"><strong>The solution:</strong> An AI agent that sits on your client's website 24/7 and does what a sales rep does &mdash; collects requirements, checks pricing, qualifies the lead, sends an email with a quote and link to book a call, and pushes a fully populated deal to HubSpot. All before the rep wakes up.</p>
         </div>
       </div>
     </section>
 
-    <!-- 01 — THE PROBLEM -->
-    <section class="cpq-section bg-surface-alt" id="cpq-problem">
+    <!-- HOW IT WORKS -->
+    <section class="cpq-section bg-surface-alt" id="cpq-how">
       <div class="container">
         <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">01 &mdash; The Problem</div>
-          <h2>What happens to a lead that hits your client's website at <span class="text-orange">9 PM</span>?</h2>
-          <p class="cpq-sub">It sits in a contact form until morning. By then, they've already called a competitor.</p>
+          <h2>How It <span class="gradient-text">Works</span></h2>
         </div>
 
-        <div class="cpq-pain-points" data-animate-stagger>
-          <div class="cpq-pain-point">
-            <span class="pain-marker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <span>35-45% of B2B inquiries arrive outside business hours</span>
-          </div>
-          <div class="cpq-pain-point">
-            <span class="pain-marker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <span>Average response time for after-hours leads: 12-16 hours</span>
-          </div>
-          <div class="cpq-pain-point">
-            <span class="pain-marker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <span>Leads contacted within 5 minutes are 21x more likely to qualify</span>
-          </div>
-          <div class="cpq-pain-point">
-            <span class="pain-marker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <span>For a typical $15M manufacturer with 40 leads/month, that's $24,000/mo going unanswered</span>
-          </div>
-        </div>
-
-        <div class="cpq-callout" data-animate="fade-up">
-          <p class="cpq-callout-context">For a typical $15M manufacturer with 40 leads/month</p>
-          <div class="cpq-callout-number">$24,000/mo</div>
-          <p class="cpq-callout-desc">in after-hours leads that go unanswered</p>
+        <div class="cpq-table-wrap" data-animate="fade-up">
+          <table class="cpq-table">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>What Happens</th>
+                <th>What the Rep Gets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Chat</strong></td>
+                <td>Prospect describes what they need. Agent collects product, quantity, specs, material, timeline.</td>
+                <td>Full requirements documented</td>
+              </tr>
+              <tr>
+                <td><strong>Qualify + Price</strong></td>
+                <td>Checks against the client's business rules. Looks up real pricing from their ERP.</td>
+                <td>Bad fits filtered. Ballpark range attached.</td>
+              </tr>
+              <tr>
+                <td><strong>Book Call</strong></td>
+                <td>Shows the sales team's availability. Books directly.</td>
+                <td>Call on the calendar</td>
+              </tr>
+              <tr>
+                <td><strong>Push to CRM</strong></td>
+                <td>Contact, deal, specs, pricing, call date, conversation summary &mdash; all in HubSpot.</td>
+                <td>Pre-built deal. Zero data entry.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
-    <!-- 02 — HOW IT WORKS -->
-    <section class="cpq-section" id="cpq-how">
+    <!-- WHAT I BUILT THIS WEEK -->
+    <section class="cpq-section" id="cpq-built">
       <div class="container">
         <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">02 &mdash; How It Works</div>
-          <h2>Four steps. <span class="gradient-text">Fully automatic.</span></h2>
-          <p class="cpq-sub">Prospect visits the site, chats with the agent, and your rep wakes up to a full pipeline.</p>
+          <h2>What I Built <span class="gradient-text">This Week</span></h2>
+          <p class="cpq-sub">Working prototype for a sample manufacturing company:</p>
         </div>
 
-        <div class="cpq-flow" data-animate-stagger>
-          <div class="cpq-flow-step">
-            <div class="cpq-flow-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-            </div>
-            <h3>Chat</h3>
-            <p>Prospect describes what they need. Agent collects product, quantity, specs, material, timeline.</p>
+        <div class="cpq-built-grid" data-animate-stagger>
+          <div class="cpq-built-item">
+            <strong>Chat widget</strong>
+            <p>Live on a test page, handles natural conversation (not a form)</p>
           </div>
-          <div class="cpq-flow-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="cpq-built-item">
+            <strong>Qualification engine</strong>
+            <p>37 configurable rules (geography, materials, scope, certifications, timelines)</p>
           </div>
-          <div class="cpq-flow-step">
-            <div class="cpq-flow-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <h3>Qualify + Price</h3>
-            <p>Checks against your rules. Looks up real pricing data. Gives a ballpark range.</p>
+          <div class="cpq-built-item">
+            <strong>ERP pricing lookup</strong>
+            <p>Hitting a Supabase database simulating real ERP data (78 products, 250 pricing tiers)</p>
           </div>
-          <div class="cpq-flow-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="cpq-built-item">
+            <strong>HubSpot integration</strong>
+            <p>Creates real contacts, deals, and notes with 13 custom properties</p>
           </div>
-          <div class="cpq-flow-step">
-            <div class="cpq-flow-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3>Book Call</h3>
-            <p>Shows your team's availability. Books a sales call directly on the calendar.</p>
+          <div class="cpq-built-item">
+            <strong>Slack alerts</strong>
+            <p>Team notified on every run with outcome and next action</p>
           </div>
-          <div class="cpq-flow-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-          <div class="cpq-flow-step">
-            <div class="cpq-flow-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-            </div>
-            <h3>Push to CRM</h3>
-            <p>Contact, deal, specs, pricing, call date, summary &mdash; all in HubSpot.</p>
-          </div>
-        </div>
-
-        <div class="cpq-result-card" data-animate="fade-up">
-          <p><strong class="text-orange">Your rep walks in at 8 AM</strong> to a pipeline full of qualified, priced, call-booked deals &mdash; with full conversation summaries attached.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 — WHAT YOUR REP SEES -->
-    <section class="cpq-section bg-surface-alt" id="cpq-deal">
-      <div class="container">
-        <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">03 &mdash; What Your Rep Sees</div>
-          <h2>A <span class="gradient-text">pre-built deal</span> in HubSpot</h2>
-          <p class="cpq-sub">No data entry. No "so what are you looking for?" on the call. Everything is already there.</p>
-        </div>
-
-        <div class="deal-card" data-animate="scale-up">
-          <div class="deal-header">
-            <div class="deal-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-            </div>
-            <h3>Custom Steel Brackets &mdash; Apex Industries</h3>
-            <span class="deal-stage">Qualified &mdash; Call Booked</span>
-          </div>
-          <div class="deal-body">
-            <div class="deal-field">
-              <div class="deal-field-label">Contact</div>
-              <div class="deal-field-value">John Smith</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Company</div>
-              <div class="deal-field-value">Apex Industries</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Email</div>
-              <div class="deal-field-value">john@apexindustries.com</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Phone</div>
-              <div class="deal-field-value">(610) 555-0142</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Product</div>
-              <div class="deal-field-value">Custom Steel Brackets</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Category</div>
-              <div class="deal-field-value">Steel Brackets</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Quantity</div>
-              <div class="deal-field-value">500 pcs</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Material</div>
-              <div class="deal-field-value">1018 Carbon Steel</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Ballpark</div>
-              <div class="deal-field-value cpq-green">$8,500 &ndash; $12,000</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Lead Time</div>
-              <div class="deal-field-value">14 &ndash; 18 days</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Timeline</div>
-              <div class="deal-field-value">3 weeks</div>
-            </div>
-            <div class="deal-field">
-              <div class="deal-field-label">Call Booked</div>
-              <div class="deal-field-value">Thu Mar 13, 2:00 PM ET</div>
-            </div>
-            <div class="deal-field full-width">
-              <div class="deal-field-label">Specs</div>
-              <div class="deal-field-value">L-shaped mounting bracket, 3mm thickness, powder coated matte black, 4x M6 mounting holes</div>
-            </div>
-            <div class="deal-field full-width">
-              <div class="deal-field-label">Conversation Summary</div>
-              <div class="deal-field-value cpq-muted">Prospect is procurement manager at Apex Industries. Needs 500 custom L-shaped steel brackets for an equipment mounting project. Prefers carbon steel with powder coat finish. Timeline is flexible but ideally within 3 weeks. Has drawings available for the call.</div>
-            </div>
+          <div class="cpq-built-item">
+            <strong>Error handling</strong>
+            <p>Dead letter queue, structured error logging, no data loss</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 04 — SMART FILTERING -->
-    <section class="cpq-section" id="cpq-filter">
-      <div class="container">
-        <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">04 &mdash; Smart Filtering</div>
-          <h2>Bad fits get <span class="gradient-text">filtered automatically</span></h2>
-          <p class="cpq-sub">Your reps only see real opportunities. Everything else is handled politely and logged.</p>
-        </div>
-
-        <div class="cpq-filter-list" data-animate-stagger>
-          <div class="cpq-filter-item">
-            <span class="filter-marker filter-reject">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <div>
-              <div class="filter-request">"Can you ship these to our facility in Germany?"</div>
-              <div class="filter-reason"><strong class="cpq-red">Rejected:</strong> International shipping not supported. Logged to HubSpot as Disqualified.</div>
-            </div>
-          </div>
-
-          <div class="cpq-filter-item">
-            <span class="filter-marker filter-reject">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <div>
-              <div class="filter-request">"We need titanium aerospace-grade components with AS9100 certification."</div>
-              <div class="filter-reason"><strong class="cpq-red">Rejected:</strong> Exotic materials + aerospace certification not offered.</div>
-            </div>
-          </div>
-
-          <div class="cpq-filter-item">
-            <span class="filter-marker filter-reject">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </span>
-            <div>
-              <div class="filter-request">"I need injection-molded plastic housings."</div>
-              <div class="filter-reason"><strong class="cpq-red">Rejected:</strong> Service not offered (metal fabrication only). Politely declined.</div>
-            </div>
-          </div>
-
-          <div class="cpq-filter-item">
-            <span class="filter-marker filter-flag">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </span>
-            <div>
-              <div class="filter-request">"I need some metal parts. Not sure on specs yet."</div>
-              <div class="filter-reason"><strong class="cpq-yellow">Flagged:</strong> Vague specs. Lead still captured in HubSpot for manual follow-up.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cpq-result-card" data-animate="fade-up">
-          <p>Every lead &mdash; qualified, disqualified, or vague &mdash; gets logged to HubSpot. <strong class="text-orange">Nothing is ever dropped.</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 — ERP FLEXIBILITY -->
+    <!-- ERP FLEXIBILITY -->
     <section class="cpq-section bg-surface-alt" id="cpq-erp">
       <div class="container">
         <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">05 &mdash; Architecture</div>
-          <h2>Same pipeline. <span class="gradient-text">Different ERP.</span></h2>
-          <p class="cpq-sub">The workflow is modular. Swap the data source in config &mdash; everything else stays the same.</p>
+          <h2>ERP <span class="gradient-text">Flexibility</span></h2>
+          <p class="cpq-sub">The pipeline is modular. The ERP connector swaps via config &mdash; no code rewrite needed.</p>
         </div>
 
         <div class="cpq-erp-grid" data-animate-stagger>
@@ -305,18 +131,6 @@ import Footer from '../../components/Footer.astro';
           </div>
         </div>
 
-        <div class="cpq-config-block" data-animate="fade-up">
-          <div><span class="config-key">"erp"</span>: {</div>
-          <div class="config-highlight">&nbsp;&nbsp;<span class="config-key">"current"</span>: <span class="config-value">"supabase-rpc"</span>,&nbsp;&nbsp;&nbsp;<span class="config-comment">// demo mode &mdash; swap to real ERP</span></div>
-          <div>&nbsp;&nbsp;<span class="config-key">"target"</span>: <span class="config-value">"netsuite"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="config-key">"netsuite"</span>: {</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="config-key">"account_id"</span>: <span class="config-value">"..."</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="config-key">"script_id"</span>: <span class="config-value">"..."</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="config-key">"api_key_env"</span>: <span class="config-value">"NETSUITE_API_KEY"</span></div>
-          <div>&nbsp;&nbsp;}</div>
-          <div>}</div>
-        </div>
-
         <div class="cpq-api-flow" data-animate="fade-up">
           <div class="cpq-api-step">
             <div class="cpq-api-method post">POST</div>
@@ -326,7 +140,7 @@ import Footer from '../../components/Footer.astro';
             </div>
           </div>
           <div class="cpq-api-arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </div>
           <div class="cpq-api-step">
             <div class="cpq-api-method get">GET</div>
@@ -337,67 +151,29 @@ import Footer from '../../components/Footer.astro';
           </div>
         </div>
 
-        <p class="cpq-config-note" data-animate="fade-in">Two REST calls. The prototype uses Supabase (Postgres) to simulate ERP data. Production swap is a config change + API credentials &mdash; no code rewrite.</p>
+        <p class="cpq-config-note" data-animate="fade-in">Two REST calls. The prototype uses Supabase (Postgres) to simulate ERP data. Production swap is config + credentials.</p>
       </div>
     </section>
 
-    <!-- 06 — RELIABILITY -->
-    <section class="cpq-section" id="cpq-safety">
+    <!-- BUILT FOR -->
+    <section class="cpq-section" id="cpq-for">
       <div class="container">
         <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">06 &mdash; Reliability</div>
-          <h2>Every lead is <span class="gradient-text">accounted for</span></h2>
-          <p class="cpq-sub">If anything fails at any step, the system catches it, logs it, and alerts the team.</p>
+          <h2>Built <span class="gradient-text">For</span></h2>
         </div>
 
-        <div class="cpq-safety-list" data-animate-stagger>
-          <div class="cpq-safety-item">
-            <span class="safety-check">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <div>
-              <strong>Dead letter queue</strong>
-              <p>If HubSpot is down, the lead payload gets saved to a backup database. Nothing is lost. It gets replayed when the connection is restored.</p>
-            </div>
-          </div>
-          <div class="cpq-safety-item">
-            <span class="safety-check">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <div>
-              <strong>Slack alerts on every run</strong>
-              <p>Success, failure, or partial &mdash; the team gets a notification with exactly what happened. No surprises in the morning.</p>
-            </div>
-          </div>
-          <div class="cpq-safety-item">
-            <span class="safety-check">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <div>
-              <strong>Error classification + logging</strong>
-              <p>Every run is classified (success, partial, failure) and logged to a structured sheet. Patterns surface quickly.</p>
-            </div>
-          </div>
-          <div class="cpq-safety-item">
-            <span class="safety-check">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <div>
-              <strong>Data stays in your systems</strong>
-              <p>Prospect data flows directly to HubSpot and the ERP. Nothing stored in the chatbot. All API calls authenticated.</p>
-            </div>
-          </div>
+        <div class="cpq-built-for" data-animate="fade-up">
+          <p>B2B services, manufacturing, and technology companies where pricing depends on specs, quantity, or configuration &mdash; and the buyer needs a conversation before they buy.</p>
+          <p>Each client gets their own config: products, pricing rules, disqualification rules, HubSpot pipeline, branding. The core pipeline stays the same. Onboarding a new client is data setup, not engineering.</p>
         </div>
       </div>
     </section>
 
-    <!-- 07 — NEXT STEPS -->
+    <!-- WHAT'S NEXT -->
     <section class="cpq-section bg-surface-alt" id="cpq-next">
       <div class="container">
         <div class="cpq-section-header" data-animate="fade-up">
-          <div class="cpq-label">07 &mdash; What's Next</div>
-          <h2>Working prototype <span class="gradient-text">built this week</span></h2>
-          <p class="cpq-sub">The core system is functional. Here's what's needed to go live for a client.</p>
+          <h2>What's <span class="gradient-text">Next</span></h2>
         </div>
 
         <div class="cpq-steps" data-animate-stagger>
@@ -405,35 +181,35 @@ import Footer from '../../components/Footer.astro';
             <div class="cpq-step-number">1</div>
             <div>
               <h3>Connect Real ERP</h3>
-              <p>Swap Supabase demo data for the client's NetSuite, Sage, or other ERP via API.</p>
+              <p>NetSuite, Sage, or other ERP via API</p>
             </div>
           </div>
           <div class="cpq-step-item">
             <div class="cpq-step-number">2</div>
             <div>
               <h3>Load Product Catalog</h3>
-              <p>Import products, pricing tiers, lead times, and qualification rules.</p>
+              <p>Client's products, pricing, and rules</p>
             </div>
           </div>
           <div class="cpq-step-item">
             <div class="cpq-step-number">3</div>
             <div>
               <h3>Configure HubSpot</h3>
-              <p>Create custom deal properties, pipeline stages, and follow-up sequences.</p>
+              <p>Pipeline and custom properties</p>
             </div>
           </div>
           <div class="cpq-step-item">
             <div class="cpq-step-number">4</div>
             <div>
               <h3>Go Live</h3>
-              <p>Drop the chat widget on the client's website. Agent starts capturing leads 24/7.</p>
+              <p>Agent starts capturing leads 24/7</p>
             </div>
           </div>
         </div>
 
         <div class="cpq-timeline-card" data-animate="fade-up">
-          <div class="cpq-timeline-heading">Timeline: 3&ndash;5 weeks to production</div>
-          <p>Depends on ERP integration complexity and product catalog size.<br>Happy to get on a call with your ERP team to scope it out.</p>
+          <div class="cpq-timeline-heading">3&ndash;5 weeks to production</div>
+          <p>Depends on ERP integration complexity and product catalog size.</p>
         </div>
 
         <div class="cpq-contact" data-animate="fade-up">
@@ -449,7 +225,7 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  /* ===== HERO (matches ProjectPage.astro) ===== */
+  /* ===== HERO ===== */
   .project-hero {
     position: relative;
     padding-top: 160px;
@@ -504,53 +280,14 @@ import Footer from '../../components/Footer.astro';
   }
 
   .project-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--text-secondary);
     line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto var(--space-lg);
+    max-width: 650px;
+    margin: 0 auto var(--space-md);
   }
 
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-md);
-    padding: var(--space-lg) var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .hero-stat-number {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
-  }
-
-  .hero-stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .hero-stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
-  }
-
-  /* ===== CPQ SECTIONS ===== */
+  /* ===== SECTIONS ===== */
   .cpq-section {
     padding: var(--space-4xl) 0;
   }
@@ -559,15 +296,6 @@ import Footer from '../../components/Footer.astro';
     max-width: 750px;
     margin: 0 auto var(--space-xl);
     text-align: center;
-  }
-
-  .cpq-label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
   }
 
   .cpq-section-header h2 {
@@ -583,237 +311,74 @@ import Footer from '../../components/Footer.astro';
     margin-right: auto;
   }
 
-  /* ===== PAIN POINTS ===== */
-  .cpq-pain-points {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    max-width: 750px;
-    margin: 0 auto var(--space-xl);
-  }
-
-  .cpq-pain-point {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-surface);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
-  }
-
-  .pain-marker {
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(220, 38, 38, 0.1);
-    color: var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cpq-pain-point span:last-child {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  /* ===== CALLOUT ===== */
-  .cpq-callout {
-    text-align: center;
-    padding: var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-    max-width: 500px;
+  /* ===== TABLE ===== */
+  .cpq-table-wrap {
+    max-width: 900px;
     margin: 0 auto;
+    overflow-x: auto;
   }
 
-  .cpq-callout-context {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: var(--space-xs);
-  }
-
-  .cpq-callout-number {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    color: var(--orange);
-    line-height: 1;
-  }
-
-  .cpq-callout-desc {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-top: var(--space-xs);
-  }
-
-  /* ===== FLOW DIAGRAM ===== */
-  .cpq-flow {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 0;
-    margin: var(--space-xl) 0;
-  }
-
-  .cpq-flow-step {
-    flex: 1;
-    max-width: 200px;
-    text-align: center;
-    padding: 0 var(--space-xs);
-  }
-
-  .cpq-flow-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--space-sm);
-  }
-
-  .cpq-flow-step h3 {
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .cpq-flow-step p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .cpq-flow-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    padding: 0 0.25rem;
-    align-self: flex-start;
-    margin-top: 1.1rem;
-  }
-
-  /* ===== RESULT CARD ===== */
-  .cpq-result-card {
+  .cpq-table {
+    width: 100%;
+    border-collapse: collapse;
     background: var(--bg-surface);
-    border: 2px solid rgba(237, 137, 54, 0.2);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto;
-  }
-
-  .cpq-result-card p {
-    font-size: 1rem;
-    color: var(--navy);
-    font-weight: 500;
-    margin: 0;
-  }
-
-  /* ===== DEAL CARD ===== */
-  .deal-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+
+  .cpq-table thead {
+    background: var(--navy);
+    color: white;
+  }
+
+  .cpq-table th {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+  }
+
+  .cpq-table td {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .cpq-table td strong {
+    color: var(--navy);
+  }
+
+  .cpq-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ===== BUILT GRID ===== */
+  .cpq-built-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-width: 900px;
     margin: 0 auto;
   }
 
-  .deal-header {
-    background: linear-gradient(135deg, #1a56db, #2563eb);
-    padding: var(--space-sm) var(--space-md);
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    color: white;
+  @media (min-width: 768px) {
+    .cpq-built-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
-  .deal-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @media (min-width: 1024px) {
+    .cpq-built-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 
-  .deal-header h3 {
-    margin: 0;
-    font-size: 1.05rem;
-    color: white;
-  }
-
-  .deal-stage {
-    font-size: 0.75rem;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.2rem 0.6rem;
-    border-radius: var(--radius-sm);
-    margin-left: auto;
-    color: white;
-    white-space: nowrap;
-  }
-
-  .deal-body {
-    padding: var(--space-md);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.25rem var(--space-lg);
-  }
-
-  .deal-field {
-    padding: var(--space-xs) 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .deal-field-label {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 600;
-    margin-bottom: 0.15rem;
-  }
-
-  .deal-field-value {
-    font-size: 0.9rem;
-    color: var(--navy);
-    font-weight: 500;
-  }
-
-  .deal-field.full-width {
-    grid-column: 1 / -1;
-  }
-
-  .cpq-green { color: var(--green); font-weight: 700; }
-  .cpq-muted { color: var(--text-secondary); font-weight: 400; }
-  .cpq-red { color: var(--red); }
-  .cpq-yellow { color: #d97706; }
-
-  /* ===== FILTER LIST ===== */
-  .cpq-filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    max-width: 750px;
-    margin: 0 auto var(--space-lg);
-  }
-
-  .cpq-filter-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
+  .cpq-built-item {
     padding: var(--space-md);
     background: var(--bg-surface);
     border: 1px solid var(--border);
@@ -821,36 +386,18 @@ import Footer from '../../components/Footer.astro';
     box-shadow: var(--shadow-sm);
   }
 
-  .filter-marker {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .filter-reject {
-    background: rgba(220, 38, 38, 0.1);
-    color: var(--red);
-  }
-
-  .filter-flag {
-    background: rgba(217, 119, 6, 0.1);
-    color: #d97706;
-  }
-
-  .filter-request {
-    font-size: 0.95rem;
+  .cpq-built-item strong {
+    display: block;
     color: var(--navy);
-    font-weight: 500;
-    margin-bottom: 0.25rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
   }
 
-  .filter-reason {
-    font-size: 0.85rem;
+  .cpq-built-item p {
+    font-size: 0.875rem;
     color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* ===== ERP GRID ===== */
@@ -892,29 +439,7 @@ import Footer from '../../components/Footer.astro';
     color: var(--text-muted);
   }
 
-  /* ===== CONFIG BLOCK ===== */
-  .cpq-config-block {
-    background: var(--navy);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.9;
-    overflow-x: auto;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .config-key { color: #63b3ed; }
-  .config-value { color: #68d391; }
-  .config-comment { color: rgba(255, 255, 255, 0.4); font-style: italic; }
-  .config-highlight {
-    background: rgba(237, 137, 54, 0.15);
-    border-left: 3px solid var(--orange);
-    margin: 0 calc(var(--space-md) * -1);
-    padding: 0.25rem var(--space-md) 0.25rem calc(var(--space-md) - 3px);
-  }
+  .cpq-green { color: var(--green); font-weight: 700; }
 
   /* ===== API FLOW ===== */
   .cpq-api-flow {
@@ -922,7 +447,7 @@ import Footer from '../../components/Footer.astro';
     align-items: center;
     justify-content: center;
     gap: var(--space-md);
-    margin: var(--space-xl) auto;
+    margin: 0 auto var(--space-lg);
     max-width: 700px;
   }
 
@@ -975,63 +500,30 @@ import Footer from '../../components/Footer.astro';
   .cpq-api-arrow {
     color: var(--text-muted);
     flex-shrink: 0;
-    transform: rotate(-90deg);
   }
 
   .cpq-config-note {
-    margin-top: var(--space-md);
     font-size: 0.9rem;
     color: var(--text-muted);
     text-align: center;
   }
 
-  /* ===== SAFETY LIST ===== */
-  .cpq-safety-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
+  /* ===== BUILT FOR ===== */
+  .cpq-built-for {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
   }
 
-  @media (min-width: 768px) {
-    .cpq-safety-list {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .cpq-safety-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .safety-check {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(22, 163, 74, 0.1);
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .cpq-safety-item strong {
-    display: block;
-    color: var(--navy);
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  .cpq-safety-item p {
-    font-size: 0.9rem;
+  .cpq-built-for p {
+    font-size: 1.0625rem;
     color: var(--text-secondary);
-    margin: 0;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .cpq-built-for p:last-child {
+    margin-bottom: 0;
   }
 
   /* ===== STEPS ===== */
@@ -1039,7 +531,8 @@ import Footer from '../../components/Footer.astro';
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
-    margin-bottom: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto var(--space-xl);
   }
 
   @media (min-width: 768px) {
@@ -1080,6 +573,8 @@ import Footer from '../../components/Footer.astro';
 
   .cpq-step-item p {
     font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
   }
 
   /* ===== TIMELINE CARD ===== */
@@ -1090,7 +585,8 @@ import Footer from '../../components/Footer.astro';
     padding: var(--space-lg);
     text-align: center;
     box-shadow: var(--shadow);
-    margin-bottom: var(--space-xl);
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
   }
 
   .cpq-timeline-heading {
@@ -1102,6 +598,7 @@ import Footer from '../../components/Footer.astro';
 
   .cpq-timeline-card p {
     font-size: 0.95rem;
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -1124,37 +621,8 @@ import Footer from '../../components/Footer.astro';
       padding-bottom: var(--space-2xl);
     }
 
-    .hero-stats {
+    .cpq-api-flow {
       flex-direction: column;
-      gap: var(--space-md);
-      padding: var(--space-md);
-    }
-
-    .hero-stat-divider {
-      width: 60px;
-      height: 1px;
-    }
-
-    .cpq-flow {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .cpq-flow-arrow {
-      transform: rotate(90deg);
-    }
-
-    .cpq-flow-step {
-      max-width: 280px;
-    }
-
-    .deal-body {
-      grid-template-columns: 1fr;
-    }
-
-    .deal-stage {
-      display: none;
     }
 
     .cpq-erp-grid {
@@ -1164,14 +632,6 @@ import Footer from '../../components/Footer.astro';
     .cpq-erp-badge {
       min-width: 130px;
       padding: var(--space-sm) var(--space-md);
-    }
-
-    .cpq-api-flow {
-      flex-direction: column;
-    }
-
-    .cpq-api-arrow {
-      transform: rotate(0deg);
     }
   }
 </style>
