@@ -317,7 +317,27 @@ import Footer from '../../components/Footer.astro';
           <div>}</div>
         </div>
 
-        <p class="cpq-config-note" data-animate="fade-in">The prototype uses Supabase (Postgres) to simulate ERP data. Production swap is a config change + API credentials &mdash; no code rewrite.</p>
+        <div class="cpq-api-flow" data-animate="fade-up">
+          <div class="cpq-api-step">
+            <div class="cpq-api-method post">POST</div>
+            <div>
+              <div class="cpq-api-path">/quote</div>
+              <div class="cpq-api-desc">Send product, quantity, material, and specs. ERP creates a quote.</div>
+            </div>
+          </div>
+          <div class="cpq-api-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+          <div class="cpq-api-step">
+            <div class="cpq-api-method get">GET</div>
+            <div>
+              <div class="cpq-api-path">/quote/{'{'}id{'}'}</div>
+              <div class="cpq-api-desc">Retrieve the ballpark price range and lead time. That's it.</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="cpq-config-note" data-animate="fade-in">Two REST calls. The prototype uses Supabase (Postgres) to simulate ERP data. Production swap is a config change + API credentials &mdash; no code rewrite.</p>
       </div>
     </section>
 
@@ -896,6 +916,68 @@ import Footer from '../../components/Footer.astro';
     padding: 0.25rem var(--space-md) 0.25rem calc(var(--space-md) - 3px);
   }
 
+  /* ===== API FLOW ===== */
+  .cpq-api-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin: var(--space-xl) auto;
+    max-width: 700px;
+  }
+
+  .cpq-api-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+  }
+
+  .cpq-api-method {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cpq-api-method.post {
+    background: rgba(237, 137, 54, 0.15);
+    color: var(--orange);
+  }
+
+  .cpq-api-method.get {
+    background: rgba(22, 163, 74, 0.15);
+    color: var(--green);
+  }
+
+  .cpq-api-path {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .cpq-api-desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .cpq-api-arrow {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+  }
+
   .cpq-config-note {
     margin-top: var(--space-md);
     font-size: 0.9rem;
@@ -1084,5 +1166,12 @@ import Footer from '../../components/Footer.astro';
       padding: var(--space-sm) var(--space-md);
     }
 
+    .cpq-api-flow {
+      flex-direction: column;
+    }
+
+    .cpq-api-arrow {
+      transform: rotate(0deg);
+    }
   }
 </style>
