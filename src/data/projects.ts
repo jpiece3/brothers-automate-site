@@ -515,6 +515,52 @@ export const projects: Project[] = [
       description: 'Let\'s set up automated inventory tracking and daily reports so you always know exactly where things stand.'
     },
     videoUrl: 'https://www.youtube.com/embed/mV9VePjnCrA'
+  },
+  {
+    slug: 'app-validator',
+    name: 'App Validator',
+    tagline: 'AI-powered app idea validation with live market data',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    description: 'Founders: validate any app idea with live keyword data, competitor analysis, and an AI-generated go/no-go verdict — in under 2 minutes.',
+    ctaLabel: 'Try It Live',
+    ctaType: 'product-link',
+    meta: {
+      title: 'App Validator | AI App Idea Validation | Brothers Automate',
+      description: 'Stop guessing if your app idea will work. App Validator runs live keyword research, competitor analysis, and AI scoring to give you a data-backed GO or NO-GO verdict in under 2 minutes.'
+    },
+    problem: {
+      headline: 'You\'re about to spend 6 months building something nobody wants',
+      description: 'Most app ideas fail because founders skip validation. They build first, research later, and discover the market doesn\'t exist — after burning through time and money.',
+      painPoints: [
+        'You Google your app idea and find 3 competitors but have no idea how big the market actually is',
+        'Keyword research tools cost $100+/month and take hours to learn',
+        'You can\'t tell if your idea is different enough from what\'s already in the App Store',
+        'By the time you finish manual research, you\'ve lost the motivation to build'
+      ]
+    },
+    solution: {
+      headline: 'A full market validation report in under 2 minutes',
+      description: 'Describe your app idea in one sentence. Our pipeline hits live APIs — DataForSEO for keyword demand, Tavily for competitor intelligence, and Claude AI for synthesis — then delivers an investor-grade validation report with a clear verdict.',
+      features: [
+        { title: 'Demand Signals', description: 'Live keyword volumes, search trends, difficulty scores, and community signal mining from Reddit and forums' },
+        { title: 'Competitive Landscape', description: 'App Store competitors identified, rated, and analyzed for pricing, funding, and market gaps' },
+        { title: '5-Dimension Scoring', description: 'Demand, competition, differentiation, monetization, and timing — each scored 1-10 with data-backed rationale' },
+        { title: 'Marketing Playbook', description: 'Positioning angles, ASO strategy, channel recommendations, monetization model, and a 30-day launch plan' }
+      ]
+    },
+    results: {
+      headline: 'Data-backed decisions, not gut feelings',
+      stats: [
+        { number: '<2min', label: 'Turnaround', context: 'Full validation report' },
+        { number: '5', label: 'Scoring Dimensions', context: 'Data-backed, weighted' },
+        { number: '$0.60', label: 'Per Report', context: 'vs. weeks of manual research' }
+      ]
+    },
+    cta: {
+      headline: 'Validate before you build',
+      description: 'Submit your app idea and get a data-backed GO, CONDITIONAL GO, or NO-GO verdict — first one\'s free.'
+    },
+    productUrl: 'https://validate.brothersautomate.com/'
   }
 ];
 
