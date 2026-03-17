@@ -1,0 +1,1145 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Hearing Practice Automation", "item": `${SITE_URL}/projects/hearing-automation` }
+  ]
+};
+---
+
+<Layout
+  title="Hearing Practice Automation | 10 Workflows for Audiology Practices | Brothers Automate"
+  description="Automated workflows for multi-location audiology practices. Lead qualification, appointment reminders, review collection, physician referral tracking, and more."
+>
+  <Header />
+  <main>
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="project-hero-content" data-animate="fade-up">
+          <span class="badge">Automated Workflows for Audiology Practices</span>
+          <h1>27 Locations.<br /><span class="gradient-text">0 Leads Lost.</span></h1>
+          <p class="project-hero-sub">Lead qualification, appointment reminders, review collection, physician nurture, and patient reactivation. All automated. All connected.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">10</span>
+              <span class="hero-stat-label">Workflows</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">$150K+</span>
+              <span class="hero-stat-label">Revenue Recovered / yr</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">25 hrs</span>
+              <span class="hero-stat-label">Saved Per Week</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#ha-workflows" class="btn btn-primary btn-lg">See the Workflows</a>
+            <a
+              href="#"
+              class="btn btn-secondary btn-lg"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >Talk to the Brothers</a>
+          </div>
+
+          <!-- Command Terminal -->
+          <div class="ha-scan-box">
+            <div class="ha-scan-bar">
+              <div class="ha-scan-dot" style="background:#e8b4a0"></div>
+              <div class="ha-scan-dot" style="background:#ddd6c8"></div>
+              <div class="ha-scan-dot" style="background:#b8d4b0"></div>
+              <span style="margin-left:6px">hearing-automation / workflow dashboard</span>
+            </div>
+            <div class="ha-scan-input-row">
+              <input class="ha-scan-input" id="haInput" placeholder="new-lead &middot; Mary Johnson &middot; Bethesda MD" />
+              <button class="ha-scan-btn" onclick="haRunDemo()">&#9654; RUN INTAKE</button>
+            </div>
+            <div class="ha-scan-log" id="haLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ha-ticker">
+      <div class="ha-ticker-inner">
+        NEW LEAD &rarr; QUALIFY &nbsp;&middot;&nbsp; ROUTE TO OFFICE &nbsp;&middot;&nbsp; CONFIRM APPOINTMENT &nbsp;&middot;&nbsp; SEND REMINDERS &nbsp;&middot;&nbsp; COLLECT REVIEW &nbsp;&middot;&nbsp; NURTURE PHYSICIAN &nbsp;&middot;&nbsp; REACTIVATE PATIENT &nbsp;&middot;&nbsp;
+        NEW LEAD &rarr; QUALIFY &nbsp;&middot;&nbsp; ROUTE TO OFFICE &nbsp;&middot;&nbsp; CONFIRM APPOINTMENT &nbsp;&middot;&nbsp; SEND REMINDERS &nbsp;&middot;&nbsp; COLLECT REVIEW &nbsp;&middot;&nbsp; NURTURE PHYSICIAN &nbsp;&middot;&nbsp; REACTIVATE PATIENT &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+
+    <!-- 01 - THE PROBLEM -->
+    <section class="ha-section" id="ha-section-1">
+      <div class="ha-section-label">01 &mdash; The Problem</div>
+      <h2 class="ha-section-title">27 locations.<br><span class="ha-accent">Zero automation.</span></h2>
+      <p class="ha-section-sub">Every lead, every appointment, every review request, every physician follow-up is done manually. Here's what's falling through the cracks.</p>
+
+      <div class="ha-gap-grid">
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#128222;</div>
+          <div class="ha-gap-title">Phone-Only Leads</div>
+          <div class="ha-gap-desc">Website visitors who aren't ready to call have no way to engage. They leave and never come back.</div>
+          <div class="ha-gap-stat">~0% digital capture rate</div>
+        </div>
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#128197;</div>
+          <div class="ha-gap-title">No-Show Revenue Loss</div>
+          <div class="ha-gap-desc">No automated reminders means 15-20% no-show rates across all locations. No recovery emails sent.</div>
+          <div class="ha-gap-stat">$50K-$150K lost / year</div>
+        </div>
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#11088;</div>
+          <div class="ha-gap-title">Manual Review Collection</div>
+          <div class="ha-gap-desc">10,000+ reviews collected by hand. No automated routing for unhappy patients before they post publicly.</div>
+          <div class="ha-gap-stat">2-3x more reviews possible</div>
+        </div>
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#129657;</div>
+          <div class="ha-gap-title">Physician Referrals Blind</div>
+          <div class="ha-gap-desc">1,500+ referring physicians with no tracking, no nurture emails, no visibility into declining referral volume.</div>
+          <div class="ha-gap-stat">0 referral analytics</div>
+        </div>
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#128164;</div>
+          <div class="ha-gap-title">Lapsed Patients</div>
+          <div class="ha-gap-desc">Patients who haven't returned in 12+ months get no outreach. Hearing aids need replacement every 5-7 years.</div>
+          <div class="ha-gap-stat">$100K+ in dormant revenue</div>
+        </div>
+        <div class="ha-gap-card">
+          <div class="ha-gap-icon">&#9201;</div>
+          <div class="ha-gap-title">Staff Time Drain</div>
+          <div class="ha-gap-desc">Admin, marketing, and care teams spend 25+ hours per week on tasks that should be automated.</div>
+          <div class="ha-gap-stat">25 hrs / week wasted</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 - 10 WORKFLOWS -->
+    <section class="ha-section" id="ha-workflows">
+      <div class="ha-section-label">02 &mdash; 10 Automated Workflows</div>
+      <h2 class="ha-section-title">The complete<br><span class="ha-accent">automation system.</span></h2>
+      <p class="ha-section-sub">10 workflows across 4 phases. Click any workflow to see what it does under the hood.</p>
+
+      <!-- Phase badges -->
+      <div class="ha-phase-row">
+        <button class="ha-phase-btn active" onclick="haFilterPhase('all')">All Workflows</button>
+        <button class="ha-phase-btn" onclick="haFilterPhase('1')">Phase 1</button>
+        <button class="ha-phase-btn" onclick="haFilterPhase('2')">Phase 2</button>
+        <button class="ha-phase-btn" onclick="haFilterPhase('3')">Phase 3</button>
+        <button class="ha-phase-btn" onclick="haFilterPhase('4')">Phase 4</button>
+      </div>
+
+      <div class="ha-wf-grid" id="haWfGrid">
+        <!-- Workflow 1 -->
+        <div class="ha-wf-card" data-phase="1" data-impact="high" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">01</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-high">HIGH IMPACT</span>
+              <span class="ha-badge-phase">PHASE 1</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Lead Intake & Qualification</div>
+          <div class="ha-wf-summary">AI classifies every form submission by concern type and urgency. Routes to nearest office with personalized response.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Trigger</span> Webflow form webhook</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Extract name, zip, concern type, urgency 1-10</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Match</span> Zip code &rarr; nearest of 27 locations</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Route</span> HIGH / MEDIUM / LOW urgency paths</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Email</span> Personalized response per urgency level</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Slack</span> Office manager notified instantly</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Log</span> Lead Pipeline Google Sheet updated</div>
+            </div>
+            <div class="ha-wf-cost">Webhook trigger &middot; runs per form submission</div>
+          </div>
+        </div>
+
+        <!-- Workflow 2 -->
+        <div class="ha-wf-card" data-phase="1" data-impact="high" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">02</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-high">HIGH IMPACT</span>
+              <span class="ha-badge-phase">PHASE 1</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Appointment Reminders & No-Show Recovery</div>
+          <div class="ha-wf-summary">Confirmation email on booking. 48-hour email reminder. Same-day SMS. Empathetic recovery email for no-shows.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">2A</span> New appointment &rarr; confirmation email</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">2B</span> Daily 8am &rarr; 48hr email + same-day SMS</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">2C</span> Daily 6pm &rarr; identify no-shows</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Generate empathetic recovery email</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Slack</span> #no-shows channel alerted</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Track</span> All statuses logged in Sheet</div>
+            </div>
+            <div class="ha-wf-cost">3 sub-workflows &middot; daily automated runs</div>
+          </div>
+        </div>
+
+        <!-- Workflow 3 -->
+        <div class="ha-wf-card" data-phase="1" data-impact="high" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">03</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-high">HIGH IMPACT</span>
+              <span class="ha-badge-phase">PHASE 1</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Review Collection & Satisfaction Router</div>
+          <div class="ha-wf-summary">Post-visit satisfaction check. Happy patients get review link. Unhappy patients get internal recovery before going public.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">3A</span> Daily 5pm &rarr; satisfaction email to today's patients</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">3B</span> Response router &rarr; 3 paths</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Happy</span> Google Review link + thank you</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Neutral</span> Care tips email + internal note</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Unhappy</span> Slack alert + CEO-signed apology</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">3C</span> Day 7 care tips + Day 30 check-in nurture</div>
+            </div>
+            <div class="ha-wf-cost">3 sub-workflows &middot; daily automated runs</div>
+          </div>
+        </div>
+
+        <!-- Workflow 4 -->
+        <div class="ha-wf-card" data-phase="3" data-impact="high" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">04</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-high">HIGH IMPACT</span>
+              <span class="ha-badge-phase">PHASE 3</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Physician Referral Intelligence</div>
+          <div class="ha-wf-summary">Track referral volume from 1,500+ physicians. Monthly AI reports on top, declining, and new referrers.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Track</span> Log each referral to Referral Tracker sheet</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Alert</span> New physician &rarr; CMO notified via Slack</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Report</span> Monthly AI trend analysis</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Nurture</span> Monthly email by specialty (ENT / PCP / geriatric)</div>
+            </div>
+            <div class="ha-wf-cost">Monthly scheduled &middot; personalized per specialty</div>
+          </div>
+        </div>
+
+        <!-- Workflow 5 -->
+        <div class="ha-wf-card" data-phase="2" data-impact="high" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">05</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-high">HIGH IMPACT</span>
+              <span class="ha-badge-phase">PHASE 2</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Hearing Screening Quiz Backend</div>
+          <div class="ha-wf-summary">Online self-assessment captures email, AI scores severity, sends personalized results, and routes high-severity to nearest office.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Trigger</span> Quiz submission webhook</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Score severity &rarr; mild / moderate / severe</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Email</span> Personalized results + education + CTA</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Drip</span> Day 1 results, Day 3 education, Day 7 proof, Day 14 offer</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Alert</span> Severe leads &rarr; Slack to nearest office</div>
+            </div>
+            <div class="ha-wf-cost">Captures 20-40% of website visitors vs ~0% today</div>
+          </div>
+        </div>
+
+        <!-- Workflow 6 -->
+        <div class="ha-wf-card" data-phase="2" data-impact="medium" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">06</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-med">MEDIUM</span>
+              <span class="ha-badge-phase">PHASE 2</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Review Monitoring Agent</div>
+          <div class="ha-wf-summary">Daily scrape of Google Maps reviews across all 27 locations. AI drafts responses. Slack approval queue.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Scrape</span> Apify scans Google Maps daily</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Sentiment classification + theme extraction</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Positive</span> Draft thank-you &rarr; Slack for approval</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Negative</span> Immediate alert + draft empathetic response</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Weekly</span> Digest with trends by location</div>
+            </div>
+            <div class="ha-wf-cost">Daily scheduled &middot; covers 27 locations</div>
+          </div>
+        </div>
+
+        <!-- Workflow 7 -->
+        <div class="ha-wf-card" data-phase="3" data-impact="medium" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">07</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-med">MEDIUM</span>
+              <span class="ha-badge-phase">PHASE 3</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Content Repurposing Pipeline</div>
+          <div class="ha-wf-summary">New blog post triggers AI to generate 3 social posts, 5 education tips, and a newsletter snippet automatically.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Trigger</span> Webflow blog publish webhook</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Read article &rarr; generate platform content</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Output</span> 3 social posts + 5 tips + newsletter snippet</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Sheet</span> Content Calendar with suggested dates</div>
+            </div>
+            <div class="ha-wf-cost">Triggered per blog post &middot; multiplies content 9x</div>
+          </div>
+        </div>
+
+        <!-- Workflow 8 -->
+        <div class="ha-wf-card" data-phase="4" data-impact="medium" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">08</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-med">MEDIUM</span>
+              <span class="ha-badge-phase">PHASE 4</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Insurance Verification Pre-Check</div>
+          <div class="ha-wf-summary">AI pre-fills verification forms by insurance provider. Flags cases needing manual review to the insurance manager.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Trigger</span> New appointment with insurance info</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Pre-fill form template by provider</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Check</span> Common providers: auto-verify online</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Flag</span> Manual cases &rarr; Slack to Insurance Manager</div>
+            </div>
+            <div class="ha-wf-cost">Saves hours of phone calls daily</div>
+          </div>
+        </div>
+
+        <!-- Workflow 9 -->
+        <div class="ha-wf-card" data-phase="2" data-impact="medium" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">09</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-med">MEDIUM</span>
+              <span class="ha-badge-phase">PHASE 2</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Patient Reactivation Campaign</div>
+          <div class="ha-wf-summary">Monthly scan for patients inactive 12+ months. AI generates personalized win-back emails by service type and hearing aid age.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Scan</span> Monthly &rarr; find patients with last visit 12+ months</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Segment</span> By service type, hearing aid age, location</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Personalized reactivation email</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Drip</span> Day 0 check-in, Day 7 new tech, Day 14 offer</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Hot</span> Responders &rarr; Slack for phone follow-up</div>
+            </div>
+            <div class="ha-wf-cost">Reactivates dormant patient relationships</div>
+          </div>
+        </div>
+
+        <!-- Workflow 10 -->
+        <div class="ha-wf-card" data-phase="4" data-impact="low" onclick="haToggleWf(this)">
+          <div class="ha-wf-header">
+            <div class="ha-wf-num">10</div>
+            <div class="ha-wf-badges">
+              <span class="ha-badge-impact ha-impact-low">STRATEGIC</span>
+              <span class="ha-badge-phase">PHASE 4</span>
+            </div>
+          </div>
+          <div class="ha-wf-title">Competitor & Market Intel Monitor</div>
+          <div class="ha-wf-summary">Weekly scan of OTC hearing aid news, competitor moves, and FDA announcements. AI-summarized brief to leadership.</div>
+          <div class="ha-wf-detail">
+            <div class="ha-wf-flow">
+              <div class="ha-flow-step"><span class="ha-flow-label">Scrape</span> Weekly Apify scan of competitors + news</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">AI</span> Summarize + categorize by threat level</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Email</span> Market Intel Brief to leadership team</div>
+              <div class="ha-flow-step"><span class="ha-flow-label">Slack</span> High-priority flags to CMO</div>
+            </div>
+            <div class="ha-wf-cost">Weekly scheduled &middot; OTC disruption monitoring</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 - IMPLEMENTATION ROADMAP -->
+    <section class="ha-section" id="ha-section-3">
+      <div class="ha-section-label">03 &mdash; Implementation Roadmap</div>
+      <h2 class="ha-section-title">4 phases.<br><span class="ha-accent">8 weeks to full automation.</span></h2>
+      <p class="ha-section-sub">Start with the highest-impact, lowest-complexity workflows and expand from there.</p>
+
+      <div class="ha-roadmap">
+        <div class="ha-rm-phase active" onclick="haToggleRoadmap(this)">
+          <div class="ha-rm-header">
+            <div class="ha-rm-badge">PHASE 1</div>
+            <div class="ha-rm-timeline">Week 1-2</div>
+          </div>
+          <div class="ha-rm-title">Quick Wins</div>
+          <div class="ha-rm-workflows">Lead Intake &middot; Appointment Reminders &middot; Review Engine</div>
+          <div class="ha-rm-detail">
+            <div class="ha-rm-items">
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Set up Google Sheets (Lead Pipeline, Appointment Tracker, Follow-Up Tracker)</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Connect Gmail, Slack channels, Webflow webhook</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Build 7 Gumloop workflows (3 systems x sub-workflows)</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Create location directory with zip code mapping</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Set up Google Form for satisfaction routing</span>
+              </div>
+            </div>
+            <div class="ha-rm-cost">Google Sheets &middot; Gmail &middot; Slack &middot; Webflow</div>
+          </div>
+        </div>
+
+        <div class="ha-rm-phase" onclick="haToggleRoadmap(this)">
+          <div class="ha-rm-header">
+            <div class="ha-rm-badge">PHASE 2</div>
+            <div class="ha-rm-timeline">Week 3-4</div>
+          </div>
+          <div class="ha-rm-title">Lead Engine</div>
+          <div class="ha-rm-workflows">Quiz Backend &middot; Review Monitor &middot; Patient Reactivation</div>
+          <div class="ha-rm-detail">
+            <div class="ha-rm-items">
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Build hearing screening quiz (Typeform or Webflow)</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Connect Apify for Google Maps review scraping</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Import patient database for reactivation scanning</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Build 3 new Gumloop workflows</span>
+              </div>
+            </div>
+            <div class="ha-rm-cost">+ Apify &middot; Typeform &middot; Patient database</div>
+          </div>
+        </div>
+
+        <div class="ha-rm-phase" onclick="haToggleRoadmap(this)">
+          <div class="ha-rm-header">
+            <div class="ha-rm-badge">PHASE 3</div>
+            <div class="ha-rm-timeline">Week 5-6</div>
+          </div>
+          <div class="ha-rm-title">Growth Systems</div>
+          <div class="ha-rm-workflows">Physician Nurture &middot; Content Pipeline</div>
+          <div class="ha-rm-detail">
+            <div class="ha-rm-items">
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Import physician referral directory (1,500+ contacts)</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Connect Webflow blog publish webhook</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Build 2 new Gumloop workflows</span>
+              </div>
+            </div>
+            <div class="ha-rm-cost">+ Physician directory &middot; Blog webhook</div>
+          </div>
+        </div>
+
+        <div class="ha-rm-phase" onclick="haToggleRoadmap(this)">
+          <div class="ha-rm-header">
+            <div class="ha-rm-badge">PHASE 4</div>
+            <div class="ha-rm-timeline">Week 7-8</div>
+          </div>
+          <div class="ha-rm-title">Advanced</div>
+          <div class="ha-rm-workflows">Insurance Pre-Check &middot; Market Intel</div>
+          <div class="ha-rm-detail">
+            <div class="ha-rm-items">
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Insurance portal access setup</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Competitor URL list for weekly monitoring</span>
+              </div>
+              <div class="ha-rm-item">
+                <span class="ha-rm-check">&#10003;</span>
+                <span>Build 2 final Gumloop workflows</span>
+              </div>
+            </div>
+            <div class="ha-rm-cost">+ Insurance portals &middot; Competitor URLs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 - CONNECTED SYSTEMS -->
+    <section class="ha-section" id="ha-section-4">
+      <div class="ha-section-label">04 &mdash; Connected Systems</div>
+      <h2 class="ha-section-title">Your tools.<br><span class="ha-accent">One automated layer.</span></h2>
+      <p class="ha-section-sub">Everything connects through Gumloop. Data flows between your existing tools automatically.</p>
+
+      <div class="ha-pipeline">
+        <div class="ha-pipe-stage active" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#129302;</div>
+          <div class="ha-pipe-name">Gumloop AI</div>
+          <div class="ha-pipe-desc">Classification, scoring, email generation, sentiment analysis</div>
+        </div>
+        <div class="ha-pipe-stage" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#128231;</div>
+          <div class="ha-pipe-name">Gmail</div>
+          <div class="ha-pipe-desc">Confirmations, reminders, review requests, nurture emails</div>
+        </div>
+        <div class="ha-pipe-stage" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#128172;</div>
+          <div class="ha-pipe-name">Slack</div>
+          <div class="ha-pipe-desc">Lead alerts, no-show reports, negative feedback routing</div>
+        </div>
+        <div class="ha-pipe-stage" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#128202;</div>
+          <div class="ha-pipe-name">Google Sheets</div>
+          <div class="ha-pipe-desc">Lead pipeline, appointment tracker, follow-up tracker, referrals</div>
+        </div>
+        <div class="ha-pipe-stage" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#128241;</div>
+          <div class="ha-pipe-name">SMS</div>
+          <div class="ha-pipe-desc">Same-day appointment reminders via Twilio</div>
+        </div>
+        <div class="ha-pipe-stage" onclick="haTogglePipe(this)">
+          <div class="ha-pipe-icon">&#128270;</div>
+          <div class="ha-pipe-name">Apify</div>
+          <div class="ha-pipe-desc">Google Maps review scraping, competitor monitoring</div>
+        </div>
+      </div>
+
+      <div class="ha-quote-block">
+        <div class="ha-quote-text">"Every lead qualified. Every appointment confirmed. Every review collected. Every physician nurtured. Zero manual work."</div>
+        <div class="ha-quote-attr">The goal for Live Better Hearing + Balance</div>
+      </div>
+    </section>
+
+    <!-- 05 - IMPACT NUMBERS -->
+    <section class="ha-section" id="ha-section-5">
+      <div class="ha-section-label">05 &mdash; Projected Impact</div>
+      <h2 class="ha-section-title">The numbers<br><span class="ha-accent">that matter.</span></h2>
+      <p class="ha-section-sub">Conservative estimates based on industry benchmarks for a 27-location audiology practice.</p>
+
+      <div class="ha-impact-grid">
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">$150K+</div>
+          <div class="ha-impact-label">No-show revenue recovered per year</div>
+          <div class="ha-impact-detail">5-10% fewer no-shows at $200-500 per appointment across 27 locations</div>
+        </div>
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">3x</div>
+          <div class="ha-impact-label">More reviews collected automatically</div>
+          <div class="ha-impact-detail">Automated satisfaction routing with location-specific Google Review links</div>
+        </div>
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">40%</div>
+          <div class="ha-impact-label">Website visitors captured vs 0% today</div>
+          <div class="ha-impact-detail">Hearing screening quiz + AI-scored drip sequence replaces phone-only path</div>
+        </div>
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">$100K+</div>
+          <div class="ha-impact-label">Dormant revenue reactivated</div>
+          <div class="ha-impact-detail">Lapsed patients (12+ months) receive personalized win-back campaigns</div>
+        </div>
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">25 hrs</div>
+          <div class="ha-impact-label">Staff time saved per week</div>
+          <div class="ha-impact-detail">Across admin, marketing, patient care, and insurance teams</div>
+        </div>
+        <div class="ha-impact-card">
+          <div class="ha-impact-num">All-In</div>
+          <div class="ha-impact-label">Single platform runs everything</div>
+          <div class="ha-impact-detail">One automation layer connects all your existing tools</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 - HIPAA NOTE -->
+    <section class="ha-section ha-hipaa-section" id="ha-section-6">
+      <div class="ha-section-label">06 &mdash; Compliance Note</div>
+      <div class="ha-hipaa-card">
+        <div class="ha-hipaa-icon">&#128274;</div>
+        <div class="ha-hipaa-content">
+          <div class="ha-hipaa-title">HIPAA-Conscious Design</div>
+          <div class="ha-hipaa-text">These workflows handle <strong>marketing and scheduling data only</strong> &mdash; names, emails, phones, appointment dates, service types, and satisfaction ratings. No clinical data (audiograms, diagnoses, treatment plans) flows through Gumloop. All PHI stays in the EHR system.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 - CTA -->
+    <section class="ha-cta-section" id="ha-section-7">
+      <div class="ha-section-label" style="justify-content:center;margin-bottom:28px">07 &mdash; Get Started</div>
+      <h2 class="ha-cta-title">27 locations.<br>10 workflows.<br><span style="color:var(--ha-accent)">Zero leads lost.</span></h2>
+      <p class="ha-cta-sub">Stop losing leads, missing appointments, and collecting reviews by hand. Let the system handle it.</p>
+      <div class="ha-cta-btn-row">
+        <a href="#ha-workflows" class="ha-btn-p">See All 10 Workflows &rarr;</a>
+        <a
+          href="#"
+          class="ha-btn-s"
+          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          data-cal-namespace="free-quiz-audit-automation-brothers"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >Talk to the Brothers</a>
+      </div>
+      <p style="font-size:11px;color:var(--ha-muted);margin-top:28px;font-family:var(--ha-mono)">Hearing Practice Automation &middot; built with Gumloop &middot; built by Brothers Automate</p>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ===== HERO (from ProjectPage.astro) ===== */
+  .project-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .project-hero-content {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .hero-stat-number { font-size: 1.75rem; font-weight: 800; color: var(--navy); line-height: 1; }
+  .hero-stat-label { font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; }
+  .hero-stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+  @media (min-width: 480px) {
+    .hero-buttons { flex-direction: row; justify-content: center; }
+  }
+
+  /* ===== TERMINAL BOX ===== */
+  .ha-scan-box {
+    max-width: 520px; width: 100%; margin: 0 auto;
+    background: var(--bg-surface); border: 1.5px solid var(--border);
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
+  }
+  .ha-scan-bar {
+    background: var(--bg-surface-alt); border-bottom: 1px solid var(--border);
+    padding: 10px 16px; display: flex; align-items: center; gap: 6px;
+    font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em;
+    text-transform: uppercase; font-family: 'DM Mono', var(--font-mono);
+  }
+  .ha-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ha-scan-input-row { display: flex; align-items: center; gap: 0; padding: 12px 12px 12px 18px; }
+  .ha-scan-input {
+    flex: 1; background: transparent; border: none; outline: none;
+    font-family: 'DM Mono', var(--font-mono); font-size: 13px; color: var(--navy);
+  }
+  .ha-scan-input::placeholder { color: var(--text-muted); }
+  .ha-scan-btn {
+    background: var(--orange); color: #fff; border: none;
+    padding: 11px 22px; border-radius: 12px;
+    font-family: var(--font-sans); font-weight: 700; font-size: 12px;
+    cursor: pointer; transition: background 0.15s; letter-spacing: 0.01em; white-space: nowrap;
+    animation: haBtnPulse 2.5s ease-in-out infinite;
+  }
+  .ha-scan-btn:hover { background: var(--orange-hover); animation: none; }
+  @keyframes haBtnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,57,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(224,123,57,0); }
+  }
+  .ha-scan-log {
+    padding: 0 18px 18px; font-family: 'DM Mono', var(--font-mono);
+    font-size: 11px; line-height: 2.1; display: none;
+    border-top: 1px solid var(--border); margin-top: 4px;
+  }
+  .ha-scan-log.visible { display: block; animation: haFadeUp 0.3s ease; }
+
+  /* ===== CUSTOM VARIABLES ===== */
+  :root {
+    --ha-accent: #e07b39;
+    --ha-accent2: #c4622a;
+    --ha-navy: #1e3557;
+    --ha-blue-gray: #7a95b0;
+    --ha-muted: #8a9ab0;
+    --ha-green: #3a9e6e;
+    --ha-green-bg: #e8f5ef;
+    --ha-red: #c0392b;
+    --ha-mono: 'DM Mono', monospace;
+    --ha-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== TICKER ===== */
+  .ha-ticker {
+    background: var(--ha-navy); color: rgba(255,255,255,0.7);
+    padding: 10px 0; overflow: hidden; white-space: nowrap;
+  }
+  .ha-ticker-inner {
+    display: inline-block; animation: haTicker 28s linear infinite;
+    font-family: var(--ha-mono); font-size: 11px; letter-spacing: 0.1em;
+  }
+  @keyframes haTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .ha-section {
+    max-width: 980px; margin: 0 auto; padding: 80px 32px;
+    border-top: 1px solid var(--border);
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ha-section.visible { opacity: 1; transform: none; }
+
+  .ha-section-label {
+    font-size: 10px; letter-spacing: 0.18em; color: var(--ha-muted);
+    text-transform: uppercase; margin-bottom: 36px; display: flex;
+    align-items: center; gap: 14px; font-weight: 600;
+  }
+  .ha-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .ha-section-title {
+    font-size: clamp(30px, 4.5vw, 52px); font-weight: 800;
+    line-height: 1.08; margin-bottom: 14px; color: var(--ha-navy); letter-spacing: -0.025em;
+  }
+  .ha-accent { color: var(--ha-accent); }
+  .ha-section-sub {
+    font-size: 13px; color: var(--ha-blue-gray); max-width: 560px; line-height: 1.75; margin-bottom: 0;
+  }
+
+  /* ===== PROBLEM GAP CARDS (Section 01) ===== */
+  .ha-gap-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 48px;
+  }
+  .ha-gap-card {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 24px 20px; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-gap-card:hover { border-color: var(--ha-accent); box-shadow: 0 4px 20px rgba(224,123,57,0.1); }
+  .ha-gap-icon { font-size: 24px; margin-bottom: 12px; }
+  .ha-gap-title { font-weight: 800; font-size: 14px; color: var(--ha-navy); margin-bottom: 8px; }
+  .ha-gap-desc { font-size: 12px; color: var(--ha-blue-gray); line-height: 1.65; margin-bottom: 12px; }
+  .ha-gap-stat {
+    font-family: var(--ha-mono); font-size: 11px; font-weight: 500;
+    color: var(--ha-red); padding-top: 10px; border-top: 1px solid var(--border);
+  }
+
+  /* ===== WORKFLOW CARDS (Section 02) ===== */
+  .ha-phase-row {
+    display: flex; gap: 8px; margin-top: 32px; flex-wrap: wrap;
+  }
+  .ha-phase-btn {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 999px;
+    padding: 8px 18px; font-family: var(--ha-mono); font-size: 11px; font-weight: 500;
+    color: var(--ha-blue-gray); cursor: pointer; transition: all 0.15s;
+  }
+  .ha-phase-btn:hover, .ha-phase-btn.active {
+    background: var(--ha-navy); color: #fff; border-color: var(--ha-navy);
+  }
+
+  .ha-wf-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+
+  .ha-wf-card {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 24px; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-wf-card:hover { border-color: var(--ha-accent); box-shadow: 0 4px 20px rgba(224,123,57,0.1); }
+  .ha-wf-card.active { border-color: var(--ha-accent); background: #fff; }
+  .ha-wf-card.hidden { display: none; }
+
+  .ha-wf-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ha-wf-num { font-family: var(--ha-mono); font-size: 11px; color: var(--ha-muted); font-weight: 500; }
+  .ha-wf-badges { display: flex; gap: 6px; }
+  .ha-badge-impact {
+    font-family: var(--ha-mono); font-size: 9px; letter-spacing: 0.1em; font-weight: 700;
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .ha-impact-high { background: rgba(58,158,110,0.1); color: var(--ha-green); }
+  .ha-impact-med { background: rgba(224,123,57,0.1); color: var(--ha-accent); }
+  .ha-impact-low { background: rgba(122,149,176,0.15); color: var(--ha-blue-gray); }
+  .ha-badge-phase {
+    font-family: var(--ha-mono); font-size: 9px; letter-spacing: 0.1em; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px; background: rgba(26,54,93,0.06); color: var(--ha-navy);
+  }
+
+  .ha-wf-title { font-weight: 800; font-size: 17px; color: var(--ha-navy); margin-bottom: 6px; }
+  .ha-wf-summary { font-size: 12px; color: var(--ha-blue-gray); line-height: 1.7; }
+
+  .ha-wf-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .ha-wf-card.active .ha-wf-detail {
+    max-height: 500px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+  }
+
+  .ha-wf-flow { display: flex; flex-direction: column; gap: 0; }
+  .ha-flow-step {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 7px 0; font-size: 12px; color: var(--ha-blue-gray); line-height: 1.5;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .ha-flow-step:last-child { border-bottom: none; }
+  .ha-flow-label {
+    font-family: var(--ha-mono); font-size: 10px; font-weight: 600;
+    color: var(--ha-accent); min-width: 52px; flex-shrink: 0;
+  }
+
+  .ha-wf-cost {
+    font-family: var(--ha-mono); font-size: 10px; color: var(--ha-muted);
+    margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);
+  }
+
+  /* ===== ROADMAP (Section 03) ===== */
+  .ha-roadmap { display: flex; flex-direction: column; gap: 12px; margin-top: 48px; }
+
+  .ha-rm-phase {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 24px; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-rm-phase:hover, .ha-rm-phase.active { border-color: var(--ha-accent); background: #fff; }
+
+  .ha-rm-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .ha-rm-badge {
+    font-family: var(--ha-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    padding: 4px 12px; border-radius: 999px; background: var(--ha-navy); color: #fff;
+  }
+  .ha-rm-timeline { font-family: var(--ha-mono); font-size: 11px; color: var(--ha-muted); }
+
+  .ha-rm-title { font-weight: 800; font-size: 17px; color: var(--ha-navy); margin-bottom: 4px; }
+  .ha-rm-workflows { font-size: 12px; color: var(--ha-blue-gray); font-family: var(--ha-mono); }
+
+  .ha-rm-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+  }
+  .ha-rm-phase.active .ha-rm-detail {
+    max-height: 400px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+  }
+
+  .ha-rm-items { display: flex; flex-direction: column; gap: 8px; }
+  .ha-rm-item { display: flex; align-items: baseline; gap: 10px; font-size: 12px; color: var(--ha-blue-gray); line-height: 1.5; }
+  .ha-rm-check { color: var(--ha-green); font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .ha-rm-cost {
+    font-family: var(--ha-mono); font-size: 10px; color: var(--ha-muted);
+    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border);
+  }
+
+  /* ===== PIPELINE (Section 04) ===== */
+  .ha-pipeline {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px;
+  }
+  .ha-pipe-stage {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 24px 18px; text-align: center; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-pipe-stage:hover, .ha-pipe-stage.active { border-color: var(--ha-accent); background: #fff; }
+  .ha-pipe-icon { font-size: 28px; margin-bottom: 10px; }
+  .ha-pipe-name { font-weight: 700; font-size: 13px; color: var(--ha-navy); margin-bottom: 6px; }
+  .ha-pipe-desc { font-size: 10px; color: var(--ha-muted); line-height: 1.5; font-family: var(--ha-mono); }
+
+  .ha-quote-block {
+    margin-top: 40px; border-left: 4px solid var(--ha-accent);
+    padding: 24px 28px; background: var(--bg-surface); border-radius: 0 16px 16px 0;
+  }
+  .ha-quote-text {
+    font-size: clamp(14px, 2vw, 19px); font-weight: 700; line-height: 1.55;
+    color: var(--ha-navy); margin-bottom: 10px;
+  }
+  .ha-quote-attr { font-size: 10px; color: var(--ha-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--ha-mono); }
+
+  /* ===== IMPACT GRID (Section 05) ===== */
+  .ha-impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 48px;
+  }
+  .ha-impact-card {
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 28px 24px; text-align: center; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-impact-card:hover { border-color: var(--ha-accent); box-shadow: 0 4px 20px rgba(224,123,57,0.1); }
+  .ha-impact-num {
+    font-size: 40px; font-weight: 900; color: var(--ha-accent);
+    line-height: 1; margin-bottom: 10px; letter-spacing: -0.03em;
+  }
+  .ha-impact-label { font-size: 13px; font-weight: 700; color: var(--ha-navy); margin-bottom: 8px; line-height: 1.35; }
+  .ha-impact-detail { font-size: 11px; color: var(--ha-blue-gray); line-height: 1.6; font-family: var(--ha-mono); }
+
+  /* ===== HIPAA (Section 06) ===== */
+  .ha-hipaa-section { padding-bottom: 40px; }
+  .ha-hipaa-card {
+    display: flex; align-items: flex-start; gap: 20px;
+    background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 28px; margin-top: 24px;
+    box-shadow: 0 2px 8px rgba(30,53,87,0.05);
+  }
+  .ha-hipaa-icon { font-size: 32px; flex-shrink: 0; margin-top: 2px; }
+  .ha-hipaa-title { font-weight: 800; font-size: 16px; color: var(--ha-navy); margin-bottom: 8px; }
+  .ha-hipaa-text { font-size: 13px; color: var(--ha-blue-gray); line-height: 1.7; }
+
+  /* ===== CTA ===== */
+  .ha-cta-section {
+    max-width: 980px; margin: 0 auto; padding: 80px 32px 120px;
+    border-top: 1px solid var(--border); text-align: center;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ha-cta-section.visible { opacity: 1; transform: none; }
+  .ha-cta-title {
+    font-size: clamp(36px, 6vw, 72px); font-weight: 900;
+    line-height: 1.02; margin-bottom: 18px; color: var(--ha-navy); letter-spacing: -0.03em;
+  }
+  .ha-cta-sub {
+    font-size: 16px; color: var(--ha-blue-gray); max-width: 420px;
+    margin: 0 auto 40px; line-height: 1.7;
+  }
+  .ha-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .ha-btn-p {
+    display: inline-block; background: var(--ha-accent); color: #fff; border: none;
+    padding: 16px 34px; font-family: var(--ha-sans); font-weight: 700; font-size: 14px;
+    cursor: pointer; border-radius: 999px; transition: background 0.15s;
+    box-shadow: 0 4px 16px rgba(224,123,57,0.3); text-decoration: none;
+  }
+  .ha-btn-p:hover { background: var(--ha-accent2); }
+  .ha-btn-s {
+    display: inline-block; background: transparent; color: var(--ha-navy);
+    border: 2px solid var(--ha-navy); padding: 16px 34px;
+    font-family: var(--ha-sans); font-weight: 700; font-size: 14px;
+    cursor: pointer; border-radius: 999px; transition: all 0.15s; text-decoration: none;
+  }
+  .ha-btn-s:hover { background: var(--ha-navy); color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes haFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    .project-hero { padding-top: 120px; padding-bottom: var(--space-2xl); }
+    .hero-stats { flex-direction: column; gap: var(--space-md); padding: var(--space-md); }
+    .hero-stat-divider { width: 60px; height: 1px; }
+    .hero-buttons .btn { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 640px) {
+    .ha-gap-grid { grid-template-columns: 1fr; }
+    .ha-pipeline { grid-template-columns: 1fr; }
+    .ha-impact-grid { grid-template-columns: 1fr; }
+    .ha-section { padding: 60px 20px; }
+    .ha-cta-section { padding: 60px 20px 80px; }
+    .ha-hipaa-card { flex-direction: column; gap: 12px; }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .ha-gap-grid { grid-template-columns: repeat(2, 1fr); }
+    .ha-pipeline { grid-template-columns: repeat(2, 1fr); }
+    .ha-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<!-- DM Mono font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
+
+<script>
+  // Terminal demo
+  const haLines = [
+    ['ha-log-working', '\u27F6 New lead received \u00B7 Mary Johnson \u00B7 Bethesda MD'],
+    ['ha-log-ok', '\u2713 AI classification \u00B7 concern: hearing_loss \u00B7 urgency: 8/10'],
+    ['ha-log-ok', '\u2713 Location matched \u00B7 Bethesda Office \u00B7 zip 20814'],
+    ['ha-log-working', '\u27F6 Routing to HIGH urgency path...'],
+    ['ha-log-ok', '\u2713 Personalized email sent \u00B7 mary.johnson@email.com'],
+    ['ha-log-ok', '\u2713 Slack alert \u00B7 #high-priority-leads \u00B7 Bethesda manager notified'],
+    ['ha-log-ok', '\u2713 Lead Pipeline updated \u00B7 row 847 \u00B7 status: New'],
+    ['ha-log-qual', '\u2192 Lead qualified \u00B7 HIGH priority \u00B7 hearing_loss \u00B7 ~3 credits used'],
+    ['ha-log-ok', '\u26A1 Intake complete \u00B7 total time: 4 seconds'],
+  ];
+
+  function haRunDemo() {
+    const log = document.getElementById('haLog');
+    if (!log) return;
+    log.innerHTML = '';
+    log.classList.add('visible');
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= haLines.length) { clearInterval(iv); return; }
+      const [cls, msg] = haLines[i];
+      const div = document.createElement('div');
+      div.className = cls;
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      i++;
+    }, 380);
+  }
+
+  const haInput = document.getElementById('haInput');
+  if (haInput) {
+    haInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') haRunDemo();
+    });
+  }
+
+  // Workflow card toggle
+  function haToggleWf(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.ha-wf-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+
+  // Phase filter
+  function haFilterPhase(phase) {
+    document.querySelectorAll('.ha-phase-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.ha-wf-card').forEach(card => {
+      if (phase === 'all' || card.dataset.phase === phase) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  // Roadmap toggle
+  function haToggleRoadmap(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.ha-rm-phase').forEach(p => p.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+
+  // Pipeline toggle
+  function haTogglePipe(el) {
+    document.querySelectorAll('.ha-pipe-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Section scroll animations
+  const haObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.ha-section, .ha-cta-section').forEach(el => haObs.observe(el));
+
+  // Make functions globally available for inline onclick handlers
+  window.haRunDemo = haRunDemo;
+  window.haToggleWf = haToggleWf;
+  window.haFilterPhase = haFilterPhase;
+  window.haToggleRoadmap = haToggleRoadmap;
+  window.haTogglePipe = haTogglePipe;
+</script>
+
+<style is:global>
+  .ha-log-ok { color: #3a9e6e; }
+  .ha-log-working { color: #e07b39; }
+  .ha-log-qual { color: #1e3557; font-weight: 500; }
+</style>
