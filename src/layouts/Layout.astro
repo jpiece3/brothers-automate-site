@@ -49,6 +49,24 @@ import FloatingGuide from '../components/FloatingGuide.astro';
     gtag('config', 'G-5S4S0F38JN');
   </script>
 
+  <!-- Meta Pixel Code -->
+  <script is:inline>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1452124226351453');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1452124226351453&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <meta name="description" content={description}>
   <title>{title}</title>
 
@@ -80,6 +98,7 @@ import FloatingGuide from '../components/FloatingGuide.astro';
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Resource hints for third-party services -->
+  <link rel="preconnect" href="https://connect.facebook.net">
   <link rel="preconnect" href="https://app.cal.com">
   <link rel="dns-prefetch" href="https://app.cal.com">
 
@@ -94,6 +113,27 @@ import FloatingGuide from '../components/FloatingGuide.astro';
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "free-quiz-audit-automation-brothers", {origin:"https://app.cal.com"});
     Cal.ns["free-quiz-audit-automation-brothers"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+    // Meta Pixel - Track Cal.com bookings as Schedule event
+    Cal.ns["free-quiz-audit-automation-brothers"]("on", {
+      action: "bookingSuccessful",
+      callback: function() {
+        var eventId = crypto.randomUUID();
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Schedule', {}, {eventID: eventId});
+        }
+        fetch('/api/meta-capi', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            event_name: 'Schedule',
+            event_id: eventId,
+            event_source_url: window.location.href,
+            user_data: {}
+          })
+        }).catch(function() {});
+      }
+    });
   </script>
 
   <!-- Styles -->
