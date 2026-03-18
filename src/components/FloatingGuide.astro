@@ -886,31 +886,9 @@
         body.classList.add('visible');
 
         // Meta Pixel - Lead event
-        var eventId = crypto.randomUUID();
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Lead', {}, {eventID: eventId});
+          fbq('track', 'Lead');
         }
-
-        // Hash email and send to CAPI
-        var encoder = new TextEncoder();
-        crypto.subtle.digest('SHA-256', encoder.encode(email.trim().toLowerCase()))
-          .then(function(hash) {
-            var hashArray = Array.from(new Uint8Array(hash));
-            var hashHex = hashArray.map(function(b) {
-              return b.toString(16).padStart(2, '0');
-            }).join('');
-
-            return fetch('/api/meta-capi', {
-              method: 'POST',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify({
-                event_name: 'Lead',
-                event_id: eventId,
-                event_source_url: window.location.href,
-                user_data: { em: hashHex }
-              })
-            });
-          }).catch(function() {});
       }
     });
 

@@ -123,20 +123,9 @@ import FloatingGuide from '../components/FloatingGuide.astro';
     Cal.ns["free-quiz-audit-automation-brothers"]("on", {
       action: "bookingSuccessful",
       callback: function() {
-        var eventId = crypto.randomUUID();
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Schedule', {}, {eventID: eventId});
+          fbq('track', 'Schedule');
         }
-        fetch('/api/meta-capi', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            event_name: 'Schedule',
-            event_id: eventId,
-            event_source_url: window.location.href,
-            user_data: {}
-          })
-        }).catch(function() {});
       }
     });
   </script>
