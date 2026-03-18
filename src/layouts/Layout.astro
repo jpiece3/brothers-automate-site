@@ -114,11 +114,6 @@ import FloatingGuide from '../components/FloatingGuide.astro';
     Cal("init", "free-quiz-audit-automation-brothers", {origin:"https://app.cal.com"});
     Cal.ns["free-quiz-audit-automation-brothers"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 
-    // Auto-open Cal.com modal if ?book=true is in the URL
-    if (new URLSearchParams(window.location.search).get('book') === 'true') {
-      Cal.ns["free-quiz-audit-automation-brothers"]("modal", {layout: "month_view"});
-    }
-
     // Meta Pixel - Track Cal.com bookings as Schedule event
     Cal.ns["free-quiz-audit-automation-brothers"]("on", {
       action: "bookingSuccessful",
