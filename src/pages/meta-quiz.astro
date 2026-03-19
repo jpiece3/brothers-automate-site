@@ -1,0 +1,733 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="What Should You Automate First for Your Clients? | Brothers Automate" description="Answer 7 quick questions about your consulting practice and we'll tell you exactly which AI automation to start offering — plus how to position it.">
+  <Header />
+  <div class="quiz-container" id="app"></div>
+  <Footer />
+
+  <script is:inline>
+    const QUESTIONS = [
+      {
+        q: "What type of clients do you primarily serve?",
+        sub: "This helps us match the right automation to your practice.",
+        opts: [
+          { text: "B2B companies (SaaS, professional services, manufacturing)", val: "b2b", pts: 3 },
+          { text: "Local businesses (contractors, clinics, real estate)", val: "local", pts: 2 },
+          { text: "E-commerce or DTC brands", val: "ecom", pts: 2 },
+          { text: "A mix of everything", val: "mix", pts: 1 }
+        ]
+      },
+      {
+        q: "What\u2019s the biggest pain point your clients mention?",
+        sub: "What keeps coming up in client conversations?",
+        opts: [
+          { text: "They're drowning in manual follow-up and lead management", val: "follow_up", pts: 3 },
+          { text: "Quoting and proposals take too long to get out the door", val: "quoting", pts: 3 },
+          { text: "Data entry across CRM, ERP, and spreadsheets is eating time", val: "data_entry", pts: 2 },
+          { text: "They don't really know \u2014 they just want to \"do AI\"", val: "vague", pts: 1 }
+        ]
+      },
+      {
+        q: "How technical are you or your team?",
+        sub: "Be honest \u2014 there's no wrong answer here.",
+        opts: [
+          { text: "Very \u2014 we build integrations and workflows already", val: "very_tech", pts: 3 },
+          { text: "Moderate \u2014 comfortable with Zapier, HubSpot, Airtable", val: "mod_tech", pts: 3 },
+          { text: "Not very \u2014 we're strategy and advisory, not technical", val: "low_tech", pts: 2 },
+          { text: "Zero \u2014 that's exactly why I need a partner", val: "no_tech", pts: 2 }
+        ]
+      },
+      {
+        q: "How are you currently delivering results for clients?",
+        sub: "What does your typical engagement look like?",
+        opts: [
+          { text: "Monthly retainers with ongoing deliverables", val: "retainer", pts: 3 },
+          { text: "Project-based engagements (start and end date)", val: "project", pts: 2 },
+          { text: "Hourly consulting or coaching calls", val: "hourly", pts: 1 },
+          { text: "I'm building my practice and still figuring it out", val: "early", pts: 1 }
+        ]
+      },
+      {
+        q: "Have any of your clients specifically asked about AI automation?",
+        sub: "This tells us how warm your market already is.",
+        opts: [
+          { text: "Yes \u2014 multiple clients have asked and I had to say no", val: "asked_many", pts: 3 },
+          { text: "One or two have mentioned it", val: "asked_some", pts: 2 },
+          { text: "Not directly, but I know they need it", val: "not_asked", pts: 2 },
+          { text: "No \u2014 I'd be introducing the concept", val: "introducing", pts: 1 }
+        ]
+      },
+      {
+        q: "What tools do your clients typically use?",
+        sub: "Select the most common stack you see across clients.",
+        opts: [
+          { text: "HubSpot, Salesforce, or a major CRM", val: "crm", pts: 3 },
+          { text: "QuickBooks, ERP systems, or industry-specific software", val: "erp", pts: 3 },
+          { text: "Google Workspace, spreadsheets, and email", val: "basic", pts: 2 },
+          { text: "I honestly don't know their tech stack well", val: "unknown", pts: 1 }
+        ]
+      },
+      {
+        q: "How many clients could you offer AI automation to in the next 90 days?",
+        sub: "Think about your current active relationships.",
+        opts: [
+          { text: "5+ clients \u2014 I have a solid book of business", val: "five_plus", pts: 3 },
+          { text: "3-4 clients who'd be a great fit", val: "three_four", pts: 3 },
+          { text: "1-2 that I'd want to start with", val: "one_two", pts: 2 },
+          { text: "None yet \u2014 I need to build the pipeline first", val: "none", pts: 1 }
+        ]
+      }
+    ];
+
+    const RESULTS = {
+      high: {
+        title: "Lead Qualification & Follow-Up Automation",
+        badge: "HIGH READINESS",
+        badgeClass: "high",
+        barClass: "high",
+        sub: "Your clients need AI agents that capture, qualify, and follow up with leads 24/7 \u2014 and your practice is perfectly positioned to deliver it.",
+        cards: [
+          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "An AI agent that qualifies inbound leads, sends personalized follow-up sequences, and pushes qualified deals into your client\u2019s CRM automatically. This runs around the clock and eliminates the gap between lead capture and first response.", tag: "Avg. client savings: $3,000-5,000/month" },
+          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "You have retainer clients with real pain around lead management. This automation delivers measurable ROI in the first month \u2014 which means easy renewals and stickier retainers.", tag: "Partner-ready" },
+          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Book a free 30-minute partner diagnostic with Brothers Automate. We\u2019ll map out exactly how this works for your top 2-3 clients, show you the ROI numbers, and build a co-branded pitch you can use this week.", tag: null }
+        ],
+        cta: "book",
+        ctaText: "Book Your Free Partner Diagnostic"
+      },
+      mid: {
+        title: "Quoting & Proposal Automation",
+        badge: "STRONG POTENTIAL",
+        badgeClass: "mid",
+        barClass: "mid",
+        sub: "Your clients are spending hours on manual quoting and proposals. AI can cut that to minutes \u2014 and you\u2019re in a great position to offer it.",
+        cards: [
+          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "An AI agent that generates quotes and proposals from intake forms, emails, or CRM data \u2014 automatically formatted, sent for approval, and tracked. No more manual data entry or copy-paste between systems.", tag: "Avg. time saved: 10-15 hours/month per client" },
+          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "Quoting automation has the clearest ROI story \u2014 you can show clients exactly how many hours they\u2019re spending and what it costs. That makes the sell easy, especially when Brothers Automate handles the free audit upfront.", tag: "Easy first conversation" },
+          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Get the free Partner Playbook \u2014 a step-by-step guide to positioning AI automation in your next client conversation. Includes scripts, objection handling, and a co-branded audit framework.", tag: null }
+        ],
+        cta: "email",
+        ctaText: "Get the Free Partner Playbook"
+      },
+      low: {
+        title: "CRM & Data Integration Automation",
+        badge: "BUILDING MOMENTUM",
+        badgeClass: "low",
+        barClass: "low",
+        sub: "Before diving into complex automations, your clients need their data flowing properly between systems. That\u2019s the foundation \u2014 and it\u2019s where you start.",
+        cards: [
+          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "Start with AI-powered data sync between your clients\u2019 tools \u2014 CRM updates, spreadsheet imports, email parsing, and contact enrichment running automatically. It\u2019s the least risky, highest-impact starting point.", tag: "Lowest barrier to entry" },
+          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "You\u2019re still building your automation muscle, and that\u2019s fine. Data integration is the simplest automation to explain, deliver, and show ROI on. It builds your credibility and opens the door to bigger projects.", tag: "Great starting point" },
+          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Download the AI Automation Starter Kit \u2014 covers the 5 highest-impact automations for consultants, how to spot them in client conversations, and how to price them.", tag: null }
+        ],
+        cta: "email",
+        ctaText: "Get the Free Starter Kit"
+      }
+    };
+
+    var quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null };
+
+    function getResult(score) {
+      var max = QUESTIONS.length * 3;
+      var pct = score / max;
+      if (pct >= 0.75) return 'high';
+      if (pct >= 0.5) return 'mid';
+      return 'low';
+    }
+
+    function renderQuiz() {
+      var app = document.getElementById('app');
+      if (!app) return;
+
+      if (quizState.screen === 'landing') {
+        app.innerHTML =
+          '<div class="quiz-landing fade-in">' +
+            '<div class="landing-badge">Free Assessment \u2014 2 Minutes</div>' +
+            '<h1>What Should You <span class="gradient-text">Automate First</span> for Your Clients?</h1>' +
+            '<p>Answer 7 quick questions about your consulting practice and we\'ll tell you exactly which AI automation to start offering \u2014 plus how to position it.</p>' +
+            '<div class="landing-features">' +
+              '<div class="landing-feature"><div class="icon">\u2713</div> Personalized recommendation</div>' +
+              '<div class="landing-feature"><div class="icon">\u2713</div> Based on your practice type</div>' +
+              '<div class="landing-feature"><div class="icon">\u2713</div> Includes next steps</div>' +
+            '</div>' +
+            '<button class="btn-primary" onclick="startQuiz()">Find Your #1 Automation \u2192</button>' +
+          '</div>';
+      }
+
+      else if (quizState.screen === 'question') {
+        var q = QUESTIONS[quizState.currentQ];
+        var pct = ((quizState.currentQ) / QUESTIONS.length) * 100;
+        var selected = quizState.answers[quizState.currentQ];
+        var optsHtml = '';
+        for (var i = 0; i < q.opts.length; i++) {
+          optsHtml += '<div class="option ' + (selected === i ? 'selected' : '') + '" onclick="selectOption(' + i + ')">' +
+            '<div class="option-radio"></div>' +
+            '<div class="option-content"><h4>' + q.opts[i].text + '</h4></div>' +
+          '</div>';
+        }
+        app.innerHTML =
+          '<div class="progress-wrap">' +
+            '<div class="progress-top">' +
+              '<span class="progress-label">Your Automation Match</span>' +
+              '<span class="progress-count">' + (quizState.currentQ + 1) + ' of ' + QUESTIONS.length + '</span>' +
+            '</div>' +
+            '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+          '</div>' +
+          '<div class="question-screen fade-in">' +
+            '<div class="question-text">' + q.q + '</div>' +
+            '<div class="question-sub">' + q.sub + '</div>' +
+            '<div class="options">' + optsHtml + '</div>' +
+            '<div class="nav-row">' +
+              (quizState.currentQ > 0 ? '<button class="btn-secondary" onclick="prevQ()">\u2190 Back</button>' : '<div></div>') +
+              '<button class="btn-primary" ' + (selected === undefined ? 'disabled' : '') + ' onclick="nextQ()">' +
+                (quizState.currentQ === QUESTIONS.length - 1 ? 'See My Results' : 'Next \u2192') +
+              '</button>' +
+            '</div>' +
+          '</div>';
+      }
+
+      else if (quizState.screen === 'email') {
+        app.innerHTML =
+          '<div class="email-screen fade-in">' +
+            '<h2>Your results are ready.</h2>' +
+            '<p>Enter your name and email to see your personalized automation recommendation and next steps.</p>' +
+            '<div class="email-form">' +
+              '<input type="text" placeholder="Your name" id="nameInput" value="' + quizState.name + '" />' +
+              '<input type="email" placeholder="Your best email" id="emailInput" value="' + quizState.email + '" />' +
+              '<button class="btn-primary" style="width:100%" onclick="submitQuizEmail()">Show My Results \u2192</button>' +
+            '</div>' +
+            '<div class="email-trust">\uD83D\uDD12 No spam. Unsubscribe anytime. We respect your inbox.</div>' +
+          '</div>';
+        var ni = document.getElementById('nameInput');
+        var ei = document.getElementById('emailInput');
+        if (ni) ni.addEventListener('input', function() { quizState.name = this.value; });
+        if (ei) ei.addEventListener('input', function() { quizState.email = this.value; });
+      }
+
+      else if (quizState.screen === 'results') {
+        var r = RESULTS[quizState.result];
+        var max = QUESTIONS.length * 3;
+        var scorePct = Math.round((quizState.score / max) * 100);
+        var firstName = quizState.name ? quizState.name.split(' ')[0] + ', your' : 'Your';
+        var cardsHtml = '';
+        for (var j = 0; j < r.cards.length; j++) {
+          var c = r.cards[j];
+          cardsHtml += '<div class="result-card">' +
+            '<h3>' + c.icon + ' ' + c.title + '</h3>' +
+            '<p>' + c.body + '</p>' +
+            (c.tag ? '<div class="tag">' + c.tag + '</div>' : '') +
+          '</div>';
+        }
+        var ctaHtml = '';
+        if (r.cta === 'book') {
+          ctaHtml = '<p>You\'re ready to start offering AI automation to your clients.</p>' +
+            '<a href="/book" class="btn-primary">' + r.ctaText + ' \u2192</a>';
+        } else {
+          ctaHtml = '<p>We\'ll send your personalized playbook and automation recommendations.</p>' +
+            '<button class="btn-primary" onclick="alert(\'Sent to ' + quizState.email + '! Check your inbox.\')">' + r.ctaText + ' \u2192</button>';
+        }
+        app.innerHTML =
+          '<div class="results-screen fade-in">' +
+            '<div class="result-type-badge ' + r.badgeClass + '">' + r.badge + '</div>' +
+            '<h2>' + firstName + ' #1 automation to offer:<br/>' + r.title + '</h2>' +
+            '<p class="result-sub">' + r.sub + '</p>' +
+            '<div class="score-bar-wrap">' +
+              '<div class="score-bar-label"><span>Partner Readiness Score</span><span class="score-val">' + scorePct + '%</span></div>' +
+              '<div class="score-bar"><div class="score-bar-fill ' + r.barClass + '" style="width:0%" id="scoreBar"></div></div>' +
+            '</div>' +
+            cardsHtml +
+            '<div class="results-cta">' + ctaHtml +
+              '<div style="margin-top:16px"><button class="btn-secondary" onclick="resetQuiz()">Retake Quiz</button></div>' +
+            '</div>' +
+          '</div>';
+        setTimeout(function() { var bar = document.getElementById('scoreBar'); if (bar) bar.style.width = scorePct + '%'; }, 300);
+
+        // Fire Meta Pixel Lead event
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
+      }
+    }
+
+    function startQuiz() { quizState.screen = 'question'; quizState.currentQ = 0; quizState.answers = []; quizState.score = 0; renderQuiz(); }
+    function selectOption(i) { quizState.answers[quizState.currentQ] = i; renderQuiz(); }
+    function nextQ() {
+      if (quizState.answers[quizState.currentQ] === undefined) return;
+      quizState.score += QUESTIONS[quizState.currentQ].opts[quizState.answers[quizState.currentQ]].pts;
+      if (quizState.currentQ < QUESTIONS.length - 1) { quizState.currentQ++; renderQuiz(); }
+      else { quizState.result = getResult(quizState.score); quizState.screen = 'email'; renderQuiz(); }
+    }
+    function prevQ() {
+      if (quizState.currentQ > 0) {
+        quizState.score -= QUESTIONS[quizState.currentQ - 1].opts[quizState.answers[quizState.currentQ - 1]].pts;
+        quizState.currentQ--;
+        renderQuiz();
+      }
+    }
+
+    function submitQuizEmail() {
+      var name = document.getElementById('nameInput').value.trim();
+      var email = document.getElementById('emailInput').value.trim();
+      if (!name || !email || email.indexOf('@') === -1) { alert('Please enter your name and a valid email.'); return; }
+      quizState.name = name;
+      quizState.email = email;
+      var r = RESULTS[quizState.result];
+      var max = QUESTIONS.length * 3;
+      var pct = Math.round((quizState.score / max) * 100);
+      try {
+        fetch('https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=2xf7HgFbJf6dDWQDZUVDxZ', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: quizState.name, email: quizState.email, quiz_score: pct, quiz_result: quizState.result,
+            quiz_segment: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture',
+            recommended_automation: r.title,
+            answers: quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; })
+          })
+        });
+      } catch (e) { console.log('Webhook error:', e); }
+      quizState.screen = 'results';
+      renderQuiz();
+    }
+
+    function resetQuiz() { quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null }; renderQuiz(); }
+
+    renderQuiz();
+  </script>
+</Layout>
+
+<style>
+  .quiz-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Landing */
+  .quiz-landing {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .landing-badge {
+    display: inline-block;
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+    margin-bottom: 24px;
+  }
+
+  .quiz-landing h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+
+  .quiz-landing h1 .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .quiz-landing p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+
+  .landing-features {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .landing-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .landing-feature .icon {
+    width: 22px;
+    height: 22px;
+    background: rgba(22, 163, 74, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 32px; }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .progress-count {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange), var(--orange-hover));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  /* Question */
+  .question-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question-text {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+
+  .question-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex: 1;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .option:hover {
+    border-color: var(--navy);
+    box-shadow: var(--shadow);
+  }
+
+  .option.selected {
+    background: rgba(237, 137, 54, 0.06);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 1px var(--orange);
+  }
+
+  .option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .option.selected .option-radio {
+    border-color: var(--orange);
+    background: var(--orange);
+  }
+
+  .option.selected .option-radio::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .option-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Email */
+  .email-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .email-screen h2 {
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+
+  .email-screen p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .email-form input {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--navy);
+    font-size: 15px;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .email-form input:focus { border-color: var(--orange); }
+  .email-form input::placeholder { color: var(--text-muted); }
+
+  .email-trust {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  /* Results */
+  .results-screen { padding: 20px 0; }
+
+  .result-type-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .result-type-badge.high {
+    background: rgba(22, 163, 74, 0.1);
+    border: 1px solid rgba(22, 163, 74, 0.3);
+    color: var(--green);
+  }
+
+  .result-type-badge.mid {
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+  }
+
+  .result-type-badge.low {
+    background: rgba(49, 130, 206, 0.1);
+    border: 1px solid rgba(49, 130, 206, 0.3);
+    color: var(--blue);
+  }
+
+  .results-screen h2 {
+    font-size: clamp(1.5rem, 4vw, 1.75rem);
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+
+  .results-screen .result-sub {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  .result-card {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .result-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+  }
+
+  .result-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .result-card .tag {
+    display: inline-block;
+    background: rgba(237, 137, 54, 0.1);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-top: 12px;
+  }
+
+  .score-bar-wrap { margin-bottom: 32px; }
+
+  .score-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .score-bar-label span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .score-bar-label .score-val { color: var(--orange); }
+
+  .score-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+
+  .score-bar-fill.high { background: linear-gradient(90deg, var(--green), #34d399); }
+  .score-bar-fill.mid { background: linear-gradient(90deg, var(--orange), #fbbf24); }
+  .score-bar-fill.low { background: linear-gradient(90deg, var(--blue), #63b3ed); }
+
+  .results-cta {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .results-cta p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .results-cta a.btn-primary {
+    text-decoration: none;
+    color: white;
+  }
+
+  /* Animations */
+  .fade-in { animation: quizFadeIn 0.3s ease; }
+
+  @keyframes quizFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .quiz-landing h1 { font-size: 1.75rem; }
+    .landing-features { flex-direction: column; align-items: center; }
+    .question-text { font-size: 1.2rem; }
+    .results-screen h2 { font-size: 1.4rem; }
+    .quiz-container { padding-top: 100px; }
+  }
+</style>
