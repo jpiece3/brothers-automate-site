@@ -10,7 +10,7 @@ import Footer from '../components/Footer.astro';
   <main class="book-page">
     <div class="book-container">
       <div class="book-header">
-        <h1>Let's talk automation</h1>
+        <h1>Let's talk <span class="gradient-text">automation</span></h1>
         <p>Pick a time that works. We'll walk through your current workflows and show you exactly what we can automate. No pitch, no pressure.</p>
       </div>
 
@@ -50,6 +50,10 @@ import Footer from '../components/Footer.astro';
     min-height: 100vh;
     padding: 120px 24px 60px;
     background: var(--bg-primary);
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(237, 137, 54, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(49, 130, 206, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(26, 54, 93, 0.02) 0%, transparent 50%);
   }
 
   .book-container {
@@ -64,9 +68,17 @@ import Footer from '../components/Footer.astro';
 
   .book-header h1 {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--navy);
     margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .book-header h1 .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--text-secondary) 50%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .book-header p {
