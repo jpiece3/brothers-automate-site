@@ -32,6 +32,7 @@ const organizationSchema = {
   "sameAs": []
 };
 import FloatingGuide from '../components/FloatingGuide.astro';
+import QuizPopup from '../components/QuizPopup.astro';
 ---
 
 <!DOCTYPE html>
@@ -133,6 +134,7 @@ import FloatingGuide from '../components/FloatingGuide.astro';
 <body>
   <slot />
   <FloatingGuide />
+  <QuizPopup />
 
   <script>
     // Scroll animation observer
