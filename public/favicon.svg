@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <circle cx="16" cy="16" r="14" fill="#1a365d"/>
-  <text x="16" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="16" fill="#ed8936">B</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Gear outline path - 10 teeth, centered at 50,50 -->
+  <path d="
+    M45,4 h10 l2,11 c3,.8 5.8,2 8.4,3.5 l9.6-6.5 7,7 -6.5,9.6
+    c1.5,2.6 2.7,5.4 3.5,8.4 l11,2 v10 l-11,2
+    c-.8,3-2,5.8-3.5,8.4 l6.5,9.6 -7,7 -9.6-6.5
+    c-2.6,1.5-5.4,2.7-8.4,3.5 l-2,11 h-10 l-2-11
+    c-3-.8-5.8-2-8.4-3.5 l-9.6,6.5 -7-7 6.5-9.6
+    c-1.5-2.6-2.7-5.4-3.5-8.4 l-11-2 v-10 l11-2
+    c.8-3 2-5.8 3.5-8.4 l-6.5-9.6 7-7 9.6,6.5
+    c2.6-1.5 5.4-2.7 8.4-3.5 z"
+    fill="#1a365d"/>
+  <!-- Inner circle cutout -->
+  <circle cx="50" cy="50" r="20" fill="white"/>
+  <!-- Lightning bolt -->
+  <polygon points="54,26 43,50 51,50 46,74 58,46 50,46" fill="#ed8936"/>
 </svg>
