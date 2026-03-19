@@ -145,15 +145,15 @@ import Footer from '../components/Footer.astro';
       if (quizState.screen === 'landing') {
         app.innerHTML =
           '<div class="quiz-landing fade-in">' +
-            '<div class="landing-badge">Free Assessment \u2014 2 Minutes</div>' +
+            '<div class="landing-badge">Free Assessment \u00b7 2 Minutes</div>' +
             '<h1>What Should You <span class="gradient-text">Automate First</span> for Your Clients?</h1>' +
-            '<p>Answer 7 quick questions about your consulting practice and we\'ll tell you exactly which AI automation to start offering \u2014 plus how to position it.</p>' +
+            '<p>Answer 7 quick questions about your consulting practice and we\'ll tell you exactly which AI automation to start offering, plus how to position it.</p>' +
             '<div class="landing-features">' +
               '<div class="landing-feature"><div class="icon">\u2713</div> Personalized recommendation</div>' +
               '<div class="landing-feature"><div class="icon">\u2713</div> Based on your practice type</div>' +
               '<div class="landing-feature"><div class="icon">\u2713</div> Includes next steps</div>' +
             '</div>' +
-            '<button class="btn-primary" onclick="startQuiz()">Find Your #1 Automation \u2192</button>' +
+            '<button class="quiz-btn-primary" onclick="startQuiz()">Find Your #1 Automation \u2192</button>' +
           '</div>';
       }
 
@@ -181,8 +181,8 @@ import Footer from '../components/Footer.astro';
             '<div class="question-sub">' + q.sub + '</div>' +
             '<div class="options">' + optsHtml + '</div>' +
             '<div class="nav-row">' +
-              (quizState.currentQ > 0 ? '<button class="btn-secondary" onclick="prevQ()">\u2190 Back</button>' : '<div></div>') +
-              '<button class="btn-primary" ' + (selected === undefined ? 'disabled' : '') + ' onclick="nextQ()">' +
+              (quizState.currentQ > 0 ? '<button class="quiz-btn-secondary" onclick="prevQ()">\u2190 Back</button>' : '<div></div>') +
+              '<button class="quiz-btn-primary" ' + (selected === undefined ? 'disabled' : '') + ' onclick="nextQ()">' +
                 (quizState.currentQ === QUESTIONS.length - 1 ? 'See My Results' : 'Next \u2192') +
               '</button>' +
             '</div>' +
@@ -197,7 +197,7 @@ import Footer from '../components/Footer.astro';
             '<div class="email-form">' +
               '<input type="text" placeholder="Your name" id="nameInput" value="' + quizState.name + '" />' +
               '<input type="email" placeholder="Your best email" id="emailInput" value="' + quizState.email + '" />' +
-              '<button class="btn-primary" style="width:100%" onclick="submitQuizEmail()">Show My Results \u2192</button>' +
+              '<button class="quiz-btn-primary" style="width:100%" onclick="submitQuizEmail()">Show My Results \u2192</button>' +
             '</div>' +
             '<div class="email-trust">\uD83D\uDD12 No spam. Unsubscribe anytime. We respect your inbox.</div>' +
           '</div>';
@@ -224,10 +224,10 @@ import Footer from '../components/Footer.astro';
         var ctaHtml = '';
         if (r.cta === 'book') {
           ctaHtml = '<p>You\'re ready to start offering AI automation to your clients.</p>' +
-            '<a href="/book" class="btn-primary">' + r.ctaText + ' \u2192</a>';
+            '<a href="/book" class="quiz-btn-primary">' + r.ctaText + ' \u2192</a>';
         } else {
           ctaHtml = '<p>We\'ll send your personalized playbook and automation recommendations.</p>' +
-            '<button class="btn-primary" onclick="alert(\'Sent to ' + quizState.email + '! Check your inbox.\')">' + r.ctaText + ' \u2192</button>';
+            '<button class="quiz-btn-primary" onclick="alert(\'Sent to ' + quizState.email + '! Check your inbox.\')">' + r.ctaText + ' \u2192</button>';
         }
         app.innerHTML =
           '<div class="results-screen fade-in">' +
@@ -240,7 +240,7 @@ import Footer from '../components/Footer.astro';
             '</div>' +
             cardsHtml +
             '<div class="results-cta">' + ctaHtml +
-              '<div style="margin-top:16px"><button class="btn-secondary" onclick="resetQuiz()">Retake Quiz</button></div>' +
+              '<div style="margin-top:16px"><button class="quiz-btn-secondary" onclick="resetQuiz()">Retake Quiz</button></div>' +
             '</div>' +
           '</div>';
         setTimeout(function() { var bar = document.getElementById('scoreBar'); if (bar) bar.style.width = scorePct + '%'; }, 300);
@@ -710,10 +710,62 @@ import Footer from '../components/Footer.astro';
     margin-bottom: 16px;
   }
 
-  .results-cta a.btn-primary {
+  .results-cta a.quiz-btn-primary {
     text-decoration: none;
     color: white;
   }
+
+  /* Quiz Buttons */
+  .quiz-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--orange);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 16px 36px;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+    box-shadow: var(--shadow);
+    align-self: center;
+  }
+
+  .quiz-btn-primary:hover {
+    background: var(--orange-hover);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .quiz-btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .quiz-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+  }
+
+  .quiz-btn-secondary:hover { background: var(--navy); color: white; }
 
   /* Animations */
   .fade-in { animation: quizFadeIn 0.3s ease; }
