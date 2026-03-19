@@ -18,7 +18,7 @@
     setTimeout(function() {
       var popup = document.getElementById('quizPopup');
       if (popup) popup.classList.add('visible');
-    }, 10000);
+    }, 5000);
 
     document.addEventListener('click', function(e) {
       if (e.target.closest('#quizPopupClose')) {
@@ -34,14 +34,15 @@
   .quiz-popup {
     position: fixed;
     bottom: 24px;
-    left: 24px;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border);
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    border: none;
     border-radius: var(--radius-lg);
     padding: 20px 24px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
     z-index: 999;
-    max-width: 320px;
+    max-width: 380px;
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
@@ -50,7 +51,7 @@
 
   .quiz-popup.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     pointer-events: auto;
   }
 
@@ -61,20 +62,20 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.5);
     padding: 4px;
     border-radius: 50%;
     transition: color 0.2s;
   }
 
   .quiz-popup-close:hover {
-    color: var(--navy);
+    color: white;
   }
 
   .quiz-popup-text {
     font-size: 15px;
     font-weight: 600;
-    color: var(--navy);
+    color: white;
     margin-bottom: 12px;
     padding-right: 20px;
     line-height: 1.4;
@@ -107,6 +108,11 @@
       right: 12px;
       bottom: 12px;
       max-width: none;
+      transform: translateX(0) translateY(20px);
+    }
+
+    .quiz-popup.visible {
+      transform: translateX(0) translateY(0);
     }
   }
 </style>
