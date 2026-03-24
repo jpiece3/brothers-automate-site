@@ -889,6 +889,9 @@
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Lead');
         }
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generate_lead', { method: 'floating_guide_email' });
+        }
       }
     });
 

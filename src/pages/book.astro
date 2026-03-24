@@ -40,6 +40,9 @@ import Footer from '../components/Footer.astro';
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Schedule');
         }
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'booking_complete', { method: 'cal_inline_book_page' });
+        }
       }
     });
   </script>

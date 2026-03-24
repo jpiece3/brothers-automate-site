@@ -122,6 +122,9 @@ import QuizPopup from '../components/QuizPopup.astro';
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Schedule');
         }
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'booking_complete', { method: 'cal_popup' });
+        }
       }
     });
   </script>
@@ -156,6 +159,77 @@ import QuizPopup from '../components/QuizPopup.astro';
     document.querySelectorAll('[data-animate], [data-animate-stagger]').forEach(el => {
       observer.observe(el);
     });
+  </script>
+
+  <!-- Conversion Event Tracking -->
+  <script is:inline>
+    (function() {
+      // Helper functions
+      function trackGA4(eventName, params) {
+        if (typeof gtag !== 'undefined') gtag('event', eventName, params);
+      }
+      function trackMeta(eventName, params) {
+        if (typeof fbq !== 'undefined') fbq('track', eventName, params || {});
+      }
+
+      // Click delegation for all tracked elements
+      document.addEventListener('click', function(e) {
+        var target = e.target.closest('[data-track]');
+        if (!target) return;
+
+        var action = target.getAttribute('data-track');
+        var label = target.getAttribute('data-track-label') || '';
+        var location = target.getAttribute('data-track-location') || '';
+
+        if (action === 'cta_click') {
+          trackGA4('cta_click', { cta_location: location, cta_text: label });
+        } else if (action === 'project_card_click') {
+          trackGA4('select_content', { content_type: 'project', item_id: label });
+          trackMeta('ViewContent', { content_name: label, content_type: 'project' });
+        } else if (action === 'problem_card_click') {
+          trackGA4('select_content', { content_type: 'pain_point', item_id: label });
+        } else if (action === 'nav_click') {
+          trackGA4('navigation_click', { link_text: label });
+        } else if (action === 'social_click') {
+          trackGA4('social_click', { platform: label, link_url: target.href || '' });
+        }
+      });
+
+      // ViewContent on project and blog pages
+      var path = window.location.pathname;
+      var projectMatch = path.match(/^\/projects\/([^\/]+)\/?$/);
+      if (projectMatch && projectMatch[1] !== '') {
+        var slug = projectMatch[1];
+        var projectName = (document.querySelector('h1') || {}).textContent || slug;
+        trackGA4('view_item', { content_type: 'project', item_id: slug, item_name: projectName });
+        trackMeta('ViewContent', { content_name: projectName, content_type: 'project', content_ids: [slug] });
+      }
+      if (path.indexOf('/blog/') === 0 && path !== '/blog/' && path !== '/blog') {
+        var articleTitle = (document.querySelector('h1') || {}).textContent || '';
+        trackGA4('view_item', { content_type: 'blog_article', item_name: articleTitle });
+        trackMeta('ViewContent', { content_name: articleTitle, content_type: 'blog_article' });
+      }
+
+      // Scroll depth tracking (GA4 only)
+      var milestones = [25, 50, 75, 100];
+      var fired = {};
+      var scrollTimer;
+      window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+          var h = document.documentElement;
+          var st = h.scrollTop || document.body.scrollTop;
+          var sh = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+          var pct = sh > 0 ? Math.round((st / sh) * 100) : 0;
+          for (var i = 0; i < milestones.length; i++) {
+            if (pct >= milestones[i] && !fired[milestones[i]]) {
+              fired[milestones[i]] = true;
+              trackGA4('scroll_depth', { percent_scrolled: milestones[i], page_path: path });
+            }
+          }
+        }, 150);
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>

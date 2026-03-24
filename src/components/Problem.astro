@@ -36,7 +36,7 @@ const painPoints = [
 
     <div class="pain-grid" data-animate-stagger>
       {painPoints.map((pain) => (
-        <a href={pain.link} class="pain-card card">
+        <a href={pain.link} class="pain-card card" data-track="problem_card_click" data-track-label={pain.title}>
           <span class="pain-icon icon-circle icon-circle-blue">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d={pain.icon}></path>
