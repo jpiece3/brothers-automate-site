@@ -191,8 +191,7 @@ export const projects: Project[] = [
     cta: {
       headline: 'Stop losing leads after hours',
       description: 'Let\'s put an AI agent on your site that qualifies, quotes, and books — even when you\'re asleep.'
-    },
-    productUrl: 'https://after-hours-agent.vercel.app'
+    }
   },
   {
     slug: 'brand-research',
@@ -561,6 +560,51 @@ export const projects: Project[] = [
       description: 'Submit your app idea and get a data-backed GO, CONDITIONAL GO, or NO-GO verdict — first one\'s free.'
     },
     productUrl: 'https://validate.brothersautomate.com/'
+  },
+  {
+    slug: 'cpq-agent',
+    name: 'CPQ Agent',
+    tagline: 'After-hours quote automation for B2B',
+    icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
+    description: 'B2B manufacturer: AI agent qualifies leads, looks up real ERP pricing, books sales calls, and pushes deals to HubSpot — 24/7, zero manual data entry.',
+    ctaLabel: 'Read the Case Study',
+    ctaType: 'case-study',
+    meta: {
+      title: 'CPQ Agent | After-Hours Quote Automation | Brothers Automate',
+      description: 'An AI agent that qualifies leads, checks real ERP pricing, books sales calls, and pushes deals to HubSpot — 24/7 while your team sleeps.'
+    },
+    problem: {
+      headline: '35-45% of B2B inquiries arrive outside business hours',
+      description: 'Prospects hit a contact form and sit until morning. By then, they\'ve already talked to your competitor.',
+      painPoints: [
+        'After-hours inquiries sit in a contact form until the next business day',
+        'Sales reps spend mornings doing data entry instead of selling',
+        'No way to qualify or price a lead without a human in the loop',
+        'Complex products mean pricing depends on specs, quantity, and configuration'
+      ]
+    },
+    solution: {
+      headline: 'An AI agent that handles leads while your team sleeps',
+      description: 'A conversational AI agent that lives on your website 24/7, collects requirements, checks real ERP pricing, qualifies against your business rules, books calls, and pushes deals to HubSpot.',
+      features: [
+        { title: 'Natural Conversation', description: 'Collects product, quantity, specs, material, and timeline through dialogue' },
+        { title: 'Real ERP Pricing', description: 'Connects to NetSuite, Sage, or QuickBooks for real pricing data' },
+        { title: '37 Qualification Rules', description: 'Your business rules enforced consistently on every lead' },
+        { title: 'Full HubSpot Integration', description: 'Creates contacts, deals, and notes with 13 custom properties' }
+      ]
+    },
+    results: {
+      headline: 'Reps wake up to pre-built deals',
+      stats: [
+        { number: '24/7', label: 'Lead Capture', context: 'No after-hours gaps' },
+        { number: '<2min', label: 'Quote Delivery', context: 'Real pricing from ERP' },
+        { number: '0', label: 'Manual CRM Entry', context: 'Deals auto-created' }
+      ]
+    },
+    cta: {
+      headline: 'Stop losing after-hours leads',
+      description: 'Let\'s put an AI agent on your site that qualifies, quotes, books, and pushes deals to your CRM.'
+    }
   },
   {
     slug: 'seo-blog-autopilot',

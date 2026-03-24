@@ -7,7 +7,6 @@ import Footer from '../../components/Footer.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const allProjects = getAllProjects();
-const featuredProject = allProjects.find(p => p.slug === 'quiz-funnels')!;
 
 function getProjectsBySlug(slugs: string[]): Project[] {
   return slugs
@@ -15,12 +14,14 @@ function getProjectsBySlug(slugs: string[]): Project[] {
     .filter((p): p is Project => p !== undefined);
 }
 
+const caseStudies = getProjectsBySlug(['quiz-funnels', 'screenfast', 'cpq-agent']);
+
 const categories = [
   {
     id: 'leads',
     heading: 'Get More and Better Leads',
     description: 'Systems that capture, qualify, and follow up with leads — automatically, around the clock.',
-    projects: getProjectsBySlug(['after-hours-agent', 'signal-engine', 'daily-ads', 'seo-blog-autopilot']),
+    projects: getProjectsBySlug(['after-hours-agent', 'cpq-agent', 'signal-engine', 'daily-ads', 'seo-blog-autopilot']),
   },
   {
     id: 'admin',
@@ -92,28 +93,33 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <!-- Featured project -->
-    <section class="featured-project">
+    <!-- Case Studies -->
+    <section class="case-studies">
       <div class="container">
-        <a href={`/projects/${featuredProject.slug}`} class="featured-card" data-animate="fade-up">
-          <div class="featured-left">
-            <span class="featured-label">Most Popular</span>
-            <h2>{featuredProject.name}</h2>
-            <p class="featured-tagline">{featuredProject.tagline}</p>
-            <p class="featured-desc">{featuredProject.description}</p>
-            <span class="featured-cta">See how this works &rarr;</span>
-          </div>
-          <div class="featured-right">
-            <div class="featured-stats-grid">
-              {featuredProject.results.stats.map((stat) => (
-                <div class="featured-stat-card">
-                  <span class="featured-stat-num">{stat.number}</span>
-                  <span class="featured-stat-label">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </a>
+        <div class="cs-header" data-animate="fade-up">
+          <span class="badge">Proven Results</span>
+          <h2>Case Studies</h2>
+          <p class="cs-header-sub">Real systems. Real businesses. Real results.</p>
+        </div>
+        <div class="cs-grid" data-animate-stagger>
+          {caseStudies.map((project) => (
+            <a href={`/projects/${project.slug}`} class="cs-card">
+              <span class="cs-card-label">Case Study</span>
+              <h3>{project.name}</h3>
+              <p class="cs-card-tagline">{project.tagline}</p>
+              <p class="cs-card-desc">{project.description}</p>
+              <div class="cs-card-stats">
+                {project.results.stats.slice(0, 2).map((stat) => (
+                  <div class="cs-card-stat">
+                    <span class="cs-card-stat-num">{stat.number}</span>
+                    <span class="cs-card-stat-label">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+              <span class="cs-card-cta">Read the case study &rarr;</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -280,17 +286,36 @@ const breadcrumbSchema = {
     background: var(--border);
   }
 
-  /* Featured project */
-  .featured-project {
+  /* Case Studies */
+  .case-studies {
     padding: 0 0 var(--space-2xl);
     margin-top: calc(-1 * var(--space-lg));
   }
 
-  .featured-card {
+  .cs-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .cs-header h2 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .cs-header-sub {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+  }
+
+  .cs-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
-    padding: var(--space-2xl);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .cs-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
     background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
     border-radius: var(--radius-xl);
     text-decoration: none;
@@ -299,94 +324,83 @@ const breadcrumbSchema = {
     box-shadow: var(--shadow-lg);
   }
 
-  .featured-card:hover {
-    transform: translateY(-3px);
+  .cs-card:hover {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
     color: white;
   }
 
-  .featured-label {
+  .cs-card-label {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 4px 10px;
     background: rgba(237, 137, 54, 0.2);
     border: 1px solid rgba(237, 137, 54, 0.4);
     color: var(--orange-light);
     border-radius: 100px;
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: var(--space-md);
+    align-self: flex-start;
   }
 
-  .featured-card h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: var(--space-xs);
+  .cs-card h3 {
+    font-size: 1.375rem;
     color: white;
+    margin-bottom: var(--space-xs);
   }
 
-  .featured-tagline {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+  .cs-card-tagline {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-sm);
+  }
+
+  .cs-card-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    flex: 1;
+  }
+
+  .cs-card-stats {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     margin-bottom: var(--space-md);
   }
 
-  .featured-desc {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-    margin-bottom: var(--space-lg);
-  }
-
-  .featured-cta {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--orange-light);
-    transition: color var(--transition);
-  }
-
-  .featured-card:hover .featured-cta {
-    color: var(--orange);
-  }
-
-  .featured-right {
-    display: flex;
-    align-items: center;
-  }
-
-  .featured-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-    width: 100%;
-  }
-
-  .featured-stat-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
+  .cs-card-stat {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    text-align: center;
+    gap: 2px;
   }
 
-  .featured-stat-card:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .featured-stat-num {
-    font-size: 2rem;
+  .cs-card-stat-num {
+    font-size: 1.5rem;
     font-weight: 800;
     color: white;
     line-height: 1;
   }
 
-  .featured-stat-label {
-    font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.6);
+  .cs-card-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 500;
+  }
+
+  .cs-card-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--orange-light);
+    transition: color var(--transition);
+  }
+
+  .cs-card:hover .cs-card-cta {
+    color: var(--orange);
   }
 
   /* Projects grid */
@@ -553,10 +567,8 @@ const breadcrumbSchema = {
       justify-content: center;
     }
 
-    .featured-card {
+    .cs-grid {
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
-      padding: var(--space-lg);
     }
 
     .category-group {

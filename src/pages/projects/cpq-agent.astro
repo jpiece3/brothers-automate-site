@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import CaseStudyPage from '../../components/CaseStudyPage.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+    { "@type": "ListItem", "position": 3, "name": "CPQ Agent", "item": `${SITE_URL}/projects/cpq-agent` }
+  ]
+};
+
+const study = {
+  badge: 'After-Hours Quote Automation',
+  headline: 'Your sales team goes home at 5.',
+  headlineHighlight: 'Your website doesn\'t have to.',
+  subtitle: 'An AI agent that sits on your website 24/7 and does what a sales rep does — collects requirements, checks pricing from your ERP, qualifies the lead, sends a quote, books a call, and pushes a deal to HubSpot. All before the rep wakes up.',
+  meta: {
+    client: 'B2B Manufacturers',
+    industry: 'Manufacturing / B2B Services',
+    timeline: '3-5 weeks to production',
+    techStack: ['AI Chat Agent', 'ERP Integration', 'HubSpot CRM', 'Supabase']
+  },
+  metrics: [
+    { number: '24/7', label: 'Lead Capture' },
+    { number: '0', label: 'Manual Data Entry' },
+    { number: '37', label: 'Qualification Rules' },
+    { number: '<2min', label: 'Quote Delivery' }
+  ],
+  problemHeadline: '35-45% of B2B inquiries arrive outside business hours',
+  problemDescription: 'A prospect visits your site at 9pm. They have specs, they need a price, they\'re ready to move. But nobody\'s there. They hit a contact form and sit until morning. By then, they\'ve already talked to your competitor.',
+  painPoints: [
+    'After-hours inquiries sit in a contact form until the next business day — competitors respond first',
+    'Sales reps spend mornings doing data entry instead of selling — copying form data into the CRM',
+    'No way to qualify or price a lead without a human in the loop, so every inquiry waits',
+    'Complex products mean pricing depends on specs, quantity, and configuration — forms can\'t handle it'
+  ],
+  solutionHeadline: 'An AI agent that handles leads while your team sleeps',
+  solutionDescription: 'We built a conversational AI agent that lives on your website and handles the full sales intake flow. It collects requirements through natural conversation (not a form), checks real pricing from your ERP, qualifies against your business rules, books a sales call, and creates a fully populated deal in HubSpot.',
+  pipeline: [
+    { step: 'Chat', description: 'Prospect describes what they need' },
+    { step: 'Qualify', description: 'Checks against 37 business rules' },
+    { step: 'Price', description: 'Looks up real ERP pricing' },
+    { step: 'Book', description: 'Shows availability and books' },
+    { step: 'Push to CRM', description: 'Deal created in HubSpot' }
+  ],
+  features: [
+    { title: 'Natural Conversation', description: 'The agent talks like a sales rep — collecting product, quantity, specs, material, and timeline through dialogue, not form fields.' },
+    { title: 'Real ERP Pricing', description: 'Connects to your ERP (NetSuite, Sage, QuickBooks, or Microsoft F&O) via API. Ballpark quotes come from real data, not guesswork.' },
+    { title: '37 Configurable Rules', description: 'Geography, materials, scope, certifications, timelines — your qualification criteria, enforced consistently on every lead.' },
+    { title: 'Full HubSpot Integration', description: 'Creates contacts, deals, and notes with 13 custom properties. Reps wake up to pre-built deals with conversation summaries.' }
+  ],
+  beforeAfter: [
+    { label: 'After-Hours Response', before: 'Contact form — wait until morning', after: 'Instant conversation + quote' },
+    { label: 'Lead Qualification', before: 'Manual — rep reads form, Googles company', after: 'Automated — 37 rules checked instantly' },
+    { label: 'Pricing Delivery', before: 'Days — rep pulls specs, checks ERP', after: 'Under 2 minutes — real ERP data' },
+    { label: 'CRM Data Entry', before: '15-20 min per lead', after: 'Zero — deal auto-created in HubSpot' },
+    { label: 'Sales Call Booking', before: 'Back-and-forth emails', after: 'Booked during the conversation' }
+  ],
+  resultsHeadline: 'Reps wake up to pre-built deals',
+  resultsStats: [
+    { number: '24/7', label: 'Lead Capture', context: 'No after-hours gaps' },
+    { number: '<2min', label: 'Quote Delivery', context: 'Real pricing from ERP' },
+    { number: '0', label: 'Manual CRM Entry', context: 'Deals auto-created' }
+  ],
+  ctaHeadline: 'Stop losing after-hours leads',
+  ctaDescription: 'Let\'s put an AI agent on your website that qualifies, quotes, books, and pushes deals to your CRM — while your team sleeps.'
+};
+---
+
+<Layout
+  title="CPQ Agent Case Study | After-Hours Quote Automation | Brothers Automate"
+  description="How our AI CPQ agent captures B2B leads 24/7, checks real ERP pricing, qualifies against 37 rules, and pushes pre-built deals to HubSpot. Zero manual data entry."
+>
+  <Header />
+  <main>
+    <CaseStudyPage study={study} />
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
