@@ -561,6 +561,51 @@ export const projects: Project[] = [
       description: 'Submit your app idea and get a data-backed GO, CONDITIONAL GO, or NO-GO verdict — first one\'s free.'
     },
     productUrl: 'https://validate.brothersautomate.com/'
+  },
+  {
+    slug: 'seo-blog-autopilot',
+    name: 'Automated SEO Blog',
+    tagline: 'SEO content that writes, publishes, and syndicates itself — 3x a week, on autopilot.',
+    icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
+    description: 'Our blog has 35 posts, targets 42,990 monthly searches, and generates 13 backlinks — all written and published by Claude Code agents, 3x a week, with zero writers on staff.',
+    ctaLabel: 'See It Working',
+    ctaType: 'case-study',
+    meta: {
+      title: 'Automated SEO Blog | AI Content That Ranks | Brothers Automate',
+      description: 'An AI pipeline that finds keyword gaps, writes SEO-optimized posts in your brand voice, publishes to your site, and syndicates for backlinks — 3x a week on autopilot.'
+    },
+    problem: {
+      headline: 'You know you need blog content. You just can\'t keep up.',
+      description: 'Every SEO guide says "publish consistently." But hiring a content team costs $3-5K/month, freelancers miss deadlines, and doing it yourself means it never gets done. So your blog sits empty while competitors rank above you.',
+      painPoints: [
+        'You haven\'t published a blog post in months because there\'s no time',
+        'Freelance writers cost $200-500 per post and still need heavy editing',
+        'You don\'t know which keywords to target or what your competitors are ranking for',
+        'Every post you do publish takes 4-6 hours of research, writing, and formatting'
+      ]
+    },
+    solution: {
+      headline: 'An AI pipeline that runs your entire blog',
+      description: 'We built a 5-stage autopilot powered by Claude Code agents that finds keyword gaps your competitors exploit, writes human-sounding posts in your brand voice, publishes directly to your site, and cross-posts for backlinks. It runs on a cron schedule — Mon/Wed/Fri — with zero manual work.',
+      features: [
+        { title: 'Competitor Gap Analysis', description: 'Finds keywords your competitors rank for that you don\'t, prioritized by volume and difficulty' },
+        { title: 'Brand Voice Writing', description: 'Writes in your voice with real stats, internal links, and SEO structure — not generic AI slop' },
+        { title: 'Auto-Publish', description: 'Commits to your repo, deploys via Vercel/Netlify — post goes live without you touching a thing' },
+        { title: 'Backlink Syndication', description: 'Cross-posts to Dev.to with canonical URLs so you build domain authority automatically' }
+      ]
+    },
+    results: {
+      headline: 'Our blog is the proof. Every post was written by this system.',
+      stats: [
+        { number: '35', label: 'Posts Published', context: 'And growing 3x/week' },
+        { number: '42,990', label: 'Monthly Searches', context: 'Total keyword volume targeted' },
+        { number: '13', label: 'Backlinks Generated', context: 'Via Dev.to syndication' }
+      ]
+    },
+    cta: {
+      headline: 'Get an automated SEO blog running on your site',
+      description: 'We\'ll set up the same autopilot that runs our blog — competitor analysis, AI writing, auto-publishing, and syndication — custom-built for your business.'
+    }
   }
 ];
 
