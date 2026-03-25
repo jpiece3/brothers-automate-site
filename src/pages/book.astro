@@ -39,6 +39,7 @@ import Footer from '../components/Footer.astro';
       callback: function() {
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Schedule');
+          fbq('track', 'Lead');
         }
         if (typeof gtag !== 'undefined') {
           gtag('event', 'booking_complete', { method: 'cal_inline_book_page' });

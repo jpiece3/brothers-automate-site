@@ -60,11 +60,11 @@ import QuizPopup from '../components/QuizPopup.astro';
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1452124226351453');
+    fbq('init', '958976529966289');
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1452124226351453&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=958976529966289&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
 
@@ -121,6 +121,7 @@ import QuizPopup from '../components/QuizPopup.astro';
       callback: function() {
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Schedule');
+          fbq('track', 'Lead');
         }
         if (typeof gtag !== 'undefined') {
           gtag('event', 'booking_complete', { method: 'cal_popup' });
