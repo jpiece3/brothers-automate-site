@@ -124,7 +124,7 @@ Store in: {audit_log_table}`,
       <div class="container">
         <div class="principles-grid">
           {principles.map((p) => (
-            <div class={`card ${p.variant === 'light' ? 'light' : ''}`} data-animate="fade-up">
+            <div class={`principle-card ${p.variant === 'light' ? 'light' : ''}`} data-animate="fade-up">
               <div class="card-top">
                 <span class="num">{p.num}</span>
                 <span class="pill">{p.pill}</span>
@@ -200,8 +200,8 @@ Store in: {audit_log_table}`,
   }
 
   /* ─── Card ─────────────────────────────────────── */
-  .card {
-    background: var(--color-navy);
+  .principle-card {
+    background: var(--color-navy) !important;
     border-radius: 16px;
     padding: 28px 28px 24px;
     display: flex;
@@ -211,11 +211,11 @@ Store in: {audit_log_table}`,
     overflow: hidden;
   }
 
-  .card.light {
-    background: #fff8f2;
+  .principle-card.light {
+    background: #fff8f2 !important;
   }
 
-  .card::before {
+  .principle-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -255,7 +255,7 @@ Store in: {audit_log_table}`,
     color: var(--color-primary);
   }
 
-  .card.light .pill {
+  .principle-card.light .pill {
     border-color: rgba(26, 54, 93, 0.25);
     background: rgba(26, 54, 93, 0.07);
     color: var(--color-navy);
@@ -271,7 +271,7 @@ Store in: {audit_log_table}`,
     margin-bottom: 16px;
   }
 
-  .card.light .card-title {
+  .principle-card.light .card-title {
     color: var(--color-navy);
   }
 
@@ -304,7 +304,7 @@ Store in: {audit_log_table}`,
     margin-top: 0;
   }
 
-  .card.light .section-label {
+  .principle-card.light .section-label {
     color: var(--color-navy);
     opacity: 0.45;
   }
@@ -317,7 +317,7 @@ Store in: {audit_log_table}`,
     color: rgba(255, 248, 242, 0.7);
   }
 
-  .card.light .body-text {
+  .principle-card.light .body-text {
     color: rgba(26, 54, 93, 0.65);
   }
 
@@ -336,7 +336,7 @@ Store in: {audit_log_table}`,
     margin-top: 8px;
   }
 
-  .card.light .code-block {
+  .principle-card.light .code-block {
     background: rgba(26, 54, 93, 0.07);
     color: var(--color-navy);
   }
