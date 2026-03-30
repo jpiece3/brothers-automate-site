@@ -1,0 +1,359 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Agent Principles", "item": `${SITE_URL}/agent-principles` }
+  ]
+};
+
+const principles = [
+  {
+    num: "01",
+    pill: "Most critical",
+    title: '<span class="accent">Graceful</span> error handling',
+    know: "We build for failure, not just the happy path. APIs fail, return empty, or time out. Without handling this, agents loop infinitely or silently die mid-workflow.",
+    scenario: "Agent calls a CRM, gets null back, tries to access contact.email — and crashes the entire run.",
+    code: `<span class="c-orange">if</span> (!contact || !contact.email) {
+  <span class="c-orange">// log · notify · fallback
+  // NEVER continue blindly</span>
+  return fallback_action()
+}`,
+    variant: "dark"
+  },
+  {
+    num: "02",
+    pill: "Safety",
+    title: 'Human-in-the-loop <span class="accent">checkpoints</span>',
+    know: "We know which actions to automate and which to gate. Some are irreversible — sending emails, deleting records, charging payments. The wrong automation at the wrong moment is worse than none.",
+    scenario: "Agent drafts and sends a refund email to 200 customers before anyone reviews. One line was wrong. You can't unsend it.",
+    code: `<span class="c-orange">&#x26A0;&#xFE0F; NEVER execute without approval:</span>
+- send_email
+- delete_record
+- submit_payment
+
+Draft → show human → confirm → act.`,
+    variant: "light"
+  },
+  {
+    num: "03",
+    pill: "Architecture",
+    title: 'Lean prompt + <span class="accent">on-demand</span> skills',
+    know: "We keep system prompts lean — identity, tone, guardrails only. Process logic lives in separate skills loaded on demand. Leaner prompts mean more predictable, more maintainable agents.",
+    scenario: "A 3,000-word system prompt covering 12 workflows. The agent starts mixing up instructions between processes.",
+    code: `<span class="c-orange">System prompt:</span> identity + rules only
+  → under 300 words
+
+<span class="c-orange">Skills (loaded on demand):</span>
+  handle_refund.md
+  qualify_lead.md
+  draft_proposal.md`,
+    variant: "dark"
+  },
+  {
+    num: "04",
+    pill: "Maintainability",
+    title: 'Keep data <span class="accent">external</span> and editable',
+    know: "We separate instructions from data. Pricing, FAQs, and templates live in external sources the agent reads live — so anyone on the team can update content without touching the agent.",
+    scenario: "Pricing changes. Agent still quotes last month's rates because they're hardcoded in a prompt only a developer can edit.",
+    code: `<span class="c-orange">"Before quoting pricing, fetch the
+current rate card from Notion page
+{pricing_page_id}."</span>
+
+// Team updates Notion.
+// Agent always reads fresh data.`,
+    variant: "light"
+  },
+  {
+    num: "05",
+    pill: "Reliability",
+    title: '<span class="accent">Idempotency</span> — design for retries',
+    know: "We design every workflow to be safe to re-run. Triggers fire twice. Retries happen. An idempotent workflow produces the same result regardless of how many times it executes.",
+    scenario: "A Zap fires twice after a timeout. Agent creates two CRM contacts, sends two welcome emails, charges the card twice.",
+    code: `existing = search_crm(email)
+
+<span class="c-orange">if</span> existing:
+  update_record(existing.id)
+<span class="c-orange">else:</span>
+  create_record(new_data)
+
+<span class="c-orange"># Never blindly CREATE — check first.</span>`,
+    variant: "dark"
+  },
+  {
+    num: "06",
+    pill: "Observability",
+    title: 'Log what the agent <span class="accent">did and why</span>',
+    know: "We build observability in from the start. Every meaningful action — what the agent read, decided, and executed — is logged. That's how you debug, audit, and improve over time.",
+    scenario: "Agent misroutes 40 support tickets to the wrong team. No log exists. You can't diagnose why or prove it happened.",
+    code: `<span class="c-orange">After each action, log:</span>
+  - input received
+  - decision made
+  - action taken
+  - timestamp + run_id
+
+Store in: {audit_log_table}`,
+    variant: "light"
+  }
+];
+---
+
+<Layout
+  title="Top 6 Agent Principles | Brothers Automate"
+  description="The 6 principles we follow when building AI agents for service businesses. Error handling, human checkpoints, lean prompts, external data, idempotency, and observability."
+>
+  <Header />
+  <main>
+    <section class="principles-hero">
+      <div class="container">
+        <span class="badge" data-animate="fade-up">How We Build</span>
+        <h1 data-animate="fade-up">Top 6 <span class="text-highlight">Agent Principles</span></h1>
+        <p class="principles-sub" data-animate="fade-up">The rules we follow every time we build an AI agent or workflow for a service business. No exceptions.</p>
+      </div>
+    </section>
+
+    <section class="principles-grid-section">
+      <div class="container">
+        <div class="principles-grid">
+          {principles.map((p) => (
+            <div class={`card ${p.variant === 'light' ? 'light' : ''}`} data-animate="fade-up">
+              <div class="card-top">
+                <span class="num">{p.num}</span>
+                <span class="pill">{p.pill}</span>
+              </div>
+              <div class="card-title" set:html={p.title} />
+              <div class="divider"></div>
+              <div class="section-label">What we know</div>
+              <div class="body-text">{p.know}</div>
+              <div class="section-label">Example scenario</div>
+              <div class="body-text">{p.scenario}</div>
+              <div class="section-label">How to implement</div>
+              <div class="code-block" set:html={p.code} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* ─── Hero ──────────────────────────────────────── */
+  .principles-hero {
+    padding: var(--space-4xl) 0 var(--space-2xl);
+    text-align: center;
+  }
+
+  .principles-hero .badge {
+    display: inline-block;
+    background: rgba(237, 137, 54, 0.1);
+    color: var(--color-primary);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .principles-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .principles-sub {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ─── Grid Section ─────────────────────────────── */
+  .principles-grid-section {
+    padding: 0 0 var(--space-4xl);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ─── Card ─────────────────────────────────────── */
+  .card {
+    background: var(--color-navy);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 40px rgba(1, 31, 98, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card.light {
+    background: #fff8f2;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: var(--color-primary);
+    opacity: 0.07;
+    border-radius: 0 16px 0 80px;
+  }
+
+  /* ─── Card Top ─────────────────────────────────── */
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .num {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .pill {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 99px;
+    border: 1px solid rgba(237, 137, 54, 0.4);
+    background: rgba(237, 137, 54, 0.12);
+    color: var(--color-primary);
+  }
+
+  .card.light .pill {
+    border-color: rgba(26, 54, 93, 0.25);
+    background: rgba(26, 54, 93, 0.07);
+    color: var(--color-navy);
+    opacity: 0.7;
+  }
+
+  /* ─── Title ────────────────────────────────────── */
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff8f2;
+    margin-bottom: 16px;
+  }
+
+  .card.light .card-title {
+    color: var(--color-navy);
+  }
+
+  :global(.card-title .accent) {
+    color: var(--color-primary);
+  }
+
+  /* ─── Divider ──────────────────────────────────── */
+  .divider {
+    width: 36px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ─── Section Label ────────────────────────────── */
+  .section-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+    margin-top: 14px;
+  }
+
+  .section-label:first-of-type {
+    margin-top: 0;
+  }
+
+  .card.light .section-label {
+    color: var(--color-navy);
+    opacity: 0.45;
+  }
+
+  /* ─── Body Text ────────────────────────────────── */
+  .body-text {
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255, 248, 242, 0.7);
+  }
+
+  .card.light .body-text {
+    color: rgba(26, 54, 93, 0.65);
+  }
+
+  /* ─── Code Block ───────────────────────────────── */
+  .code-block {
+    background: rgba(0, 0, 0, 0.25);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 248, 242, 0.85);
+    line-height: 1.85;
+    white-space: pre;
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+
+  .card.light .code-block {
+    background: rgba(26, 54, 93, 0.07);
+    color: var(--color-navy);
+  }
+
+  :global(.code-block .c-orange) {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  /* ─── Responsive ───────────────────────────────── */
+  @media (max-width: 767px) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .principles-hero {
+      padding: var(--space-3xl) 0 var(--space-xl);
+    }
+  }
+</style>
