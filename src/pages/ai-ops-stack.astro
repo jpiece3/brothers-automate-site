@@ -1,0 +1,1130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="AI Operations Stack — Brothers Automate" description="Every ops category scored by disruption level and consequence of failure. An interactive reference framework for service businesses planning their AI operations roadmap.">
+  <Header />
+  <main class="ops-stack-page">
+
+    <!-- HERO -->
+    <section class="ops-hero">
+      <div class="container">
+        <p class="ops-hero-eyebrow" data-animate="fade-up">Interactive Reference Framework</p>
+        <h1 data-animate="fade-up">The Full <span class="text-orange">AI Operations</span> Stack</h1>
+        <p class="ops-hero-sub" data-animate="fade-up">Every ops category scored by disruption level — plus a second axis: what breaks if you get it wrong.</p>
+        <div class="ops-hero-note" data-animate="fade-up">
+          <strong>Two axes, not one.</strong> Disruption level tells you how much AI is changing the category. Consequence of failure tells you how carefully to move.
+        </div>
+        <div class="ops-legend" data-animate="fade-up">
+          <button class="ops-legend-item active" data-filter="all">All</button>
+          <button class="ops-legend-item" data-filter="low"><span class="ops-dot dot-low"></span>Low</button>
+          <button class="ops-legend-item" data-filter="medium"><span class="ops-dot dot-medium"></span>Medium</button>
+          <button class="ops-legend-item" data-filter="high"><span class="ops-dot dot-high"></span>High</button>
+          <button class="ops-legend-item" data-filter="transformative"><span class="ops-dot dot-transformative"></span>Transformative</button>
+          <button class="ops-legend-item" data-filter="new"><span class="ops-dot dot-new"></span>New</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="container ops-main">
+
+      <!-- RISK AXIS EXPLAINER -->
+      <div class="ops-risk-explainer" data-animate="fade-up">
+        <div class="ops-risk-col">
+          <p class="ops-risk-label">Consequence of Failure</p>
+          <p class="ops-risk-title">Reversible</p>
+          <p class="ops-risk-desc">Errors are catchable and fixable without lasting damage. Low cost of mistakes — good place to move fast and experiment.</p>
+        </div>
+        <div class="ops-risk-col">
+          <p class="ops-risk-label">&nbsp;</p>
+          <p class="ops-risk-title">Moderate</p>
+          <p class="ops-risk-desc">Errors create friction, rework, or reputational exposure. Meaningful cost, but recoverable. Needs oversight, not paralysis.</p>
+        </div>
+        <div class="ops-risk-col">
+          <p class="ops-risk-label">&nbsp;</p>
+          <p class="ops-risk-title">Critical</p>
+          <p class="ops-risk-desc">Errors break compliance, payroll, contracts, or data integrity. Human sign-off is non-negotiable regardless of AI capability.</p>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="ops-filter-bar" data-animate="fade-up">
+        <span class="ops-filter-label">Filter:</span>
+        <button class="ops-filter-btn active" data-filter="all">All</button>
+        <button class="ops-filter-btn" data-filter="low">Low</button>
+        <button class="ops-filter-btn" data-filter="medium">Medium</button>
+        <button class="ops-filter-btn" data-filter="high">High</button>
+        <button class="ops-filter-btn" data-filter="transformative">Transformative</button>
+        <button class="ops-filter-btn" data-filter="new">New</button>
+      </div>
+
+      <!-- DYNAMIC SECTIONS -->
+      <div id="ops-sections-container"></div>
+
+      <!-- PRINCIPLES -->
+      <div class="ops-principles" data-animate="fade-up">
+        <div class="ops-section-header">
+          <span class="ops-section-num">Cross-Cutting</span>
+          <h2 class="ops-section-title">Implementation Principles</h2>
+        </div>
+        <div id="ops-principles-grid" class="ops-principles-grid"></div>
+      </div>
+
+      <!-- RISK MATRIX -->
+      <div class="ops-matrix" data-animate="fade-up">
+        <div class="ops-section-header">
+          <span class="ops-section-num">Framework</span>
+          <h2 class="ops-section-title">How to Prioritise Your AI Ops Roadmap</h2>
+        </div>
+        <div class="ops-matrix-grid" data-animate-stagger>
+          <div class="ops-matrix-cell">
+            <div class="ops-matrix-icon">&#128640;</div>
+            <p class="ops-matrix-label">Move Fast</p>
+            <p class="ops-matrix-sublabel">High disruption + Reversible risk. Automate now. Learn fast.</p>
+          </div>
+          <div class="ops-matrix-cell">
+            <div class="ops-matrix-icon">&#127959;</div>
+            <p class="ops-matrix-label">Build Carefully</p>
+            <p class="ops-matrix-sublabel">High disruption + Moderate risk. Pilot with oversight before scaling.</p>
+          </div>
+          <div class="ops-matrix-cell">
+            <div class="ops-matrix-icon">&#128737;</div>
+            <p class="ops-matrix-label">Human in Loop</p>
+            <p class="ops-matrix-sublabel">Any disruption + Critical risk. AI assists, humans decide. Always.</p>
+          </div>
+          <div class="ops-matrix-cell">
+            <div class="ops-matrix-icon">&#128064;</div>
+            <p class="ops-matrix-label">Watch & Wait</p>
+            <p class="ops-matrix-sublabel">Low disruption + any risk. Monitor the space, don't overinvest yet.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<!-- MODAL (outside main for z-index stacking) -->
+<div class="ops-modal-overlay" id="ops-modal-overlay">
+  <div class="ops-modal">
+    <div class="ops-modal-header">
+      <button class="ops-modal-close" id="ops-modal-close" aria-label="Close modal">&times;</button>
+      <p class="ops-modal-section-label" id="ops-modal-section-label"></p>
+      <h3 class="ops-modal-title" id="ops-modal-title"></h3>
+      <div class="ops-modal-badges">
+        <span class="ops-modal-level-badge" id="ops-modal-level-badge"></span>
+        <span class="ops-modal-risk-badge" id="ops-modal-risk-badge"></span>
+        <span id="ops-modal-new-tag"></span>
+      </div>
+    </div>
+    <div class="ops-modal-body">
+      <p class="ops-modal-short" id="ops-modal-short"></p>
+      <p class="ops-modal-detail-label">Full Breakdown</p>
+      <div class="ops-modal-detail" id="ops-modal-detail"></div>
+      <div class="ops-modal-risk-section">
+        <p class="ops-modal-risk-title">Consequence of Failure</p>
+        <p class="ops-modal-risk-text" id="ops-modal-risk-text"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* ── OPS STACK PAGE ── */
+  .ops-stack-page {
+    background: var(--bg-primary);
+  }
+
+  /* ── HERO ── */
+  .ops-hero {
+    background: var(--navy);
+    padding: var(--space-4xl) 0 var(--space-3xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ops-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 65% 35%, rgba(237, 137, 54, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 15% 75%, rgba(237, 137, 54, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .ops-hero .container { position: relative; z-index: 1; }
+  .ops-hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+  .ops-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-sm);
+  }
+  .ops-hero .text-orange { color: var(--orange); }
+  .ops-hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin: 0 auto var(--space-lg);
+    line-height: 1.7;
+  }
+  .ops-hero-note {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1.5px solid rgba(237, 137, 54, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-xs) var(--space-md);
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
+  }
+  .ops-hero-note strong { color: var(--orange); }
+
+  /* ── LEGEND ── */
+  .ops-legend {
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .ops-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    padding: 0.375rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1.5px solid transparent;
+    transition: all var(--transition);
+    background: rgba(255,255,255,0.05);
+  }
+  .ops-legend-item:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  .ops-legend-item.active { background: rgba(237, 137, 54, 0.15); border-color: var(--orange); color: var(--orange); }
+  .ops-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-low { background: #7ab8f5; }
+  .dot-medium { background: #f0c040; }
+  .dot-high { background: var(--orange); }
+  .dot-transformative { background: #ff4d4d; }
+  .dot-new { background: #7fff8a; }
+
+  /* ── MAIN WRAP ── */
+  .ops-main {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* ── RISK AXIS EXPLAINER ── */
+  .ops-risk-explainer {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 768px) {
+    .ops-risk-explainer { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .ops-risk-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .ops-risk-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .ops-risk-desc {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  /* ── FILTER BAR ── */
+  .ops-filter-bar {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border);
+    align-items: center;
+  }
+  .ops-filter-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+  .ops-filter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.375rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .ops-filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .ops-filter-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  /* ── SECTIONS ── */
+  .ops-section { margin-bottom: var(--space-xl); }
+  .ops-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--border);
+  }
+  .ops-section-num {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    background: var(--navy);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    color: var(--orange);
+  }
+  .ops-section-title {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── CARDS GRID ── */
+  .ops-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  @media (min-width: 640px) {
+    .ops-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .ops-cards-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── CARD ── */
+  .ops-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .ops-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    opacity: 0.6;
+    transition: opacity var(--transition);
+  }
+  .ops-card.level-low::before { background: #7ab8f5; }
+  .ops-card.level-medium::before { background: #f0c040; }
+  .ops-card.level-high::before { background: var(--orange); }
+  .ops-card.level-transformative::before { background: #ff4d4d; }
+  .ops-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--orange);
+  }
+  .ops-card:hover::before { opacity: 1; }
+  .ops-card.hidden { display: none; }
+
+  .ops-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
+  }
+  .ops-card-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+    flex: 1;
+  }
+  .ops-card-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-low { background: rgba(122,184,245,0.15); color: #2563eb; }
+  .badge-medium { background: rgba(240,192,64,0.15); color: #b45309; }
+  .badge-high { background: rgba(237,137,54,0.15); color: #c2500a; }
+  .badge-transformative { background: rgba(255,77,77,0.12); color: #b91c1c; }
+
+  .ops-card-new-tag {
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #15803d;
+    background: rgba(127,255,138,0.15);
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .ops-card-risk {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: var(--space-xs);
+  }
+  .ops-risk-tag {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+  }
+  .risk-reversible { background: rgba(22,163,74,0.12); color: #15803d; }
+  .risk-moderate { background: rgba(251,191,36,0.12); color: #92400e; }
+  .risk-critical { background: rgba(239,68,68,0.12); color: #991b1b; }
+
+  .ops-card-summary {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ops-card-expand {
+    margin-top: var(--space-xs);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  /* ── MODAL ── */
+  .ops-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 54, 93, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+  }
+  .ops-modal-overlay.open { display: flex; }
+  .ops-modal {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: opsModalIn 0.25s ease;
+  }
+  @keyframes opsModalIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
+  .ops-modal-header {
+    background: var(--navy);
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    position: relative;
+  }
+  .ops-modal-close {
+    position: absolute;
+    top: var(--space-sm); right: var(--space-sm);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.25rem;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+  .ops-modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
+  .ops-modal-section-label {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+  }
+  .ops-modal-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    padding-right: 36px;
+    margin-bottom: var(--space-sm);
+  }
+  .ops-modal-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+  .ops-modal-level-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+  }
+  .ops-modal-level-badge.transformative { border-color: rgba(255,77,77,0.5); color: #fca5a5; background: rgba(255,77,77,0.1); }
+  .ops-modal-level-badge.high { border-color: rgba(237,137,54,0.5); color: var(--orange); background: rgba(237,137,54,0.1); }
+  .ops-modal-level-badge.medium { border-color: rgba(240,192,64,0.5); color: #fde68a; background: rgba(240,192,64,0.08); }
+  .ops-modal-level-badge.low { border-color: rgba(122,184,245,0.5); color: #bfdbfe; background: rgba(122,184,245,0.08); }
+  .ops-modal-risk-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+  }
+  .ops-modal-risk-reversible { background: rgba(22,163,74,0.12); color: #86efac; border: 1.5px solid rgba(22,163,74,0.3); }
+  .ops-modal-risk-moderate { background: rgba(251,191,36,0.08); color: #fde68a; border: 1.5px solid rgba(251,191,36,0.3); }
+  .ops-modal-risk-critical { background: rgba(239,68,68,0.1); color: #fca5a5; border: 1.5px solid rgba(239,68,68,0.3); }
+
+  .ops-modal-body { padding: var(--space-lg); }
+  .ops-modal-short {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.65;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ops-modal-detail-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+  }
+  .ops-modal-detail {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    background: var(--bg-surface-alt);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--orange);
+    margin-bottom: var(--space-md);
+  }
+  .ops-modal-risk-section {
+    background: var(--bg-surface-alt);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-light);
+  }
+  .ops-modal-risk-title {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .ops-modal-risk-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── PRINCIPLES ── */
+  .ops-principles {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+  }
+  .ops-principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  @media (min-width: 640px) {
+    .ops-principles-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .ops-principles-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .ops-principle-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition);
+  }
+  .ops-principle-card:hover { transform: translateY(-2px); }
+  .ops-principle-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(237, 137, 54, 0.1);
+    pointer-events: none;
+  }
+  .ops-principle-num {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+  }
+  .ops-principle-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--space-xs);
+    line-height: 1.25;
+  }
+  .ops-principle-title em { color: var(--orange); font-style: normal; }
+  .ops-principle-desc {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    margin-bottom: var(--space-sm);
+  }
+  .ops-principle-focus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .ops-principle-focus-list li {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.75);
+    padding-left: 14px;
+    position: relative;
+  }
+  .ops-principle-focus-list li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  /* ── RISK MATRIX ── */
+  .ops-matrix { margin-bottom: var(--space-2xl); }
+  .ops-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  @media (min-width: 768px) {
+    .ops-matrix-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .ops-matrix-cell {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .ops-matrix-icon { font-size: 1.5rem; margin-bottom: var(--space-xs); }
+  .ops-matrix-label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .ops-matrix-sublabel {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .ops-hero { padding: var(--space-2xl) 0 var(--space-xl); }
+    .ops-main { padding-top: var(--space-lg); }
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var DATA = {
+    sections: [
+      {
+        id: "01", title: "Process & Workflow Design",
+        items: [
+          { name: "Process Documentation & SOPs", level: "transformative", isNew: false, risk: "reversible",
+            short: "AI that drafts, structures, and maintains standard operating procedures from recorded walkthroughs, interviews, or existing docs.",
+            detail: "One of the highest-ROI starting points for AI in ops. A single operator can document a process in minutes that would have taken days. The bigger shift is keeping docs current \u2014 AI can monitor process changes and flag stale SOPs automatically.",
+            riskNote: "Errors produce bad documentation, not broken operations. Easy to review, correct, and republish. Low cost of mistakes makes this a strong first deployment." },
+          { name: "Process Mining & Analysis", level: "high", isNew: false, risk: "reversible",
+            short: "AI that analyzes system logs and event data to map how processes actually run \u2014 versus how they\u2019re supposed to run.",
+            detail: "The gap between the documented process and the real process is almost always larger than expected. AI process mining surfaces bottlenecks, rework loops, and compliance deviations that manual reviews miss entirely. Particularly powerful in finance, HR, and customer ops where system logs are rich.",
+            riskNote: "Analysis outputs are recommendations, not actions. Worst case is a misread pattern that gets caught in review. Good place to experiment aggressively." },
+          { name: "Workflow Automation Design", level: "high", isNew: true, risk: "moderate",
+            short: "AI that designs and builds multi-step automation workflows from natural language descriptions, replacing manual no-code/low-code build time.",
+            detail: "Tools like Make, Zapier, and n8n are adding AI layers that can draft entire automation flows from a prompt. This dramatically lowers the barrier to automation for non-technical ops teams. The shift is from \u2018who can build this\u2019 to \u2018who understands the process well enough to describe it\u2019.",
+            riskNote: "A poorly designed automation can create data issues or process breakdowns before they\u2019re caught. Pilot with non-critical workflows first, review outputs before activating in production." },
+          { name: "Bottleneck & Waste Identification", level: "high", isNew: false, risk: "reversible",
+            short: "AI analysis of operational data to surface inefficiencies, delays, and redundant steps across business functions.",
+            detail: "AI can now ingest data from across the business \u2014 HRIS, ERP, CRM, support tickets \u2014 and surface patterns that indicate waste or friction. The output is a prioritized list of improvement opportunities, not automated action. This is the diagnostic layer before intervention.",
+            riskNote: "Outputs are analytical, not operational. The risk is acting on a false positive and redesigning a process that was actually working. Validate findings before committing to change." }
+        ]
+      },
+      {
+        id: "02", title: "People & HR Ops",
+        items: [
+          { name: "Job Description & Hiring Materials", level: "high", isNew: false, risk: "moderate",
+            short: "AI-generated job descriptions, screening criteria, and interview question frameworks that reduce bias and improve consistency.",
+            detail: "AI dramatically speeds up the creation of hiring materials and can flag language that tends to reduce candidate diversity. The quality ceiling has risen significantly \u2014 a strong prompt produces better structured JDs than most hiring managers write manually.",
+            riskNote: "Biased or inaccurate JDs affect candidate quality and legal exposure. Human review of AI output is non-negotiable, especially for protected class language and qualification requirements." },
+          { name: "Resume Screening & Shortlisting", level: "high", isNew: false, risk: "critical",
+            short: "AI-assisted screening that filters and ranks candidates against defined criteria before human review.",
+            detail: "AI can process large volumes of applications quickly and consistently. But screening decisions have legal implications and genuine bias risk. The current best practice is AI as a first filter with human review on every shortlist, not AI making final cut decisions.",
+            riskNote: "Discriminatory screening decisions create legal liability and reputational damage. Human sign-off on all shortlisting decisions is required." },
+          { name: "Onboarding Workflow Automation", level: "high", isNew: false, risk: "moderate",
+            short: "AI-orchestrated onboarding sequences that automate task assignment, system provisioning, document routing, and progress tracking.",
+            detail: "Onboarding is full of repetitive, time-sensitive tasks that AI handles well \u2014 generating welcome packs, routing paperwork, triggering system access requests, scheduling check-ins. Most orgs still do this manually.",
+            riskNote: "A broken onboarding flow creates poor first impressions and can delay system access or compliance training completion. Run parallel with existing process during pilot." },
+          { name: "Performance Documentation", level: "medium", isNew: false, risk: "critical",
+            short: "AI-assisted drafting of performance reviews, feedback summaries, and improvement plans from structured input.",
+            detail: "AI can help managers write clearer, more consistent performance documentation \u2014 reducing vagueness and emotional language. The risk is using AI output without meaningful human input or reflection.",
+            riskNote: "Performance records affect pay, promotion, and termination decisions. AI-drafted content that is factually wrong or legally non-compliant creates significant HR and legal exposure." },
+          { name: "HR Policy Q&A & Knowledge Access", level: "transformative", isNew: true, risk: "moderate",
+            short: "AI assistants trained on internal HR policies that answer employee questions instantly and consistently, reducing HR team load.",
+            detail: "One of the clearest quick wins in people ops. Employees have the same recurring questions \u2014 leave policies, benefits, expense rules \u2014 and HR teams spend significant time answering them. An AI trained on current policy docs handles the volume at near-zero marginal cost.",
+            riskNote: "An outdated or incorrect policy answer creates compliance risk and employee frustration. Policy knowledge bases need a clear update process and a fallback to human HR." },
+          { name: "Workforce Planning & Capacity Modelling", level: "medium", isNew: false, risk: "moderate",
+            short: "AI-assisted modelling of headcount needs, team capacity, and hiring timelines against business forecasts.",
+            detail: "AI can ingest multiple data sources \u2014 attrition trends, project pipelines, budget forecasts \u2014 and model hiring scenarios faster than spreadsheet-based approaches. Still requires significant human judgment on inputs and assumptions.",
+            riskNote: "Bad capacity models lead to over or underhiring, with direct cost implications. AI outputs need human sanity-checking against business reality." }
+        ]
+      },
+      {
+        id: "03", title: "Finance & Procurement Ops",
+        items: [
+          { name: "Invoice Processing & AP Automation", level: "transformative", isNew: false, risk: "critical",
+            short: "AI-powered extraction, matching, and routing of invoices replacing manual accounts payable processing.",
+            detail: "AP automation is one of the most mature AI ops categories. AI can extract invoice data, match against POs, flag discrepancies, and route for approval with high accuracy.",
+            riskNote: "AP errors affect cash flow, vendor relationships, and financial reporting. Human review of exceptions and anomalies is required." },
+          { name: "Spend Analysis & Category Intelligence", level: "high", isNew: false, risk: "reversible",
+            short: "AI analysis of procurement data to surface spending patterns, vendor concentration risk, and savings opportunities.",
+            detail: "AI can classify and analyse spend data at a level of granularity that manual analysis can\u2019t match. Tail spend categories that were previously too fragmented to manage are now visible.",
+            riskNote: "Analytical output only \u2014 no direct action is taken. Errors produce wrong recommendations rather than wrong transactions." },
+          { name: "Vendor & Contract Intelligence", level: "high", isNew: false, risk: "moderate",
+            short: "AI extraction and analysis of contract terms, renewal dates, SLAs, and risk clauses across vendor agreements.",
+            detail: "Most orgs have contracts scattered across email and shared drives with no systematic view of obligations. AI can ingest the full contract estate and build a searchable, queryable knowledge layer.",
+            riskNote: "AI misreads a contract clause and you miss a renewal window or accept a liability. Human legal review of high-value contracts remains necessary." },
+          { name: "Budget Variance Analysis", level: "high", isNew: false, risk: "moderate",
+            short: "AI-generated budget vs. actuals analysis with automated anomaly flagging and natural language narrative generation.",
+            detail: "Finance teams spend significant time preparing variance reports that follow predictable patterns. AI can generate the first draft in minutes. The finance team\u2019s role shifts to reviewing, interpreting, and adding context.",
+            riskNote: "An incorrect variance narrative that reaches leadership creates confusion and erodes trust. Finance team review before distribution is essential." },
+          { name: "Expense Management & Compliance", level: "high", isNew: false, risk: "moderate",
+            short: "AI-powered expense categorisation, policy compliance checking, and anomaly detection in employee expense claims.",
+            detail: "AI can review every expense submission against policy rules in real-time \u2014 catching out-of-policy claims, duplicate submissions, and unusual patterns that manual spot-checks miss.",
+            riskNote: "False positives create employee friction. False negatives miss fraud. The system needs clear escalation paths." },
+          { name: "Financial Forecasting", level: "medium", isNew: false, risk: "critical",
+            short: "AI-assisted revenue and cost forecasting using historical patterns, pipeline data, and external signals.",
+            detail: "AI can improve forecast accuracy by incorporating more variables than traditional models and updating in near real-time. But accuracy still depends heavily on data quality and business context.",
+            riskNote: "Bad financial forecasts drive wrong resourcing, hiring, and investment decisions. AI-generated forecasts require senior finance review." }
+        ]
+      },
+      {
+        id: "04", title: "IT & Systems Ops",
+        items: [
+          { name: "IT Helpdesk & Ticket Resolution", level: "transformative", isNew: false, risk: "reversible",
+            short: "AI agents that resolve common IT requests \u2014 password resets, access provisioning, software installs \u2014 without human intervention.",
+            detail: "Tier-1 IT support is one of the strongest early use cases for agentic AI. A large portion of IT helpdesk volume is repetitive and low-risk. The impact on IT team capacity is significant.",
+            riskNote: "A wrong resolution restarts a ticket. No lasting damage in most cases. The risk ceiling rises for access-related requests." },
+          { name: "Incident Detection & Response", level: "high", isNew: false, risk: "moderate",
+            short: "AI monitoring that detects system anomalies, correlates signals across infrastructure, and initiates first-response actions.",
+            detail: "AI can monitor infrastructure at a scale and speed that human teams can\u2019t match \u2014 correlating signals across logs, metrics, and traces to surface incidents earlier.",
+            riskNote: "Automated first-response actions can make incidents worse if misapplied. Human approval for any action that affects production systems is best practice." },
+          { name: "Security Threat Monitoring", level: "high", isNew: false, risk: "critical",
+            short: "AI-powered threat detection, behavioural anomaly analysis, and automated security alert triage.",
+            detail: "AI has become foundational to modern security operations \u2014 the volume of signals is too high for human analysts to process manually.",
+            riskNote: "A missed threat creates breach exposure. Human analysts in the loop on all material alerts is non-negotiable." },
+          { name: "Technical Documentation Generation", level: "high", isNew: false, risk: "reversible",
+            short: "AI that generates, updates, and maintains technical documentation, runbooks, and architecture records from code and system data.",
+            detail: "Technical documentation is perennially out of date because writing it is time-consuming and unrewarding. AI that auto-generates runbooks solves a real and persistent ops problem.",
+            riskNote: "Wrong documentation misleads engineers during incidents. Needs a review and publication workflow. Easy to catch errors before they cause harm." },
+          { name: "Access & Identity Management", level: "medium", isNew: false, risk: "critical",
+            short: "AI-assisted access provisioning, role recommendations, and periodic access certification workflows.",
+            detail: "AI can recommend appropriate access levels based on role patterns, flag users with excessive permissions, and automate access review workflows.",
+            riskNote: "Incorrect access grants create security and compliance risk. Human approval on all access changes above a defined sensitivity threshold is required." }
+        ]
+      },
+      {
+        id: "05", title: "Customer Ops",
+        items: [
+          { name: "Support Ticket Triage & Routing", level: "transformative", isNew: false, risk: "reversible",
+            short: "AI that classifies, prioritises, and routes incoming support tickets to the right team or agent without manual review.",
+            detail: "Intelligent triage is one of the fastest deployments in customer ops. AI classification improves routing accuracy and reduces first-response time. The ROI is immediate.",
+            riskNote: "A misrouted ticket creates a delay and a reassignment. Minor friction, not broken experience." },
+          { name: "AI Customer Support Agents", level: "transformative", isNew: true, risk: "moderate",
+            short: "LLM-powered support agents that handle multi-turn customer conversations, resolve common issues, and escalate complex cases to humans.",
+            detail: "The jump from rule-based chatbots to LLM agents is a step change in what automated support can resolve. These agents can understand context and handle ambiguity.",
+            riskNote: "A poorly handled customer interaction damages trust. Escalation logic needs to be robust. Monitor resolution quality and sentiment regularly." },
+          { name: "Quality Assurance & Conversation Review", level: "high", isNew: false, risk: "reversible",
+            short: "AI that reviews 100% of support interactions for quality, compliance, and coaching opportunities \u2014 replacing sample-based QA.",
+            detail: "Traditional QA reviews 2-5% of interactions. AI QA reviews all of them. This changes both the coverage and the nature of the insights.",
+            riskNote: "Wrong QA scores can unfairly affect agent performance records. Outputs should be treated as inputs to coaching conversations." },
+          { name: "Voice of Customer Analysis", level: "high", isNew: false, risk: "reversible",
+            short: "AI synthesis of customer feedback, support transcripts, and review data to surface recurring themes and product signals.",
+            detail: "AI can now synthesise signal from across all customer touchpoints into a coherent picture of customer needs and frustrations.",
+            riskNote: "Analytical output with no direct customer-facing action. Errors produce wrong priorities. Low consequence compared to direct customer impact." },
+          { name: "SLA Monitoring & Escalation", level: "high", isNew: false, risk: "moderate",
+            short: "AI monitoring of support queues that predicts SLA breach risk and triggers proactive escalation before deadlines are missed.",
+            detail: "Reactive SLA management \u2014 catching breaches after they happen \u2014 is the norm. AI that monitors queue velocity can predict breaches hours in advance.",
+            riskNote: "Late escalations still result in SLA breaches and customer impact. The system needs clear alert thresholds." }
+        ]
+      },
+      {
+        id: "06", title: "Data & Reporting Ops",
+        items: [
+          { name: "Natural Language Reporting", level: "transformative", isNew: true, risk: "moderate",
+            short: "AI that generates written narrative reports, executive summaries, and operational briefings from structured data.",
+            detail: "Finance, ops, and CS teams spend significant time writing reports that follow predictable structures. AI can generate the first draft from data in minutes.",
+            riskNote: "A confident-sounding report with wrong numbers or misleading framing reaches leadership before anyone checks it. Human review before distribution is non-negotiable." },
+          { name: "Anomaly Detection & Alerting", level: "high", isNew: false, risk: "moderate",
+            short: "AI monitoring of operational metrics that detects deviations from expected patterns and alerts the right people automatically.",
+            detail: "Manual threshold-based alerting misses gradual drift and generates noise when conditions change seasonally. AI anomaly detection adapts to normal variation.",
+            riskNote: "False positives create alert fatigue. False negatives miss real problems. Calibration and feedback loops are critical." },
+          { name: "Dashboard & Visualisation Generation", level: "high", isNew: false, risk: "reversible",
+            short: "AI that builds data visualisations and dashboard configurations from natural language descriptions.",
+            detail: "The barrier to building useful dashboards has historically been technical. AI that can translate natural language into a working dashboard removes that bottleneck.",
+            riskNote: "A misconfigured dashboard shows the wrong metric. Easy to spot and fix. Errors don\u2019t propagate downstream unless driving automated decisions." },
+          { name: "Data Quality Monitoring", level: "high", isNew: false, risk: "moderate",
+            short: "AI that continuously monitors data pipelines for quality issues \u2014 missing values, schema drift, statistical anomalies \u2014 before they reach reports.",
+            detail: "Bad data reaching operational reports is a persistent, expensive problem. AI data quality monitoring catches issues at the pipeline level rather than the report level.",
+            riskNote: "Missed data quality issues produce wrong reports and wrong decisions downstream. The system needs clear remediation workflows." },
+          { name: "KPI Definition & Alignment", level: "low", isNew: false, risk: "moderate",
+            short: "AI-assisted documentation of metric definitions, calculation logic, and ownership to reduce confusion across teams.",
+            detail: "Metric inconsistency \u2014 different teams calculating the same KPI differently \u2014 is a chronic ops problem. AI can help document and standardise definitions, but the alignment work is fundamentally human.",
+            riskNote: "Wrong or contested metric definitions drive misaligned priorities. AI can assist the documentation, but definitional decisions require human agreement." }
+        ]
+      },
+      {
+        id: "07", title: "Compliance & Risk Ops",
+        items: [
+          { name: "Policy & Regulatory Monitoring", level: "high", isNew: false, risk: "moderate",
+            short: "AI monitoring of regulatory updates, policy changes, and compliance requirements relevant to the business.",
+            detail: "The volume of regulatory change is too high for manual tracking across most industries. AI can monitor regulatory feeds, identify relevant changes, and summarise implications.",
+            riskNote: "A missed regulatory change creates compliance exposure. AI monitoring reduces the risk but doesn\u2019t eliminate it. Human legal review of flagged changes is required." },
+          { name: "Contract Review & Redlining", level: "high", isNew: false, risk: "critical",
+            short: "AI-assisted contract review that flags non-standard clauses, liability risks, and deviations from preferred terms.",
+            detail: "AI contract review tools have matured significantly \u2014 they can identify risk clauses, compare against standard playbooks, and suggest redlines across large volumes.",
+            riskNote: "A missed clause in a significant contract creates legal and financial exposure. Human legal review on all material contracts is non-negotiable." },
+          { name: "Audit Trail & Documentation", level: "high", isNew: false, risk: "moderate",
+            short: "AI that automatically generates and maintains audit trails, evidence packages, and compliance documentation from operational data.",
+            detail: "Audit preparation is deeply manual in most orgs. AI that maintains continuous audit documentation dramatically reduces preparation time and improves completeness.",
+            riskNote: "Incomplete or inaccurate audit evidence creates compliance risk. The system needs verification workflows." },
+          { name: "Risk Assessment & Scoring", level: "medium", isNew: false, risk: "critical",
+            short: "AI-powered risk scoring across operational, financial, and compliance dimensions with automated monitoring.",
+            detail: "AI can process more risk signals and update assessments faster than manual approaches. But risk scoring directly informs material business decisions.",
+            riskNote: "An understated risk score leads to inadequate controls. Human risk professionals must validate AI assessments." }
+        ]
+      },
+      {
+        id: "08", title: "Supply Chain & Logistics",
+        items: [
+          { name: "Demand Forecasting", level: "high", isNew: false, risk: "moderate",
+            short: "AI-driven demand prediction using historical sales, external signals, and market indicators.",
+            detail: "AI demand forecasting can incorporate far more variables than traditional statistical models and adapt to changing patterns faster.",
+            riskNote: "Over-forecasting creates excess inventory. Under-forecasting creates stockouts. Both have direct cost implications." },
+          { name: "Route & Delivery Optimisation", level: "high", isNew: false, risk: "reversible",
+            short: "AI-powered route planning that optimises for cost, time, and capacity constraints across delivery networks.",
+            detail: "Route optimisation is one of the more mature AI applications in logistics. The gains from dynamic rerouting based on real-time conditions are well-established.",
+            riskNote: "A bad route costs extra time and fuel for that delivery window. Easy to correct and low lasting impact." },
+          { name: "Inventory Management", level: "high", isNew: false, risk: "moderate",
+            short: "AI-automated reorder points, stock level optimisation, and multi-location inventory balancing.",
+            detail: "AI can optimise inventory levels across multiple locations simultaneously, accounting for lead times, demand variability, and carrying costs.",
+            riskNote: "Over-ordering ties up capital. Under-ordering creates stockouts and lost sales. Both have real cost implications." },
+          { name: "Supplier Risk Monitoring", level: "medium", isNew: false, risk: "moderate",
+            short: "AI monitoring of supplier health indicators \u2014 financial stability, delivery performance, news sentiment, and geopolitical risk.",
+            detail: "AI can monitor supplier risk signals at a breadth and speed that manual approaches can\u2019t match. Particularly valuable for critical tier-1 and tier-2 suppliers.",
+            riskNote: "A missed supplier risk signal can result in supply disruption. AI monitoring improves coverage but requires clear escalation workflows." }
+        ]
+      },
+      {
+        id: "09", title: "Knowledge & Content Ops",
+        items: [
+          { name: "Internal Knowledge Base Management", level: "transformative", isNew: true, risk: "reversible",
+            short: "AI-powered search and answer generation across internal documentation, replacing manual knowledge hunting.",
+            detail: "The amount of time employees spend searching for internal information is staggering. AI that can surface relevant answers from across wikis, docs, and Slack is a clear productivity win.",
+            riskNote: "A wrong answer wastes time. An outdated answer causes rework. Easy to correct and the cost of errors is low relative to the time saved." },
+          { name: "Content Generation & Editing", level: "transformative", isNew: false, risk: "moderate",
+            short: "AI that drafts, edits, and formats business content \u2014 reports, proposals, presentations, communications \u2014 from prompts or templates.",
+            detail: "This is the category most people experience first. AI dramatically accelerates content production. The quality ceiling depends on the operator\u2019s ability to prompt and edit.",
+            riskNote: "Published content with errors, inappropriate tone, or incorrect claims creates reputational risk. Human review and approval workflows are required for external content." },
+          { name: "Translation & Localisation", level: "high", isNew: false, risk: "moderate",
+            short: "AI translation of business content, documentation, and communications across languages with context-aware localisation.",
+            detail: "AI translation quality has improved dramatically. For internal communications and documentation, AI translation is often good enough to deploy without professional review.",
+            riskNote: "Translation errors in customer-facing or legal content create reputational and compliance risk. Professional review for high-stakes content remains necessary." },
+          { name: "Meeting Summarisation & Action Items", level: "high", isNew: false, risk: "reversible",
+            short: "AI that transcribes meetings, generates structured summaries, and extracts action items with ownership and deadlines.",
+            detail: "One of the fastest-adoption AI tools in enterprise. Meeting notes go from \u2018someone takes notes\u2019 to \u2018everyone gets a searchable summary within minutes\u2019.",
+            riskNote: "A missed or misattributed action item creates follow-up friction. Participants can correct the record easily. Low lasting impact." }
+        ]
+      },
+      {
+        id: "10", title: "Facilities & Physical Ops",
+        items: [
+          { name: "Predictive Maintenance", level: "high", isNew: false, risk: "moderate",
+            short: "AI that predicts equipment failures from sensor data and usage patterns, enabling proactive maintenance scheduling.",
+            detail: "Predictive maintenance is one of the most proven AI use cases in facilities and manufacturing. Moving from scheduled to predictive maintenance reduces both downtime and unnecessary servicing.",
+            riskNote: "A missed failure prediction results in unplanned downtime. An over-prediction results in unnecessary maintenance costs. Both are meaningful but manageable." },
+          { name: "Space & Occupancy Optimisation", level: "medium", isNew: false, risk: "reversible",
+            short: "AI analysis of occupancy data to optimise space utilisation, desk allocation, and facilities planning.",
+            detail: "With hybrid work patterns, space utilisation data is more important and more variable. AI can model occupancy patterns and recommend space configurations.",
+            riskNote: "A bad space recommendation creates employee inconvenience. Easy to reverse and test alternatives." },
+          { name: "Energy Management", level: "medium", isNew: false, risk: "reversible",
+            short: "AI-controlled HVAC, lighting, and energy systems that optimise for cost and comfort based on occupancy and conditions.",
+            detail: "AI energy management can reduce facility energy costs by 15-30% through real-time optimisation. The ROI is well-established in commercial buildings.",
+            riskNote: "Uncomfortable temperature or lighting conditions are noticeable and quickly correctable. Low lasting impact." }
+        ]
+      }
+    ],
+    principles: [
+      { num: "01", title: "Start Where <em>Risk Is Low</em>", desc: "Your first AI ops deployment should be in a category where errors are reversible and low-cost. Build confidence before moving to critical systems.",
+        focus: ["Process documentation & SOPs", "IT helpdesk triage", "Internal knowledge base", "Meeting summarisation"] },
+      { num: "02", title: "Human-in-the-Loop Is <em>Not Optional</em> for Critical Systems", desc: "Any category with critical consequence of failure requires human sign-off regardless of how good the AI is. This is not a temporary limitation.",
+        focus: ["Resume screening & hiring", "Financial reporting & forecasts", "Contract review", "Access & identity management"] },
+      { num: "03", title: "The AI Does the <em>First Draft</em>", desc: "For moderate-risk categories, the best pattern is AI generating the first version and a human reviewing, editing, and approving. This captures most of the time savings while maintaining quality.",
+        focus: ["Performance reviews", "Budget variance reports", "Onboarding workflows", "Content generation"] },
+      { num: "04", title: "Monitor the <em>AI\u2019s Work</em>, Not Just the Output", desc: "Once AI handles a process, you need visibility into how it\u2019s performing \u2014 not just whether the final output looks right. Build monitoring from day one.",
+        focus: ["QA review of AI support interactions", "Audit trails for automated decisions", "Anomaly detection on AI outputs", "Regular accuracy reviews"] },
+      { num: "05", title: "Combine Categories for <em>Compound Impact</em>", desc: "The biggest gains come from connecting AI across categories \u2014 not deploying it in isolation. Process mining that feeds automation design that feeds knowledge management.",
+        focus: ["Process mining \u2192 workflow automation", "Support triage \u2192 knowledge base updates", "Invoice processing \u2192 spend analysis", "Demand forecasting \u2192 inventory management"] },
+      { num: "06", title: "Disruption Level Is Not <em>Priority Level</em>", desc: "The most transformative categories are not necessarily where you should start. Priority = disruption level \u00d7 relevance to your business \u00f7 consequence of failure.",
+        focus: ["Map your current pain points first", "Score by operational impact, not hype", "Factor in your team\u2019s readiness", "Build a phased roadmap, not a big bang"] }
+    ]
+  };
+
+  var activeFilter = 'all';
+  var container = document.getElementById('ops-sections-container');
+  var principlesGrid = document.getElementById('ops-principles-grid');
+  var overlay = document.getElementById('ops-modal-overlay');
+
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  function renderSections() {
+    var html = '';
+    DATA.sections.forEach(function(section) {
+      html += '<div class="ops-section" data-animate="fade-up">';
+      html += '<div class="ops-section-header">';
+      html += '<span class="ops-section-num">' + section.id + '</span>';
+      html += '<h2 class="ops-section-title">' + section.title + '</h2>';
+      html += '</div>';
+      html += '<div class="ops-cards-grid" data-animate-stagger>';
+      section.items.forEach(function(item, idx) {
+        var hidden = '';
+        if (activeFilter === 'new' && !item.isNew) hidden = ' hidden';
+        else if (activeFilter !== 'all' && activeFilter !== 'new' && item.level !== activeFilter) hidden = ' hidden';
+
+        html += '<div class="ops-card level-' + item.level + hidden + '" data-section="' + section.id + '" data-idx="' + idx + '">';
+        if (item.isNew) html += '<span class="ops-card-new-tag">New</span>';
+        html += '<div class="ops-card-top">';
+        html += '<span class="ops-card-name">' + item.name + '</span>';
+        html += '<span class="ops-card-badge badge-' + item.level + '">' + capitalize(item.level) + '</span>';
+        html += '</div>';
+        html += '<div class="ops-card-risk">';
+        html += '<span class="ops-risk-tag risk-' + item.risk + '">' + capitalize(item.risk) + '</span>';
+        html += '</div>';
+        html += '<p class="ops-card-summary">' + item.short + '</p>';
+        html += '<p class="ops-card-expand">View details \u2192</p>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+    observeNewElements();
+  }
+
+  function renderPrinciples() {
+    var html = '';
+    DATA.principles.forEach(function(p) {
+      html += '<div class="ops-principle-card">';
+      html += '<p class="ops-principle-num">Principle ' + p.num + '</p>';
+      html += '<p class="ops-principle-title">' + p.title + '</p>';
+      html += '<p class="ops-principle-desc">' + p.desc + '</p>';
+      html += '<ul class="ops-principle-focus-list">';
+      p.focus.forEach(function(f) {
+        html += '<li>' + f + '</li>';
+      });
+      html += '</ul></div>';
+    });
+    principlesGrid.innerHTML = html;
+  }
+
+  function setFilter(filter) {
+    activeFilter = filter;
+    // Update filter bar
+    document.querySelectorAll('.ops-filter-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+    });
+    // Update legend
+    document.querySelectorAll('.ops-legend-item').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+    });
+    renderSections();
+  }
+
+  function openModal(sectionId, idx) {
+    var section = DATA.sections.find(function(s) { return s.id === sectionId; });
+    if (!section) return;
+    var item = section.items[idx];
+    if (!item) return;
+
+    document.getElementById('ops-modal-section-label').textContent = section.title;
+    document.getElementById('ops-modal-title').textContent = item.name;
+    document.getElementById('ops-modal-short').textContent = item.short;
+    document.getElementById('ops-modal-detail').textContent = item.detail;
+    document.getElementById('ops-modal-risk-text').textContent = item.riskNote;
+
+    var levelBadge = document.getElementById('ops-modal-level-badge');
+    levelBadge.textContent = capitalize(item.level);
+    levelBadge.className = 'ops-modal-level-badge ' + item.level;
+
+    var riskBadge = document.getElementById('ops-modal-risk-badge');
+    riskBadge.textContent = capitalize(item.risk) + ' Risk';
+    riskBadge.className = 'ops-modal-risk-badge ops-modal-risk-' + item.risk;
+
+    var newTag = document.getElementById('ops-modal-new-tag');
+    if (item.isNew) {
+      newTag.innerHTML = '<span class="ops-card-new-tag" style="font-size:0.625rem;">New</span>';
+    } else {
+      newTag.innerHTML = '';
+    }
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function observeNewElements() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]:not(.is-visible)').forEach(function(el) {
+      obs.observe(el);
+    });
+    document.querySelectorAll('[data-animate-stagger]:not(.is-visible)').forEach(function(el) {
+      obs.observe(el);
+    });
+  }
+
+  // Event delegation
+  document.addEventListener('click', function(e) {
+    // Filter buttons
+    var filterBtn = e.target.closest('.ops-filter-btn');
+    if (filterBtn) {
+      setFilter(filterBtn.getAttribute('data-filter'));
+      return;
+    }
+    // Legend items
+    var legendBtn = e.target.closest('.ops-legend-item');
+    if (legendBtn) {
+      setFilter(legendBtn.getAttribute('data-filter'));
+      return;
+    }
+    // Cards
+    var card = e.target.closest('.ops-card');
+    if (card) {
+      openModal(card.getAttribute('data-section'), parseInt(card.getAttribute('data-idx')));
+      return;
+    }
+    // Modal close button
+    if (e.target.closest('#ops-modal-close')) {
+      closeModal();
+      return;
+    }
+    // Overlay backdrop
+    if (e.target === overlay) {
+      closeModal();
+      return;
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Initial render
+  renderSections();
+  renderPrinciples();
+})();
+</script>
