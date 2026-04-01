@@ -1,0 +1,1269 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "SEO Blog Autopilot — How It Works | Brothers Automate";
+const description = "A visual breakdown of the agentic workflow that researches, writes, publishes, and syndicates blog posts for Brothers Automate — fully autonomous, three times a week.";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://brothersautomate.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://brothersautomate.com/resources" },
+    { "@type": "ListItem", "position": 3, "name": "Blog Autopilot", "item": "https://brothersautomate.com/resources/blog-autopilot" }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- HERO -->
+  <section class="ba-hero">
+    <div class="ba-hero-eyebrow">Brothers Automate</div>
+    <h1>SEO Blog<br><span>Autopilot</span></h1>
+    <p class="ba-hero-sub">Five AI agents. One cron trigger. A fully autonomous pipeline that researches keywords, writes articles, publishes to production, and syndicates for backlinks — three times a week.</p>
+    <div class="ba-hero-stats">
+      <div class="ba-hero-stat"><div class="ba-hero-stat-num">5</div><div class="ba-hero-stat-label">Agents</div></div>
+      <div class="ba-hero-stat"><div class="ba-hero-stat-num">3x</div><div class="ba-hero-stat-label">Per Week</div></div>
+      <div class="ba-hero-stat"><div class="ba-hero-stat-num">0</div><div class="ba-hero-stat-label">Human Steps</div></div>
+      <div class="ba-hero-stat"><div class="ba-hero-stat-num">~3k</div><div class="ba-hero-stat-label">Words Per Post</div></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="ba-overview">
+    <div class="ba-container">
+      <div class="ba-section-eyebrow">How It Works</div>
+      <h2>The Full Pipeline <span>End to End</span></h2>
+      <p class="ba-overview-desc">A cron job fires Mon/Wed/Fri at 2pm. Claude Code runs the skill chain — each agent passes its output to the next. No human touches the process between trigger and live post.</p>
+
+      <!-- PIPELINE VISUAL -->
+      <div class="ba-pipeline">
+        <div class="ba-pipeline-node trigger">
+          <div class="ba-pipeline-icon">&#9201;</div>
+          <div class="ba-pipeline-label">Cron Trigger</div>
+          <div class="ba-pipeline-sub">Mon / Wed / Fri 2pm</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node agent-1">
+          <div class="ba-pipeline-num">01</div>
+          <div class="ba-pipeline-label">Competitor Gap Agent</div>
+          <div class="ba-pipeline-sub">Find keyword opportunities</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node agent-2">
+          <div class="ba-pipeline-num">02</div>
+          <div class="ba-pipeline-label">Content Strategist Agent</div>
+          <div class="ba-pipeline-sub">Pick best topic, build outline</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node agent-3">
+          <div class="ba-pipeline-num">03</div>
+          <div class="ba-pipeline-label">SEO Writer Agent</div>
+          <div class="ba-pipeline-sub">Write &amp; humanize article</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node agent-4">
+          <div class="ba-pipeline-num">04</div>
+          <div class="ba-pipeline-label">Publisher Agent</div>
+          <div class="ba-pipeline-sub">Validate, commit, deploy</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node agent-5">
+          <div class="ba-pipeline-num">05</div>
+          <div class="ba-pipeline-label">Syndication Agent</div>
+          <div class="ba-pipeline-sub">Cross-post for backlinks</div>
+        </div>
+        <div class="ba-pipeline-arrow">&darr;</div>
+        <div class="ba-pipeline-node end">
+          <div class="ba-pipeline-icon">&#10003;</div>
+          <div class="ba-pipeline-label">Live on Site</div>
+          <div class="ba-pipeline-sub">brothersautomate.com/blog/</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENT DEEP DIVES -->
+  <section class="ba-agents-wrapper">
+    <div class="ba-container">
+      <div class="ba-section-eyebrow ba-section-eyebrow--light">The Agents</div>
+      <h2 class="ba-main-heading">Five Agents.<br><span>One Pipeline.</span></h2>
+      <p class="ba-agents-intro">Click any agent to expand it. Each section shows what it does, what tools it uses, and what it passes to the next agent.</p>
+
+      <!-- AGENT 01 -->
+      <div class="ba-acc-section open" id="agent-01">
+        <div class="ba-acc-header" data-toggle="agent-01">
+          <div class="ba-acc-num">01</div>
+          <div class="ba-acc-title-block">
+            <div class="ba-acc-title">Competitor Gap Agent</div>
+            <div class="ba-acc-subtitle">Find keyword gaps — topics competitors rank for that we don't.</div>
+          </div>
+          <span class="ba-acc-badge">Research</span>
+          <div class="ba-acc-chevron">&#9662;</div>
+        </div>
+        <div class="ba-acc-body">
+          <div class="ba-acc-divider"></div>
+          <p class="ba-content-desc">This agent scans our competitive landscape to find content opportunities we're missing. It discovers competitors, compares keyword profiles, scores each gap by volume, difficulty, and intent, then passes the top opportunities to the next agent.</p>
+
+          <div class="ba-sub-label">What It Does</div>
+          <div class="ba-step-list">
+            <div class="ba-step"><span class="ba-step-num">1</span><span class="ba-step-text">Discovers top 5 organic competitors via DataForSEO domain analysis</span></div>
+            <div class="ba-step"><span class="ba-step-num">2</span><span class="ba-step-text">Pulls all keywords Brothers Automate currently ranks for</span></div>
+            <div class="ba-step"><span class="ba-step-num">3</span><span class="ba-step-text">Runs domain intersection with <code>intersections: false</code> to find keywords they have that we don't</span></div>
+            <div class="ba-step"><span class="ba-step-num">4</span><span class="ba-step-text">Scores keyword difficulty and classifies search intent for each gap</span></div>
+            <div class="ba-step"><span class="ba-step-num">5</span><span class="ba-step-text">Deduplicates against existing blog posts — rejects anything we already cover</span></div>
+            <div class="ba-step"><span class="ba-step-num">6</span><span class="ba-step-text">Calculates an opportunity score per keyword and ranks them</span></div>
+          </div>
+
+          <div class="ba-sub-label">Scoring Formula</div>
+          <div class="ba-code-block"><span class="dim">// Each factor scored 0–100, summed for final rank</span>
+volume_score    <span class="hl">// >1000 = 100, 500-1000 = 75, 100-500 = 50, <100 = 25</span>
++ difficulty    <span class="hl">// KD<20 = 100, 20-40 = 80, 40-60 = 50, >60 = 20</span>
++ intent        <span class="hl">// commercial = 100, transactional = 80, info = 60</span>
++ topic_bonus   <span class="hl">// +10 for AI/automation topics, +5 for business themes</span>
+= opportunity_score</div>
+
+          <div class="ba-sub-label">Tools Used</div>
+          <div class="ba-tool-grid">
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">competitors_domain</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">ranked_keywords</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">domain_intersection</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">bulk_keyword_difficulty</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">search_intent</span></div>
+          </div>
+
+          <div class="ba-sub-label">Output &rarr; Next Agent</div>
+          <div class="ba-io-block">
+            <div class="ba-io-row"><span class="ba-io-key">competitors_discovered</span><span class="ba-io-val">Top 5 organic competitors by keyword overlap</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">current_rankings</span><span class="ba-io-val">All keywords BA currently ranks for</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">content_gaps</span><span class="ba-io-val">Prioritised keyword list with scores, volume, KD, intent</span></div>
+          </div>
+
+          <div class="ba-fallback-box"><strong>Fallback:</strong> If competitor discovery returns nothing, uses a seed list of known competitors (tryinteract.com, outgrow.co, typeform.com, leadquizzes.com, involve.me).</div>
+        </div>
+      </div>
+
+      <!-- AGENT 02 -->
+      <div class="ba-acc-section" id="agent-02">
+        <div class="ba-acc-header" data-toggle="agent-02">
+          <div class="ba-acc-num">02</div>
+          <div class="ba-acc-title-block">
+            <div class="ba-acc-title">Content Strategist Agent</div>
+            <div class="ba-acc-subtitle">Select the best keyword, analyse the SERP, build a full content brief.</div>
+          </div>
+          <span class="ba-acc-badge">Strategy</span>
+          <div class="ba-acc-chevron">&#9662;</div>
+        </div>
+        <div class="ba-acc-body">
+          <div class="ba-acc-divider"></div>
+          <p class="ba-content-desc">Takes the scored keyword list from Agent 01 and makes the editorial decision: which topic do we write about today? It analyses the SERP, expands the keyword set, researches current data, plans internal links, and builds a detailed outline.</p>
+
+          <div class="ba-sub-label">Selection Criteria</div>
+          <div class="ba-criteria-grid">
+            <div class="ba-criteria-card">
+              <h4>Relevance</h4>
+              <p>Must fit BA's wheelhouse: lead gen, quiz funnels, email marketing, automation, AI tools</p>
+            </div>
+            <div class="ba-criteria-card">
+              <h4>Linkability</h4>
+              <p>Connects to 3+ existing posts for internal link opportunities</p>
+            </div>
+            <div class="ba-criteria-card">
+              <h4>Category Balance</h4>
+              <p>Prefers underrepresented categories to keep the blog diverse</p>
+            </div>
+            <div class="ba-criteria-card">
+              <h4>Commercial Value</h4>
+              <p>CPC > $2 preferred. AI automation topics get a +15 bonus.</p>
+            </div>
+          </div>
+
+          <div class="ba-sub-label">What It Builds</div>
+          <div class="ba-step-list">
+            <div class="ba-step"><span class="ba-step-num">1</span><span class="ba-step-text">Analyses top 10 SERP results — content types, featured snippets, weak spots</span></div>
+            <div class="ba-step"><span class="ba-step-num">2</span><span class="ba-step-text">Expands to 3-5 long-tail secondary keywords and 5-8 LSI terms</span></div>
+            <div class="ba-step"><span class="ba-step-num">3</span><span class="ba-step-text">Researches current stats and People Also Ask questions via Tavily</span></div>
+            <div class="ba-step"><span class="ba-step-num">4</span><span class="ba-step-text">Plans internal links: 3-5 posts to link to, 1-3 posts that should link back</span></div>
+            <div class="ba-step"><span class="ba-step-num">5</span><span class="ba-step-text">Builds a detailed outline: H1, meta description, 5-8 H2 sections with H3s, FAQ</span></div>
+          </div>
+
+          <div class="ba-sub-label">Tools Used</div>
+          <div class="ba-tool-grid">
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">serp_organic_live</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">keyword_suggestions</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">DataForSEO</span><span class="ba-tool-action">related_keywords</span></div>
+            <div class="ba-tool-chip"><span class="ba-tool-name">Tavily</span><span class="ba-tool-action">search</span></div>
+          </div>
+
+          <div class="ba-sub-label">Output &rarr; Next Agent</div>
+          <div class="ba-io-block">
+            <div class="ba-io-row"><span class="ba-io-key">topic</span><span class="ba-io-val">Selected keyword with volume, KD, intent, opportunity score</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">serp_analysis</span><span class="ba-io-val">Content types, featured snippets, weak spots in top 10</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">outline</span><span class="ba-io-val">Full H2/H3 structure with notes on what each section covers</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">internal_links</span><span class="ba-io-val">Existing posts to link to and posts that should link back</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">research_data</span><span class="ba-io-val">Statistics, PAA questions, current information</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENT 03 -->
+      <div class="ba-acc-section" id="agent-03">
+        <div class="ba-acc-header" data-toggle="agent-03">
+          <div class="ba-acc-num">03</div>
+          <div class="ba-acc-title-block">
+            <div class="ba-acc-title">SEO Writer Agent</div>
+            <div class="ba-acc-subtitle">Write a 2,700-3,500 word article in brand voice — then strip every trace of AI.</div>
+          </div>
+          <span class="ba-acc-badge">Writing</span>
+          <div class="ba-acc-chevron">&#9662;</div>
+        </div>
+        <div class="ba-acc-body">
+          <div class="ba-acc-divider"></div>
+          <p class="ba-content-desc">The heaviest agent in the pipeline. It takes the outline and research from Agent 02, writes the full article following Brothers Automate brand voice, then runs a multi-pass humanisation process to strip AI writing patterns.</p>
+
+          <div class="ba-sub-label">Four-Phase Writing Process</div>
+          <div class="ba-phase-grid">
+            <div class="ba-phase-card">
+              <div class="ba-phase-letter">A</div>
+              <h4>Research</h4>
+              <p>3 Tavily queries for statistics, examples, and best practices. Extracts 3-5 citable stats and 1-2 real case studies.</p>
+            </div>
+            <div class="ba-phase-card">
+              <div class="ba-phase-letter">B</div>
+              <h4>Draft</h4>
+              <p>Follows the outline section by section. Applies brand voice rules, internal links, and CTA weaving throughout.</p>
+            </div>
+            <div class="ba-phase-card">
+              <div class="ba-phase-letter">C</div>
+              <h4>Humanise</h4>
+              <p>15 rules to strip AI patterns. Word kills, phrase kills, structure fixes, and voice injections.</p>
+            </div>
+            <div class="ba-phase-card">
+              <div class="ba-phase-letter">D</div>
+              <h4>Format</h4>
+              <p>Wraps in Astro-compatible Markdown with frontmatter: title, description, date, category, author, tags.</p>
+            </div>
+          </div>
+
+          <div class="ba-sub-label">Brand Voice Rules</div>
+          <div class="ba-voice-grid">
+            <div class="ba-voice-col">
+              <h4 class="ba-voice-do">Use These</h4>
+              <ul>
+                <li>"while you sleep"</li>
+                <li>"done-for-you"</li>
+                <li>"qualified leads"</li>
+                <li>"the system handles it"</li>
+                <li>"we've been there"</li>
+                <li>First-person plural "we"</li>
+                <li>Contractions always</li>
+              </ul>
+            </div>
+            <div class="ba-voice-col">
+              <h4 class="ba-voice-dont">Never Use</h4>
+              <ul>
+                <li>"leverage"</li>
+                <li>"synergy"</li>
+                <li>"AI-powered"</li>
+                <li>"revolutionary"</li>
+                <li>"game-changing"</li>
+                <li>"In today's fast-paced..."</li>
+                <li>"comprehensive solution"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ba-sub-label">AI Detection Kill List (Sample)</div>
+          <div class="ba-code-block"><span class="dim">// Word-level replacements — every instance, no exceptions</span>
+delve         <span class="hl">&rarr; dig into, look at, explore</span>
+comprehensive <span class="hl">&rarr; thorough, complete, full</span>
+crucial       <span class="hl">&rarr; important, key, matters</span>
+leverage      <span class="hl">&rarr; use, apply, put to work</span>
+landscape     <span class="hl">&rarr; space, world, scene</span>
+streamline    <span class="hl">&rarr; simplify, clean up, cut the fat</span>
+navigate      <span class="hl">&rarr; figure out, work through, handle</span>
+
+<span class="dim">// Structure-level fixes</span>
+Break triple patterns     <span class="hl">// avoid groups of exactly 3</span>
+Vary section lengths      <span class="hl">// no uniform blocks</span>
+Mix sentence lengths      <span class="hl">// short fragments + long sentences</span>
+Add opinions with reasons <span class="hl">// minimum 2 per article</span>
+Admit limitations         <span class="hl">// minimum 1 per article</span></div>
+
+          <div class="ba-sub-label">Validation Checklist</div>
+          <div class="ba-checklist">
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Primary keyword in title, first 100 words, and at least one H2</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Word count within 20% of target (2,700-3,500)</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>At least 3 internal links, 2 external links</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Zero AI vocabulary words from kill list</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>At least 2 opinions, 1 limitation, 1 specific stat</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Voice matches Brothers Automate brand profile</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENT 04 -->
+      <div class="ba-acc-section" id="agent-04">
+        <div class="ba-acc-header" data-toggle="agent-04">
+          <div class="ba-acc-num">04</div>
+          <div class="ba-acc-title-block">
+            <div class="ba-acc-title">Publisher Agent</div>
+            <div class="ba-acc-subtitle">Validate the post, commit to git, push to deploy.</div>
+          </div>
+          <span class="ba-acc-badge">Deploy</span>
+          <div class="ba-acc-chevron">&#9662;</div>
+        </div>
+        <div class="ba-acc-body">
+          <div class="ba-acc-divider"></div>
+          <p class="ba-content-desc">This agent is the gatekeeper. It runs pre-flight validation on the finished article, handles category config updates if needed, commits to the git repo, and pushes to main — which triggers an automatic Vercel deployment.</p>
+
+          <div class="ba-sub-label">Pre-Flight Checks</div>
+          <div class="ba-checklist">
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Slug doesn't already exist in <code>src/content/blog/</code></div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Frontmatter has all required fields (title, description, date, category, author, tags)</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Category exists in <code>config.ts</code> enum — or gets added if new and pre-approved</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>Word count > 1,000 and at least 3 H2 headers</div>
+            <div class="ba-check-item"><span class="ba-check-icon">&#10003;</span>At least 1 internal link present</div>
+          </div>
+
+          <div class="ba-sub-label">Deploy Sequence</div>
+          <div class="ba-step-list">
+            <div class="ba-step"><span class="ba-step-num">1</span><span class="ba-step-text"><code>git fetch origin && git pull origin main</code> — sync with remote</span></div>
+            <div class="ba-step"><span class="ba-step-num">2</span><span class="ba-step-text">Write blog post to <code>src/content/blog/[slug].md</code></span></div>
+            <div class="ba-step"><span class="ba-step-num">3</span><span class="ba-step-text"><code>git add</code> the new post (and config.ts if category was expanded)</span></div>
+            <div class="ba-step"><span class="ba-step-num">4</span><span class="ba-step-text"><code>git commit</code> with structured message including keyword data</span></div>
+            <div class="ba-step"><span class="ba-step-num">5</span><span class="ba-step-text"><code>git push origin main</code> &rarr; Vercel auto-deploys</span></div>
+          </div>
+
+          <div class="ba-sub-label">Commit Message Format</div>
+          <div class="ba-code-block">Add blog post: [title]
+
+SEO Blog Autopilot
+Keyword: [primary_keyword] ([volume]/mo, KD [kd])
+Category: [category]
+
+Co-Authored-By: Claude Opus 4.5 &lt;noreply@anthropic.com&gt;</div>
+
+          <div class="ba-fallback-box"><strong>Error handling:</strong> If push is rejected, retries with <code>git pull --rebase</code>. If rebase fails, saves the post to a backup directory and aborts — no data is lost.</div>
+        </div>
+      </div>
+
+      <!-- AGENT 05 -->
+      <div class="ba-acc-section" id="agent-05">
+        <div class="ba-acc-header" data-toggle="agent-05">
+          <div class="ba-acc-num">05</div>
+          <div class="ba-acc-title-block">
+            <div class="ba-acc-title">Syndication Agent</div>
+            <div class="ba-acc-subtitle">Cross-post to Dev.to with canonical URL for backlinks.</div>
+          </div>
+          <span class="ba-acc-badge">Distribution</span>
+          <div class="ba-acc-chevron">&#9662;</div>
+        </div>
+        <div class="ba-acc-body">
+          <div class="ba-acc-divider"></div>
+          <p class="ba-content-desc">The final agent. It takes the published post, reformats it for Dev.to, checks for duplicates, publishes via API with the canonical URL pointing back to our site, and updates the backlink tracker.</p>
+
+          <div class="ba-sub-label">What It Does</div>
+          <div class="ba-step-list">
+            <div class="ba-step"><span class="ba-step-num">1</span><span class="ba-step-text">Reads the blog post from <code>src/content/blog/[slug].md</code></span></div>
+            <div class="ba-step"><span class="ba-step-num">2</span><span class="ba-step-text">Converts internal links to absolute URLs and maps tags to Dev.to format (max 4)</span></div>
+            <div class="ba-step"><span class="ba-step-num">3</span><span class="ba-step-text">Appends a bio footer linking back to Brothers Automate</span></div>
+            <div class="ba-step"><span class="ba-step-num">4</span><span class="ba-step-text">Checks backlink tracker to prevent duplicate syndication</span></div>
+            <div class="ba-step"><span class="ba-step-num">5</span><span class="ba-step-text">Publishes via Dev.to API with <code>canonical_url</code> set to our post</span></div>
+            <div class="ba-step"><span class="ba-step-num">6</span><span class="ba-step-text">Updates <code>backlink-tracker.json</code> with the new syndication record</span></div>
+          </div>
+
+          <div class="ba-sub-label">Why Canonical URLs Matter</div>
+          <div class="ba-callout-box">
+            <p>When Dev.to publishes our article with a <code>canonical_url</code> pointing to brothersautomate.com, Google knows our site is the original source. We get the backlink authority without duplicate content penalties. Free SEO.</p>
+          </div>
+
+          <div class="ba-sub-label">Output</div>
+          <div class="ba-io-block">
+            <div class="ba-io-row"><span class="ba-io-key">status</span><span class="ba-io-val">"syndicated"</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">original_url</span><span class="ba-io-val">brothersautomate.com/blog/[slug]/</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">devto_url</span><span class="ba-io-val">dev.to/brothersautomate/[slug]</span></div>
+            <div class="ba-io-row"><span class="ba-io-key">canonical_url</span><span class="ba-io-val">brothersautomate.com/blog/[slug]/ (points back to us)</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="ba-stack">
+    <div class="ba-container">
+      <div class="ba-section-eyebrow">Under the Hood</div>
+      <h2>Tech Stack <span>& Infrastructure</span></h2>
+      <div class="ba-stack-grid">
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#9881;</div>
+          <h4>Orchestration</h4>
+          <p>macOS cron job triggers Claude Code in headless mode with OAuth token auth. Max 50 turns per run.</p>
+        </div>
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#128270;</div>
+          <h4>SEO Data</h4>
+          <p>DataForSEO MCP server — 9 API endpoints for competitor analysis, keyword research, and SERP data.</p>
+        </div>
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#128218;</div>
+          <h4>Research</h4>
+          <p>Tavily search for current statistics, examples, and People Also Ask questions.</p>
+        </div>
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#128640;</div>
+          <h4>Publishing</h4>
+          <p>Git push to main branch auto-deploys via Vercel. Astro static site generation. Zero-downtime.</p>
+        </div>
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#128279;</div>
+          <h4>Syndication</h4>
+          <p>Dev.to REST API with canonical URLs. Backlink tracker JSON for deduplication.</p>
+        </div>
+        <div class="ba-stack-card">
+          <div class="ba-stack-icon">&#128203;</div>
+          <h4>Logging</h4>
+          <p>Full run logs with timestamps. 30-day retention. Every agent action is traceable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="ba-safety">
+    <div class="ba-container">
+      <div class="ba-section-eyebrow ba-section-eyebrow--light">Safety & Guardrails</div>
+      <h2 class="ba-main-heading">What Happens <span>When Things Break</span></h2>
+      <p class="ba-agents-intro">Every stage has fallback logic. The pipeline is designed to fail safely — no bad content reaches production.</p>
+      <div class="ba-safety-grid">
+        <div class="ba-safety-card">
+          <h4>No Competitors Found</h4>
+          <p>Falls back to a seed list of 5 known competitors in our space.</p>
+        </div>
+        <div class="ba-safety-card">
+          <h4>Unknown Category</h4>
+          <p>Agent proposes from a pre-approved list. New categories are added to config.ts automatically.</p>
+        </div>
+        <div class="ba-safety-card">
+          <h4>Slug Already Exists</h4>
+          <p>Publisher agent aborts immediately. No overwrite, no data loss.</p>
+        </div>
+        <div class="ba-safety-card">
+          <h4>Git Push Rejected</h4>
+          <p>Retries with rebase. If that fails, saves post to backup directory and aborts cleanly.</p>
+        </div>
+        <div class="ba-safety-card">
+          <h4>Dev.to Rate Limited</h4>
+          <p>Waits 30 seconds, retries once. If still blocked, aborts syndication — post is still live on our site.</p>
+        </div>
+        <div class="ba-safety-card">
+          <h4>Already Syndicated</h4>
+          <p>Checks backlink tracker before publishing. Duplicate posts are caught and skipped.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ============= VARIABLES ============= */
+  :root {
+    --ba-navy: #1a365d;
+    --ba-orange: #ed8936;
+    --ba-blue: #3182ce;
+    --ba-green: #16a34a;
+    --ba-bg-dark: #0f1a2e;
+    --ba-bg-card: #162033;
+    --ba-bg-card-alt: #1c2a42;
+    --ba-text: #fff8f2;
+    --ba-text-dim: rgba(255, 248, 242, 0.6);
+    --ba-border: rgba(255, 248, 242, 0.08);
+  }
+
+  /* ============= LAYOUT ============= */
+  .ba-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ============= HERO ============= */
+  .ba-hero {
+    background: var(--ba-bg-dark);
+    padding: 160px 1.5rem 80px;
+    text-align: center;
+    color: var(--ba-text);
+  }
+
+  .ba-hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ba-orange);
+    margin-bottom: 1.5rem;
+  }
+
+  .ba-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+    color: var(--ba-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .ba-hero h1 span {
+    background: linear-gradient(135deg, var(--ba-orange), var(--ba-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ba-hero-sub {
+    font-size: clamp(1rem, 2vw, 1.1875rem);
+    color: var(--ba-text-dim);
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .ba-hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ba-hero-stat {
+    text-align: center;
+  }
+
+  .ba-hero-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ba-orange);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .ba-hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  /* ============= OVERVIEW / PIPELINE ============= */
+  .ba-overview {
+    background: var(--ba-bg-dark);
+    padding: 4rem 0 5rem;
+    color: var(--ba-text);
+    text-align: center;
+    border-top: 1px solid var(--ba-border);
+  }
+
+  .ba-section-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ba-orange);
+    margin-bottom: 1rem;
+  }
+
+  .ba-section-eyebrow--light {
+    color: var(--ba-orange);
+  }
+
+  .ba-overview h2,
+  .ba-stack h2,
+  .ba-main-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--ba-text);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .ba-overview h2 span,
+  .ba-stack h2 span,
+  .ba-main-heading span {
+    color: var(--ba-orange);
+  }
+
+  .ba-overview-desc {
+    font-size: 1.0625rem;
+    color: var(--ba-text-dim);
+    max-width: 620px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* Pipeline visual */
+  .ba-pipeline {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .ba-pipeline-node {
+    width: 100%;
+    background: var(--ba-bg-card);
+    border: 1px solid var(--ba-border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .ba-pipeline-node:hover {
+    border-color: rgba(237, 137, 54, 0.3);
+    transform: translateX(4px);
+  }
+
+  .ba-pipeline-node.trigger,
+  .ba-pipeline-node.end {
+    background: var(--ba-bg-card-alt);
+    border-style: dashed;
+  }
+
+  .ba-pipeline-icon {
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(237, 137, 54, 0.12);
+    flex-shrink: 0;
+  }
+
+  .ba-pipeline-num {
+    font-size: 0.875rem;
+    font-weight: 800;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(49, 130, 206, 0.15);
+    color: var(--ba-blue);
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .ba-pipeline-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ba-text);
+    line-height: 1.2;
+  }
+
+  .ba-pipeline-sub {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    margin-top: 2px;
+  }
+
+  .ba-pipeline-arrow {
+    font-size: 1.25rem;
+    color: var(--ba-text-dim);
+    padding: 0.25rem 0;
+    opacity: 0.4;
+  }
+
+  /* ============= AGENTS SECTION ============= */
+  .ba-agents-wrapper {
+    background: var(--ba-bg-dark);
+    padding: 4rem 0 5rem;
+    color: var(--ba-text);
+    border-top: 1px solid var(--ba-border);
+  }
+
+  .ba-agents-wrapper .ba-main-heading {
+    text-align: center;
+  }
+
+  .ba-agents-intro {
+    text-align: center;
+    font-size: 1.0625rem;
+    color: var(--ba-text-dim);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* Accordion */
+  .ba-acc-section {
+    border: 1px solid var(--ba-border);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background: var(--ba-bg-card);
+  }
+
+  .ba-acc-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+
+  .ba-acc-header:hover {
+    background: rgba(255, 248, 242, 0.03);
+  }
+
+  .ba-acc-num {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--ba-blue);
+    min-width: 28px;
+    letter-spacing: 0.05em;
+  }
+
+  .ba-acc-title-block {
+    flex: 1;
+  }
+
+  .ba-acc-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--ba-text);
+    line-height: 1.3;
+  }
+
+  .ba-acc-subtitle {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    margin-top: 2px;
+  }
+
+  .ba-acc-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(237, 137, 54, 0.12);
+    color: var(--ba-orange);
+    white-space: nowrap;
+  }
+
+  .ba-acc-chevron {
+    font-size: 1rem;
+    color: var(--ba-text-dim);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .ba-acc-section.open .ba-acc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .ba-acc-body {
+    display: none;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .ba-acc-section.open .ba-acc-body {
+    display: block;
+  }
+
+  .ba-acc-divider {
+    height: 1px;
+    background: var(--ba-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .ba-content-desc {
+    font-size: 0.9375rem;
+    color: var(--ba-text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Sub labels */
+  .ba-sub-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ba-blue);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .ba-sub-label:first-of-type {
+    margin-top: 0;
+  }
+
+  /* Steps */
+  .ba-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ba-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 248, 242, 0.02);
+  }
+
+  .ba-step-num {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--ba-orange);
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(237, 137, 54, 0.12);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .ba-step-text {
+    font-size: 0.9375rem;
+    color: var(--ba-text-dim);
+    line-height: 1.5;
+  }
+
+  .ba-step-text code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.8125rem;
+    background: rgba(49, 130, 206, 0.12);
+    color: var(--ba-blue);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* Code blocks */
+  .ba-code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--ba-border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.8;
+    color: var(--ba-text-dim);
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
+  .ba-code-block .dim { color: rgba(255, 248, 242, 0.3); }
+  .ba-code-block .hl { color: var(--ba-orange); }
+
+  /* Tool chips */
+  .ba-tool-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ba-tool-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid var(--ba-border);
+    background: rgba(255, 248, 242, 0.03);
+    font-size: 0.8125rem;
+  }
+
+  .ba-tool-name {
+    font-weight: 700;
+    color: var(--ba-text);
+  }
+
+  .ba-tool-action {
+    color: var(--ba-text-dim);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.75rem;
+  }
+
+  /* I/O blocks */
+  .ba-io-block {
+    border: 1px solid var(--ba-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .ba-io-row {
+    display: flex;
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--ba-border);
+    gap: 1rem;
+  }
+
+  .ba-io-row:last-child { border-bottom: none; }
+
+  .ba-io-key {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.8125rem;
+    color: var(--ba-orange);
+    min-width: 160px;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  .ba-io-val {
+    font-size: 0.875rem;
+    color: var(--ba-text-dim);
+  }
+
+  /* Fallback box */
+  .ba-fallback-box {
+    background: rgba(237, 137, 54, 0.06);
+    border: 1px solid rgba(237, 137, 54, 0.15);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    color: var(--ba-text-dim);
+    margin-top: 1.5rem;
+  }
+
+  .ba-fallback-box strong {
+    color: var(--ba-orange);
+  }
+
+  /* Criteria grid */
+  .ba-criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .ba-criteria-card {
+    background: rgba(255, 248, 242, 0.03);
+    border: 1px solid var(--ba-border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .ba-criteria-card h4 {
+    font-size: 0.9375rem;
+    color: var(--ba-text);
+    margin-bottom: 0.375rem;
+  }
+
+  .ba-criteria-card p {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    line-height: 1.5;
+  }
+
+  /* Phase grid */
+  .ba-phase-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .ba-phase-card {
+    background: rgba(255, 248, 242, 0.03);
+    border: 1px solid var(--ba-border);
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+
+  .ba-phase-letter {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ba-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .ba-phase-card h4 {
+    font-size: 0.9375rem;
+    color: var(--ba-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .ba-phase-card p {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    line-height: 1.5;
+  }
+
+  /* Voice grid */
+  .ba-voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ba-voice-col {
+    background: rgba(255, 248, 242, 0.03);
+    border: 1px solid var(--ba-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .ba-voice-do {
+    color: var(--ba-green);
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .ba-voice-dont {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .ba-voice-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ba-voice-col li {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    padding: 0.25rem 0;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  }
+
+  /* Checklist */
+  .ba-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .ba-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    color: var(--ba-text-dim);
+    line-height: 1.5;
+  }
+
+  .ba-check-item code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.8125rem;
+    background: rgba(49, 130, 206, 0.12);
+    color: var(--ba-blue);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ba-check-icon {
+    color: var(--ba-green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Callout box */
+  .ba-callout-box {
+    background: rgba(49, 130, 206, 0.08);
+    border: 1px solid rgba(49, 130, 206, 0.2);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+
+  .ba-callout-box p {
+    font-size: 0.9375rem;
+    color: var(--ba-text-dim);
+    line-height: 1.6;
+  }
+
+  .ba-callout-box code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    font-size: 0.8125rem;
+    background: rgba(49, 130, 206, 0.12);
+    color: var(--ba-blue);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* ============= TECH STACK ============= */
+  .ba-stack {
+    background: var(--ba-bg-dark);
+    padding: 4rem 0 5rem;
+    color: var(--ba-text);
+    text-align: center;
+    border-top: 1px solid var(--ba-border);
+  }
+
+  .ba-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+    text-align: left;
+  }
+
+  .ba-stack-card {
+    background: var(--ba-bg-card);
+    border: 1px solid var(--ba-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .ba-stack-card:hover {
+    border-color: rgba(237, 137, 54, 0.2);
+  }
+
+  .ba-stack-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .ba-stack-card h4 {
+    font-size: 1rem;
+    color: var(--ba-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .ba-stack-card p {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    line-height: 1.6;
+  }
+
+  /* ============= SAFETY ============= */
+  .ba-safety {
+    background: var(--ba-bg-dark);
+    padding: 4rem 0 5rem;
+    color: var(--ba-text);
+    border-top: 1px solid var(--ba-border);
+  }
+
+  .ba-safety .ba-main-heading {
+    text-align: center;
+  }
+
+  .ba-safety-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .ba-safety-card {
+    background: var(--ba-bg-card);
+    border: 1px solid var(--ba-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .ba-safety-card h4 {
+    font-size: 0.9375rem;
+    color: #ef4444;
+    margin-bottom: 0.5rem;
+  }
+
+  .ba-safety-card p {
+    font-size: 0.8125rem;
+    color: var(--ba-text-dim);
+    line-height: 1.6;
+  }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 767px) {
+    .ba-hero {
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    .ba-hero-stats {
+      gap: 1.5rem;
+    }
+
+    .ba-pipeline-node {
+      padding: 1rem 1.25rem;
+    }
+
+    .ba-criteria-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ba-phase-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ba-voice-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ba-stack-grid,
+    .ba-safety-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ba-io-row {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .ba-io-key {
+      min-width: auto;
+    }
+
+    .ba-acc-header {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+
+    .ba-acc-badge {
+      display: none;
+    }
+
+    .ba-acc-body {
+      padding: 0 1rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.ba-acc-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const sectionId = header.getAttribute('data-toggle');
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const isOpen = section.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.ba-acc-section').forEach(s => s.classList.remove('open'));
+
+      // Toggle clicked
+      if (!isOpen) {
+        section.classList.add('open');
+      }
+    });
+  });
+</script>
+</Layout>
