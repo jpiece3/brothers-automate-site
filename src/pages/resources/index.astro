@@ -1,0 +1,208 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": `${SITE_URL}/resources` }
+  ]
+};
+
+const resources = [
+  {
+    title: "The Full AI Operations Stack",
+    description: "Every ops category scored by disruption level and consequence of failure. An interactive reference for service businesses planning their AI roadmap.",
+    href: "/resources/ai-ops-stack",
+    icon: "grid",
+    tag: "Interactive Framework"
+  },
+  {
+    title: "6 Agent Design Principles",
+    description: "The rules we follow when building AI agents that actually work in production. Error handling, human checkpoints, and why most agents fail.",
+    href: "/resources/agent-principles",
+    icon: "cpu",
+    tag: "Build Guide"
+  }
+];
+---
+
+<Layout
+  title="Resources | Guides & Frameworks | Brothers Automate"
+  description="Free guides, interactive frameworks, and build principles from Brothers Automate. Learn how we think about AI automation for service businesses."
+>
+  <Header />
+  <main>
+    <section class="resources-hero">
+      <div class="hero-bg-grid"></div>
+      <div class="container">
+        <div class="resources-hero-content" data-animate="fade-up">
+          <span class="badge">Resources</span>
+          <h1>Guides &<br /><span class="gradient-text">Frameworks.</span></h1>
+          <p class="resources-hero-sub">How we think about AI automation — and the tools we use to plan it. Free, no gate, no email required.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-grid-section">
+      <div class="container">
+        <div class="resources-grid" data-animate-stagger>
+          {resources.map((r) => (
+            <a href={r.href} class="resource-card card">
+              <span class="resource-tag">{r.tag}</span>
+              <h3>{r.title}</h3>
+              <p>{r.description}</p>
+              <span class="resource-link">View resource &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  .resources-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .resources-hero-content {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .resources-hero h1 {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .resources-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .resources-grid-section {
+    padding: var(--space-2xl) 0 var(--space-4xl);
+  }
+
+  .resources-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .resources-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    text-decoration: none;
+    transition: box-shadow var(--transition), transform var(--transition);
+    border: 1px solid var(--border);
+  }
+
+  .resource-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .resource-tag {
+    display: inline-block;
+    width: fit-content;
+    padding: 2px var(--space-sm);
+    background: rgba(237, 137, 54, 0.1);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .resource-card h3 {
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+    line-height: 1.3;
+  }
+
+  .resource-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    flex-grow: 1;
+  }
+
+  .resource-link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--orange);
+    transition: color var(--transition);
+  }
+
+  .resource-card:hover .resource-link {
+    color: var(--orange-hover);
+  }
+
+  @media (max-width: 767px) {
+    .resources-hero {
+      padding-top: 120px;
+    }
+  }
+</style>

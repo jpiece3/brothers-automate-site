@@ -7,6 +7,7 @@
     { "source": "/what-you-get", "destination": "/projects", "statusCode": 301 },
     { "source": "/solutions", "destination": "/projects", "statusCode": 301 },
     { "source": "/solutions/:path*", "destination": "/projects", "statusCode": 301 },
-    { "source": "/resources", "destination": "/blog", "statusCode": 301 }
+    { "source": "/ai-ops-stack", "destination": "/resources/ai-ops-stack", "statusCode": 301 },
+    { "source": "/agent-principles", "destination": "/resources/agent-principles", "statusCode": 301 }
   ]
 }
