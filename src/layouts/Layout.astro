@@ -115,18 +115,42 @@ import QuizPopup from '../components/QuizPopup.astro';
     Cal("init", "free-quiz-audit-automation-brothers", {origin:"https://app.cal.com"});
     Cal.ns["free-quiz-audit-automation-brothers"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 
-    // Meta Pixel - Track Cal.com bookings as Schedule event
+    // Meta Pixel - Track Cal.com bookings as Schedule + Lead events
+    // Uses both Cal SDK callback AND direct postMessage listener for reliability
     Cal.ns["free-quiz-audit-automation-brothers"]("on", {
       action: "bookingSuccessful",
       callback: function() {
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'Schedule');
-          fbq('track', 'Lead');
-        }
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'booking_complete', { method: 'cal_popup' });
+        if (!window.__leadEventFired) {
+          window.__leadEventFired = true;
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Schedule');
+            fbq('track', 'Lead');
+            console.log('[BA] Meta Lead event fired via Cal callback');
+          }
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'booking_complete', { method: 'cal_popup' });
+          }
         }
       }
+    });
+
+    // Fallback: listen for Cal.com postMessage directly
+    window.addEventListener('message', function(e) {
+      if (e.origin !== 'https://app.cal.com') return;
+      try {
+        var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && data.action === 'bookingSuccessful' && !window.__leadEventFired) {
+          window.__leadEventFired = true;
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Schedule');
+            fbq('track', 'Lead');
+            console.log('[BA] Meta Lead event fired via postMessage fallback');
+          }
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'booking_complete', { method: 'cal_popup' });
+          }
+        }
+      } catch(err) {}
     });
   </script>
 
