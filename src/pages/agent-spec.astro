@@ -1,0 +1,1285 @@
+---
+import { API_DIRECTORY, CATEGORIES } from '../data/api-directory';
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process Intake Framework | Brothers Automate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-brand">BROTHERS AUTOMATE</span>
+        <div class="sidebar-bar"></div>
+        <h1 class="sidebar-title">PROCESS<br/><span class="orange">INTAKE</span><br/>FRAMEWORK</h1>
+      </div>
+      <div class="sidebar-divider"></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer">
+        <div class="completion-row">
+          <span class="completion-label">COMPLETION</span>
+          <span class="completion-pct" id="completion-pct">0%</span>
+        </div>
+        <div class="completion-bar">
+          <div class="completion-fill" id="completion-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main" id="main-content"></main>
+  </div>
+
+  <script>
+    import { mount } from '../components/react/ExcalidrawLoader';
+    window.__mountExcalidraw = function(id) { mount(id); };
+  </script>
+
+  <script is:inline define:vars={{ apiDirectoryJson: JSON.stringify(API_DIRECTORY), categoriesJson: JSON.stringify(CATEGORIES) }}>
+    var API_TOOLS = JSON.parse(apiDirectoryJson);
+    var API_CATEGORIES = JSON.parse(categoriesJson);
+  </script>
+
+  <script is:inline>
+    // ============================================
+    // STATE
+    // ============================================
+    var STEPS = [
+      { num: '00', title: 'Brain Dump' },
+      { num: '01', title: 'Process Overview' },
+      { num: '02', title: 'Input / Output' },
+      { num: '03', title: 'Triggers' },
+      { num: '04', title: 'Workflow Map' },
+      { num: '05', title: 'Agents' },
+      { num: '06', title: 'Data Sources' },
+      { num: '07', title: 'Tools & Connectors' },
+      { num: '08', title: 'Human Gates' },
+      { num: '09', title: 'Error Handling' },
+      { num: '10', title: 'Export Spec' }
+    ];
+
+    var currentStep = 0;
+    var formData = {
+      brainDump: '',
+      processName: '',
+      goalPurpose: '',
+      notesContext: '',
+      inputs: [{ name: '', source: '', format: '' }],
+      outputs: [{ name: '', destination: '', format: '' }],
+      triggers: [],
+      workflowSteps: [{ description: '' }],
+      agents: [{ name: 'New Agent', purpose: '', position: '' }],
+      dataSources: [{ name: '', type: '', accessMethod: '' }],
+      tools: [],
+      humanGates: [{ name: '', criteria: '', escalation: '' }],
+      errorCases: [{ scenario: '', handler: '', escalate: false }]
+    };
+
+    var TRIGGER_OPTIONS = ['Webhook', 'Schedule / Cron', 'Manual Run', 'Form Submission', 'Email', 'New CRM Record', 'File Upload', 'Agent Handoff'];
+    var TOOL_OPTIONS = ['HubSpot', 'Salesforce', 'Google Workspace', 'Slack', 'Notion', 'Zapier', 'Make', 'Supabase', 'OpenAI', 'Claude', 'Twilio', 'Stripe', 'QuickBooks', 'Airtable', 'Custom API'];
+    var DATA_TYPES = ['API', 'Database', 'Spreadsheet', 'CRM', 'File Storage', 'Email', 'Webhook', 'Manual Entry'];
+
+    // ============================================
+    // FIELD BUILDERS
+    // ============================================
+    function field(label, id, type, placeholder, value, opts) {
+      opts = opts || {};
+      var html = '<div class="field">';
+      html += '<label class="field-label">' + label + '</label>';
+      if (type === 'text') {
+        html += '<input type="text" class="field-input" id="' + id + '" placeholder="' + placeholder + '" value="' + esc(value || '') + '" oninput="setField(\'' + id + '\', this.value)" />';
+      } else if (type === 'textarea') {
+        html += '<textarea class="field-textarea" id="' + id + '" placeholder="' + placeholder + '" rows="' + (opts.rows || 4) + '" oninput="setField(\'' + id + '\', this.value)">' + (value || '') + '</textarea>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function chipGroup(label, options, selected, onToggle) {
+      var html = '<div class="field"><label class="field-label">' + label + '</label>';
+      html += '<p class="field-hint">Select all that apply.</p>';
+      html += '<div class="chip-group">';
+      for (var i = 0; i < options.length; i++) {
+        var sel = selected.indexOf(options[i]) !== -1;
+        html += '<button type="button" class="chip' + (sel ? ' selected' : '') + '" onclick="' + onToggle + '(\'' + options[i].replace(/'/g, "\\'") + '\', ' + !sel + ', this)">' + options[i] + '</button>';
+      }
+      html += '</div>';
+      // Selected summary
+      if (selected.length > 0) {
+        html += '<div class="selected-summary"><span class="selected-label">SELECTED</span><div class="selected-chips">';
+        for (var j = 0; j < selected.length; j++) {
+          html += '<span class="selected-chip">' + selected[j] + '</span>';
+        }
+        html += '</div></div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function cardBlock(innerHtml) {
+      return '<div class="card">' + innerHtml + '</div>';
+    }
+
+    function addButton(label, onclick) {
+      return '<button type="button" class="add-btn" onclick="' + onclick + '">+ ' + label + '</button>';
+    }
+
+    // ============================================
+    // STEP RENDERERS
+    // ============================================
+    function renderCurrentStep() {
+      var main = document.getElementById('main-content');
+      if (!main) return;
+
+      // Step header
+      var step = STEPS[currentStep];
+      var html = '<div class="step-heading">' +
+        '<span class="step-num">' + step.num + '</span>' +
+        '<h2 class="step-title">' + step.title + '</h2>' +
+      '</div>';
+
+      if (currentStep === 0) html += renderBrainDump();
+      else if (currentStep === 1) html += renderProcessOverview();
+      else if (currentStep === 2) html += renderInputOutput();
+      else if (currentStep === 3) html += renderTriggers();
+      else if (currentStep === 4) html += renderWorkflowMap();
+      else if (currentStep === 5) html += renderAgents();
+      else if (currentStep === 6) html += renderDataSources();
+      else if (currentStep === 7) html += renderTools();
+      else if (currentStep === 8) html += renderHumanGates();
+      else if (currentStep === 9) html += renderErrorHandling();
+      else if (currentStep === 10) html += renderExport();
+
+      // Navigation buttons
+      html += '<div class="step-nav">';
+      if (currentStep > 0) html += '<button class="nav-btn back" onclick="prevStep()">Back</button>';
+      if (currentStep < STEPS.length - 1) html += '<button class="nav-btn next" onclick="nextStep()">Next</button>';
+      html += '</div>';
+
+      main.innerHTML = html;
+      updateSidebar();
+      updateCompletion();
+
+      // Mount excalidraw for workflow map
+      if (currentStep === 4 && document.getElementById('excalidraw-root')) {
+        setTimeout(function() { window.__mountExcalidraw('excalidraw-root'); }, 100);
+      }
+    }
+
+    // --- Step 0: Brain Dump ---
+    function renderBrainDump() {
+      var html = '';
+
+      // How it works card
+      html += '<div class="how-it-works">' +
+        '<span class="card-label">HOW IT WORKS</span>' +
+        '<div class="hiw-grid">' +
+          '<div class="hiw-card">' +
+            '<span class="hiw-step">STEP 01</span>' +
+            '<h4>Brain dump your process</h4>' +
+            '<p>Describe the workflow in plain English. Don\'t structure it \u2014 just write how it works, what tools are involved, who does what.</p>' +
+          '</div>' +
+          '<div class="hiw-card">' +
+            '<span class="hiw-step">STEP 02</span>' +
+            '<h4>AI fills the spec</h4>' +
+            '<p>Claude reads your dump and populates all 10 sections \u2014 agents, skills, I/O, workflow nodes, tools, error cases. Gets you 80% there.</p>' +
+          '</div>' +
+          '<div class="hiw-card">' +
+            '<span class="hiw-step">STEP 03</span>' +
+            '<h4>You refine it</h4>' +
+            '<p>Review each section, fix anything it missed, add specifics it couldn\'t infer. You finish the last 20%.</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+      // Brain dump textarea
+      html += '<div class="card">' +
+        '<span class="card-label">YOUR PROCESS \u2014 BRAIN DUMP</span>' +
+        '<p class="braindump-hint">Write freely. Include: what triggers the process, what happens step by step, which tools are used, who needs to approve things, what the output is, any edge cases or rules you know about. More detail = better output.</p>' +
+        '<textarea class="field-textarea braindump-textarea" id="brainDump" rows="12" placeholder=\'Example: "When a new lead fills out our website contact form, I want to automatically enrich their data using Apollo, score them against our ICP criteria which lives in a Notion doc, and route them to the right sales rep based on territory. High value leads (score 7+) should get a Slack alert to the SDR manager. All leads should get an acknowledgement email within 3 minutes. The rep gets a Slack card with the enrichment data and a suggested opener. We use HubSpot as our CRM and Gmail for outreach. Reps should never send cold email without reviewing the lead first. If Apollo is down, route on form data only and flag it..."\' oninput="setField(\'brainDump\', this.value)">' + (formData.brainDump || '') + '</textarea>' +
+      '</div>';
+
+      html += '<button class="autofill-btn" id="autofill-btn" onclick="autoFillSpec()">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>' +
+        ' Auto-Fill Spec' +
+      '</button>';
+
+      html += '<div id="autofill-status"></div>';
+
+      // What to include / What AI will extract
+      html += '<div class="info-grid">' +
+        '<div class="info-card">' +
+          '<span class="card-label">WHAT TO INCLUDE</span>' +
+          '<ul class="info-list arrow">' +
+            '<li>What triggers the process to start</li>' +
+            '<li>Tools and platforms involved (Slack, HubSpot, Notion...)</li>' +
+            '<li>Who does what \u2014 human steps vs automated steps</li>' +
+            '<li>What approvals or reviews are needed</li>' +
+            '<li>What the final output looks like and where it goes</li>' +
+            '<li>Rules, exceptions, and edge cases you know about</li>' +
+          '</ul>' +
+        '</div>' +
+        '<div class="info-card">' +
+          '<span class="card-label" style="color:var(--green);">WHAT AI WILL EXTRACT</span>' +
+          '<ul class="info-list check">' +
+            '<li>Process name, goal, and context notes</li>' +
+            '<li>Trigger types and entry points</li>' +
+            '<li>Input/output across all 5 dimensions</li>' +
+            '<li>Workflow nodes and connections</li>' +
+            '<li>Agent names, purposes, I/O, tools, and skills</li>' +
+            '<li>Data sources, human gates, and error cases</li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>';
+
+      return html;
+    }
+
+    // --- Auto-fill with Claude ---
+    function autoFillSpec() {
+      var dump = formData.brainDump;
+      if (!dump || dump.trim().length < 20) {
+        alert('Please write a brain dump first \u2014 the more detail, the better the output.');
+        return;
+      }
+
+      var btn = document.getElementById('autofill-btn');
+      var status = document.getElementById('autofill-status');
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="dot-pulse"></span> Analyzing your process...'; }
+      if (status) status.innerHTML = '<div class="autofill-progress">Claude is reading your brain dump and filling all 10 sections...</div>';
+
+      var toolNames = API_TOOLS.map(function(t) { return t.name; });
+
+      fetch('/api/ai-helper', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-internal-key': 'ba-internal-2024' },
+        body: JSON.stringify({
+          fieldName: '_brainDump',
+          fieldValue: dump,
+          formContext: { triggerOptions: TRIGGER_OPTIONS, toolNames: toolNames }
+        })
+      })
+      .then(function(res) {
+        if (!res.ok) return res.text().then(function(t) { throw new Error('API error: ' + t); });
+        return res.json();
+      })
+      .then(function(data) {
+        var text = data.suggestion;
+        if (!text) throw new Error('No response from AI');
+
+        // Parse JSON (strip code fences if present)
+        text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+        var parsed = JSON.parse(text);
+
+        // Merge into formData (keep brainDump)
+        formData.processName = parsed.processName || formData.processName;
+        formData.goalPurpose = parsed.goalPurpose || formData.goalPurpose;
+        formData.notesContext = parsed.notesContext || formData.notesContext;
+        if (parsed.inputs && parsed.inputs.length) formData.inputs = parsed.inputs;
+        if (parsed.outputs && parsed.outputs.length) formData.outputs = parsed.outputs;
+        if (parsed.triggers && parsed.triggers.length) formData.triggers = parsed.triggers;
+        if (parsed.workflowSteps && parsed.workflowSteps.length) formData.workflowSteps = parsed.workflowSteps;
+        if (parsed.agents && parsed.agents.length) formData.agents = parsed.agents;
+        if (parsed.dataSources && parsed.dataSources.length) formData.dataSources = parsed.dataSources;
+        if (parsed.tools && parsed.tools.length) formData.tools = parsed.tools;
+        if (parsed.humanGates && parsed.humanGates.length) formData.humanGates = parsed.humanGates;
+        if (parsed.errorCases && parsed.errorCases.length) formData.errorCases = parsed.errorCases;
+
+        currentStep = 1;
+        renderCurrentStep();
+        emitUpdate();
+
+        if (status) status.innerHTML = '<div class="autofill-success">Done! All 10 sections populated. Review each step and refine.</div>';
+      })
+      .catch(function(err) {
+        console.error('Auto-fill error:', err);
+        if (btn) { btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg> Auto-Fill Spec'; }
+        if (status) status.innerHTML = '<div class="autofill-error">Error: ' + esc(err.message) + '</div>';
+      });
+    }
+
+    // --- Step 1: Process Overview ---
+    function renderProcessOverview() {
+      return '<p class="step-desc">What is this automation? Give it a name and describe its purpose.</p>' +
+        field('PROCESS NAME', 'processName', 'text', 'e.g. Lead Qualification Pipeline', formData.processName) +
+        field('GOAL / PURPOSE', 'goalPurpose', 'textarea', 'What does this process achieve when it works perfectly?', formData.goalPurpose) +
+        field('NOTES & CONTEXT', 'notesContext', 'textarea', 'Constraints, existing tools, known edge cases...', formData.notesContext);
+    }
+
+    // --- Step 2: Input / Output ---
+    function renderInputOutput() {
+      var html = '<p class="step-desc">What data goes in and what comes out?</p>';
+
+      html += '<h3 class="section-label">INPUTS</h3>';
+      for (var i = 0; i < formData.inputs.length; i++) {
+        html += cardBlock(
+          '<span class="card-label">INPUT ' + (i + 1) + '</span>' +
+          field('NAME', 'input_name_' + i, 'text', 'e.g. Lead form submission', formData.inputs[i].name) +
+          field('SOURCE', 'input_source_' + i, 'text', 'e.g. Website contact form / HubSpot', formData.inputs[i].source) +
+          field('FORMAT', 'input_format_' + i, 'text', 'e.g. JSON / CSV / Email body', formData.inputs[i].format)
+        );
+      }
+      html += addButton('Add Input', 'addInput()');
+
+      html += '<h3 class="section-label" style="margin-top:32px">OUTPUTS</h3>';
+      for (var j = 0; j < formData.outputs.length; j++) {
+        html += cardBlock(
+          '<span class="card-label">OUTPUT ' + (j + 1) + '</span>' +
+          field('NAME', 'output_name_' + j, 'text', 'e.g. Qualified lead record', formData.outputs[j].name) +
+          field('DESTINATION', 'output_dest_' + j, 'text', 'e.g. CRM / Slack notification', formData.outputs[j].destination) +
+          field('FORMAT', 'output_format_' + j, 'text', 'e.g. CRM record / Slack message', formData.outputs[j].format)
+        );
+      }
+      html += addButton('Add Output', 'addOutput()');
+      return html;
+    }
+
+    // --- Step 3: Triggers ---
+    function renderTriggers() {
+      return '<p class="step-desc">How does this process start? Select all that apply.</p>' +
+        chipGroup('TRIGGER TYPES', TRIGGER_OPTIONS, formData.triggers, 'toggleTrigger');
+    }
+
+    // --- Step 4: Workflow Map ---
+    function renderWorkflowMap() {
+      var html = '<p class="step-desc">Map the sequence of steps. The diagram updates as you add steps.</p>';
+      for (var i = 0; i < formData.workflowSteps.length; i++) {
+        html += cardBlock(
+          '<span class="card-label">STEP ' + (i + 1) + '</span>' +
+          field('DESCRIPTION', 'wf_step_' + i, 'textarea', 'What happens at this step?', formData.workflowSteps[i].description, { rows: 2 })
+        );
+      }
+      html += addButton('Add Step', 'addWorkflowStep()');
+      html += '<div class="canvas-section"><div class="canvas-toolbar"><span class="canvas-title">WORKFLOW PREVIEW</span></div><div id="excalidraw-root" style="width:100%;height:400px;"></div></div>';
+      return html;
+    }
+
+    // --- Step 5: Agents ---
+    function renderAgents() {
+      var html = '<p class="step-desc">Define the AI agents involved. Each agent has a role in the workflow.</p>';
+
+      // Agent tabs
+      html += '<div class="agent-tabs">';
+      for (var i = 0; i < formData.agents.length; i++) {
+        html += '<button class="agent-tab' + (i === 0 ? ' active' : '') + '" onclick="selectAgent(' + i + ')">' + (formData.agents[i].name || 'Agent ' + (i + 1)) + '</button>';
+      }
+      html += '<button class="agent-tab add" onclick="addAgent()">+ New Agent</button>';
+      html += '</div>';
+
+      // Agent detail tabs
+      html += '<div class="agent-subtabs"><button class="subtab active">OVERVIEW</button><button class="subtab">IO</button><button class="subtab">TOOLS</button><button class="subtab">SKILLS</button></div>';
+
+      // Agent form
+      var a = formData.agents[0];
+      html += cardBlock(
+        '<span class="card-label">IDENTITY</span>' +
+        field('AGENT NAME', 'agent_name_0', 'text', 'New Agent', a.name) +
+        field('PURPOSE / GOAL', 'agent_purpose_0', 'textarea', 'Single sentence: what does this agent do and why does it exist?', a.purpose) +
+        '<div class="field"><label class="field-label">POSITION IN WORKFLOW</label>' +
+          '<div class="chip-group">' +
+            '<button class="chip' + (a.position === 'trigger' ? ' selected' : '') + '" onclick="setAgentPosition(0, \'trigger\', this)">trigger</button>' +
+            '<button class="chip' + (a.position === 'middle' ? ' selected' : '') + '" onclick="setAgentPosition(0, \'middle\', this)">middle</button>' +
+            '<button class="chip' + (a.position === 'final' ? ' selected' : '') + '" onclick="setAgentPosition(0, \'final\', this)">final</button>' +
+          '</div>' +
+        '</div>'
+      );
+      return html;
+    }
+
+    // --- Step 6: Data Sources ---
+    function renderDataSources() {
+      var html = '<p class="step-desc">What data does this process need access to?</p>';
+      for (var i = 0; i < formData.dataSources.length; i++) {
+        html += cardBlock(
+          '<span class="card-label">DATA SOURCE ' + (i + 1) + '</span>' +
+          field('NAME', 'ds_name_' + i, 'text', 'e.g. Customer database', formData.dataSources[i].name) +
+          field('TYPE', 'ds_type_' + i, 'text', 'e.g. PostgreSQL / REST API / Google Sheet', formData.dataSources[i].type) +
+          field('ACCESS METHOD', 'ds_access_' + i, 'text', 'e.g. API key / OAuth / Direct connection', formData.dataSources[i].accessMethod)
+        );
+      }
+      html += addButton('Add Data Source', 'addDataSource()');
+      return html;
+    }
+
+    // --- Step 7: Tools & Connectors ---
+    function renderTools() {
+      var html = '<p class="step-desc">Which tools and services does this process connect to? Browse by category or search.</p>';
+
+      // Search
+      html += '<div class="field"><input type="text" class="field-input" id="tool-search" placeholder="Search tools..." oninput="filterTools(this.value)" /></div>';
+
+      // Category filter
+      html += '<div class="chip-group" style="margin-bottom:20px;">';
+      html += '<button class="chip selected" onclick="filterToolCategory(\'all\', this)">All</button>';
+      for (var c = 0; c < API_CATEGORIES.length; c++) {
+        html += '<button class="chip" onclick="filterToolCategory(\'' + API_CATEGORIES[c].replace(/'/g, "\\'") + '\', this)">' + API_CATEGORIES[c] + '</button>';
+      }
+      html += '</div>';
+
+      // Tool cards
+      html += '<div class="tool-grid" id="tool-grid">';
+      for (var i = 0; i < API_TOOLS.length; i++) {
+        var t = API_TOOLS[i];
+        var sel = formData.tools.indexOf(t.name) !== -1;
+        html += renderToolCard(t, sel);
+      }
+      html += '</div>';
+
+      // Selected summary
+      if (formData.tools.length > 0) {
+        html += '<div class="selected-summary"><span class="selected-label">SELECTED (' + formData.tools.length + ')</span><div class="selected-chips">';
+        for (var j = 0; j < formData.tools.length; j++) {
+          html += '<span class="selected-chip">' + formData.tools[j] + '</span>';
+        }
+        html += '</div></div>';
+      }
+
+      return html;
+    }
+
+    function renderToolCard(t, sel) {
+      return '<div class="tool-card' + (sel ? ' selected' : '') + '" data-category="' + t.category + '" data-name="' + t.name.toLowerCase() + '" onclick="toggleToolCard(\'' + t.name.replace(/'/g, "\\'") + '\', this)">' +
+        '<div class="tool-card-header">' +
+          '<span class="tool-card-name">' + t.name + '</span>' +
+          '<span class="tool-card-cat">' + t.category + '</span>' +
+        '</div>' +
+        '<p class="tool-card-desc">' + t.description + '</p>' +
+        '<div class="tool-card-meta">' +
+          '<span class="tool-card-auth">' + t.authType + '</span>' +
+          '<span class="tool-card-cost">' + t.cost + '</span>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function toggleToolCard(name, el) {
+      var idx = formData.tools.indexOf(name);
+      if (idx === -1) {
+        formData.tools.push(name);
+        el.classList.add('selected');
+      } else {
+        formData.tools.splice(idx, 1);
+        el.classList.remove('selected');
+      }
+      // Re-render selected summary without full re-render
+      emitUpdate();
+      updateCompletion();
+      // Update summary
+      renderCurrentStep();
+    }
+
+    function filterTools(query) {
+      query = query.toLowerCase();
+      var cards = document.querySelectorAll('.tool-card');
+      for (var i = 0; i < cards.length; i++) {
+        var name = cards[i].getAttribute('data-name');
+        var cat = cards[i].getAttribute('data-category').toLowerCase();
+        var show = name.indexOf(query) !== -1 || cat.indexOf(query) !== -1;
+        cards[i].style.display = show ? '' : 'none';
+      }
+    }
+
+    function filterToolCategory(cat, el) {
+      // Update chip active state
+      var chips = el.parentElement.querySelectorAll('.chip');
+      for (var c = 0; c < chips.length; c++) chips[c].classList.remove('selected');
+      el.classList.add('selected');
+
+      var cards = document.querySelectorAll('.tool-card');
+      for (var i = 0; i < cards.length; i++) {
+        if (cat === 'all') { cards[i].style.display = ''; }
+        else { cards[i].style.display = cards[i].getAttribute('data-category') === cat ? '' : 'none'; }
+      }
+    }
+
+    // --- Step 8: Human Gates ---
+    function renderHumanGates() {
+      var html = '<p class="step-desc">Where does a human need to review, approve, or intervene?</p>';
+      for (var i = 0; i < formData.humanGates.length; i++) {
+        html += cardBlock(
+          '<span class="card-label">HUMAN GATE ' + (i + 1) + '</span>' +
+          field('GATE NAME', 'hg_name_' + i, 'text', 'e.g. Proposal Approval', formData.humanGates[i].name) +
+          field('CRITERIA', 'hg_criteria_' + i, 'textarea', 'When does this gate activate? What triggers the need for human review?', formData.humanGates[i].criteria, { rows: 2 }) +
+          field('ESCALATION', 'hg_escalation_' + i, 'text', 'e.g. Slack DM to ops manager / Email to owner', formData.humanGates[i].escalation)
+        );
+      }
+      html += addButton('Add Human Gate', 'addHumanGate()');
+      return html;
+    }
+
+    // --- Step 9: Error Handling ---
+    function renderErrorHandling() {
+      var html = '<p class="step-desc">Map failure scenarios before they happen. What breaks, what the agent does, when a human takes over.</p>';
+      for (var i = 0; i < formData.errorCases.length; i++) {
+        html += cardBlock(
+          '<span class="card-label">ERROR CASE</span>' +
+          field('FAILURE SCENARIO', 'err_scenario_' + i, 'text', 'e.g. Tool returns no data / API timeout / Missing required field', formData.errorCases[i].scenario) +
+          field('HANDLER', 'err_handler_' + i, 'textarea', 'e.g. Retry once \u2192 log to Notion \u2192 continue with defaults', formData.errorCases[i].handler, { rows: 3 }) +
+          '<label class="checkbox-label"><input type="checkbox" ' + (formData.errorCases[i].escalate ? 'checked' : '') + ' onchange="setErrorEscalate(' + i + ', this.checked)" /> Escalate to human if unresolved</label>'
+        );
+      }
+      html += addButton('Add Error Case', 'addErrorCase()');
+      return html;
+    }
+
+    // --- Step 10: Export ---
+    function renderExport() {
+      var md = generateMarkdown();
+      return '<p class="step-desc">Your process intake spec is ready. Copy the markdown or review and edit.</p>' +
+        '<div class="export-card">' +
+          '<div class="export-top"><span class="export-label">process-spec.md</span>' +
+            '<button class="copy-btn" onclick="copySpec()">Copy</button>' +
+          '</div>' +
+          '<pre class="export-code" id="spec-output">' + esc(md) + '</pre>' +
+        '</div>';
+    }
+
+    function generateMarkdown() {
+      var l = [];
+      l.push('# ' + (formData.processName || 'Untitled Process'));
+      l.push('');
+      l.push('## Overview');
+      l.push('**Goal:** ' + (formData.goalPurpose || '-'));
+      l.push('');
+      if (formData.notesContext) { l.push('**Notes:** ' + formData.notesContext); l.push(''); }
+      l.push('## Triggers');
+      l.push(formData.triggers.length > 0 ? formData.triggers.join(', ') : '-');
+      l.push('');
+      l.push('## Inputs');
+      formData.inputs.forEach(function(inp, i) { if (inp.name) l.push('- **' + inp.name + '** from ' + (inp.source || '?') + ' (' + (inp.format || '?') + ')'); });
+      l.push('');
+      l.push('## Outputs');
+      formData.outputs.forEach(function(out) { if (out.name) l.push('- **' + out.name + '** to ' + (out.destination || '?') + ' (' + (out.format || '?') + ')'); });
+      l.push('');
+      l.push('## Workflow Steps');
+      formData.workflowSteps.forEach(function(s, i) { if (s.description) l.push((i + 1) + '. ' + s.description); });
+      l.push('');
+      l.push('## Agents');
+      formData.agents.forEach(function(a) { if (a.name) l.push('- **' + a.name + '** (' + (a.position || '?') + '): ' + (a.purpose || '-')); });
+      l.push('');
+      l.push('## Data Sources');
+      formData.dataSources.forEach(function(d) { if (d.name) l.push('- **' + d.name + '** (' + (d.type || '?') + ') via ' + (d.accessMethod || '?')); });
+      l.push('');
+      l.push('## Tools & Connectors');
+      l.push(formData.tools.length > 0 ? formData.tools.join(', ') : '-');
+      l.push('');
+      l.push('## Human Gates');
+      formData.humanGates.forEach(function(h) { if (h.name) l.push('- **' + h.name + '**: ' + (h.criteria || '-') + ' \u2192 ' + (h.escalation || '-')); });
+      l.push('');
+      l.push('## Error Handling');
+      formData.errorCases.forEach(function(e) { if (e.scenario) l.push('- **' + e.scenario + '**: ' + (e.handler || '-') + (e.escalate ? ' [escalate]' : '')); });
+      return l.join('\n');
+    }
+
+    // ============================================
+    // FIELD SETTERS
+    // ============================================
+    function setField(id, value) {
+      // Direct fields
+      if (['brainDump', 'processName', 'goalPurpose', 'notesContext'].indexOf(id) !== -1) {
+        formData[id] = value;
+      }
+      // Indexed fields
+      var m;
+      if ((m = id.match(/^input_(name|source|format)_(\d+)$/))) { formData.inputs[parseInt(m[2])][m[1]] = value; }
+      if ((m = id.match(/^output_(name|dest|format)_(\d+)$/))) { var k = m[1] === 'dest' ? 'destination' : m[1]; formData.outputs[parseInt(m[2])][k] = value; }
+      if ((m = id.match(/^wf_step_(\d+)$/))) { formData.workflowSteps[parseInt(m[1])].description = value; }
+      if ((m = id.match(/^agent_(name|purpose)_(\d+)$/))) { formData.agents[parseInt(m[2])][m[1]] = value; }
+      if ((m = id.match(/^ds_(name|type|access)_(\d+)$/))) { var dk = m[1] === 'access' ? 'accessMethod' : m[1]; formData.dataSources[parseInt(m[2])][dk] = value; }
+      if ((m = id.match(/^hg_(name|criteria|escalation)_(\d+)$/))) { formData.humanGates[parseInt(m[2])][m[1]] = value; }
+      if ((m = id.match(/^err_(scenario|handler)_(\d+)$/))) { formData.errorCases[parseInt(m[2])][m[1]] = value; }
+      emitUpdate();
+    }
+
+    function toggleTrigger(val, add, el) {
+      if (add) { if (formData.triggers.indexOf(val) === -1) formData.triggers.push(val); }
+      else { formData.triggers = formData.triggers.filter(function(t) { return t !== val; }); }
+      renderCurrentStep();
+      emitUpdate();
+    }
+
+    function toggleTool(val, add, el) {
+      if (add) { if (formData.tools.indexOf(val) === -1) formData.tools.push(val); }
+      else { formData.tools = formData.tools.filter(function(t) { return t !== val; }); }
+      renderCurrentStep();
+      emitUpdate();
+    }
+
+    function setAgentPosition(idx, pos, el) {
+      formData.agents[idx].position = pos;
+      renderCurrentStep();
+    }
+
+    function setErrorEscalate(idx, val) { formData.errorCases[idx].escalate = val; }
+
+    // Add items
+    function addInput() { formData.inputs.push({ name: '', source: '', format: '' }); renderCurrentStep(); }
+    function addOutput() { formData.outputs.push({ name: '', destination: '', format: '' }); renderCurrentStep(); }
+    function addWorkflowStep() { formData.workflowSteps.push({ description: '' }); renderCurrentStep(); }
+    function addAgent() { formData.agents.push({ name: 'New Agent', purpose: '', position: '' }); renderCurrentStep(); }
+    function selectAgent(idx) { /* TODO: agent tab switching */ renderCurrentStep(); }
+    function addDataSource() { formData.dataSources.push({ name: '', type: '', accessMethod: '' }); renderCurrentStep(); }
+    function addHumanGate() { formData.humanGates.push({ name: '', criteria: '', escalation: '' }); renderCurrentStep(); }
+    function addErrorCase() { formData.errorCases.push({ scenario: '', handler: '', escalate: false }); renderCurrentStep(); }
+
+    function emitUpdate() {
+      window.dispatchEvent(new CustomEvent('agent-spec-update', { detail: Object.assign({}, formData) }));
+    }
+
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    function goToStep(s) { currentStep = s; renderCurrentStep(); window.scrollTo(0, 0); }
+    function nextStep() { if (currentStep < STEPS.length - 1) { currentStep++; renderCurrentStep(); document.querySelector('.main').scrollTop = 0; } }
+    function prevStep() { if (currentStep > 0) { currentStep--; renderCurrentStep(); document.querySelector('.main').scrollTop = 0; } }
+
+    function updateSidebar() {
+      var nav = document.getElementById('sidebar-nav');
+      if (!nav) return;
+      var html = '';
+      for (var i = 0; i < STEPS.length; i++) {
+        html += '<button class="nav-item' + (i === currentStep ? ' active' : '') + '" onclick="goToStep(' + i + ')">' +
+          '<span class="nav-num">' + STEPS[i].num + '</span>' +
+          '<span class="nav-title">' + STEPS[i].title + '</span>' +
+        '</button>';
+      }
+      nav.innerHTML = html;
+    }
+
+    function updateCompletion() {
+      var filled = 0;
+      var total = 8;
+      if (formData.processName) filled++;
+      if (formData.goalPurpose) filled++;
+      if (formData.triggers.length > 0) filled++;
+      if (formData.inputs[0] && formData.inputs[0].name) filled++;
+      if (formData.outputs[0] && formData.outputs[0].name) filled++;
+      if (formData.workflowSteps[0] && formData.workflowSteps[0].description) filled++;
+      if (formData.tools.length > 0) filled++;
+      if (formData.agents[0] && formData.agents[0].purpose) filled++;
+      var pct = Math.round((filled / total) * 100);
+      var pctEl = document.getElementById('completion-pct');
+      var fillEl = document.getElementById('completion-fill');
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (fillEl) fillEl.style.width = pct + '%';
+    }
+
+    function copySpec() {
+      var output = document.getElementById('spec-output');
+      if (!output) return;
+      navigator.clipboard.writeText(output.textContent).then(function() {
+        var btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy'; }, 2000); }
+      });
+    }
+
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    document.addEventListener('DOMContentLoaded', function() { renderCurrentStep(); });
+  </script>
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a365d;
+      --navy-dark: #122647;
+      --orange: #ed8936;
+      --orange-hover: #dd6b20;
+      --cream: #fdfcf8;
+      --cream-dark: #f5f0e8;
+      --border: #e0dcd4;
+      --text: #1a365d;
+      --text-light: #7c8aa0;
+      --white: #ffffff;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app { display: flex; height: 100vh; }
+
+    /* ---- SIDEBAR ---- */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 24px 24px;
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .sidebar-bar {
+      width: 36px;
+      height: 3px;
+      background: var(--orange);
+      margin-bottom: 12px;
+    }
+    .sidebar-title {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0;
+    }
+    .sidebar-title .orange { color: var(--orange); }
+
+    .sidebar-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin: 24px 0 16px;
+    }
+
+    .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: none;
+      border-left: 3px solid transparent;
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 0 6px 6px 0;
+      transition: all 150ms ease;
+      width: 100%;
+    }
+    .nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+    .nav-item.active {
+      color: var(--orange);
+      font-weight: 700;
+      border-left-color: var(--orange);
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-num {
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 22px;
+    }
+    .nav-title { font-size: 14px; }
+
+    .sidebar-footer { margin-top: auto; padding-top: 20px; }
+    .completion-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .completion-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+    }
+    .completion-pct { font-size: 14px; font-weight: 700; color: var(--orange); }
+    .completion-bar { height: 4px; background: rgba(255,255,255,0.15); border-radius: 99px; overflow: hidden; }
+    .completion-fill { height: 100%; background: var(--orange); border-radius: 99px; transition: width 300ms ease; }
+
+    /* ---- MAIN ---- */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 48px 64px 80px;
+    }
+
+    .step-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .step-desc {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ---- FIELDS ---- */
+    .field { margin-bottom: 24px; }
+    .field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .field-hint {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .field-input, .field-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--cream-dark);
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      line-height: 1.5;
+    }
+    .field-input:focus, .field-textarea:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.08);
+      background: var(--white);
+    }
+    .field-input::placeholder, .field-textarea::placeholder { color: var(--text-light); }
+    .field-textarea { resize: vertical; min-height: 100px; }
+
+    /* ---- CARDS ---- */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      background: var(--white);
+    }
+    .card-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 20px;
+      border: 1px dashed var(--navy);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--navy);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 150ms ease;
+      margin-top: 4px;
+    }
+    .add-btn:hover { background: var(--navy); color: var(--white); }
+
+    /* ---- CHIPS ---- */
+    .chip-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .chip {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .chip:hover { border-color: var(--navy); }
+    .chip.selected {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .selected-summary {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 8px;
+    }
+    .selected-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+    .selected-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .selected-chip {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid var(--orange);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--orange);
+    }
+
+    /* ---- CHECKBOX ---- */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* ---- AGENT TABS ---- */
+    .agent-tabs { display: flex; gap: 8px; margin-bottom: 0; flex-wrap: wrap; }
+    .agent-tab {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .agent-tab.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .agent-tab.add { border-style: dashed; }
+    .agent-tab.add:hover { background: var(--navy); color: var(--white); }
+
+    .agent-subtabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .subtab {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 10px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-light);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms ease;
+    }
+    .subtab.active { color: var(--text); border-bottom-color: var(--orange); }
+
+    /* ---- EXPORT ---- */
+    .export-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .export-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .export-label { font-size: 13px; font-weight: 500; color: var(--text-light); font-family: monospace; }
+    .copy-btn {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--navy);
+      background: var(--navy);
+      color: var(--white);
+      cursor: pointer;
+    }
+    .export-code {
+      padding: 20px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    /* ---- CANVAS ---- */
+    .canvas-section {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .canvas-toolbar {
+      padding: 12px 16px;
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .canvas-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+    }
+
+    /* ---- NAV BUTTONS ---- */
+    .step-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-btn {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .nav-btn.back { background: transparent; border: 1px solid var(--border); color: var(--text-light); }
+    .nav-btn.back:hover { border-color: var(--navy); color: var(--navy); }
+    .nav-btn.next { background: var(--orange); border: 1px solid var(--orange); color: var(--white); margin-left: auto; }
+    .nav-btn.next:hover { background: var(--orange-hover); }
+
+    /* ---- BRAIN DUMP ---- */
+    .how-it-works {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .how-it-works .card-label { color: rgba(255,255,255,0.5); }
+    .hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .hiw-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .hiw-step {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .hiw-card h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .hiw-card p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.5; }
+
+    .braindump-hint {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .braindump-textarea { min-height: 250px; font-size: 15px; line-height: 1.7; }
+
+    .field-hint-inline {
+      font-weight: 400;
+      color: var(--text-light);
+      font-size: 11px;
+    }
+
+    .autofill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 150ms ease;
+      margin-top: 8px;
+      margin-bottom: 24px;
+    }
+    .autofill-btn:hover { background: var(--orange-hover); }
+    .autofill-btn:disabled { opacity: 0.6; cursor: wait; }
+
+    .autofill-progress {
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .autofill-success {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #065f46;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .autofill-error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #dc2626;
+      margin-bottom: 24px;
+    }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      background: var(--white);
+    }
+    .info-list { list-style: none; padding: 0; }
+    .info-list li {
+      font-size: 14px;
+      color: var(--text);
+      padding: 6px 0;
+      line-height: 1.4;
+    }
+    .info-list.arrow li::before { content: '\2192 '; color: var(--orange); margin-right: 8px; }
+    .info-list.check li::before { content: '\2714 '; color: #059669; margin-right: 8px; }
+
+    .dot-pulse { display: inline-block; }
+    .dot-pulse::after { content: '...'; animation: dots 1.5s steps(4, end) infinite; }
+    @keyframes dots { 0%,20% { content: ''; } 40% { content: '.'; } 60% { content: '..'; } 80%,100% { content: '...'; } }
+
+    /* ---- TOOL GRID ---- */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .tool-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      background: var(--white);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .tool-card:hover { border-color: var(--navy); box-shadow: 0 2px 8px rgba(26,54,93,0.08); }
+    .tool-card.selected {
+      border-color: var(--orange);
+      background: #fef8f0;
+      box-shadow: 0 0 0 2px rgba(237,137,54,0.2);
+    }
+    .tool-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .tool-card-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .tool-card-cat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(237,137,54,0.1);
+      padding: 2px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .tool-card-desc {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .tool-card-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tool-card-auth, .tool-card-cost {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--cream-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { padding: 24px 20px 60px; }
+      .tool-grid { grid-template-columns: 1fr; }
+      .hiw-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</body>
+</html>
