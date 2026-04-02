@@ -1,9 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/ai-helper.ts": {}
-  },
   "redirects": [
     { "source": "/how-we-work", "destination": "/#process", "statusCode": 301 },
     { "source": "/compare", "destination": "/pricing", "statusCode": 301 },
