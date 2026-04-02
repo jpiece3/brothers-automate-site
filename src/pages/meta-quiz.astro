@@ -285,10 +285,15 @@ import Footer from '../components/Footer.astro';
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: quizState.name, email: quizState.email, quiz_score: pct, quiz_result: quizState.result,
-            quiz_segment: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture',
-            recommended_automation: r.title,
-            answers: quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; })
+            pipeline_inputs: [
+              { input_name: 'name', value: quizState.name },
+              { input_name: 'email', value: quizState.email },
+              { input_name: 'quiz_score', value: String(pct) },
+              { input_name: 'quiz_result', value: quizState.result },
+              { input_name: 'quiz_segment', value: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture' },
+              { input_name: 'recommended_automation', value: r.title },
+              { input_name: 'answers', value: JSON.stringify(quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; })) }
+            ]
           })
         });
       } catch (e) { console.log('Webhook error:', e); }
