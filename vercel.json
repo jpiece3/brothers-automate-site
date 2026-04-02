@@ -1,6 +1,11 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/*.ts": {
+      "runtime": "@vercel/node@3"
+    }
+  },
   "redirects": [
     { "source": "/how-we-work", "destination": "/#process", "statusCode": 301 },
     { "source": "/compare", "destination": "/pricing", "statusCode": 301 },
