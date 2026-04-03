@@ -1,0 +1,77 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  clientName: string;
+}
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const {
+  title,
+  description = `Digital presence analysis for ${Astro.props.clientName}, prepared by Brothers Automate.`,
+  clientName
+} = Astro.props;
+
+const currentUrl = `${SITE_URL}${Astro.url.pathname}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S4S0F38JN"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5S4S0F38JN');
+  </script>
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content={description}>
+  <title>{title} | {clientName} | Brothers Automate</title>
+
+  <link rel="canonical" href={currentUrl}>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={currentUrl}>
+  <meta property="og:title" content={`${title} | ${clientName}`}>
+  <meta property="og:description" content={description}>
+  <meta property="og:site_name" content="Brothers Automate">
+
+  <meta name="theme-color" content="#1a365d">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a365d;
+    line-height: 1.6;
+    background: #fdfcfa;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; color: #1a365d; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; }
+  h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+  h3 { font-size: clamp(1.125rem, 2.5vw, 1.375rem); }
+  p { color: #64748b; line-height: 1.7; }
+  a { color: #3182ce; text-decoration: none; }
+  strong { color: #1a365d; }
+</style>

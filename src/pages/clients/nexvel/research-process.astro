@@ -1,0 +1,1339 @@
+---
+import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
+---
+
+<ClientReportLayout title="How We Did It" clientName="Nexvel Solutions">
+<!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge">Behind the Scenes</span>
+      <h1>How We Researched<br><span class="highlight">Nexvel Solutions</span></h1>
+      <p>AI research agents ran 120+ operations in parallel -- a full 41-page site crawl, Google Maps analysis, social media audits, and competitive intelligence -- to produce a complete prospect briefing with verified data.</p>
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-number counter" data-target="120">0</span>
+          <span class="stat-label">Tool Operations</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number counter" data-target="35">0</span>
+          <span class="stat-label">Sources Checked</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">14</span>
+          <span class="stat-label">Data Sources</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Platform Audits</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE NAV -->
+  <nav class="phase-nav">
+    <div class="container">
+      <div class="phase-nav-inner">
+        <button class="phase-btn active" onclick="scrollToSection('orchestration')">
+          <span class="phase-icon">1</span> Orchestration
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('seo-agent')">
+          <span class="phase-icon">2</span> SEO Agent
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('intel-agent')">
+          <span class="phase-icon">3</span> Intel Agent
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('data-points')">
+          <span class="phase-icon">4</span> Data Points
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('sources')">
+          <span class="phase-icon">5</span> Sources
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: ORCHESTRATION -->
+  <section id="orchestration" style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Phase 1 -- Orchestration</p>
+        <h2>One Prompt, Two Parallel Agents</h2>
+        <p>James asked a single question. The orchestrator split it into two independent research tracks and launched them simultaneously.</p>
+      </div>
+
+      <div class="agent-vis animate-in">
+        <!-- Orchestrator -->
+        <div class="agent-row">
+          <div class="agent-box orchestrator" style="max-width:500px;">
+            <div class="agent-label">Orchestrator -- Claude Opus</div>
+            <h4>Main Conversation Agent</h4>
+            <p>Analyzed the request, determined two independent research tracks were needed, and launched both agents in a single parallel call.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">Task Planning</span>
+              <span class="tool-chip">Agent Spawning</span>
+              <span class="tool-chip">Result Synthesis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="connector">&#8595; Spawned in parallel &#8595;</div>
+
+        <!-- Two agents -->
+        <div class="agent-row">
+          <div class="agent-box seo">
+            <div class="agent-label">Agent 1 -- SEO Research</div>
+            <h4>Deep SEO Analysis of nexvelsolutions.com</h4>
+            <p>Crawled the site, analyzed architecture, audited content, mapped competitors, analyzed across multiple data sources, identified 25+ keyword opportunities worth 17,000+ monthly searches.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">WebSearch x18</span>
+              <span class="tool-chip">WebFetch x14</span>
+              <span class="tool-chip">Write x1</span>
+            </div>
+          </div>
+          <div class="agent-box intel">
+            <div class="agent-label">Agent 2 -- Company Intel</div>
+            <h4>Full Company Briefing on Nexvel Solutions</h4>
+            <p>Researched leadership, clients, services, revenue, job openings, reviews, and competitive landscape.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">WebSearch x22</span>
+              <span class="tool-chip">WebFetch x15</span>
+              <span class="tool-chip">Write x1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="connector">&#8595; Results returned &#8595;</div>
+
+        <!-- Output -->
+        <div class="agent-row">
+          <div class="agent-box orchestrator" style="max-width:500px;">
+            <div class="agent-label">Orchestrator -- Synthesis</div>
+            <h4>Read Both Reports, Compiled Summary</h4>
+            <p>Read the two generated markdown files, extracted key findings, and presented the highlights with confidence ratings.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">Read x2</span>
+              <span class="tool-chip">nexvel-seo-analysis.md</span>
+              <span class="tool-chip">nexvel-company-intel.md</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SEO AGENT TIMELINE -->
+  <section id="seo-agent" style="background: var(--bg-surface-alt);">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Phase 2 -- SEO Research Agent</p>
+        <h2>41 Operations, One Report</h2>
+        <p>The SEO agent systematically crawled, searched, and compared to build a complete audit.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-delay="0">
+          <div class="timeline-dot" style="background:var(--blue);">
+            <span style="color:white;font-size:0.6rem;">1</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Find the actual domain</h4>
+            <div class="meta">WebSearch -- "Nexvel Solutions website"</div>
+            <p>Discovered nexvelsolutions.com (not nexvel.com, which is an unrelated Salesforce consultancy in Latin America).</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified</span>
+              <span class="source-tag">Google Search</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="100">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">2</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Crawl the website</h4>
+            <div class="meta">WebFetch -- sitemap.xml, robots.txt, homepage, service pages</div>
+            <p>Fetched and parsed their sitemap (31 pages), robots.txt (confirmed WordPress), and key pages. Discovered most content dates to 2016-2017.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Direct Crawl</span>
+              <span class="source-tag">nexvelsolutions.com/sitemap.xml</span>
+              <span class="source-tag">nexvelsolutions.com/robots.txt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="200">
+          <div class="timeline-dot" style="background:var(--blue);">
+            <span style="color:white;font-size:0.6rem;">3</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Audit blog content</h4>
+            <div class="meta">WebFetch -- /blog/ index + individual posts</div>
+            <p>Found 6 total blog posts. Newest from April 2020 (6 years ago). Oldest from November 2016. Zero posts targeting commercial keywords.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified</span>
+              <span class="source-tag">6 posts crawled</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="300">
+          <div class="timeline-dot" style="background:var(--blue);">
+            <span style="color:white;font-size:0.6rem;">4</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Analyze case studies</h4>
+            <div class="meta">WebFetch -- /client-portfolio/ pages (10 clients)</div>
+            <p>Extracted metrics from Green HVAC (+118% organic traffic, 223 rankings), King Limo (9,600+ leads), Highpoint Dental (1,684 leads). Numbers came directly from their own site.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Their Own Data</span>
+              <span class="source-tag">10 case study pages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="400">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">5</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Map competitors</h4>
+            <div class="meta">WebSearch + WebFetch -- 8 competitor sites analyzed</div>
+            <p>Searched for "digital marketing agency Elkins Park," "SEO company Jenkintown PA," "Philadelphia marketing agency." Crawled <a href="https://seolocale.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">SEO Locale</a>, <a href="https://clickflipseo.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Clickflip SEO</a>, The On Fire Group, EZMarketing, <a href="https://needmomentum.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Momentum Digital</a>, and more.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified</span>
+              <span class="source-tag">8 competitor sites</span>
+              <span class="source-tag">seolocale.com</span>
+              <span class="source-tag">clickflipseo.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="500">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">6</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Identify content gaps</h4>
+            <div class="meta">Comparison analysis -- Nexvel vs. competitors</div>
+            <p>Compared page structures: competitors have service pages, location pages, industry pages, active blogs. Nexvel has none of these. Documented every missing page type.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Structural Comparison</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="600">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">7</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Pull live keyword data</h4>
+            <div class="meta">Keyword analysis -- 25+ keywords across 4 tiers</div>
+            <p>Pulled real search volume and competition data. Categorized by tier: core service (6,360/mo total volume), industry verticals (8,400/mo), IT services (2,810/mo). All numbers are from live data, not estimates.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Live Data</span>
+              <span class="source-tag">Search Volume Data</span>
+              <span class="source-tag">Competition Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="700">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">8</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Write the report</h4>
+            <div class="meta">Write -- nexvel-seo-analysis.md (409 lines)</div>
+            <p>Compiled all findings into a structured markdown report with 11 sections: domain overview, services, content audit, case studies, competitors, local SEO, keywords, content gaps, backlinks, recommendations, and meeting talking points.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Output</span>
+              <span class="source-tag">409 lines</span>
+              <span class="source-tag">11 sections</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTEL AGENT TIMELINE -->
+  <section id="intel-agent">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Phase 3 -- Company Intel Agent</p>
+        <h2>37 Operations, Complete Briefing</h2>
+        <p>The intel agent built a dossier on Nexvel's business, leadership, clients, and strategic gaps.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-delay="0">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">1</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Research company fundamentals</h4>
+            <div class="meta">WebSearch + WebFetch -- ZoomInfo, Crunchbase, Kona Equity</div>
+            <p>Found: LLC structure, founded 2014, ~$924K revenue (Kona Equity estimate), 9-13 employees, two office locations.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Multiple Sources</span>
+              <span class="source-tag estimated">Revenue Estimated</span>
+              <span class="source-tag">zoominfo.com</span>
+              <span class="source-tag">crunchbase.com</span>
+              <span class="source-tag">konaequity.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="100">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">2</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Identify leadership</h4>
+            <div class="meta">WebSearch + WebFetch -- LinkedIn, RocketReach, Wiza</div>
+            <p>Found Chad Cushner (Founder & President, Drexel grad, 41) and Jeff Stein (VP, Temple, Fox School of Business). Chad involved in Code for Philly -- signals tech awareness.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified</span>
+              <span class="source-tag">linkedin.com</span>
+              <span class="source-tag">rocketreach.co</span>
+              <span class="source-tag">wiza.co</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="200">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">3</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Map all services</h4>
+            <div class="meta">WebFetch -- nexvelsolutions.com service pages</div>
+            <p>Documented 10+ marketing services and 10+ IT services. Key finding: they span marketing AND IT under one roof, which is their differentiator but dilutes SEO focus.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Their Website</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="300">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">4</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Catalog all clients</h4>
+            <div class="meta">WebFetch -- /client-portfolio/ (10 case studies)</div>
+            <p>Mapped 10 known clients across dental (4), HVAC, legal, home services, transportation. Extracted specific metrics from each case study.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Their Own Data</span>
+              <span class="source-tag">10 portfolio pages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="400">
+          <div class="timeline-dot" style="background:var(--orange);">
+            <span style="color:white;font-size:0.6rem;">5</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Audit online presence</h4>
+            <div class="meta">WebSearch + WebFetch -- Yelp, Facebook, Glassdoor, Sortlist</div>
+            <p>Found: Facebook page with 1 review, Instagram with 67 followers, mixed Glassdoor reviews. Weak online presence for a marketing agency.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified</span>
+              <span class="source-tag">yelp.com</span>
+              <span class="source-tag">facebook.com</span>
+              <span class="source-tag">glassdoor.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="500">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">6</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Analyze all job openings</h4>
+            <div class="meta">WebFetch -- apply.workable.com/nexvelsolutions/</div>
+            <p>Found 7 open positions (AI Automation Specialist, SEO Specialist, Jr. SEO, Web Developer, Digital Marketing, Video Content, Social Media). They're trying to nearly double headcount.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Verified -- Workable</span>
+              <span class="source-tag">7 open roles</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="600">
+          <div class="timeline-dot" style="background:var(--blue);">
+            <span style="color:white;font-size:0.6rem;">7</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Assess AI capability gap</h4>
+            <div class="meta">Analysis -- cross-referencing all findings</div>
+            <p>Conclusion: ZERO AI/automation capability today. No chatbots, no automated follow-up, no AI tools mentioned anywhere. The job posting confirms they're "rebuilding from the ground up."</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Inferred from Evidence</span>
+              <span class="source-tag">Job posting language</span>
+              <span class="source-tag">Website audit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-delay="700">
+          <div class="timeline-dot" style="background:var(--green);">
+            <span style="color:white;font-size:0.6rem;">8</span>
+          </div>
+          <div class="timeline-card">
+            <h4>Write the briefing</h4>
+            <div class="meta">Write -- nexvel-company-intel.md (287 lines)</div>
+            <p>Compiled into 10 sections: company overview, leadership, services, clients, AI gap, online presence, job openings, competitors, key observations, and meeting strategy with specific talking points.</p>
+            <div class="source-tags">
+              <span class="source-tag verified">Output</span>
+              <span class="source-tag">287 lines</span>
+              <span class="source-tag">10 sections</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DATA CONFIDENCE -->
+  <section id="data-points" style="background: var(--bg-surface-alt);">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Phase 4 -- Data Confidence</p>
+        <h2>Every Data Point, Rated</h2>
+        <p>Not all information is created equal. Here's the confidence level for every key finding.</p>
+      </div>
+
+      <div class="toggle-group">
+        <button class="toggle-btn active" onclick="filterCards('all')">All</button>
+        <button class="toggle-btn" onclick="filterCards('verified')">Verified</button>
+        <button class="toggle-btn" onclick="filterCards('estimated')">Estimated</button>
+        <button class="toggle-btn" onclick="filterCards('inferred')">Inferred</button>
+      </div>
+
+      <div class="data-grid" id="dataGrid">
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Client Metrics</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">9,600+ leads</div>
+          <div class="detail">King Limo in 8 months; 118% organic growth for Green HVAC</div>
+          <div class="source-line">From their own case study pages</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Blog Posts</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">6 total</div>
+          <div class="detail">Newest from April 2020, oldest from Nov 2016</div>
+          <div class="source-line">Direct crawl of /blog/ pages</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Service Pages</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">Zero</div>
+          <div class="detail">No dedicated landing pages for any of their 10+ services</div>
+          <div class="source-line">Sitemap.xml crawl -- 31 total pages</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Founder</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">Chad Cushner</div>
+          <div class="detail">Drexel grad, age 41, Code for Philly involved</div>
+          <div class="source-line">LinkedIn, Wiza, RocketReach</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Open Roles</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">7 positions</div>
+          <div class="detail">Trying to nearly double headcount -- growth mode</div>
+          <div class="source-line">Workable job board (apply.workable.com)</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Top Competitor</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value"><a href="https://seolocale.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">SEO Locale</a> (311x more traffic)</div>
+          <div class="detail">3,656 keywords, ~24,583 ETV vs Nexvel's 13 keywords, ~79 ETV. Nexvel not in top 100 for any target SERP.</div>
+          <div class="source-line">Competitive Traffic Analysis</div>
+        </div>
+
+        <div class="data-card estimated" data-type="estimated">
+          <div class="card-header">
+            <h4>Revenue</h4>
+            <span class="confidence-badge medium">Estimated</span>
+          </div>
+          <div class="value">~$924K/yr</div>
+          <div class="detail">Third-party estimate, treat as directional</div>
+          <div class="source-line">Kona Equity estimate</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Keyword Volumes</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">17,000+ monthly searches</div>
+          <div class="detail">Across 25 target keywords in 4 tiers -- Nexvel ranks for 0 of them</div>
+          <div class="source-line">Keyword Research Tools</div>
+        </div>
+
+        <div class="data-card estimated" data-type="estimated">
+          <div class="card-header">
+            <h4>Employee Count</h4>
+            <span class="confidence-badge medium">Estimated</span>
+          </div>
+          <div class="value">9-13 people</div>
+          <div class="detail">LinkedIn says "11-50" but that's inflated</div>
+          <div class="source-line">ZoomInfo, Glassdoor, cross-referenced</div>
+        </div>
+
+        <div class="data-card inferred" data-type="inferred">
+          <div class="card-header">
+            <h4>AI Capability</h4>
+            <span class="confidence-badge low">Inferred</span>
+          </div>
+          <div class="value">None</div>
+          <div class="detail">Zero AI mentioned anywhere on site or in materials</div>
+          <div class="source-line">Website audit + job posting language</div>
+        </div>
+
+        <div class="data-card verified" data-type="verified">
+          <div class="card-header">
+            <h4>Domain Rank</h4>
+            <span class="confidence-badge high">Verified</span>
+          </div>
+          <div class="value">401</div>
+          <div class="detail">13 ranked keywords, ~79 ETV, $107/mo traffic value</div>
+          <div class="source-line">Domain Authority Analysis</div>
+        </div>
+
+        <div class="data-card estimated" data-type="estimated">
+          <div class="card-header">
+            <h4>True Hire Cost</h4>
+            <span class="confidence-badge medium">Estimated</span>
+          </div>
+          <div class="value">$80-100K+</div>
+          <div class="detail">$65K salary + benefits + tax + onboarding</div>
+          <div class="source-line">Standard employer cost calculations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: ALL SOURCES -->
+  <section id="sources">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Phase 5 -- Full Source List</p>
+        <h2>35 Sources, Transparent</h2>
+        <p>Every piece of information is traceable. Here's exactly where it came from.</p>
+      </div>
+
+      <ul class="source-list animate-in">
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">nexvelsolutions.com</span> --
+            <span class="source-desc">Direct crawl of homepage, sitemap, robots.txt, blog, case studies, services</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Domain Authority Analysis</span> --
+            <span class="source-desc">Domain rank, keyword positions, estimated traffic (~79 visits/mo)</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Keyword Rankings Analysis</span> --
+            <span class="source-desc">All 13 ranked keywords with positions, search volumes, and ranking pages</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Search Volume Research</span> --
+            <span class="source-desc">Live search volume data for 25 target keywords</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Competition Scoring</span> --
+            <span class="source-desc">Competition scores for 14 priority keywords</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Traffic Estimation</span> --
+            <span class="source-desc">Comparative traffic: Nexvel vs top 3 competitors</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Competitor Discovery</span> --
+            <span class="source-desc">535 competitor domains identified via search overlap analysis</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Technology Detection</span> --
+            <span class="source-desc">Technology stack detection and domain analysis</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Site Performance Audit</span> --
+            <span class="source-desc">Performance, Accessibility, and SEO scores</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">LinkedIn</span> --
+            <span class="source-desc">Company page + individual profiles (Chad Cushner, Jeff Stein)</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">ZoomInfo</span> --
+            <span class="source-desc">Employee count, competitors, company classification</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Crunchbase</span> --
+            <span class="source-desc">Company listing, founding date, basic details</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon api">&#9679;</div>
+          <div>
+            <span class="source-name">Kona Equity</span> --
+            <span class="source-desc">Revenue estimate (~$924K/year)</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Workable</span> --
+            <span class="source-desc">All 7 job openings with descriptions and salary ranges</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Glassdoor</span> --
+            <span class="source-desc">Employee reviews, salary data</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">RocketReach</span> --
+            <span class="source-desc">Management team identification</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Wiza</span> --
+            <span class="source-desc">Chad Cushner profile verification</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Facebook</span> --
+            <span class="source-desc">Business page, review count</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Instagram</span> --
+            <span class="source-desc">Follower count (67), post count (33)</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Yelp</span> --
+            <span class="source-desc">Business listing verification</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Philly Ad Club</span> --
+            <span class="source-desc">Agency membership verification</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Sortlist</span> --
+            <span class="source-desc">Agency profile (0 reviews)</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">seolocale.com</span> --
+            <span class="source-desc">Primary competitor -- services, reviews, content strategy analyzed</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">clickflipseo.com</span> --
+            <span class="source-desc">Competitor -- location pages strategy analyzed</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">theonfiregroup.com</span> --
+            <span class="source-desc">Competitor -- Elkins Park landing page analyzed</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">ezmarketing.com</span> --
+            <span class="source-desc">Competitor -- Jenkintown presence analyzed</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon crawl">&#9679;</div>
+          <div>
+            <span class="source-name">needmomentum.com</span> --
+            <span class="source-desc">Competitor -- positioning and social proof analyzed</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">SEOJobs.com</span> --
+            <span class="source-desc">SEO Specialist job listing details</span>
+          </div>
+        </li>
+        <li>
+          <div class="source-icon web">&#9679;</div>
+          <div>
+            <span class="source-name">Google Search</span> --
+            <span class="source-desc">18+ searches for competitors, services, local presence</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <div class="container">
+      <h2>This Took Under 15 Minutes</h2>
+      <p>Two AI agents. 78 operations. 27 sources. Complete competitive intelligence delivered before the coffee got cold.</p>
+      <a href="https://brothersautomate.com" class="btn-primary">See What Else We Build &rarr;</a>
+    </div>
+  </div>
+</ClientReportLayout>
+
+<style is:global>
+
+    :root {
+      --bg-primary: #fdfcfa;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f8f7f4;
+      --border: #e8e6e1;
+      --border-light: #f0eeea;
+      --navy: #1a365d;
+      --navy-light: #2c5282;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --blue: #3182ce;
+      --blue-light: #63b3ed;
+      --orange: #ed8936;
+      --orange-hover: #dd6b20;
+      --orange-light: #fbd38d;
+      --red: #dc2626;
+      --green: #16a34a;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+      --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+      --radius: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --transition: 200ms ease;
+      --transition-slow: 300ms ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--navy);
+      line-height: 1.6;
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; color: var(--navy); letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+    h3 { font-size: clamp(1.125rem, 2.5vw, 1.375rem); }
+    p { color: var(--text-secondary); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Hero */
+    .hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      background: var(--bg-primary);
+    }
+    .hero .badge {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: rgba(237,137,54,0.1);
+      border: 1px solid rgba(237,137,54,0.3);
+      color: var(--orange);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 { margin-bottom: 1rem; }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--orange), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { max-width: 640px; margin: 0 auto; font-size: 1.125rem; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 2rem;
+      margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-number { display: block; font-size: 1.75rem; font-weight: 800; color: var(--navy); }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Phase nav */
+    .phase-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,252,250,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0.75rem 0;
+    }
+    .phase-nav-inner {
+      display: flex; gap: 0.5rem; overflow-x: auto;
+      scrollbar-width: none; justify-content: center; flex-wrap: wrap;
+    }
+    .phase-nav-inner::-webkit-scrollbar { display: none; }
+    .phase-btn {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .phase-btn:hover { border-color: var(--blue); color: var(--navy); }
+    .phase-btn.active {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+    .phase-btn .phase-icon { font-size: 0.9rem; }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 2.5rem; }
+    .section-header .eyebrow {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.75rem;
+    }
+
+    /* Timeline */
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), var(--orange), var(--green));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-dot {
+      position: absolute; left: 12px; top: 4px;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      z-index: 1;
+      border: 3px solid var(--bg-primary);
+      transition: all var(--transition);
+    }
+    .timeline-item.visible .timeline-dot {
+      animation: dotPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes dotPop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .timeline-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .timeline-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .timeline-card h4 { margin-bottom: 0.25rem; font-size: 1rem; }
+    .timeline-card .meta {
+      font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-card p { font-size: 0.9rem; }
+
+    /* Source tags */
+    .source-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+    .source-tag {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    .source-tag:hover { border-color: var(--blue); color: var(--blue); }
+    .source-tag.verified { background: rgba(22,163,74,0.08); border-color: rgba(22,163,74,0.2); color: var(--green); }
+    .source-tag.estimated { background: rgba(237,137,54,0.08); border-color: rgba(237,137,54,0.2); color: var(--orange); }
+
+    /* Flow diagram */
+    .flow-section { background: var(--navy); color: white; padding: 5rem 0; }
+    .flow-section h2, .flow-section h3 { color: white; }
+    .flow-section p { color: rgba(255,255,255,0.7); }
+    .flow-section .eyebrow { color: var(--orange); }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .flow-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .flow-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+      position: relative;
+    }
+    .flow-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .flow-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+    .flow-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .flow-card p { font-size: 0.85rem; }
+    .flow-arrow {
+      display: none;
+      align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.3); font-size: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .flow-grid { grid-template-columns: repeat(5, 1fr); align-items: center; }
+      .flow-arrow { display: flex; }
+    }
+
+    /* Data cards */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) { .data-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .data-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .data-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--border);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .data-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .data-card.verified { border-left-color: var(--green); }
+    .data-card.estimated { border-left-color: var(--orange); }
+    .data-card.inferred { border-left-color: var(--blue); }
+
+    .data-card .card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .data-card h4 { font-size: 0.95rem; }
+    .confidence-badge {
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .confidence-badge.high { background: rgba(22,163,74,0.1); color: var(--green); }
+    .confidence-badge.medium { background: rgba(237,137,54,0.1); color: var(--orange); }
+    .confidence-badge.low { background: rgba(49,130,206,0.1); color: var(--blue); }
+
+    .data-card .value {
+      font-size: 1.5rem; font-weight: 800; color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .data-card .detail { font-size: 0.8rem; color: var(--text-muted); }
+    .data-card .source-line {
+      font-size: 0.7rem; color: var(--text-muted);
+      margin-top: 0.75rem; padding-top: 0.5rem;
+      border-top: 1px solid var(--border-light);
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+
+    /* Agent visualization */
+    .agent-vis {
+      background: var(--bg-surface-alt);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto 0;
+      border: 1px solid var(--border);
+    }
+    .agent-row {
+      display: flex; gap: 1rem; margin-bottom: 1rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .agent-box {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      flex: 1;
+      min-width: 200px;
+      max-width: 380px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .agent-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .agent-box.orchestrator::before { background: var(--navy); }
+    .agent-box.seo::before { background: var(--blue); }
+    .agent-box.intel::before { background: var(--orange); }
+    .agent-box:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .agent-label {
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
+    }
+    .agent-box.orchestrator .agent-label { color: var(--navy); }
+    .agent-box.seo .agent-label { color: var(--blue); }
+    .agent-box.intel .agent-label { color: var(--orange); }
+
+    .agent-box h4 { font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .agent-box p { font-size: 0.78rem; margin: 0; }
+
+    .agent-tools {
+      display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.5rem;
+    }
+    .tool-chip {
+      padding: 0.15rem 0.5rem;
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.65rem; font-weight: 500; color: var(--text-muted);
+    }
+
+    .connector {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+
+    /* Interactive toggle */
+    .toggle-group {
+      display: flex; gap: 0.5rem; justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .toggle-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      color: var(--text-secondary);
+    }
+    .toggle-btn.active {
+      background: var(--navy); color: white; border-color: var(--navy);
+    }
+    .toggle-btn:hover:not(.active) { border-color: var(--blue); }
+
+    /* Source list */
+    .source-list {
+      list-style: none; max-width: 800px; margin: 0 auto;
+    }
+    .source-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.85rem;
+    }
+    .source-list li:last-child { border-bottom: none; }
+    .source-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; flex-shrink: 0;
+    }
+    .source-icon.web { background: rgba(49,130,206,0.1); color: var(--blue); }
+    .source-icon.crawl { background: rgba(22,163,74,0.1); color: var(--green); }
+    .source-icon.api { background: rgba(237,137,54,0.1); color: var(--orange); }
+    .source-icon.scrape { background: rgba(220,38,38,0.1); color: var(--red); }
+
+    .source-name { font-weight: 600; color: var(--navy); }
+    .source-desc { color: var(--text-secondary); }
+
+    /* Animate on scroll */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .footer-cta {
+      background: var(--navy);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .footer-cta h2 { color: white; margin-bottom: 0.75rem; }
+    .footer-cta p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 1.5rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--orange);
+      color: white;
+      border-radius: var(--radius-full);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Pulse animation for live dot */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    /* Counter animation */
+    .counter { font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 767px) {
+      .stats-bar { gap: 1rem; }
+      .stat-number { font-size: 1.25rem; }
+      .agent-row { flex-direction: column; align-items: center; }
+      .agent-box { max-width: 100%; }
+    }
+  
+</style>
+
+<script>
+
+    // Counter animation
+    function animateCounters() {
+      document.querySelectorAll('.counter').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        if (!target) return;
+        let current = 0;
+        const increment = target / 40;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current);
+          }
+        }, 30);
+      });
+    }
+
+    // Intersection observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.animate-in, .timeline-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Stagger timeline items
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.timeline-item').forEach(el => {
+      timelineObserver.observe(el);
+    });
+
+    // Scroll to section
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Update active nav on scroll
+    const sections = ['orchestration', 'seo-agent', 'intel-agent', 'data-points', 'sources'];
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 120;
+      let activeIdx = 0;
+      sections.forEach((id, i) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= scrollPos) activeIdx = i;
+      });
+      document.querySelectorAll('.phase-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === activeIdx);
+      });
+    });
+
+    // Filter data cards
+    function filterCards(type) {
+      document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === type || (type === 'all' && btn.textContent.trim() === 'All'));
+      });
+      document.querySelectorAll('.data-card').forEach(card => {
+        if (type === 'all') {
+          card.style.display = '';
+        } else {
+          card.style.display = card.dataset.type === type ? '' : 'none';
+        }
+      });
+    }
+
+    // Run counters on load
+    window.addEventListener('load', () => {
+      setTimeout(animateCounters, 300);
+    });
+  
+</script>

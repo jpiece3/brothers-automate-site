@@ -1,0 +1,999 @@
+---
+import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
+---
+
+<ClientReportLayout title="Website Health Report" clientName="Nexvel Solutions">
+<!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge">AI-Powered Website Audit</span>
+      <h1>Website Audit Report</h1>
+      <div class="url">nexvelsolutions.com</div>
+      <div class="date">April 3, 2026 &middot; Prepared by James &middot; Brothers Automate</div>
+
+      <!-- Score Ring -->
+      <div class="score-ring-container">
+        <div class="score-ring">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <circle class="bg" cx="100" cy="100" r="88" />
+            <circle class="fg" cx="100" cy="100" r="88"
+              stroke-dasharray="553"
+              stroke-dashoffset="553" />
+          </svg>
+          <div class="score-text">
+            <div class="score-number">42</div>
+            <div class="score-label">out of 100</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Scores -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <span class="stat-number score-low">2/10</span>
+          <span class="stat-label">Content Freshness</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number score-mid">5/10</span>
+          <span class="stat-label">Meta & Titles</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number score-low">3/10</span>
+          <span class="stat-label">Image SEO</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number score-mid">5/10</span>
+          <span class="stat-label">Heading Structure</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number score-low">2/10</span>
+          <span class="stat-label">Technical SEO</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number score-mid">6/10</span>
+          <span class="stat-label">Internal Linking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="phase-nav">
+    <div class="container">
+      <div class="phase-nav-inner">
+        <button class="phase-btn active" onclick="scrollToSection('overview')">Overview</button>
+        <button class="phase-btn" onclick="scrollToSection('methodology')">Methodology</button>
+        <button class="phase-btn" onclick="scrollToSection('findings')">Detailed Findings</button>
+        <button class="phase-btn" onclick="scrollToSection('actions')">Action Plan</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="container">
+      <div class="exec-card animate-in">
+        <h3>Executive Summary</h3>
+        <p>
+          Nexvel Solutions' website has significant SEO and content issues that are costing the business organic traffic and leads. Our analysis confirms the site ranks for just <strong>13 keywords</strong> (mostly branded) with an estimated <strong>~79 monthly visits</strong> -- while <a href="https://seolocale.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">SEO Locale</a> ranks for <strong>3,656 keywords</strong> with <strong>311x more traffic</strong>. A full 41-page site crawl revealed the homepage has <strong>no H1 tag</strong>, 14 pages return 301 redirects, and a test page is publicly accessible. SERP analysis shows Nexvel doesn't appear in the <strong>top 100 results</strong> for "SEO company Philadelphia," "web design Philadelphia," or "managed IT services Philadelphia." Google Maps shows they're <strong>not in the top 10</strong> for "digital marketing agency Elkins Park" and at <strong>position 51</strong> for "IT support Elkins Park" -- in their own hometown. They have <strong>7 Google reviews</strong> vs <a href="https://needmomentum.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Momentum Digital</a>'s 155. Instagram: <strong>69 followers</strong>. Facebook: <strong>102 likes</strong>. For a marketing agency, this is an existential visibility problem across <strong>17,000+ monthly searches</strong> in target keywords.
+        </p>
+      </div>
+
+      <!-- Top Findings -->
+      <div class="top-findings animate-in">
+        <h3 style="margin-bottom:1rem;">Top Findings at a Glance</h3>
+
+        <div style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:0.5rem 1.5rem;box-shadow:var(--shadow);">
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128200;</div>
+            <div class="top-finding-text">
+              <strong>13 keywords vs competitor's 3,656 -- 311x traffic gap</strong>
+              <span><a href="https://seolocale.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">SEO Locale</a> (Jenkintown): ~24,583 visits. Zero commercial keywords ranked.</span>
+            </div>
+            <div class="priority-badge priority-critical">Critical</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128205;</div>
+            <div class="top-finding-text">
+              <strong>Invisible on Google Maps in their own hometown</strong>
+              <span>Not in top 10 for "digital marketing agency Elkins Park PA." Position 51 for "IT support Elkins Park PA." Only 7 Google reviews (4.9 stars) vs competitors with 100+.</span>
+            </div>
+            <div class="priority-badge priority-critical">Critical</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128683;</div>
+            <div class="top-finding-text">
+              <strong>Blog abandoned since April 2020</strong>
+              <span>Last post was about COVID-19. Other posts date to 2016. Zero content production for 6 years.</span>
+            </div>
+            <div class="priority-badge priority-critical">Critical</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128200;</div>
+            <div class="top-finding-text">
+              <strong>Homepage statistics are outdated</strong>
+              <span>Claims "3+ Billion Google Searches Per Day" -- the actual number is now 8.5+ billion.</span>
+            </div>
+            <div class="priority-badge priority-important">Important</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128444;&#65039;</div>
+            <div class="top-finding-text">
+              <strong>Generic & placeholder images throughout</strong>
+              <span>Alt text like "icon_01", "service_01". Multiple RevSlider dummy.png placeholders detected.</span>
+            </div>
+            <div class="priority-badge priority-critical">Critical</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128269;</div>
+            <div class="top-finding-text">
+              <strong>No structured data / schema markup</strong>
+              <span>Missing LocalBusiness schema for both office locations. Hurts local search visibility.</span>
+            </div>
+            <div class="priority-badge priority-critical">Critical</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#9888;&#65039;</div>
+            <div class="top-finding-text">
+              <strong>Title tag exceeds recommended length</strong>
+              <span>"Web Design Philadelphia, SEO, Marketing & IT Support | Nexvel Solutions" is ~69 chars (limit: 60).</span>
+            </div>
+            <div class="priority-badge priority-minor">Minor</div>
+          </div>
+          <div class="top-finding-row">
+            <div class="top-finding-icon">&#128205;</div>
+            <div class="top-finding-text">
+              <strong>No dedicated location pages</strong>
+              <span>Two office addresses listed in footer but no SEO-optimized pages for each market.</span>
+            </div>
+            <div class="priority-badge priority-important">Important</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section class="flow-section" id="methodology">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Audit Methodology</p>
+        <h2>How This Report Was Generated</h2>
+        <p>AI-powered tools and data pipelines, from scrape to deliverable.</p>
+      </div>
+
+      <div class="flow-grid animate-in">
+        <div class="flow-card">
+          <div class="flow-icon flow-icon-blue">&#127760;</div>
+          <h3>Scrape</h3>
+          <p>Automated crawler extracted full page content, metadata, and structure</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-card">
+          <div class="flow-icon flow-icon-purple">&#129504;</div>
+          <h3>Analyze</h3>
+          <p>AI analyzed content across 7 SEO categories with scoring</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-card">
+          <div class="flow-icon flow-icon-amber">&#128202;</div>
+          <h3>Score</h3>
+          <p>Each category scored 1-10 with weighted overall score</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-card">
+          <div class="flow-icon flow-icon-green">&#128196;</div>
+          <h3>Report</h3>
+          <p>Formatted into client-ready report with action items</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools & Data -->
+  <section style="background:var(--bg-surface-alt);">
+    <div class="container">
+      <div class="meta-card animate-in" style="margin:0 auto;">
+        <h3>Tools & Data Sources</h3>
+        <table class="meta-table">
+          <tr>
+            <td>Web Scraping</td>
+            <td>Automated web crawler extracted full page content, metadata, and site structure</td>
+          </tr>
+          <tr>
+            <td>AI Analysis Engine</td>
+            <td><strong>Claude (Anthropic)</strong> -- Analyzed scraped content across 7 SEO categories, identified issues, and scored each area</td>
+          </tr>
+          <tr>
+            <td>Competitive Intel</td>
+            <td><strong>Web Search</strong> -- Cross-referenced Nexvel's online presence across Google, Yelp, Glassdoor, LinkedIn, and Crunchbase</td>
+          </tr>
+          <tr>
+            <td>SEO Data</td>
+            <td>Automated SEO analysis across multiple data sources including keyword rankings, traffic estimation, competitor analysis, and site performance.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="meta-card animate-in">
+        <h3>Raw Data Extracted</h3>
+        <table class="meta-table">
+          <tr><td>CMS</td><td>WordPress 6.9.4 (behind Nginx/Cloudflare)</td></tr>
+          <tr><td>Slider Plugin</td><td>Slider Revolution 6.5.31</td></tr>
+          <tr><td>Domain Rank</td><td><strong>401</strong></td></tr>
+          <tr><td>Ranked Keywords</td><td><strong>13 total</strong> (only 3 in top 10, all branded)</td></tr>
+          <tr><td>Est. Monthly Traffic</td><td><strong>~79 visits</strong></td></tr>
+          <tr><td>Traffic Value</td><td><strong>$107/month</strong></td></tr>
+          <tr><td>Performance</td><td><strong>71/100</strong></td></tr>
+          <tr><td>Accessibility</td><td><strong>82/100</strong></td></tr>
+          <tr><td>SEO Score</td><td><strong>85/100</strong></td></tr>
+          <tr><td>Title Tag</td><td>Web Design Philadelphia, SEO, Marketing & IT Support | Nexvel Solutions <span style="color:var(--amber)">(69 chars)</span></td></tr>
+          <tr><td>Meta Description</td><td>With offices in Philadelphia & Elkins Park, Nexvel helps grow & support local businesses... <span style="color:var(--green);">(good length)</span></td></tr>
+          <tr><td>OG Tags</td><td>Present (title, description, image, URL)</td></tr>
+          <tr><td>Twitter Card</td><td>summary_large_image</td></tr>
+          <tr><td>Last Modified</td><td>February 5, 2021 <span style="color:var(--red);">(5+ years ago)</span></td></tr>
+          <tr><td>Robots</td><td>index, follow, max-image-preview:large</td></tr>
+          <tr><td>Locations</td><td>325 Yorktown Plaza, Elkins Park, PA 19027 &middot; 1010 N Hancock St, Philadelphia, PA 19123</td></tr>
+          <tr><td>Phone</td><td>215.885.8686</td></tr>
+          <tr><td>Industries Served</td><td>Healthcare, Home Services, Legal, Retail, Automotive, Local Brands</td></tr>
+          <tr><td>Partners</td><td>Jive, Moz Local, AWS, Google Partners</td></tr>
+          <tr><td>Top Competitor</td><td><strong><a href="https://seolocale.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">SEO Locale</a></strong>: 3,656 keywords, ~24,583 ETV (311x more traffic)</td></tr>
+        </table>
+      </div>
+
+      <div class="meta-card animate-in">
+        <h3>Production Pipeline (Gumloop)</h3>
+        <p style="font-size:0.9rem;margin-bottom:0.75rem;">This audit combines content analysis with live performance data. The entire process runs as an automated workflow:</p>
+        <div class="pipeline-block">
+          <span class="comment"># Gumloop Workflow: Website Audit Pipeline</span><br />
+          <span class="input">INPUT</span> &nbsp;&rarr;&nbsp; User enters URL<br />
+          <span class="node">NODE 1</span> &rarr;&nbsp; Crawler extracts page content &amp; metadata<br />
+          <span class="node">NODE 2</span> &rarr;&nbsp; Analysis engine scores performance, keywords, &amp; competitors<br />
+          <span class="ai">NODE 3</span> &rarr;&nbsp; AI analyzes across 7 SEO categories (scored)<br />
+          <span class="ai">NODE 4</span> &rarr;&nbsp; AI formats professional client-ready report<br />
+          <span class="input">NODE 5</span> &rarr;&nbsp; Save to Google Sheets (audit history)<br />
+          <span class="input">NODE 6</span> &rarr;&nbsp; Draft email via Gmail with report attached<br />
+          <span class="output">OUTPUT</span> &rarr;&nbsp; Branded audit report delivered
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED FINDINGS -->
+  <section id="findings">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Detailed Findings</p>
+        <h2>Category-by-Category Breakdown</h2>
+        <p>Click any category to expand the full analysis.</p>
+      </div>
+
+      <div class="findings-list">
+
+        <!-- Card 1: Content Freshness -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-red"></div>
+              <div class="finding-title">Content Freshness & Blog</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-low">2/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li>Most recent blog post: <strong>"Important Message To Our Customers About Coronavirus"</strong> -- dated April 2020</li>
+              <li>Other blog posts date back to <strong>2016</strong> (SMX East recap, PPC+SEO article, reputation management)</li>
+              <li>Only 4 blog posts visible on the homepage -- none in the last 6 years</li>
+              <li>Homepage statistics cite "3+ Billion Google Searches Per Day" -- the actual number is now 8.5+ billion, suggesting the content hasn't been reviewed since ~2018</li>
+            </ul>
+            <h4>Why This Matters</h4>
+            <p>Google rewards fresh, regularly updated content. For an agency that sells SEO services, having a dormant blog signals to both Google and potential clients that the site is on autopilot. Competitors with active blogs will outrank Nexvel for informational queries.</p>
+            <h4>Recommendations</h4>
+            <ul>
+              <li><strong>Immediate:</strong> Update or remove the COVID-19 post. Update homepage statistics to current numbers.</li>
+              <li><strong>Short-term:</strong> Publish 2-4 blog posts per month targeting local SEO keywords (e.g., "web design Elkins Park", "SEO services Philadelphia").</li>
+              <li><strong>Automation opportunity:</strong> Build an AI content pipeline that drafts SEO-optimized blog posts from keyword clusters, reducing production time from hours to minutes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: Meta Tags -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-yellow"></div>
+              <div class="finding-title">Meta Tags & Title</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-mid">5/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li><strong>Title tag:</strong> "Web Design Philadelphia, SEO, Marketing & IT Support | Nexvel Solutions" -- 69 characters (recommended: under 60)</li>
+              <li><strong>Meta description:</strong> "With offices in Philadelphia & Elkins Park, Nexvel helps grow & support local businesses with web development, creative design, marketing, & IT services." -- good length and content</li>
+              <li>Open Graph tags are present and properly configured</li>
+              <li>Twitter card is set to summary_large_image</li>
+              <li>Robots meta allows indexing</li>
+            </ul>
+            <h4>Recommendations</h4>
+            <ul>
+              <li>Shorten title tag to under 60 characters. Suggestion: <em>"Philadelphia Web Design, SEO & IT | Nexvel Solutions"</em> (52 chars)</li>
+              <li>Add location-specific title tags for any service pages</li>
+              <li>Ensure every page has a unique meta description (audit inner pages to verify)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: Heading Structure -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-yellow"></div>
+              <div class="finding-title">Heading Structure</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-mid">5/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li>No explicit H1 tag detected -- the main heading "Hi, We're NeXVel" appears to be styled text rather than a semantic H1</li>
+              <li>Multiple H2 tags are present and mostly descriptive</li>
+              <li>H3/H4 hierarchy is reasonable but some headings are generic ("HEALTHCARE", "LEGAL" without context)</li>
+              <li>Section headings are marketing-focused rather than keyword-optimized</li>
+            </ul>
+            <h4>Recommendations</h4>
+            <ul>
+              <li>Add a proper H1 tag with the primary keyword (e.g., "Philadelphia Digital Marketing & IT Agency")</li>
+              <li>Ensure only one H1 per page</li>
+              <li>Add keyword-rich context to industry headings (e.g., "Healthcare Marketing Solutions" instead of just "HEALTHCARE")</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4: Image Optimization -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-red"></div>
+              <div class="finding-title">Image Optimization</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-low">3/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li>Multiple images use <strong>generic alt text</strong>: "icon_01", "icon-healthcare", "service_01", "service_02", etc.</li>
+              <li>At least <strong>5 instances of RevSlider's dummy.png</strong> placeholder image detected -- these are invisible placeholder files</li>
+              <li>Client portfolio images use filenames like "client_king-1.jpg" without descriptive alt text</li>
+              <li>Logo images have reasonable alt text ("Nexvel Solutions")</li>
+              <li>No WebP format detected -- all images appear to be JPG/PNG (older, larger formats)</li>
+            </ul>
+            <h4>Recommendations</h4>
+            <ul>
+              <li>Replace all generic alt text with descriptive, keyword-rich alternatives (e.g., "icon_01" to "Philadelphia healthcare marketing icon")</li>
+              <li>Remove or replace all dummy.png placeholder references</li>
+              <li>Convert images to WebP format for faster loading</li>
+              <li>Add descriptive alt text to all client portfolio images</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 5: Technical SEO -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-red"></div>
+              <div class="finding-title">Technical SEO & Structured Data</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-low">2/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li><strong style="color:var(--red);">No structured data / schema markup detected</strong> -- no LocalBusiness, Organization, or any JSON-LD schema</li>
+              <li><strong>Performance: 71/100</strong> -- needs improvement (needs improvement across core metrics )</li>
+              <li><strong>Accessibility: 82/100</strong> -- acceptable but with color contrast and heading order issues</li>
+              <li><strong>SEO Score: 85/100</strong> -- title tag too long (69 chars), but crawlability and meta description pass</li>
+              <li>Site infrastructure uses modern hosting</li>
+              <li><strong>Domain Rank: 401</strong> with only <strong>13 ranked keywords</strong> and <strong>~79 estimated monthly visits</strong></li>
+              <li><strong>Full site crawl (41 pages):</strong> 27 pages return 200, <strong>14 pages return 301 redirects</strong> from old URL structure</li>
+              <li><strong>Homepage has NO H1 tag</strong> -- confirmed by full site crawl. 5 other pages also missing H1</li>
+              <li>A <strong>test page ("test-yoast-gif")</strong> is publicly accessible and indexed</li>
+              <li><strong>SSL certificate expires June 23, 2026</strong> (Let's Encrypt) -- needs renewal monitoring</li>
+              <li><strong>Google Business Profile: 4.9 stars, only 7 reviews</strong> -- competitors have 100-155 reviews</li>
+              <li><strong>Not in Google Maps top 10</strong> for "digital marketing agency Elkins Park PA" -- their HQ location</li>
+              <li>Two physical locations listed but no dedicated location pages optimized for local search</li>
+              <li>WordPress version 6.9.4 and RevSlider 6.5.31 -- need to verify these are the latest and fully patched</li>
+              <li>Navigation uses anchor links (#home, #clients, #marketing-technology) -- search engines may not crawl these as separate pages</li>
+              <li>The homepage is essentially a single-page design, limiting keyword targeting opportunities</li>
+            </ul>
+            <h4>Recommendations</h4>
+            <ul>
+              <li><strong>Critical:</strong> Add LocalBusiness schema markup for both the Elkins Park and Philadelphia locations</li>
+              <li>Create dedicated, SEO-optimized pages for each service category (web design, SEO, PPC, etc.)</li>
+              <li>Create location-specific landing pages for each office</li>
+              <li>Implement breadcrumb schema across all pages</li>
+              <li>Audit WordPress and plugin versions for security vulnerabilities</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 6: Internal Linking -->
+        <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-header-left">
+              <div class="finding-status status-yellow"></div>
+              <div class="finding-title">Internal Linking & Navigation</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="finding-score score-mid">6/10</div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="finding-body">
+            <h4>What We Found</h4>
+            <ul>
+              <li>Main navigation has 6 items: Home, About, Services, Our Work, Careers, Contact</li>
+              <li>Client portfolio links to individual case study pages (good)</li>
+              <li>Multiple CTA buttons throughout ("Let's Get Started", "Contact Us", "Get a Free Consultation")</li>
+              <li>Blog links exist but lead to extremely outdated content</li>
+              <li>Footer contains duplicate navigation links plus social profiles</li>
+              <li>Most internal links are anchor links on the same page rather than links to distinct pages</li>
+            </ul>
+            <h4>Recommendations</h4>
+            <ul>
+              <li>Create dedicated service pages and link to them from the navigation (instead of anchor sections)</li>
+              <li>Add contextual internal links within blog content (once new content is created)</li>
+              <li>Add a sitemap page and ensure XML sitemap is submitted to Google Search Console</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTION PLAN -->
+  <section id="actions" style="background:var(--bg-surface-alt);">
+    <div class="container">
+      <div class="section-header animate-in">
+        <p class="eyebrow">Priority Action Plan</p>
+        <h2>What to Fix First</h2>
+        <p>Ranked by business impact -- what to fix first and what can be automated.</p>
+      </div>
+
+      <div class="actions-list">
+        <div class="action-item ai-critical animate-in">
+          <div class="action-number num-critical">01</div>
+          <div class="action-content">
+            <h4>Add LocalBusiness Schema Markup</h4>
+            <p>Implement JSON-LD structured data for both office locations. This directly impacts local search visibility and Google Business Profile integration. <strong class="critical">Critical -- high impact, low effort.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-critical animate-in">
+          <div class="action-number num-critical">02</div>
+          <div class="action-content">
+            <h4>Restart the Blog with AI-Powered Content</h4>
+            <p>Build an automated content pipeline that generates SEO-optimized posts targeting local keywords. Go from zero posts per year to 2-4 per month with minimal manual effort. <strong class="critical">Critical -- biggest long-term SEO impact.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-critical animate-in">
+          <div class="action-number num-critical">03</div>
+          <div class="action-content">
+            <h4>Fix All Image Alt Text & Remove Placeholders</h4>
+            <p>Replace generic alt text on all images with descriptive, keyword-rich alternatives. Remove all dummy.png references. An AI script can generate appropriate alt text for every image on the site. <strong class="critical">Critical -- quick win for accessibility and SEO.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-important animate-in">
+          <div class="action-number num-important">04</div>
+          <div class="action-content">
+            <h4>Update Outdated Homepage Content</h4>
+            <p>Fix the Google search volume statistic (3B to 8.5B+), review all other stats and claims for accuracy. Update the copyright year and any other stale references. <strong class="important">Important -- credibility issue.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-important animate-in">
+          <div class="action-number num-important">05</div>
+          <div class="action-content">
+            <h4>Create Dedicated Service & Location Pages</h4>
+            <p>Break the single-page homepage into distinct, keyword-optimized pages for each service and location. <strong>17,000+ monthly searches</strong> across target keywords that Nexvel ranks for none of. <strong class="important">Important -- multiplies keyword targeting opportunities.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-important animate-in">
+          <div class="action-number num-important">06</div>
+          <div class="action-content">
+            <h4>Shorten Title Tag & Optimize Per-Page Titles</h4>
+            <p>Trim the homepage title to under 60 characters. Ensure every page has a unique, keyword-focused title tag. <strong class="important">Important -- easy fix, immediate ranking signal improvement.</strong></p>
+          </div>
+        </div>
+
+        <div class="action-item ai-nice animate-in">
+          <div class="action-number num-nice">07</div>
+          <div class="action-content">
+            <h4>Convert Images to WebP & Optimize Loading</h4>
+            <p>All images appear to be JPG/PNG. Converting to WebP would reduce file sizes by 25-35% and improve Core Web Vitals. <strong class="nice">Nice to have -- improves page speed scores.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <div class="container">
+      <h2>Every Issue Above Can Be Automated</h2>
+      <p>From AI-generated blog content to automated SEO audits that run on every client site -- these aren't one-time fixes. They're the foundation for a scalable, AI-powered workflow. This report analyzed all 41 pages of your website, checked your Google Maps rankings, verified your Google Business Profile, and measured your social media presence -- all through automated analysis.</p>
+      <p class="accent">This report was generated using the same automated analysis tools that power our client audit products.
+      <a href="https://brothersautomate.com" class="btn-primary">See What Else We Build &rarr;</a>
+    </div>
+  </div>
+</ClientReportLayout>
+
+<style is:global>
+
+  :root {
+    --bg-primary: #fdfcfa;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #f8f7f4;
+    --border: #e8e6e1;
+    --border-light: #f0eeea;
+    --navy: #1a365d;
+    --navy-light: #2c5282;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --blue: #3182ce;
+    --blue-light: #63b3ed;
+    --orange: #ed8936;
+    --orange-hover: #dd6b20;
+    --orange-light: #fbd38d;
+    --red: #dc2626;
+    --green: #16a34a;
+    --amber: #f59e0b;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+    --radius: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    --transition: 200ms ease;
+    --transition-slow: 300ms ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--navy);
+    line-height: 1.6;
+    background: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; color: var(--navy); letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; }
+  h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+  h3 { font-size: clamp(1.125rem, 2.5vw, 1.375rem); }
+  p { color: var(--text-secondary); line-height: 1.7; }
+  a { color: var(--blue); text-decoration: none; }
+  strong { color: var(--navy); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Hero */
+  .hero {
+    padding: 140px 0 80px;
+    text-align: center;
+    background: var(--bg-primary);
+  }
+  .hero .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(237,137,54,0.1);
+    border: 1px solid rgba(237,137,54,0.3);
+    color: var(--orange);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 { margin-bottom: 0.5rem; }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--orange), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .url { font-size: 1.125rem; color: var(--blue); font-weight: 600; margin-bottom: 0.5rem; }
+  .hero .date { font-size: 0.85rem; color: var(--text-muted); }
+  .hero p.summary { max-width: 680px; margin: 1.5rem auto 0; font-size: 1.05rem; }
+
+  /* Score ring */
+  .score-ring-container { display: flex; justify-content: center; margin: 2.5rem 0; }
+  .score-ring { position: relative; width: 200px; height: 200px; }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring circle { fill: none; stroke-width: 8; stroke-linecap: round; }
+  .score-ring .bg { stroke: var(--border); }
+  .score-ring .fg { stroke: var(--amber); transition: stroke-dashoffset 1.5s ease; }
+  .score-ring .score-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .score-ring .score-number { font-size: 3.25rem; font-weight: 800; color: var(--amber); }
+  .score-ring .score-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; justify-content: center; gap: 1rem;
+    flex-wrap: wrap; margin-top: 2rem;
+  }
+  .stat-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    min-width: 140px;
+    flex: 1;
+    max-width: 180px;
+    transition: all var(--transition);
+  }
+  .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .stat-card .stat-number { display: block; font-size: 1.5rem; font-weight: 800; }
+  .stat-card .stat-number.score-low { color: var(--red); }
+  .stat-card .stat-number.score-mid { color: var(--amber); }
+  .stat-card .stat-number.score-high { color: var(--green); }
+  .stat-card .stat-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-top: 0.25rem; }
+
+  /* Phase nav */
+  .phase-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,252,250,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0.75rem 0;
+  }
+  .phase-nav-inner {
+    display: flex; gap: 0.5rem; overflow-x: auto;
+    scrollbar-width: none; justify-content: center; flex-wrap: wrap;
+  }
+  .phase-nav-inner::-webkit-scrollbar { display: none; }
+  .phase-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--border);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .phase-btn:hover { border-color: var(--blue); color: var(--navy); }
+  .phase-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  /* Sections */
+  section { padding: 4rem 0; }
+  .section-header { text-align: center; max-width: 700px; margin: 0 auto 2.5rem; }
+  .section-header .eyebrow {
+    font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.75rem;
+  }
+
+  /* Executive summary card */
+  .exec-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--amber);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .exec-card h3 { margin-bottom: 0.75rem; }
+  .exec-card p { font-size: 0.95rem; }
+  .exec-card strong { color: var(--amber); }
+
+  /* Findings cards */
+  .findings-list { max-width: 900px; margin: 0 auto; }
+  .finding-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    transition: all var(--transition);
+    cursor: pointer;
+    user-select: none;
+  }
+  .finding-card:hover { box-shadow: var(--shadow-md); }
+  .finding-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .finding-header-left { display: flex; align-items: center; gap: 1rem; flex: 1; }
+  .finding-status {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .status-red { background: var(--red); box-shadow: 0 0 8px rgba(220,38,38,0.3); }
+  .status-yellow { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.3); }
+  .status-green { background: var(--green); box-shadow: 0 0 8px rgba(22,163,74,0.3); }
+  .finding-title { font-size: 1rem; font-weight: 600; color: var(--navy); }
+  .finding-score {
+    font-size: 1.25rem; font-weight: 800; padding: 0.25rem 0.75rem;
+    border-radius: var(--radius); min-width: 56px; text-align: center;
+  }
+  .finding-score.score-low { color: var(--red); background: rgba(220,38,38,0.08); }
+  .finding-score.score-mid { color: var(--amber); background: rgba(245,158,11,0.08); }
+  .finding-score.score-high { color: var(--green); background: rgba(22,163,74,0.08); }
+
+  .chevron {
+    width: 20px; height: 20px; transition: transform var(--transition); color: var(--text-muted);
+  }
+  .finding-card.open .chevron { transform: rotate(180deg); }
+
+  .finding-body {
+    display: none; margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .finding-card.open .finding-body { display: block; }
+  .finding-body h4 {
+    font-size: 0.75rem; font-weight: 700; color: var(--blue);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.5rem; margin-top: 1.25rem;
+  }
+  .finding-body h4:first-child { margin-top: 0; }
+  .finding-body p { font-size: 0.9rem; }
+  .finding-body ul { padding-left: 1.25rem; margin-top: 0.25rem; }
+  .finding-body li { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.4rem; line-height: 1.7; }
+  .finding-body li strong { color: var(--navy); }
+
+  /* Top findings */
+  .top-findings { max-width: 900px; margin: 2rem auto 0; }
+  .top-finding-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .top-finding-row:last-child { border-bottom: none; }
+  .top-finding-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; }
+  .top-finding-text { flex: 1; }
+  .top-finding-text strong { color: var(--navy); font-weight: 600; font-size: 0.95rem; }
+  .top-finding-text span { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+  .priority-badge {
+    padding: 0.2rem 0.6rem; border-radius: var(--radius-full);
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; flex-shrink: 0; margin-top: 2px;
+  }
+  .priority-critical { background: rgba(220,38,38,0.08); color: var(--red); }
+  .priority-important { background: rgba(245,158,11,0.08); color: var(--amber); }
+  .priority-minor { background: rgba(49,130,206,0.08); color: var(--blue); }
+
+  /* Methodology */
+  .flow-section { background: var(--navy); color: white; padding: 5rem 0; }
+  .flow-section h2, .flow-section h3 { color: white; }
+  .flow-section p { color: rgba(255,255,255,0.7); }
+  .flow-section .eyebrow { color: var(--orange); }
+
+  .flow-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .flow-grid { grid-template-columns: repeat(7, 1fr); align-items: center; }
+  }
+  .flow-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: all var(--transition);
+  }
+  .flow-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .flow-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; margin: 0 auto 0.75rem;
+  }
+  .flow-icon-blue { background: rgba(49,130,206,0.2); }
+  .flow-icon-purple { background: rgba(168,85,247,0.2); }
+  .flow-icon-amber { background: rgba(245,158,11,0.2); }
+  .flow-icon-green { background: rgba(22,163,74,0.2); }
+  .flow-card h3 { font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .flow-card p { font-size: 0.78rem; }
+  .flow-arrow {
+    display: none; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.25); font-size: 1.25rem;
+  }
+  @media (min-width: 768px) { .flow-arrow { display: flex; } }
+
+  /* Meta table */
+  .meta-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+    overflow-x: auto;
+  }
+  .meta-card h3 { margin-bottom: 1rem; }
+  .meta-table { width: 100%; border-collapse: collapse; }
+  .meta-table td {
+    padding: 0.65rem 1rem; font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+  .meta-table tr:last-child td { border-bottom: none; }
+  .meta-table td:first-child { color: var(--text-muted); width: 180px; font-weight: 600; font-size: 0.8rem; }
+  .meta-table td:last-child { color: var(--navy); }
+
+  /* Tech badges */
+  .tech-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+  .tech-badge {
+    padding: 0.2rem 0.6rem; border-radius: var(--radius-full);
+    font-size: 0.7rem; font-weight: 500;
+    background: var(--bg-surface-alt); border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+  }
+
+  /* Pipeline code block */
+  .pipeline-block {
+    background: var(--navy);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--blue-light);
+    line-height: 2.2;
+    margin-top: 1rem;
+    overflow-x: auto;
+  }
+  .pipeline-block .comment { color: var(--text-muted); }
+  .pipeline-block .input { color: var(--green); }
+  .pipeline-block .node { color: #a78bfa; }
+  .pipeline-block .ai { color: var(--amber); }
+  .pipeline-block .output { color: var(--blue-light); }
+
+  /* Action items */
+  .actions-list { max-width: 900px; margin: 0 auto; }
+  .action-item {
+    display: flex; gap: 1rem; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--border);
+    transition: all var(--transition);
+  }
+  .action-item:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+  .action-item.ai-critical { border-left-color: var(--red); }
+  .action-item.ai-important { border-left-color: var(--amber); }
+  .action-item.ai-nice { border-left-color: var(--blue); }
+  .action-number {
+    font-size: 1.25rem; font-weight: 800; flex-shrink: 0; width: 28px;
+  }
+  .action-number.num-critical { color: var(--red); }
+  .action-number.num-important { color: var(--amber); }
+  .action-number.num-nice { color: var(--blue); }
+  .action-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .action-content p { font-size: 0.85rem; }
+  .action-content strong.critical { color: var(--red); }
+  .action-content strong.important { color: var(--amber); }
+  .action-content strong.nice { color: var(--blue); }
+
+  /* CTA footer */
+  .footer-cta {
+    background: var(--navy); color: white;
+    padding: 4rem 0; text-align: center;
+  }
+  .footer-cta h2 { color: white; margin-bottom: 0.75rem; }
+  .footer-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 0.75rem; }
+  .footer-cta p.accent { color: var(--orange); font-weight: 600; font-size: 0.95rem; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem; margin-top: 1rem;
+    background: var(--orange); color: white;
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: 1rem; font-weight: 600;
+    border: none; cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background: var(--orange-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Animations */
+  .animate-in {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 767px) {
+    .stats-bar { gap: 0.5rem; }
+    .stat-card { min-width: 100px; padding: 1rem; }
+    .stat-card .stat-number { font-size: 1.25rem; }
+    .finding-header { flex-wrap: wrap; }
+    .flow-grid { grid-template-columns: 1fr; }
+    .flow-arrow { display: none; }
+    .meta-table td:first-child { width: 120px; }
+  }
+
+</style>
+
+<script>
+
+    // Scroll to section
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Update active nav on scroll
+    const sectionIds = ['overview', 'methodology', 'findings', 'actions'];
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 120;
+      let activeIdx = 0;
+      sectionIds.forEach((id, i) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= scrollPos) activeIdx = i;
+      });
+      document.querySelectorAll('.phase-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === activeIdx);
+      });
+    });
+
+    // Animate on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+    // Animate score ring on load
+    window.addEventListener('load', () => {
+      const fg = document.querySelector('.score-ring .fg');
+      const circumference = 2 * Math.PI * 88;
+      const score = 42;
+      const offset = circumference - (score / 100) * circumference;
+      fg.style.strokeDasharray = circumference;
+      fg.style.strokeDashoffset = circumference;
+      setTimeout(() => { fg.style.strokeDashoffset = offset; }, 300);
+    });
+  
+</script>
