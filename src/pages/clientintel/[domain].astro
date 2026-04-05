@@ -1,0 +1,65 @@
+---
+import ClientDetail from '../../components/react/ClientDetail';
+import { supabase } from '../../lib/supabase';
+
+export async function getStaticPaths() {
+  const { data } = await supabase.from('cs_clients').select('domain');
+  return (data || []).map(c => ({ params: { domain: c.domain } }));
+}
+
+const { domain } = Astro.params;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{domain} | Client Intel Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0a1120;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .detail-header {
+      padding: 24px 40px;
+      border-bottom: 1px solid #1a365d40;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .detail-header a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 150ms;
+    }
+    .detail-header a:hover { color: #ed8936; }
+    .detail-content {
+      padding: 32px 40px;
+      max-width: 1400px;
+    }
+    @media (max-width: 768px) {
+      .detail-header, .detail-content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="detail-header">
+    <a href="/clientintel/">&larr; All Clients</a>
+  </div>
+  <div class="detail-content">
+    <ClientDetail client:load domain={domain} />
+  </div>
+</body>
+</html>

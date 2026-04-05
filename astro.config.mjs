@@ -7,5 +7,5 @@ export default defineConfig({
   site: 'https://brothersautomate.com',
   output: 'static',
   adapter: vercel(),
-  integrations: [sitemap({ filter: (page) => !page.includes('/clients/') }), react()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/clients/') && !page.includes('/clientintel/') }), react()],
 });

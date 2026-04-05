@@ -1,0 +1,58 @@
+---
+import ClientDashboard from '../../components/react/ClientDashboard';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Client Intel Dashboard | Brothers Automate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0a1120;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .dashboard-header {
+      padding: 32px 40px 24px;
+      border-bottom: 1px solid #1a365d40;
+    }
+    .dashboard-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .dashboard-header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+    .dashboard-content {
+      padding: 32px 40px;
+      max-width: 1400px;
+    }
+    @media (max-width: 768px) {
+      .dashboard-header, .dashboard-content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>Client Intel Dashboard</h1>
+    <p>All client scan data in one place. Click a row to view details.</p>
+  </div>
+  <div class="dashboard-content">
+    <ClientDashboard client:load />
+  </div>
+</body>
+</html>
