@@ -3,90 +3,224 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 ---
 
 <ClientReportLayout title="Website Audit & Scorecard" clientName="1st Home Maintenance">
-<nav class="top-nav">
+<!-- Back link -->
+<div class="back-bar">
   <div class="container">
-    <a href="/clients/zolley/" class="nav-brand">Brothers Automate</a>
-    <a href="/clients/zolley/">&larr; Back to Overview</a>
+    <a href="/clients/zolley/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      Back to Overview
+    </a>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <span class="badge">Website Audit & Scorecard</span>
+    <h1>Website Audit Report</h1>
+    <div class="url">handymanbocaratonfl.com</div>
+    <div class="date">April 3, 2026 &middot; Prepared by Brothers Automate</div>
+
+    <!-- Score Ring -->
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle class="bg" cx="100" cy="100" r="88" />
+          <circle class="fg" cx="100" cy="100" r="88"
+            stroke-dasharray="553"
+            stroke-dashoffset="553" />
+        </svg>
+        <div class="score-text">
+          <div class="score-number">38</div>
+          <div class="score-label">out of 100</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Scores -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <span class="stat-number score-high">9/10</span>
+        <span class="stat-label">Performance</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number score-high">7/10</span>
+        <span class="stat-label">Technical Health</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number score-low">2/10</span>
+        <span class="stat-label">Content Freshness</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number score-low">1/10</span>
+        <span class="stat-label">Local Visibility</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number score-low">0/10</span>
+        <span class="stat-label">Social Presence</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="phase-nav">
+  <div class="container">
+    <div class="phase-nav-inner">
+      <button class="phase-btn active" onclick="scrollToSection('overview')">Overview</button>
+      <button class="phase-btn" onclick="scrollToSection('scores')">Score Breakdown</button>
+      <button class="phase-btn" onclick="scrollToSection('findings')">Detailed Findings</button>
+      <button class="phase-btn" onclick="scrollToSection('tech')">Tech Stack</button>
+      <button class="phase-btn" onclick="scrollToSection('actions')">Priority Actions</button>
+    </div>
   </div>
 </nav>
 
-<section class="hero">
+<!-- OVERVIEW -->
+<section id="overview" class="section">
   <div class="container">
-    <div class="hero-badge">Website Audit & Scorecard</div>
-    <h1>Your Site is Fast. But Nobody Can Find It.</h1>
-    <p>Outstanding technical performance, but critical gaps in content, local visibility, and social presence are keeping you off the map.</p>
-  </div>
-</section>
-
-<section class="score-section">
-  <div class="container">
-    <div class="score-ring-container">
-      <svg width="200" height="200" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="85" fill="none" stroke="#f1f5f9" stroke-width="12"/>
-        <circle cx="100" cy="100" r="85" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round"
-          stroke-dasharray="534" stroke-dashoffset="331"/>
-      </svg>
-      <div class="score-ring-text">
-        <div class="number score-amber">38</div>
-        <div class="label">out of 100</div>
-      </div>
+    <div class="exec-card animate-in">
+      <h3>Executive Summary</h3>
+      <p>
+        Your website is <strong>technically excellent</strong> -- scoring 97/100 on performance, running WordPress with Yoast SEO and WP Rocket. That puts you ahead of most competitor websites on speed alone. But that's where the good news ends. You have <strong>no Google Business Profile</strong>, <strong>zero reviews</strong> on any platform, <strong>no social media presence</strong>, and only <strong>6 pages</strong> total. Your site is a race car with no gas: the engine works, but you're not going anywhere. The overall marketing readiness score of <strong>38/100</strong> reflects a site that's fast and clean but invisible to customers who are actively searching for your services.
+      </p>
     </div>
-    <p class="score-grade">Your site has a strong technical foundation, but major gaps in content, local search, and social media bring your overall marketing readiness score down significantly.</p>
-  </div>
-</section>
 
-<section class="categories-section">
-  <div class="container">
-    <div class="categories-grid">
-      <div class="category-card">
-        <div class="cat-score score-green">9</div>
-        <div class="cat-max">/ 10</div>
-        <div class="cat-name">Performance</div>
-        <div class="cat-bar"><div class="cat-bar-fill bar-green" style="width: 90%"></div></div>
-      </div>
-      <div class="category-card">
-        <div class="cat-score score-green">7</div>
-        <div class="cat-max">/ 10</div>
-        <div class="cat-name">Technical Health</div>
-        <div class="cat-bar"><div class="cat-bar-fill bar-green" style="width: 70%"></div></div>
-      </div>
-      <div class="category-card">
-        <div class="cat-score score-red">2</div>
-        <div class="cat-max">/ 10</div>
-        <div class="cat-name">Content Freshness</div>
-        <div class="cat-bar"><div class="cat-bar-fill bar-red" style="width: 20%"></div></div>
-      </div>
-      <div class="category-card">
-        <div class="cat-score score-red">1</div>
-        <div class="cat-max">/ 10</div>
-        <div class="cat-name">Local Visibility</div>
-        <div class="cat-bar"><div class="cat-bar-fill bar-red" style="width: 10%"></div></div>
-      </div>
-      <div class="category-card">
-        <div class="cat-score score-red">0</div>
-        <div class="cat-max">/ 10</div>
-        <div class="cat-name">Social Presence</div>
-        <div class="cat-bar"><div class="cat-bar-fill bar-red" style="width: 2%"></div></div>
+    <!-- Top Findings -->
+    <div class="top-findings animate-in">
+      <h3>Top Findings at a Glance</h3>
+      <div class="findings-summary">
+        <div class="top-finding-row">
+          <div class="top-finding-text">
+            <strong>No Google Business Profile -- invisible on Maps</strong>
+            <span>40%+ of local clicks go to the map pack. You're not in it. Competitors have 49-286 reviews.</span>
+          </div>
+          <div class="priority-badge priority-critical">Critical</div>
+        </div>
+        <div class="top-finding-row">
+          <div class="top-finding-text">
+            <strong>Zero reviews on any platform</strong>
+            <span>Checked Google, Yelp, BBB, Angi, Glassdoor. Nothing. This is the #1 trust signal you're missing.</span>
+          </div>
+          <div class="priority-badge priority-critical">Critical</div>
+        </div>
+        <div class="top-finding-row">
+          <div class="top-finding-text">
+            <strong>No social media presence at all</strong>
+            <span>No Facebook, Instagram, Yelp listing, or BBB. Competitors are active on multiple platforms.</span>
+          </div>
+          <div class="priority-badge priority-critical">Critical</div>
+        </div>
+        <div class="top-finding-row">
+          <div class="top-finding-text">
+            <strong>Only 6 pages on the entire site</strong>
+            <span>Home, about, contact, drywall-repair, handyman-services, home-repairs. That's it.</span>
+          </div>
+          <div class="priority-badge priority-high">High</div>
+        </div>
+        <div class="top-finding-row">
+          <div class="top-finding-text">
+            <strong>97/100 performance score -- excellent foundation</strong>
+            <span>WP Rocket, Yoast SEO, fast hosting. The technical stack is solid.</span>
+          </div>
+          <div class="priority-badge priority-good">Strength</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="findings-section">
+<!-- SCORE BREAKDOWN -->
+<section id="scores" class="section alt-bg">
   <div class="container">
-    <div class="section-label">Detailed Findings</div>
-    <h2 class="section-title">What We Found</h2>
-    <p class="section-subtitle">Click any finding to expand the details.</p>
+    <div class="section-header">
+      <div class="eyebrow">Score Breakdown</div>
+      <h2>Where you're strong and where you're falling short</h2>
+    </div>
+
+    <div class="score-details">
+      <div class="score-row">
+        <div class="score-info">
+          <h4>Performance</h4>
+          <p>Page speed, loading time, Core Web Vitals, mobile responsiveness</p>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill green" style="width: 90%;"></div></div>
+          <span class="score-val green-text">9/10</span>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score-info">
+          <h4>Technical Health</h4>
+          <p>Meta tags, headings, schema markup, sitemap, robots.txt</p>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill green" style="width: 70%;"></div></div>
+          <span class="score-val green-text">7/10</span>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score-info">
+          <h4>Content Freshness</h4>
+          <p>Number of pages, blog activity, content depth, keyword targeting</p>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 20%;"></div></div>
+          <span class="score-val red-text">2/10</span>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score-info">
+          <h4>Local Visibility</h4>
+          <p>Google Business Profile, Google Maps, local pack rankings, citations</p>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 10%;"></div></div>
+          <span class="score-val red-text">1/10</span>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score-info">
+          <h4>Social Presence</h4>
+          <p>Social media profiles, review platforms, business directories</p>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill red" style="width: 2%;"></div></div>
+          <span class="score-val red-text">0/10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILED FINDINGS -->
+<section id="findings" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Detailed Findings</div>
+      <h2>What we found -- the full picture</h2>
+      <p>Click any finding to expand the details.</p>
+    </div>
 
     <div class="finding-card open">
       <div class="finding-header" onclick="this.parentElement.classList.toggle('open')">
         <span class="finding-dot red"></span>
-        <span class="finding-title">No Google Business Profile -- You're invisible on Maps</span>
+        <span class="finding-title">No Google Business Profile -- invisible on Maps</span>
         <span class="finding-category">Local</span>
         <svg class="finding-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
       </div>
       <div class="finding-body">
-        <p>A Google Business Profile is the single most impactful thing a local service business can do for online visibility. Without one, you don't appear in the map pack that shows up at the top of search results for "handyman boca raton" and similar queries. Your competitors Mr. Handyman (286 reviews), Tom & Son (71 reviews), and Best Boca (67 reviews) all dominate this space.</p>
+        <p>A Google Business Profile is the single most impactful thing a local service business can do for online visibility. Without one, you don't appear in the map pack that shows up at the top of search results for "handyman boca raton" and similar queries.</p>
+        <div class="finding-comparison">
+          <div class="comp-item them"><strong>Mr. Handyman:</strong> 286 reviews, 4.9 stars</div>
+          <div class="comp-item them"><strong>Tom & Son:</strong> 71 reviews, 4.8 stars</div>
+          <div class="comp-item them"><strong>Best Boca:</strong> 67 reviews, 4.7 stars</div>
+          <div class="comp-item you"><strong>You:</strong> Not listed</div>
+        </div>
       </div>
     </div>
 
@@ -99,6 +233,9 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
       </div>
       <div class="finding-body">
         <p>We checked Google, Yelp, BBB, Angi, and Glassdoor. You have zero reviews on every platform. For local service businesses, reviews are the #1 factor potential customers use to decide who to call. Even 10 reviews would dramatically increase trust and conversion rates.</p>
+        <div class="finding-impact">
+          <strong>Impact:</strong> Customers searching for handyman services see competitors with dozens of reviews and skip listings with none. You're losing leads before they even visit your site.
+        </div>
       </div>
     </div>
 
@@ -122,7 +259,16 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
         <svg class="finding-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
       </div>
       <div class="finding-body">
-        <p>Your site has: home, about, contact, drywall-repair, handyman-services, and home-repairs. That's it. Each page is a chance to rank for a different set of keywords. You're leaving thousands of potential search visitors on the table by not having dedicated pages for plumbing, electrical, bathroom remodeling, kitchen repair, ceiling fan installation, and more.</p>
+        <p>Your site has: home, about, contact, drywall-repair, handyman-services, and home-repairs. That's it. Each page is a chance to rank for a different set of keywords. You're leaving thousands of potential search visitors on the table.</p>
+        <div class="pages-needed">
+          <span class="page-chip">Plumbing Repairs</span>
+          <span class="page-chip">Electrical Work</span>
+          <span class="page-chip">Bathroom Remodeling</span>
+          <span class="page-chip">Kitchen Repairs</span>
+          <span class="page-chip">Ceiling Fan Installation</span>
+          <span class="page-chip">Exterior Repairs</span>
+          <span class="page-chip">Painting Services</span>
+        </div>
       </div>
     </div>
 
@@ -171,6 +317,11 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
       </div>
       <div class="finding-body">
         <p>Your site scores 97/100 on performance on both desktop and mobile. This is outstanding and better than most competitor websites. WP Rocket is doing its job well. You also score 97/100 on accessibility and 100/100 on SEO technical setup via Yoast.</p>
+        <div class="perf-scores">
+          <div class="perf-item"><span class="perf-num green-text">97</span> Performance</div>
+          <div class="perf-item"><span class="perf-num green-text">97</span> Accessibility</div>
+          <div class="perf-item"><span class="perf-num green-text">100</span> SEO (Yoast)</div>
+        </div>
       </div>
     </div>
 
@@ -188,68 +339,202 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
   </div>
 </section>
 
-<section class="actions-section">
+<!-- TECH STACK -->
+<section id="tech" class="section alt-bg">
   <div class="container">
-    <div class="section-label">Priority Actions</div>
-    <h2 class="section-title">Top 8 Fixes, Ranked by Impact</h2>
-    <ul class="action-list">
-      <li class="action-item">
-        <span class="action-priority high">1</span>
-        <div class="action-text">
-          <h4>Claim and optimize a Google Business Profile</h4>
-          <p>This is the single highest-impact action. It unlocks Google Maps visibility, review collection, and local pack rankings.</p>
+    <div class="section-header">
+      <div class="eyebrow">Technology</div>
+      <h2>Your tech stack</h2>
+      <p>What's powering your website behind the scenes.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon green-bg">WP</div>
+        <div>
+          <h4>WordPress</h4>
+          <p>Content management system. The world's most popular CMS, powering 40%+ of all websites. Easy to add new pages and content.</p>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority high">2</span>
-        <div class="action-text">
-          <h4>Start collecting Google reviews immediately</h4>
-          <p>Text or email every past customer asking for a review. Even 10-15 reviews will put you on the map.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon green-bg">SEO</div>
+        <div>
+          <h4>Yoast SEO</h4>
+          <p>SEO plugin for meta titles, descriptions, and schema markup. Properly configured and scoring 100/100 on technical SEO.</p>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority high">3</span>
-        <div class="action-text">
-          <h4>Build 5+ service-specific landing pages</h4>
-          <p>Plumbing repairs, electrical work, bathroom remodeling, kitchen repairs, ceiling fan installation. Each page targets new keywords.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon green-bg">WPR</div>
+        <div>
+          <h4>WP Rocket</h4>
+          <p>Performance and caching plugin. Responsible for your excellent 97/100 speed score. Handles minification, lazy loading, and caching.</p>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority high">4</span>
-        <div class="action-text">
-          <h4>Create a Facebook Business Page</h4>
-          <p>Free to set up, gives you another review platform, enables local advertising, and helps with social signals for SEO.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon blue-bg">GA</div>
+        <div>
+          <h4>Google Analytics</h4>
+          <p>Traffic tracking and analytics. Already installed and collecting data on visitor behavior.</p>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority med">5</span>
-        <div class="action-text">
-          <h4>Fix missing meta descriptions and duplicate H1</h4>
-          <p>Quick technical fixes in Yoast SEO. 15 minutes of work that improves click-through rates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIORITY ACTIONS -->
+<section id="actions" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Priority Actions</div>
+      <h2>Top 8 fixes, ranked by impact</h2>
+      <p>What to do first to move the needle fastest.</p>
+    </div>
+
+    <div class="action-list">
+      <div class="action-item">
+        <div class="action-num critical">1</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>Invisible on Google Maps -- no GBP listing at all</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Claim and fully optimize a Google Business Profile with service categories, hours, area, photos</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>Appear in Google Maps within 1-2 weeks. Start receiving calls directly from Maps.</span>
+          </div>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority med">6</span>
-        <div class="action-text">
-          <h4>Set up professional domain email</h4>
-          <p>Replace 1sthomemaint@gmail.com with info@handymanbocaratonfl.com for credibility.</p>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num critical">2</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>Zero reviews on any platform</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Text/email every past customer asking for a Google review. Set up automated review request system.</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>15-25 Google reviews in 90 days. Enough to compete in the map pack.</span>
+          </div>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority med">7</span>
-        <div class="action-text">
-          <h4>Add testimonials and project photos to the website</h4>
-          <p>Social proof directly on your site builds trust before visitors even call.</p>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num high">3</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>Only 6 pages targeting a handful of keywords</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Build 5+ service-specific landing pages: plumbing, electrical, bathroom, kitchen, ceiling fans</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>5-10x increase in keyword coverage. Each page ranks for new service terms.</span>
+          </div>
         </div>
-      </li>
-      <li class="action-item">
-        <span class="action-priority low">8</span>
-        <div class="action-text">
-          <h4>Create location pages for surrounding cities</h4>
-          <p>Delray Beach, Boynton Beach, Deerfield Beach, Pompano Beach. Each one captures local search traffic.</p>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num high">4</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>No social media or business directory presence</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Create Facebook Business Page and Yelp listing. Add business info, photos, services.</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>Additional review platforms, local citations, referral traffic.</span>
+          </div>
         </div>
-      </li>
-    </ul>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num medium">5</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>Missing meta descriptions and duplicate H1</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Write meta descriptions in Yoast SEO. Fix duplicate H1 on Contact page. 15 minutes total.</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>20-30% improvement in click-through rates from search results.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num medium">6</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>Gmail address instead of professional domain email</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Set up info@handymanbocaratonfl.com via Google Workspace or Zoho Mail (~$6/mo)</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>Professional credibility + better email deliverability.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num medium">7</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>No testimonials or portfolio on the website</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Add 5-10 testimonials with names and project types. Include before/after photos.</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>Increased conversion rate from website visitors to phone calls.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num low">8</div>
+        <div class="action-content">
+          <div class="action-row">
+            <span class="action-label problem">Problem</span>
+            <span>No location-specific content for surrounding cities</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label solution">Fix</span>
+            <span>Create location pages for Delray Beach, Boynton Beach, Deerfield Beach, Pompano Beach</span>
+          </div>
+          <div class="action-row">
+            <span class="action-label outcome">Result</span>
+            <span>Capture search traffic from every city you serve. Most have zero keyword difficulty.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -272,223 +557,285 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 <style is:global>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #fdfcfa; color: #1a365d; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    .top-nav { padding: 1rem 0; border-bottom: 1px solid #e8e6e1; background: #ffffff; }
-    .top-nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .top-nav a { color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
-    .top-nav a:hover { color: #1a365d; }
-    .nav-brand { font-weight: 700; color: #1a365d !important; }
+    /* Back bar */
+    .back-bar { padding: 1rem 0; border-bottom: 1px solid rgba(26,54,93,0.08); background: #fdfcfa; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    }
+    .back-link:hover { color: #1a365d; }
+    .back-link svg { width: 18px; height: 18px; }
 
     /* Hero */
     .hero {
-      padding: 100px 0 60px;
-      text-align: center;
-      background: linear-gradient(135deg, #78350f 0%, #f59e0b 50%, #92400e 100%);
-      color: white;
+      padding: 3.5rem 0 3rem; text-align: center;
+      background: linear-gradient(180deg, #fdfcfa 0%, #f8f7f4 100%);
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 9999px; padding: 0.4rem 1rem;
-      font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+    .badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: #f59e0b;
+      background: rgba(245,158,11,0.1); padding: 0.4rem 1rem;
+      border-radius: 100px; margin-bottom: 1.5rem;
     }
-    .hero h1 { font-size: clamp(1.75rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+    .url { font-size: 0.875rem; color: #64748b; margin-bottom: 0.25rem; }
+    .date { font-size: 0.8rem; color: #94a3b8; margin-bottom: 2rem; }
 
-    /* Overall Score */
-    .score-section {
-      padding: 60px 0;
-      text-align: center;
+    /* Score Ring */
+    .score-ring-wrap { display: flex; justify-content: center; margin-bottom: 2rem; }
+    .score-ring { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring .bg { fill: none; stroke: #f1f5f9; stroke-width: 12; }
+    .score-ring .fg {
+      fill: none; stroke: #f59e0b; stroke-width: 12; stroke-linecap: round;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .score-ring-container {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 1rem;
-    }
-    .score-ring-container svg { transform: rotate(-90deg); }
-    .score-ring-text {
-      position: absolute;
-      text-align: center;
-    }
-    .score-ring-text .number {
-      font-size: 3rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-    .score-ring-text .label {
-      font-size: 0.8rem;
-      color: #64748b;
-      font-weight: 500;
-    }
-    .score-grade {
-      font-size: 1.1rem;
-      color: #64748b;
-      max-width: 500px;
-      margin: 0 auto;
-    }
+    .score-text { position: absolute; text-align: center; }
+    .score-number { font-size: 3rem; font-weight: 800; color: #f59e0b; line-height: 1; }
+    .score-label { font-size: 0.8rem; color: #64748b; font-weight: 500; }
 
-    /* Category Scores */
-    .categories-section {
-      padding: 0 0 60px;
+    /* Stats bar */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+      max-width: 700px; margin: 0 auto;
     }
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
+    .stat-card {
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 12px; padding: 0.75rem 1.25rem; text-align: center;
+      min-width: 110px;
     }
-    .category-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 12px;
-      padding: 1.5rem 1rem;
-      text-align: center;
+    .stat-number { display: block; font-size: 1.25rem; font-weight: 800; }
+    .stat-label { display: block; font-size: 0.7rem; color: #64748b; font-weight: 500; margin-top: 0.1rem; }
+    .score-high { color: #16a34a; }
+    .score-mid { color: #f59e0b; }
+    .score-low { color: #dc2626; }
+
+    /* Sticky nav */
+    .phase-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .category-card .cat-score {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 0.25rem;
+    .phase-nav-inner {
+      display: flex; gap: 0.25rem; overflow-x: auto; padding: 0.75rem 0;
     }
-    .category-card .cat-max {
-      font-size: 0.8rem;
-      color: #94a3b8;
+    .phase-btn {
+      flex-shrink: 0; padding: 0.5rem 1rem; border-radius: 8px; border: none;
+      background: transparent; font-family: inherit;
+      font-size: 0.8rem; font-weight: 600; color: #64748b; cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .category-card .cat-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 0.75rem;
-      color: #1a365d;
+    .phase-btn:hover, .phase-btn.active { background: rgba(26,54,93,0.06); color: #1a365d; }
+
+    /* Sections */
+    .section { padding: 4rem 0; }
+    .alt-bg { background: #f8f7f4; }
+    .section-header { max-width: 700px; margin-bottom: 2.5rem; }
+    .eyebrow {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #ed8936; margin-bottom: 0.5rem;
     }
-    .category-card .cat-bar {
-      height: 4px;
-      background: #f1f5f9;
-      border-radius: 2px;
-      margin-top: 0.75rem;
-      overflow: hidden;
+    .section-header h2 { font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 800; line-height: 1.25; margin-bottom: 0.5rem; }
+    .section-header p { color: #64748b; font-size: 0.95rem; }
+
+    /* Executive card */
+    .exec-card {
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
     }
-    .category-card .cat-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      transition: width 1s ease;
+    .exec-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .exec-card p { font-size: 0.95rem; color: #475569; line-height: 1.75; }
+    .exec-card strong { color: #dc2626; }
+
+    /* Top findings */
+    .top-findings { margin-bottom: 2rem; }
+    .top-findings h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; }
+    .findings-summary {
+      background: #fff; border-radius: 16px; padding: 0.5rem 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04); border: 1px solid rgba(26,54,93,0.08);
     }
-    .score-red { color: #dc2626; }
-    .score-amber { color: #f59e0b; }
-    .score-green { color: #16a34a; }
-    .bar-red { background: #dc2626; }
-    .bar-amber { background: #f59e0b; }
-    .bar-green { background: #16a34a; }
+    .top-finding-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(26,54,93,0.06);
+    }
+    .top-finding-row:last-child { border-bottom: none; }
+    .top-finding-text { flex: 1; }
+    .top-finding-text strong { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .top-finding-text span { font-size: 0.82rem; color: #64748b; }
+    .priority-badge {
+      flex-shrink: 0; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem;
+      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .priority-critical { background: #fef2f2; color: #dc2626; }
+    .priority-high { background: #fffbeb; color: #d97706; }
+    .priority-good { background: #f0fdf4; color: #16a34a; }
+
+    /* Score breakdown */
+    .score-details { max-width: 800px; }
+    .score-row {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.25rem 0; border-bottom: 1px solid rgba(26,54,93,0.06);
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-info { flex: 1; }
+    .score-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .score-info p { font-size: 0.82rem; color: #64748b; }
+    .score-bar-wrap { display: flex; align-items: center; gap: 0.75rem; min-width: 200px; }
+    .score-bar { flex: 1; height: 8px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+    .score-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+    .score-bar-fill.green { background: #16a34a; }
+    .score-bar-fill.red { background: #dc2626; }
+    .score-val { font-weight: 800; font-size: 0.95rem; min-width: 40px; }
+    .green-text { color: #16a34a; }
+    .red-text { color: #dc2626; }
 
     /* Findings */
-    .findings-section {
-      padding: 60px 0;
-      background: #f8f7f4;
-    }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: #ed8936; margin-bottom: 0.5rem;
-    }
-    .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .section-subtitle { color: #64748b; margin-bottom: 2rem; }
-
     .finding-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 12px;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 12px; margin-bottom: 0.75rem; overflow: hidden;
     }
     .finding-header {
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      cursor: pointer;
-      user-select: none;
+      padding: 1rem 1.25rem; display: flex; align-items: center;
+      gap: 0.75rem; cursor: pointer; user-select: none;
     }
     .finding-header:hover { background: #f8f7f4; }
-    .finding-dot {
-      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-    }
+    .finding-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .finding-dot.red { background: #dc2626; }
     .finding-dot.amber { background: #f59e0b; }
     .finding-dot.green { background: #16a34a; }
     .finding-title { font-weight: 600; font-size: 0.95rem; flex: 1; }
     .finding-category {
-      font-size: 0.75rem; color: #94a3b8; font-weight: 500;
-      background: #f8f7f4; padding: 0.2em 0.6em; border-radius: 9999px;
+      font-size: 0.72rem; color: #94a3b8; font-weight: 500;
+      background: #f8f7f4; padding: 0.2em 0.6em; border-radius: 100px;
     }
-    .finding-chevron {
-      transition: transform 200ms ease;
-      color: #94a3b8;
-    }
+    .finding-chevron { transition: transform 200ms ease; color: #94a3b8; }
     .finding-card.open .finding-chevron { transform: rotate(180deg); }
     .finding-body {
-      display: none;
-      padding: 0 1.25rem 1.25rem 2.75rem;
-      color: #64748b;
-      font-size: 0.9rem;
+      display: none; padding: 0 1.25rem 1.25rem 2.75rem;
+      color: #475569; font-size: 0.9rem; line-height: 1.65;
     }
     .finding-card.open .finding-body { display: block; }
 
-    /* Action Items */
-    .actions-section { padding: 60px 0; }
-    .action-list { list-style: none; padding: 0; }
+    .finding-comparison {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1rem;
+    }
+    .comp-item {
+      font-size: 0.82rem; padding: 0.5rem 0.75rem; border-radius: 8px;
+    }
+    .comp-item.them { background: #f0fdf4; color: #16a34a; }
+    .comp-item.you { background: #fef2f2; color: #dc2626; }
+    .finding-impact {
+      margin-top: 0.75rem; padding: 0.75rem; background: #fffbeb;
+      border-radius: 8px; font-size: 0.85rem; color: #92400e;
+    }
+    .pages-needed { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .page-chip {
+      font-size: 0.78rem; background: #eff6ff; color: #1d4ed8;
+      padding: 0.3rem 0.65rem; border-radius: 100px; font-weight: 600;
+    }
+    .perf-scores { display: flex; gap: 1rem; margin-top: 0.75rem; }
+    .perf-item { font-size: 0.82rem; color: #64748b; }
+    .perf-num { font-weight: 800; font-size: 1.1rem; margin-right: 0.25rem; }
+
+    /* Tech stack */
+    .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .tech-card {
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 12px; padding: 1.25rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .tech-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .green-bg { background: #16a34a; }
+    .blue-bg { background: #3182ce; }
+    .tech-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .tech-card p { font-size: 0.82rem; color: #64748b; line-height: 1.5; }
+
+    /* Action items */
+    .action-list { max-width: 800px; }
     .action-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid #f0eeea;
+      display: flex; gap: 1rem; padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(26,54,93,0.06);
     }
     .action-item:last-child { border-bottom: none; }
-    .action-priority {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 28px; height: 28px; border-radius: 50%;
-      font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: white;
+    .action-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; color: #fff; flex-shrink: 0;
     }
-    .action-priority.high { background: #dc2626; }
-    .action-priority.med { background: #f59e0b; }
-    .action-priority.low { background: #3182ce; }
-    .action-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
-    .action-text p { font-size: 0.875rem; color: #64748b; }
+    .action-num.critical { background: #dc2626; }
+    .action-num.high { background: #f59e0b; }
+    .action-num.medium { background: #3182ce; }
+    .action-num.low { background: #8b5cf6; }
+    .action-content { flex: 1; }
+    .action-row { display: flex; gap: 0.5rem; margin-bottom: 0.35rem; font-size: 0.88rem; }
+    .action-row:last-child { margin-bottom: 0; }
+    .action-label {
+      flex-shrink: 0; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem;
+      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em;
+      display: inline-flex; align-items: center;
+    }
+    .action-label.problem { background: #fef2f2; color: #dc2626; }
+    .action-label.solution { background: #eff6ff; color: #1d4ed8; }
+    .action-label.outcome { background: #f0fdf4; color: #16a34a; }
 
     /* CTA */
-    .cta-section { background: #1a365d; padding: 60px 0; text-align: center; color: white; }
+    .cta-section { background: #1a365d; padding: 4rem 0; text-align: center; color: white; }
     .cta-section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; }
     .cta-section p { color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
     .btn-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #ed8936; color: white; padding: 0.875rem 2rem;
-      border-radius: 9999px; font-size: 1rem; font-weight: 600;
+      border-radius: 10px; font-size: 1rem; font-weight: 600;
       text-decoration: none; transition: all 200ms ease;
     }
-    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); }
+    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(237,137,54,0.35); }
     .footer { padding: 2rem 0; text-align: center; font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #e8e6e1; }
 
     @media (max-width: 767px) {
-      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .container { padding: 0 1.25rem; }
+      .stats-bar { gap: 0.5rem; }
+      .stat-card { min-width: 90px; padding: 0.5rem 0.75rem; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .finding-comparison { grid-template-columns: 1fr; }
+      .score-bar-wrap { min-width: 140px; }
     }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var elements = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      elements.forEach(function (el) { observer.observe(el); });
-    } else {
-      elements.forEach(function (el) { el.classList.add('visible'); });
+    // Animate score ring
+    var fg = document.querySelector('.score-ring .fg');
+    if (fg) {
+      var total = 553;
+      var score = 38;
+      var offset = total - (total * score / 100);
+      setTimeout(function() { fg.style.strokeDashoffset = offset; }, 300);
     }
+
+    // Smooth scroll
+    window.scrollToSection = function(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // Update active nav on scroll
+    var sections = document.querySelectorAll('.section[id]');
+    var navBtns = document.querySelectorAll('.phase-btn');
+    window.addEventListener('scroll', function() {
+      var scrollPos = window.scrollY + 100;
+      sections.forEach(function(section, i) {
+        if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+          navBtns.forEach(function(btn) { btn.classList.remove('active'); });
+          if (navBtns[i]) navBtns[i].classList.add('active');
+        }
+      });
+    });
   });
 </script>

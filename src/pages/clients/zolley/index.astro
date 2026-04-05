@@ -3,331 +3,574 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 ---
 
 <ClientReportLayout title="Digital Marketing Analysis" clientName="1st Home Maintenance">
+<!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <span class="header-brand">Brothers Automate</span>
+      <span class="header-tag">Client Report</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Prepared for 1st Home Maintenance</div>
-      <h1>Your Digital Marketing<br><span>Analysis is Ready</span></h1>
-      <p>We analyzed your online presence across SEO, local search, social media, and reviews. Here's what we found.</p>
-      <div class="hero-date">Prepared by Brothers Automate &middot; April 3, 2026</div>
+    <span class="hero-label fade-up">Prepared for</span>
+    <h1 class="fade-up">1st Home Maintenance</h1>
+    <p class="hero-subtitle fade-up">Digital Marketing Analysis</p>
+    <p class="hero-date fade-up">April 3, 2026 &nbsp;|&nbsp; Prepared by Brothers Automate</p>
+    <p class="hero-intro fade-up">
+      We analyzed your online presence across SEO, local search, social media, and reviews. Here's what we found -- and what to do about it.
+    </p>
+
+    <!-- Key Stats -->
+    <div class="hero-stats fade-up">
+      <div class="hero-stat-item">
+        <span class="hero-stat-number red">24</span>
+        <span class="hero-stat-label">Ranked Keywords</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-number red">0</span>
+        <span class="hero-stat-label">Google Reviews</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-number red">0</span>
+        <span class="hero-stat-label">Social Profiles</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-number amber">38</span>
+        <span class="hero-stat-label">Website Score</span>
+      </div>
     </div>
   </section>
 
-  <div class="container">
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-number red">24</div>
-        <div class="stat-label">Ranked Keywords</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number red">0</div>
-        <div class="stat-label">Google Reviews</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number red">0</div>
-        <div class="stat-label">Social Profiles</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number amber">6</div>
-        <div class="stat-label">Total Pages</div>
+  <div class="divider"><hr></div>
+
+  <!-- Executive Summary -->
+  <section class="summary-section">
+    <div class="summary-inner">
+      <div class="exec-card fade-up">
+        <h3>The Bottom Line</h3>
+        <p>
+          Your website is technically fast (97/100 performance score) -- but almost nobody can find it. You rank for just <strong>24 keywords</strong> while your closest competitor Mr. Handyman ranks for <strong>59,210</strong>. You have <strong>zero Google reviews</strong>, <strong>no Google Business Profile</strong>, <strong>no social media presence</strong>, and only <strong>6 pages</strong> on your entire site. The good news? Every target keyword has <strong>zero difficulty</strong>, meaning you can realistically reach page 1 within weeks with the right moves. The opportunity is wide open -- you just need to show up.
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 
+  <div class="divider"><hr></div>
+
+  <!-- Cards -->
   <section class="cards-section">
-    <div class="container">
-      <h2>Your Reports</h2>
-      <p class="subtitle">Click any report to see the full analysis.</p>
-      <div class="cards-grid">
-        <a href="/clients/zolley/seo-analysis" class="report-card seo">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          </div>
-          <h3>SEO & Competitor Analysis</h3>
-          <p>See how you stack up against competitors, which keywords you're missing, and the biggest opportunities to get found online.</p>
-          <span class="card-link">View full report <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-        <a href="/clients/zolley/website-audit" class="report-card audit">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-          </div>
-          <h3>Website Audit & Scorecard</h3>
-          <p>Performance, content, local visibility, and social presence scores with specific findings and recommendations.</p>
-          <span class="card-link">View full report <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-        <a href="/clients/zolley/action-plan" class="report-card action">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          </div>
-          <h3>Action Plan & Roadmap</h3>
-          <p>A prioritized, step-by-step plan organized into quick wins, growth plays, and long-term strategies to dominate local search.</p>
-          <span class="card-link">View full report <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-        <a href="/clients/zolley/research-process" class="report-card process">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <h3>Research Process</h3>
-          <p>How we conducted this analysis and what data sources informed our findings and recommendations.</p>
-          <span class="card-link">View full report <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
+    <div class="cards-grid">
 
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Talk About What's Possible?</h2>
-      <p>Let's walk through these findings together and build a plan to get your phone ringing more.</p>
-      <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="btn-cta">
-        Book a Free Strategy Call
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <a href="/clients/zolley/seo-analysis" class="card fade-up stagger-1">
+        <span class="card-number">1</span>
+        <h2>SEO & Competitor Analysis</h2>
+        <p>How you stack up against competitors, which keywords you're missing, and the biggest opportunities to get found online.</p>
+        <div class="card-preview">
+          <span class="preview-stat"><strong>480</strong> monthly searches for "handyman boca raton"</span>
+          <span class="preview-stat"><strong>KD 0</strong> difficulty on every target keyword</span>
+          <span class="preview-stat"><strong>2,467x</strong> behind top competitor in keywords</span>
+        </div>
+        <span class="card-arrow">
+          View full analysis
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
       </a>
+
+      <a href="/clients/zolley/website-audit" class="card fade-up stagger-2">
+        <span class="card-number">2</span>
+        <h2>Website Audit & Scorecard</h2>
+        <p>Performance, content, local visibility, and social presence scores with specific findings and recommendations.</p>
+        <div class="card-preview">
+          <span class="preview-stat"><strong>38/100</strong> overall marketing readiness</span>
+          <span class="preview-stat"><strong>9/10</strong> performance (your strength)</span>
+          <span class="preview-stat"><strong>0/10</strong> social presence (critical gap)</span>
+        </div>
+        <span class="card-arrow">
+          View full audit
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
+      </a>
+
+      <a href="/clients/zolley/action-plan" class="card fade-up stagger-3">
+        <span class="card-number">3</span>
+        <h2>Action Plan & Roadmap</h2>
+        <p>A prioritized, step-by-step plan organized into quick wins, growth plays, and long-term strategies.</p>
+        <div class="card-preview">
+          <span class="preview-stat"><strong>4</strong> quick wins (week 1-2)</span>
+          <span class="preview-stat"><strong>4</strong> growth plays (month 1-3)</span>
+          <span class="preview-stat"><strong>3</strong> long-term investments (month 3-6)</span>
+        </div>
+        <span class="card-arrow">
+          View full plan
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
+      </a>
+
+      <a href="/clients/zolley/research-process" class="card fade-up stagger-4">
+        <span class="card-number">4</span>
+        <h2>How We Did It</h2>
+        <p>The data sources, tools, and AI research process behind this analysis.</p>
+        <div class="card-preview">
+          <span class="preview-stat"><strong>35+</strong> data sources analyzed</span>
+          <span class="preview-stat"><strong>4</strong> parallel research agents</span>
+          <span class="preview-stat"><strong>80+</strong> tool operations run</span>
+        </div>
+        <span class="card-arrow">
+          View process
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
+      </a>
+
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      Prepared by Brothers Automate &middot; AI-powered research across 35+ data sources &middot; April 2026
-    </div>
+  <!-- Footer CTA -->
+  <section class="footer-cta">
+    <h3>Ready to Talk About What's Possible?</h3>
+    <p>Let's walk through these findings together and build a plan to get your phone ringing more.</p>
+    <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="cta-button">Book a Free Strategy Call</a>
+  </section>
+
+  <footer class="footer-bottom">
+    Brothers Automate &middot; AI-powered research across 35+ data sources &middot; April 2026
   </footer>
 </ClientReportLayout>
 
 <style is:global>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background: #fdfcfa;
       color: #1a365d;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* Hero */
-    .hero {
-      padding: 120px 0 60px;
-      text-align: center;
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-      color: white;
+    /* -- Header -- */
+    .header {
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid rgba(26, 54, 93, 0.08);
+      background: #fdfcfa;
     }
-    .hero-badge {
-      display: inline-flex;
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 9999px;
-      padding: 0.5rem 1.25rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(10px);
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 span { color: #ed8936; }
-    .hero p {
-      font-size: 1.125rem;
-      color: rgba(255,255,255,0.8);
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-    .hero-date {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.5);
+      justify-content: space-between;
     }
 
-    /* Stats Bar */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: #e8e6e1;
-      border-radius: 16px;
-      overflow: hidden;
-      margin: -40px auto 0;
-      max-width: 900px;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+    .header-brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a365d;
+      letter-spacing: -0.01em;
     }
-    .stat-item {
-      background: #ffffff;
-      padding: 1.5rem 1rem;
+
+    .header-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    /* -- Hero -- */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4.5rem 2rem 3rem;
       text-align: center;
     }
-    .stat-number {
-      font-size: 2rem;
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ed8936;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 800;
       color: #1a365d;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 500;
+      color: #3182ce;
+      margin-bottom: 1rem;
+    }
+
+    .hero-date {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .hero-intro {
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 100px;
+    }
+
+    .hero-stat-number {
+      font-size: 2rem;
+      font-weight: 800;
       line-height: 1.1;
     }
-    .stat-number.red { color: #dc2626; }
-    .stat-number.amber { color: #f59e0b; }
-    .stat-number.green { color: #16a34a; }
-    .stat-label {
-      font-size: 0.8rem;
+
+    .hero-stat-number.red { color: #dc2626; }
+    .hero-stat-number.amber { color: #f59e0b; }
+    .hero-stat-number.green { color: #16a34a; }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
       color: #64748b;
       font-weight: 500;
       margin-top: 0.25rem;
     }
 
-    /* Cards Section */
-    .cards-section {
-      padding: 80px 0;
+    /* -- Divider -- */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
-    .cards-section h2 {
-      text-align: center;
-      font-size: 1.75rem;
+
+    .divider hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(26, 54, 93, 0.12), transparent);
+    }
+
+    /* -- Executive Summary -- */
+    .summary-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    .exec-card {
+      background: #fff;
+      border: 1px solid rgba(26, 54, 93, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+    }
+
+    .exec-card h3 {
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      color: #1a365d;
+      margin-bottom: 0.75rem;
     }
-    .cards-section .subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 3rem;
-      font-size: 1.05rem;
+
+    .exec-card p {
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.75;
     }
+
+    .exec-card strong {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* -- Cards Grid -- */
+    .cards-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
-    .report-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
+
+    .card {
+      position: relative;
+      background: #fff;
+      border: 1px solid rgba(26, 54, 93, 0.08);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 2.25rem 2rem 2rem;
       text-decoration: none;
       color: inherit;
-      transition: all 300ms ease;
-      position: relative;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
-    .report-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
-      border-color: #ed8936;
-    }
-    .report-card::before {
+
+    .card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 3px;
+      background: linear-gradient(90deg, #ed8936, #f6ad55);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .report-card.seo::before { background: #dc2626; }
-    .report-card.audit::before { background: #f59e0b; }
-    .report-card.action::before { background: #16a34a; }
-    .report-card.process::before { background: #3182ce; }
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26, 54, 93, 0.1), 0 4px 12px rgba(26, 54, 93, 0.06);
+      border-color: rgba(237, 137, 54, 0.25);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-number {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(26, 54, 93, 0.06);
+      color: #1a365d;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      transition: background 0.3s ease, color 0.3s ease;
     }
-    .seo .card-icon { background: #fef2f2; }
-    .audit .card-icon { background: #fffbeb; }
-    .action .card-icon { background: #f0fdf4; }
-    .process .card-icon { background: #eff6ff; }
-    .report-card h3 {
+
+    .card:hover .card-number {
+      background: #ed8936;
+      color: #fff;
+    }
+
+    .card h2 {
       font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      color: #1a365d;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
     }
-    .report-card p {
+
+    .card p {
+      font-size: 0.925rem;
       color: #64748b;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
+      line-height: 1.65;
     }
-    .card-link {
-      font-size: 0.875rem;
+
+    /* Card Preview Stats */
+    .card-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(26, 54, 93, 0.06);
+    }
+
+    .preview-stat {
+      font-size: 0.8rem;
+      color: #64748b;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .preview-stat::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ed8936;
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+    }
+
+    .preview-stat strong {
+      color: #1a365d;
+      font-weight: 700;
+    }
+
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #ed8936;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+      transition: gap 0.25s ease;
     }
-    .card-link svg { transition: transform 200ms ease; }
-    .report-card:hover .card-link svg { transform: translateX(4px); }
 
-    /* CTA */
-    .cta-section {
+    .card:hover .card-arrow {
+      gap: 0.7rem;
+    }
+
+    .card-arrow svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover .card-arrow svg {
+      transform: translateX(2px);
+    }
+
+    /* -- Footer CTA -- */
+    .footer-cta {
       background: #1a365d;
-      padding: 60px 0;
+      padding: 4rem 2rem;
       text-align: center;
-      color: white;
     }
-    .cta-section h2 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .cta-section p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 1.5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #ed8936;
-      color: white;
-      padding: 0.875rem 2rem;
-      border-radius: 9999px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 200ms ease;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); }
 
-    /* Footer */
-    .footer {
-      padding: 2rem 0;
+    .footer-cta h3 {
+      font-size: clamp(1.4rem, 3vw, 1.75rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-cta p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: #ed8936;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .cta-button:hover {
+      background: #dd6b20;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(237, 137, 54, 0.35);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
       text-align: center;
       font-size: 0.8rem;
       color: #94a3b8;
-      border-top: 1px solid #e8e6e1;
     }
 
-    @media (max-width: 767px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .cards-grid { grid-template-columns: 1fr; }
-      .hero { padding: 100px 0 60px; }
+    /* -- Animations -- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.15s; }
+    .stagger-3 { transition-delay: 0.25s; }
+    .stagger-4 { transition-delay: 0.35s; }
+
+    /* -- Responsive -- */
+    @media (max-width: 767px) {
+      .header {
+        padding: 1rem 1.25rem;
+      }
+
+      .hero {
+        padding: 3rem 1.25rem 2.25rem;
+      }
+
+      .hero-stats {
+        gap: 1.25rem;
+      }
+
+      .summary-section {
+        padding: 2rem 1.25rem;
+      }
+
+      .cards-section {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .card {
+        padding: 1.75rem 1.5rem 1.5rem;
+      }
+
+      .footer-cta {
+        padding: 3rem 1.25rem;
+      }
+    }
+
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var elements = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      elements.forEach(function (el) { observer.observe(el); });
-    } else {
-      elements.forEach(function (el) { el.classList.add('visible'); });
-    }
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elements = document.querySelectorAll('.fade-up');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        elements.forEach(function (el) { observer.observe(el); });
+      } else {
+        elements.forEach(function (el) { el.classList.add('visible'); });
+      }
+    });
 </script>

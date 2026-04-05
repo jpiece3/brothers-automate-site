@@ -2,323 +2,546 @@
 import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 ---
 
-<ClientReportLayout title="Research Process" clientName="1st Home Maintenance">
-<nav class="top-nav">
-  <div class="container">
-    <a href="/clients/zolley/" class="nav-brand">Brothers Automate</a>
-    <a href="/clients/zolley/">&larr; Back to Overview</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="container">
-    <div class="hero-badge">Our Research Process</div>
-    <h1>How We Built This Analysis</h1>
-    <p>AI-powered research across 35+ data sources, synthesized into clear findings and actionable recommendations.</p>
-  </div>
-</section>
-
-<section class="steps-section">
-  <div class="container">
-    <div style="text-align: center; margin-bottom: 3rem;">
-      <div class="section-label">4-Step Process</div>
-      <h2 class="section-title">From Data Collection to Actionable Insights</h2>
-    </div>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>SEO & Technical Audit</h3>
-        <p>We analyzed your website's technical health, keyword rankings, competitor landscape, and search visibility across all major search engines.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>Company Intelligence</h3>
-        <p>We researched your business profile, online reputation, brand mentions, and competitive positioning in the Boca Raton handyman market.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>Local Maps & Search</h3>
-        <p>We checked your Google Maps presence, local pack rankings, competitor reviews, and local search visibility across all relevant queries.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">4</div>
-        <h3>Social & Reviews</h3>
-        <p>We audited your presence across all major social platforms, review sites, business directories, and industry-specific listing sites.</p>
+<ClientReportLayout title="How We Did It" clientName="1st Home Maintenance">
+<!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <a href="/clients/zolley/" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Back to Overview
+      </a>
+      <span class="badge">Behind the Scenes</span>
+      <h1>How We Researched<br><span class="highlight">1st Home Maintenance</span></h1>
+      <p>AI research agents ran 80+ operations in parallel -- a full site crawl, Google Maps analysis, social media audits, and competitive intelligence -- to produce a complete prospect briefing with verified data.</p>
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-number counter" data-target="80">0</span>
+          <span class="stat-label">Tool Operations</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number counter" data-target="35">0</span>
+          <span class="stat-label">Sources Checked</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Data Sources</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Research Agents</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="data-section">
-  <div class="container">
-    <div style="text-align: center; margin-bottom: 2rem;">
-      <div class="section-label">Data Points Analyzed</div>
-      <h2 class="section-title">What We Looked At</h2>
-    </div>
-
-    <div class="data-grid">
-      <div class="data-card">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Search & SEO
-        </h3>
-        <ul>
-          <li>Keyword rankings and search positions</li>
-          <li>Search volume and keyword difficulty</li>
-          <li>Competitor keyword overlap analysis</li>
-          <li>Site performance and page speed scores</li>
-          <li>Technical SEO health (meta tags, headers, schema)</li>
-          <li>Website technology stack detection</li>
-          <li>Content depth and page-level analysis</li>
-        </ul>
-      </div>
-      <div class="data-card">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Local Presence
-        </h3>
-        <ul>
-          <li>Google Business Profile status</li>
-          <li>Google Maps ranking positions</li>
-          <li>Local pack competitor analysis</li>
-          <li>Review counts and ratings across platforms</li>
-          <li>Citation and directory listings</li>
-          <li>Local search trends and demand</li>
-        </ul>
-      </div>
-      <div class="data-card">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          Social & Reputation
-        </h3>
-        <ul>
-          <li>Facebook, Instagram, Yelp, BBB presence</li>
-          <li>Active advertising and paid media</li>
-          <li>Online brand mentions and sentiment</li>
-          <li>Competitor social activity and engagement</li>
-          <li>Review platform coverage audit</li>
-          <li>Contact and communication channels</li>
-        </ul>
+  <!-- PHASE NAV -->
+  <nav class="phase-nav">
+    <div class="container">
+      <div class="phase-nav-inner">
+        <button class="phase-btn active" onclick="scrollToSection('orchestration')">
+          <span class="phase-icon">1</span> Orchestration
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('seo-agent')">
+          <span class="phase-icon">2</span> SEO Agent
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('intel-agent')">
+          <span class="phase-icon">3</span> Intel Agent
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('data-points')">
+          <span class="phase-icon">4</span> Data Points
+        </button>
+        <button class="phase-btn" onclick="scrollToSection('sources')">
+          <span class="phase-icon">5</span> Sources
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section class="timeline-section">
-  <div class="container">
-    <div class="section-label">Analysis Timeline</div>
-    <h2 class="section-title">How This Report Came Together</h2>
-    <p class="section-subtitle">Our AI-powered research system ran 4 parallel analysis streams simultaneously.</p>
+  <!-- SECTION 1: ORCHESTRATION -->
+  <section id="orchestration" class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Phase 1 -- Orchestration</p>
+        <h2>One Prompt, Two Parallel Agents</h2>
+        <p>A single research request was split into two independent research tracks and launched simultaneously.</p>
+      </div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">Step 1 (0:00)</div>
-      <div class="timeline-content">
-        <h4>Research Initiated</h4>
-        <p>All four analysis agents began simultaneously, each focused on a different dimension of your online presence.</p>
+      <div class="agent-vis">
+        <!-- Orchestrator -->
+        <div class="agent-row center">
+          <div class="agent-box orchestrator">
+            <div class="agent-label">Orchestrator -- Claude Opus</div>
+            <h4>Main Conversation Agent</h4>
+            <p>Analyzed the request, determined two independent research tracks were needed, and launched both agents in a single parallel call.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">Task Planning</span>
+              <span class="tool-chip">Agent Spawning</span>
+              <span class="tool-chip">Result Synthesis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="connector">Spawned in parallel</div>
+
+        <!-- Two agents -->
+        <div class="agent-row">
+          <div class="agent-box seo">
+            <div class="agent-label">Agent 1 -- SEO Research</div>
+            <h4>Deep SEO Analysis of handymanbocaratonfl.com</h4>
+            <p>Crawled the site, analyzed architecture, audited content, mapped competitors, identified keyword opportunities across Boca Raton handyman searches.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">WebSearch x12</span>
+              <span class="tool-chip">WebFetch x8</span>
+              <span class="tool-chip">Write x1</span>
+            </div>
+          </div>
+          <div class="agent-box intel">
+            <div class="agent-label">Agent 2 -- Company Intel</div>
+            <h4>Full Company & Market Briefing</h4>
+            <p>Researched business profile, online reputation, competitor reviews, local market landscape, and social media presence across all platforms.</p>
+            <div class="agent-tools">
+              <span class="tool-chip">WebSearch x15</span>
+              <span class="tool-chip">WebFetch x10</span>
+              <span class="tool-chip">Write x1</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-time">Step 2 (0:05)</div>
-      <div class="timeline-content">
-        <h4>Data Collection Complete</h4>
-        <p>SEO data, company intelligence, local Maps rankings, and social/review data all collected and verified.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-time">Step 3 (0:10)</div>
-      <div class="timeline-content">
-        <h4>Cross-Reference & Analysis</h4>
-        <p>Findings from all four streams were cross-referenced to identify patterns, confirm gaps, and prioritize opportunities.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-time">Step 4 (0:15)</div>
-      <div class="timeline-content">
-        <h4>Reports Generated</h4>
-        <p>Final reports synthesized with actionable recommendations, competitive benchmarks, and a prioritized roadmap.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta-section">
-  <div class="container">
-    <h2>Questions About Our Findings?</h2>
-    <p>We're happy to walk you through the data and answer any questions you have about the analysis.</p>
-    <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="btn-cta">
-      Book a Free Strategy Call
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
+  <!-- SECTION 2: SEO AGENT -->
+  <section id="seo-agent" class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Phase 2 -- SEO Research Agent</p>
+        <h2>What the SEO agent analyzed</h2>
+        <p>A deep crawl of your website and competitive landscape, producing keyword rankings, gap analysis, and opportunity mapping.</p>
+      </div>
 
-<footer class="footer">
-  <div class="container">Prepared by Brothers Automate &middot; April 2026</div>
-</footer>
+      <div class="steps-timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Site Crawl & Technical Audit</h4>
+            <p>Crawled all 6 pages. Analyzed page speed (97/100), meta tags, heading structure, schema markup, WordPress plugins (Yoast SEO, WP Rocket), and Google Analytics setup.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Keyword Research & Rankings</h4>
+            <p>Pulled current keyword rankings (24 total), search volumes, keyword difficulty scores, and CPC values for all handyman-related keywords in Boca Raton.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Competitor Analysis</h4>
+            <p>Identified and analyzed Mr. Handyman (59,210 keywords), Tom & Son Handyman (71 reviews), Best Boca Raton Handyman (67 reviews), and Handyman Boca Raton (49 reviews).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Opportunity Mapping</h4>
+            <p>Identified 15+ keyword opportunities with zero difficulty and 3,000+ total monthly searches. Mapped each opportunity to a specific action (new page, optimization, or content).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTEL AGENT -->
+  <section id="intel-agent" class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Phase 3 -- Company Intel Agent</p>
+        <h2>What the intel agent researched</h2>
+        <p>A comprehensive scan of your online presence beyond just SEO -- covering reputation, social media, local directories, and competitive positioning.</p>
+      </div>
+
+      <div class="steps-timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Google Maps & Local Pack</h4>
+            <p>Searched "handyman boca raton" and related queries on Google Maps. Found: no Google Business Profile for 1st Home Maintenance. Mapped all competitor GBP listings with review counts and ratings.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Review Platform Audit</h4>
+            <p>Checked Google Reviews, Yelp, BBB, Angi, HomeAdvisor, and Glassdoor. Result: zero reviews on all platforms. Documented competitor review counts for benchmarking.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Social Media Scan</h4>
+            <p>Searched Facebook, Instagram, LinkedIn, and NextDoor for business profiles. Result: no social media presence found. Competitors have active Facebook pages with reviews and project photos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Market Context</h4>
+            <p>Analyzed the Boca Raton handyman market: search demand patterns, seasonal trends, local competition density, and average customer acquisition costs via Google Ads.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DATA POINTS -->
+  <section id="data-points" class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Phase 4 -- Data Points Analyzed</p>
+        <h2>What we looked at</h2>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Search & SEO
+          </h3>
+          <ul>
+            <li>24 keyword rankings and positions</li>
+            <li>Search volume and keyword difficulty for 15+ opportunities</li>
+            <li>Competitor keyword overlap (Mr. Handyman: 59,210 keywords)</li>
+            <li>Page speed: 97/100 desktop, 97/100 mobile</li>
+            <li>Technical SEO health (meta tags, headers, schema)</li>
+            <li>WordPress + Yoast SEO + WP Rocket stack detected</li>
+            <li>6-page site structure mapped</li>
+          </ul>
+        </div>
+        <div class="data-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Local Presence
+          </h3>
+          <ul>
+            <li>Google Business Profile: not found</li>
+            <li>Google Maps: not appearing in local pack</li>
+            <li>4 local competitors mapped with reviews and ratings</li>
+            <li>Mr. Handyman Boca Raton: 286 reviews, 4.9 stars</li>
+            <li>Citation and directory listings: none found</li>
+            <li>480 monthly searches for "handyman boca raton"</li>
+          </ul>
+        </div>
+        <div class="data-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            Social & Reputation
+          </h3>
+          <ul>
+            <li>Facebook: no business page found</li>
+            <li>Instagram: no account found</li>
+            <li>Yelp: no listing</li>
+            <li>BBB: no listing</li>
+            <li>Angi / HomeAdvisor: no listing</li>
+            <li>Contact email: Gmail (not professional domain)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: SOURCES -->
+  <section id="sources" class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Phase 5 -- Sources & Verification</p>
+        <h2>Data sources used</h2>
+        <p>Every finding in this report was verified against live data from these sources.</p>
+      </div>
+
+      <div class="source-grid">
+        <div class="source-group">
+          <h4>Search & SEO</h4>
+          <div class="source-tags">
+            <span class="source-tag">DataForSEO API</span>
+            <span class="source-tag">Google Search</span>
+            <span class="source-tag">Google PageSpeed Insights</span>
+            <span class="source-tag">Google Search Console (public)</span>
+          </div>
+        </div>
+        <div class="source-group">
+          <h4>Local & Maps</h4>
+          <div class="source-tags">
+            <span class="source-tag">Google Maps</span>
+            <span class="source-tag">Google Business Profile</span>
+            <span class="source-tag">Yelp</span>
+            <span class="source-tag">BBB</span>
+          </div>
+        </div>
+        <div class="source-group">
+          <h4>Social & Reviews</h4>
+          <div class="source-tags">
+            <span class="source-tag">Facebook</span>
+            <span class="source-tag">Instagram</span>
+            <span class="source-tag">Angi</span>
+            <span class="source-tag">HomeAdvisor</span>
+            <span class="source-tag">Glassdoor</span>
+          </div>
+        </div>
+        <div class="source-group">
+          <h4>Technical Analysis</h4>
+          <div class="source-tags">
+            <span class="source-tag">Site Crawl (6 pages)</span>
+            <span class="source-tag">BuiltWith / Technology Detection</span>
+            <span class="source-tag">Lighthouse Audit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Questions About Our Findings?</h2>
+      <p>We're happy to walk you through the data and answer any questions about the analysis.</p>
+      <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="cta-button">
+        Book a Free Strategy Call
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer-bottom">
+    Prepared by Brothers Automate &middot; April 2026
+  </footer>
 </ClientReportLayout>
 
 <style is:global>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #fdfcfa; color: #1a365d; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    .top-nav { padding: 1rem 0; border-bottom: 1px solid #e8e6e1; background: #ffffff; }
-    .top-nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .top-nav a { color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
-    .top-nav a:hover { color: #1a365d; }
-    .nav-brand { font-weight: 700; color: #1a365d !important; }
+    /* Hero */
+    .hero { padding: 3rem 0 3.5rem; text-align: center; background: linear-gradient(180deg, #fdfcfa 0%, #f8f7f4 100%); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .back-link:hover { color: #1a365d; }
+    .back-link svg { width: 18px; height: 18px; }
+    .badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: #3182ce;
+      background: rgba(49,130,206,0.1); padding: 0.4rem 1rem;
+      border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 800;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .highlight { color: #3182ce; }
+    .hero p {
+      max-width: 680px; margin: 0 auto 2.5rem; font-size: 1rem; color: #475569; line-height: 1.7;
+    }
 
-    .hero {
-      padding: 100px 0 60px;
-      text-align: center;
-      background: linear-gradient(135deg, #1e3a5f 0%, #3182ce 50%, #1e40af 100%);
-      color: white;
+    .stats-bar {
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 9999px; padding: 0.4rem 1rem;
-      font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+    .stat { text-align: center; }
+    .stat-number {
+      display: block; font-size: 2rem; font-weight: 800; color: #1a365d; line-height: 1.1;
     }
-    .hero h1 { font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
-    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto; }
+    .stat-label { font-size: 0.75rem; color: #64748b; font-weight: 500; }
 
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: #ed8936; margin-bottom: 0.5rem;
+    /* Sticky nav */
+    .phase-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .section-subtitle { color: #64748b; margin-bottom: 2rem; }
-
-    /* Steps */
-    .steps-section { padding: 80px 0; }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      position: relative;
+    .phase-nav-inner {
+      display: flex; gap: 0.25rem; overflow-x: auto; padding: 0.75rem 0;
     }
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 40px;
-      left: 12.5%;
-      width: 75%;
-      height: 2px;
-      background: #e8e6e1;
-      z-index: 0;
+    .phase-btn {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; border-radius: 8px; border: none;
+      background: transparent; font-family: inherit;
+      font-size: 0.8rem; font-weight: 600; color: #64748b; cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .step-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 16px;
-      padding: 1.75rem 1.25rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .step-number {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #1a365d;
-      color: white; font-weight: 800; font-size: 1.1rem;
+    .phase-btn:hover, .phase-btn.active { background: rgba(26,54,93,0.06); color: #1a365d; }
+    .phase-icon {
       display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
+      width: 22px; height: 22px; border-radius: 6px;
+      background: rgba(26,54,93,0.08); font-size: 0.7rem; font-weight: 800;
     }
-    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .step-card p { color: #64748b; font-size: 0.875rem; }
+    .phase-btn.active .phase-icon { background: #1a365d; color: #fff; }
 
-    /* Data Points */
-    .data-section {
-      padding: 60px 0;
-      background: #f8f7f4;
+    /* Sections */
+    .section { padding: 4rem 0; }
+    .alt-bg { background: #f8f7f4; }
+    .section-header { max-width: 700px; margin-bottom: 2.5rem; }
+    .eyebrow {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #ed8936; margin-bottom: 0.5rem;
     }
-    .data-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
+    .section-header h2 {
+      font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 800;
+      line-height: 1.25; margin-bottom: 0.5rem;
     }
+    .section-header p { color: #64748b; font-size: 0.95rem; }
+
+    /* Agent visualization */
+    .agent-vis { max-width: 900px; margin: 0 auto; }
+    .agent-row { display: flex; gap: 1.25rem; }
+    .agent-row.center { justify-content: center; }
+    .agent-box {
+      flex: 1; background: #fff; border-radius: 16px; padding: 1.75rem;
+      border: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+    }
+    .agent-box.orchestrator { max-width: 550px; border-top: 4px solid #1a365d; }
+    .agent-box.seo { border-top: 4px solid #dc2626; }
+    .agent-box.intel { border-top: 4px solid #16a34a; }
+    .agent-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .orchestrator .agent-label { color: #1a365d; }
+    .seo .agent-label { color: #dc2626; }
+    .intel .agent-label { color: #16a34a; }
+    .agent-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .agent-box p { font-size: 0.88rem; color: #64748b; line-height: 1.6; margin-bottom: 0.75rem; }
+    .agent-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tool-chip {
+      font-size: 0.72rem; font-weight: 600; color: #475569;
+      background: #f1f5f9; padding: 0.25rem 0.6rem; border-radius: 100px;
+    }
+    .connector {
+      text-align: center; padding: 1rem 0; font-size: 0.82rem;
+      font-weight: 600; color: #94a3b8;
+    }
+
+    /* Steps timeline */
+    .steps-timeline { max-width: 750px; }
+    .step {
+      display: flex; gap: 1.25rem; padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(26,54,93,0.06);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #1a365d; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .step-content p { font-size: 0.88rem; color: #64748b; line-height: 1.65; }
+
+    /* Data grid */
+    .data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .data-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 12px;
-      padding: 1.5rem;
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 12px; padding: 1.5rem;
     }
     .data-card h3 {
       font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem;
       display: flex; align-items: center; gap: 0.5rem;
     }
-    .data-card ul {
-      list-style: none; padding: 0;
-    }
+    .data-card ul { list-style: none; padding: 0; }
     .data-card li {
-      padding: 0.3rem 0;
-      font-size: 0.85rem;
-      color: #64748b;
-      padding-left: 1.25rem;
-      position: relative;
+      padding: 0.3rem 0; font-size: 0.82rem; color: #64748b;
+      padding-left: 1.25rem; position: relative;
     }
     .data-card li::before {
-      content: '';
-      width: 5px; height: 5px; border-radius: 50%;
-      background: #3182ce;
-      position: absolute; left: 0; top: 0.65rem;
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: #3182ce; position: absolute; left: 0; top: 0.65rem;
     }
 
-    /* Timeline */
-    .timeline-section { padding: 60px 0; }
-    .timeline-item {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #f0eeea;
+    /* Source grid */
+    .source-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .source-group h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .source-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .source-tag {
+      font-size: 0.78rem; font-weight: 600; color: #475569;
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      padding: 0.35rem 0.75rem; border-radius: 100px;
     }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-time {
-      min-width: 120px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #3182ce;
-    }
-    .timeline-content h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .timeline-content p { font-size: 0.875rem; color: #64748b; }
 
-    .cta-section { background: #1a365d; padding: 60px 0; text-align: center; color: white; }
+    /* CTA */
+    .cta-section { background: #1a365d; padding: 4rem 0; text-align: center; color: white; }
     .cta-section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; }
     .cta-section p { color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .btn-cta {
+    .cta-button {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #ed8936; color: white; padding: 0.875rem 2rem;
-      border-radius: 9999px; font-size: 1rem; font-weight: 600;
+      border-radius: 10px; font-size: 1rem; font-weight: 700;
       text-decoration: none; transition: all 200ms ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); }
-    .footer { padding: 2rem 0; text-align: center; font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #e8e6e1; }
+    .cta-button:hover { background: #dd6b20; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(237,137,54,0.35); }
+
+    .footer-bottom {
+      padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; color: #94a3b8;
+      border-top: 1px solid #e8e6e1;
+    }
 
     @media (max-width: 767px) {
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-grid::before { display: none; }
+      .container { padding: 0 1.25rem; }
+      .agent-row { flex-direction: column; }
       .data-grid { grid-template-columns: 1fr; }
-      .timeline-item { flex-direction: column; gap: 0.5rem; }
+      .source-grid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 1.25rem; }
     }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var elements = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+    // Counter animation
+    var counters = document.querySelectorAll('.counter');
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'));
+          if (!target) return;
+          var duration = 1500;
+          var startTime = null;
+          function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target).toLocaleString() + '+';
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = target.toLocaleString() + '+';
           }
-        });
-      }, { threshold: 0.15 });
-      elements.forEach(function (el) { observer.observe(el); });
-    } else {
-      elements.forEach(function (el) { el.classList.add('visible'); });
-    }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(function (el) { counterObserver.observe(el); });
+
+    // Smooth scroll
+    window.scrollToSection = function(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // Update active nav on scroll
+    var sections = document.querySelectorAll('.section[id]');
+    var navBtns = document.querySelectorAll('.phase-btn');
+    window.addEventListener('scroll', function() {
+      var scrollPos = window.scrollY + 100;
+      sections.forEach(function(section, i) {
+        if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+          navBtns.forEach(function(btn) { btn.classList.remove('active'); });
+          if (navBtns[i]) navBtns[i].classList.add('active');
+        }
+      });
+    });
   });
 </script>

@@ -3,168 +3,347 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 ---
 
 <ClientReportLayout title="SEO & Competitor Analysis" clientName="1st Home Maintenance">
-<nav class="top-nav">
+<!-- Back link -->
+<div class="back-bar">
   <div class="container">
-    <a href="/clients/zolley/" class="nav-brand">Brothers Automate</a>
-    <a href="/clients/zolley/">&larr; Back to Overview</a>
+    <a href="/clients/zolley/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      Back to Overview
+    </a>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="badge">SEO & Competitor Analysis</div>
+    <h1>1st Home Maintenance<br><span class="highlight">What You're Missing</span></h1>
+    <div class="url">handymanbocaratonfl.com</div>
+    <div class="date">Prepared by Brothers Automate -- April 3, 2026</div>
+
+    <div class="hero-stat">
+      <div class="big-num">24 vs <span>59,210</span></div>
+      <p>You rank for <strong>24 keywords</strong>. Your closest national competitor ranks for <strong>59,210</strong>. But the keywords you need have <strong>zero competition</strong> -- this report shows how to take them.</p>
+    </div>
+  </div>
+</header>
+
+<!-- Sticky nav -->
+<nav class="phase-nav">
+  <div class="container">
+    <div class="phase-nav-inner">
+      <a href="#gap" class="phase-btn">The Gap</a>
+      <a href="#current" class="phase-btn">Current Rankings</a>
+      <a href="#missing" class="phase-btn">What's Missing</a>
+      <a href="#opportunities" class="phase-btn">Opportunities</a>
+      <a href="#demand" class="phase-btn">Market Demand</a>
+      <a href="#local" class="phase-btn">Local Competition</a>
+      <a href="#takeaways" class="phase-btn">Takeaways</a>
+    </div>
   </div>
 </nav>
 
-<section class="hero">
+<!-- THE GAP -->
+<section id="gap" class="section">
   <div class="container">
-    <div class="hero-badge">SEO & Competitor Analysis</div>
-    <h1>480 people search for your services every month.<br>You're <span class="highlight">not on page 1</span>.</h1>
-    <p>Your site ranks for just 24 keywords total. Your closest national competitor ranks for 59,210. But here's the good news: the keywords you need have zero competition.</p>
-  </div>
-</section>
+    <div class="section-header">
+      <div class="eyebrow">The Gap</div>
+      <h2>Your competitors aren't just ahead. They're in a different league.</h2>
+      <p>Here's how 1st Home Maintenance stacks up against the top handyman businesses competing for customers in Boca Raton.</p>
+    </div>
 
-<section class="gap-section">
-  <div class="container">
-    <div class="section-label">The Visibility Gap</div>
-    <h2 class="section-title">You vs. The Competition</h2>
-    <p class="section-subtitle">Here's how your online presence compares to the top handyman businesses competing for the same customers in Boca Raton.</p>
+    <div class="gap-grid">
+      <!-- You -->
+      <div class="gap-card you">
+        <div class="card-label">You</div>
+        <div class="company-name">1st Home Maintenance</div>
+        <div class="company-loc">Boca Raton, FL</div>
+        <div class="gap-metric">
+          <div class="metric-value">24</div>
+          <div class="metric-label">Keywords Ranking</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">~26</div>
+          <div class="metric-label">Monthly Visits</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">$247</div>
+          <div class="metric-label">Traffic Value</div>
+        </div>
+      </div>
 
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>You (1st Home Maintenance)</th>
-          <th>Mr. Handyman (Top Competitor)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="metric-label">Ranked Keywords</td>
-          <td class="you">24 <span class="gap-tag">2,467x behind</span></td>
-          <td class="them">59,210</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Monthly Organic Traffic</td>
-          <td class="you">~26 visits</td>
-          <td class="them">~932,966 visits</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Traffic Value (Monthly)</td>
-          <td class="you">$247</td>
-          <td class="them">$500K+</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Google Maps Position</td>
-          <td class="you">Not Listed (No GBP)</td>
-          <td class="them">#1 (286 reviews, 4.9 stars)</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Google Reviews</td>
-          <td class="you">0 reviews</td>
-          <td class="them">286 reviews</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Page-1 Rankings</td>
-          <td class="you">0 keywords</td>
-          <td class="them">Thousands</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Website Pages</td>
-          <td class="you">6 pages</td>
-          <td class="them">Hundreds of service + location pages</td>
-        </tr>
-        <tr>
-          <td class="metric-label">Social Media Profiles</td>
-          <td class="you">0 (None)</td>
-          <td class="them">Facebook, Yelp, BBB, Google</td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- Mr. Handyman -->
+      <div class="gap-card competitor">
+        <div class="card-label">National Competitor</div>
+        <div class="company-name">Mr. Handyman</div>
+        <div class="company-loc">National Franchise</div>
+        <div class="gap-metric">
+          <div class="metric-value">59,210</div>
+          <div class="metric-label">Keywords Ranking</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">~932,966</div>
+          <div class="metric-label">Monthly Visits</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">$500K+</div>
+          <div class="metric-label">Traffic Value</div>
+        </div>
+      </div>
 
-    <div style="margin-top: 1.5rem;">
-      <p style="font-size: 0.9rem; color: #64748b;"><strong>Local competitors also ahead of you:</strong> Handyman Boca Raton (49 reviews, 4.8 stars), Best Boca Raton Handyman (67 reviews, 4.7 stars, 30+ years in business), Tom & Son Handyman (71 reviews, 4.8 stars)</p>
+      <!-- Local competitors -->
+      <div class="gap-card competitor local">
+        <div class="card-label">Local Competitors</div>
+        <div class="company-name">Boca Raton Handymen</div>
+        <div class="company-loc">Boca Raton, FL</div>
+        <div class="gap-metric">
+          <div class="metric-value">49-71</div>
+          <div class="metric-label">Google Reviews</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">4.7-4.8</div>
+          <div class="metric-label">Star Rating</div>
+        </div>
+        <div class="gap-metric">
+          <div class="metric-value">Map Pack</div>
+          <div class="metric-label">Ranking In</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar charts -->
+    <div class="bar-chart">
+      <h3>Keyword Rankings</h3>
+      <div class="bar-row">
+        <div class="bar-label">1st Home Maintenance</div>
+        <div class="bar-track">
+          <div class="bar-fill you-fill" style="width: 0.04%;">24</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Mr. Handyman</div>
+        <div class="bar-track">
+          <div class="bar-fill competitor-fill" style="width: 100%;">59,210</div>
+        </div>
+        <span class="multiplier-badge">2,467x more</span>
+      </div>
+
+      <h3 style="margin-top: 2rem;">Monthly Organic Visits</h3>
+      <div class="bar-row">
+        <div class="bar-label">1st Home Maintenance</div>
+        <div class="bar-track">
+          <div class="bar-fill you-fill" style="width: 0.003%;">~26</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Mr. Handyman</div>
+        <div class="bar-track">
+          <div class="bar-fill competitor-fill" style="width: 100%;">~932,966</div>
+        </div>
+        <span class="multiplier-badge">35,883x more</span>
+      </div>
+
+      <h3 style="margin-top: 2rem;">Google Reviews</h3>
+      <div class="bar-row">
+        <div class="bar-label">1st Home Maintenance</div>
+        <div class="bar-track">
+          <div class="bar-fill you-fill" style="width: 0%;">0</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Mr. Handyman (Boca)</div>
+        <div class="bar-track">
+          <div class="bar-fill competitor-fill" style="width: 100%;">286</div>
+        </div>
+        <span class="multiplier-badge">286 reviews ahead</span>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Tom & Son Handyman</div>
+        <div class="bar-track">
+          <div class="bar-fill local-fill" style="width: 24.8%;">71</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Best Boca Handyman</div>
+        <div class="bar-track">
+          <div class="bar-fill local-fill" style="width: 23.4%;">67</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Handyman Boca Raton</div>
+        <div class="bar-track">
+          <div class="bar-fill local-fill" style="width: 17.1%;">49</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="missing-section">
+<!-- CURRENT RANKINGS -->
+<section id="current" class="section alt-bg">
   <div class="container">
-    <div class="section-label">What's Missing</div>
-    <h2 class="section-title">6 Critical Gaps Holding You Back</h2>
-    <p class="section-subtitle">Each of these gaps is costing you leads every single week.</p>
+    <div class="section-header">
+      <div class="eyebrow">Current State</div>
+      <h2>What you rank for today</h2>
+      <p>You rank for 24 keywords total. Here are the ones that matter -- and why none of them are driving real business yet.</p>
+    </div>
 
-    <div class="missing-grid">
-      <div class="missing-card">
-        <h3><span class="status-dot red"></span> No Google Business Profile</h3>
-        <p>You don't appear in Google Maps at all. When someone searches "handyman near me" in Boca Raton, you're invisible. Your competitors have 49-286 reviews and dominate the map pack.</p>
+    <div style="max-width:800px;margin:0 auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Keyword</th>
+            <th style="text-align:center;">Position</th>
+            <th style="text-align:center;">Searches/Mo</th>
+            <th style="text-align:left;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>handyman boca raton</td>
+            <td style="text-align:center;" class="pos-amber">#12</td>
+            <td style="text-align:center;">480</td>
+            <td><span class="status-tag close">Close to Page 1</span></td>
+          </tr>
+          <tr>
+            <td>handyman in boca raton florida</td>
+            <td style="text-align:center;" class="pos-red">#16</td>
+            <td style="text-align:center;">480</td>
+            <td><span class="status-tag off-page">Page 2</span></td>
+          </tr>
+          <tr>
+            <td>handyman service boca raton</td>
+            <td style="text-align:center;" class="pos-red">#17</td>
+            <td style="text-align:center;">480</td>
+            <td><span class="status-tag off-page">Page 2</span></td>
+          </tr>
+          <tr>
+            <td>home repair services boca raton</td>
+            <td style="text-align:center;" class="pos-amber">#7</td>
+            <td style="text-align:center;">170+</td>
+            <td><span class="status-tag close">On Page 1 (organic only)</span></td>
+          </tr>
+          <tr>
+            <td>drywall repair boca raton</td>
+            <td style="text-align:center;" class="pos-amber">#8</td>
+            <td style="text-align:center;">150+</td>
+            <td><span class="status-tag close">On Page 1 (organic only)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:1rem;font-size:0.85rem;color:#94a3b8;text-align:center;">Showing top 5 commercial keywords. The remaining 19 rankings are long-tail variations at positions 10-50+.</p>
+    </div>
+
+    <div class="callout-box">
+      <p><strong>The key insight:</strong> You're on the edge of page 1 for "handyman boca raton" (position #12) and already on page 1 for "home repair services" (#7) and "drywall repair" (#8). With a Google Business Profile and some on-page optimization, you could break into the top 10 for all core keywords within weeks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S MISSING -->
+<section id="missing" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Content Gaps</div>
+      <h2>6 critical gaps holding you back</h2>
+      <p>Each of these gaps is costing you leads every single week.</p>
+    </div>
+
+    <div class="checklist">
+      <div class="check-item">
+        <h4><span class="x-icon">X</span> No Google Business Profile</h4>
+        <p>You don't appear in Google Maps at all. When someone searches "handyman near me" in Boca Raton, you're invisible. Your competitors have 49-286 reviews and dominate the map pack. The map pack gets <strong>40%+ of all clicks</strong> for local service searches.</p>
       </div>
-      <div class="missing-card">
-        <h3><span class="status-dot red"></span> No Service-Specific Pages</h3>
-        <p>You have one generic "handyman-services" page. You need individual pages for plumbing repairs, electrical work, drywall, kitchen remodeling, bathroom repairs, and more. Each page = a new chance to rank.</p>
+
+      <div class="check-item">
+        <h4><span class="x-icon">X</span> No service-specific pages</h4>
+        <p>You have one generic "handyman-services" page. You need individual pages for plumbing repairs, electrical work, drywall, kitchen remodeling, bathroom repairs, and more. Each page = a new chance to rank. Combined, these service keywords represent <strong>3,000+ monthly searches</strong>.</p>
+        <div class="volume-tags">
+          <span class="volume-tag">"plumber boca raton" <span class="vol">1,000/mo</span></span>
+          <span class="volume-tag">"electrician boca raton" <span class="vol">1,000/mo</span></span>
+          <span class="volume-tag">"bathroom remodel boca raton" <span class="vol">300/mo</span></span>
+          <span class="volume-tag">"kitchen repair boca raton" <span class="vol">200/mo</span></span>
+          <span class="volume-tag">"drywall repair boca raton" <span class="vol">150/mo</span></span>
+        </div>
       </div>
-      <div class="missing-card">
-        <h3><span class="status-dot red"></span> No Location Pages</h3>
+
+      <div class="check-item">
+        <h4><span class="x-icon">X</span> No location pages</h4>
         <p>You serve Boca Raton, Delray Beach, and surrounding areas, but have zero location-specific pages. These are free traffic opportunities with zero keyword difficulty.</p>
       </div>
-      <div class="missing-card">
-        <h3><span class="status-dot red"></span> Zero Reviews Anywhere</h3>
-        <p>No Google reviews, no Yelp reviews, no BBB listing, no Angi profile. Reviews are the #1 trust signal for local service businesses. Your competitors have hundreds.</p>
+
+      <div class="check-item">
+        <h4><span class="x-icon">X</span> Zero reviews anywhere</h4>
+        <p>No Google reviews, no Yelp reviews, no BBB listing, no Angi profile. Reviews are the #1 trust signal for local service businesses. Your competitors have <strong>49-286 reviews</strong>.</p>
       </div>
-      <div class="missing-card">
-        <h3><span class="status-dot red"></span> No Blog or Content</h3>
+
+      <div class="check-item">
+        <h4><span class="x-icon">X</span> No blog or content</h4>
         <p>No blog means no long-tail keyword coverage, no topical authority, and no reason for Google to crawl your site regularly. Your 6 pages can only rank for a handful of terms.</p>
       </div>
-      <div class="missing-card">
-        <h3><span class="status-dot amber"></span> Missing Meta Descriptions</h3>
+
+      <div class="check-item amber-border">
+        <h4><span class="x-icon amber">!</span> Missing meta descriptions & duplicate H1</h4>
         <p>Your About and Contact pages have no meta descriptions. Your contact page has a duplicate H1 tag. These are easy fixes that affect click-through rates from search results.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="opps-section">
+<!-- OPPORTUNITIES -->
+<section id="opportunities" class="section alt-bg">
   <div class="container">
-    <div class="section-label">Keyword Opportunities</div>
-    <h2 class="section-title">The Best Keywords You're Not Ranking For</h2>
-    <p class="section-subtitle">These keywords have strong search volume, high commercial intent, and zero difficulty. This is the lowest-hanging fruit we've ever seen.</p>
+    <div class="section-header">
+      <div class="eyebrow">Keyword Opportunities</div>
+      <h2>The best keywords you're not ranking for</h2>
+      <p>These keywords have strong search volume, high commercial intent, and zero difficulty. This is the lowest-hanging fruit we've ever seen.</p>
+    </div>
 
     <div class="opp-tier">
       <div class="tier-header">
-        <span class="tier-badge quick">Quick Wins</span>
-        <h3>Optimize existing pages + claim GBP (Week 1-2)</h3>
+        <span class="tier-badge quick">Tier 1</span>
+        <div>
+          <h3>Quick Wins</h3>
+          <span class="tier-timeline">Optimize existing pages + claim GBP (Week 1-2)</span>
+        </div>
       </div>
-      <table class="keyword-table">
+      <table class="data-table">
         <thead>
           <tr>
             <th>Keyword</th>
-            <th>Monthly Searches</th>
-            <th>Difficulty</th>
-            <th>CPC Value</th>
+            <th style="text-align:center;">Monthly Searches</th>
+            <th style="text-align:center;">Difficulty</th>
+            <th style="text-align:center;">CPC Value</th>
             <th>Your Current Position</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>handyman boca raton</strong></td>
-            <td>480</td>
-            <td><span class="kd-badge kd-easy">KD 0</span></td>
-            <td>$9.39</td>
-            <td>Not on page 1 (organic #12)</td>
+            <td style="text-align:center;">480</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">KD 0</span></td>
+            <td style="text-align:center;">$9.39</td>
+            <td>#12 (just off page 1)</td>
           </tr>
           <tr>
             <td><strong>handyman in boca raton florida</strong></td>
-            <td>480</td>
-            <td><span class="kd-badge kd-easy">KD 0</span></td>
-            <td>$9.39</td>
+            <td style="text-align:center;">480</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">KD 0</span></td>
+            <td style="text-align:center;">$9.39</td>
             <td>#16</td>
           </tr>
           <tr>
             <td><strong>handyman service boca raton</strong></td>
-            <td>480</td>
-            <td><span class="kd-badge kd-easy">KD 0</span></td>
-            <td>$9.39</td>
+            <td style="text-align:center;">480</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">KD 0</span></td>
+            <td style="text-align:center;">$9.39</td>
             <td>#17</td>
           </tr>
           <tr>
             <td><strong>home repair services boca raton</strong></td>
-            <td>170+</td>
-            <td><span class="kd-badge kd-easy">KD 0</span></td>
-            <td>$8+</td>
+            <td style="text-align:center;">170+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">KD 0</span></td>
+            <td style="text-align:center;">$8+</td>
             <td>#7 (organic, not Maps)</td>
           </tr>
         </tbody>
@@ -173,47 +352,50 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 
     <div class="opp-tier">
       <div class="tier-header">
-        <span class="tier-badge growth">Growth Plays</span>
-        <h3>New service pages + review generation (Month 1-3)</h3>
+        <span class="tier-badge growth">Tier 2</span>
+        <div>
+          <h3>Growth Plays</h3>
+          <span class="tier-timeline">New service pages + review generation (Month 1-3)</span>
+        </div>
       </div>
-      <table class="keyword-table">
+      <table class="data-table">
         <thead>
           <tr>
             <th>Keyword</th>
-            <th>Monthly Searches</th>
-            <th>Difficulty</th>
+            <th style="text-align:center;">Monthly Searches</th>
+            <th style="text-align:center;">Difficulty</th>
             <th>Page Needed</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>plumber boca raton</strong></td>
-            <td>1,000+</td>
-            <td><span class="kd-badge kd-easy">Low</span></td>
+            <td style="text-align:center;">1,000+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">Low</span></td>
             <td>Plumbing Repair Services page</td>
           </tr>
           <tr>
             <td><strong>electrician boca raton</strong></td>
-            <td>1,000+</td>
-            <td><span class="kd-badge kd-med">Medium</span></td>
+            <td style="text-align:center;">1,000+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-med">Medium</span></td>
             <td>Electrical Services page</td>
           </tr>
           <tr>
             <td><strong>bathroom remodel boca raton</strong></td>
-            <td>300+</td>
-            <td><span class="kd-badge kd-easy">Low</span></td>
+            <td style="text-align:center;">300+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">Low</span></td>
             <td>Bathroom Remodeling page</td>
           </tr>
           <tr>
             <td><strong>kitchen repair boca raton</strong></td>
-            <td>200+</td>
-            <td><span class="kd-badge kd-easy">Low</span></td>
+            <td style="text-align:center;">200+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">Low</span></td>
             <td>Kitchen Repair Services page</td>
           </tr>
           <tr>
             <td><strong>drywall repair boca raton</strong></td>
-            <td>150+</td>
-            <td><span class="kd-badge kd-easy">KD 0</span></td>
+            <td style="text-align:center;">150+</td>
+            <td style="text-align:center;"><span class="kd-badge kd-easy">KD 0</span></td>
             <td>Optimize existing page</td>
           </tr>
         </tbody>
@@ -222,10 +404,13 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 
     <div class="opp-tier">
       <div class="tier-header">
-        <span class="tier-badge long">Long-Term Authority</span>
-        <h3>Blog content + location pages (Month 3-6+)</h3>
+        <span class="tier-badge long">Tier 3</span>
+        <div>
+          <h3>Long-Term Authority</h3>
+          <span class="tier-timeline">Blog content + location pages (Month 3-6+)</span>
+        </div>
       </div>
-      <table class="keyword-table">
+      <table class="data-table">
         <thead>
           <tr>
             <th>Keyword Category</th>
@@ -255,39 +440,98 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
   </div>
 </section>
 
-<section class="demand-section">
+<!-- MARKET DEMAND -->
+<section id="demand" class="section">
   <div class="container">
-    <div class="section-label">Market Demand</div>
-    <h2 class="section-title">People Are Searching. They're Just Not Finding You.</h2>
+    <div class="section-header">
+      <div class="eyebrow">Market Demand</div>
+      <h2>People are searching. They're just not finding you.</h2>
+    </div>
     <div class="demand-cards">
       <div class="demand-card">
-        <div class="big-number">480</div>
+        <div class="big-number counter" data-target="480">0</div>
         <div class="label">monthly searches for "handyman boca raton"</div>
       </div>
       <div class="demand-card">
         <div class="big-number">$9.39</div>
-        <div class="label">cost-per-click (shows high buyer intent)</div>
+        <div class="label">cost-per-click (high buyer intent)</div>
       </div>
       <div class="demand-card">
         <div class="big-number">KD 0</div>
         <div class="label">keyword difficulty (wide open opportunity)</div>
+      </div>
+      <div class="demand-card">
+        <div class="big-number counter" data-target="3000">0</div>
+        <div class="label">total monthly searches across all service keywords</div>
       </div>
     </div>
     <p style="text-align: center; color: #64748b; margin-top: 1.5rem; font-size: 0.95rem;">Search demand for handyman services in Boca Raton is consistent year-round, with slight seasonal bumps. This is steady, reliable demand that translates directly to phone calls and booked jobs.</p>
   </div>
 </section>
 
-<section class="takeaway-section">
+<!-- LOCAL COMPETITION -->
+<section id="local" class="section alt-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Local Competition</div>
+      <h2>The real competition is local -- and beatable</h2>
+      <p>Mr. Handyman is a national franchise with 59,210 keywords. But the actual local competitors in Boca Raton are much more modest. Here's who you're really up against.</p>
+    </div>
+
+    <div class="local-grid">
+      <div class="local-card">
+        <h4>Mr. Handyman (Boca Raton)</h4>
+        <div class="local-stats">
+          <span><strong>286</strong> reviews</span>
+          <span><strong>4.9</strong> stars</span>
+          <span>National franchise</span>
+        </div>
+        <p>Dominant but franchise-powered. Their authority comes from the national brand, not local content. You can't outrank their national site, but you can outrank their local listing.</p>
+      </div>
+      <div class="local-card">
+        <h4>Tom & Son Handyman</h4>
+        <div class="local-stats">
+          <span><strong>71</strong> reviews</span>
+          <span><strong>4.8</strong> stars</span>
+          <span>Local business</span>
+        </div>
+        <p>Active in the map pack. 71 reviews is a reachable target in 3-6 months with consistent review generation after every job.</p>
+      </div>
+      <div class="local-card">
+        <h4>Best Boca Raton Handyman</h4>
+        <div class="local-stats">
+          <span><strong>67</strong> reviews</span>
+          <span><strong>4.7</strong> stars</span>
+          <span>30+ years in business</span>
+        </div>
+        <p>Strong local reputation. But their website is dated and they rely mostly on reputation. Beatable on SEO with modern content and optimization.</p>
+      </div>
+      <div class="local-card">
+        <h4>Handyman Boca Raton</h4>
+        <div class="local-stats">
+          <span><strong>49</strong> reviews</span>
+          <span><strong>4.8</strong> stars</span>
+          <span>Local business</span>
+        </div>
+        <p>The most directly comparable competitor. 49 reviews in a reasonable timeline. Their site isn't particularly well-optimized, leaving an opening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section id="takeaways" class="section">
   <div class="container">
     <div class="takeaway-box">
       <h3>What This All Means</h3>
       <ul>
         <li><strong>You have a technically solid website</strong> (97/100 performance score) -- the foundation is there, it just needs more content and local optimization.</li>
-        <li><strong>Your biggest competitors are beatable locally.</strong> Mr. Handyman is a national franchise. The real local competition (Best Boca Raton Handyman, Handyman Boca Raton) have modest review counts you can catch up to in 3-6 months.</li>
+        <li><strong>Your biggest competitors are beatable locally.</strong> Mr. Handyman is a national franchise. The real local competition (Best Boca Raton Handyman, Tom & Son, Handyman Boca Raton) have modest review counts you can catch up to in 3-6 months.</li>
         <li><strong>Every target keyword has zero difficulty.</strong> This is extremely rare. It means you can realistically rank on page 1 for your core service keywords within weeks with the right content and GBP setup.</li>
         <li><strong>Google Maps is your #1 priority.</strong> Without a Google Business Profile, you're missing the most valuable real estate in local search. The map pack gets 40%+ of all clicks for local service searches.</li>
         <li><strong>More pages = more rankings.</strong> Going from 6 pages to 20+ service and location pages could 5-10x your keyword coverage and organic traffic.</li>
         <li><strong>Reviews are your trust gap.</strong> With zero reviews on any platform, potential customers have no social proof. Even 10-15 Google reviews would put you in the conversation.</li>
+        <li><strong>You're already close on key terms.</strong> Position #12 for "handyman boca raton" and #7 for "home repair services" means small improvements could push you onto page 1.</li>
       </ul>
     </div>
   </div>
@@ -312,345 +556,343 @@ import ClientReportLayout from '../../../layouts/ClientReportLayout.astro';
 <style is:global>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #fdfcfa; color: #1a365d; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     a { color: #3182ce; }
 
-    /* Nav */
-    .top-nav {
-      padding: 1rem 0;
-      border-bottom: 1px solid #e8e6e1;
-      background: #ffffff;
+    /* Back bar */
+    .back-bar { padding: 1rem 0; border-bottom: 1px solid rgba(26,54,93,0.08); background: #fdfcfa; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s ease;
     }
-    .top-nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .top-nav a { color: #64748b; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
-    .top-nav a:hover { color: #1a365d; }
-    .nav-brand { font-weight: 700; color: #1a365d !important; }
+    .back-link:hover { color: #1a365d; }
+    .back-link svg { width: 18px; height: 18px; }
 
     /* Hero */
     .hero {
-      padding: 100px 0 60px;
+      padding: 3.5rem 0 3rem;
       text-align: center;
-      background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 50%, #991b1b 100%);
-      color: white;
+      background: linear-gradient(180deg, #fdfcfa 0%, #f8f7f4 100%);
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 9999px;
-      padding: 0.4rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #dc2626;
+      background: rgba(220,38,38,0.08); padding: 0.4rem 1rem;
+      border-radius: 100px; margin-bottom: 1.5rem;
     }
     .hero h1 {
-      font-size: clamp(1.75rem, 4.5vw, 3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 .highlight {
-      background: rgba(255,255,255,0.15);
-      padding: 0.1em 0.3em;
-      border-radius: 8px;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.85);
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    /* Gap Comparison */
-    .gap-section { padding: 60px 0; }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #ed8936;
+      font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+      font-weight: 800; line-height: 1.2; letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .section-subtitle {
-      color: #64748b;
-      margin-bottom: 2rem;
-      max-width: 600px;
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
-      border: 1px solid #e8e6e1;
-    }
-    .comparison-table thead th {
-      background: #1a365d;
-      color: white;
-      padding: 1rem 1.25rem;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.875rem;
-    }
-    .comparison-table thead th:first-child { width: 35%; }
-    .comparison-table tbody td {
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid #f0eeea;
-      font-size: 0.95rem;
-    }
-    .comparison-table tbody tr:last-child td { border-bottom: none; }
-    .comparison-table tbody tr:nth-child(even) { background: #f8f7f4; }
-    .comparison-table .you { color: #dc2626; font-weight: 700; }
-    .comparison-table .them { color: #16a34a; font-weight: 700; }
-    .metric-label { font-weight: 600; color: #1a365d; }
-    .gap-tag {
-      display: inline-block;
-      background: #fef2f2;
+    .highlight {
       color: #dc2626;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.2em 0.6em;
-      border-radius: 9999px;
-      margin-left: 0.5rem;
+    }
+    .url { font-size: 0.875rem; color: #64748b; margin-bottom: 0.25rem; }
+    .date { font-size: 0.8rem; color: #94a3b8; margin-bottom: 2rem; }
+    .hero-stat {
+      max-width: 700px; margin: 0 auto;
+      background: #fff; border-radius: 16px; padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(26,54,93,0.08);
+    }
+    .big-num {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; color: #dc2626; margin-bottom: 0.75rem;
+    }
+    .big-num span { color: #16a34a; }
+    .hero-stat p { font-size: 0.95rem; color: #475569; line-height: 1.7; }
+    .hero-stat strong { color: #1a365d; }
+
+    /* Sticky nav */
+    .phase-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .phase-nav-inner {
+      display: flex; gap: 0.25rem; overflow-x: auto;
+      padding: 0.75rem 0; -webkit-overflow-scrolling: touch;
+    }
+    .phase-btn {
+      flex-shrink: 0; padding: 0.5rem 1rem; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600; color: #64748b;
+      text-decoration: none; white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .phase-btn:hover { background: rgba(26,54,93,0.06); color: #1a365d; }
+
+    /* Sections */
+    .section { padding: 4rem 0; }
+    .alt-bg { background: #f8f7f4; }
+    .section-header { max-width: 700px; margin-bottom: 2.5rem; }
+    .eyebrow {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #ed8936; margin-bottom: 0.5rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 800;
+      letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 0.5rem;
+    }
+    .section-header p { color: #64748b; font-size: 0.95rem; line-height: 1.65; }
+
+    /* Gap cards */
+    .gap-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .gap-card {
+      background: #fff; border-radius: 16px; padding: 1.75rem;
+      border: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+    }
+    .gap-card.you { border-left: 4px solid #dc2626; }
+    .gap-card.competitor { border-left: 4px solid #16a34a; }
+    .gap-card.local { border-left: 4px solid #f59e0b; }
+    .card-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .you .card-label { color: #dc2626; }
+    .competitor .card-label { color: #16a34a; }
+    .local .card-label { color: #f59e0b; }
+    .company-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .company-loc { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1rem; }
+    .gap-metric { margin-bottom: 0.75rem; }
+    .gap-metric:last-child { margin-bottom: 0; }
+    .metric-value { font-size: 1.5rem; font-weight: 800; color: #1a365d; line-height: 1.1; }
+    .metric-label { font-size: 0.75rem; color: #64748b; font-weight: 500; }
+
+    /* Bar charts */
+    .bar-chart {
+      background: #fff; border-radius: 16px; padding: 2rem;
+      border: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+    }
+    .bar-chart h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; }
+    .bar-label { min-width: 160px; font-size: 0.8rem; font-weight: 600; color: #475569; }
+    .bar-track {
+      flex: 1; height: 28px; background: #f1f5f9; border-radius: 6px;
+      overflow: hidden; position: relative;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 6px; display: flex; align-items: center;
+      padding: 0 0.75rem; font-size: 0.75rem; font-weight: 700; color: #fff;
+      min-width: 40px; transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .you-fill { background: linear-gradient(90deg, #dc2626, #ef4444); }
+    .competitor-fill { background: linear-gradient(90deg, #16a34a, #22c55e); }
+    .local-fill { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .multiplier-badge {
+      flex-shrink: 0; font-size: 0.7rem; font-weight: 700;
+      color: #dc2626; background: #fef2f2;
+      padding: 0.25rem 0.6rem; border-radius: 100px;
     }
 
-    /* Missing section */
-    .missing-section {
-      padding: 60px 0;
-      background: #f8f7f4;
+    /* Data tables */
+    .data-table {
+      width: 100%; border-collapse: collapse; font-size: 0.9rem;
     }
-    .missing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
+    .data-table thead th {
+      padding: 0.75rem 0.75rem; font-weight: 700; font-size: 0.8rem;
+      color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 2px solid #e8e6e1;
     }
-    .missing-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 12px;
-      padding: 1.5rem;
+    .data-table tbody td {
+      padding: 0.65rem 0.75rem; border-bottom: 1px solid #f0eeea; color: #475569;
     }
-    .missing-card .status-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-right: 0.5rem;
+    .pos-green { color: #16a34a; font-weight: 700; }
+    .pos-amber { color: #f59e0b; font-weight: 700; }
+    .pos-red { color: #dc2626; font-weight: 700; }
+    .status-tag {
+      font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem;
+      border-radius: 100px; white-space: nowrap;
     }
-    .missing-card .status-dot.red { background: #dc2626; }
-    .missing-card .status-dot.amber { background: #f59e0b; }
-    .missing-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-    }
-    .missing-card p { color: #64748b; font-size: 0.9rem; }
+    .status-tag.close { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .status-tag.off-page { background: rgba(220,38,38,0.1); color: #dc2626; }
+    .status-tag.ranking { background: rgba(22,163,74,0.1); color: #16a34a; }
 
-    /* Opportunities */
-    .opps-section { padding: 60px 0; }
-    .opp-tier {
-      margin-bottom: 2rem;
+    /* Callout */
+    .callout-box {
+      max-width: 800px; margin: 2rem auto 0;
+      background: #fff; border-radius: 12px; padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+      border-left: 4px solid #f59e0b;
     }
+    .callout-box p { font-size: 0.95rem; color: #475569; line-height: 1.7; }
+    .callout-box strong { color: #1a365d; }
+
+    /* Checklist / What's Missing */
+    .checklist { max-width: 800px; }
+    .check-item {
+      background: #fff; border-radius: 12px; padding: 1.5rem;
+      margin-bottom: 1rem; border: 1px solid rgba(26,54,93,0.08);
+      border-left: 4px solid #dc2626;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .check-item.amber-border { border-left-color: #f59e0b; }
+    .check-item h4 {
+      font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .x-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #dc2626; color: #fff; font-size: 0.7rem; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .x-icon.amber { background: #f59e0b; }
+    .check-item p { color: #64748b; font-size: 0.9rem; line-height: 1.65; }
+    .check-item strong { color: #1a365d; }
+
+    .volume-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .volume-tag {
+      font-size: 0.78rem; color: #475569; background: #f8f7f4;
+      padding: 0.35rem 0.75rem; border-radius: 100px;
+      border: 1px solid rgba(26,54,93,0.06);
+    }
+    .volume-tag .vol { color: #16a34a; font-weight: 700; }
+
+    /* Opportunity tiers */
+    .opp-tier { margin-bottom: 2.5rem; }
     .tier-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
+      display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;
     }
     .tier-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
+      flex-shrink: 0; padding: 0.35rem 0.85rem; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.05em;
     }
     .tier-badge.quick { background: #dcfce7; color: #15803d; }
     .tier-badge.growth { background: #dbeafe; color: #1d4ed8; }
     .tier-badge.long { background: #f3e8ff; color: #7e22ce; }
-    .tier-header h3 { font-size: 1.15rem; font-weight: 700; }
-
-    .keyword-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #e8e6e1;
-      font-size: 0.9rem;
-    }
-    .keyword-table thead th {
-      background: #f8f7f4;
-      padding: 0.75rem 1rem;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid #e8e6e1;
-    }
-    .keyword-table tbody td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #f0eeea;
-    }
-    .keyword-table tbody tr:last-child td { border-bottom: none; }
+    .tier-header h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
+    .tier-timeline { font-size: 0.8rem; color: #64748b; }
     .kd-badge {
-      display: inline-block;
-      padding: 0.15em 0.5em;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      display: inline-block; padding: 0.15em 0.5em; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700;
     }
     .kd-easy { background: #dcfce7; color: #15803d; }
     .kd-med { background: #fef9c3; color: #a16207; }
 
-    /* Demand */
-    .demand-section {
-      padding: 60px 0;
-      background: #f8f7f4;
-    }
+    /* Demand cards */
     .demand-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
     }
     .demand-card {
-      background: #ffffff;
-      border: 1px solid #e8e6e1;
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
+      background: #fff; border: 1px solid rgba(26,54,93,0.08);
+      border-radius: 12px; padding: 1.5rem; text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .demand-card .big-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #1a365d;
-      line-height: 1.1;
+      font-size: 2.25rem; font-weight: 800; color: #1a365d; line-height: 1.1;
     }
     .demand-card .label {
-      color: #64748b;
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
+      color: #64748b; font-size: 0.82rem; margin-top: 0.35rem; line-height: 1.4;
     }
 
+    /* Local competition */
+    .local-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+    }
+    .local-card {
+      background: #fff; border-radius: 12px; padding: 1.5rem;
+      border: 1px solid rgba(26,54,93,0.08);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .local-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .local-stats {
+      display: flex; gap: 1rem; margin-bottom: 0.75rem;
+      font-size: 0.8rem; color: #64748b;
+    }
+    .local-stats strong { color: #1a365d; }
+    .local-card p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+
     /* Takeaway */
-    .takeaway-section { padding: 60px 0; }
     .takeaway-box {
       background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border: 1px solid #fde68a;
-      border-radius: 16px;
-      padding: 2rem;
+      border: 1px solid #fde68a; border-radius: 16px; padding: 2rem;
     }
     .takeaway-box h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #92400e;
+      font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #92400e;
     }
-    .takeaway-box ul {
-      list-style: none;
-      padding: 0;
-    }
+    .takeaway-box ul { list-style: none; padding: 0; }
     .takeaway-box li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      color: #78350f;
-      font-size: 0.95rem;
+      padding: 0.5rem 0; padding-left: 1.5rem; position: relative;
+      color: #78350f; font-size: 0.92rem; line-height: 1.65;
     }
     .takeaway-box li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.85rem;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #f59e0b;
+      content: ''; position: absolute; left: 0; top: 0.85rem;
+      width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;
     }
+    .takeaway-box strong { color: #92400e; }
 
     /* CTA */
     .cta-section {
-      background: #1a365d;
-      padding: 60px 0;
-      text-align: center;
-      color: white;
+      background: #1a365d; padding: 4rem 0; text-align: center; color: white;
     }
     .cta-section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; }
     .cta-section p { color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
     .btn-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #ed8936; color: white; padding: 0.875rem 2rem;
-      border-radius: 9999px; font-size: 1rem; font-weight: 600;
+      border-radius: 10px; font-size: 1rem; font-weight: 600;
       text-decoration: none; transition: all 200ms ease; border: none; cursor: pointer;
     }
-    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); }
+    .btn-cta:hover { background: #dd6b20; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(237,137,54,0.35); }
     .footer { padding: 2rem 0; text-align: center; font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #e8e6e1; }
 
-    /* Page position indicator */
-    .position-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .position-track {
-      flex: 1;
-      height: 6px;
-      background: #f1f5f9;
-      border-radius: 3px;
-      position: relative;
-    }
-    .position-dot {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      top: -3px;
-      border: 2px solid white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .position-dot.red { background: #dc2626; }
-    .position-dot.green { background: #16a34a; }
-
     @media (max-width: 767px) {
-      .missing-grid, .demand-cards { grid-template-columns: 1fr; }
-      .comparison-table { font-size: 0.85rem; }
-      .comparison-table thead th, .comparison-table tbody td { padding: 0.75rem; }
+      .container { padding: 0 1.25rem; }
+      .gap-grid { grid-template-columns: 1fr; }
+      .demand-cards { grid-template-columns: repeat(2, 1fr); }
+      .local-grid { grid-template-columns: 1fr; }
+      .bar-label { min-width: 100px; font-size: 0.72rem; }
+      .phase-nav-inner { gap: 0.15rem; }
+      .phase-btn { padding: 0.4rem 0.75rem; font-size: 0.72rem; }
     }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var elements = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+    // Counter animation
+    var counters = document.querySelectorAll('.counter');
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'));
+          var duration = 1500;
+          var start = 0;
+          var startTime = null;
+          function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target).toLocaleString();
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = target.toLocaleString();
           }
-        });
-      }, { threshold: 0.15 });
-      elements.forEach(function (el) { observer.observe(el); });
-    } else {
-      elements.forEach(function (el) { el.classList.add('visible'); });
-    }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(function (el) { counterObserver.observe(el); });
+
+    // Smooth scroll for nav
+    document.querySelectorAll('.phase-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var href = this.getAttribute('href');
+        if (href) {
+          var target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
   });
 </script>
