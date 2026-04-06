@@ -27,6 +27,16 @@ interface ClientOverview {
   last_scan_date: string | null;
 }
 
+interface ClientInsights {
+  topCompetitor: string | null;
+  competitorKeywords: number | null;
+  competitorEtv: number | null;
+  competitorReviews: number | null;
+  trafficValueGap: number | null; // dollar value of missing traffic
+  mapsStatus: 'found' | 'not_found' | 'unknown';
+  mapsPosition: number | null;
+}
+
 type SortField = 'business_name' | 'domain_rank' | 'total_keywords' | 'etv' | 'lighthouse_desktop' | 'google_review_count' | 'last_scanned_at';
 
 function formatDate(dateStr: string | null): string {
@@ -106,8 +116,24 @@ function computeHealthGrade(client: ClientOverview): { grade: string; color: str
 
 function HealthGradeBadge({ client }: { client: ClientOverview }) {
   const { grade, color, score } = computeHealthGrade(client);
+  const [showTip, setShowTip] = useState(false);
+
+  // Build breakdown for tooltip
+  const reviewPts = client.google_review_count && client.google_review_count > 0
+    ? Math.min(Math.round(client.google_review_count / 50 * 30), 30) : 0;
+  const kwPts = client.total_keywords && client.total_keywords > 0
+    ? Math.min(Math.round(client.total_keywords / 100 * 20), 20) : 0;
+  const trafficPts = client.etv && client.etv > 0
+    ? Math.min(Math.round(client.etv / 500 * 20), 20) : 0;
+  const socialPts = Math.round((client.social_presence_score || 0) / 100 * 15);
+  const reviewPresPts = Math.round((client.review_presence_score || 0) / 100 * 15);
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <div
+      style={{ display: 'flex', alignItems: 'center', gap: '8px', position: 'relative' }}
+      onMouseEnter={() => setShowTip(true)}
+      onMouseLeave={() => setShowTip(false)}
+    >
       <span style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -119,10 +145,54 @@ function HealthGradeBadge({ client }: { client: ClientOverview }) {
         color: color,
         fontSize: '14px',
         fontWeight: 800,
+        cursor: 'help',
       }}>
         {grade}
       </span>
       <span style={{ fontSize: '12px', color: '#64748b' }}>{score}%</span>
+
+      {showTip && (
+        <div style={{
+          position: 'absolute',
+          top: '100%',
+          left: 0,
+          marginTop: '8px',
+          backgroundColor: '#0a0e1a',
+          border: '1px solid #1a365d60',
+          borderRadius: '8px',
+          padding: '14px 16px',
+          width: '240px',
+          zIndex: 100,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+        }}
+        onClick={e => e.stopPropagation()}
+        >
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>Visibility Score Breakdown</div>
+          {[
+            { label: 'Google Reviews', pts: reviewPts, max: 30, detail: client.google_review_count ? `${client.google_review_count} reviews` : 'No GBP' },
+            { label: 'Keywords', pts: kwPts, max: 20, detail: `${client.total_keywords || 0} ranking` },
+            { label: 'Traffic', pts: trafficPts, max: 20, detail: client.etv ? `${formatNumber(Math.round(client.etv))} ETV` : 'No traffic' },
+            { label: 'Social Presence', pts: socialPts, max: 15, detail: `${client.social_presence_score || 0}/100` },
+            { label: 'Review Platforms', pts: reviewPresPts, max: 15, detail: `${client.review_presence_score || 0}/100` },
+          ].map(row => (
+            <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <div>
+                <div style={{ fontSize: '11px', color: '#94a3b8' }}>{row.label}</div>
+                <div style={{ fontSize: '10px', color: '#64748b' }}>{row.detail}</div>
+              </div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: row.pts > 0 ? '#16a34a' : '#dc2626' }}>
+                {row.pts}/{row.max}
+              </span>
+            </div>
+          ))}
+          <div style={{ borderTop: '1px solid #1a365d40', paddingTop: '8px', marginTop: '4px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8' }}>Total</span>
+            <span style={{ fontSize: '13px', fontWeight: 800, color }}>
+              {reviewPts + kwPts + trafficPts + socialPts + reviewPresPts}/100
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -152,7 +222,69 @@ export default function ClientDashboard() {
   const [sortField, setSortField] = useState<SortField>('business_name');
   const [sortAsc, setSortAsc] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [refreshing, setRefreshing] = useState<string | null>(null); // domain being refreshed, or 'all'
+  const [refreshing, setRefreshing] = useState<string | null>(null);
+  const [insights, setInsights] = useState<Map<string, ClientInsights>>(new Map());
+
+  function extractInsights(clientId: string, seoData: any, localData: any): ClientInsights {
+    const result: ClientInsights = {
+      topCompetitor: null, competitorKeywords: null, competitorEtv: null,
+      competitorReviews: null, trafficValueGap: null,
+      mapsStatus: 'unknown', mapsPosition: null,
+    };
+
+    if (seoData) {
+      // Competitor — check traffic_comparison first (structured), then discovered array
+      const tc = seoData.competitors?.traffic_comparison;
+      const disc = seoData.competitors?.discovered;
+      if (tc && Array.isArray(tc) && tc.length >= 2) {
+        const comp = tc[1]; // [0] is the client itself
+        result.topCompetitor = comp.domain;
+        result.competitorKeywords = comp.keywords;
+        result.competitorEtv = comp.etv ? Math.round(comp.etv) : null;
+      } else if (disc && Array.isArray(disc) && disc.length > 0) {
+        const comp = typeof disc[0] === 'string' ? { domain: disc[0] } : disc[0];
+        result.topCompetitor = comp.domain;
+        result.competitorKeywords = comp.total_keywords || null;
+        result.competitorEtv = comp.etv ? Math.round(comp.etv) : null;
+      }
+
+      // Traffic value gap
+      const clientTv = seoData.domain_overview?.traffic_value_usd;
+      if (result.competitorEtv && clientTv) {
+        result.trafficValueGap = Math.round(result.competitorEtv - clientTv);
+      }
+    }
+
+    if (localData) {
+      // Maps status
+      const mr = localData.maps_rankings;
+      if (mr && Array.isArray(mr) && mr.length > 0) {
+        const primary = mr[0];
+        if (primary.target_found === true) {
+          result.mapsStatus = 'found';
+          result.mapsPosition = primary.target_position;
+        } else {
+          result.mapsStatus = 'not_found';
+        }
+
+        // Competitor reviews from maps
+        const topComp = primary?.top_10?.[0];
+        if (topComp?.review_count) {
+          result.competitorReviews = topComp.review_count;
+        }
+      }
+
+      // If no maps_rankings but GBP exists, infer maps presence
+      if (result.mapsStatus === 'unknown' && localData.google_business_profile) {
+        const gbp = localData.google_business_profile;
+        if (gbp.name && gbp.rating) {
+          result.mapsStatus = 'found'; // has GBP = likely in maps
+        }
+      }
+    }
+
+    return result;
+  }
 
   async function fetchClients() {
     const { data, error: fetchErr } = await supabase
@@ -164,6 +296,28 @@ export default function ClientDashboard() {
       return;
     }
     setClients(data || []);
+
+    // Fetch JSONB insights from full scans
+    if (data && data.length > 0) {
+      const clientIds = data.map((c: ClientOverview) => c.id);
+      const { data: scanData } = await supabase
+        .from('cs_scans')
+        .select('client_id, seo_data, local_data')
+        .in('client_id', clientIds)
+        .not('seo_data', 'is', null)
+        .order('scanned_at', { ascending: false });
+
+      if (scanData) {
+        const newInsights = new Map<string, ClientInsights>();
+        const seen = new Set<string>();
+        for (const scan of scanData) {
+          if (seen.has(scan.client_id)) continue; // only latest full scan per client
+          seen.add(scan.client_id);
+          newInsights.set(scan.client_id, extractInsights(scan.client_id, scan.seo_data, scan.local_data));
+        }
+        setInsights(newInsights);
+      }
+    }
   }
 
   useEffect(() => {
@@ -219,11 +373,9 @@ export default function ClientDashboard() {
 
   // Summary stats
   const totalClients = clients.length;
-  const activeClients = clients.filter(c => c.status === 'active').length;
-  const avgRank = clients.filter(c => c.domain_rank).length > 0
-    ? Math.round(clients.reduce((sum, c) => sum + (c.domain_rank || 0), 0) / clients.filter(c => c.domain_rank).length)
-    : 0;
   const totalKeywords = clients.reduce((sum, c) => sum + (c.total_keywords || 0), 0);
+  const totalTraffic = clients.reduce((sum, c) => sum + (c.etv ? Math.round(Number(c.etv)) : 0), 0);
+  const totalReviews = clients.reduce((sum, c) => sum + (c.google_review_count || 0), 0);
 
   if (loading) {
     return (
@@ -251,9 +403,9 @@ export default function ClientDashboard() {
         marginBottom: '32px',
       }}>
         <MetricCard label="Total Clients" value={String(totalClients)} />
-        <MetricCard label="Active" value={String(activeClients)} />
-        <MetricCard label="Avg Domain Rank" value={String(avgRank)} />
-        <MetricCard label="Total Keywords" value={formatNumber(totalKeywords)} />
+        <MetricCard label="Total Keywords" value={formatNumber(totalKeywords)} sub="tracked across all clients" />
+        <MetricCard label="Monthly Traffic" value={formatNumber(totalTraffic)} sub="estimated visits (ETV)" />
+        <MetricCard label="Google Reviews" value={formatNumber(totalReviews)} sub="across all clients" />
       </div>
 
       {/* Filters + Refresh All */}
@@ -382,6 +534,60 @@ export default function ClientDashboard() {
                       <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
                         {client.domain} {client.location ? `\u00B7 ${client.location}` : ''}
                       </div>
+                      {(() => {
+                        const ins = insights.get(client.id);
+                        if (!ins) return null;
+                        const tags: { text: string; color: string; bg: string }[] = [];
+
+                        // Maps status
+                        if (ins.mapsStatus === 'not_found') {
+                          tags.push({ text: 'Not in Maps', color: '#dc2626', bg: '#dc262615' });
+                        } else if (ins.mapsStatus === 'found' && ins.mapsPosition) {
+                          tags.push({ text: `Maps #${ins.mapsPosition}`, color: '#16a34a', bg: '#16a34a15' });
+                        }
+
+                        // Traffic value gap
+                        if (ins.trafficValueGap && ins.trafficValueGap > 100) {
+                          tags.push({ text: `$${formatNumber(ins.trafficValueGap)} traffic gap`, color: '#ed8936', bg: '#ed893615' });
+                        }
+
+                        // Top competitor
+                        if (ins.topCompetitor) {
+                          const compInfo = ins.competitorKeywords
+                            ? `vs ${ins.topCompetitor}: ${formatNumber(ins.competitorKeywords)} kw`
+                            : `vs ${ins.topCompetitor}`;
+                          tags.push({ text: compInfo, color: '#94a3b8', bg: '#94a3b810' });
+                        }
+
+                        // Competitor reviews gap
+                        if (ins.competitorReviews && (!client.google_review_count || client.google_review_count === 0)) {
+                          tags.push({ text: `Competitor has ${ins.competitorReviews} reviews`, color: '#dc2626', bg: '#dc262610' });
+                        }
+
+                        // GBP present (positive signal)
+                        if (client.google_review_count && client.google_review_count > 50) {
+                          tags.push({ text: `${client.google_review_count} Google reviews`, color: '#16a34a', bg: '#16a34a15' });
+                        }
+
+                        if (tags.length === 0) return null;
+                        return (
+                          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
+                            {tags.map((tag, i) => (
+                              <span key={i} style={{
+                                padding: '2px 8px',
+                                borderRadius: '4px',
+                                fontSize: '10px',
+                                fontWeight: 600,
+                                color: tag.color,
+                                backgroundColor: tag.bg,
+                                whiteSpace: 'nowrap',
+                              }}>
+                                {tag.text}
+                              </span>
+                            ))}
+                          </div>
+                        );
+                      })()}
                     </td>
                     <td style={{ padding: '14px 16px' }}>
                       <HealthGradeBadge client={client} />
