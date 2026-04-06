@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="What Should You Automate First for Your Clients? | Brothers Automate" description="Answer 7 quick questions about your consulting practice and we'll tell you exactly which AI automation to start offering — plus how to position it.">
   <Header />
+  <h1 class="sr-only">Find the Right AI Automation for Your Business</h1>
   <div class="quiz-container" id="app"></div>
   <Footer />
 
@@ -146,7 +147,7 @@ import Footer from '../components/Footer.astro';
         app.innerHTML =
           '<div class="quiz-landing fade-in">' +
             '<div class="landing-badge">Free Assessment \u00b7 2 Minutes</div>' +
-            '<h1>What Should You <span class="gradient-text">Automate First</span> for Your Clients?</h1>' +
+            '<h2>What Should You <span class="gradient-text">Automate First</span> for Your Clients?</h2>' +
             '<p>Answer 7 quick questions about your consulting practice and we\'ll tell you exactly which AI automation to start offering, plus how to position it.</p>' +
             '<div class="landing-features">' +
               '<div class="landing-feature"><div class="icon">\u2713</div> Personalized recommendation</div>' +
@@ -308,6 +309,17 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style is:global>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
   .quiz-container {
     max-width: 680px;
     margin: 0 auto;

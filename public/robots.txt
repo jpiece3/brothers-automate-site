@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://brothersautomate.com/sitemap.xml
+Sitemap: https://brothersautomate.com/sitemap-index.xml
