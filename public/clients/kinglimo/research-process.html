@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Methodology | King Limousine | Nexvel Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fdfcfa; --bg-surface: #ffffff; --bg-surface-alt: #f8f7f4;
+  --border: #e8e6e1; --border-light: #f0eeea;
+  --navy: #1a365d; --navy-light: #2c5282; --text-secondary: #64748b; --text-muted: #94a3b8;
+  --blue: #3182ce; --orange: #ed8936; --orange-hover: #dd6b20;
+  --red: #dc2626; --green: #16a34a; --amber: #f59e0b;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+  --radius: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+  --transition: 200ms ease; --transition-slow: 300ms ease;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--navy); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.back-link { display:inline-flex; align-items:center; gap:0.5rem; padding:1.25rem 1.5rem; font-size:0.9rem; font-weight:600; color:var(--text-secondary); text-decoration:none; }
+.back-link:hover { color:var(--navy); }
+section { padding: 4rem 0; }
+
+/* Hero */
+.hero { padding: 80px 0 60px; text-align: center; }
+.badge {
+  display:inline-block; background:rgba(237,137,54,0.08); color:var(--orange);
+  padding:0.5rem 1.25rem; border-radius:var(--radius-full);
+  font-size:0.85rem; font-weight:600; margin-bottom:1.5rem; border:1px solid rgba(237,137,54,0.2);
+}
+.hero h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 0.75rem; }
+.hero p { color: var(--text-secondary); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
+
+/* Process Flow */
+.flow-section {
+  background: #1a365d; background: var(--navy, #1a365d);
+  color: #ffffff;
+  padding: 5rem 0;
+}
+.flow-section h2 { text-align: center; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; color: #ffffff; }
+.flow-section .flow-sub { text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 3rem; font-size: 1.05rem; }
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+.flow-grid::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+}
+.flow-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+.flow-num {
+  width: 40px; height: 40px;
+  background: var(--orange);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  margin: 0 auto 1rem;
+  font-size: 1rem;
+  position: relative;
+  z-index: 2;
+}
+.flow-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: #ffffff; }
+.flow-card p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+/* Categories */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.cat-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+.cat-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.cat-icon {
+  width: 36px; height: 36px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.cat-card ul {
+  list-style: none;
+  padding: 0;
+}
+.cat-card li {
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cat-card li::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Stats */
+.method-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.method-stat {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+.method-stat .num { font-size: 2rem; font-weight: 800; color: var(--navy); display: block; margin-bottom: 0.25rem; }
+.method-stat .label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* CTA */
+.footer-cta {
+  background: #1a365d; background: var(--navy, #1a365d);
+  color: #ffffff; text-align: center; padding: 4rem 0;
+}
+.footer-cta h2 { font-size:1.75rem; font-weight:700; margin-bottom:0.75rem; color:#ffffff; }
+.footer-cta p { color:rgba(255,255,255,0.7); margin-bottom:2rem; font-size:1.05rem; }
+.btn-primary {
+  display:inline-block; background:#ed8936; background:var(--orange,#ed8936);
+  color:#ffffff; padding:0.875rem 2rem; border-radius:var(--radius-full);
+  font-weight:700; text-decoration:none; font-size:1rem; transition:all var(--transition);
+}
+.btn-primary:hover { background:var(--orange-hover); transform:translateY(-2px); }
+
+.animate-in { opacity:0; transform:translateY(20px); transition:all 0.6s cubic-bezier(0.22,1,0.36,1); }
+.animate-in.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width: 767px) {
+  .flow-grid { grid-template-columns: 1fr 1fr; }
+  .flow-grid::before { display: none; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0 40px; }
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">Research Methodology</div>
+    <h1>How We Built This Report</h1>
+    <p>A transparent look at the AI-powered research process behind your digital presence analysis. Every data point is verified across multiple sources.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="method-stats">
+    <div class="method-stat animate-in">
+      <span class="num">35+</span>
+      <span class="label">Data Sources</span>
+    </div>
+    <div class="method-stat animate-in">
+      <span class="num">2,482</span>
+      <span class="label">Keywords Analyzed</span>
+    </div>
+    <div class="method-stat animate-in">
+      <span class="num">100</span>
+      <span class="label">Pages Crawled</span>
+    </div>
+    <div class="method-stat animate-in">
+      <span class="num">4</span>
+      <span class="label">Research Agents</span>
+    </div>
+  </div>
+</section>
+
+<section class="flow-section">
+  <div class="container">
+    <h2>Our Process</h2>
+    <p class="flow-sub">Four specialized AI research agents work in parallel to build a complete picture of your digital presence.</p>
+
+    <div class="flow-grid">
+      <div class="flow-card animate-in">
+        <div class="flow-num">1</div>
+        <h3>Research</h3>
+        <p>AI agents simultaneously collect data across SEO, technical health, social media, reviews, local search, and competitive intelligence.</p>
+      </div>
+      <div class="flow-card animate-in">
+        <div class="flow-num">2</div>
+        <h3>Analyze</h3>
+        <p>Raw data is cross-referenced and validated. Competitor gaps are identified. Keyword opportunities are scored by difficulty and ROI potential.</p>
+      </div>
+      <div class="flow-card animate-in">
+        <div class="flow-num">3</div>
+        <h3>Score</h3>
+        <p>Your digital presence is scored across 5 categories using weighted metrics. Each finding is classified as critical, moderate, or positive.</p>
+      </div>
+      <div class="flow-card animate-in">
+        <div class="flow-num">4</div>
+        <h3>Report</h3>
+        <p>Findings are translated into plain-language insights with prioritized recommendations. Every gap is mapped to a specific, actionable solution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="animate-in" style="margin-bottom: 0.5rem;">Categories Analyzed</h2>
+    <p style="color:var(--text-secondary); margin-bottom: 2rem;" class="animate-in">Each category is investigated by a specialized research agent with domain-specific expertise.</p>
+
+    <div class="cat-grid">
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(49,130,206,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--blue)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          SEO & Organic Search
+        </h3>
+        <ul>
+          <li>Domain authority and rank</li>
+          <li>Organic keyword inventory (2,482 keywords)</li>
+          <li>Search position distribution</li>
+          <li>Traffic estimation and value</li>
+          <li>Keyword difficulty scores</li>
+          <li>SERP feature analysis</li>
+        </ul>
+      </div>
+
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(220,38,38,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--red)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          Technical Health
+        </h3>
+        <ul>
+          <li>Page speed and performance scores</li>
+          <li>Accessibility compliance</li>
+          <li>Broken page detection (404 errors)</li>
+          <li>Missing meta tags and H1s</li>
+          <li>Mobile responsiveness</li>
+          <li>Security (HTTPS, HSTS)</li>
+        </ul>
+      </div>
+
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(237,137,54,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          Content & Blog
+        </h3>
+        <ul>
+          <li>Content inventory and freshness</li>
+          <li>Blog post frequency and quality</li>
+          <li>Content gap analysis vs competitors</li>
+          <li>Search intent coverage</li>
+          <li>Topical authority assessment</li>
+        </ul>
+      </div>
+
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(22,163,74,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--green)" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          Local & Maps
+        </h3>
+        <ul>
+          <li>Google Business Profile audit</li>
+          <li>Local pack rankings by market</li>
+          <li>Review volume and rating analysis</li>
+          <li>Review response rate tracking</li>
+          <li>Multi-market visibility (Philly, NYC, NJ)</li>
+          <li>Google Trends demand signals</li>
+        </ul>
+      </div>
+
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(49,130,206,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--blue)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          Social Media
+        </h3>
+        <ul>
+          <li>Platform presence audit</li>
+          <li>Follower counts and growth</li>
+          <li>Engagement rate analysis</li>
+          <li>Content type effectiveness</li>
+          <li>Competitor social comparison</li>
+          <li>Ad activity detection</li>
+        </ul>
+      </div>
+
+      <div class="cat-card animate-in">
+        <h3>
+          <div class="cat-icon" style="background:rgba(26,54,93,0.08);">
+            <svg width="20" height="20" fill="none" stroke="var(--navy)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          Competitive Intelligence
+        </h3>
+        <ul>
+          <li>Organic competitor discovery</li>
+          <li>Traffic and keyword comparison</li>
+          <li>Keyword gap analysis (1,034 gaps found)</li>
+          <li>Content strategy comparison</li>
+          <li>Market positioning analysis</li>
+          <li>Technology stack detection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg-surface-alt);">
+  <div class="container" style="text-align:center;">
+    <h2 class="animate-in">Data-Driven, Not Opinion-Based</h2>
+    <p style="color:var(--text-secondary); max-width:650px; margin:0.5rem auto 2rem;" class="animate-in">Every recommendation in this report is backed by real data. We don't guess -- we measure, compare, and prioritize based on actual market conditions and competitor performance.</p>
+    <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;" class="animate-in">
+      <div style="text-align:center;">
+        <div style="font-size:2rem; font-weight:800; color:var(--navy);">1,034</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary);">Keyword gaps identified</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem; font-weight:800; color:var(--navy);">13</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary);">Broken pages found</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem; font-weight:800; color:var(--navy);">4.6x</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary);">Competitor traffic advantage</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem; font-weight:800; color:var(--navy);">0</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary);">NYC search visibility</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Questions about the data?</h2>
+    <p>We'll walk you through every finding and answer any questions about the methodology.</p>
+    <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="btn-primary">Book a Free Strategy Call</a>
+  </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

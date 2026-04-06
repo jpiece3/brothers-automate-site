@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Action Plan | King Limousine | Nexvel Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fdfcfa; --bg-surface: #ffffff; --bg-surface-alt: #f8f7f4;
+  --border: #e8e6e1; --border-light: #f0eeea;
+  --navy: #1a365d; --navy-light: #2c5282; --text-secondary: #64748b; --text-muted: #94a3b8;
+  --blue: #3182ce; --orange: #ed8936; --orange-hover: #dd6b20;
+  --red: #dc2626; --green: #16a34a; --amber: #f59e0b;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+  --radius: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+  --transition: 200ms ease; --transition-slow: 300ms ease;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--navy); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--blue); }
+.back-link { display:inline-flex; align-items:center; gap:0.5rem; padding:1.25rem 1.5rem; font-size:0.9rem; font-weight:600; color:var(--text-secondary); text-decoration:none; }
+.back-link:hover { color:var(--navy); }
+
+/* Hero */
+.hero { padding: 80px 0 60px; text-align: center; }
+.badge {
+  display:inline-block; padding:0.5rem 1.25rem; border-radius:var(--radius-full);
+  font-size:0.85rem; font-weight:600; margin-bottom:1.5rem; border:1px solid;
+}
+.badge-green { background:rgba(22,163,74,0.08); color:var(--green); border-color:rgba(22,163,74,0.2); }
+.hero h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 0.75rem; }
+.hero p { color: var(--text-secondary); font-size: 1.05rem; max-width: 700px; margin: 0 auto; }
+
+/* Phase Nav */
+.phase-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253,252,250,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 1rem 0;
+}
+.phase-nav .container {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.phase-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: var(--bg-surface);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  color: var(--navy);
+}
+.phase-btn:hover { border-color: var(--navy); }
+.phase-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+/* Tier Sections */
+.tier-section { padding: 4rem 0; }
+.tier-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.tier-icon {
+  width: 44px; height: 44px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+}
+.tier-header h2 { font-size: 1.5rem; font-weight: 700; }
+.tier-sub { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1rem; }
+
+/* Action Cards */
+.action-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+.action-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid;
+}
+.action-card.green { border-left-color: var(--green); }
+.action-card.blue { border-left-color: var(--blue); }
+.action-card.navy { border-left-color: var(--navy); }
+
+.action-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.action-block {}
+.action-block-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+.action-block-label.problem { color: var(--red); }
+.action-block-label.solution { color: var(--blue); }
+.action-block-label.outcome { color: var(--green); }
+.action-block-label.roi { color: var(--orange); }
+.action-block p { font-size: 0.95rem; color: var(--text-secondary); }
+
+/* CTA */
+.footer-cta {
+  background: #1a365d; background: var(--navy, #1a365d);
+  color: #ffffff; text-align: center; padding: 4rem 0;
+}
+.footer-cta h2 { font-size:1.75rem; font-weight:700; margin-bottom:0.75rem; color:#ffffff; }
+.footer-cta p { color:rgba(255,255,255,0.7); margin-bottom:2rem; font-size:1.05rem; }
+.btn-primary {
+  display:inline-block; background:#ed8936; background:var(--orange,#ed8936);
+  color:#ffffff; padding:0.875rem 2rem; border-radius:var(--radius-full);
+  font-weight:700; text-decoration:none; font-size:1rem; transition:all var(--transition);
+}
+.btn-primary:hover { background:var(--orange-hover); transform:translateY(-2px); }
+
+.animate-in { opacity:0; transform:translateY(20px); transition:all 0.6s cubic-bezier(0.22,1,0.36,1); }
+.animate-in.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width: 767px) {
+  .action-grid { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0 40px; }
+  .phase-nav .container { gap: 0.5rem; }
+  .phase-btn { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge badge-green">Prioritized Roadmap</div>
+    <h1>Your Action Plan</h1>
+    <p>Every recommendation follows a clear format: the problem we found, what to do about it, what you'll gain, and the expected return. Organized by urgency.</p>
+  </div>
+</section>
+
+<nav class="phase-nav">
+  <div class="container">
+    <a href="#quick-wins" class="phase-btn active" onclick="setActive(this)">Tier 1: Quick Wins</a>
+    <a href="#growth" class="phase-btn" onclick="setActive(this)">Tier 2: Growth Plays</a>
+    <a href="#long-term" class="phase-btn" onclick="setActive(this)">Tier 3: Long-Term</a>
+  </div>
+</nav>
+
+<!-- TIER 1: QUICK WINS -->
+<section class="tier-section" id="quick-wins">
+  <div class="container">
+    <div class="tier-header animate-in">
+      <div class="tier-icon" style="background:rgba(22,163,74,0.08);">
+        <svg width="24" height="24" fill="none" stroke="var(--green)" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h2>Tier 1: Quick Wins</h2>
+    </div>
+    <p class="tier-sub animate-in">High impact, low effort. These can be done in the first 1-2 weeks and produce immediate results.</p>
+
+    <div class="action-cards">
+
+      <div class="action-card green animate-in">
+        <h3>Fix 13 Broken Pages with Redirects</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>13 pages return 404 errors, including your entire old /fleet/ section and key blog posts. Visitors land on dead pages and leave. Google penalizes broken internal links.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Set up 301 redirects from each old URL to the corresponding current page (e.g., /fleet/sedans/ to /vehicles/sedan/). Takes 2-3 hours.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Recover lost search equity, reduce bounce rate, and stop sending potential customers to dead pages. Estimated 200-500 monthly visits recovered.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>At an average booking value of $150-300, recovering even 1% of lost visitors as customers = $300-1,500/month.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card green animate-in">
+        <h3>Add Meta Descriptions to 36 Pages</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>41% of your pages (36 out of 87) lack meta descriptions. Google auto-generates your search snippets, leading to lower click-through rates vs. competitors with optimized descriptions.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Write unique, compelling meta descriptions (under 155 characters) for each page. Prioritize service pages and top location pages first.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Industry average: optimized meta descriptions improve CTR by 5-10%. On 17,000 monthly visits, that's 850-1,700 additional clicks/month without changing your rankings.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>Each additional visitor costs $0 (organic). At 1% conversion rate, 850 extra visitors = 8-9 additional bookings/month.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card green animate-in">
+        <h3>Implement Google Review Response System</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>Only 10% of your 1,136 Google reviews get a response. 90% of 5-star reviews go unthanked. Negative reviews go unaddressed. Google uses response rate as a local ranking signal.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Set up automated review notifications and a response template library. Respond to every review within 24-48 hours -- even if it's a brief personalized thank-you.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Improved local search rankings, higher trust with prospective customers reading reviews, and increased review solicitation (people leave more reviews when they see responses).</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>A 1-position improvement in local pack results can increase clicks by 15-25%. For King Limo's volume, that could mean 200+ additional monthly visits.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card green animate-in">
+        <h3>Fix 3 Pages Missing H1 Tags</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>Three pages are missing H1 heading tags -- the most important on-page SEO element. Google uses H1s to understand what a page is about.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Add descriptive, keyword-rich H1 tags to each of the three pages. This is a 15-minute fix per page.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Better page relevance signals to Google, potentially improving rankings for those pages' target keywords.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>Minimal effort, compounding SEO benefit. No cost beyond implementation time.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIER 2: GROWTH PLAYS -->
+<section class="tier-section" id="growth" style="background:var(--bg-surface-alt);">
+  <div class="container">
+    <div class="tier-header animate-in">
+      <div class="tier-icon" style="background:rgba(49,130,206,0.08);">
+        <svg width="24" height="24" fill="none" stroke="var(--blue)" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      </div>
+      <h2>Tier 2: Growth Plays</h2>
+    </div>
+    <p class="tier-sub animate-in">Medium effort, high reward. These are 30-90 day initiatives that build sustainable traffic and leads.</p>
+
+    <div class="action-cards">
+
+      <div class="action-card blue animate-in">
+        <h3>SEO Content Strategy: Close the 1,034-Keyword Gap</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>J&J Transportation ranks for 1,034 keywords you don't. Your blog has 8 thin posts. Competitors publish more frequently with search-optimized content that captures informational queries.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Launch a 2-4 post/month content calendar targeting high-value keyword gaps: "car service to [airport]" guides, wedding transportation checklists, corporate event planning guides, and location-specific landing pages.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Each targeted blog post can capture 200-1,000 monthly searches within 3-6 months. 12 optimized posts = 2,400-12,000 new monthly visits.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>At $5.18 avg CPC, 5,000 additional organic visits = $25,900/month in equivalent paid traffic value. Content is a one-time investment that compounds over time.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card blue animate-in">
+        <h3>NYC Market Expansion: Geo-Targeted Landing Pages</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>King Limousine does not appear in any NYC search results -- organic or maps -- despite serving JFK, LGA, and EWR. "Airport car service New York" has a search interest score of 100 (peak demand), and you're invisible.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Create dedicated NYC-targeted landing pages: "Limo Service from King of Prussia to NYC," "Airport Car Service to JFK from Philadelphia," "Corporate Transportation NYC." Optimize for NYC-specific keywords. Consider a Google Business Profile for your NJ office to capture NYC-adjacent searches.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>NYC limo keywords represent 6,600+ monthly searches at $6.75 CPC. Even capturing 5% of this traffic = 330 highly qualified monthly visitors looking to book premium transportation.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>NYC-to-Philly rides command premium pricing ($200-400+). 330 visitors at 2% conversion = 6-7 additional bookings/month = $1,200-2,800/month in new revenue.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card blue animate-in">
+        <h3>Instagram Overhaul: From Static to Reels</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>0.17% engagement rate on Instagram. Zero comments on all posts. All 12 recent posts are static images. No Reels, no Stories, no video content. Your 1,282 followers see almost none of your posts due to algorithmic suppression.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Shift to a Reels-first content strategy: fleet walkthroughs, wedding day behind-the-scenes, driver spotlight videos, airport pickup timelapses. Post 3-4 Reels/week with Stories daily. Encourage tagged content from riders.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Reels typically see 2-3x the reach of static posts. A well-executed Reel can reach 10,000-50,000 people even with a small follower base. Wedding and prom content is highly shareable.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>Wedding bookings average $500-2,000+. One additional wedding booking per month from Instagram pays for the entire social media effort.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card blue animate-in">
+        <h3>Accessibility Remediation (61 to 85+ Score)</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>Accessibility score of 61/100 on both desktop and mobile. Missing alt text, poor contrast ratios, and unlabeled form elements make your site difficult for users with disabilities -- and hurt your SEO.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Conduct a full WCAG 2.1 AA audit. Fix contrast ratios, add alt text to all images, label all form fields, ensure keyboard navigation works. Especially important given you offer ADA-accessible vehicles.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Better user experience for all visitors, improved SEO scores, reduced legal liability, and brand consistency -- your website should match your fleet's accessibility commitment.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>ADA lawsuits average $10,000-75,000 in settlements. Proactive accessibility fixes are a fraction of that cost and prevent future liability.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIER 3: LONG-TERM -->
+<section class="tier-section" id="long-term">
+  <div class="container">
+    <div class="tier-header animate-in">
+      <div class="tier-icon" style="background:rgba(26,54,93,0.08);">
+        <svg width="24" height="24" fill="none" stroke="var(--navy)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      </div>
+      <h2>Tier 3: Long-Term Dominance</h2>
+    </div>
+    <p class="tier-sub animate-in">3-12 month plays that build lasting competitive advantages and market authority.</p>
+
+    <div class="action-cards">
+
+      <div class="action-card navy animate-in">
+        <h3>Content Authority: Become the Go-To Resource</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>Sterling Limo generates $78,430/mo in traffic value -- 4.6x your $71,468/mo -- with fewer keywords. They've built topical authority that Google rewards with higher rankings across the board.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Build comprehensive content hubs: "The Ultimate Guide to Philadelphia Wedding Transportation," "Complete Airport Transfer Guide for the Tri-State Area," "Corporate Transportation Buyer's Guide." Create pillar pages with supporting blog posts.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Topical authority compounds. As Google recognizes King Limo as an authority in transportation content, all pages benefit from higher rankings. Target: match Sterling's 78,430 monthly ETV within 12 months.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>Closing the traffic gap to Sterling represents $78,430/mo in organic traffic value. That's the equivalent of spending $78K/month on Google Ads.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card navy animate-in">
+        <h3>LinkedIn B2B Strategy for Corporate Accounts</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>Corporate transportation is your highest-value vertical, but you have no LinkedIn company page despite serving Fortune 500 companies. Your LinkedIn has only 705 followers. No thought leadership, no content, no corporate outreach.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Launch a LinkedIn content strategy: case studies with corporate clients, behind-the-scenes of your 200+ vehicle fleet operations, transportation management insights, and employee spotlights. Target corporate travel managers and executive assistants.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Direct pipeline to corporate accounts. Corporate transportation contracts are recurring revenue -- one corporate account can be worth $50,000-500,000+ annually.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>One new corporate account from LinkedIn = $50K-500K annual contract. Even one account per quarter transforms the ROI of this channel.</p></div>
+        </div>
+      </div>
+
+      <div class="action-card navy animate-in">
+        <h3>Email Marketing & Lead Capture System</h3>
+        <div class="action-grid">
+          <div class="action-block"><div class="action-block-label problem">Problem</div><p>No email capture mechanism on the website. No newsletter signup. No lead magnets. Every visitor who doesn't book immediately is lost forever -- there's no way to nurture them.</p></div>
+          <div class="action-block"><div class="action-block-label solution">Solution</div><p>Add email capture forms with lead magnets: "Wedding Transportation Checklist," "Corporate Travel RFP Template," "Airport Transfer Pricing Guide." Build automated email sequences for each audience segment.</p></div>
+          <div class="action-block"><div class="action-block-label outcome">Outcome</div><p>Capture 2-5% of website visitors as email leads. At 17,000 monthly visitors, that's 340-850 new email contacts per month. Nurture sequences convert leads who weren't ready to book on first visit.</p></div>
+          <div class="action-block"><div class="action-block-label roi">ROI</div><p>Email marketing averages $36 return for every $1 spent. Building a list of 5,000+ qualified transportation buyers creates a direct revenue channel independent of search rankings.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Want help executing this plan?</h2>
+    <p>We built the roadmap. Let us help you implement it -- starting with the quick wins that pay for themselves.</p>
+    <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="btn-primary">Book a Free Strategy Call</a>
+  </div>
+</section>
+
+<script>
+function setActive(btn) {
+  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

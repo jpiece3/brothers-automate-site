@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Health Audit | King Limousine | Nexvel Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fdfcfa; --bg-surface: #ffffff; --bg-surface-alt: #f8f7f4;
+  --border: #e8e6e1; --border-light: #f0eeea;
+  --navy: #1a365d; --navy-light: #2c5282; --text-secondary: #64748b; --text-muted: #94a3b8;
+  --blue: #3182ce; --blue-light: #63b3ed; --orange: #ed8936; --orange-hover: #dd6b20;
+  --red: #dc2626; --green: #16a34a; --amber: #f59e0b;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+  --radius: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+  --transition: 200ms ease; --transition-slow: 300ms ease;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--navy); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--blue); }
+.back-link { display:inline-flex; align-items:center; gap:0.5rem; padding:1.25rem 1.5rem; font-size:0.9rem; font-weight:600; color:var(--text-secondary); text-decoration:none; }
+.back-link:hover { color:var(--navy); }
+section { padding: 4rem 0; }
+
+/* Score Hero */
+.score-hero {
+  padding: 80px 0 60px;
+  text-align: center;
+  background: var(--bg-primary);
+}
+.score-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.score-hero .subtitle { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.5rem; }
+
+/* Score Ring */
+.score-ring-wrap { display: flex; justify-content: center; margin-bottom: 2rem; }
+.score-ring {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring .ring-bg { fill: none; stroke: var(--border); stroke-width: 12; }
+.score-ring .ring-fill { fill: none; stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 1.5s ease; }
+.score-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.score-center .score-val { font-size: 3rem; font-weight: 800; }
+.score-center .score-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Category Scores */
+.cat-scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.cat-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  border: 1px solid var(--border-light);
+}
+.cat-card .cat-score {
+  font-size: 2rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.cat-card .cat-name {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.cat-bar {
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 3px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+.cat-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+
+/* Finding Cards */
+.findings { display: flex; flex-direction: column; gap: 1rem; }
+.finding-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+}
+.finding-card:hover { box-shadow: var(--shadow-md); }
+.finding-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.finding-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status-red { background: var(--red); box-shadow: 0 0 8px rgba(220,38,38,0.3); }
+.status-yellow { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.3); }
+.status-green { background: var(--green); box-shadow: 0 0 8px rgba(22,163,74,0.3); }
+.finding-title { flex: 1; font-weight: 700; font-size: 1rem; }
+.finding-toggle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  transition: transform var(--transition);
+}
+.finding-card.open .finding-toggle { transform: rotate(180deg); }
+.finding-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.finding-card.open .finding-detail { max-height: 500px; }
+.finding-detail-inner {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.finding-detail-inner ul { margin: 0.5rem 0 0 1.25rem; }
+.finding-detail-inner li { margin-bottom: 0.35rem; }
+
+/* Priority List */
+.priority-list {
+  counter-reset: priority;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.priority-item {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid var(--border-light);
+}
+.priority-num {
+  counter-increment: priority;
+  width: 32px; height: 32px;
+  background: var(--navy);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.priority-text { flex: 1; }
+.priority-text strong { display: block; margin-bottom: 0.25rem; }
+.priority-text span { font-size: 0.9rem; color: var(--text-secondary); }
+
+/* CTA */
+.footer-cta {
+  background: #1a365d; background: var(--navy, #1a365d);
+  color: #ffffff; text-align: center; padding: 4rem 0;
+}
+.footer-cta h2 { font-size:1.75rem; font-weight:700; margin-bottom:0.75rem; color:#ffffff; }
+.footer-cta p { color:rgba(255,255,255,0.7); margin-bottom:2rem; font-size:1.05rem; }
+.btn-primary {
+  display:inline-block; background:#ed8936; background:var(--orange,#ed8936);
+  color:#ffffff; padding:0.875rem 2rem; border-radius:var(--radius-full);
+  font-weight:700; text-decoration:none; font-size:1rem; transition:all var(--transition);
+}
+.btn-primary:hover { background:var(--orange-hover); transform:translateY(-2px); box-shadow:0 4px 12px rgba(237,137,54,0.4); }
+
+.animate-in { opacity:0; transform:translateY(20px); transition:all 0.6s cubic-bezier(0.22,1,0.36,1); }
+.animate-in.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width: 767px) {
+  .cat-scores { grid-template-columns: repeat(2, 1fr); }
+  .score-hero { padding: 60px 0 40px; }
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+<section class="score-hero">
+  <div class="container">
+    <h1>Website Health Report</h1>
+    <p class="subtitle"><a href="https://www.kinglimoinc.com" target="_blank">kinglimoinc.com</a> -- Overall health score based on performance, content, local visibility, social presence, and technical health.</p>
+
+    <div class="score-ring-wrap animate-in">
+      <div class="score-ring">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle class="ring-bg" cx="100" cy="100" r="88"/>
+          <circle class="ring-fill" cx="100" cy="100" r="88"
+            stroke="#f59e0b"
+            stroke-dasharray="553"
+            stroke-dashoffset="177"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-val" style="color:var(--amber);">68</div>
+          <div class="score-label">Overall Score</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-scores">
+      <div class="cat-card animate-in">
+        <span class="cat-score" style="color:var(--green);">83</span>
+        <span class="cat-name">Performance (Desktop)</span>
+        <div class="cat-bar"><div class="cat-bar-fill" style="width:83%;background:var(--green);"></div></div>
+      </div>
+      <div class="cat-card animate-in">
+        <span class="cat-score" style="color:var(--red);">61</span>
+        <span class="cat-name">Accessibility</span>
+        <div class="cat-bar"><div class="cat-bar-fill" style="width:61%;background:var(--red);"></div></div>
+      </div>
+      <div class="cat-card animate-in">
+        <span class="cat-score" style="color:var(--amber);">65</span>
+        <span class="cat-name">Content Freshness</span>
+        <div class="cat-bar"><div class="cat-bar-fill" style="width:65%;background:var(--amber);"></div></div>
+      </div>
+      <div class="cat-card animate-in">
+        <span class="cat-score" style="color:var(--green);">85</span>
+        <span class="cat-name">Local Visibility (Philly)</span>
+        <div class="cat-bar"><div class="cat-bar-fill" style="width:85%;background:var(--green);"></div></div>
+      </div>
+      <div class="cat-card animate-in">
+        <span class="cat-score" style="color:var(--red);">40</span>
+        <span class="cat-name">Social Presence</span>
+        <div class="cat-bar"><div class="cat-bar-fill" style="width:40%;background:var(--red);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="animate-in">Key Findings</h2>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;" class="animate-in">Click each finding for details and recommendations.</p>
+
+    <div class="findings">
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-red"></div>
+          <div class="finding-title">13 Broken Pages (404 Errors)</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>We found 13 pages returning 404 errors, including key fleet pages (/fleet/, /fleet/buses/, /fleet/sedans/, /fleet/suvs/) and blog posts. These broken links hurt your search rankings and frustrate visitors who land on dead pages.</p>
+            <ul>
+              <li>/fleet/ -- Old fleet section (6 broken sub-pages)</li>
+              <li>/our-services/airports/ -- Old service URL structure</li>
+              <li>/our-services/personal/weddings/ -- Old wedding page</li>
+              <li>/services/ -- Generic service page</li>
+              <li>3 blog posts with broken URLs</li>
+            </ul>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Set up 301 redirects from old URLs to current pages. This can be done in a single afternoon and will recover lost search equity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-red"></div>
+          <div class="finding-title">36 Pages Missing Meta Descriptions</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>Out of 87 live HTML pages crawled, 36 are missing meta descriptions. This means Google is auto-generating snippets for these pages, which often results in poor click-through rates from search results.</p>
+            <p style="margin-top:0.75rem;">That's <strong>41% of your pages</strong> without optimized search snippets. Each missing meta description is a lost opportunity to persuade a searcher to click your result instead of a competitor's.</p>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Write unique, compelling meta descriptions (155 characters max) for each page, prioritizing highest-traffic service and location pages first.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-red"></div>
+          <div class="finding-title">Accessibility Score: 61/100</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>Your website scored 61 out of 100 for accessibility on both desktop and mobile. This score indicates significant issues that may prevent users with disabilities from navigating your site -- and it's also a ranking factor for search engines.</p>
+            <p style="margin-top:0.75rem;">Common accessibility issues include missing alt text on images, poor color contrast, and missing form labels. Given that you offer ADA-accessible vehicles, your website should reflect that same commitment to accessibility.</p>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Run an accessibility audit and address contrast ratios, missing alt attributes, and ARIA labels. This also reduces legal liability under ADA compliance requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-yellow"></div>
+          <div class="finding-title">Blog: Only 8 Posts Since June 2025</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>Your blog launched in mid-2025 and has published approximately one post per month. While this is a start, the content is largely promotional and event-driven rather than optimized for search intent.</p>
+            <p style="margin-top:0.75rem;">Competitors who are outranking you are producing more frequent, longer, and more targeted content addressing specific customer questions (e.g., "How much does a limo to JFK cost?" or "Wedding transportation checklist").</p>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Increase to 2-4 posts per month. Target informational and commercial keywords. Each post should be 1,500+ words and answer a specific question your customers are asking.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-yellow"></div>
+          <div class="finding-title">Only 10% of Google Reviews Get a Response</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>You have an exceptional 4.9-star rating across 1,136 Google reviews -- but only about 10% receive a response from the business. This is a missed opportunity for engagement and SEO signal.</p>
+            <p style="margin-top:0.75rem;">Google has confirmed that responding to reviews is a local ranking factor. Responding to reviews also shows potential customers that you value feedback, encourages more reviews, and gives you a chance to include keywords naturally.</p>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Implement a review response workflow. Even a brief, personalized thank-you response to every 5-star review will improve local rankings and customer perception.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-red"></div>
+          <div class="finding-title">Instagram Engagement: 0.17% (Zero Comments)</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>Your Instagram account (@kinglimousine) has 1,282 followers but averages just 2.2 likes per post with literally zero comments across all recent posts. Every post is a static image -- no Reels, no Stories, no video content.</p>
+            <p style="margin-top:0.75rem;">For context, even a small local business should expect 1-3% engagement. At 0.17%, your Instagram is essentially invisible to followers. The algorithm deprioritizes accounts with low engagement, creating a downward spiral.</p>
+            <p style="margin-top:0.75rem;"><strong>Fix:</strong> Shift to Reels-first strategy with behind-the-scenes fleet content, wedding day moments, and driver spotlight videos. Use Stories for polls and engagement. Consider user-generated content from happy riders.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card animate-in" onclick="this.classList.toggle('open')">
+        <div class="finding-header">
+          <div class="finding-status status-green"></div>
+          <div class="finding-title">Strong Philadelphia Local Presence</div>
+          <div class="finding-toggle">&#9660;</div>
+        </div>
+        <div class="finding-detail">
+          <div class="finding-detail-inner">
+            <p>Your Google Business Profile in King of Prussia is well-established with a 4.9-star rating, 1,136 reviews, 80 photos, and 24/7 hours listed. You rank well for Philadelphia-area limo searches.</p>
+            <p style="margin-top:0.75rem;">Top review topics include: drivers (101 mentions), PHL airport (24), polite service (18), and wheelchair accessibility (6). Customers consistently praise professionalism and punctuality.</p>
+            <p style="margin-top:0.75rem;"><strong>Opportunity:</strong> Leverage this strong base to expand into NYC, NJ, and DE markets through additional Google Business Profiles and geo-targeted landing pages.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg-surface-alt);">
+  <div class="container">
+    <h2 class="animate-in">Priority Action List</h2>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;" class="animate-in">Ordered by impact and ease of implementation.</p>
+
+    <div class="priority-list animate-in">
+      <div class="priority-item">
+        <div class="priority-num">1</div>
+        <div class="priority-text">
+          <strong>Fix 13 broken pages with 301 redirects</strong>
+          <span>Immediate impact. Recovers lost search equity and stops sending visitors to dead pages. Can be done in one session.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">2</div>
+        <div class="priority-text">
+          <strong>Add meta descriptions to 36 pages</strong>
+          <span>Improves click-through rates from Google. Prioritize service pages and high-traffic location pages first.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">3</div>
+        <div class="priority-text">
+          <strong>Respond to all Google reviews (start with last 30 days)</strong>
+          <span>Boosts local SEO ranking signal and shows prospective customers you value feedback.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">4</div>
+        <div class="priority-text">
+          <strong>Fix accessibility issues (target 85+ score)</strong>
+          <span>Improves user experience for all visitors, reduces legal risk, and is a search ranking factor.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">5</div>
+        <div class="priority-text">
+          <strong>Launch content strategy targeting keyword gaps</strong>
+          <span>Create landing pages and blog content for the 1,034 keywords competitors rank for that you don't.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">6</div>
+        <div class="priority-text">
+          <strong>Overhaul Instagram strategy with Reels and Stories</strong>
+          <span>Current 0.17% engagement means your content is invisible. Video content will reset the algorithm and reach new audiences.</span>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">7</div>
+        <div class="priority-text">
+          <strong>Create NYC-targeted landing pages and Google Business Profile</strong>
+          <span>You serve NYC airports but are invisible in NYC search. This is your biggest untapped market.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Let's fix these together</h2>
+    <p>We'll prioritize what matters most and build a plan that fits your timeline and budget.</p>
+    <a href="https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers" class="btn-primary">Book a Free Strategy Call</a>
+  </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
