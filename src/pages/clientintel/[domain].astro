@@ -16,7 +16,17 @@ const { domain } = Astro.params;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>{domain} | Client Intel Dashboard</title>
+  <title>Digital Presence Analysis | {domain}</title>
+  <meta name="description" content={`Digital presence analysis for ${domain}, prepared by Brothers Automate.`}>
+  <meta property="og:title" content={`Digital Presence Analysis | ${domain}`}>
+  <meta property="og:description" content={`Digital presence analysis for ${domain}, prepared by Brothers Automate.`}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={`https://brothersautomate.com/clientintel/${domain}`}>
+  <meta property="og:site_name" content="Brothers Automate">
+  <meta property="og:image" content="https://brothersautomate.com/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content={`Digital Presence Analysis | ${domain}`}>
+  <meta name="twitter:description" content={`Digital presence analysis for ${domain}, prepared by Brothers Automate.`}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
