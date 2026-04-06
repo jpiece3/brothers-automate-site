@@ -80,18 +80,18 @@ function fmtDate(d: string | null): string {
 // ─── Shared UI ───
 
 const card: React.CSSProperties = {
-  backgroundColor: '#0f1b2e',
+  backgroundColor: '#ffffff',
   borderRadius: '12px',
   padding: '20px',
-  border: '1px solid #1a365d40',
+  border: '1px solid #e2e8f0',
 };
 
 function Metric({ label, value, sub, color }: { label: string; value: string; sub?: string; color?: string }) {
   return (
     <div style={card}>
-      <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px' }}>{label}</div>
-      <div style={{ fontSize: '26px', fontWeight: 700, color: color || '#fff' }}>{value}</div>
-      {sub && <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>{sub}</div>}
+      <div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px' }}>{label}</div>
+      <div style={{ fontSize: '26px', fontWeight: 700, color: color || '#1a202c' }}>{value}</div>
+      {sub && <div style={{ fontSize: '12px', color: '#a0aec0', marginTop: '4px' }}>{sub}</div>}
     </div>
   );
 }
@@ -99,7 +99,7 @@ function Metric({ label, value, sub, color }: { label: string; value: string; su
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: '28px' }}>
-      <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '14px' }}>{title}</h3>
+      <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#1a202c', marginBottom: '14px' }}>{title}</h3>
       {children}
     </div>
   );
@@ -111,17 +111,17 @@ function DataTable({ headers, rows }: { headers: string[]; rows: (string | numbe
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #1a365d60' }}>
+            <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
               {headers.map((h, i) => (
-                <th key={i} style={{ padding: '12px 14px', textAlign: i === 0 ? 'left' : 'right', color: '#64748b', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>{h}</th>
+                <th key={i} style={{ padding: '12px 14px', textAlign: i === 0 ? 'left' : 'right', color: '#a0aec0', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, ri) => (
-              <tr key={ri} style={{ borderBottom: '1px solid #1a365d20' }}>
+              <tr key={ri} style={{ borderBottom: '1px solid #edf2f7' }}>
                 {row.map((cell, ci) => (
-                  <td key={ci} style={{ padding: '10px 14px', textAlign: ci === 0 ? 'left' : 'right', color: '#e2e8f0', whiteSpace: ci === 0 ? 'normal' : 'nowrap' }}>{cell ?? '--'}</td>
+                  <td key={ci} style={{ padding: '10px 14px', textAlign: ci === 0 ? 'left' : 'right', color: '#2d3748', whiteSpace: ci === 0 ? 'normal' : 'nowrap' }}>{cell ?? '--'}</td>
                 ))}
               </tr>
             ))}
@@ -133,8 +133,8 @@ function DataTable({ headers, rows }: { headers: string[]; rows: (string | numbe
 }
 
 function ScoreDot({ value, max = 100 }: { value: number | null; max?: number }) {
-  if (value === null) return <span style={{ color: '#64748b' }}>--</span>;
-  const color = value >= 80 ? '#16a34a' : value >= 50 ? '#ed8936' : '#dc2626';
+  if (value === null) return <span style={{ color: '#a0aec0' }}>--</span>;
+  const color = value >= 80 ? '#16a34a' : value >= 50 ? '#678B05' : '#dc2626';
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
       <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: color, display: 'inline-block' }} />
@@ -152,8 +152,8 @@ function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: Compet
         <Metric label="Domain Rank" value={fmt(scan.domain_rank)} />
         <Metric label="Keywords" value={fmt(scan.total_keywords)} />
         <Metric label="Est. Traffic" value={fmt(scan.etv ? Math.round(scan.etv) : null)} sub="monthly visits" />
-        <Metric label="Desktop Perf" value={scan.lighthouse_desktop !== null ? `${scan.lighthouse_desktop}/100` : '--'} color={scan.lighthouse_desktop && scan.lighthouse_desktop >= 90 ? '#16a34a' : '#ed8936'} />
-        <Metric label="Mobile Perf" value={scan.lighthouse_mobile !== null ? `${scan.lighthouse_mobile}/100` : '--'} color={scan.lighthouse_mobile && scan.lighthouse_mobile >= 90 ? '#16a34a' : '#ed8936'} />
+        <Metric label="Desktop Perf" value={scan.lighthouse_desktop !== null ? `${scan.lighthouse_desktop}/100` : '--'} color={scan.lighthouse_desktop && scan.lighthouse_desktop >= 90 ? '#16a34a' : '#678B05'} />
+        <Metric label="Mobile Perf" value={scan.lighthouse_mobile !== null ? `${scan.lighthouse_mobile}/100` : '--'} color={scan.lighthouse_mobile && scan.lighthouse_mobile >= 90 ? '#16a34a' : '#678B05'} />
         <Metric label="Google Rating" value={scan.google_rating !== null ? `${scan.google_rating}/5` : 'No GBP'} sub={scan.google_review_count !== null ? `${scan.google_review_count} reviews` : undefined} />
         <Metric label="Social Score" value={`${scan.social_presence_score ?? 0}/10`} color={scan.social_presence_score && scan.social_presence_score >= 5 ? '#16a34a' : '#dc2626'} />
         <Metric label="Scan Cost" value={scan.api_cost !== null ? `$${Number(scan.api_cost).toFixed(2)}` : '--'} />
@@ -165,8 +165,8 @@ function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: Compet
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '14px' }}>
             <Metric label="Total Pages" value={fmt(scan.total_pages)} />
             <Metric label="Broken Pages" value={fmt(scan.broken_pages)} color={scan.broken_pages && scan.broken_pages > 0 ? '#dc2626' : '#16a34a'} />
-            <Metric label="Missing Meta Desc" value={fmt(scan.missing_meta_descriptions)} color={scan.missing_meta_descriptions && scan.missing_meta_descriptions > 0 ? '#ed8936' : '#16a34a'} />
-            <Metric label="Missing H1" value={fmt(scan.missing_h1)} color={scan.missing_h1 && scan.missing_h1 > 0 ? '#ed8936' : '#16a34a'} />
+            <Metric label="Missing Meta Desc" value={fmt(scan.missing_meta_descriptions)} color={scan.missing_meta_descriptions && scan.missing_meta_descriptions > 0 ? '#678B05' : '#16a34a'} />
+            <Metric label="Missing H1" value={fmt(scan.missing_h1)} color={scan.missing_h1 && scan.missing_h1 > 0 ? '#678B05' : '#16a34a'} />
             {scan.backlink_count !== null && <Metric label="Backlinks" value={fmt(scan.backlink_count)} />}
             {scan.referring_domains !== null && <Metric label="Referring Domains" value={fmt(scan.referring_domains)} />}
           </div>
@@ -208,18 +208,18 @@ function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: Compet
             if (perfVal === null && accVal === null && seoVal === null) return null;
             return (
               <div key={device} style={card}>
-                <div style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8', marginBottom: '12px', textTransform: 'capitalize' }}>{device}</div>
+                <div style={{ fontSize: '13px', fontWeight: 600, color: '#718096', marginBottom: '12px', textTransform: 'capitalize' }}>{device}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>Performance</span>
+                    <span style={{ color: '#718096', fontSize: '13px' }}>Performance</span>
                     <ScoreDot value={perfVal} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>Accessibility</span>
+                    <span style={{ color: '#718096', fontSize: '13px' }}>Accessibility</span>
                     <ScoreDot value={accVal} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>SEO</span>
+                    <span style={{ color: '#718096', fontSize: '13px' }}>SEO</span>
                     <ScoreDot value={seoVal} />
                   </div>
                 </div>
@@ -238,8 +238,8 @@ function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: Compet
               .map(([key, val]) => {
                 const display = Array.isArray(val) ? val.join(', ') : String(val);
                 return (
-                  <span key={key} style={{ padding: '4px 12px', borderRadius: '6px', backgroundColor: '#1a365d', fontSize: '12px', color: '#94a3b8' }}>
-                    <span style={{ color: '#ed8936', fontWeight: 600 }}>{key.replace(/_/g, ' ')}: </span>{display}
+                  <span key={key} style={{ padding: '4px 12px', borderRadius: '6px', backgroundColor: '#edf2f7', fontSize: '12px', color: '#718096' }}>
+                    <span style={{ color: '#678B05', fontWeight: 600 }}>{key.replace(/_/g, ' ')}: </span>{display}
                   </span>
                 );
               })}
@@ -252,18 +252,37 @@ function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: Compet
 
 function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: KeywordRow[]; competitors: CompetitorRow[] }) {
   const seo = scan.seo_data;
-  if (!seo) return <div style={{ color: '#64748b', padding: '40px', textAlign: 'center' }}>No SEO data available</div>;
+  if (!seo && keywords.length === 0) return <div style={{ color: '#a0aec0', padding: '40px', textAlign: 'center' }}>No SEO data available</div>;
+
+  // Compute position distribution from live keyword data (always fresh)
+  const posDist = [
+    { label: '1', min: 1, max: 1 },
+    { label: '2-3', min: 2, max: 3 },
+    { label: '4-10', min: 4, max: 10 },
+    { label: '11-20', min: 11, max: 20 },
+    { label: '21-30', min: 21, max: 30 },
+    { label: '31-40', min: 31, max: 40 },
+    { label: '41-50', min: 41, max: 50 },
+    { label: '51-60', min: 51, max: 60 },
+    { label: '61-70', min: 61, max: 70 },
+    { label: '71-80', min: 71, max: 80 },
+    { label: '81-90', min: 81, max: 90 },
+    { label: '91-100', min: 91, max: 100 },
+  ].map(bucket => ({
+    ...bucket,
+    count: keywords.filter(k => k.position !== null && k.position >= bucket.min && k.position <= bucket.max).length,
+  }));
 
   return (
     <>
-      {/* Position Distribution */}
-      {seo.domain_overview?.position_distribution && (
+      {/* Position Distribution — computed from live keyword data */}
+      {keywords.length > 0 && (
         <Section title="Position Distribution">
           <div style={{ ...card, display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-            {Object.entries(seo.domain_overview.position_distribution).map(([range, count]) => (
-              <div key={range} style={{ textAlign: 'center', minWidth: '70px' }}>
-                <div style={{ fontSize: '20px', fontWeight: 700, color: (count as number) > 0 ? '#fff' : '#1a365d80' }}>{count as number}</div>
-                <div style={{ fontSize: '11px', color: '#64748b' }}>{range.replace('pos_', '').replace('_', '-')}</div>
+            {posDist.map(bucket => (
+              <div key={bucket.label} style={{ textAlign: 'center', minWidth: '70px' }}>
+                <div style={{ fontSize: '20px', fontWeight: 700, color: bucket.count > 0 ? '#1a202c' : '#e2e8f0' }}>{bucket.count}</div>
+                <div style={{ fontSize: '11px', color: '#a0aec0' }}>{bucket.label}</div>
               </div>
             ))}
           </div>
@@ -318,7 +337,7 @@ function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: Keyw
         <Section title="Keyword Gaps">
           {Object.entries(seo.keyword_gap).map(([competitor, data]: [string, any]) => (
             <div key={competitor} style={{ marginBottom: '16px' }}>
-              <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '8px', fontWeight: 600 }}>
+              <div style={{ fontSize: '13px', color: '#718096', marginBottom: '8px', fontWeight: 600 }}>
                 vs {competitor.replace('vs_', '')} ({data.total_gap_keywords} gaps)
               </div>
               <DataTable
@@ -339,16 +358,16 @@ function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: Keyw
         <Section title="Site Crawl">
           <div style={{ ...card, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '14px' }}>
             <div>
-              <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Live Pages</div>
-              <div style={{ fontSize: '22px', fontWeight: 700, color: '#fff' }}>{seo.site_crawl.issues.total_live_pages ?? seo.site_crawl.total_pages_crawled}</div>
+              <div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Live Pages</div>
+              <div style={{ fontSize: '22px', fontWeight: 700, color: '#1a202c' }}>{seo.site_crawl.issues.total_live_pages ?? seo.site_crawl.total_pages_crawled}</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>404 Errors</div>
+              <div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>404 Errors</div>
               <div style={{ fontSize: '22px', fontWeight: 700, color: seo.site_crawl.issues.pages_with_404 > 0 ? '#dc2626' : '#16a34a' }}>{seo.site_crawl.issues.pages_with_404}</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Missing Meta Desc</div>
-              <div style={{ fontSize: '22px', fontWeight: 700, color: seo.site_crawl.issues.pages_missing_meta_description > 0 ? '#ed8936' : '#16a34a' }}>{seo.site_crawl.issues.pages_missing_meta_description}</div>
+              <div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Missing Meta Desc</div>
+              <div style={{ fontSize: '22px', fontWeight: 700, color: seo.site_crawl.issues.pages_missing_meta_description > 0 ? '#678B05' : '#16a34a' }}>{seo.site_crawl.issues.pages_missing_meta_description}</div>
             </div>
           </div>
         </Section>
@@ -359,7 +378,7 @@ function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: Keyw
 
 function LocalTab({ scan }: { scan: ScanRow }) {
   const local = scan.local_data;
-  if (!local) return <div style={{ color: '#64748b', padding: '40px', textAlign: 'center' }}>No local data available</div>;
+  if (!local) return <div style={{ color: '#a0aec0', padding: '40px', textAlign: 'center' }}>No local data available</div>;
 
   return (
     <>
@@ -369,14 +388,14 @@ function LocalTab({ scan }: { scan: ScanRow }) {
           {local.google_business_profile?.status === 'NOT_FOUND' ? (
             <div>
               <div style={{ fontSize: '16px', fontWeight: 700, color: '#dc2626', marginBottom: '8px' }}>Not Found</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8' }}>{local.google_business_profile.note}</div>
+              <div style={{ fontSize: '13px', color: '#718096' }}>{local.google_business_profile.note}</div>
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '14px' }}>
-              <div><div style={{ fontSize: '11px', color: '#64748b' }}>Name</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.name || '--'}</div></div>
-              <div><div style={{ fontSize: '11px', color: '#64748b' }}>Rating</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.rating || '--'}/5</div></div>
-              <div><div style={{ fontSize: '11px', color: '#64748b' }}>Reviews</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.review_count || '--'}</div></div>
-              <div><div style={{ fontSize: '11px', color: '#64748b' }}>Category</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.category || '--'}</div></div>
+              <div><div style={{ fontSize: '11px', color: '#a0aec0' }}>Name</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.name || '--'}</div></div>
+              <div><div style={{ fontSize: '11px', color: '#a0aec0' }}>Rating</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.rating || '--'}/5</div></div>
+              <div><div style={{ fontSize: '11px', color: '#a0aec0' }}>Reviews</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.review_count || '--'}</div></div>
+              <div><div style={{ fontSize: '11px', color: '#a0aec0' }}>Category</div><div style={{ fontWeight: 600 }}>{local.google_business_profile?.category || '--'}</div></div>
             </div>
           )}
         </div>
@@ -388,7 +407,7 @@ function LocalTab({ scan }: { scan: ScanRow }) {
           {local.maps_rankings.map((mr: any, i: number) => (
             <div key={i} style={{ marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <span style={{ fontSize: '13px', fontWeight: 600, color: '#fff' }}>"{mr.query}"</span>
+                <span style={{ fontSize: '13px', fontWeight: 600, color: '#1a202c' }}>"{mr.query}"</span>
                 {mr.target_found ? (
                   <span style={{ padding: '2px 8px', borderRadius: '10px', fontSize: '11px', fontWeight: 600, backgroundColor: '#16a34a20', color: '#16a34a' }}>
                     Position {mr.target_position}
@@ -420,10 +439,10 @@ function LocalTab({ scan }: { scan: ScanRow }) {
         <Section title="Organic SERP Rankings">
           <div style={{ ...card, display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {local.organic_serp.map((os: any, i: number) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: i < local.organic_serp.length - 1 ? '1px solid #1a365d30' : 'none' }}>
-                <span style={{ fontSize: '13px', color: '#e2e8f0' }}>"{os.query}"</span>
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: i < local.organic_serp.length - 1 ? '1px solid #edf2f7' : 'none' }}>
+                <span style={{ fontSize: '13px', color: '#2d3748' }}>"{os.query}"</span>
                 {os.target_found ? (
-                  <span style={{ fontWeight: 700, color: os.target_position <= 10 ? '#16a34a' : '#ed8936' }}>#{os.target_position}</span>
+                  <span style={{ fontWeight: 700, color: os.target_position <= 10 ? '#16a34a' : '#678B05' }}>#{os.target_position}</span>
                 ) : (
                   <span style={{ color: '#dc2626', fontSize: '12px' }}>Not ranking</span>
                 )}
@@ -454,7 +473,7 @@ function LocalTab({ scan }: { scan: ScanRow }) {
 
 function SocialTab({ scan }: { scan: ScanRow }) {
   const social = scan.social_data;
-  if (!social) return <div style={{ color: '#64748b', padding: '40px', textAlign: 'center' }}>No social data available</div>;
+  if (!social) return <div style={{ color: '#a0aec0', padding: '40px', textAlign: 'center' }}>No social data available</div>;
 
   const platforms = [
     { name: 'Instagram', data: social.instagram, metrics: social.instagram ? [
@@ -490,14 +509,14 @@ function SocialTab({ scan }: { scan: ScanRow }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
           {platforms.map(p => (
             <div key={p.name} style={card}>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.name}</div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a202c', marginBottom: '12px' }}>{p.name}</div>
               {p.data === null ? (
                 <div style={{ color: '#dc2626', fontSize: '13px' }}>No {p.name} presence found</div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {p.metrics!.map(m => (
                     <div key={m.label} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#64748b', fontSize: '13px' }}>{m.label}</span>
+                      <span style={{ color: '#a0aec0', fontSize: '13px' }}>{m.label}</span>
                       <span style={{ fontWeight: 600, fontSize: '13px' }}>{m.value}</span>
                     </div>
                   ))}
@@ -515,7 +534,7 @@ function SocialTab({ scan }: { scan: ScanRow }) {
             <div style={{ fontSize: '13px', color: social.facebook_ads.running_ads ? '#16a34a' : '#94a3b8' }}>
               {social.facebook_ads.running_ads ? `${social.facebook_ads.active_ads} active ads running` : 'No active ads'}
             </div>
-            {social.facebook_ads.notes && <div style={{ fontSize: '12px', color: '#64748b', marginTop: '6px' }}>{social.facebook_ads.notes}</div>}
+            {social.facebook_ads.notes && <div style={{ fontSize: '12px', color: '#a0aec0', marginTop: '6px' }}>{social.facebook_ads.notes}</div>}
           </div>
         </Section>
       )}
@@ -526,7 +545,7 @@ function SocialTab({ scan }: { scan: ScanRow }) {
           <div style={card}>
             <ul style={{ paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {social.summary.key_findings.map((f: string, i: number) => (
-                <li key={i} style={{ fontSize: '13px', color: '#94a3b8' }}>{f}</li>
+                <li key={i} style={{ fontSize: '13px', color: '#718096' }}>{f}</li>
               ))}
             </ul>
           </div>
@@ -539,7 +558,7 @@ function SocialTab({ scan }: { scan: ScanRow }) {
           <div style={card}>
             <ul style={{ paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {social.summary.opportunities.map((o: string, i: number) => (
-                <li key={i} style={{ fontSize: '13px', color: '#ed8936' }}>{o}</li>
+                <li key={i} style={{ fontSize: '13px', color: '#678B05' }}>{o}</li>
               ))}
             </ul>
           </div>
@@ -551,13 +570,13 @@ function SocialTab({ scan }: { scan: ScanRow }) {
         <Section title="Contact Info">
           <div style={{ ...card, display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {social.contact_info.phones?.length > 0 && (
-              <div style={{ fontSize: '13px' }}><span style={{ color: '#64748b' }}>Phone: </span>{social.contact_info.phones.join(', ')}</div>
+              <div style={{ fontSize: '13px' }}><span style={{ color: '#a0aec0' }}>Phone: </span>{social.contact_info.phones.join(', ')}</div>
             )}
             {social.contact_info.emails?.length > 0 && (
-              <div style={{ fontSize: '13px' }}><span style={{ color: '#64748b' }}>Email: </span>{social.contact_info.emails.join(', ')}</div>
+              <div style={{ fontSize: '13px' }}><span style={{ color: '#a0aec0' }}>Email: </span>{social.contact_info.emails.join(', ')}</div>
             )}
             {social.contact_info.address && (
-              <div style={{ fontSize: '13px' }}><span style={{ color: '#64748b' }}>Address: </span>{social.contact_info.address}</div>
+              <div style={{ fontSize: '13px' }}><span style={{ color: '#a0aec0' }}>Address: </span>{social.contact_info.address}</div>
             )}
           </div>
         </Section>
@@ -568,7 +587,7 @@ function SocialTab({ scan }: { scan: ScanRow }) {
 
 function CompanyTab({ scan }: { scan: ScanRow }) {
   const co = scan.company_data;
-  if (!co) return <div style={{ color: '#64748b', padding: '40px', textAlign: 'center' }}>No company data available</div>;
+  if (!co) return <div style={{ color: '#a0aec0', padding: '40px', textAlign: 'center' }}>No company data available</div>;
 
   return (
     <>
@@ -576,12 +595,12 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
       {co.company && (
         <Section title="Company Overview">
           <div style={{ ...card, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
-            <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Name</div><div style={{ fontWeight: 600 }}>{co.company.name}</div></div>
-            {co.company.tagline && <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Tagline</div><div style={{ fontWeight: 600 }}>{co.company.tagline}</div></div>}
-            <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Founded</div><div style={{ fontWeight: 600 }}>{co.company.founded || '--'}</div></div>
-            <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Employees</div><div style={{ fontWeight: 600 }}>{co.company.estimated_employees || '--'}</div></div>
-            <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Phone</div><div style={{ fontWeight: 600 }}>{co.company.phone || '--'}</div></div>
-            <div><div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>Email</div><div style={{ fontWeight: 600 }}>{co.company.email || '--'}</div></div>
+            <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Name</div><div style={{ fontWeight: 600 }}>{co.company.name}</div></div>
+            {co.company.tagline && <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Tagline</div><div style={{ fontWeight: 600 }}>{co.company.tagline}</div></div>}
+            <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Founded</div><div style={{ fontWeight: 600 }}>{co.company.founded || '--'}</div></div>
+            <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Employees</div><div style={{ fontWeight: 600 }}>{co.company.estimated_employees || '--'}</div></div>
+            <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Phone</div><div style={{ fontWeight: 600 }}>{co.company.phone || '--'}</div></div>
+            <div><div style={{ fontSize: '11px', color: '#a0aec0', textTransform: 'uppercase' }}>Email</div><div style={{ fontWeight: 600 }}>{co.company.email || '--'}</div></div>
           </div>
         </Section>
       )}
@@ -590,7 +609,7 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
       {co.company?.estimated_revenue && (
         <Section title="Revenue Estimate">
           <div style={card}>
-            <div style={{ fontSize: '13px', color: '#94a3b8' }}>{co.company.estimated_revenue}</div>
+            <div style={{ fontSize: '13px', color: '#718096' }}>{co.company.estimated_revenue}</div>
           </div>
         </Section>
       )}
@@ -601,9 +620,9 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {co.leadership.map((l: any, i: number) => (
               <div key={i} style={card}>
-                <div style={{ fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{l.name || 'Unknown'}</div>
-                <div style={{ fontSize: '13px', color: '#ed8936', marginBottom: '6px' }}>{l.title}</div>
-                {l.background && <div style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.5 }}>{l.background}</div>}
+                <div style={{ fontWeight: 700, color: '#1a202c', marginBottom: '4px' }}>{l.name || 'Unknown'}</div>
+                <div style={{ fontSize: '13px', color: '#678B05', marginBottom: '6px' }}>{l.title}</div>
+                {l.background && <div style={{ fontSize: '12px', color: '#718096', lineHeight: 1.5 }}>{l.background}</div>}
               </div>
             ))}
           </div>
@@ -616,23 +635,23 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
           <div style={card}>
             {co.services.primary && (
               <div style={{ marginBottom: '12px' }}>
-                <div style={{ fontSize: '12px', color: '#ed8936', fontWeight: 600, marginBottom: '6px' }}>Primary</div>
+                <div style={{ fontSize: '12px', color: '#678B05', fontWeight: 600, marginBottom: '6px' }}>Primary</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                   {co.services.primary.map((s: string, i: number) => (
-                    <span key={i} style={{ padding: '3px 10px', borderRadius: '6px', backgroundColor: '#1a365d', fontSize: '12px', color: '#e2e8f0' }}>{s}</span>
+                    <span key={i} style={{ padding: '3px 10px', borderRadius: '6px', backgroundColor: '#edf2f7', fontSize: '12px', color: '#2d3748' }}>{s}</span>
                   ))}
                 </div>
               </div>
             )}
             {co.services.secondary && (
               <div>
-                <div style={{ fontSize: '12px', color: '#64748b', fontWeight: 600, marginBottom: '6px' }}>Secondary</div>
+                <div style={{ fontSize: '12px', color: '#a0aec0', fontWeight: 600, marginBottom: '6px' }}>Secondary</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                   {co.services.secondary.slice(0, 10).map((s: string, i: number) => (
-                    <span key={i} style={{ padding: '3px 10px', borderRadius: '6px', backgroundColor: '#1a365d60', fontSize: '12px', color: '#94a3b8' }}>{s}</span>
+                    <span key={i} style={{ padding: '3px 10px', borderRadius: '6px', backgroundColor: '#e2e8f0', fontSize: '12px', color: '#718096' }}>{s}</span>
                   ))}
                   {co.services.secondary.length > 10 && (
-                    <span style={{ padding: '3px 10px', fontSize: '12px', color: '#64748b' }}>+{co.services.secondary.length - 10} more</span>
+                    <span style={{ padding: '3px 10px', fontSize: '12px', color: '#a0aec0' }}>+{co.services.secondary.length - 10} more</span>
                   )}
                 </div>
               </div>
@@ -648,7 +667,7 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
             <div style={{ fontSize: '13px', color: co.hiring.open_positions > 0 ? '#16a34a' : '#94a3b8', marginBottom: '6px', fontWeight: 600 }}>
               {co.hiring.open_positions > 0 ? `${co.hiring.open_positions} open positions` : 'No open positions'}
             </div>
-            {co.hiring.growth_signal && <div style={{ fontSize: '12px', color: '#64748b' }}>{co.hiring.growth_signal}</div>}
+            {co.hiring.growth_signal && <div style={{ fontSize: '12px', color: '#a0aec0' }}>{co.hiring.growth_signal}</div>}
           </div>
         </Section>
       )}
@@ -658,20 +677,20 @@ function CompanyTab({ scan }: { scan: ScanRow }) {
         <Section title="Marketing Capability">
           <div style={card}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-              <span style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>Level:</span>
+              <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a202c' }}>Level:</span>
               <span style={{ padding: '3px 12px', borderRadius: '6px', backgroundColor: '#dc262620', color: '#dc2626', fontSize: '13px', fontWeight: 600 }}>
                 {co.marketing_capability.current_level}
               </span>
             </div>
             {co.marketing_capability.gap_assessment && (
-              <div style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6, marginBottom: '12px' }}>{co.marketing_capability.gap_assessment}</div>
+              <div style={{ fontSize: '13px', color: '#718096', lineHeight: 1.6, marginBottom: '12px' }}>{co.marketing_capability.gap_assessment}</div>
             )}
             {co.marketing_capability.recommended_services && (
               <div>
-                <div style={{ fontSize: '12px', color: '#ed8936', fontWeight: 600, marginBottom: '6px' }}>Recommended Services</div>
+                <div style={{ fontSize: '12px', color: '#678B05', fontWeight: 600, marginBottom: '6px' }}>Recommended Services</div>
                 <ul style={{ paddingLeft: '18px' }}>
                   {co.marketing_capability.recommended_services.map((s: string, i: number) => (
-                    <li key={i} style={{ fontSize: '13px', color: '#e2e8f0', marginBottom: '4px' }}>{s}</li>
+                    <li key={i} style={{ fontSize: '13px', color: '#2d3748', marginBottom: '4px' }}>{s}</li>
                   ))}
                 </ul>
               </div>
@@ -773,8 +792,8 @@ function HistoryTab({ clientId }: { clientId: string }) {
     loadHistory();
   }, [clientId]);
 
-  if (loadingHistory) return <div style={{ padding: '40px', textAlign: 'center', color: '#94a3b8' }}>Loading history...</div>;
-  if (scans.length < 2) return <div style={{ ...card, padding: '40px', textAlign: 'center', color: '#64748b' }}>Need at least 2 scans to show trends. Click "Refresh Metrics" to add another data point.</div>;
+  if (loadingHistory) return <div style={{ padding: '40px', textAlign: 'center', color: '#718096' }}>Loading history...</div>;
+  if (scans.length < 2) return <div style={{ ...card, padding: '40px', textAlign: 'center', color: '#a0aec0' }}>Need at least 2 scans to show trends. Click "Refresh Metrics" to add another data point.</div>;
 
   // Build chart data from scans
   const chartData = scans.map(s => ({
@@ -786,7 +805,7 @@ function HistoryTab({ clientId }: { clientId: string }) {
     reviews: s.google_review_count,
   }));
 
-  const COLORS = ['#ed8936', '#3182ce', '#16a34a', '#dc2626', '#a855f7', '#ec4899', '#14b8a6', '#f59e0b'];
+  const COLORS = ['#678B05', '#3182ce', '#16a34a', '#dc2626', '#a855f7', '#ec4899', '#14b8a6', '#f59e0b'];
 
   return (
     <>
@@ -795,16 +814,16 @@ function HistoryTab({ clientId }: { clientId: string }) {
         <div style={{ ...card, padding: '20px' }}>
           <ResponsiveContainer width="100%" height={280}>
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a365d40" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="date" stroke="#64748b" fontSize={12} />
               <YAxis stroke="#64748b" fontSize={12} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#0f1b2e', border: '1px solid #1a365d60', borderRadius: '8px', fontSize: '13px' }}
-                labelStyle={{ color: '#94a3b8' }}
+                contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '13px' }}
+                labelStyle={{ color: '#718096' }}
               />
               <Legend wrapperStyle={{ fontSize: '12px' }} />
               <Line type="monotone" dataKey="desktopPerf" name="Desktop" stroke="#3182ce" strokeWidth={2} dot={{ r: 4 }} />
-              <Line type="monotone" dataKey="mobilePerf" name="Mobile" stroke="#ed8936" strokeWidth={2} dot={{ r: 4 }} />
+              <Line type="monotone" dataKey="mobilePerf" name="Mobile" stroke="#678B05" strokeWidth={2} dot={{ r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -815,12 +834,12 @@ function HistoryTab({ clientId }: { clientId: string }) {
         <div style={{ ...card, padding: '20px' }}>
           <ResponsiveContainer width="100%" height={280}>
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a365d40" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="date" stroke="#64748b" fontSize={12} />
               <YAxis stroke="#64748b" fontSize={12} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#0f1b2e', border: '1px solid #1a365d60', borderRadius: '8px', fontSize: '13px' }}
-                labelStyle={{ color: '#94a3b8' }}
+                contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '13px' }}
+                labelStyle={{ color: '#718096' }}
               />
               <Legend wrapperStyle={{ fontSize: '12px' }} />
               <Line type="monotone" dataKey="keywords" name="Keywords" stroke="#16a34a" strokeWidth={2} dot={{ r: 4 }} />
@@ -834,10 +853,10 @@ function HistoryTab({ clientId }: { clientId: string }) {
       {kwHistory.length > 0 && (
         <Section title="Keyword Position Tracking">
           <div style={{ ...card, padding: '20px' }}>
-            <div style={{ fontSize: '12px', color: '#64748b', marginBottom: '12px' }}>Lower position = better ranking. Tracking top {kwHistory.length} keywords by search volume.</div>
+            <div style={{ fontSize: '12px', color: '#a0aec0', marginBottom: '12px' }}>Lower position = better ranking. Tracking top {kwHistory.length} keywords by search volume.</div>
             <ResponsiveContainer width="100%" height={320}>
               <LineChart>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1a365d40" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis
                   dataKey="date"
                   type="category"
@@ -847,8 +866,8 @@ function HistoryTab({ clientId }: { clientId: string }) {
                 />
                 <YAxis reversed domain={[0, 'auto']} stroke="#64748b" fontSize={12} label={{ value: 'Position', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f1b2e', border: '1px solid #1a365d60', borderRadius: '8px', fontSize: '13px' }}
-                  labelStyle={{ color: '#94a3b8' }}
+                  contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '13px' }}
+                  labelStyle={{ color: '#718096' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px' }} />
                 {kwHistory.map((kw, i) => (
@@ -922,8 +941,8 @@ function ReportsTab({ clientId }: { clientId: string }) {
     loadReports();
   }, [clientId]);
 
-  if (loadingReports) return <div style={{ padding: '40px', textAlign: 'center', color: '#94a3b8' }}>Loading reports...</div>;
-  if (reports.length === 0) return <div style={{ ...card, padding: '40px', textAlign: 'center', color: '#64748b' }}>No reports yet. Run /client-scan to generate reports.</div>;
+  if (loadingReports) return <div style={{ padding: '40px', textAlign: 'center', color: '#718096' }}>Loading reports...</div>;
+  if (reports.length === 0) return <div style={{ ...card, padding: '40px', textAlign: 'center', color: '#a0aec0' }}>No reports yet. Run /client-scan to generate reports.</div>;
 
   // Group by scan date
   const grouped = new Map<string, ReportRow[]>();
@@ -950,7 +969,7 @@ function ReportsTab({ clientId }: { clientId: string }) {
           style={{
             background: 'none',
             border: 'none',
-            color: '#3182ce',
+            color: '#678B05',
             cursor: 'pointer',
             fontSize: '14px',
             marginBottom: '16px',
@@ -962,14 +981,14 @@ function ReportsTab({ clientId }: { clientId: string }) {
         <div style={{ ...card, padding: 0, overflow: 'hidden' }}>
           <div style={{
             padding: '14px 20px',
-            borderBottom: '1px solid #1a365d40',
+            borderBottom: '1px solid #e2e8f0',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
             <div>
-              <div style={{ fontWeight: 700, color: '#fff', fontSize: '15px' }}>{activeReport.title}</div>
-              <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
+              <div style={{ fontWeight: 700, color: '#1a202c', fontSize: '15px' }}>{activeReport.title}</div>
+              <div style={{ fontSize: '12px', color: '#a0aec0', marginTop: '2px' }}>
                 Generated {new Date(activeReport.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
               </div>
             </div>
@@ -981,9 +1000,9 @@ function ReportsTab({ clientId }: { clientId: string }) {
               style={{
                 padding: '6px 14px',
                 borderRadius: '6px',
-                border: '1px solid #1a365d60',
+                border: '1px solid #e2e8f0',
                 backgroundColor: 'transparent',
-                color: '#94a3b8',
+                color: '#718096',
                 fontSize: '12px',
                 cursor: 'pointer',
               }}
@@ -1020,16 +1039,16 @@ function ReportsTab({ clientId }: { clientId: string }) {
                   style={{
                     ...card,
                     cursor: 'pointer',
-                    border: '1px solid #1a365d40',
+                    border: '1px solid #e2e8f0',
                     textAlign: 'left',
                     transition: 'border-color 150ms ease',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#ed8936')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#1a365d40')}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#678B05')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e2e8f0')}
                 >
                   <div style={{ fontSize: '20px', marginBottom: '8px' }}>{reportIcons[report.report_type] || '\u{1F4C4}'}</div>
-                  <div style={{ fontWeight: 600, color: '#fff', fontSize: '14px', marginBottom: '4px' }}>{report.title}</div>
-                  <div style={{ fontSize: '11px', color: '#64748b' }}>
+                  <div style={{ fontWeight: 600, color: '#1a202c', fontSize: '14px', marginBottom: '4px' }}>{report.title}</div>
+                  <div style={{ fontSize: '11px', color: '#a0aec0' }}>
                     {new Date(report.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </div>
                 </button>
@@ -1175,7 +1194,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
     setRefreshing(false);
   }
 
-  if (loading) return <div style={{ padding: '80px 0', textAlign: 'center', color: '#94a3b8' }}>Loading {domain}...</div>;
+  if (loading) return <div style={{ padding: '80px 0', textAlign: 'center', color: '#718096' }}>Loading {domain}...</div>;
   if (error) return <div style={{ padding: '40px', color: '#dc2626', backgroundColor: '#dc262610', borderRadius: '12px', textAlign: 'center' }}>{error}</div>;
   if (!client) return null;
 
@@ -1195,16 +1214,16 @@ export default function ClientDetail({ domain }: { domain: string }) {
       <div style={{ marginBottom: '28px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px', flexWrap: 'wrap' }}>
           <div>
-            <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#fff', marginBottom: '4px' }}>
+            <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#1a202c', marginBottom: '4px' }}>
               {client.business_name || client.domain}
             </h1>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '14px', color: '#64748b' }}>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '14px', color: '#a0aec0' }}>
               <span>{client.domain}</span>
               {client.location && <span>{client.location}</span>}
-              {client.angle && <span style={{ color: '#ed8936' }}>{client.angle}</span>}
+              {client.angle && <span style={{ color: '#678B05' }}>{client.angle}</span>}
               {scan && <span>Last scan: {fmtDate(scan.scanned_at)}</span>}
             </div>
-            {client.notes && <div style={{ marginTop: '8px', fontSize: '13px', color: '#94a3b8' }}>{client.notes}</div>}
+            {client.notes && <div style={{ marginTop: '8px', fontSize: '13px', color: '#718096' }}>{client.notes}</div>}
           </div>
           <button
             onClick={handleRefresh}
@@ -1212,9 +1231,9 @@ export default function ClientDetail({ domain }: { domain: string }) {
             style={{
               padding: '10px 20px',
               borderRadius: '8px',
-              border: '1px solid #3182ce40',
-              backgroundColor: refreshing ? '#1a365d' : 'transparent',
-              color: '#3182ce',
+              border: '1px solid #e2e8f0',
+              backgroundColor: refreshing ? '#f7fafc' : 'transparent',
+              color: '#678B05',
               fontSize: '13px',
               fontWeight: 600,
               cursor: refreshing ? 'wait' : 'pointer',
@@ -1231,8 +1250,8 @@ export default function ClientDetail({ domain }: { domain: string }) {
       {/* Logs Panel */}
       {showLogs && logs.length > 0 && (
         <div style={{
-          backgroundColor: '#0a0e1a',
-          border: '1px solid #1a365d40',
+          backgroundColor: '#f7fafc',
+          border: '1px solid #e2e8f0',
           borderRadius: '8px',
           marginBottom: '20px',
           overflow: 'hidden',
@@ -1242,15 +1261,15 @@ export default function ClientDetail({ domain }: { domain: string }) {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '8px 14px',
-            borderBottom: '1px solid #1a365d30',
-            backgroundColor: '#0f1520',
+            borderBottom: '1px solid #edf2f7',
+            backgroundColor: '#edf2f7',
           }}>
-            <span style={{ fontSize: '11px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Refresh Log {refreshing && <span style={{ color: '#ed8936' }}>(running...)</span>}
+            <span style={{ fontSize: '11px', fontWeight: 600, color: '#a0aec0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Refresh Log {refreshing && <span style={{ color: '#678B05' }}>(running...)</span>}
             </span>
             <button
               onClick={() => { setShowLogs(false); setLogs([]); }}
-              style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: '14px', padding: '0 4px' }}
+              style={{ background: 'none', border: 'none', color: '#a0aec0', cursor: 'pointer', fontSize: '14px', padding: '0 4px' }}
             >
               {'\u2715'}
             </button>
@@ -1267,7 +1286,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
               <div key={i} style={{
                 color: log.type === 'success' ? '#16a34a' : log.type === 'error' ? '#dc2626' : '#94a3b8',
               }}>
-                <span style={{ color: '#1a365d80', marginRight: '8px' }}>{log.time}</span>
+                <span style={{ color: '#cbd5e0', marginRight: '8px' }}>{log.time}</span>
                 {log.msg}
               </div>
             ))}
@@ -1276,7 +1295,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
       )}
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '4px', marginBottom: '24px', borderBottom: '1px solid #1a365d40', paddingBottom: '0' }}>
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '24px', borderBottom: '1px solid #e2e8f0', paddingBottom: '0' }}>
         {tabs.map(t => (
           <button
             key={t.key}
@@ -1285,11 +1304,11 @@ export default function ClientDetail({ domain }: { domain: string }) {
               padding: '10px 20px',
               border: 'none',
               backgroundColor: 'transparent',
-              color: tab === t.key ? '#ed8936' : '#64748b',
+              color: tab === t.key ? '#678B05' : '#64748b',
               fontSize: '14px',
               fontWeight: 600,
               cursor: 'pointer',
-              borderBottom: tab === t.key ? '2px solid #ed8936' : '2px solid transparent',
+              borderBottom: tab === t.key ? '2px solid #678B05' : '2px solid transparent',
               transition: 'all 150ms ease',
               marginBottom: '-1px',
             }}
@@ -1301,7 +1320,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
 
       {/* Tab Content */}
       {!scan ? (
-        <div style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>No scan data yet. Run /client-scan to generate data.</div>
+        <div style={{ padding: '40px', textAlign: 'center', color: '#a0aec0' }}>No scan data yet. Run /client-scan to generate data.</div>
       ) : (
         <>
           {tab === 'overview' && <OverviewTab scan={scan} competitors={competitors} />}

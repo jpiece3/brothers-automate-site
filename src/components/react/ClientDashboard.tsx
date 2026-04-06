@@ -109,7 +109,7 @@ function computeHealthGrade(client: ClientOverview): { grade: string; color: str
 
   if (pct >= 70) return { grade: 'A', color: '#16a34a', score: pct };
   if (pct >= 50) return { grade: 'B', color: '#3182ce', score: pct };
-  if (pct >= 30) return { grade: 'C', color: '#ed8936', score: pct };
+  if (pct >= 30) return { grade: 'C', color: '#678B05', score: pct };
   if (pct >= 15) return { grade: 'D', color: '#dc2626', score: pct };
   return { grade: 'F', color: '#dc2626', score: pct };
 }
@@ -149,7 +149,7 @@ function HealthGradeBadge({ client }: { client: ClientOverview }) {
       }}>
         {grade}
       </span>
-      <span style={{ fontSize: '12px', color: '#64748b' }}>{score}%</span>
+      <span style={{ fontSize: '12px', color: '#a0aec0' }}>{score}%</span>
 
       {showTip && (
         <div style={{
@@ -157,17 +157,17 @@ function HealthGradeBadge({ client }: { client: ClientOverview }) {
           top: '100%',
           left: 0,
           marginTop: '8px',
-          backgroundColor: '#0a0e1a',
-          border: '1px solid #1a365d60',
-          borderRadius: '8px',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
+          borderRadius: '10px',
           padding: '14px 16px',
           width: '240px',
           zIndex: 100,
-          boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+          boxShadow: '0 12px 32px rgba(0,0,0,0.12)',
         }}
         onClick={e => e.stopPropagation()}
         >
-          <div style={{ fontSize: '12px', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>Visibility Score Breakdown</div>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#1a202c', marginBottom: '10px' }}>Visibility Score Breakdown</div>
           {[
             { label: 'Google Reviews', pts: reviewPts, max: 30, detail: client.google_review_count ? `${client.google_review_count} reviews` : 'No GBP' },
             { label: 'Keywords', pts: kwPts, max: 20, detail: `${client.total_keywords || 0} ranking` },
@@ -177,16 +177,16 @@ function HealthGradeBadge({ client }: { client: ClientOverview }) {
           ].map(row => (
             <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
               <div>
-                <div style={{ fontSize: '11px', color: '#94a3b8' }}>{row.label}</div>
-                <div style={{ fontSize: '10px', color: '#64748b' }}>{row.detail}</div>
+                <div style={{ fontSize: '11px', color: '#718096' }}>{row.label}</div>
+                <div style={{ fontSize: '10px', color: '#a0aec0' }}>{row.detail}</div>
               </div>
               <span style={{ fontSize: '12px', fontWeight: 700, color: row.pts > 0 ? '#16a34a' : '#dc2626' }}>
                 {row.pts}/{row.max}
               </span>
             </div>
           ))}
-          <div style={{ borderTop: '1px solid #1a365d40', paddingTop: '8px', marginTop: '4px', display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8' }}>Total</span>
+          <div style={{ borderTop: '1px solid #edf2f7', paddingTop: '8px', marginTop: '4px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#718096' }}>Total</span>
             <span style={{ fontSize: '13px', fontWeight: 800, color }}>
               {reviewPts + kwPts + trafficPts + socialPts + reviewPresPts}/100
             </span>
@@ -200,14 +200,15 @@ function HealthGradeBadge({ client }: { client: ClientOverview }) {
 function MetricCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
     <div style={{
-      backgroundColor: '#1a365d',
-      borderRadius: '12px',
-      padding: '20px',
+      background: '#ffffff',
+      border: '1px solid #e2e8f0',
+      borderRadius: '14px',
+      padding: '22px 24px',
       minWidth: '140px',
     }}>
-      <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
-      <div style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff' }}>{value}</div>
-      {sub && <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>{sub}</div>}
+      <div style={{ fontSize: '11px', color: '#718096', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.8px', fontWeight: 600 }}>{label}</div>
+      <div style={{ fontSize: '30px', fontWeight: 800, color: '#1a202c', letterSpacing: '-0.5px' }}>{value}</div>
+      {sub && <div style={{ fontSize: '11px', color: '#a0aec0', marginTop: '6px' }}>{sub}</div>}
     </div>
   );
 }
@@ -224,6 +225,7 @@ export default function ClientDashboard() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [refreshing, setRefreshing] = useState<string | null>(null);
   const [insights, setInsights] = useState<Map<string, ClientInsights>>(new Map());
+  const [posDist, setPosDist] = useState<{ label: string; count: number }[]>([]);
 
   function extractInsights(clientId: string, seoData: any, localData: any): ClientInsights {
     const result: ClientInsights = {
@@ -311,11 +313,56 @@ export default function ClientDashboard() {
         const newInsights = new Map<string, ClientInsights>();
         const seen = new Set<string>();
         for (const scan of scanData) {
-          if (seen.has(scan.client_id)) continue; // only latest full scan per client
+          if (seen.has(scan.client_id)) continue;
           seen.add(scan.client_id);
           newInsights.set(scan.client_id, extractInsights(scan.client_id, scan.seo_data, scan.local_data));
         }
         setInsights(newInsights);
+      }
+
+      // Fetch latest keyword positions for aggregate distribution
+      // Get the latest scan per client, then fetch keywords for those scans
+      const { data: latestScans } = await supabase
+        .from('cs_scans')
+        .select('id, client_id')
+        .in('client_id', clientIds)
+        .order('scanned_at', { ascending: false });
+
+      if (latestScans) {
+        // Deduplicate to latest per client
+        const latestScanIds: string[] = [];
+        const seenClients = new Set<string>();
+        for (const s of latestScans) {
+          if (seenClients.has(s.client_id)) continue;
+          seenClients.add(s.client_id);
+          latestScanIds.push(s.id);
+        }
+
+        const { data: kwData } = await supabase
+          .from('cs_scan_keywords')
+          .select('position')
+          .in('scan_id', latestScanIds);
+
+        if (kwData) {
+          const buckets = [
+            { label: '1', min: 1, max: 1 },
+            { label: '2-3', min: 2, max: 3 },
+            { label: '4-10', min: 4, max: 10 },
+            { label: '11-20', min: 11, max: 20 },
+            { label: '21-30', min: 21, max: 30 },
+            { label: '31-40', min: 31, max: 40 },
+            { label: '41-50', min: 41, max: 50 },
+            { label: '51-60', min: 51, max: 60 },
+            { label: '61-70', min: 61, max: 70 },
+            { label: '71-80', min: 71, max: 80 },
+            { label: '81-90', min: 81, max: 90 },
+            { label: '91-100', min: 91, max: 100 },
+          ].map(b => ({
+            label: b.label,
+            count: kwData.filter(k => k.position !== null && k.position >= b.min && k.position <= b.max).length,
+          }));
+          setPosDist(buckets);
+        }
       }
     }
   }
@@ -379,7 +426,7 @@ export default function ClientDashboard() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '80px 0', color: '#94a3b8' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '80px 0', color: '#718096' }}>
         Loading client data...
       </div>
     );
@@ -408,6 +455,67 @@ export default function ClientDashboard() {
         <MetricCard label="Google Reviews" value={formatNumber(totalReviews)} sub="across all clients" />
       </div>
 
+      {/* Aggregate Position Distribution */}
+      {posDist.length > 0 && posDist.some(b => b.count > 0) && (() => {
+        const maxCount = Math.max(...posDist.map(b => b.count));
+        const totalKw = posDist.reduce((s, b) => s + b.count, 0);
+        return (
+          <div style={{
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
+            borderRadius: '14px',
+            padding: '24px',
+            marginBottom: '24px',
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a202c' }}>Keyword Position Distribution</div>
+                <div style={{ fontSize: '12px', color: '#a0aec0', marginTop: '2px' }}>{totalKw} keywords tracked across all clients</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '6px', height: '100px' }}>
+              {posDist.map((bucket, i) => {
+                const height = maxCount > 0 ? Math.max((bucket.count / maxCount) * 100, bucket.count > 0 ? 8 : 2) : 2;
+                const isGood = i <= 2; // positions 1-10
+                const isMid = i >= 3 && i <= 5; // positions 11-40
+                const barColor = bucket.count === 0 ? '#edf2f7'
+                  : isGood ? '#678B05'
+                  : isMid ? '#3182ce'
+                  : '#a0aec0';
+                return (
+                  <div key={bucket.label} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: bucket.count > 0 ? '#1a202c' : '#e2e8f0' }}>
+                      {bucket.count}
+                    </div>
+                    <div style={{
+                      width: '100%',
+                      height: `${height}%`,
+                      backgroundColor: barColor,
+                      borderRadius: '4px 4px 0 0',
+                      transition: 'height 300ms ease',
+                      minHeight: '2px',
+                    }} />
+                    <div style={{ fontSize: '9px', color: '#a0aec0', whiteSpace: 'nowrap' }}>{bucket.label}</div>
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '12px', justifyContent: 'center' }}>
+              {[
+                { color: '#678B05', label: 'Top 10' },
+                { color: '#3182ce', label: 'Page 2-4' },
+                { color: '#a0aec0', label: 'Page 5+' },
+              ].map(leg => (
+                <div key={leg.label} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '2px', backgroundColor: leg.color }} />
+                  <span style={{ fontSize: '10px', color: '#718096' }}>{leg.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Filters + Refresh All */}
       <div style={{
         display: 'flex',
@@ -425,13 +533,13 @@ export default function ClientDashboard() {
               style={{
                 padding: '6px 16px',
                 borderRadius: '20px',
-                border: 'none',
+                border: filterStatus === s ? '1px solid transparent' : '1px solid #e2e8f0',
                 cursor: 'pointer',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontWeight: 600,
-                backgroundColor: filterStatus === s ? '#ed8936' : '#1a365d',
-                color: '#ffffff',
-                transition: 'background-color 150ms ease',
+                backgroundColor: filterStatus === s ? '#678B05' : '#ffffff',
+                color: filterStatus === s ? '#ffffff' : '#718096',
+                transition: 'all 150ms ease',
               }}
             >
               {s === 'all' ? 'All' : s.charAt(0).toUpperCase() + s.slice(1)}
@@ -444,9 +552,9 @@ export default function ClientDashboard() {
           style={{
             padding: '8px 18px',
             borderRadius: '8px',
-            border: '1px solid #3182ce40',
-            backgroundColor: refreshing === 'all' ? '#1a365d' : 'transparent',
-            color: '#3182ce',
+            border: '1px solid #e2e8f0',
+            backgroundColor: refreshing === 'all' ? '#f7fafc' : '#ffffff',
+            color: '#4a5568',
             fontSize: '13px',
             fontWeight: 600,
             cursor: refreshing !== null ? 'wait' : 'pointer',
@@ -460,10 +568,10 @@ export default function ClientDashboard() {
 
       {/* Client Table */}
       <div style={{
-        backgroundColor: '#0f1b2e',
-        borderRadius: '12px',
+        backgroundColor: '#ffffff',
+        borderRadius: '14px',
         overflow: 'hidden',
-        border: '1px solid #1a365d40',
+        border: '1px solid #e2e8f0',
       }}>
         <div style={{ overflowX: 'auto' }}>
           <table style={{
@@ -472,7 +580,7 @@ export default function ClientDashboard() {
             fontSize: '14px',
           }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #1a365d60' }}>
+              <tr style={{ borderBottom: '1px solid #edf2f7' }}>
                 {[
                   { key: 'business_name', label: 'Client' },
                   { key: 'domain_rank', label: 'Visibility', sortable: false },
@@ -487,7 +595,7 @@ export default function ClientDashboard() {
                     style={{
                       padding: '14px 16px',
                       textAlign: 'left',
-                      color: '#94a3b8',
+                      color: '#718096',
                       fontWeight: 600,
                       fontSize: '12px',
                       textTransform: 'uppercase',
@@ -503,14 +611,14 @@ export default function ClientDashboard() {
                     )}
                   </th>
                 ))}
-                <th style={{ padding: '14px 16px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase' }}>Status</th>
+                <th style={{ padding: '14px 16px', textAlign: 'left', color: '#718096', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase' }}>Status</th>
                 <th style={{ padding: '14px 16px', width: '50px' }}></th>
               </tr>
             </thead>
             <tbody>
               {sorted.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>
+                  <td colSpan={8} style={{ padding: '40px', textAlign: 'center', color: '#a0aec0' }}>
                     No clients found. Run /client-scan to add your first client.
                   </td>
                 </tr>
@@ -520,18 +628,18 @@ export default function ClientDashboard() {
                     key={client.id}
                     onClick={() => window.location.href = `/clientintel/${client.domain}`}
                     style={{
-                      borderBottom: '1px solid #1a365d30',
+                      borderBottom: '1px solid #edf2f7',
                       cursor: 'pointer',
                       transition: 'background-color 150ms ease',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#1a365d30')}
+                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#f7fafc')}
                     onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
                   >
                     <td style={{ padding: '14px 16px' }}>
-                      <div style={{ fontWeight: 600, color: '#ffffff' }}>
+                      <div style={{ fontWeight: 600, color: '#1a202c' }}>
                         {client.business_name || client.domain}
                       </div>
-                      <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
+                      <div style={{ fontSize: '12px', color: '#a0aec0', marginTop: '2px' }}>
                         {client.domain} {client.location ? `\u00B7 ${client.location}` : ''}
                       </div>
                       {(() => {
@@ -548,7 +656,7 @@ export default function ClientDashboard() {
 
                         // Traffic value gap
                         if (ins.trafficValueGap && ins.trafficValueGap > 100) {
-                          tags.push({ text: `$${formatNumber(ins.trafficValueGap)} traffic gap`, color: '#ed8936', bg: '#ed893615' });
+                          tags.push({ text: `$${formatNumber(ins.trafficValueGap)} traffic gap`, color: '#678B05', bg: '#678B0515' });
                         }
 
                         // Top competitor
@@ -556,7 +664,7 @@ export default function ClientDashboard() {
                           const compInfo = ins.competitorKeywords
                             ? `vs ${ins.topCompetitor}: ${formatNumber(ins.competitorKeywords)} kw`
                             : `vs ${ins.topCompetitor}`;
-                          tags.push({ text: compInfo, color: '#94a3b8', bg: '#94a3b810' });
+                          tags.push({ text: compInfo, color: '#718096', bg: '#94a3b810' });
                         }
 
                         // Competitor reviews gap
@@ -592,22 +700,22 @@ export default function ClientDashboard() {
                     <td style={{ padding: '14px 16px' }}>
                       <HealthGradeBadge client={client} />
                     </td>
-                    <td style={{ padding: '14px 16px', color: '#ffffff' }}>
+                    <td style={{ padding: '14px 16px', color: '#1a202c' }}>
                       {formatNumber(client.total_keywords)}
                     </td>
-                    <td style={{ padding: '14px 16px', color: '#ffffff' }}>
+                    <td style={{ padding: '14px 16px', color: '#1a202c' }}>
                       {client.etv !== null ? formatNumber(Math.round(client.etv)) : '--'}
                     </td>
                     <td style={{ padding: '14px 16px' }}>
                       {client.google_review_count !== null && client.google_review_count > 0 ? (
-                        <span style={{ color: '#ffffff' }}>
+                        <span style={{ color: '#1a202c' }}>
                           {client.google_rating !== null ? `${client.google_rating}\u2605 ` : ''}{client.google_review_count}
                         </span>
                       ) : (
                         <span style={{ color: '#dc2626', fontSize: '12px', fontWeight: 600 }}>No GBP</span>
                       )}
                     </td>
-                    <td style={{ padding: '14px 16px', color: '#94a3b8', fontSize: '13px' }}>
+                    <td style={{ padding: '14px 16px', color: '#718096', fontSize: '13px' }}>
                       {formatDate(client.last_scanned_at)}
                     </td>
                     <td style={{ padding: '14px 16px' }}>
@@ -622,9 +730,9 @@ export default function ClientDashboard() {
                           width: '30px',
                           height: '30px',
                           borderRadius: '6px',
-                          border: '1px solid #1a365d60',
-                          backgroundColor: refreshing === client.domain ? '#1a365d' : 'transparent',
-                          color: '#64748b',
+                          border: '1px solid #e2e8f0',
+                          backgroundColor: refreshing === client.domain ? '#f7fafc' : 'transparent',
+                          color: '#a0aec0',
                           cursor: refreshing !== null ? 'wait' : 'pointer',
                           display: 'flex',
                           alignItems: 'center',
