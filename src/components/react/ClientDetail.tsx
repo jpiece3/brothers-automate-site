@@ -11,6 +11,15 @@ interface ScanRow {
   lighthouse_desktop: number | null;
   lighthouse_mobile: number | null;
   total_pages: number | null;
+  accessibility_desktop: number | null;
+  accessibility_mobile: number | null;
+  seo_score_desktop: number | null;
+  seo_score_mobile: number | null;
+  broken_pages: number | null;
+  missing_meta_descriptions: number | null;
+  missing_h1: number | null;
+  backlink_count: number | null;
+  referring_domains: number | null;
   google_rating: number | null;
   google_review_count: number | null;
   instagram_followers: number | null;
@@ -22,6 +31,15 @@ interface ScanRow {
   company_data: any;
   local_data: any;
   social_data: any;
+}
+
+interface CompetitorRow {
+  competitor_domain: string;
+  total_keywords: number | null;
+  etv: number | null;
+  traffic_value_usd: number | null;
+  domain_rank: number | null;
+  keyword_gap_count: number | null;
 }
 
 interface ClientRow {
@@ -127,7 +145,7 @@ function ScoreDot({ value, max = 100 }: { value: number | null; max?: number }) 
 
 // ─── Tab Content ───
 
-function OverviewTab({ scan }: { scan: ScanRow }) {
+function OverviewTab({ scan, competitors }: { scan: ScanRow; competitors: CompetitorRow[] }) {
   return (
     <>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '14px', marginBottom: '28px' }}>
@@ -137,40 +155,79 @@ function OverviewTab({ scan }: { scan: ScanRow }) {
         <Metric label="Desktop Perf" value={scan.lighthouse_desktop !== null ? `${scan.lighthouse_desktop}/100` : '--'} color={scan.lighthouse_desktop && scan.lighthouse_desktop >= 90 ? '#16a34a' : '#ed8936'} />
         <Metric label="Mobile Perf" value={scan.lighthouse_mobile !== null ? `${scan.lighthouse_mobile}/100` : '--'} color={scan.lighthouse_mobile && scan.lighthouse_mobile >= 90 ? '#16a34a' : '#ed8936'} />
         <Metric label="Google Rating" value={scan.google_rating !== null ? `${scan.google_rating}/5` : 'No GBP'} sub={scan.google_review_count !== null ? `${scan.google_review_count} reviews` : undefined} />
-        <Metric label="Social Score" value={`${scan.social_presence_score ?? 0}/100`} color={scan.social_presence_score && scan.social_presence_score >= 50 ? '#16a34a' : '#dc2626'} />
+        <Metric label="Social Score" value={`${scan.social_presence_score ?? 0}/10`} color={scan.social_presence_score && scan.social_presence_score >= 5 ? '#16a34a' : '#dc2626'} />
         <Metric label="Scan Cost" value={scan.api_cost !== null ? `$${Number(scan.api_cost).toFixed(2)}` : '--'} />
       </div>
 
-      {/* Lighthouse breakdown */}
-      {scan.seo_data?.lighthouse && (
-        <Section title="Lighthouse Scores">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
-            {['desktop', 'mobile'].map(device => {
-              const lh = scan.seo_data.lighthouse[device];
-              if (!lh) return null;
-              return (
-                <div key={device} style={card}>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8', marginBottom: '12px', textTransform: 'capitalize' }}>{device}</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#94a3b8', fontSize: '13px' }}>Performance</span>
-                      <ScoreDot value={lh.performance} />
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#94a3b8', fontSize: '13px' }}>Accessibility</span>
-                      <ScoreDot value={lh.accessibility} />
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#94a3b8', fontSize: '13px' }}>SEO</span>
-                      <ScoreDot value={lh.seo} />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+      {/* Crawl Health */}
+      {(scan.broken_pages !== null || scan.missing_meta_descriptions !== null || scan.missing_h1 !== null) && (
+        <Section title="Crawl Health">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '14px' }}>
+            <Metric label="Total Pages" value={fmt(scan.total_pages)} />
+            <Metric label="Broken Pages" value={fmt(scan.broken_pages)} color={scan.broken_pages && scan.broken_pages > 0 ? '#dc2626' : '#16a34a'} />
+            <Metric label="Missing Meta Desc" value={fmt(scan.missing_meta_descriptions)} color={scan.missing_meta_descriptions && scan.missing_meta_descriptions > 0 ? '#ed8936' : '#16a34a'} />
+            <Metric label="Missing H1" value={fmt(scan.missing_h1)} color={scan.missing_h1 && scan.missing_h1 > 0 ? '#ed8936' : '#16a34a'} />
+            {scan.backlink_count !== null && <Metric label="Backlinks" value={fmt(scan.backlink_count)} />}
+            {scan.referring_domains !== null && <Metric label="Referring Domains" value={fmt(scan.referring_domains)} />}
           </div>
         </Section>
       )}
+
+      {/* Competitor Comparison */}
+      {competitors.length > 0 && (
+        <Section title="Competitor Comparison">
+          <div style={{ overflowX: 'auto' }}>
+            <DataTable
+              headers={['Domain', 'Keywords', 'Traffic (ETV)', 'Keyword Gap']}
+              rows={[
+                [scan.seo_data?.domain || 'You', scan.total_keywords, fmt(scan.etv ? Math.round(scan.etv) : null), '--'],
+                ...competitors.map(c => [
+                  c.competitor_domain,
+                  fmt(c.total_keywords),
+                  fmt(c.etv ? Math.round(Number(c.etv)) : null),
+                  c.keyword_gap_count !== null ? fmt(c.keyword_gap_count) : '--',
+                ]),
+              ]}
+            />
+          </div>
+        </Section>
+      )}
+
+      {/* Lighthouse breakdown -- prefer dedicated columns, fall back to JSONB */}
+      <Section title="Lighthouse Scores">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
+          {['desktop', 'mobile'].map(device => {
+            const isDesktop = device === 'desktop';
+            const perf = isDesktop ? scan.lighthouse_desktop : scan.lighthouse_mobile;
+            const acc = isDesktop ? scan.accessibility_desktop : scan.accessibility_mobile;
+            const seoScore = isDesktop ? scan.seo_score_desktop : scan.seo_score_mobile;
+            const lh = scan.seo_data?.lighthouse?.[device];
+            const perfVal = perf ?? lh?.performance ?? null;
+            const accVal = acc ?? lh?.accessibility ?? null;
+            const seoVal = seoScore ?? lh?.seo ?? null;
+            if (perfVal === null && accVal === null && seoVal === null) return null;
+            return (
+              <div key={device} style={card}>
+                <div style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8', marginBottom: '12px', textTransform: 'capitalize' }}>{device}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>Performance</span>
+                    <ScoreDot value={perfVal} />
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>Accessibility</span>
+                    <ScoreDot value={accVal} />
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>SEO</span>
+                    <ScoreDot value={seoVal} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
 
       {/* Tech Stack */}
       {scan.seo_data?.tech_stack && (
@@ -193,7 +250,7 @@ function OverviewTab({ scan }: { scan: ScanRow }) {
   );
 }
 
-function SEOTab({ scan, keywords }: { scan: ScanRow; keywords: KeywordRow[] }) {
+function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: KeywordRow[]; competitors: CompetitorRow[] }) {
   const seo = scan.seo_data;
   if (!seo) return <div style={{ color: '#64748b', padding: '40px', textAlign: 'center' }}>No SEO data available</div>;
 
@@ -224,17 +281,29 @@ function SEOTab({ scan, keywords }: { scan: ScanRow; keywords: KeywordRow[] }) {
               k.position,
               fmt(k.search_volume),
               k.keyword_difficulty,
-              k.url ? new URL(k.url).pathname : '--',
+              k.url ? (k.url.startsWith('http') ? new URL(k.url).pathname : k.url) : '--',
             ])}
         />
       </Section>
 
-      {/* Competitors */}
-      {seo.competitors?.discovered && (
+      {/* Competitors -- prefer structured table, fall back to JSONB */}
+      {competitors.length > 0 ? (
+        <Section title="Competitors">
+          <DataTable
+            headers={['Domain', 'Keywords', 'Traffic (ETV)', 'Keyword Gap']}
+            rows={competitors.map(c => [
+              c.competitor_domain,
+              fmt(c.total_keywords),
+              fmt(c.etv ? Math.round(Number(c.etv)) : null),
+              c.keyword_gap_count !== null ? fmt(c.keyword_gap_count) : '--',
+            ])}
+          />
+        </Section>
+      ) : seo.competitors?.discovered && (
         <Section title="Competitors">
           <DataTable
             headers={['Domain', 'Intersections', 'Keywords', 'Traffic (ETV)']}
-            rows={seo.competitors.discovered.slice(0, 6).map((c: any) => [
+            rows={(Array.isArray(seo.competitors.discovered) ? seo.competitors.discovered : []).slice(0, 6).map((c: any) => [
               c.domain,
               c.intersections,
               fmt(c.total_keywords),
@@ -637,6 +706,8 @@ interface ScanHistoryRow {
   etv: number | null;
   lighthouse_desktop: number | null;
   lighthouse_mobile: number | null;
+  accessibility_desktop: number | null;
+  broken_pages: number | null;
   google_review_count: number | null;
   api_cost: number | null;
   trigger: string;
@@ -652,7 +723,7 @@ function HistoryTab({ clientId }: { clientId: string }) {
       // Fetch all scans
       const { data: scanData } = await supabase
         .from('cs_scans')
-        .select('scanned_at, domain_rank, total_keywords, etv, lighthouse_desktop, lighthouse_mobile, google_review_count, api_cost, trigger, id')
+        .select('scanned_at, domain_rank, total_keywords, etv, lighthouse_desktop, lighthouse_mobile, accessibility_desktop, broken_pages, google_review_count, api_cost, trigger, id')
         .eq('client_id', clientId)
         .order('scanned_at', { ascending: true });
 
@@ -802,13 +873,15 @@ function HistoryTab({ clientId }: { clientId: string }) {
       {/* Scan History Table */}
       <Section title="Scan History">
         <DataTable
-          headers={['Date', 'Keywords', 'Traffic', 'Desktop', 'Mobile', 'Reviews', 'Cost', 'Source']}
+          headers={['Date', 'Keywords', 'Traffic', 'Desktop', 'Mobile', 'A11y', 'Broken', 'Reviews', 'Cost', 'Source']}
           rows={[...scans].reverse().map(s => [
             new Date(s.scanned_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
             s.total_keywords ?? '--',
             s.etv ? Math.round(Number(s.etv)) : '--',
             s.lighthouse_desktop ?? '--',
             s.lighthouse_mobile ?? '--',
+            s.accessibility_desktop ?? '--',
+            s.broken_pages ?? '--',
             s.google_review_count ?? '--',
             s.api_cost ? `$${Number(s.api_cost).toFixed(2)}` : '--',
             s.trigger,
@@ -828,6 +901,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
   const [client, setClient] = useState<ClientRow | null>(null);
   const [scan, setScan] = useState<ScanRow | null>(null);
   const [keywords, setKeywords] = useState<KeywordRow[]>([]);
+  const [competitors, setCompetitors] = useState<CompetitorRow[]>([]);
   const [tab, setTab] = useState<Tab>('overview');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -892,6 +966,13 @@ export default function ClientDetail({ domain }: { domain: string }) {
         .order('search_volume', { ascending: false });
 
       setKeywords(kwData || []);
+
+      const { data: compData } = await supabase
+        .from('cs_scan_competitors')
+        .select('*')
+        .eq('scan_id', scanData.id);
+
+      setCompetitors(compData || []);
     }
   }
 
@@ -1073,8 +1154,8 @@ export default function ClientDetail({ domain }: { domain: string }) {
         <div style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>No scan data yet. Run /client-scan to generate data.</div>
       ) : (
         <>
-          {tab === 'overview' && <OverviewTab scan={scan} />}
-          {tab === 'seo' && <SEOTab scan={scan} keywords={keywords} />}
+          {tab === 'overview' && <OverviewTab scan={scan} competitors={competitors} />}
+          {tab === 'seo' && <SEOTab scan={scan} keywords={keywords} competitors={competitors} />}
           {tab === 'local' && <LocalTab scan={scan} />}
           {tab === 'social' && <SocialTab scan={scan} />}
           {tab === 'company' && <CompanyTab scan={scan} />}
