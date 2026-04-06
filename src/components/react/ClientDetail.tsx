@@ -61,7 +61,7 @@ interface KeywordRow {
   url: string | null;
 }
 
-type Tab = 'overview' | 'seo' | 'local' | 'social' | 'company' | 'history';
+type Tab = 'overview' | 'seo' | 'local' | 'social' | 'company' | 'history' | 'reports';
 
 // ─── Helpers ───
 
@@ -892,6 +892,155 @@ function HistoryTab({ clientId }: { clientId: string }) {
   );
 }
 
+// ─── Reports Tab ───
+
+interface ReportRow {
+  id: string;
+  report_type: string;
+  title: string;
+  html_content: string;
+  created_at: string;
+  scan_id: string | null;
+}
+
+function ReportsTab({ clientId }: { clientId: string }) {
+  const [reports, setReports] = useState<ReportRow[]>([]);
+  const [loadingReports, setLoadingReports] = useState(true);
+  const [activeReport, setActiveReport] = useState<ReportRow | null>(null);
+
+  useEffect(() => {
+    async function loadReports() {
+      const { data } = await supabase
+        .from('cs_reports')
+        .select('*')
+        .eq('client_id', clientId)
+        .order('created_at', { ascending: false });
+
+      if (data) setReports(data);
+      setLoadingReports(false);
+    }
+    loadReports();
+  }, [clientId]);
+
+  if (loadingReports) return <div style={{ padding: '40px', textAlign: 'center', color: '#94a3b8' }}>Loading reports...</div>;
+  if (reports.length === 0) return <div style={{ ...card, padding: '40px', textAlign: 'center', color: '#64748b' }}>No reports yet. Run /client-scan to generate reports.</div>;
+
+  // Group by scan date
+  const grouped = new Map<string, ReportRow[]>();
+  for (const r of reports) {
+    const dateKey = new Date(r.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    if (!grouped.has(dateKey)) grouped.set(dateKey, []);
+    grouped.get(dateKey)!.push(r);
+  }
+
+  const reportOrder = ['index', 'seo-analysis', 'website-audit', 'action-plan', 'research-process'];
+  const reportIcons: Record<string, string> = {
+    'index': '\u{1F4CB}',
+    'seo-analysis': '\u{1F50D}',
+    'website-audit': '\u{1F3E5}',
+    'action-plan': '\u{1F680}',
+    'research-process': '\u{1F9EA}',
+  };
+
+  if (activeReport) {
+    return (
+      <div>
+        <button
+          onClick={() => setActiveReport(null)}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#3182ce',
+            cursor: 'pointer',
+            fontSize: '14px',
+            marginBottom: '16px',
+            padding: 0,
+          }}
+        >
+          {'\u2190'} Back to reports
+        </button>
+        <div style={{ ...card, padding: 0, overflow: 'hidden' }}>
+          <div style={{
+            padding: '14px 20px',
+            borderBottom: '1px solid #1a365d40',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+            <div>
+              <div style={{ fontWeight: 700, color: '#fff', fontSize: '15px' }}>{activeReport.title}</div>
+              <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
+                Generated {new Date(activeReport.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                const w = window.open('', '_blank');
+                if (w) { w.document.write(activeReport.html_content); w.document.close(); }
+              }}
+              style={{
+                padding: '6px 14px',
+                borderRadius: '6px',
+                border: '1px solid #1a365d60',
+                backgroundColor: 'transparent',
+                color: '#94a3b8',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Open in new tab
+            </button>
+          </div>
+          <iframe
+            srcDoc={activeReport.html_content}
+            style={{
+              width: '100%',
+              height: '80vh',
+              border: 'none',
+              backgroundColor: '#fff',
+            }}
+            title={activeReport.title}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {[...grouped.entries()].map(([dateKey, dateReports]) => (
+        <Section key={dateKey} title={`Scan: ${dateKey}`}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+            {dateReports
+              .sort((a, b) => reportOrder.indexOf(a.report_type) - reportOrder.indexOf(b.report_type))
+              .map(report => (
+                <button
+                  key={report.id}
+                  onClick={() => setActiveReport(report)}
+                  style={{
+                    ...card,
+                    cursor: 'pointer',
+                    border: '1px solid #1a365d40',
+                    textAlign: 'left',
+                    transition: 'border-color 150ms ease',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#ed8936')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#1a365d40')}
+                >
+                  <div style={{ fontSize: '20px', marginBottom: '8px' }}>{reportIcons[report.report_type] || '\u{1F4C4}'}</div>
+                  <div style={{ fontWeight: 600, color: '#fff', fontSize: '14px', marginBottom: '4px' }}>{report.title}</div>
+                  <div style={{ fontSize: '11px', color: '#64748b' }}>
+                    {new Date(report.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </div>
+                </button>
+              ))}
+          </div>
+        </Section>
+      ))}
+    </div>
+  );
+}
+
 // ─── Main Component ───
 
 const REFRESH_URL = 'https://nnxbgderdyjanzwgabxl.supabase.co/functions/v1/client-refresh';
@@ -1037,6 +1186,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
     { key: 'social', label: 'Social' },
     { key: 'company', label: 'Company' },
     { key: 'history', label: 'History' },
+    { key: 'reports', label: 'Reports' },
   ];
 
   return (
@@ -1160,6 +1310,7 @@ export default function ClientDetail({ domain }: { domain: string }) {
           {tab === 'social' && <SocialTab scan={scan} />}
           {tab === 'company' && <CompanyTab scan={scan} />}
           {tab === 'history' && <HistoryTab clientId={client.id} />}
+          {tab === 'reports' && <ReportsTab clientId={client.id} />}
         </>
       )}
     </div>
