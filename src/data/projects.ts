@@ -57,7 +57,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'quiz-funnels',
-    name: 'Quiz Funnels',
+    name: 'Lead Qualification Quiz',
     tagline: 'Automated lead qualification and follow-up',
     icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
     description: 'Service business: 2-3x more qualified leads with automated scoring, follow-up, and nurture sequences. Running 24/7.',
@@ -104,7 +104,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'equipment-identifier',
-    name: 'Equipment Identifier',
+    name: 'AI Equipment Cataloger',
     tagline: 'AI-powered equipment cataloging from photos',
     icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
     description: 'Auction company: AI identifies heavy equipment from photos in seconds. Lot titles that used to take minutes per item — done in a batch, instantly.',
@@ -150,7 +150,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'after-hours-agent',
-    name: 'After Hours Agent',
+    name: 'After-Hours AI Receptionist',
     tagline: 'AI chat that captures leads while you sleep',
     icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
     description: 'Service business: AI chat widget qualifies leads, gives quotes, and books appointments 24/7. No missed inquiries, no after-hours gaps.',
@@ -195,7 +195,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'brand-research',
-    name: 'Brand Research',
+    name: 'AI Brand Researcher',
     tagline: 'AI-powered audience and competitor intelligence',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
     description: 'Agency: completed full brand research, competitor analysis, and positioning strategy in 10 minutes instead of 4 weeks.',
@@ -241,7 +241,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'daily-ads',
-    name: 'Daily Ads',
+    name: 'AI Ad Creator',
     tagline: 'AI-generated ad creative on autopilot',
     icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
     description: 'E-commerce: fresh ad creative every day across 15+ formats. No designer, no $5K/month agency retainer.',
@@ -287,7 +287,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'screenfast',
-    name: 'ScreenFast',
+    name: 'AI Resume Screener',
     tagline: 'AI-powered resume screening and candidate ranking',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
     description: 'YMCA: reduced resume screening time by 85% while improving candidate quality for seasonal hiring.',
@@ -333,7 +333,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'signal-engine',
-    name: 'Signal Engine',
+    name: 'AI Prospect Scorer',
     tagline: 'AI-powered prospect scoring and outreach',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
     description: 'B2B sales: upload your ideal customer profile and a company list. Get back ranked prospects with outreach angles — scored in minutes, not weeks.',
@@ -379,7 +379,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'onboarding-workflow',
-    name: 'Onboarding Workflow',
+    name: 'Client Onboarding Automation',
     tagline: 'Automated client onboarding for service businesses',
     icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
     description: 'Paving company: automated the entire new-client onboarding flow — comms, scheduling, and docs — same steps every time, zero manual work.',
@@ -425,7 +425,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'route-simply',
-    name: 'Route Simply',
+    name: 'AI Route Optimizer',
     tagline: 'AI-optimized routing and scheduling',
     icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
     description: 'Contractor: cut drive time by 30% and fit 2 more jobs per week with AI-optimized routing.',
@@ -471,7 +471,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'automated-inventory',
-    name: 'Automated Inventory',
+    name: 'AI Inventory Tracker',
     tagline: 'Daily inventory sync and reporting via Square',
     icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
     description: 'Pet store: daily automated inventory updates and reports pulled straight from Square. No logging in, no spreadsheets, no guessing what\'s in stock.',
@@ -517,7 +517,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'app-validator',
-    name: 'App Validator',
+    name: 'AI App Idea Validator',
     tagline: 'AI-powered app idea validation with live market data',
     icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
     description: 'Founders: validate any app idea with live keyword data, competitor analysis, and an AI-generated go/no-go verdict — in under 2 minutes.',
@@ -563,7 +563,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'cpq-agent',
-    name: 'CPQ Agent',
+    name: 'AI Quote Generator',
     tagline: 'After-hours quote automation for B2B',
     icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
     description: 'B2B manufacturer: AI agent qualifies leads, looks up real ERP pricing, books sales calls, and pushes deals to HubSpot — 24/7, zero manual data entry.',
@@ -650,6 +650,62 @@ export const projects: Project[] = [
       headline: 'Get an automated SEO blog running on your site',
       description: 'We\'ll set up the same autopilot that runs our blog — competitor analysis, AI writing, auto-publishing, and syndication — custom-built for your business.'
     }
+  },
+  {
+    slug: 'client-scan',
+    name: 'SEO Audit Engine',
+    tagline: 'Automated SEO & digital presence auditing',
+    icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z M9 12h6 M12 9v6',
+    description: 'Marketing agency: Automated SEO audits that pull rankings, competitor data, Google Maps visibility, and website health into client-ready reports — in 10 minutes, not 10 hours.',
+    ctaLabel: 'See a Sample Report',
+    ctaType: 'product-link',
+    meta: {
+      title: 'SEO Audit Engine | Automated Digital Presence Audits | Brothers Automate',
+      description: 'Automated SEO audits in 10 minutes. Keyword rankings, competitor gaps, Google Maps visibility, Lighthouse scores, social presence, and company intel — delivered as shareable client-ready reports.'
+    },
+    problem: {
+      headline: 'Your SEO audits take all week and still miss half the picture',
+      description: 'Every new prospect means the same routine: open Semrush, check their keywords, manually look up their Google reviews, screenshot their Lighthouse scores, research their competitors, try to find their social profiles. Four to six hours of tab-switching per prospect — and you still walk into the meeting with a spreadsheet and guesswork.',
+      painPoints: [
+        'A single prospect audit takes 4-6 hours of manual research across a dozen different tools',
+        'You\'re checking rankings in one tool, reviews in another, social in a third — nothing connects',
+        'Competitor analysis means separately pulling data for each competitor and manually comparing',
+        'The deliverable is a Loom and a Google Doc — not something that makes you look like a $10K/month agency',
+        'By the time you\'ve audited one prospect, three more filled out your contact form',
+        'Junior team members miss critical data points that change the entire pitch strategy'
+      ]
+    },
+    solution: {
+      headline: 'Enter a domain. Get back a complete SEO audit with reports you can share.',
+      description: 'Four AI research agents run simultaneously — one pulls SEO rankings and keyword data, another gathers company intel and hiring signals, a third checks Google Maps and local visibility, and a fourth audits social media and review platforms. They pull from 20+ data sources including DataForSEO, Google Lighthouse, Google Business Profile, and Apify scrapers. Ten minutes later, you have a complete audit with five client-ready reports and an internal pitch strategy.',
+      features: [
+        { title: 'SEO & Technical Analysis', description: 'Domain rank, keyword positions, search volumes, keyword difficulty scores, competitor keyword gaps, Lighthouse performance and accessibility scores (desktop + mobile), full site crawl with 404s, missing meta descriptions, and tech stack detection.' },
+        { title: 'Local & Maps Intelligence', description: 'Google Maps pack rankings for local search queries, Google Business Profile data (rating, review count, category), organic SERP positions vs. competitors, and Google Trends data for their service keywords in their market.' },
+        { title: 'Social & Review Audit', description: 'Instagram followers and engagement rate, Facebook page metrics and ad activity, Yelp and BBB presence check, Google review analysis with competitor review benchmarking, and contact information scraping.' },
+        { title: 'Company & Competitive Intel', description: 'Leadership profiles, estimated revenue and employee count, hiring signals from job boards, brand mention analysis with sentiment scoring, marketing capability assessment, and gap-to-service mapping based on your angle.' },
+        { title: '5 Client-Facing Reports', description: 'Self-contained HTML files with no technical jargon — SEO analysis, website health audit, tiered action plan with ROI estimates, and research methodology overview. Branded, shareable, and designed to make your agency look like the obvious choice.' },
+        { title: 'Live Dashboard + Ongoing Tracking', description: 'Every audit feeds into a centralized dashboard where you can track all clients, compare metrics over time, see keyword position trends, and refresh metrics with one click for $0.04. History tab shows how rankings change between scans.' }
+      ]
+    },
+    results: {
+      headline: 'What used to take your best analyst a full day now runs while you grab coffee.',
+      stats: [
+        { number: '10 min', label: 'Full Audit', context: 'vs. 4-6 hours of manual research across multiple tools' },
+        { number: '50+', label: 'Data Points', context: 'SEO rankings, maps, social, reviews, company intel, tech stack' },
+        { number: '20+', label: 'Data Sources', context: 'DataForSEO, Lighthouse, Google Maps, Apify scrapers' },
+        { number: '$1.50', label: 'Per Audit', context: 'Total API cost — less than a cup of coffee' }
+      ],
+      testimonial: {
+        quote: 'We used to spend a full day prepping for a single prospect meeting. Now we run the scan before the call, walk in with a 5-report package, and the prospect asks how we know so much about their business. It changed how we pitch entirely.',
+        author: 'James Pinder',
+        role: 'Co-Founder, Brothers Automate'
+      }
+    },
+    cta: {
+      headline: 'Stop spending all day on prospect research',
+      description: 'We\'ll set up the same SEO audit engine we use internally — automated audits, client-ready reports, and a dashboard that tracks every prospect. Walk into every meeting with data, not guesses.'
+    },
+    productUrl: 'https://brothersautomate.com/clientintel/'
   }
 ];
 
