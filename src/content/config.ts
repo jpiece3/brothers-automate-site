@@ -9,6 +9,7 @@ const blogCollection = defineCollection({
     author: z.string().default('Brothers Automate'),
     image: z.string().optional(),
     category: z.enum([
+      // Legacy categories (existing posts)
       'Lead Magnets',
       'Quiz Funnels',
       'Email Marketing',
@@ -18,6 +19,13 @@ const blogCollection = defineCollection({
       'Content Marketing',
       'Small Business Growth',
       'AI for Business',
+      // New automation categories
+      'AI Automation',
+      'Operations Automation',
+      'Sales Automation',
+      'Customer Service Automation',
+      'HR & Hiring Automation',
+      'Finance & Admin Automation',
     ]),
     tags: z.array(z.string()).optional(),
   }),
