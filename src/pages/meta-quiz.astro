@@ -272,6 +272,9 @@ import Footer from '../components/Footer.astro';
       }
     }
 
+    var SUPABASE_URL = 'https://nnxbgderdyjanzwgabxl.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGJnZGVyZHlqYW56d2dhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxODA3MzgsImV4cCI6MjA4NDc1NjczOH0.jpjZ_gH1-2GZgyhXPRzPrZzWWnJtAVgU4yui4KM6wZ8';
+
     function submitQuizEmail() {
       var name = document.getElementById('nameInput').value.trim();
       var email = document.getElementById('emailInput').value.trim();
@@ -281,23 +284,60 @@ import Footer from '../components/Footer.astro';
       var r = RESULTS[quizState.result];
       var max = QUESTIONS.length * 3;
       var pct = Math.round((quizState.score / max) * 100);
-      try {
-        fetch('https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=2xf7HgFbJf6dDWQDZUVDxZ', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            pipeline_inputs: [
-              { input_name: 'name', value: quizState.name },
-              { input_name: 'email', value: quizState.email },
-              { input_name: 'quiz_score', value: String(pct) },
-              { input_name: 'quiz_result', value: quizState.result },
-              { input_name: 'quiz_segment', value: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture' },
-              { input_name: 'recommended_automation', value: r.title },
-              { input_name: 'answers', value: JSON.stringify(quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; })) }
-            ]
-          })
-        });
-      } catch (e) { console.log('Webhook error:', e); }
+      var answersArray = quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; });
+
+      // 1. Fire Gumloop webhook. Must be fetch+keepalive with application/json —
+      // sendBeacon forces text/plain (to dodge CORS preflight), which Gumloop
+      // accepts but can't parse, so pipeline_inputs come through empty.
+      var gumloopUrl = 'https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=2xf7HgFbJf6dDWQDZUVDxZ';
+      var gumloopPayload = JSON.stringify({
+        pipeline_inputs: [
+          { input_name: 'name', value: quizState.name },
+          { input_name: 'email', value: quizState.email },
+          { input_name: 'quiz_score', value: String(pct) },
+          { input_name: 'quiz_result', value: quizState.result },
+          { input_name: 'quiz_segment', value: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture' },
+          { input_name: 'recommended_automation', value: r.title },
+          { input_name: 'answers', value: JSON.stringify(answersArray) }
+        ]
+      });
+      fetch(gumloopUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: gumloopPayload,
+        keepalive: true
+      }).catch(function(e) { console.log('Gumloop error:', e); });
+
+      // 2. Save lead to Supabase
+      var supabaseHeaders = { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Prefer': 'return=representation' };
+      fetch(SUPABASE_URL + '/rest/v1/meta_quiz_leads', {
+        method: 'POST',
+        headers: supabaseHeaders,
+        body: JSON.stringify({
+          name: quizState.name,
+          email: quizState.email,
+          quiz_score: pct,
+          quiz_result: quizState.result,
+          quiz_segment: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture',
+          recommended_automation: r.title
+        }),
+        keepalive: true
+      }).then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data && data[0] && data[0].id) {
+            var leadId = data[0].id;
+            var responses = answersArray.map(function(a, i) {
+              return { lead_id: leadId, question_index: i, question_text: a.question, answer_text: a.answer, answer_value: a.value };
+            });
+            fetch(SUPABASE_URL + '/rest/v1/meta_quiz_responses', {
+              method: 'POST',
+              headers: supabaseHeaders,
+              body: JSON.stringify(responses),
+              keepalive: true
+            }).catch(function(e) { console.log('Supabase responses error:', e); });
+          }
+        }).catch(function(e) { console.log('Supabase lead error:', e); });
+
       quizState.screen = 'results';
       renderQuiz();
     }
