@@ -706,6 +706,55 @@ export const projects: Project[] = [
       description: 'We\'ll set up the same SEO audit engine we use internally — automated audits, client-ready reports, and a dashboard that tracks every prospect. Walk into every meeting with data, not guesses.'
     },
     productUrl: 'https://brothersautomate.com/clientintel/'
+  },
+  {
+    slug: 'crisply',
+    name: 'Crisply',
+    tagline: 'AI-powered client portals for agencies and operators',
+    icon: 'M9 17v-2a4 4 0 014-4h4M9 7h10M5 12h4m-4 5h4M5 7h4m10 10V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2z',
+    description: 'Turn raw data into branded, interactive reports your clients can actually use. Hosted, shareable, chat-enabled portals — built so Claude-generated work ships like a finished product.',
+    ctaLabel: 'See the Product',
+    ctaType: 'product-link',
+    meta: {
+      title: 'Crisply | AI-Powered Client Portals for Agencies | Brothers Automate',
+      description: 'Crisply turns raw data into branded, interactive client reports with chat, analytics, and portal access. Ship AI work as a deliverable clients love.'
+    },
+    problem: {
+      headline: 'Your AI work doesn\'t ship like a product',
+      description: 'You run Claude, ChatGPT, or an agent pipeline and end up with a markdown file or a messy PDF. Clients don\'t experience it as a deliverable — they skim it once, then forget it exists.',
+      painPoints: [
+        'Raw AI output looks like a chat transcript, not a report',
+        'No place for the client to come back and re-read or ask follow-up questions',
+        'Zero visibility into whether they actually opened the deliverable',
+        'Every new client needs fresh branding, hosting, and sharing setup'
+      ]
+    },
+    solution: {
+      headline: 'A client portal that turns AI output into a finished product',
+      description: 'Crisply wraps your AI-generated reports in a branded, interactive portal at a shareable URL. Clients get a polished report with built-in chat, analytics on engagement, and a portal where all their deliverables live.',
+      features: [
+        { title: 'Interactive AI Reports', description: 'Branded HTML reports generated from raw data — hosted at shareable links, no PDF attachments.' },
+        { title: 'Conversational Chat', description: 'Clients ask questions about their report and get answers grounded in their own data.' },
+        { title: 'Client Portals', description: 'Every client gets a single home base where all their reports and deliverables live.' },
+        { title: 'Engagement Analytics', description: 'See exactly which reports clients opened, how long they spent, and what they asked.' },
+        { title: 'API-Driven Generation', description: 'Plug Crisply into your existing Claude / automation workflows — reports generate on demand.' },
+        { title: 'Branded Per Client', description: 'Colors, logo, and layout match each client\'s brand, so it feels like their product, not ours.' }
+      ]
+    },
+    results: {
+      headline: 'Ship AI work the way clients expect to receive it',
+      stats: [
+        { number: '0', label: 'PDFs', context: 'Everything lives at a shareable URL' },
+        { number: '100%', label: 'Branded', context: 'Per-client colors, logo, and layout' },
+        { number: 'API', label: 'First', context: 'Plugs into any AI or automation workflow' }
+      ]
+    },
+    cta: {
+      headline: 'Stop sending raw AI output to paying clients',
+      description: 'Crisply turns every report, audit, and deliverable into a polished, trackable portal. Built for agencies and operators who ship AI work every week.'
+    },
+    productUrl: 'https://www.crisply.fyi/',
+    videoUrl: 'https://www.youtube.com/embed/LyVEeBVOLI0'
   }
 ];
 
