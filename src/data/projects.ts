@@ -56,6 +56,52 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'inbound-ai-sdr',
+    name: 'Inbound AI SDR',
+    tagline: 'AI sales agent that qualifies inbound leads in under 60 seconds',
+    icon: 'M3 5a2 2 0 012-2h14a2 2 0 012 2v3l-9 6-9-6V5zM3 11l9 6 9-6v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z',
+    description: 'Service business: every inbound lead gets scored, logged, and replied to in under a minute. Hot leads ping Slack the second they land.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'video',
+    meta: {
+      title: 'Inbound AI SDR | AI Sales Agent for Lead Qualification | Brothers Automate',
+      description: 'Stop missing inbound leads. Our AI SDR reads every inquiry, scores it 1-10, logs it to Google Sheets, sends a personalized reply, and alerts you when a hot lead lands.'
+    },
+    problem: {
+      headline: 'Inbound lead qualification is the bottleneck',
+      description: 'Inbound leads come in at random hours. Strong ones wait too long for a reply. Weak ones eat up the time you should be spending on the strong ones. Notes live in email instead of a system, and nobody has a real record of what\'s coming in.',
+      painPoints: [
+        'Hot leads wait hours for a reply because nobody\'s watching the inbox',
+        'You spend time qualifying tire-kickers that should never have hit your calendar',
+        'Lead notes get scattered across email threads — never logged, never measured',
+        'Follow-up tone changes depending on who reads the inbox first'
+      ]
+    },
+    solution: {
+      headline: 'An AI SDR that triages every inquiry the second it lands',
+      description: 'We built an AI sales agent that reads inbound inquiries, decides if they qualify, scores them on a 1-10 scale, logs them to Google Sheets, and sends a personalized follow-up — all before you\'ve finished your coffee. Hot leads (7-10) trigger an instant Slack ping so you can jump on the call window while it\'s still warm.',
+      features: [
+        { title: '1-10 Lead Scoring', description: 'Scores every inquiry on decision-maker status, budget, urgency, company size, and pain clarity' },
+        { title: 'Three Lead Buckets', description: 'Hot (7-10) gets a Slack alert + priority reply. Nurture (4-6) gets a soft sequence. Not-a-fit (1-3) gets a polite decline.' },
+        { title: 'Logged Before Replied', description: 'Every qualifying lead hits Google Sheets first — full structured record, no inbox archaeology later' },
+        { title: 'Smart Lead Routing', description: 'Hot leads ping Slack instantly. Nurture leads drop into a sequence. The right reply goes to the right inbox without you sorting it.' }
+      ]
+    },
+    results: {
+      headline: 'Built for our own inbox. Now ready for yours.',
+      stats: [
+        { number: '<60s', label: 'Time to First Reply', context: 'vs. hours-to-days manual' },
+        { number: '1-10', label: 'Lead Score', context: 'Same logic every time' },
+        { number: '100%', label: 'Logged in Sheets', context: 'Before any reply goes out' }
+      ]
+    },
+    cta: {
+      headline: 'Stop letting inbound leads cool off in your inbox',
+      description: 'Let\'s set up an AI SDR for your business so every lead gets scored, logged, and replied to before they go shopping somewhere else.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/YxWK2Ur00Vs'
+  },
+  {
     slug: 'quiz-funnels',
     name: 'Lead Qualification Quiz',
     tagline: 'Automated lead qualification and follow-up',
