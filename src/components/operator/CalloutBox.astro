@@ -1,0 +1,62 @@
+---
+/**
+ * CalloutBox — paper card with 5px orange left-border + mono header + bold takeaway.
+ * Use for testimonial pull-quotes, key benefits, FAQs, "THE PROMISE" callouts.
+ *
+ * Props:
+ *   header:   string   the mono UPPERCASE header text e.g. "THE PROMISE"
+ *   shadow:   boolean  (default true) — adds the 3/3 offset shadow
+ *
+ * Slot: the body content (usually one bold takeaway sentence)
+ */
+interface Props {
+  header: string;
+  shadow?: boolean;
+}
+const { header, shadow = true } = Astro.props;
+---
+
+<div class={`op-callout${shadow ? ' op-callout--shadow' : ''}`}>
+  <div class="op-callout-header op-mono">{header}</div>
+  <div class="op-callout-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .op-callout {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-left-width: 5px;
+    border-left-color: var(--op-orange);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+  }
+
+  .op-callout--shadow {
+    box-shadow: var(--op-shadow);
+  }
+
+  .op-callout-header {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    margin-bottom: 10px;
+  }
+
+  .op-callout-body {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--op-ink);
+    text-wrap: pretty;
+  }
+
+  .op-callout-body :global(p) {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+</style>

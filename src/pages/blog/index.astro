@@ -2,38 +2,49 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 import { getCollection } from 'astro:content';
 
-// Get all blog posts sorted by date (newest first)
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
-// Get unique categories
-const categories = [...new Set(posts.map(post => post.data.category))];
+const categories = [...new Set(posts.map((post) => post.data.category))];
 ---
 
 <Layout
-  title="Blog | Quiz Funnel & Lead Generation Insights | Brothers Automate"
-  description="Learn how to capture, score, and nurture leads with quiz funnels. Expert insights on lead magnets, email sequences, and conversion optimization."
+  title="Blog | AI Automation Insights for Service Businesses | Brothers Automate"
+  description="Operator-style guides on lead generation, automation, and the AI systems that actually move the needle for service businesses."
 >
   <Header />
-
   <main>
-    <section class="blog-hero">
-      <div class="container">
-        <p class="eyebrow">Blog</p>
-        <h1>Insights for Lead Generation</h1>
-        <p class="hero-subtitle">Expert guides on quiz funnels, lead magnets, and converting visitors into customers.</p>
+    {/* Hero */}
+    <section class="op-blog-hero op-grid-bg">
+      <div class="op-blog-hero-frame">
+        <div class="op-blog-hero-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / RESOURCES · BLOG"
+            right={`${posts.length} ARTICLES · ${categories.length} CATEGORIES`}
+            bordered
+          />
+        </div>
+        <EyebrowTag label="LOG · OPERATOR INSIGHTS" />
+        <h1 class="op-blog-h1" data-animate="fade-up">Notes from the workshop floor.</h1>
+        <p class="op-blog-sub" data-animate="fade-up">
+          Plain-English guides on AI automation, lead gen, and the systems we ship every week. Written by operators, not consultants.
+        </p>
       </div>
     </section>
 
-    <section class="blog-listing">
-      <div class="container">
+    {/* Listing */}
+    <section class="op-blog-listing">
+      <div class="op-blog-listing-frame">
         {posts.length > 0 ? (
-          <div class="blog-grid" data-animate-stagger>
-            {posts.map((post) => (
+          <div class="op-blog-grid" data-animate-stagger>
+            {posts.map((post, i) => (
               <BlogCard
                 title={post.data.title}
                 description={post.data.description}
@@ -41,88 +52,80 @@ const categories = [...new Set(posts.map(post => post.data.category))];
                 category={post.data.category}
                 slug={post.slug}
                 image={post.data.image}
+                index={i}
               />
             ))}
           </div>
         ) : (
-          <div class="empty-state">
-            <p>New articles coming soon. Check back later!</p>
+          <div class="op-blog-empty">
+            <p class="op-mono">NEW ENTRIES INCOMING · CHECK BACK SOON</p>
           </div>
         )}
       </div>
     </section>
 
-    <section class="blog-cta bg-navy">
-      <div class="container text-center">
-        <h2>Skip the Learning Curve</h2>
-        <p>Get a complete quiz funnel built for you in 7 days. Landing page, quiz, 26 email sequences. Done.</p>
-        <a href="/#offer" class="btn btn-white btn-lg">See What's Included</a>
-      </div>
-    </section>
+    <CTA />
   </main>
-
   <Footer />
 </Layout>
 
 <style>
-  .blog-hero {
-    text-align: center;
-    padding: var(--space-3xl) 0 var(--space-xl);
-    background: var(--bg-surface-alt);
+  .op-blog-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
+  }
+  .op-blog-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-blog-hero-util { margin-bottom: 32px; }
+  .op-blog-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-blog-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 800px;
+    text-wrap: balance;
+  }
+  .op-blog-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  .blog-hero h1 {
-    margin-bottom: var(--space-sm);
+  .op-blog-listing {
+    padding: 56px var(--op-section-px) 96px;
+    background: var(--op-cream);
+    border-top: var(--op-border);
   }
+  .op-blog-listing-frame { max-width: var(--op-max-content); margin: 0 auto; }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .blog-listing {
-    padding: var(--space-2xl) 0 var(--space-3xl);
-  }
-
-  .blog-grid {
+  .op-blog-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: 22px;
   }
+  @media (min-width: 700px) { .op-blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .op-blog-grid { grid-template-columns: repeat(3, 1fr); } }
 
-  @media (min-width: 640px) {
-    .blog-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .blog-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .empty-state {
+  .op-blog-empty {
+    padding: 72px 0;
     text-align: center;
-    padding: var(--space-3xl) 0;
+  }
+  .op-blog-empty p {
+    font-size: 11px;
+    color: var(--op-navy-soft);
   }
 
-  .empty-state p {
-    font-size: 1.125rem;
-    color: var(--text-muted);
-  }
-
-  .blog-cta {
-    padding: var(--space-3xl) 0;
-  }
-
-  .blog-cta h2 {
-    margin-bottom: var(--space-sm);
-  }
-
-  .blog-cta p {
-    max-width: 500px;
-    margin: 0 auto var(--space-lg);
+  @media (max-width: 700px) {
+    .op-blog-hero,
+    .op-blog-listing { padding-left: 22px; padding-right: 22px; }
   }
 </style>

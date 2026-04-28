@@ -1,4 +1,7 @@
 ---
+import CalloutBox from '../operator/CalloutBox.astro';
+import MonoCTA from '../operator/MonoCTA.astro';
+
 interface Props {
   headline: string;
   headlineHighlight: string;
@@ -11,94 +14,142 @@ interface Props {
 const { headline, headlineHighlight, description, features, conclusion, callout } = Astro.props;
 ---
 
-<section class="s-solution" id="solution">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>{headline}<br><span class="text-highlight">{headlineHighlight}</span></h2>
-      <p class="s-solution-description">{description}</p>
+<section class="op-svcs op-grid-bg" id="solution">
+  <div class="op-svcs-frame">
+    <div class="op-svcs-header" data-animate="fade-up">
+      <span class="op-mono op-svcs-label"><span class="op-svcs-num">02</span> THE SOLUTION</span>
+      <h2 class="op-svcs-h2">
+        {headline}<br />
+        <span class="op-svcs-h2-orange">{headlineHighlight}</span>
+      </h2>
+      <p class="op-svcs-desc">{description}</p>
     </div>
 
-    <div class="features-grid" data-animate-stagger>
-      {features.map((feature) => (
-        <div class="feature-card card">
-          <span class="icon-circle icon-circle-blue">
+    <div class="op-svcs-features" data-animate-stagger>
+      {features.map((f, i) => (
+        <div class="op-svcs-feature">
+          <div class="op-svcs-feature-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d={feature.icon}></path>
+              <path d={f.icon}></path>
             </svg>
-          </span>
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
+          </div>
+          <span class="op-mono op-svcs-feature-num">F.{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="op-svcs-feature-title">{f.title}</h3>
+          <p class="op-svcs-feature-body">{f.description}</p>
         </div>
       ))}
     </div>
 
-    <p class="solution-conclusion" data-animate="fade-up">{conclusion}</p>
+    <p class="op-svcs-conclusion" data-animate="fade-up">{conclusion}</p>
 
-    <div class="solution-callout" data-animate="fade-up">
-      <p>{callout}</p>
+    <div class="op-svcs-callout" data-animate="fade-up">
+      <CalloutBox header="THE BOTTOM LINE">
+        <p>{callout}</p>
+      </CalloutBox>
     </div>
 
-    <div class="section-cta" data-animate="fade-up">
-      <a href="/services" class="btn btn-primary">See All Services</a>
+    <div class="op-svcs-cta-row" data-animate="fade-up">
+      <MonoCTA label="See all services" variant="navy" size="md" href="/services" trackLocation="service-solution" trackLabel="See All Services" />
     </div>
   </div>
 </section>
 
 <style>
-  .s-solution { background: var(--bg-surface-alt); }
-
-  .text-highlight { color: var(--orange); }
-
-  .s-solution-description {
-    font-size: clamp(1rem, 2vw, 1.125rem);
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: var(--space-md) auto 0;
-    line-height: 1.7;
+  .op-svcs { padding: 72px var(--op-section-px); }
+  .op-svcs-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-svcs-header { max-width: 760px; margin-bottom: 40px; }
+  .op-svcs-label {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-svcs-num { color: var(--op-orange); font-size: 9px; }
+  .op-svcs-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .op-svcs-h2-orange { color: var(--op-orange); }
+  .op-svcs-desc {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 720px;
   }
 
-  .features-grid {
+  .op-svcs-features {
     display: grid;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-xl);
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 32px;
   }
+  @media (min-width: 700px) { .op-svcs-features { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-svcs-features { grid-template-columns: repeat(3, 1fr); } }
 
-  @media (min-width: 768px) {
-    .features-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .feature-card {
+  .op-svcs-feature {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-    text-align: center;
-    padding: var(--space-xl);
+    gap: 10px;
   }
-
-  .feature-card .icon-circle { margin: 0 auto; width: 64px; height: 64px; }
-  .feature-card .icon-circle svg { width: 28px; height: 28px; }
-  .feature-card h3 { font-size: 1.25rem; margin: 0; color: var(--navy); }
-  .feature-card p { margin: 0; font-size: 0.9375rem; line-height: 1.6; }
-
-  .solution-conclusion {
-    text-align: center;
-    font-size: 1.125rem;
-    color: var(--navy);
-    max-width: 700px;
-    margin: 0 auto;
+  .op-svcs-feature-icon {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-cream);
+    color: var(--op-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .op-svcs-feature-num { font-size: 9px; color: var(--op-orange); }
+  .op-svcs-feature-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-svcs-feature-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
 
-  .solution-callout {
-    background: var(--bg-surface);
-    border-left: 4px solid var(--orange);
-    padding: var(--space-md) var(--space-lg);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    max-width: 700px;
-    margin: var(--space-xl) auto 0;
+  .op-svcs-conclusion {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-ink);
+    margin: 0 auto 28px;
+    max-width: 720px;
+    text-wrap: pretty;
+  }
+  .op-svcs-callout { max-width: 720px; margin: 0 auto 28px; }
+  .op-svcs-cta-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 8px;
   }
 
-  .solution-callout p { margin: 0; font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
-
-  .section-cta { text-align: center; margin-top: var(--space-xl); }
+  @media (max-width: 700px) { .op-svcs { padding: 56px 22px; } }
 </style>

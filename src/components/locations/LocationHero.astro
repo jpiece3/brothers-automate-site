@@ -1,4 +1,9 @@
 ---
+import EyebrowTag from '../operator/EyebrowTag.astro';
+import SpecStrip from '../operator/SpecStrip.astro';
+import MonoCTA from '../operator/MonoCTA.astro';
+import TopUtilityStrip from '../operator/TopUtilityStrip.astro';
+
 interface Props {
   badge: string;
   headline: string;
@@ -10,164 +15,80 @@ interface Props {
 const { badge, headline, headlineGradient, subheadline, stats } = Astro.props;
 ---
 
-<section class="l-hero" id="hero">
-  <div class="container">
-    <div class="l-hero-content">
-      <span class="badge" data-animate="fade-up">{badge}</span>
-      <h1 data-animate="fade-up">{headline}<br /><span class="text-gradient">{headlineGradient}</span></h1>
-      <p class="l-hero-subheadline" data-animate="fade-up">{subheadline}</p>
-
-      <div class="l-hero-cta" data-animate="fade-up">
-        <a
-          href="#"
-          class="btn btn-primary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
-        <a href="/projects" class="btn btn-secondary btn-lg">See Our Projects</a>
-      </div>
-
-      <div class="stats-bar" data-animate-stagger>
-        {stats.map((stat) => (
-          <div class="stat">
-            <span class="stat-number">{stat.number}</span>
-            <span class="stat-label">{stat.label}</span>
-          </div>
-        ))}
-      </div>
-
-      <p class="trust-signal" data-animate="fade-in">Two brothers who ran a service business for 5 years. Now we build the systems we wish we'd had.</p>
+<section class="op-loc-hero op-grid-bg" id="hero">
+  <div class="op-loc-hero-frame">
+    <div class="op-loc-hero-util">
+      <TopUtilityStrip
+        left={`BROTHERS_AUTOMATE / IN · ${badge.toUpperCase()}`}
+        right="● ACCEPTING NEW BUILDS"
+        bordered
+      />
     </div>
+
+    <EyebrowTag label={`LOCATION · ${badge.toUpperCase()}`} />
+
+    <h1 class="op-loc-h1" data-animate="fade-up">
+      {headline}<br />
+      <span class="op-loc-h1-orange">{headlineGradient}</span>
+    </h1>
+
+    <p class="op-loc-sub" data-animate="fade-up">{subheadline}</p>
+
+    <div class="op-loc-ctas" data-animate="fade-up">
+      <MonoCTA label="Talk to the Brothers" variant="orange" size="lg" calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers" trackLocation={`location-hero-${badge}`} trackLabel="Talk to the Brothers" />
+      <a href="/projects" class="op-loc-link op-mono">SEE OUR PROJECTS →</a>
+    </div>
+
+    {stats && stats.length > 0 && (
+      <div class="op-loc-specs" data-animate="fade-up">
+        <SpecStrip cells={stats.map((s) => ({ value: s.number, label: s.label }))} />
+      </div>
+    )}
+
+    <p class="op-loc-trust op-mono">● TWO BROTHERS · 5 YRS BUILDING · BUILT FOR OPERATORS</p>
   </div>
 </section>
 
 <style>
-  .l-hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 140px;
-    padding-bottom: var(--space-3xl);
-    background: var(--bg-primary);
-  }
-
-  .l-hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .badge {
-    display: inline-block;
-    align-self: center;
-    width: fit-content;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-lg);
-  }
-
-  .l-hero h1 {
-    margin-bottom: var(--space-lg);
-  }
-
-  .text-gradient {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .l-hero-subheadline {
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-xl);
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-
-  .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2xl);
-    flex-wrap: wrap;
-    padding: var(--space-xl) 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: var(--space-xl);
-  }
-
-  .stat { text-align: center; }
-
-  .stat-number {
-    display: block;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  .op-loc-hero { padding: 120px var(--op-section-px) 64px; color: var(--op-ink); }
+  .op-loc-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-loc-hero-util { margin-bottom: 32px; }
+  .op-loc-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+  .op-loc-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: var(--space-xs);
+    font-size: clamp(48px, 6.4vw, 84px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    max-width: 900px;
+    text-wrap: balance;
   }
-
-  .stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .op-loc-h1-orange { color: var(--op-orange); }
+  .op-loc-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 32px;
+    max-width: 700px;
   }
-
-  .l-hero-cta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    align-items: center;
-    margin-bottom: var(--space-lg);
+  .op-loc-ctas { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .op-loc-link {
+    font-size: 11px;
+    color: var(--op-ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
   }
-
-  @media (min-width: 480px) {
-    .l-hero-cta {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  .trust-signal {
-    font-size: 0.9375rem;
-    font-style: italic;
-    color: var(--text-muted);
-  }
-
-  @media (max-width: 640px) {
-    .stats-bar { gap: var(--space-lg); }
-    .stat-number { font-size: 2rem; }
-  }
-
-  @media (max-width: 767px) {
-    .l-hero {
-      padding-top: 90px;
-      padding-bottom: var(--space-xl);
-      min-height: auto;
-      align-items: flex-start;
-    }
-    .badge { order: 1; margin-bottom: var(--space-sm); }
-    .l-hero h1 { order: 2; margin-bottom: var(--space-sm); }
-    .l-hero-subheadline { order: 3; margin-bottom: var(--space-md); font-size: 1rem; line-height: 1.6; }
-    .l-hero-cta { order: 4; margin-bottom: var(--space-lg); }
-    .stats-bar { order: 5; padding: var(--space-md) 0; margin-bottom: var(--space-sm); }
-    .trust-signal { order: 6; }
-    .l-hero-cta .btn { width: 100%; justify-content: center; }
+  .op-loc-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
+  .op-loc-specs { margin-bottom: 24px; }
+  .op-loc-trust { font-size: 10px; color: var(--op-navy-soft); margin: 0; }
+  @media (max-width: 700px) {
+    .op-loc-hero { padding: 100px 22px 56px; }
+    .op-loc-ctas { flex-direction: column; align-items: stretch; }
   }
 </style>

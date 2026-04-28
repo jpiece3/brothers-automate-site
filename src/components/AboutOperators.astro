@@ -1,0 +1,294 @@
+---
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+import CalloutBox from './operator/CalloutBox.astro';
+import MonoCTA from './operator/MonoCTA.astro';
+import SpecStrip from './operator/SpecStrip.astro';
+---
+
+<section class="op-about op-grid-bg" id="about">
+  <div class="op-about-frame">
+    <div class="op-about-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / SECTION 04 · ABOUT"
+        right="OPERATORS · NOT CONSULTANTS"
+        bordered
+      />
+    </div>
+
+    <div class="op-about-grid">
+      {/* LEFT — portrait card */}
+      <div class="op-about-portrait-wrap" data-animate="slide-left">
+        <div class="op-about-portrait">
+          {/* Header strip inside the portrait card */}
+          <div class="op-about-portrait-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono">FOUNDERS · 2026</span>
+            <span class="op-mono op-about-portrait-id">IMG_001</span>
+          </div>
+
+          {/* Portrait inset — real photo of the brothers */}
+          <div class="op-about-portrait-inset">
+            <img src="/brothers.png" alt="James and Brendan Pinder, the brothers behind Brothers Automate" />
+          </div>
+
+          {/* Caption strip */}
+          <div class="op-about-portrait-caption">
+            <span class="op-mono">5 YRS · SERVICE BUSINESS</span>
+            <span class="op-mono op-about-portrait-arrow">↗ NOW BUILDING</span>
+          </div>
+        </div>
+
+        {/* Sticker on top-right */}
+        <div class="op-about-sticker">
+          <div class="op-mono op-about-sticker-top">OPS_TEAM</div>
+          <div class="op-mono op-about-sticker-bot">02 BROTHERS</div>
+        </div>
+      </div>
+
+      {/* RIGHT — content */}
+      <div class="op-about-content" data-animate="slide-right">
+        <EyebrowTag label="ABOUT US · BUILT FROM THE FLOOR UP" />
+
+        <h2 class="op-about-h2">
+          Built by Operators,<br />
+          <span class="op-about-h2-orange">for Operators.</span>
+        </h2>
+
+        <div class="op-about-paragraphs">
+          <p>
+            We ran a service business for 5 years. We lived it. The 14-hour days, the manual grind, the leads slipping through cracks while you're busy doing the actual work.
+          </p>
+          <p>
+            We built AI systems to handle that work automatically — and do it better than a human could. AI can't close your deals or deliver your service, but it can <strong>follow up with your leads, create your ads, and keep your pipeline moving.</strong>
+          </p>
+          <p>
+            Agencies charge $10K/month for this work. Hiring someone costs the same or more. Learning it yourself takes hundreds of hours you don't have.
+          </p>
+        </div>
+
+        <div class="op-about-callout-wrap">
+          <CalloutBox header="THE PROMISE">
+            <p>We build the systems so you don't have to pay agency prices or sacrifice your time.</p>
+          </CalloutBox>
+        </div>
+
+        <div class="op-about-cta-row">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="md"
+            calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            trackLocation="about"
+            trackLabel="Talk to the Brothers"
+          />
+          <div class="op-about-cta-meta op-mono">
+            30-MIN DISCOVERY CALL<br />
+            <span class="op-about-cta-meta-soft">NO PITCH · NO PRESSURE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-about-stats" data-animate="fade-up">
+      <SpecStrip cells={[
+        { value: '5 yrs', label: 'Running a service business' },
+        { value: '14-hr', label: 'Days we lived through' },
+        { value: '$10K', label: 'What agencies charge' },
+        { value: '06', label: 'Systems we now ship' },
+      ]} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .op-about {
+    padding: 72px var(--op-section-px) 88px;
+  }
+
+  .op-about-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .op-about-util {
+    margin-bottom: 48px;
+  }
+
+  /* === Two-col grid === */
+  .op-about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .op-about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  /* === Portrait card === */
+  .op-about-portrait-wrap {
+    position: relative;
+  }
+
+  .op-about-portrait {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 18px;
+    box-shadow: var(--op-shadow-lg);
+  }
+
+  .op-about-portrait-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 9px;
+    color: var(--op-navy);
+  }
+
+  .op-about-portrait-header .op-mono {
+    font-size: 9px;
+  }
+
+  .op-about-portrait-id {
+    margin-left: auto;
+    color: var(--op-navy-soft);
+    opacity: 0.6;
+  }
+
+  .op-about-portrait-inset {
+    border: 4px solid var(--op-navy);
+    background: var(--op-cream);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+  .op-about-portrait-inset img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .op-about-portrait-caption {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.2em;
+  }
+
+  .op-about-portrait-arrow {
+    color: var(--op-orange);
+  }
+
+  /* Sticker */
+  .op-about-sticker {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 8px 12px;
+    box-shadow: var(--op-shadow);
+  }
+  .op-about-sticker-top {
+    color: var(--op-orange);
+    font-size: 9px;
+    margin-bottom: 2px;
+    letter-spacing: 0.2em;
+  }
+  .op-about-sticker-bot {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+
+  /* === Right content === */
+  .op-about-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .op-about-content > :global(.op-eyebrow) {
+    align-self: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .op-about-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 28px;
+    text-wrap: balance;
+  }
+
+  .op-about-h2-orange {
+    color: var(--op-orange);
+  }
+
+  .op-about-paragraphs {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .op-about-paragraphs p {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 620px;
+    text-wrap: pretty;
+  }
+
+  .op-about-paragraphs p strong {
+    color: var(--op-ink);
+    font-weight: 700;
+  }
+
+  .op-about-callout-wrap {
+    margin-bottom: 32px;
+    max-width: 620px;
+  }
+
+  .op-about-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .op-about-cta-meta {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    line-height: 1.5;
+  }
+  .op-about-cta-meta-soft { opacity: 0.6; }
+
+  .op-about-stats {
+    margin-top: 64px;
+  }
+
+  @media (max-width: 700px) {
+    .op-about { padding: 56px 22px 64px; }
+    .op-about-portrait { padding: 14px; }
+    .op-about-portrait-caption,
+    .op-about-portrait-header { gap: 6px; }
+    .op-about-cta-row { gap: 16px; }
+    .op-about-stats { margin-top: 40px; }
+  }
+</style>

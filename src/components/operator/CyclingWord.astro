@@ -1,0 +1,96 @@
+---
+/**
+ * CyclingWord — fades through a list of words on an interval.
+ * Used in the hero h1 to cycle "hire. → hours. → handoff. → headache."
+ *
+ * Renders the first word inline (so SSR shows real text).
+ * Hydrates with a tiny `<script>` that swaps text every `interval` ms
+ * with a fade+lift transition matching the operator motion tokens.
+ *
+ * Props:
+ *   words:    string[]   list of cycling words (first one is rendered SSR)
+ *   interval: number     ms between swaps (default 2200)
+ *   className: string    extra classes on the wrapper span
+ *   id:        string    optional explicit id (auto-generated if omitted)
+ */
+interface Props {
+  words: string[];
+  interval?: number;
+  className?: string;
+  id?: string;
+}
+const { words, interval = 2200, className = '', id } = Astro.props;
+const uid = id || `cw-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<span
+  class={`op-cycling-word ${className}`.trim()}
+  id={uid}
+  data-words={JSON.stringify(words)}
+  data-interval={interval}
+>
+  <span class="op-cycling-word-inner">{words[0]}</span>
+</span>
+
+<style>
+  .op-cycling-word {
+    display: inline-block;
+  }
+  .op-cycling-word-inner {
+    display: inline-block;
+    transition:
+      opacity var(--op-dur-cycle) var(--op-ease),
+      transform var(--op-dur-cycle) var(--op-ease);
+  }
+  .op-cycling-word.is-out .op-cycling-word-inner {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .op-cycling-word-inner {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Hydrate every CyclingWord instance on the page.
+  // Idempotent: re-runs are safe (we keep state on the element).
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function hydrate(el: HTMLElement) {
+      if ((el as any).__cwInited) return;
+      (el as any).__cwInited = true;
+
+      let words: string[];
+      try {
+        words = JSON.parse(el.getAttribute('data-words') || '[]');
+      } catch { return; }
+      if (!Array.isArray(words) || words.length < 2) return;
+
+      const interval = parseInt(el.getAttribute('data-interval') || '2200', 10);
+      const inner = el.querySelector('.op-cycling-word-inner') as HTMLElement | null;
+      if (!inner) return;
+
+      let i = 0;
+      setInterval(() => {
+        if (reduceMotion) {
+          // Hard swap, no transition
+          i = (i + 1) % words.length;
+          inner.textContent = words[i];
+          return;
+        }
+        el.classList.add('is-out');
+        setTimeout(() => {
+          i = (i + 1) % words.length;
+          inner.textContent = words[i];
+          el.classList.remove('is-out');
+        }, 200); // matches --op-dur-cycle 220ms minus a hair
+      }, interval);
+    }
+
+    document.querySelectorAll<HTMLElement>('.op-cycling-word').forEach(hydrate);
+  })();
+</script>

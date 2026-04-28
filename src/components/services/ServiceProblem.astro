@@ -1,4 +1,6 @@
 ---
+import CalloutBox from '../operator/CalloutBox.astro';
+
 interface Props {
   headline: string;
   painPoints: string[];
@@ -8,96 +10,99 @@ interface Props {
 const { headline, painPoints, costOfInaction } = Astro.props;
 ---
 
-<section class="s-problem bg-surface" id="problem">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>{headline}</h2>
+<section class="op-svcp" id="problem">
+  <div class="op-svcp-frame">
+    <div class="op-svcp-header" data-animate="fade-up">
+      <span class="op-mono op-svcp-label"><span class="op-svcp-num">01</span> THE PROBLEM</span>
+      <h2 class="op-svcp-h2">{headline}</h2>
     </div>
 
-    <div class="pain-grid" data-animate-stagger>
+    <div class="op-svcp-grid" data-animate-stagger>
       {painPoints.map((point) => (
-        <div class="pain-card">
-          <span class="pain-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </span>
+        <div class="op-svcp-pain">
+          <span class="op-svcp-x" aria-hidden="true">✗</span>
           <p>{point}</p>
         </div>
       ))}
     </div>
 
-    <div class="cost-callout" data-animate="fade-up">
-      <p>{costOfInaction}</p>
+    <div class="op-svcp-callout" data-animate="fade-up">
+      <CalloutBox header="THE COST OF DOING NOTHING">
+        <p>{costOfInaction}</p>
+      </CalloutBox>
     </div>
   </div>
 </section>
 
 <style>
-  .s-problem { padding: var(--space-4xl) 0; }
+  .op-svcp {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-svcp-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-svcp-header { max-width: 720px; margin-bottom: 36px; }
+  .op-svcp-label {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-svcp-num { color: var(--op-orange); font-size: 9px; }
+  .op-svcp-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
 
-  .pain-grid {
+  .op-svcp-grid {
     display: grid;
-    gap: var(--space-md);
-    max-width: 800px;
-    margin: 0 auto var(--space-xl);
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
   }
+  @media (min-width: 700px) { .op-svcp-grid { grid-template-columns: 1fr 1fr; } }
 
-  @media (min-width: 768px) {
-    .pain-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .pain-card {
+  .op-svcp-pain {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-md);
-    background: var(--bg-surface-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--op-cream);
+    border: 1px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: var(--op-radius-sm);
   }
-
-  .pain-icon {
+  .op-svcp-x {
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    background: rgba(220, 38, 38, 0.1);
-    border-radius: 50%;
-    display: flex;
+    width: 18px;
+    height: 18px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #dc2626;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 2px;
   }
-
-  .pain-card p {
+  .op-svcp-pain p {
     margin: 0;
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    align-self: center;
-  }
-
-  .cost-callout {
-    background: var(--navy);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl) var(--space-2xl);
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cost-callout p {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    line-height: 1.7;
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
     font-weight: 500;
+    color: var(--op-ink);
   }
 
-  @media (max-width: 767px) {
-    .pain-grid { gap: var(--space-sm); }
-    .pain-card { padding: var(--space-md); }
-    .cost-callout { padding: var(--space-lg); }
-  }
+  .op-svcp-callout { max-width: 800px; }
+
+  @media (max-width: 700px) { .op-svcp { padding: 56px 22px; } }
 </style>

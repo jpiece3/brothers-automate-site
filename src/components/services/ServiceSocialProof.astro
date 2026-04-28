@@ -7,18 +7,18 @@ interface Props {
 const { headline, stats } = Astro.props;
 ---
 
-<section class="s-proof bg-surface-alt">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>{headline}</h2>
+<section class="op-svcsp">
+  <div class="op-svcsp-frame">
+    <div class="op-svcsp-header" data-animate="fade-up">
+      <span class="op-mono op-svcsp-label"><span class="op-svcsp-num">03</span> THE NUMBERS</span>
+      <h2 class="op-svcsp-h2">{headline}</h2>
     </div>
-
-    <div class="proof-grid" data-animate-stagger>
-      {stats.map((stat) => (
-        <div class="proof-card">
-          <span class="proof-number">{stat.number}</span>
-          <span class="proof-label">{stat.label}</span>
-          <span class="proof-context">{stat.context}</span>
+    <div class="op-svcsp-grid" data-animate-stagger>
+      {stats.map((s) => (
+        <div class="op-svcsp-card">
+          <div class="op-svcsp-num-big">{s.number}</div>
+          <div class="op-svcsp-label-big">{s.label}</div>
+          <div class="op-mono op-svcsp-context">{s.context}</div>
         </div>
       ))}
     </div>
@@ -26,44 +26,62 @@ const { headline, stats } = Astro.props;
 </section>
 
 <style>
-  .s-proof { padding: var(--space-3xl) 0; }
-
-  .proof-grid {
-    display: grid;
-    gap: var(--space-lg);
+  .op-svcsp { padding: 72px var(--op-section-px); background: var(--op-cream); }
+  .op-svcsp-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-svcsp-header { max-width: 720px; margin-bottom: 36px; }
+  .op-svcsp-label {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
   }
-
-  @media (min-width: 768px) {
-    .proof-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .proof-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .proof-number {
-    font-size: clamp(2rem, 4vw, 2.75rem);
+  .op-svcsp-num { color: var(--op-orange); font-size: 9px; }
+  .op-svcsp-h2 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-svcsp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 700px) { .op-svcsp-grid { grid-template-columns: repeat(3, 1fr); } }
+  .op-svcsp-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 26px 28px;
+    box-shadow: var(--op-shadow);
+    border-left-width: 4px;
+    border-left-color: var(--op-orange);
+  }
+  .op-svcsp-num-big {
+    font-family: var(--op-font-display);
+    font-size: clamp(36px, 4.5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--op-ink);
     line-height: 1;
+    margin-bottom: 8px;
   }
-
-  .proof-label {
-    font-size: 1rem;
+  .op-svcsp-label-big {
+    font-family: var(--op-font-body);
+    font-size: 15px;
     font-weight: 600;
-    color: var(--orange);
+    color: var(--op-orange);
+    margin-bottom: 4px;
   }
-
-  .proof-context {
-    font-size: 0.875rem;
-    color: var(--text-muted);
+  .op-svcsp-context {
+    font-size: 9px;
+    color: var(--op-navy-soft);
     line-height: 1.4;
   }
+  @media (max-width: 700px) { .op-svcsp { padding: 56px 22px; } }
 </style>

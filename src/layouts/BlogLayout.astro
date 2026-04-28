@@ -2,6 +2,10 @@
 import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
 
 interface Props {
   title: string;
@@ -20,19 +24,17 @@ const {
   date,
   author = 'Brothers Automate',
   image,
-  category
+  category,
 } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
-  day: 'numeric'
+  day: 'numeric',
 });
-
 const isoDate = date.toISOString();
 const articleImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/logo.png`;
 
-// Article Schema
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -47,10 +49,7 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Brothers Automate",
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${SITE_URL}/logo.png`
-    }
+    "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -58,30 +57,14 @@ const articleSchema = {
   }
 };
 
-// Breadcrumb Schema for better navigation in search results
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": SITE_URL
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Blog",
-      "item": `${SITE_URL}/blog/`
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": title,
-      "item": `${SITE_URL}${Astro.url.pathname}`
-    }
-  ]
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog/` },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `${SITE_URL}${Astro.url.pathname}` },
+  ],
 };
 ---
 
@@ -93,223 +76,270 @@ const breadcrumbSchema = {
 >
   <Header />
 
-  <main class="blog-article">
-    <article>
-      <header class="article-header">
-        <div class="container">
-          <div class="article-meta">
-            <span class="category-badge">{category}</span>
-            <time datetime={isoDate}>{formattedDate}</time>
-          </div>
-          <h1>{title}</h1>
-          <p class="article-description">{description}</p>
+  <main class="op-article">
+    {/* Hero */}
+    <header class="op-article-hero op-grid-bg">
+      <div class="op-article-hero-frame">
+        <div class="op-article-util">
+          <TopUtilityStrip
+            left={`BROTHERS_AUTOMATE / LOG · ${category.toUpperCase()}`}
+            right="ARTICLE · OPERATOR INSIGHT"
+            bordered
+          />
         </div>
-      </header>
 
-      <div class="article-content">
-        <div class="container content-narrow">
-          <slot />
+        <div class="op-article-meta">
+          <span class="op-mono op-article-cat">{category.toUpperCase()}</span>
+          <span class="op-mono op-article-dot">·</span>
+          <time class="op-mono op-article-date" datetime={isoDate}>{formattedDate.toUpperCase()}</time>
+        </div>
+
+        <h1 class="op-article-h1">{title}</h1>
+        <p class="op-article-desc">{description}</p>
+
+        <div class="op-mono op-article-byline">BY {author.toUpperCase()}</div>
+      </div>
+    </header>
+
+    {/* Body */}
+    <article class="op-article-body">
+      <div class="op-article-body-frame">
+        <slot />
+      </div>
+    </article>
+
+    {/* Inline CTA */}
+    <section class="op-article-inline-cta op-grid-bg">
+      <div class="op-article-inline-cta-frame">
+        <EyebrowTag label="ENJOYED THIS? SEE WHAT WE BUILD" />
+        <h2 class="op-article-h2">Ready to automate your business?</h2>
+        <p class="op-article-inline-cta-sub">
+          See how we build AI systems for service businesses: lead follow-up, ad creative, hiring, and more. Six flagship builds, custom-made for your stack.
+        </p>
+        <div class="op-article-inline-cta-actions">
+          <MonoCTA label="See the builds" variant="orange" size="lg" href="/projects" trackLocation={`blog-${category}`} trackLabel="See Our Projects" />
+          <MonoCTA label="Talk to the Brothers" variant="navy" size="lg" calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers" trackLocation={`blog-${category}`} trackLabel="Talk to the Brothers" />
         </div>
       </div>
+    </section>
 
-      <footer class="article-footer">
-        <div class="container content-narrow">
-          <div class="cta-box">
-            <h3>Ready to Automate Your Business?</h3>
-            <p>See how we build AI systems for service businesses like yours: lead follow-up, ad creative, hiring, and more.</p>
-            <a href="/projects" class="btn btn-primary">See Our Projects</a>
-          </div>
-        </div>
-      </footer>
-    </article>
+    <CTA />
   </main>
-
   <Footer />
 
-  <!-- Article Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-
-  <!-- Breadcrumb Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Layout>
 
 <style>
-  .blog-article {
-    padding-top: var(--space-xl);
+  /* Hero */
+  .op-article-hero {
+    padding: 110px var(--op-section-px) 56px;
+    color: var(--op-ink);
   }
+  .op-article-hero-frame { max-width: 920px; margin: 0 auto; }
+  .op-article-util { margin-bottom: 28px; }
 
-  .article-header {
-    text-align: center;
-    padding: var(--space-2xl) 0 var(--space-xl);
-    background: var(--bg-surface-alt);
-  }
-
-  .article-meta {
-    display: flex;
+  .op-article-meta {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 10px;
+    color: var(--op-ink);
+  }
+  .op-article-cat { color: var(--op-orange); }
+  .op-article-dot { color: var(--op-navy-soft); opacity: 0.5; }
+  .op-article-date { color: var(--op-navy-soft); }
+
+  .op-article-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .op-article-desc {
+    font-family: var(--op-font-body);
+    font-size: 19px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 24px;
+    max-width: 720px;
+    text-wrap: pretty;
+  }
+  .op-article-byline {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    padding-top: 14px;
+    border-top: 1px solid var(--op-rule);
   }
 
-  .category-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(49, 130, 206, 0.1);
-    color: var(--blue);
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  /* Body */
+  .op-article-body {
+    padding: 56px var(--op-section-px) 80px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
   }
-
-  .article-meta time {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-  }
-
-  .article-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    max-width: 800px;
-    margin: 0 auto var(--space-md);
-  }
-
-  .article-description {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto;
-    color: var(--text-secondary);
-  }
-
-  .article-content {
-    padding: var(--space-2xl) 0;
-  }
-
-  .content-narrow {
+  .op-article-body-frame {
     max-width: 720px;
     margin: 0 auto;
-  }
-
-  /* Article Typography */
-  .article-content :global(h2) {
-    font-size: 1.75rem;
-    margin: var(--space-2xl) 0 var(--space-md);
-    color: var(--navy);
-  }
-
-  .article-content :global(h3) {
-    font-size: 1.375rem;
-    margin: var(--space-xl) 0 var(--space-sm);
-    color: var(--navy);
-  }
-
-  .article-content :global(p) {
-    margin-bottom: var(--space-md);
-    font-size: 1.0625rem;
-    line-height: 1.8;
-  }
-
-  .article-content :global(ul),
-  .article-content :global(ol) {
-    margin-bottom: var(--space-md);
-    padding-left: var(--space-lg);
-  }
-
-  .article-content :global(li) {
-    margin-bottom: var(--space-xs);
-    color: var(--text-secondary);
+    font-family: var(--op-font-body);
+    font-size: 17px;
     line-height: 1.7;
+    color: var(--op-ink);
   }
-
-  .article-content :global(blockquote) {
-    border-left: 4px solid var(--orange);
-    padding: var(--space-md) var(--space-lg);
-    background: rgba(237, 137, 54, 0.05);
-    margin: var(--space-lg) 0;
+  .op-article-body-frame :global(h2) {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.15;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 48px 0 16px;
+    text-wrap: balance;
+  }
+  .op-article-body-frame :global(h3) {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 32px 0 12px;
+  }
+  .op-article-body-frame :global(p) {
+    margin: 0 0 18px;
+    color: var(--op-ink);
+  }
+  .op-article-body-frame :global(a) {
+    color: var(--op-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-article-body-frame :global(a:hover) {
+    color: var(--op-orange-deep);
+  }
+  .op-article-body-frame :global(ul),
+  .op-article-body-frame :global(ol) {
+    margin: 0 0 22px;
+    padding-left: 24px;
+  }
+  .op-article-body-frame :global(li) {
+    margin-bottom: 8px;
+  }
+  .op-article-body-frame :global(blockquote) {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--op-cream);
+    border-left: 4px solid var(--op-orange);
+    border-radius: var(--op-radius-sm);
     font-style: italic;
+    color: var(--op-ink);
   }
-
-  .article-content :global(blockquote p) {
+  .op-article-body-frame :global(blockquote p:last-child) {
     margin-bottom: 0;
-    color: var(--navy);
   }
-
-  .article-content :global(code) {
-    background: var(--bg-surface-alt);
-    padding: 2px 6px;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    color: var(--orange);
+  .op-article-body-frame :global(code) {
+    font-family: var(--op-font-mono);
+    font-size: 14px;
+    background: var(--op-cream);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--op-ink);
   }
-
-  .article-content :global(pre) {
-    background: var(--navy);
-    color: white;
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
+  .op-article-body-frame :global(pre) {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    padding: 18px 22px;
+    border-radius: var(--op-radius-sm);
     overflow-x: auto;
-    margin: var(--space-lg) 0;
+    margin: 22px 0;
+    font-family: var(--op-font-mono);
+    font-size: 13px;
+    line-height: 1.6;
   }
-
-  .article-content :global(pre code) {
-    background: none;
+  .op-article-body-frame :global(pre code) {
+    background: transparent;
     padding: 0;
     color: inherit;
   }
-
-  .article-content :global(a) {
-    color: var(--blue);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+  .op-article-body-frame :global(hr) {
+    border: none;
+    border-top: 1.5px solid var(--op-ink);
+    margin: 36px 0;
+  }
+  .op-article-body-frame :global(img) {
+    max-width: 100%;
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    margin: 22px 0;
+  }
+  .op-article-body-frame :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 22px 0;
+    font-size: 14px;
+  }
+  .op-article-body-frame :global(th),
+  .op-article-body-frame :global(td) {
+    padding: 10px 14px;
+    border: 1px solid var(--op-rule);
+    text-align: left;
+  }
+  .op-article-body-frame :global(th) {
+    background: var(--op-cream);
+    font-weight: 700;
   }
 
-  .article-content :global(a:hover) {
-    color: var(--orange);
+  /* Inline CTA */
+  .op-article-inline-cta {
+    padding: 64px var(--op-section-px);
   }
-
-  .article-content :global(img) {
-    border-radius: var(--radius-md);
-    margin: var(--space-lg) 0;
-  }
-
-  .article-content :global(strong) {
-    color: var(--navy);
-    font-weight: 600;
-  }
-
-  /* CTA Box */
-  .article-footer {
-    padding: var(--space-2xl) 0 var(--space-3xl);
-  }
-
-  .cta-box {
-    background: var(--bg-surface-alt);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
+  .op-article-inline-cta-frame {
+    max-width: 760px;
+    margin: 0 auto;
     text-align: center;
-    border: 1px solid var(--border);
+  }
+  .op-article-inline-cta-frame :global(.op-eyebrow) {
+    margin-bottom: 18px;
+  }
+  .op-article-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .op-article-inline-cta-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0 auto 28px;
+    max-width: 600px;
+  }
+  .op-article-inline-cta-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
   }
 
-  .cta-box h3 {
-    margin-bottom: var(--space-sm);
-  }
-
-  .cta-box p {
-    margin-bottom: var(--space-md);
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (max-width: 768px) {
-    .article-header {
-      padding: var(--space-xl) 0;
-    }
-
-    .article-content {
-      padding: var(--space-xl) 0;
-    }
+  @media (max-width: 700px) {
+    .op-article-hero,
+    .op-article-body,
+    .op-article-inline-cta { padding-left: 22px; padding-right: 22px; }
+    .op-article-body-frame { font-size: 16px; }
   }
 </style>

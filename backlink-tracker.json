@@ -1,0 +1,532 @@
+{
+  "site": {
+    "name": "Brothers Automate",
+    "url": "https://brothersautomate.com",
+    "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork: lead follow-up, ad creative, hiring, reviews, and more.",
+    "newsletter_name": "The Operator's AI Playbook",
+    "newsletter_url": ""
+  },
+  "last_updated": "2026-04-22",
+  "directories": [
+    {
+      "name": "There's An AI For That",
+      "url": "https://theresanaiforthat.com",
+      "submit_url": "https://theresanaiforthat.com/submit/",
+      "type": "ai-tools",
+      "free": true,
+      "notes": "Largest AI tool directory. High DA. Submit as 'AI automation service for SMBs'.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Future Tools",
+      "url": "https://futuretools.io",
+      "submit_url": "https://futuretools.io/submit-a-tool",
+      "type": "ai-tools",
+      "free": true,
+      "notes": "Curated AI tools directory. Matt Wolfe runs it, large YouTube audience.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Toolify.ai",
+      "url": "https://toolify.ai",
+      "submit_url": "https://toolify.ai/submit",
+      "type": "ai-tools",
+      "free": true,
+      "notes": "Fast-growing AI directory with good DA.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "AI Tools Directory",
+      "url": "https://aitoolsdirectory.com",
+      "submit_url": "https://aitoolsdirectory.com/submit",
+      "type": "ai-tools",
+      "free": true,
+      "notes": "Simple submission form. Category: Business/Automation.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "TopAI.tools",
+      "url": "https://topai.tools",
+      "submit_url": "https://topai.tools/submit",
+      "type": "ai-tools",
+      "free": true,
+      "notes": "Growing AI directory, dofollow links.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Product Hunt",
+      "url": "https://producthunt.com",
+      "submit_url": "https://producthunt.com/posts/new",
+      "type": "startup",
+      "free": true,
+      "notes": "DA 90+. Plan a proper launch day. Consider launching individual projects (quiz funnels, ScreenFast, etc.) as separate products.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "BetaList",
+      "url": "https://betalist.com",
+      "submit_url": "https://betalist.com/submit",
+      "type": "startup",
+      "free": true,
+      "notes": "DA 67. Good for early-stage products. Free listing takes 2-4 weeks to review.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Indie Hackers",
+      "url": "https://indiehackers.com",
+      "submit_url": "https://indiehackers.com/products",
+      "type": "startup",
+      "free": true,
+      "notes": "Create a product page + engage in community. Good for the 'two brothers' story angle.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "G2",
+      "url": "https://g2.com",
+      "submit_url": "https://www.g2.com/products/new",
+      "type": "saas-review",
+      "free": true,
+      "notes": "DA 92. Free listing. Reviews from clients will boost visibility significantly.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Capterra",
+      "url": "https://capterra.com",
+      "submit_url": "https://www.capterra.com/vendors/sign-up",
+      "type": "saas-review",
+      "free": true,
+      "notes": "DA 88. Owned by Gartner. Free basic listing.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "GetApp",
+      "url": "https://getapp.com",
+      "submit_url": "https://www.getapp.com/submit/",
+      "type": "saas-review",
+      "free": true,
+      "notes": "Owned by Gartner (same as Capterra). Free listing, different audience.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Software Advice",
+      "url": "https://softwareadvice.com",
+      "submit_url": "https://www.softwareadvice.com/vendors/",
+      "type": "saas-review",
+      "free": true,
+      "notes": "DA 80. Third Gartner property. Submit once you have G2/Capterra set up.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Clutch.co",
+      "url": "https://clutch.co",
+      "submit_url": "https://clutch.co/developers/signup",
+      "type": "agency",
+      "free": true,
+      "notes": "DA 86. Top B2B service agency directory. Position as 'AI Automation Agency'. Client reviews help ranking.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "GoodFirms",
+      "url": "https://goodfirms.co",
+      "submit_url": "https://www.goodfirms.co/add-your-company",
+      "type": "agency",
+      "free": true,
+      "notes": "DA 73. Agency directory, free listing with paid upgrade options.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "DesignRush",
+      "url": "https://designrush.com",
+      "submit_url": "https://www.designrush.com/agency/register",
+      "type": "agency",
+      "free": true,
+      "notes": "DA 67. Growing agency marketplace. Category: AI & Machine Learning.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Crunchbase",
+      "url": "https://crunchbase.com",
+      "submit_url": "https://www.crunchbase.com/add-new",
+      "type": "business",
+      "free": true,
+      "notes": "High DA. Free organization profile. Good for entity authority building.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Google Business Profile",
+      "url": "https://business.google.com",
+      "submit_url": "https://business.google.com/create",
+      "type": "local",
+      "free": true,
+      "notes": "Essential for local SEO and entity verification. Even for online businesses, helps Google connect the brand.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "LinkedIn Company Page",
+      "url": "https://linkedin.com",
+      "submit_url": "https://www.linkedin.com/company/setup/new/",
+      "type": "social",
+      "free": true,
+      "notes": "Create company page. Once live, add URL to Layout.astro sameAs array for schema markup.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "InboxReads",
+      "url": "https://inboxreads.co",
+      "submit_url": "https://inboxreads.co/submit-newsletter",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Popular newsletter directory. Submit 'The Operator's AI Playbook'. Category: Business/Technology.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Finding.email",
+      "url": "https://finding.email",
+      "submit_url": "https://finding.email/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Curated newsletter directory. Good backlink + subscriber discovery.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Stack Letter",
+      "url": "https://stackletter.com",
+      "submit_url": "https://stackletter.com/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Newsletter discovery platform.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "InboxStash",
+      "url": "https://inboxstash.com",
+      "submit_url": "https://inboxstash.com/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Free newsletter directory with good SEO.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Newsletter Junkie",
+      "url": "https://newsletterjunkie.co",
+      "submit_url": "https://newsletterjunkie.co/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Growing newsletter aggregator.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "The Sample",
+      "url": "https://thesample.ai",
+      "submit_url": "https://thesample.ai/publishers/",
+      "type": "newsletter",
+      "free": true,
+      "notes": "AI-powered newsletter recommendation. Sends your newsletter to matched readers. Good for subscriber growth + backlink.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Letterlist",
+      "url": "https://letterlist.com",
+      "submit_url": "https://letterlist.com/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Curated list of best newsletters. Submit under Business/AI category.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    },
+    {
+      "name": "Thanks For Subscribing",
+      "url": "https://thanksforsubscribing.app",
+      "submit_url": "https://thanksforsubscribing.app/submit",
+      "type": "newsletter",
+      "free": true,
+      "notes": "Newsletter discovery platform.",
+      "status": "not_submitted",
+      "submitted_date": null,
+      "live_date": null,
+      "listing_url": null
+    }
+  ],
+  "syndicated_posts": [
+    {
+      "slug": "email-drip-campaign-guide",
+      "original_url": "https://brothersautomate.com/blog/email-drip-campaign-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/email-drip-campaigns-the-complete-guide-for-2026-1jjn",
+      "devto_article_id": 3271874,
+      "syndicated_date": "2026-02-20",
+      "status": "live"
+    },
+    {
+      "slug": "small-business-marketing-automation",
+      "original_url": "https://brothersautomate.com/blog/small-business-marketing-automation/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/small-business-marketing-automation-a-guide-566n",
+      "devto_article_id": 3282446,
+      "syndicated_date": "2026-02-24",
+      "status": "live"
+    },
+    {
+      "slug": "conversion-rate-optimization-tools",
+      "original_url": "https://brothersautomate.com/blog/conversion-rate-optimization-tools/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/conversion-rate-optimization-tools-for-2026-3p3g",
+      "devto_article_id": 3285638,
+      "syndicated_date": "2026-02-25",
+      "status": "live"
+    },
+    {
+      "slug": "how-to-build-a-marketing-funnel",
+      "original_url": "https://brothersautomate.com/blog/how-to-build-a-marketing-funnel/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/how-to-build-a-marketing-funnel-that-runs-without-you-4kjc",
+      "devto_article_id": 3293001,
+      "syndicated_date": "2026-02-27",
+      "status": "live"
+    },
+    {
+      "slug": "lead-generation-for-it-services",
+      "original_url": "https://brothersautomate.com/blog/lead-generation-for-it-services/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/lead-generation-for-it-services-the-2026-guide-5d70",
+      "devto_article_id": 3303143,
+      "syndicated_date": "2026-03-02",
+      "status": "live"
+    },
+    {
+      "slug": "lead-scoring-model",
+      "original_url": "https://brothersautomate.com/blog/lead-scoring-model/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/how-to-build-a-lead-scoring-model-small-biz-guide-3m5e",
+      "devto_article_id": 3309655,
+      "syndicated_date": "2026-03-04",
+      "status": "live"
+    },
+    {
+      "slug": "email-marketing-for-small-business",
+      "original_url": "https://brothersautomate.com/blog/email-marketing-for-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/email-marketing-for-small-business-what-works-in-2026-46fj",
+      "devto_article_id": 3316939,
+      "syndicated_date": "2026-03-06",
+      "status": "live"
+    },
+    {
+      "slug": "ai-marketing-automation-tools",
+      "original_url": "https://brothersautomate.com/blog/ai-marketing-automation-tools/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-marketing-automation-tools-for-small-business-2026-1i3i",
+      "devto_article_id": 3331783,
+      "syndicated_date": "2026-03-09",
+      "status": "live"
+    },
+    {
+      "slug": "b2b-lead-generation-strategies",
+      "original_url": "https://brothersautomate.com/blog/b2b-lead-generation-strategies/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/b2b-lead-generation-strategies-that-convert-3eg7",
+      "devto_article_id": 3340519,
+      "syndicated_date": "2026-03-11",
+      "status": "live"
+    },
+    {
+      "slug": "lead-generation-tools-small-business",
+      "original_url": "https://brothersautomate.com/blog/lead-generation-tools-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/lead-generation-tools-for-small-business-2026-1no8",
+      "devto_article_id": 3349121,
+      "syndicated_date": "2026-03-13",
+      "status": "live"
+    },
+    {
+      "slug": "landing-page-seo-optimization",
+      "original_url": "https://brothersautomate.com/blog/landing-page-seo-optimization/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/landing-page-seo-optimization-a-small-business-guide-4c6a",
+      "devto_article_id": 3359938,
+      "syndicated_date": "2026-03-16",
+      "status": "live"
+    },
+    {
+      "slug": "top-of-funnel-marketing",
+      "original_url": "https://brothersautomate.com/blog/top-of-funnel-marketing/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/top-of-funnel-marketing-for-small-business-2913",
+      "devto_article_id": 3377820,
+      "syndicated_date": "2026-03-20",
+      "status": "live"
+    },
+    {
+      "slug": "high-converting-landing-page-guide",
+      "original_url": "https://brothersautomate.com/blog/high-converting-landing-page-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/how-to-build-a-high-converting-landing-page-265k",
+      "devto_article_id": 3390708,
+      "syndicated_date": "2026-03-23",
+      "status": "live"
+    },
+    {
+      "slug": "marketing-campaign-examples",
+      "original_url": "https://brothersautomate.com/blog/marketing-campaign-examples/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/10-marketing-campaign-examples-you-can-steal-6b8",
+      "devto_article_id": 3404576,
+      "syndicated_date": "2026-03-25",
+      "status": "live"
+    },
+    {
+      "slug": "best-ai-tools-for-business",
+      "original_url": "https://brothersautomate.com/blog/best-ai-tools-for-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/best-ai-tools-for-business-in-2026-5cij",
+      "devto_article_id": 3432004,
+      "syndicated_date": "2026-03-30",
+      "status": "live"
+    },
+    {
+      "slug": "ai-automation-for-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-automation-for-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-automation-for-small-business-a-practical-guide-2lgd",
+      "devto_article_id": 3441937,
+      "syndicated_date": "2026-04-01",
+      "status": "live"
+    },
+    {
+      "slug": "ai-automation-business",
+      "original_url": "https://brothersautomate.com/blog/ai-automation-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-automation-for-business-the-small-business-guide-21po",
+      "devto_article_id": 3450863,
+      "syndicated_date": "2026-04-03",
+      "status": "live"
+    },
+    {
+      "slug": "lead-nurturing-guide",
+      "original_url": "https://brothersautomate.com/blog/lead-nurturing-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/lead-nurturing-the-small-business-guide-340p",
+      "devto_article_id": 3461992,
+      "syndicated_date": "2026-04-06",
+      "status": "live"
+    },
+    {
+      "slug": "marketing-automation-platform-guide",
+      "original_url": "https://brothersautomate.com/blog/marketing-automation-platform-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/marketing-automation-platform-guide-for-2026-3h1j",
+      "devto_article_id": 3472780,
+      "syndicated_date": "2026-04-08",
+      "status": "live"
+    },
+    {
+      "slug": "business-process-automation",
+      "original_url": "https://brothersautomate.com/blog/business-process-automation/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/business-process-automation-a-small-business-guide-45o8",
+      "devto_article_id": 3483210,
+      "syndicated_date": "2026-04-10",
+      "status": "live"
+    },
+    {
+      "slug": "ai-chatbot-small-business-guide",
+      "original_url": "https://brothersautomate.com/blog/ai-chatbot-small-business-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-chatbots-for-small-business-2026-guide-9jk",
+      "devto_article_id": 3495896,
+      "syndicated_date": "2026-04-13",
+      "status": "live"
+    },
+    {
+      "slug": "follow-up-email-after-sales-call",
+      "original_url": "https://brothersautomate.com/blog/follow-up-email-after-sales-call/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/follow-up-email-after-sales-call-templates-automation-m11",
+      "devto_article_id": 3522385,
+      "syndicated_date": "2026-04-19",
+      "status": "live"
+    },
+    {
+      "slug": "invoice-automation",
+      "original_url": "https://brothersautomate.com/blog/invoice-automation/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/invoice-automation-the-small-business-guide-for-2026-4i66",
+      "devto_article_id": 3522432,
+      "syndicated_date": "2026-04-19",
+      "status": "live"
+    },
+    {
+      "slug": "ai-receptionist-for-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-receptionist-for-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-receptionist-for-small-business-cost-setup-guide-4cdb",
+      "devto_article_id": 3528342,
+      "syndicated_date": "2026-04-20",
+      "status": "live"
+    },
+    {
+      "slug": "ai-tools-for-business-automation",
+      "original_url": "https://brothersautomate.com/blog/ai-tools-for-business-automation/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-tools-for-business-automation-15-we-actually-use-in-2026-4d2m",
+      "devto_article_id": 3537729,
+      "syndicated_date": "2026-04-22",
+      "status": "live"
+    }
+  ],
+  "stats": {
+    "total": 26,
+    "submitted": 0,
+    "live": 0,
+    "pending_review": 0
+  }
+}

@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 
 const title = "Process Intake Framework — Brothers Automate";
 const description = "Every time you get a process to automate, run it through this framework. Ten sections. One complete build spec. Built for Gumloop workflows.";
@@ -30,112 +33,187 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const tocEntries = [
+  { code: "01", name: "Process Overview", anchor: "sec-01" },
+  { code: "02", name: "Input / Output", anchor: "sec-02" },
+  { code: "03", name: "Triggers", anchor: "sec-03" },
+  { code: "04", name: "Workflow Map", anchor: "sec-04" },
+  { code: "05", name: "Agents", anchor: "sec-05" },
+  { code: "06", name: "Data Sources", anchor: "sec-06" },
+  { code: "07", name: "Tools & Connectors", anchor: "sec-07" },
+  { code: "08", name: "Human Gates", anchor: "sec-08" },
+  { code: "09", name: "Error Handling", anchor: "sec-09" },
+  { code: "10", name: "Export Checklist", anchor: "sec-10" }
+];
 ---
 
 <Layout title={title} description={description}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
-  <!-- HERO -->
-  <section class="pif-hero">
-    <div class="pif-hero-eyebrow">Brothers Automate × Gumloop</div>
-    <h1>Process Intake<br><span>Framework</span></h1>
-    <p class="pif-hero-sub">Every time you get a process to automate, run it through this. Ten sections. One complete build spec.</p>
-    <div class="pif-hero-rule">
-      <div class="pif-hero-rule-item"><div class="pif-hero-rule-num">10</div><div class="pif-hero-rule-label">Sections</div></div>
-      <div class="pif-hero-rule-item"><div class="pif-hero-rule-num">3</div><div class="pif-hero-rule-label">Skill Blocks Per Agent</div></div>
-      <div class="pif-hero-rule-item"><div class="pif-hero-rule-num">5</div><div class="pif-hero-rule-label">I/O Dimensions</div></div>
-      <div class="pif-hero-rule-item"><div class="pif-hero-rule-num">1</div><div class="pif-hero-rule-label">Exportable JSON Spec</div></div>
+  <!-- HERO (DO NOT TOUCH) -->
+  <section class="op-respage-hero op-grid-bg">
+    <div class="op-respage-hero-frame">
+      <div class="op-respage-util">
+        <TopUtilityStrip
+          left="BROTHERS_AUTOMATE / RESOURCES · PROCESS INTAKE FRAMEWORK"
+          right="● BUILD FRAMEWORK · 10 SECTIONS"
+          bordered
+        />
+      </div>
+      <EyebrowTag label="BROTHERS AUTOMATE × GUMLOOP" />
+      <h1 class="op-respage-h1">
+        Process Intake<br />
+        <span class="op-respage-h1-orange">Framework.</span>
+      </h1>
+      <p class="op-respage-sub">Every time you get a process to automate, run it through this. Ten sections. One complete build spec.</p>
+    </div>
+  </section>
+
+  <!-- TABLE OF CONTENTS -->
+  <section class="op-pif-toc-section">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">INDEX · 10 SECTIONS</span>
+        <h2 class="op-pif-h2">Run It <span class="op-pif-accent">In Order.</span></h2>
+        <p class="op-pif-lede">Don't skip ahead. The workflow map has to come before agent specs. Agent specs have to come before skills. Each section builds on the last.</p>
+      </header>
+      <ol class="op-pif-toc-list" data-animate-stagger>
+        {tocEntries.map((e) => (
+          <li class="op-pif-toc-row" data-animate="fade-up">
+            <a href={`#${e.anchor}`} class="op-pif-toc-link">
+              <span class="op-mono op-pif-toc-code">INTAKE_{e.code}</span>
+              <span class="op-pif-toc-name">{e.name}</span>
+              <span class="op-pif-toc-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
   <!-- HOW TO USE -->
-  <section class="pif-howto">
-    <div class="pif-container">
-      <div class="pif-section-eyebrow">How It Works</div>
-      <h2>Work Through It <span>In Order</span></h2>
-      <p class="pif-howto-desc">Don't skip ahead. The workflow map has to come before agent specs. Agent specs have to come before skills. Each section builds on the last.</p>
-      <div class="pif-howto-cards">
-        <div class="pif-howto-card">
-          <div class="pif-howto-card-num">01–03</div>
-          <h3>Understand the Process</h3>
-          <p>Name it, define the goal, map inputs and outputs, identify how it starts.</p>
-        </div>
-        <div class="pif-howto-card">
-          <div class="pif-howto-card-num">04</div>
-          <h3>Map the Workflow</h3>
-          <p>Define the shape, every node, every connection, where agents sit. Do this before touching agents.</p>
-        </div>
-        <div class="pif-howto-card">
-          <div class="pif-howto-card-num">05</div>
-          <h3>Spec Every Agent</h3>
-          <p>I/O, tools, confirmation rules, and a full skill set per agent. One agent at a time.</p>
-        </div>
-        <div class="pif-howto-card">
-          <div class="pif-howto-card-num">06–09</div>
-          <h3>Complete the Stack</h3>
-          <p>Data sources, connectors, human gates, error cases. Don't skip these — they're where automations break.</p>
-        </div>
-        <div class="pif-howto-card">
-          <div class="pif-howto-card-num">10</div>
-          <h3>QA Checklist</h3>
-          <p>Run the checklist before you hand off to a builder or open Gumloop. Catch the gaps now.</p>
-        </div>
+  <section class="op-pif-howto-section">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">HOW IT WORKS · 5 PHASES</span>
+        <h2 class="op-pif-h2">Work Through It <span class="op-pif-accent">In Order.</span></h2>
+        <p class="op-pif-lede">Don't skip ahead. The workflow map has to come before agent specs. Agent specs have to come before skills. Each section builds on the last.</p>
+      </header>
+      <div class="op-pif-howto-grid" data-animate-stagger>
+        <article class="op-pif-howto-card" data-animate="fade-up">
+          <header class="op-pif-howto-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-pif-howto-code">PHASE_01</span>
+            <span class="op-mono op-pif-howto-range">SECTIONS 01–03</span>
+          </header>
+          <div class="op-pif-howto-body">
+            <h3 class="op-pif-howto-title">Understand the Process</h3>
+            <div class="op-pif-orange-rule"></div>
+            <p class="op-pif-howto-text">Name it, define the goal, map inputs and outputs, identify how it starts.</p>
+          </div>
+        </article>
+        <article class="op-pif-howto-card" data-animate="fade-up">
+          <header class="op-pif-howto-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-pif-howto-code">PHASE_02</span>
+            <span class="op-mono op-pif-howto-range">SECTION 04</span>
+          </header>
+          <div class="op-pif-howto-body">
+            <h3 class="op-pif-howto-title">Map the Workflow</h3>
+            <div class="op-pif-orange-rule"></div>
+            <p class="op-pif-howto-text">Define the shape, every node, every connection, where agents sit. Do this before touching agents.</p>
+          </div>
+        </article>
+        <article class="op-pif-howto-card" data-animate="fade-up">
+          <header class="op-pif-howto-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-pif-howto-code">PHASE_03</span>
+            <span class="op-mono op-pif-howto-range">SECTION 05</span>
+          </header>
+          <div class="op-pif-howto-body">
+            <h3 class="op-pif-howto-title">Spec Every Agent</h3>
+            <div class="op-pif-orange-rule"></div>
+            <p class="op-pif-howto-text">I/O, tools, confirmation rules, and a full skill set per agent. One agent at a time.</p>
+          </div>
+        </article>
+        <article class="op-pif-howto-card" data-animate="fade-up">
+          <header class="op-pif-howto-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-pif-howto-code">PHASE_04</span>
+            <span class="op-mono op-pif-howto-range">SECTIONS 06–09</span>
+          </header>
+          <div class="op-pif-howto-body">
+            <h3 class="op-pif-howto-title">Complete the Stack</h3>
+            <div class="op-pif-orange-rule"></div>
+            <p class="op-pif-howto-text">Data sources, connectors, human gates, error cases. Don't skip these — they're where automations break.</p>
+          </div>
+        </article>
+        <article class="op-pif-howto-card" data-animate="fade-up">
+          <header class="op-pif-howto-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-pif-howto-code">PHASE_05</span>
+            <span class="op-mono op-pif-howto-range">SECTION 10</span>
+          </header>
+          <div class="op-pif-howto-body">
+            <h3 class="op-pif-howto-title">QA Checklist</h3>
+            <div class="op-pif-orange-rule"></div>
+            <p class="op-pif-howto-text">Run the checklist before you hand off to a builder or open Gumloop. Catch the gaps now.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- MAIN SECTIONS -->
-  <section class="pif-sections-wrapper">
-    <div class="pif-container">
-      <div class="pif-section-eyebrow pif-section-eyebrow--light">The Framework</div>
-      <h2 class="pif-main-heading">Ten Sections.<br><span>Zero Gaps.</span></h2>
-      <p class="pif-sections-intro">Click any section to expand it. Each one covers what to capture and why it matters.</p>
+  <!-- 01 PROCESS OVERVIEW -->
+  <section class="op-pif-section" id="sec-01">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_01 · OVERVIEW</span>
+        <h2 class="op-pif-h2">Process <span class="op-pif-accent">Overview.</span></h2>
+        <p class="op-pif-lede">Name it. Define the goal. Set the context. Three fields. Simple but essential — every other section references back to this. If you can't write a clear goal in two sentences, the process isn't ready to automate yet.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">FIELDS · 03</span>
+          <span class="op-mono op-pif-card-pill">START HERE</span>
+        </header>
+        <div class="op-pif-card-body">
+          <div class="op-pif-field" data-animate="fade-up">
+            <span class="op-mono op-pif-label">PROCESS NAME</span>
+            <p class="op-pif-text">What is this called? e.g. "Lead Qualification Pipeline", "AP Invoice Processing", "Employee Onboarding"</p>
+          </div>
+          <div class="op-pif-field" data-animate="fade-up">
+            <span class="op-mono op-pif-label">GOAL / PURPOSE</span>
+            <p class="op-pif-text">What does this process achieve when it works perfectly? One or two sentences. Be specific — "save time" is not a goal.</p>
+          </div>
+          <div class="op-pif-field" data-animate="fade-up">
+            <span class="op-mono op-pif-label">NOTES &amp; CONTEXT</span>
+            <p class="op-pif-text">Constraints, existing tools in use, team involved, edge cases you already know about, anything that shapes how this gets built.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-      <!-- 01 PROCESS OVERVIEW -->
-      <div class="pif-acc-section open" id="sec-01">
-        <div class="pif-acc-header" data-toggle="sec-01">
-          <div class="pif-acc-num">01</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Process Overview</div>
-            <div class="pif-acc-subtitle">Name it. Define the goal. Set the context.</div>
-          </div>
-          <span class="pif-acc-badge">Start Here</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Three fields. Simple but essential — every other section references back to this. If you can't write a clear goal in two sentences, the process isn't ready to automate yet.</p>
-          <div class="pif-field-block">
-            <div class="pif-field-label">Process Name</div>
-            <div class="pif-field-desc">What is this called? e.g. "Lead Qualification Pipeline", "AP Invoice Processing", "Employee Onboarding"</div>
-          </div>
-          <div class="pif-field-block">
-            <div class="pif-field-label">Goal / Purpose</div>
-            <div class="pif-field-desc">What does this process achieve when it works perfectly? One or two sentences. Be specific — "save time" is not a goal.</div>
-          </div>
-          <div class="pif-field-block">
-            <div class="pif-field-label">Notes & Context</div>
-            <div class="pif-field-desc">Constraints, existing tools in use, team involved, edge cases you already know about, anything that shapes how this gets built.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 I/O -->
-      <div class="pif-acc-section" id="sec-02">
-        <div class="pif-acc-header" data-toggle="sec-02">
-          <div class="pif-acc-num">02</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Input / Output</div>
-            <div class="pif-acc-subtitle">Five dimensions. Both sides. Full handoff spec.</div>
-          </div>
-          <span class="pif-acc-badge">5 Dimensions</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Map all five dimensions for both the input and the output. Matching them forces you to fully spec what comes in and what leaves — which is exactly where most automations break. If the output isn't defined, the automation has nowhere to go.</p>
-          <table class="pif-io-table">
+  <!-- 02 I/O -->
+  <section class="op-pif-section" id="sec-02">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_02 · I/O</span>
+        <h2 class="op-pif-h2">Input / <span class="op-pif-accent">Output.</span></h2>
+        <p class="op-pif-lede">Five dimensions. Both sides. Full handoff spec. Map all five for both the input and the output. Matching them forces you to fully spec what comes in and what leaves — which is exactly where most automations break.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">DIMENSIONS · 05</span>
+          <span class="op-mono op-pif-card-pill">BOTH SIDES</span>
+        </header>
+        <div class="op-pif-card-body">
+          <table class="op-pif-table">
             <thead>
               <tr>
                 <th>Dimension</th>
@@ -144,286 +222,336 @@ const breadcrumbSchema = {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Location</td>
-                <td>Where does the data come from?</td>
-                <td>Where does it land when done?</td>
-              </tr>
-              <tr>
-                <td>Method</td>
-                <td>How does it arrive? (email, webhook, form, API)</td>
-                <td>How does it get delivered? (API write, Slack message, email)</td>
-              </tr>
-              <tr>
-                <td>Timing</td>
-                <td>When does it arrive? (real-time, scheduled, triggered)</td>
-                <td>When is it expected? (immediately, after approval, daily)</td>
-              </tr>
-              <tr>
-                <td>Content</td>
-                <td>What information is in it?</td>
-                <td>What information comes out?</td>
-              </tr>
-              <tr>
-                <td>Format</td>
-                <td>What structure? (JSON, CSV, plain text, form fields)</td>
-                <td>What structure? (JSON, Slack message, .csv, record update)</td>
-              </tr>
+              <tr><td>Location</td><td>Where does the data come from?</td><td>Where does it land when done?</td></tr>
+              <tr><td>Method</td><td>How does it arrive? (email, webhook, form, API)</td><td>How does it get delivered? (API write, Slack message, email)</td></tr>
+              <tr><td>Timing</td><td>When does it arrive? (real-time, scheduled, triggered)</td><td>When is it expected? (immediately, after approval, daily)</td></tr>
+              <tr><td>Content</td><td>What information is in it?</td><td>What information comes out?</td></tr>
+              <tr><td>Format</td><td>What structure? (JSON, CSV, plain text, form fields)</td><td>What structure? (JSON, Slack message, .csv, record update)</td></tr>
             </tbody>
           </table>
-          <div class="pif-rule-box"><strong>Rule:</strong> These same five dimensions apply to every agent's input/output in Section 05. Fill the process-level ones first, then mirror the pattern per agent.</div>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">These same five dimensions apply to every agent's input/output in Section 05. Fill the process-level ones first, then mirror the pattern per agent.</p>
+          </aside>
         </div>
-      </div>
+      </article>
+    </div>
+  </section>
 
-      <!-- 03 TRIGGERS -->
-      <div class="pif-acc-section" id="sec-03">
-        <div class="pif-acc-header" data-toggle="sec-03">
-          <div class="pif-acc-num">03</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Triggers</div>
-            <div class="pif-acc-subtitle">How does the process start? Be specific.</div>
-          </div>
-          <span class="pif-acc-badge">Entry Points</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Select all that apply. Then for each one, add the specifics. "Webhook" is not enough — you need to know which system, what event, and what the payload looks like.</p>
-          <div class="pif-trigger-grid">
-            <div class="pif-trigger-chip">Webhook <span>which system?</span></div>
-            <div class="pif-trigger-chip">Schedule / Cron <span>what frequency?</span></div>
-            <div class="pif-trigger-chip">Manual Run <span>who triggers it?</span></div>
-            <div class="pif-trigger-chip">Form Submission <span>which form?</span></div>
-            <div class="pif-trigger-chip">Email <span>which inbox / rule?</span></div>
-            <div class="pif-trigger-chip">New CRM Record <span>which object / stage?</span></div>
-            <div class="pif-trigger-chip">File Upload <span>which folder / type?</span></div>
-            <div class="pif-trigger-chip">Agent Handoff <span>from which agent?</span></div>
-          </div>
-          <div class="pif-rule-box"><strong>Rule:</strong> A process can have multiple entry points. Define each one separately — different triggers may carry different payloads and need different handling at the start of the workflow.</div>
-        </div>
-      </div>
-
-      <!-- 04 WORKFLOW MAP -->
-      <div class="pif-acc-section" id="sec-04">
-        <div class="pif-acc-header" data-toggle="sec-04">
-          <div class="pif-acc-num">04</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Workflow Map</div>
-            <div class="pif-acc-subtitle">Shape → nodes → connections → agent placement.</div>
-          </div>
-          <span class="pif-acc-badge">Do This First</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Map the workflow before you spec any agents. You need to see the shape of the process, where every node sits, and where agents are placed before you can write a meaningful agent spec. Skipping this creates agents that don't know what they're receiving or passing on.</p>
-
-          <div class="pif-sub-label">4A — Process Shape</div>
-          <div class="pif-shape-grid">
-            <div class="pif-shape-card">
-              <h4>Linear</h4>
-              <p>Steps run one after another. Every node feeds the next. No branches.</p>
+  <!-- 03 TRIGGERS -->
+  <section class="op-pif-section" id="sec-03">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_03 · TRIGGERS</span>
+        <h2 class="op-pif-h2">Entry <span class="op-pif-accent">Points.</span></h2>
+        <p class="op-pif-lede">How does the process start? Be specific. Select all that apply. Then for each one, add the specifics. "Webhook" is not enough — you need to know which system, what event, and what the payload looks like.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">TRIGGERS · 08</span>
+          <span class="op-mono op-pif-card-pill">ENTRY POINTS</span>
+        </header>
+        <div class="op-pif-card-body">
+          <div class="op-pif-trigger-grid" data-animate-stagger>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Webhook</span>
+              <span class="op-mono op-pif-trigger-q">WHICH SYSTEM?</span>
             </div>
-            <div class="pif-shape-card">
-              <h4>Branching</h4>
-              <p>Decision points split the path. Different conditions lead to different next steps.</p>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Schedule / Cron</span>
+              <span class="op-mono op-pif-trigger-q">WHAT FREQUENCY?</span>
             </div>
-            <div class="pif-shape-card">
-              <h4>Parallel</h4>
-              <p>Multiple tracks run at the same time, then reconverge. Faster than sequential.</p>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Manual Run</span>
+              <span class="op-mono op-pif-trigger-q">WHO TRIGGERS IT?</span>
             </div>
-            <div class="pif-shape-card">
-              <h4>Loop</h4>
-              <p>Steps repeat until a condition is met. Common in polling or retry patterns.</p>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Form Submission</span>
+              <span class="op-mono op-pif-trigger-q">WHICH FORM?</span>
+            </div>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Email</span>
+              <span class="op-mono op-pif-trigger-q">WHICH INBOX / RULE?</span>
+            </div>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">New CRM Record</span>
+              <span class="op-mono op-pif-trigger-q">WHICH OBJECT / STAGE?</span>
+            </div>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">File Upload</span>
+              <span class="op-mono op-pif-trigger-q">WHICH FOLDER / TYPE?</span>
+            </div>
+            <div class="op-pif-trigger-chip" data-animate="fade-up">
+              <span class="op-pif-trigger-name">Agent Handoff</span>
+              <span class="op-mono op-pif-trigger-q">FROM WHICH AGENT?</span>
             </div>
           </div>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">A process can have multiple entry points. Define each one separately — different triggers may carry different payloads and need different handling at the start of the workflow.</p>
+          </aside>
+        </div>
+      </article>
+    </div>
+  </section>
 
-          <div class="pif-sub-label">4B — Node Types</div>
-          <div class="pif-node-type-list">
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-trigger">trigger</span><span class="pif-node-type-desc">What starts the workflow — a webhook, schedule, form submit, or agent handoff</span></div>
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-agent">agent</span><span class="pif-node-type-desc">An AI agent performing a task — always link to the named agent in Section 05</span></div>
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-human">human</span><span class="pif-node-type-desc">A human action or approval checkpoint — define in Section 08</span></div>
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-decision">decision</span><span class="pif-node-type-desc">A branch point — if/else logic that splits the path. Label the outgoing edges.</span></div>
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-action">action</span><span class="pif-node-type-desc">A direct tool action — send email, update record, write to Sheet</span></div>
-            <div class="pif-node-type-row"><span class="pif-node-badge nb-end">end</span><span class="pif-node-type-desc">The workflow completes — one per branch, not just one per workflow</span></div>
+  <!-- 04 WORKFLOW MAP -->
+  <section class="op-pif-section" id="sec-04">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_04 · WORKFLOW</span>
+        <h2 class="op-pif-h2">Workflow <span class="op-pif-accent">Map.</span></h2>
+        <p class="op-pif-lede">Shape → nodes → connections → agent placement. Map the workflow before you spec any agents. You need to see the shape, where every node sits, and where agents are placed before you can write a meaningful spec.</p>
+      </header>
+
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">PART_4A · SHAPE</span>
+          <span class="op-mono op-pif-card-pill">DO THIS FIRST</span>
+        </header>
+        <div class="op-pif-card-body">
+          <span class="op-mono op-pif-label">PROCESS SHAPE — PICK ONE</span>
+          <div class="op-pif-shape-grid" data-animate-stagger>
+            <div class="op-pif-shape-card" data-animate="fade-up">
+              <h4 class="op-pif-shape-title">Linear</h4>
+              <p class="op-pif-shape-text">Steps run one after another. Every node feeds the next. No branches.</p>
+            </div>
+            <div class="op-pif-shape-card" data-animate="fade-up">
+              <h4 class="op-pif-shape-title">Branching</h4>
+              <p class="op-pif-shape-text">Decision points split the path. Different conditions lead to different next steps.</p>
+            </div>
+            <div class="op-pif-shape-card" data-animate="fade-up">
+              <h4 class="op-pif-shape-title">Parallel</h4>
+              <p class="op-pif-shape-text">Multiple tracks run at the same time, then reconverge. Faster than sequential.</p>
+            </div>
+            <div class="op-pif-shape-card" data-animate="fade-up">
+              <h4 class="op-pif-shape-title">Loop</h4>
+              <p class="op-pif-shape-text">Steps repeat until a condition is met. Common in polling or retry patterns.</p>
+            </div>
           </div>
+        </div>
+      </article>
 
-          <div class="pif-sub-label">4C — Workflow Nodes Format</div>
-          <div class="pif-code-block"><span class="dim">// List every node. Link agent nodes to a named agent.</span>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">PART_4B · NODE TYPES</span>
+          <span class="op-mono op-pif-card-pill">06 TYPES</span>
+        </header>
+        <div class="op-pif-card-body">
+          <ul class="op-pif-node-list" data-animate-stagger>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-trigger">trigger</span><span class="op-pif-node-desc">What starts the workflow — a webhook, schedule, form submit, or agent handoff</span></li>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-agent">agent</span><span class="op-pif-node-desc">An AI agent performing a task — always link to the named agent in Section 05</span></li>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-human">human</span><span class="op-pif-node-desc">A human action or approval checkpoint — define in Section 08</span></li>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-decision">decision</span><span class="op-pif-node-desc">A branch point — if/else logic that splits the path. Label the outgoing edges.</span></li>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-action">action</span><span class="op-pif-node-desc">A direct tool action — send email, update record, write to Sheet</span></li>
+            <li class="op-pif-node-row" data-animate="fade-up"><span class="op-mono op-pif-node-badge nb-end">end</span><span class="op-pif-node-desc">The workflow completes — one per branch, not just one per workflow</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">PART_4C · NODES FORMAT</span>
+          <span class="op-mono op-pif-card-pill">TEMPLATE</span>
+        </header>
+        <div class="op-pif-card-body">
+          <pre class="op-pif-code"><span class="dim">// List every node. Link agent nodes to a named agent.</span>
 Node 1:  [trigger]  — HubSpot stage change: "Ready to Quote"
 Node 2:  [agent]    — Deal Validator  →  Agent: Deal Validator
 Node 3:  [decision] — Validation passed?
 Node 4:  [agent]    — Quote Builder   →  Agent: Quote Builder
 Node 5:  [human]    — Approval Gate   →  Gate: Manager Approval
 Node 6:  [agent]    — Quote Sender    →  Agent: Quote Sender
-Node 7:  [end]      — Quote sent, HubSpot updated</div>
+Node 7:  [end]      — Quote sent, HubSpot updated</pre>
+        </div>
+      </article>
 
-          <div class="pif-sub-label">4D — Connections Format</div>
-          <div class="pif-code-block">Node 1  →  Node 2
-Node 2  →  Node 3
-Node 3  →  Node 4   <span class="hl">(if PASS)</span>
-Node 3  →  Node 7   <span class="hl">(if FAIL — alert rep, stop)</span>
-Node 4  →  Node 5
-Node 5  →  Node 6   <span class="hl">(if approved)</span>
-Node 5  →  Node 7   <span class="hl">(if rejected)</span>
-Node 6  →  Node 7</div>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">PART_4D · CONNECTIONS</span>
+          <span class="op-mono op-pif-card-pill">EDGES</span>
+        </header>
+        <div class="op-pif-card-body">
+          <pre class="op-pif-code">Node 1  &rarr;  Node 2
+Node 2  &rarr;  Node 3
+Node 3  &rarr;  Node 4   <span class="hl">(if PASS)</span>
+Node 3  &rarr;  Node 7   <span class="hl">(if FAIL — alert rep, stop)</span>
+Node 4  &rarr;  Node 5
+Node 5  &rarr;  Node 6   <span class="hl">(if approved)</span>
+Node 5  &rarr;  Node 7   <span class="hl">(if rejected)</span>
+Node 6  &rarr;  Node 7</pre>
+        </div>
+      </article>
 
-          <div class="pif-sub-label">4E — Agent Placement</div>
-          <table class="pif-io-table">
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">PART_4E · PLACEMENT</span>
+          <span class="op-mono op-pif-card-pill">AGENTS &times; NODES</span>
+        </header>
+        <div class="op-pif-card-body">
+          <table class="op-pif-table">
             <thead>
               <tr><th>Agent</th><th>Position</th><th>Receives from</th><th>Passes to</th></tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Deal Validator</td>
-                <td style="color:rgba(255,248,242,0.6)">trigger</td>
-                <td style="color:rgba(255,248,242,0.6)">HubSpot webhook</td>
-                <td style="color:rgba(255,248,242,0.6)">Quote Builder (on PASS)</td>
-              </tr>
-              <tr>
-                <td>Quote Builder</td>
-                <td style="color:rgba(255,248,242,0.6)">middle</td>
-                <td style="color:rgba(255,248,242,0.6)">Deal Validator output</td>
-                <td style="color:rgba(255,248,242,0.6)">Approval Gate</td>
-              </tr>
-              <tr>
-                <td>Quote Sender</td>
-                <td style="color:rgba(255,248,242,0.6)">final</td>
-                <td style="color:rgba(255,248,242,0.6)">Human approval signal</td>
-                <td style="color:rgba(255,248,242,0.6)">Gmail + HubSpot</td>
-              </tr>
+              <tr><td>Deal Validator</td><td>trigger</td><td>HubSpot webhook</td><td>Quote Builder (on PASS)</td></tr>
+              <tr><td>Quote Builder</td><td>middle</td><td>Deal Validator output</td><td>Approval Gate</td></tr>
+              <tr><td>Quote Sender</td><td>final</td><td>Human approval signal</td><td>Gmail + HubSpot</td></tr>
             </tbody>
           </table>
         </div>
-      </div>
+      </article>
+    </div>
+  </section>
 
-      <!-- 05 AGENTS -->
-      <div class="pif-acc-section" id="sec-05">
-        <div class="pif-acc-header" data-toggle="sec-05">
-          <div class="pif-acc-num">05</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Agents</div>
-            <div class="pif-acc-subtitle">One block per agent. Repeat for every agent in the workflow.</div>
+  <!-- 05 AGENTS -->
+  <section class="op-pif-section" id="sec-05">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_05 · AGENTS</span>
+        <h2 class="op-pif-h2">Spec Every <span class="op-pif-accent">Agent.</span></h2>
+        <p class="op-pif-lede">One block per agent. Repeat for every agent in the workflow. Each agent has four areas to spec — Overview, I/O, Tools, Skills. Never combine two jobs into one agent.</p>
+      </header>
+
+      <aside class="op-pif-promise" data-animate="fade-up">
+        <span class="op-mono op-pif-promise-label">THE PROMISE</span>
+        <p class="op-pif-promise-text">Each agent has <strong>four areas to spec</strong>: Overview, Input/Output, Tools, and Skills. Repeat the full block for every agent. Never combine two jobs into one agent.</p>
+      </aside>
+
+      <!-- 5.1 OVERVIEW -->
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">AGENT_5.1 · OVERVIEW</span>
+          <span class="op-mono op-pif-card-pill">IDENTITY</span>
+        </header>
+        <div class="op-pif-card-body">
+          <div class="op-pif-field">
+            <span class="op-mono op-pif-label">AGENT NAME</span>
+            <p class="op-pif-text">Kebab-style is fine: lead-enrichment-agent, quote-builder, approval-router. The name tells you exactly what it does.</p>
           </div>
-          <span class="pif-acc-badge">Core Section</span>
-          <div class="pif-acc-chevron">&#9662;</div>
+          <div class="op-pif-field">
+            <span class="op-mono op-pif-label">PURPOSE / GOAL</span>
+            <p class="op-pif-text">Single sentence. What does this agent do and why does it exist? If you can't write this in one sentence, the scope is too broad — split it into two agents.</p>
+          </div>
+          <div class="op-pif-field">
+            <span class="op-mono op-pif-label">POSITION IN WORKFLOW</span>
+            <ul class="op-pif-node-list">
+              <li class="op-pif-node-row"><span class="op-mono op-pif-node-badge nb-trigger">trigger</span><span class="op-pif-node-desc">First agent in the chain — receives the raw trigger payload directly</span></li>
+              <li class="op-pif-node-row"><span class="op-mono op-pif-node-badge nb-action">middle</span><span class="op-pif-node-desc">Receives output from another agent — transforms, enriches, routes, or decides</span></li>
+              <li class="op-pif-node-row"><span class="op-mono op-pif-node-badge nb-end">final</span><span class="op-pif-node-desc">Last step — performs the terminal action (send, write, publish, archive)</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <div class="pif-agent-spec-intro">
-            Each agent has <strong>four areas to spec</strong>: Overview, Input/Output, Tools, and Skills. Use the tabs below as your template. Repeat the full block for every agent. Never combine two jobs into one agent.
+      </article>
+
+      <!-- 5.2 I/O -->
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">AGENT_5.2 · I/O</span>
+          <span class="op-mono op-pif-card-pill">PER-AGENT</span>
+        </header>
+        <div class="op-pif-card-body">
+          <p class="op-pif-text">Each agent has its own input and output — not just the process-level ones. An agent in the middle of a workflow receives data from the previous agent, not from the original trigger. Define both sides with the same five dimensions.</p>
+          <table class="op-pif-table">
+            <thead>
+              <tr><th>Dimension</th><th>Agent Input</th><th>Agent Output</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Location</td><td>Where does this agent receive data from?</td><td>Where does it send results?</td></tr>
+              <tr><td>Method</td><td>How does data arrive? (prior agent output, webhook, poll)</td><td>How does it deliver? (write to Sheet, call next agent, Slack message)</td></tr>
+              <tr><td>Timing</td><td>When is it triggered? (immediately, on event, on schedule)</td><td>When does it complete? (synchronous, async, within N seconds)</td></tr>
+              <tr><td>Content</td><td>What specific fields does it receive?</td><td>What fields does it produce?</td></tr>
+              <tr><td>Format</td><td>JSON object? CSV row? Webhook payload?</td><td>Structured JSON? Record update? Plain text?</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 5.3 TOOLS -->
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">AGENT_5.3 · TOOLS</span>
+          <span class="op-mono op-pif-card-pill">ENABLE / DISABLE</span>
+        </header>
+        <div class="op-pif-card-body">
+          <p class="op-pif-text">List every integration with specific actions — not just tool names. Explicitly disable actions the agent doesn't need. Fewer available actions = more predictable, safer behaviour.</p>
+          <span class="op-mono op-pif-label">EXAMPLE — QUOTE BUILDER AGENT</span>
+          <ul class="op-pif-enable-list" data-animate-stagger>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">Google Drive &rarr; read_file</span><span class="op-pif-enable-reason">reads quote template</span></li>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">Google Drive &rarr; create_file</span><span class="op-pif-enable-reason">saves generated PDF</span></li>
+            <li class="op-pif-enable-row off" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">DISABLE</span><span class="op-pif-enable-text">Google Drive &rarr; delete_file</span><span class="op-pif-enable-reason">not needed, prevent accidents</span></li>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">Google Sheets &rarr; read_row</span><span class="op-pif-enable-reason">reads pricing table</span></li>
+            <li class="op-pif-enable-row off" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">DISABLE</span><span class="op-pif-enable-text">Gmail &rarr; send_email</span><span class="op-pif-enable-reason">this agent builds only — never sends</span></li>
+          </ul>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">CONFIRMATION RULES</span>
+            <ul class="op-pif-bullet-list">
+              <li>Never invent pricing — halt if line item not in pricing table</li>
+              <li>Never modify the template structure — populate only</li>
+              <li>Never send the PDF — build and save only</li>
+              <li>Stop immediately if required deal field is missing</li>
+            </ul>
+          </aside>
+          <div class="op-pif-field">
+            <span class="op-mono op-pif-label">SCHEDULE</span>
+            <p class="op-pif-text">Event-driven (called by prior agent) / Scheduled (cron time) / Manual / Agent handoff. Specify exactly when this agent activates.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5.4 SKILLS -->
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">AGENT_5.4 · SKILLS</span>
+          <span class="op-mono op-pif-card-pill">3 BLOCKS PER SKILL</span>
+        </header>
+        <div class="op-pif-card-body">
+          <p class="op-pif-text">Skills are how an agent knows how to do something specific. One skill = one job. Instructions live inside the skill. Data lives externally. The agent sees skill names and descriptions first — only loads the full skill when it decides it's relevant.</p>
+
+          <span class="op-mono op-pif-label">SKILL STRUCTURE — 3 BLOCKS</span>
+          <div class="op-pif-skill-grid" data-animate-stagger>
+            <div class="op-pif-skill-card" data-animate="fade-up">
+              <span class="op-mono op-pif-skill-num">BLOCK_01</span>
+              <h4 class="op-pif-skill-title">Instructions</h4>
+              <ul class="op-pif-bullet-list">
+                <li>Step-by-step process</li>
+                <li>Decision logic (IF/THEN)</li>
+                <li>Rules &amp; constraints</li>
+              </ul>
+            </div>
+            <div class="op-pif-skill-card" data-animate="fade-up">
+              <span class="op-mono op-pif-skill-num">BLOCK_02</span>
+              <h4 class="op-pif-skill-title">External Refs</h4>
+              <ul class="op-pif-bullet-list">
+                <li>Tool / Platform</li>
+                <li>Location (page, table, folder)</li>
+                <li>Variable / ID for access</li>
+                <li>How operator updates it</li>
+              </ul>
+            </div>
+            <div class="op-pif-skill-card" data-animate="fade-up">
+              <span class="op-mono op-pif-skill-num">BLOCK_03</span>
+              <h4 class="op-pif-skill-title">Examples / Resources / Scripts</h4>
+              <ul class="op-pif-bullet-list">
+                <li>Sample input &rarr; output pairs</li>
+                <li>Reference docs &amp; playbooks</li>
+                <li>Reusable code snippets</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="pif-agent-tab-bar">
-            <button class="pif-agent-tab active" data-agent-tab="at-overview">Overview</button>
-            <button class="pif-agent-tab" data-agent-tab="at-io">Input / Output</button>
-            <button class="pif-agent-tab" data-agent-tab="at-tools">Tools</button>
-            <button class="pif-agent-tab" data-agent-tab="at-skills">Skills</button>
-          </div>
-
-          <div class="pif-agent-tab-content">
-
-            <!-- OVERVIEW -->
-            <div class="pif-agent-tab-panel active" id="at-overview">
-              <div class="pif-field-block">
-                <div class="pif-field-label">Agent Name</div>
-                <div class="pif-field-desc">Kebab-style is fine: lead-enrichment-agent, quote-builder, approval-router. The name tells you exactly what it does.</div>
-              </div>
-              <div class="pif-field-block">
-                <div class="pif-field-label">Purpose / Goal</div>
-                <div class="pif-field-desc">Single sentence. What does this agent do and why does it exist? If you can't write this in one sentence, the scope is too broad — split it into two agents.</div>
-              </div>
-              <div class="pif-field-block">
-                <div class="pif-field-label">Position in Workflow</div>
-                <div class="pif-node-type-list" style="margin-top:8px;">
-                  <div class="pif-node-type-row"><span class="pif-node-badge nb-trigger" style="min-width:64px;">trigger</span><span class="pif-node-type-desc">First agent in the chain — receives the raw trigger payload directly</span></div>
-                  <div class="pif-node-type-row"><span class="pif-node-badge nb-action" style="min-width:64px;">middle</span><span class="pif-node-type-desc">Receives output from another agent — transforms, enriches, routes, or decides</span></div>
-                  <div class="pif-node-type-row"><span class="pif-node-badge nb-end" style="min-width:64px;">final</span><span class="pif-node-type-desc">Last step — performs the terminal action (send, write, publish, archive)</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- I/O -->
-            <div class="pif-agent-tab-panel" id="at-io">
-              <p class="pif-content-desc">Each agent has its own input and output — not just the process-level ones. An agent in the middle of a workflow receives data from the previous agent, not from the original trigger. Define both sides with the same five dimensions.</p>
-              <table class="pif-io-table">
-                <thead>
-                  <tr><th>Dimension</th><th>Agent Input</th><th>Agent Output</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Location</td><td>Where does this agent receive data from?</td><td>Where does it send results?</td></tr>
-                  <tr><td>Method</td><td>How does data arrive? (prior agent output, webhook, poll)</td><td>How does it deliver? (write to Sheet, call next agent, Slack message)</td></tr>
-                  <tr><td>Timing</td><td>When is it triggered? (immediately, on event, on schedule)</td><td>When does it complete? (synchronous, async, within N seconds)</td></tr>
-                  <tr><td>Content</td><td>What specific fields does it receive?</td><td>What fields does it produce?</td></tr>
-                  <tr><td>Format</td><td>JSON object? CSV row? Webhook payload?</td><td>Structured JSON? Record update? Plain text?</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- TOOLS -->
-            <div class="pif-agent-tab-panel" id="at-tools">
-              <p class="pif-content-desc">List every integration with specific actions — not just tool names. Explicitly disable actions the agent doesn't need. Fewer available actions = more predictable, safer behaviour.</p>
-              <div class="pif-sub-label">Example — Quote Builder Agent</div>
-              <div class="pif-enable-list">
-                <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">Google Drive → read_file</span><span class="pif-enable-reason">reads quote template</span></div>
-                <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">Google Drive → create_file</span><span class="pif-enable-reason">saves generated PDF</span></div>
-                <div class="pif-enable-row off"><span class="pif-enable-badge">DISABLE</span><span class="pif-enable-text">Google Drive → delete_file</span><span class="pif-enable-reason">not needed, prevent accidents</span></div>
-                <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">Google Sheets → read_row</span><span class="pif-enable-reason">reads pricing table</span></div>
-                <div class="pif-enable-row off"><span class="pif-enable-badge">DISABLE</span><span class="pif-enable-text">Gmail → send_email</span><span class="pif-enable-reason">this agent builds only — never sends</span></div>
-              </div>
-              <div class="pif-hitl-block">
-                <h4>&#9888; Confirmation Rules</h4>
-                <ul>
-                  <li>Never invent pricing — halt if line item not in pricing table</li>
-                  <li>Never modify the template structure — populate only</li>
-                  <li>Never send the PDF — build and save only</li>
-                  <li>Stop immediately if required deal field is missing</li>
-                </ul>
-              </div>
-              <div class="pif-field-block" style="margin-top:16px;">
-                <div class="pif-field-label">Schedule</div>
-                <div class="pif-field-desc">Event-driven (called by prior agent) / Scheduled (cron time) / Manual / Agent handoff. Specify exactly when this agent activates.</div>
-              </div>
-            </div>
-
-            <!-- SKILLS -->
-            <div class="pif-agent-tab-panel" id="at-skills">
-              <p class="pif-content-desc">Skills are how an agent knows how to do something specific. One skill = one job. Instructions live inside the skill. Data lives externally. The agent sees skill names and descriptions first — only loads the full skill when it decides it's relevant. Vague descriptions = the skill never gets found.</p>
-
-              <div class="pif-sub-label">Skill Structure — 3 Blocks</div>
-              <div class="pif-skill-overview">
-                <div class="pif-skill-block-card b1">
-                  <div class="pif-skill-block-num">1</div>
-                  <h4>Instructions</h4>
-                  <ul>
-                    <li>Step-by-step process</li>
-                    <li>Decision logic (IF/THEN)</li>
-                    <li>Rules & constraints</li>
-                  </ul>
-                </div>
-                <div class="pif-skill-block-card b2">
-                  <div class="pif-skill-block-num">2</div>
-                  <h4>External Refs</h4>
-                  <ul>
-                    <li>Tool / Platform</li>
-                    <li>Location (page, table, folder)</li>
-                    <li>Variable / ID for access</li>
-                    <li>How operator updates it</li>
-                  </ul>
-                </div>
-                <div class="pif-skill-block-card b3">
-                  <div class="pif-skill-block-num">3</div>
-                  <h4>Examples / Resources / Scripts</h4>
-                  <ul>
-                    <li>Sample input → output pairs</li>
-                    <li>Reference docs & playbooks</li>
-                    <li>Reusable code snippets</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="pif-sub-label">Block 1 — Instructions Format</div>
-              <div class="pif-code-block"><span class="dim">// Step-by-step process</span>
+          <span class="op-mono op-pif-label">BLOCK 1 — INSTRUCTIONS FORMAT</span>
+          <pre class="op-pif-code"><span class="dim">// Step-by-step process</span>
 1. Check if lead has company email domain
 2. Search enrichment tool for company data
 3. Score lead 1–10 based on ICP criteria (read from Notion)
@@ -438,22 +566,25 @@ IF score is ambiguous     → default to human review
 <span class="dim">// Rules & constraints</span>
 &#9888; Never fabricate missing company data
 &#9888; Always log score reasoning alongside the score
-&#9888; Stop immediately if required field is null</div>
+&#9888; Stop immediately if required field is null</pre>
 
-              <div class="pif-sub-label">Block 2 — External Refs Format</div>
-              <table class="pif-io-table">
-                <thead><tr><th>Field</th><th>What to Define</th></tr></thead>
-                <tbody>
-                  <tr><td>Tool</td><td>e.g. Notion, Airtable, Google Drive, HubSpot</td></tr>
-                  <tr><td>Location</td><td>e.g. Notion: /Sales/ICP Criteria, Airtable: Leads table, Drive: /Templates/Quotes/</td></tr>
-                  <tr><td>Variable / ID</td><td>e.g. &#123;&#123;notion_page_id&#125;&#125;, &#123;&#123;airtable_base_id&#125;&#125; — how the agent accesses it at runtime</td></tr>
-                  <tr><td>Update method</td><td>e.g. Edit Notion page directly — agent reads live on every run. No code required.</td></tr>
-                </tbody>
-              </table>
-              <div class="pif-rule-box"><strong>Rule:</strong> If content needs to be edited by a non-developer, it lives externally. The skill contains a pointer, not the data itself. This keeps your knowledge base editable without touching the agent.</div>
+          <span class="op-mono op-pif-label">BLOCK 2 — EXTERNAL REFS FORMAT</span>
+          <table class="op-pif-table">
+            <thead><tr><th>Field</th><th>What to Define</th></tr></thead>
+            <tbody>
+              <tr><td>Tool</td><td>e.g. Notion, Airtable, Google Drive, HubSpot</td></tr>
+              <tr><td>Location</td><td>e.g. Notion: /Sales/ICP Criteria, Airtable: Leads table, Drive: /Templates/Quotes/</td></tr>
+              <tr><td>Variable / ID</td><td>e.g. &#123;&#123;notion_page_id&#125;&#125;, &#123;&#123;airtable_base_id&#125;&#125; — how the agent accesses it at runtime</td></tr>
+              <tr><td>Update method</td><td>e.g. Edit Notion page directly — agent reads live on every run. No code required.</td></tr>
+            </tbody>
+          </table>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">If content needs to be edited by a non-developer, it lives externally. The skill contains a pointer, not the data itself. This keeps your knowledge base editable without touching the agent.</p>
+          </aside>
 
-              <div class="pif-sub-label">Block 3 — Examples / Resources / Scripts Format</div>
-              <div class="pif-code-block"><span class="dim">// Examples — sample input → output pairs</span>
+          <span class="op-mono op-pif-label">BLOCK 3 — EXAMPLES / RESOURCES / SCRIPTS</span>
+          <pre class="op-pif-code"><span class="dim">// Examples — sample input → output pairs</span>
 Input:  &#123; name: "Jane Smith", email: "jane@acme.com", company: "Acme Corp" &#125;
 Output: &#123; score: 8, qualified: <span class="hl">true</span>, tags: ["mid-market"], reason: "200 employees, ICP match" &#125;
 
@@ -469,714 +600,1034 @@ Output: &#123; score: 0, qualified: <span class="hl">false</span>, flag: "missin
 const score = (companySize > 200 ? 4 : 2)
             + (hasWorkEmail    ? 2 : 0)
             + (industryMatch   ? 3 : 0)
-            + (budgetSignal    ? 1 : 0)</div>
-            </div>
-
-          </div><!-- end pif-agent-tab-content -->
+            + (budgetSignal    ? 1 : 0)</pre>
         </div>
-      </div>
-
-      <!-- 06 DATA SOURCES -->
-      <div class="pif-acc-section" id="sec-06">
-        <div class="pif-acc-header" data-toggle="sec-06">
-          <div class="pif-acc-num">06</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Data Sources</div>
-            <div class="pif-acc-subtitle">Map every source the workflow reads from or writes to.</div>
-          </div>
-          <span class="pif-acc-badge">Skills Point Here</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Data lives here, not inside agents. Skills contain pointers to this section. Every time an agent needs information, it should come from a named, external data source that a human can update without touching the agent.</p>
-          <div class="pif-ds-row"><div class="pif-ds-key">Name</div><div class="pif-ds-val">What is this source called? <em>e.g. Lead Database, Pricing Table, Vendor Master List</em></div></div>
-          <div class="pif-ds-row"><div class="pif-ds-key">Tool</div><div class="pif-ds-val">Where does it live? <em>e.g. Airtable, Notion, Google Sheets, HubSpot, Supabase</em></div></div>
-          <div class="pif-ds-row"><div class="pif-ds-key">Reads</div><div class="pif-ds-val">What tables, pages, fields, or records does the agent read? Be specific — not just "customer data".</div></div>
-          <div class="pif-ds-row"><div class="pif-ds-key">Writes</div><div class="pif-ds-val">What does the agent create, update, or append? Which specific fields? Which tab or table?</div></div>
-          <div class="pif-rule-box" style="margin-top:16px;"><strong>Rule:</strong> Repeat one block per data source. If a source appears in multiple agents' skills, it only needs one entry here — skills reference the same source.</div>
-        </div>
-      </div>
-
-      <!-- 07 TOOLS & CONNECTORS -->
-      <div class="pif-acc-section" id="sec-07">
-        <div class="pif-acc-header" data-toggle="sec-07">
-          <div class="pif-acc-num">07</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Tools & Connectors</div>
-            <div class="pif-acc-subtitle">Global integrations. Enable only what's needed.</div>
-          </div>
-          <span class="pif-acc-badge">Disable Explicitly</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Global tools used across the workflow — distinct from per-agent tools in Section 05. For each integration, specify which actions are enabled and which are explicitly disabled. Agents that can do too many things are unpredictable agents.</p>
-          <div class="pif-enable-list">
-            <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">Gmail → create_draft</span><span class="pif-enable-reason">used by Outreach Agent</span></div>
-            <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">Gmail → send_email</span><span class="pif-enable-reason">only after human approval</span></div>
-            <div class="pif-enable-row off"><span class="pif-enable-badge">DISABLE</span><span class="pif-enable-text">Gmail → delete_thread</span><span class="pif-enable-reason">not needed — prevent accidents</span></div>
-            <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">HubSpot → read_contact</span><span class="pif-enable-reason">all agents read contact data</span></div>
-            <div class="pif-enable-row on"><span class="pif-enable-badge">ENABLE</span><span class="pif-enable-text">HubSpot → update_contact</span><span class="pif-enable-reason">confirm before bulk updates</span></div>
-            <div class="pif-enable-row off"><span class="pif-enable-badge">DISABLE</span><span class="pif-enable-text">HubSpot → delete_contact</span><span class="pif-enable-reason">permanent — never auto-delete</span></div>
-          </div>
-          <div class="pif-rule-box"><strong>Rule:</strong> Always explicitly disable destructive actions even if you don't think the agent would use them. The constraint is the point.</div>
-        </div>
-      </div>
-
-      <!-- 08 HUMAN GATES -->
-      <div class="pif-acc-section" id="sec-08">
-        <div class="pif-acc-header" data-toggle="sec-08">
-          <div class="pif-acc-num">08</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Human Gates</div>
-            <div class="pif-acc-subtitle">Intentional approval checkpoints. Not error handlers.</div>
-          </div>
-          <span class="pif-acc-badge">Designed Pauses</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">These are intentional pauses in the workflow where a human must act before anything continues. They exist by design — not because something went wrong. Define each one specifically, including what happens if the human doesn't respond.</p>
-          <div class="pif-gate-card">
-            <h4>Example Gate — Quote Approval</h4>
-            <div class="pif-gate-fields">
-              <div class="pif-gate-field">
-                <div class="pif-gate-key">What triggers it</div>
-                <div class="pif-gate-val">Quote Builder Agent has generated and saved a PDF. Approval Router sends a Slack interactive card to the deal owner's manager.</div>
-              </div>
-              <div class="pif-gate-field">
-                <div class="pif-gate-key">What human does</div>
-                <div class="pif-gate-val">Review the PDF via Drive link → click Approve or Reject in Slack. On Reject: add a reason — the thread is opened to the rep.</div>
-              </div>
-              <div class="pif-gate-field">
-                <div class="pif-gate-key">Fallback</div>
-                <div class="pif-gate-val">No response in 4 hrs → reminder sent. No response in 8 hrs → escalate to RevOps manager. Reject without reason → Slack prompts for one before logging.</div>
-              </div>
-            </div>
-          </div>
-          <div class="pif-rule-box"><strong>Rule:</strong> Define the fallback. A gate without a fallback is a workflow that silently stalls. The fallback is what makes the gate safe to rely on.</div>
-        </div>
-      </div>
-
-      <!-- 09 ERROR HANDLING -->
-      <div class="pif-acc-section" id="sec-09">
-        <div class="pif-acc-header" data-toggle="sec-09">
-          <div class="pif-acc-num">09</div>
-          <div class="pif-acc-title-block">
-            <div class="pif-acc-title">Error Handling</div>
-            <div class="pif-acc-subtitle">Map failure scenarios before they happen.</div>
-          </div>
-          <span class="pif-acc-badge">Pre-Mortem</span>
-          <div class="pif-acc-chevron">&#9662;</div>
-        </div>
-        <div class="pif-acc-body">
-          <div class="pif-acc-divider"></div>
-          <p class="pif-content-desc">Think through what breaks before you build. For every failure scenario: what the agent does first, what it does if that fails, and when a human takes over. Agents without error handling create silent failures — the worst kind.</p>
-          <div class="pif-error-grid">
-            <div class="pif-error-card">
-              <div class="pif-error-scenario">Enrichment API timeout</div>
-              <div class="pif-error-handler">Route on form data only. Flag "Enrichment unavailable" in Slack card. Rep verifies manually — flow not blocked.</div>
-              <div class="pif-error-escalate">&#9888; No escalation — graceful degradation</div>
-            </div>
-            <div class="pif-error-card">
-              <div class="pif-error-scenario">Pricing table lookup fails</div>
-              <div class="pif-error-handler">Hard stop. Never guess pricing. Alert RevOps with deal ID and error details. Wait for manual intervention.</div>
-              <div class="pif-error-escalate">&#9888; Escalate immediately to RevOps</div>
-            </div>
-            <div class="pif-error-card">
-              <div class="pif-error-scenario">Required field is null</div>
-              <div class="pif-error-handler">Stop flow. Write error to tracker. Slack alert to workflow owner with field name and record ID. Do not continue with defaults.</div>
-              <div class="pif-error-escalate">&#9888; Escalate — human must resolve</div>
-            </div>
-            <div class="pif-error-card">
-              <div class="pif-error-scenario">Duplicate detected</div>
-              <div class="pif-error-handler">Hard stop. Alert AP manager with both records. Do not process either until human confirms which is valid. Log both to Duplicates tab.</div>
-              <div class="pif-error-escalate">&#9888; Escalate immediately</div>
-            </div>
-          </div>
-          <div class="pif-rule-box"><strong>Rule:</strong> Every error case needs a handler and an escalation decision. If in doubt, stop and alert — a paused workflow is recoverable. A wrong action may not be.</div>
-        </div>
-      </div>
-
+      </article>
     </div>
   </section>
 
-  <!-- CHECKLIST -->
-  <section class="pif-checklist-section">
-    <div class="pif-container">
-      <div class="pif-section-eyebrow">Section 10</div>
-      <h2>Export <span>Checklist</span></h2>
-      <p class="pif-checklist-desc">Run this before you hand off to a builder or open Gumloop. Every unchecked box is a gap that will cost you time mid-build.</p>
-      <div class="pif-checklist-grid">
-        <div class="pif-checklist-card">
-          <h3>Process</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Process name and goal are clear and specific</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Input/output fully mapped — all 5 dimensions, both sides</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Entry point(s) defined with specifics, not just type</div>
+  <!-- 06 DATA SOURCES -->
+  <section class="op-pif-section" id="sec-06">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_06 · DATA</span>
+        <h2 class="op-pif-h2">Data <span class="op-pif-accent">Sources.</span></h2>
+        <p class="op-pif-lede">Map every source the workflow reads from or writes to. Data lives here, not inside agents. Skills contain pointers to this section. Every time an agent needs information, it should come from a named, external source a human can update.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">FIELDS · 04</span>
+          <span class="op-mono op-pif-card-pill">SKILLS POINT HERE</span>
+        </header>
+        <div class="op-pif-card-body">
+          <ul class="op-pif-ds-list" data-animate-stagger>
+            <li class="op-pif-ds-row" data-animate="fade-up">
+              <span class="op-mono op-pif-ds-key">NAME</span>
+              <span class="op-pif-ds-val">What is this source called? <em>e.g. Lead Database, Pricing Table, Vendor Master List</em></span>
+            </li>
+            <li class="op-pif-ds-row" data-animate="fade-up">
+              <span class="op-mono op-pif-ds-key">TOOL</span>
+              <span class="op-pif-ds-val">Where does it live? <em>e.g. Airtable, Notion, Google Sheets, HubSpot, Supabase</em></span>
+            </li>
+            <li class="op-pif-ds-row" data-animate="fade-up">
+              <span class="op-mono op-pif-ds-key">READS</span>
+              <span class="op-pif-ds-val">What tables, pages, fields, or records does the agent read? Be specific — not just "customer data".</span>
+            </li>
+            <li class="op-pif-ds-row" data-animate="fade-up">
+              <span class="op-mono op-pif-ds-key">WRITES</span>
+              <span class="op-pif-ds-val">What does the agent create, update, or append? Which specific fields? Which tab or table?</span>
+            </li>
+          </ul>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">Repeat one block per data source. If a source appears in multiple agents' skills, it only needs one entry here — skills reference the same source.</p>
+          </aside>
         </div>
-        <div class="pif-checklist-card">
-          <h3>Workflow</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Shape identified (linear / branching / parallel / loop)</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every node listed with type and label</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>All connections mapped, branch labels added</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Agent placement table complete</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 07 TOOLS & CONNECTORS -->
+  <section class="op-pif-section" id="sec-07">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_07 · CONNECTORS</span>
+        <h2 class="op-pif-h2">Tools &amp; <span class="op-pif-accent">Connectors.</span></h2>
+        <p class="op-pif-lede">Global integrations. Enable only what's needed. Distinct from per-agent tools in Section 05. For each integration, specify which actions are enabled and which are explicitly disabled. Agents that can do too many things are unpredictable agents.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">GLOBAL · ENABLE/DISABLE</span>
+          <span class="op-mono op-pif-card-pill">DISABLE EXPLICITLY</span>
+        </header>
+        <div class="op-pif-card-body">
+          <ul class="op-pif-enable-list" data-animate-stagger>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">Gmail &rarr; create_draft</span><span class="op-pif-enable-reason">used by Outreach Agent</span></li>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">Gmail &rarr; send_email</span><span class="op-pif-enable-reason">only after human approval</span></li>
+            <li class="op-pif-enable-row off" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">DISABLE</span><span class="op-pif-enable-text">Gmail &rarr; delete_thread</span><span class="op-pif-enable-reason">not needed — prevent accidents</span></li>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">HubSpot &rarr; read_contact</span><span class="op-pif-enable-reason">all agents read contact data</span></li>
+            <li class="op-pif-enable-row on" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">ENABLE</span><span class="op-pif-enable-text">HubSpot &rarr; update_contact</span><span class="op-pif-enable-reason">confirm before bulk updates</span></li>
+            <li class="op-pif-enable-row off" data-animate="fade-up"><span class="op-mono op-pif-enable-badge">DISABLE</span><span class="op-pif-enable-text">HubSpot &rarr; delete_contact</span><span class="op-pif-enable-reason">permanent — never auto-delete</span></li>
+          </ul>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">Always explicitly disable destructive actions even if you don't think the agent would use them. The constraint is the point.</p>
+          </aside>
         </div>
-        <div class="pif-checklist-card">
-          <h3>Agents</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every agent has a clear single purpose (one sentence)</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every agent has I/O fully mapped with 5 dimensions</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Tools listed with specific enabled / disabled actions</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Confirmation rules defined for each agent</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 08 HUMAN GATES -->
+  <section class="op-pif-section" id="sec-08">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_08 · GATES</span>
+        <h2 class="op-pif-h2">Human <span class="op-pif-accent">Gates.</span></h2>
+        <p class="op-pif-lede">Intentional approval checkpoints. Not error handlers. These are designed pauses where a human must act before anything continues. Define each one, including what happens if the human doesn't respond.</p>
+      </header>
+      <article class="op-pif-card" data-animate="fade-up">
+        <header class="op-pif-card-head">
+          <span class="op-pulse-dot"></span>
+          <span class="op-mono op-pif-card-code">EXAMPLE · QUOTE APPROVAL</span>
+          <span class="op-mono op-pif-card-pill">DESIGNED PAUSE</span>
+        </header>
+        <div class="op-pif-card-body">
+          <div class="op-pif-gate-fields" data-animate-stagger>
+            <div class="op-pif-gate-field" data-animate="fade-up">
+              <span class="op-mono op-pif-gate-key">WHAT TRIGGERS IT</span>
+              <p class="op-pif-gate-val">Quote Builder Agent has generated and saved a PDF. Approval Router sends a Slack interactive card to the deal owner's manager.</p>
+            </div>
+            <div class="op-pif-gate-field" data-animate="fade-up">
+              <span class="op-mono op-pif-gate-key">WHAT HUMAN DOES</span>
+              <p class="op-pif-gate-val">Review the PDF via Drive link &rarr; click Approve or Reject in Slack. On Reject: add a reason — the thread is opened to the rep.</p>
+            </div>
+            <div class="op-pif-gate-field" data-animate="fade-up">
+              <span class="op-mono op-pif-gate-key">FALLBACK</span>
+              <p class="op-pif-gate-val">No response in 4 hrs &rarr; reminder sent. No response in 8 hrs &rarr; escalate to RevOps manager. Reject without reason &rarr; Slack prompts for one before logging.</p>
+            </div>
+          </div>
+          <aside class="op-pif-callout">
+            <span class="op-mono op-pif-callout-label">RULE</span>
+            <p class="op-pif-callout-text">Define the fallback. A gate without a fallback is a workflow that silently stalls. The fallback is what makes the gate safe to rely on.</p>
+          </aside>
         </div>
-        <div class="pif-checklist-card">
-          <h3>Skills</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every skill has all 3 blocks filled</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Skill descriptions are specific enough to trigger reliably</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>External refs point to real, accessible locations</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Examples cover both success and failure paths</div>
-        </div>
-        <div class="pif-checklist-card">
-          <h3>Data & Tools</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every data source mapped — reads and writes</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>All reference data lives externally (not inside skills)</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Global connectors listed with enable / disable actions</div>
-        </div>
-        <div class="pif-checklist-card">
-          <h3>Gates & Errors</h3>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Every human gate defined with fallback</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Main failure scenarios mapped with handlers</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Escalation path defined for each error case</div>
-          <div class="pif-checklist-item"><div class="pif-check-box"></div>Destructive actions explicitly disabled everywhere</div>
-        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 09 ERROR HANDLING -->
+  <section class="op-pif-section" id="sec-09">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_09 · ERRORS</span>
+        <h2 class="op-pif-h2">Error <span class="op-pif-accent">Handling.</span></h2>
+        <p class="op-pif-lede">Map failure scenarios before they happen. For every failure: what the agent does first, what it does if that fails, and when a human takes over. Agents without error handling create silent failures — the worst kind.</p>
+      </header>
+      <div class="op-pif-error-grid" data-animate-stagger>
+        <article class="op-pif-error-card" data-animate="fade-up">
+          <header class="op-pif-error-head">
+            <span class="op-mono op-pif-error-code">ERROR_01</span>
+            <span class="op-mono op-pif-error-tag">DEGRADE</span>
+          </header>
+          <h4 class="op-pif-error-scenario">Enrichment API timeout</h4>
+          <p class="op-pif-error-handler">Route on form data only. Flag "Enrichment unavailable" in Slack card. Rep verifies manually — flow not blocked.</p>
+          <span class="op-mono op-pif-error-escalate">&#9888; NO ESCALATION — GRACEFUL DEGRADATION</span>
+        </article>
+        <article class="op-pif-error-card" data-animate="fade-up">
+          <header class="op-pif-error-head">
+            <span class="op-mono op-pif-error-code">ERROR_02</span>
+            <span class="op-mono op-pif-error-tag">HARD STOP</span>
+          </header>
+          <h4 class="op-pif-error-scenario">Pricing table lookup fails</h4>
+          <p class="op-pif-error-handler">Hard stop. Never guess pricing. Alert RevOps with deal ID and error details. Wait for manual intervention.</p>
+          <span class="op-mono op-pif-error-escalate">&#9888; ESCALATE IMMEDIATELY TO REVOPS</span>
+        </article>
+        <article class="op-pif-error-card" data-animate="fade-up">
+          <header class="op-pif-error-head">
+            <span class="op-mono op-pif-error-code">ERROR_03</span>
+            <span class="op-mono op-pif-error-tag">HARD STOP</span>
+          </header>
+          <h4 class="op-pif-error-scenario">Required field is null</h4>
+          <p class="op-pif-error-handler">Stop flow. Write error to tracker. Slack alert to workflow owner with field name and record ID. Do not continue with defaults.</p>
+          <span class="op-mono op-pif-error-escalate">&#9888; ESCALATE — HUMAN MUST RESOLVE</span>
+        </article>
+        <article class="op-pif-error-card" data-animate="fade-up">
+          <header class="op-pif-error-head">
+            <span class="op-mono op-pif-error-code">ERROR_04</span>
+            <span class="op-mono op-pif-error-tag">HARD STOP</span>
+          </header>
+          <h4 class="op-pif-error-scenario">Duplicate detected</h4>
+          <p class="op-pif-error-handler">Hard stop. Alert AP manager with both records. Do not process either until human confirms which is valid. Log both to Duplicates tab.</p>
+          <span class="op-mono op-pif-error-escalate">&#9888; ESCALATE IMMEDIATELY</span>
+        </article>
+      </div>
+      <aside class="op-pif-callout op-pif-callout-wide">
+        <span class="op-mono op-pif-callout-label">RULE</span>
+        <p class="op-pif-callout-text">Every error case needs a handler and an escalation decision. If in doubt, stop and alert — a paused workflow is recoverable. A wrong action may not be.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 10 EXPORT CHECKLIST -->
+  <section class="op-pif-section op-pif-section-checklist" id="sec-10">
+    <div class="op-pif-frame">
+      <header class="op-pif-section-header">
+        <span class="op-mono op-pif-eyebrow">SECTION_10 · QA CHECKLIST</span>
+        <h2 class="op-pif-h2">Export <span class="op-pif-accent">Checklist.</span></h2>
+        <p class="op-pif-lede">Run this before you hand off to a builder or open Gumloop. Every unchecked box is a gap that will cost you time mid-build.</p>
+      </header>
+      <div class="op-pif-check-grid" data-animate-stagger>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_01 · PROCESS</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Process name and goal are clear and specific</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Input/output fully mapped — all 5 dimensions, both sides</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Entry point(s) defined with specifics, not just type</li>
+          </ul>
+        </article>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_02 · WORKFLOW</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Shape identified (linear / branching / parallel / loop)</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every node listed with type and label</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>All connections mapped, branch labels added</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Agent placement table complete</li>
+          </ul>
+        </article>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_03 · AGENTS</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every agent has a clear single purpose (one sentence)</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every agent has I/O fully mapped with 5 dimensions</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Tools listed with specific enabled / disabled actions</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Confirmation rules defined for each agent</li>
+          </ul>
+        </article>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_04 · SKILLS</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every skill has all 3 blocks filled</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Skill descriptions are specific enough to trigger reliably</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>External refs point to real, accessible locations</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Examples cover both success and failure paths</li>
+          </ul>
+        </article>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_05 · DATA &amp; TOOLS</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every data source mapped — reads and writes</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>All reference data lives externally (not inside skills)</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Global connectors listed with enable / disable actions</li>
+          </ul>
+        </article>
+        <article class="op-pif-check-card" data-animate="fade-up">
+          <header class="op-pif-check-head">
+            <span class="op-mono op-pif-check-code">QA_06 · GATES &amp; ERRORS</span>
+          </header>
+          <ul class="op-pif-check-list">
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Every human gate defined with fallback</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Main failure scenarios mapped with handlers</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Escalation path defined for each error case</li>
+            <li class="op-pif-check-item"><span class="op-pif-check-box"></span>Destructive actions explicitly disabled everywhere</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
 
+  <CTA />
   <Footer />
 </Layout>
 
-<script>
-  // Accordion toggle
-  document.querySelectorAll('.pif-acc-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const id = header.getAttribute('data-toggle');
-      if (id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('open');
-      }
-    });
-  });
-
-  // Agent tabs
-  document.querySelectorAll('.pif-agent-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panelId = btn.getAttribute('data-agent-tab');
-      if (!panelId) return;
-      const tabBar = btn.closest('.pif-agent-tab-bar');
-      const tabContent = btn.closest('.pif-acc-body')?.querySelector('.pif-agent-tab-content');
-      if (!tabBar || !tabContent) return;
-      tabBar.querySelectorAll('.pif-agent-tab').forEach(t => t.classList.remove('active'));
-      tabContent.querySelectorAll('.pif-agent-tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      const panel = document.getElementById(panelId);
-      if (panel) panel.classList.add('active');
-    });
-  });
-</script>
-
 <style>
-  /* ── SCOPED VARIABLES ── */
-  :root {
-    --pif-navy: #1a365d;
-    --pif-orange: #ed8936;
-    --pif-cream: #fdfcfa;
-    --pif-body-bg: #fdfcfa;
-    --pif-orange-glow: rgba(237,137,54,0.12);
-    --pif-orange-border: rgba(237,137,54,0.32);
-    --pif-navy-light: rgba(26,54,93,0.06);
-    --pif-navy-mid: rgba(26,54,93,0.11);
+  /* ── FRAME ── */
+  .op-pif-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  /* ── SECTION SHELL ── */
+  .op-pif-section {
+    padding: 64px var(--op-section-px) 96px;
+    background: var(--op-cream);
+    border-top: var(--op-border);
+  }
+  .op-pif-toc-section {
+    padding: 64px var(--op-section-px) 64px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+  }
+  .op-pif-howto-section {
+    padding: 64px var(--op-section-px) 96px;
+    background: var(--op-cream);
+    border-top: var(--op-border);
   }
 
-  /* ── HERO ── */
-  .pif-hero {
-    background: var(--pif-navy);
-    padding: 120px 40px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  /* ── SECTION HEADER ── */
+  .op-pif-section-header {
+    max-width: 760px;
+    margin: 0 0 36px;
   }
-  .pif-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(237,137,54,0.11) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .pif-hero-eyebrow {
+  .op-pif-eyebrow {
     display: inline-block;
-    font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--pif-orange); border: 1px solid var(--pif-orange-border);
-    padding: 5px 16px; border-radius: 100px; margin-bottom: 22px;
-  }
-  .pif-hero h1 {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: clamp(38px, 5.5vw, 68px); font-weight: 900;
-    color: var(--pif-cream); line-height: 1.0; text-transform: uppercase;
-    letter-spacing: -0.5px; max-width: 820px; margin: 0 auto 18px;
-  }
-  .pif-hero h1 span { color: var(--pif-orange); }
-  .pif-hero-sub {
-    font-size: 16px; color: rgba(253,252,250,0.65);
-    max-width: 560px; margin: 0 auto 40px; line-height: 1.65;
-  }
-  .pif-hero-rule {
-    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-  }
-  .pif-hero-rule-item {
-    text-align: center;
-  }
-  .pif-hero-rule-num {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 42px; font-weight: 900; color: var(--pif-orange); line-height: 1;
-  }
-  .pif-hero-rule-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; color: rgba(253,252,250,0.45); margin-top: 4px;
-  }
-
-  /* ── HOW TO USE ── */
-  .pif-howto {
-    background: var(--pif-cream);
-    padding: 64px 40px;
-  }
-  .pif-container { max-width: 960px; margin: 0 auto; }
-  .pif-section-eyebrow {
-    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--pif-orange); margin-bottom: 14px;
-  }
-  .pif-section-eyebrow--light {
-    color: rgba(253,252,250,0.45);
-  }
-  .pif-howto h2 {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 42px; font-weight: 900; text-transform: uppercase;
-    color: var(--pif-navy); line-height: 1.05; margin-bottom: 12px;
-  }
-  .pif-howto h2 span { color: var(--pif-orange); }
-  .pif-howto-desc {
-    font-size: 15px; color: rgba(26,54,93,0.6); max-width: 580px;
-    line-height: 1.7; margin-bottom: 36px;
-  }
-  .pif-howto-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
-  }
-  .pif-howto-card {
-    background: white; border: 1px solid rgba(26,54,93,0.09);
-    border-radius: 12px; padding: 22px; position: relative; overflow: hidden;
-  }
-  .pif-howto-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 3px; background: var(--pif-orange);
-  }
-  .pif-howto-card-num {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 32px; font-weight: 900; color: var(--pif-orange); line-height: 1; margin-bottom: 8px;
-  }
-  .pif-howto-card h3 { font-size: 14px; font-weight: 800; color: var(--pif-navy); margin-bottom: 6px; }
-  .pif-howto-card p { font-size: 13px; color: rgba(26,54,93,0.55); line-height: 1.6; }
-
-  /* ── MAIN SECTIONS ── */
-  .pif-sections-wrapper {
-    background: var(--pif-navy);
-    padding: 64px 40px 80px;
-  }
-  .pif-sections-wrapper > .pif-container > .pif-section-eyebrow--light { color: rgba(253,252,250,0.45); }
-  .pif-main-heading {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 46px; font-weight: 900; text-transform: uppercase;
-    color: var(--pif-cream); line-height: 1.05; margin-bottom: 8px;
-  }
-  .pif-main-heading span { color: var(--pif-orange); }
-  .pif-sections-intro {
-    font-size: 15px; color: rgba(253,252,250,0.55); margin-bottom: 40px; max-width: 540px;
-  }
-
-  /* ── ACCORDION SECTION ── */
-  .pif-acc-section {
-    background: rgba(253,252,250,0.04);
-    border: 1px solid rgba(253,252,250,0.09);
-    border-radius: 16px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .pif-acc-section.open {
-    border-color: rgba(237,137,54,0.4);
-  }
-  .pif-acc-header {
-    display: flex; align-items: center; gap: 16px;
-    padding: 20px 24px; cursor: pointer;
-    transition: background 0.15s;
-    user-select: none;
-  }
-  .pif-acc-header:hover { background: rgba(253,252,250,0.03); }
-  .pif-acc-section.open .pif-acc-header { background: rgba(237,137,54,0.06); }
-  .pif-acc-num {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 26px; font-weight: 900; color: var(--pif-orange);
-    min-width: 36px; line-height: 1;
-  }
-  .pif-acc-title-block { flex: 1; }
-  .pif-acc-title {
-    font-size: 16px; font-weight: 800; color: var(--pif-cream);
-    text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2;
-  }
-  .pif-acc-subtitle {
-    font-size: 12px; color: rgba(253,252,250,0.4); margin-top: 2px; font-weight: 500;
-  }
-  .pif-acc-badge {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    padding: 4px 12px; border-radius: 100px;
-    background: rgba(237,137,54,0.14); color: var(--pif-orange);
-    white-space: nowrap;
-  }
-  .pif-acc-chevron {
-    font-size: 18px; color: rgba(253,252,250,0.3);
-    transition: transform 0.25s, color 0.2s;
-    flex-shrink: 0;
-  }
-  .pif-acc-section.open .pif-acc-chevron { transform: rotate(180deg); color: var(--pif-orange); }
-
-  .pif-acc-body {
-    display: none;
-    padding: 0 24px 24px;
-    animation: pifFadeSlide 0.25s ease;
-  }
-  .pif-acc-section.open .pif-acc-body { display: block; }
-  @keyframes pifFadeSlide {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .pif-acc-divider { height: 1px; background: rgba(253,252,250,0.07); margin-bottom: 20px; }
-
-  /* ── CONTENT BLOCKS ── */
-  .pif-content-desc {
-    font-size: 14px; color: rgba(253,252,250,0.6); line-height: 1.7;
-    margin-bottom: 20px; max-width: 680px;
-  }
-
-  .pif-field-block { margin-bottom: 20px; }
-  .pif-field-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--pif-orange); margin-bottom: 7px;
-  }
-  .pif-field-desc {
-    font-size: 13px; color: rgba(253,252,250,0.55);
-    font-style: italic; line-height: 1.5;
-  }
-
-  .pif-io-table {
-    width: 100%; border-collapse: collapse; margin: 8px 0 20px;
-  }
-  .pif-io-table th {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(253,252,250,0.35); padding: 0 14px 10px; text-align: left;
-    border-bottom: 1px solid rgba(253,252,250,0.08);
-  }
-  .pif-io-table td {
-    padding: 10px 14px; font-size: 13px;
-    border-bottom: 1px solid rgba(253,252,250,0.05);
-    vertical-align: top;
-  }
-  .pif-io-table td:first-child {
-    font-weight: 700; color: var(--pif-orange); white-space: nowrap; width: 100px;
-  }
-  .pif-io-table td:not(:first-child) { color: rgba(253,252,250,0.65); }
-  .pif-io-table tr:last-child td { border-bottom: none; }
-
-  .pif-trigger-grid {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 20px;
-  }
-  .pif-trigger-chip {
-    font-size: 12px; font-weight: 600; padding: 6px 14px;
-    border-radius: 100px; border: 1px solid rgba(253,252,250,0.14);
-    color: rgba(253,252,250,0.6); background: rgba(253,252,250,0.04);
-  }
-  .pif-trigger-chip span {
-    font-size: 10px; font-weight: 700; color: rgba(253,252,250,0.3);
-    letter-spacing: 0.5px; margin-left: 6px;
-  }
-
-  /* ── WORKFLOW SHAPE CARDS ── */
-  .pif-shape-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px;
-    margin: 8px 0 20px;
-  }
-  .pif-shape-card {
-    background: rgba(26,54,93,0.3); border-radius: 10px; padding: 14px 16px;
-  }
-  .pif-shape-card h4 {
-    font-size: 12px; font-weight: 800; color: var(--pif-orange);
-    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;
-  }
-  .pif-shape-card p { font-size: 12px; color: rgba(253,252,250,0.55); line-height: 1.5; }
-
-  .pif-node-type-list {
-    display: flex; flex-direction: column; gap: 6px; margin: 8px 0 20px;
-  }
-  .pif-node-type-row {
-    display: flex; align-items: center; gap: 12px; padding: 8px 12px;
-    background: rgba(26,54,93,0.25); border-radius: 8px;
-  }
-  .pif-node-badge {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 100px; min-width: 80px; text-align: center;
-    flex-shrink: 0;
-  }
-  .nb-trigger { background: rgba(66,153,225,0.2); color: #63b3ed; }
-  .nb-agent   { background: rgba(237,137,54,0.2); color: var(--pif-orange); }
-  .nb-human   { background: rgba(237,137,54,0.1); color: rgba(237,137,54,0.8); border: 1px solid var(--pif-orange-border); }
-  .nb-decision{ background: rgba(245,101,101,0.15); color: #fc8181; }
-  .nb-action  { background: rgba(253,252,250,0.08); color: rgba(253,252,250,0.6); }
-  .nb-end     { background: rgba(72,187,120,0.15); color: #68d391; }
-  .pif-node-type-desc { font-size: 13px; color: rgba(253,252,250,0.6); }
-
-  .pif-code-block {
-    background: rgba(26,54,93,0.4); border: 1px solid rgba(253,252,250,0.08);
-    border-radius: 8px; padding: 14px 16px; margin: 8px 0 20px;
-    font-family: 'Courier New', monospace; font-size: 12px;
-    color: rgba(253,252,250,0.7); line-height: 1.7; overflow-x: auto;
-    white-space: pre;
-  }
-  .pif-code-block .hl { color: var(--pif-orange); }
-  .pif-code-block .dim { color: rgba(253,252,250,0.3); }
-
-  /* ── AGENT SPEC TABS ── */
-  .pif-agent-spec-intro {
-    background: rgba(237,137,54,0.07); border: 1px solid var(--pif-orange-border);
-    border-radius: 10px; padding: 14px 16px; margin-bottom: 20px;
-    font-size: 13px; color: rgba(253,252,250,0.65); line-height: 1.6;
-  }
-  .pif-agent-spec-intro strong { color: var(--pif-orange); }
-
-  .pif-agent-tab-bar {
-    display: flex; gap: 0; margin-bottom: 0;
-    border-bottom: 1px solid rgba(253,252,250,0.1);
-    flex-wrap: wrap;
-  }
-  .pif-agent-tab {
-    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    padding: 9px 18px; border: none; background: transparent;
-    color: rgba(253,252,250,0.35); cursor: pointer; font-family: inherit;
-    border-bottom: 2px solid transparent; margin-bottom: -1px;
-    transition: all 0.15s;
-  }
-  .pif-agent-tab:hover { color: rgba(253,252,250,0.65); }
-  .pif-agent-tab.active { color: var(--pif-orange); border-bottom-color: var(--pif-orange); }
-
-  .pif-agent-tab-content { padding-top: 20px; }
-  .pif-agent-tab-panel { display: none; }
-  .pif-agent-tab-panel.active { display: block; animation: pifFadeSlide 0.2s ease; }
-
-  /* ── SPEC BLOCKS ── */
-  .pif-spec-block {
-    background: rgba(26,54,93,0.28); border-radius: 10px; padding: 18px 20px;
+    font-size: 10px;
+    color: var(--op-orange);
     margin-bottom: 14px;
   }
-  .pif-spec-block-header {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  .op-pif-h2 {
+    font-family: var(--op-font-display);
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
   }
-  .pif-spec-block-num {
-    width: 24px; height: 24px; background: var(--pif-orange); border-radius: 5px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0;
-  }
-  .pif-spec-block-num.navy { background: var(--pif-navy); color: var(--pif-orange); border: 1px solid rgba(237,137,54,0.4); }
-  .pif-spec-block-title {
-    font-size: 11px; font-weight: 800; color: var(--pif-cream);
-    text-transform: uppercase; letter-spacing: 1.5px;
-  }
-
-  .pif-spec-block ul {
-    list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px;
-  }
-  .pif-spec-block ul li {
-    font-size: 13px; color: rgba(253,252,250,0.65); line-height: 1.5;
-    display: flex; gap: 8px; align-items: flex-start;
-  }
-  .pif-spec-block ul li::before { content: '\2192'; color: var(--pif-orange); flex-shrink: 0; opacity: 0.6; }
-  .pif-spec-block ul li strong { color: var(--pif-cream); }
-
-  .pif-hitl-block {
-    background: rgba(237,137,54,0.08); border: 1px solid var(--pif-orange-border);
-    border-radius: 10px; padding: 14px 16px; margin-top: 14px;
-  }
-  .pif-hitl-block h4 {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--pif-orange); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
-  }
-  .pif-hitl-block ul { list-style: none; padding: 0; }
-  .pif-hitl-block ul li {
-    font-size: 13px; color: rgba(253,252,250,0.65); padding: 4px 0;
-    display: flex; gap: 8px; border-bottom: 1px solid rgba(253,252,250,0.05);
-  }
-  .pif-hitl-block ul li:last-child { border-bottom: none; }
-  .pif-hitl-block ul li::before { content: '\26A0'; color: var(--pif-orange); flex-shrink: 0; }
-
-  /* ── SKILL STRUCTURE ── */
-  .pif-skill-overview {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 8px 0 20px;
-  }
-  .pif-skill-block-card {
-    border-radius: 10px; padding: 16px; position: relative; overflow: hidden;
-  }
-  .pif-skill-block-card.b1 { background: rgba(26,54,93,0.45); border: 1px solid rgba(253,252,250,0.08); }
-  .pif-skill-block-card.b2 { background: rgba(237,137,54,0.08); border: 1px solid var(--pif-orange-border); }
-  .pif-skill-block-card.b3 { background: rgba(72,187,120,0.07); border: 1px solid rgba(72,187,120,0.25); }
-  .pif-skill-block-num {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 6px;
-  }
-  .b1 .pif-skill-block-num { color: rgba(253,252,250,0.15); }
-  .b2 .pif-skill-block-num { color: rgba(237,137,54,0.25); }
-  .b3 .pif-skill-block-num { color: rgba(72,187,120,0.2); }
-  .pif-skill-block-card h4 {
-    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
-  }
-  .b1 h4 { color: var(--pif-cream); }
-  .b2 h4 { color: var(--pif-orange); }
-  .b3 h4 { color: #68d391; }
-  .pif-skill-block-card ul { list-style: none; padding: 0; }
-  .pif-skill-block-card ul li {
-    font-size: 12px; line-height: 1.55; padding: 3px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .pif-skill-block-card ul li:last-child { border-bottom: none; }
-  .b1 ul li { color: rgba(253,252,250,0.55); }
-  .b2 ul li { color: rgba(253,252,250,0.6); }
-  .b3 ul li { color: rgba(253,252,250,0.55); }
-
-  .pif-sub-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--pif-orange); margin: 18px 0 8px;
+  .op-pif-accent { color: var(--op-orange); }
+  .op-pif-lede {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 720px;
+    text-wrap: pretty;
   }
 
-  /* ── DATA / TOOLS ── */
-  .pif-ds-row {
-    display: flex; gap: 12px; padding: 10px 14px;
-    background: rgba(26,54,93,0.25); border-radius: 8px; margin-bottom: 8px;
+  /* ── TOC ── */
+  .op-pif-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    background: var(--op-paper);
+    box-shadow: var(--op-shadow);
+    padding: 6px;
+  }
+  .op-pif-toc-row { display: block; }
+  .op-pif-toc-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-radius: var(--op-radius-sm);
+    transition: background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pif-toc-link:hover { background: rgba(224, 112, 60, 0.06); }
+  .op-pif-toc-code {
+    font-size: 10px;
+    color: var(--op-orange);
+    flex-shrink: 0;
+    min-width: 84px;
+  }
+  .op-pif-toc-name {
+    font-family: var(--op-font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--op-ink);
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+  .op-pif-toc-arrow {
+    font-size: 18px;
+    color: var(--op-navy-soft);
+    transition: transform var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pif-toc-link:hover .op-pif-toc-arrow {
+    transform: translateX(4px);
+    color: var(--op-orange);
+  }
+
+  /* ── HOW-TO GRID ── */
+  .op-pif-howto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .op-pif-howto-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pif-howto-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-pif-howto-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-pif-howto-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-howto-range {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
+  }
+  .op-pif-howto-body {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .op-pif-howto-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-pif-orange-rule {
+    width: 36px;
+    height: 3px;
+    background: var(--op-orange);
+    margin: 2px 0;
+  }
+  .op-pif-howto-text {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ── PRIMARY CARD ── */
+  .op-pif-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+    margin-bottom: 22px;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pif-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-pif-card:last-child { margin-bottom: 0; }
+  .op-pif-card-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-pif-card-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-card-pill {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
+  }
+  .op-pif-card-body {
+    padding: 26px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* ── FIELD ── */
+  .op-pif-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .op-pif-label {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-text {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ── TABLE ── */
+  .op-pif-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1.5px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
+    overflow: hidden;
+  }
+  .op-pif-table th {
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--op-orange);
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--op-cream);
+    border-bottom: 1.5px solid var(--op-ink);
+  }
+  .op-pif-table td {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    padding: 12px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .op-pif-table td:first-child {
+    font-weight: 700;
+    color: var(--op-ink);
+    white-space: nowrap;
+  }
+  .op-pif-table tr:last-child td { border-bottom: none; }
+
+  /* ── CALLOUT ── */
+  .op-pif-callout {
+    background: var(--op-paper);
+    border: 1.5px solid var(--op-rule);
+    border-left: 5px solid var(--op-orange);
+    border-radius: 0 var(--op-radius-sm) var(--op-radius-sm) 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .op-pif-callout-label {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-callout-text {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--op-navy);
+    font-weight: 500;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-pif-callout-wide {
+    margin-top: 22px;
+  }
+
+  /* ── PROMISE BLOCK ── */
+  .op-pif-promise {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-left: 5px solid var(--op-orange);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 18px 22px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .op-pif-promise-label {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-promise-text {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--op-ink);
+    font-weight: 500;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-pif-promise-text strong { color: var(--op-orange); font-weight: 700; }
+
+  /* ── TRIGGER CHIPS ── */
+  .op-pif-trigger-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .op-pif-trigger-chip {
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pif-trigger-chip:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow);
+  }
+  .op-pif-trigger-name {
+    font-family: var(--op-font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--op-ink);
+    letter-spacing: -0.01em;
+  }
+  .op-pif-trigger-q {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+
+  /* ── SHAPE GRID ── */
+  .op-pif-shape-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .op-pif-shape-card {
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    padding: 16px 18px;
+  }
+  .op-pif-shape-title {
+    font-family: var(--op-font-display);
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--op-orange);
+    margin: 0 0 6px;
+  }
+  .op-pif-shape-text {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ── NODE LIST ── */
+  .op-pif-node-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-pif-node-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
+  }
+  .op-pif-node-badge {
+    font-size: 9px;
+    padding: 4px 10px;
+    border-radius: var(--op-radius-sm);
+    border: 1.5px solid var(--op-ink);
+    min-width: 80px;
+    text-align: center;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .nb-trigger { background: var(--op-paper); color: var(--op-ink); }
+  .nb-agent   { background: var(--op-orange); color: var(--op-paper); }
+  .nb-human   { background: var(--op-paper); color: var(--op-orange); border-color: var(--op-orange); }
+  .nb-decision{ background: var(--op-cream); color: var(--op-ink); border-style: dashed; }
+  .nb-action  { background: var(--op-paper); color: var(--op-navy-soft); }
+  .nb-end     { background: var(--op-navy-deep); color: var(--op-cream); border-color: var(--op-navy-deep); }
+  .op-pif-node-desc {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+  }
+
+  /* ── CODE BLOCK ── */
+  .op-pif-code {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    line-height: 1.75;
+    color: var(--op-navy);
+    background: var(--op-paper);
+    border: 1.5px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: 0 var(--op-radius-sm) var(--op-radius-sm) 0;
+    padding: 14px 16px;
+    margin: 0;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  :global(.op-pif-code .hl) { color: var(--op-orange); font-weight: 700; }
+  :global(.op-pif-code .dim) { color: var(--op-navy-soft); opacity: 0.7; }
+
+  /* ── ENABLE LIST ── */
+  .op-pif-enable-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .op-pif-enable-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border: 1.5px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-cream);
+  }
+  .op-pif-enable-row.on { border-left: 3px solid var(--op-orange); }
+  .op-pif-enable-row.off {
+    border-left: 3px solid var(--op-navy-soft);
+    opacity: 0.85;
+  }
+  .op-pif-enable-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: var(--op-radius-sm);
+    border: 1.5px solid var(--op-ink);
+    flex-shrink: 0;
+  }
+  .op-pif-enable-row.on .op-pif-enable-badge {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-color: var(--op-orange);
+  }
+  .op-pif-enable-row.off .op-pif-enable-badge {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    border-color: var(--op-navy-deep);
+  }
+  .op-pif-enable-text {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    color: var(--op-ink);
+    font-weight: 500;
+  }
+  .op-pif-enable-reason {
+    font-family: var(--op-font-body);
+    font-size: 12px;
+    color: var(--op-navy-soft);
+    font-style: italic;
+    margin-left: auto;
+  }
+
+  /* ── BULLET LIST ── */
+  .op-pif-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .op-pif-bullet-list li {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy);
+    padding-left: 18px;
+    position: relative;
+    text-wrap: pretty;
+  }
+  .op-pif-bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--op-orange);
+    border-radius: 50%;
+  }
+
+  /* ── SKILL GRID ── */
+  .op-pif-skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .op-pif-skill-card {
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .op-pif-skill-num {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pif-skill-title {
+    font-family: var(--op-font-display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+
+  /* ── DATA SOURCE LIST ── */
+  .op-pif-ds-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-pif-ds-row {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
     align-items: flex-start;
   }
-  .pif-ds-key {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    color: rgba(253,252,250,0.35); min-width: 60px; flex-shrink: 0; padding-top: 2px;
+  .op-pif-ds-key {
+    font-size: 9px;
+    color: var(--op-orange);
+    min-width: 70px;
+    flex-shrink: 0;
+    padding-top: 3px;
   }
-  .pif-ds-val { font-size: 13px; color: rgba(253,252,250,0.7); line-height: 1.5; }
-  .pif-ds-val em { color: rgba(253,252,250,0.4); font-style: italic; }
+  .op-pif-ds-val {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy);
+  }
+  .op-pif-ds-val em {
+    color: var(--op-navy-soft);
+    font-style: italic;
+  }
 
-  .pif-rule-box {
-    background: rgba(237,137,54,0.08); border-left: 3px solid var(--pif-orange);
-    padding: 12px 16px; border-radius: 0 8px 8px 0;
-    font-size: 13px; color: rgba(253,252,250,0.65); line-height: 1.6;
-    margin: 8px 0 20px;
+  /* ── GATE FIELDS ── */
+  .op-pif-gate-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-  .pif-rule-box strong { color: var(--pif-orange); }
+  .op-pif-gate-field {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: 0 var(--op-radius-sm) var(--op-radius-sm) 0;
+  }
+  .op-pif-gate-key {
+    font-size: 9px;
+    color: var(--op-orange);
+    min-width: 110px;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+  .op-pif-gate-val {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy);
+    margin: 0;
+  }
 
-  .pif-enable-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 16px; }
-  .pif-enable-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 12px; border-radius: 7px;
+  /* ── ERROR GRID ── */
+  .op-pif-error-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
   }
-  .pif-enable-row.on { background: rgba(72,187,120,0.08); }
-  .pif-enable-row.off { background: rgba(245,101,101,0.07); }
-  .pif-enable-badge {
-    font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    padding: 2px 8px; border-radius: 100px; flex-shrink: 0;
+  .op-pif-error-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
   }
-  .on .pif-enable-badge { background: rgba(72,187,120,0.2); color: #68d391; }
-  .off .pif-enable-badge { background: rgba(245,101,101,0.15); color: #fc8181; }
-  .pif-enable-text { font-size: 13px; color: rgba(253,252,250,0.65); }
-  .pif-enable-reason { font-size: 12px; color: rgba(253,252,250,0.35); margin-left: auto; font-style: italic; }
-
-  /* ── HUMAN GATES ── */
-  .pif-gate-card {
-    background: rgba(237,137,54,0.07); border: 1px solid var(--pif-orange-border);
-    border-radius: 12px; padding: 20px; margin-bottom: 12px;
+  .op-pif-error-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
   }
-  .pif-gate-card h4 {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 20px; font-weight: 800; text-transform: uppercase;
-    color: var(--pif-orange); margin-bottom: 14px;
+  .op-pif-error-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
   }
-  .pif-gate-fields { display: flex; flex-direction: column; gap: 10px; }
-  .pif-gate-field { display: flex; gap: 12px; align-items: flex-start; }
-  .pif-gate-key {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    color: rgba(253,252,250,0.35); min-width: 72px; flex-shrink: 0; padding-top: 2px;
+  .op-pif-error-code {
+    font-size: 9px;
+    color: var(--op-orange);
   }
-  .pif-gate-val { font-size: 13px; color: rgba(253,252,250,0.65); line-height: 1.55; }
-  .pif-gate-val em { color: rgba(253,252,250,0.35); font-style: italic; }
-
-  /* ── ERROR CARDS ── */
-  .pif-error-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 8px 0 16px; }
-  .pif-error-card {
-    background: rgba(245,101,101,0.06); border: 1px solid rgba(245,101,101,0.18);
-    border-radius: 10px; padding: 14px;
+  .op-pif-error-tag {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
   }
-  .pif-error-scenario {
-    font-size: 11px; font-weight: 700; color: #fc8181; margin-bottom: 7px;
-    display: flex; gap: 6px; align-items: center;
+  .op-pif-error-scenario {
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--op-ink);
+    margin: 0;
+    padding: 16px 16px 0;
+    text-wrap: balance;
   }
-  .pif-error-scenario::before { content: '\2717'; }
-  .pif-error-handler { font-size: 12px; color: rgba(253,252,250,0.55); line-height: 1.5; }
-  .pif-error-escalate {
-    font-size: 11px; font-weight: 700; color: var(--pif-orange);
-    margin-top: 8px; display: flex; align-items: center; gap: 5px;
+  .op-pif-error-handler {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 8px 0 12px;
+    padding: 0 16px;
+    text-wrap: pretty;
+  }
+  .op-pif-error-escalate {
+    display: block;
+    font-size: 9px;
+    color: var(--op-orange);
+    background: var(--op-cream);
+    border-top: 1.5px solid var(--op-rule);
+    padding: 10px 16px;
   }
 
   /* ── CHECKLIST ── */
-  .pif-checklist-section {
-    background: var(--pif-cream); padding: 64px 40px;
+  .op-pif-section-checklist {
+    background: var(--op-paper);
   }
-  .pif-checklist-section h2 {
-    font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-    font-size: 42px; font-weight: 900; text-transform: uppercase;
-    color: var(--pif-navy); margin-bottom: 8px;
+  .op-pif-check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
   }
-  .pif-checklist-section h2 span { color: var(--pif-orange); }
-  .pif-checklist-desc { font-size: 15px; color: rgba(26,54,93,0.55); margin-bottom: 36px; max-width: 540px; }
-  .pif-checklist-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
+  .op-pif-check-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
   }
-  .pif-checklist-card {
-    background: white; border: 1px solid rgba(26,54,93,0.08);
-    border-radius: 14px; padding: 22px;
+  .op-pif-check-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
   }
-  .pif-checklist-card h3 {
-    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--pif-orange); margin-bottom: 14px; padding-bottom: 10px;
-    border-bottom: 2px solid rgba(237,137,54,0.18);
+  .op-pif-check-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    border-bottom: var(--op-border);
   }
-  .pif-checklist-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 7px 0; border-bottom: 1px solid rgba(26,54,93,0.05);
-    font-size: 13px; color: rgba(26,54,93,0.7); line-height: 1.5;
+  .op-pif-check-code {
+    font-size: 9px;
+    color: var(--op-orange);
   }
-  .pif-checklist-item:last-child { border-bottom: none; }
-  .pif-check-box {
-    width: 16px; height: 16px; border: 2px solid rgba(26,54,93,0.2);
-    border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+  .op-pif-check-list {
+    list-style: none;
+    padding: 18px 18px 18px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .op-pif-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--op-rule);
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--op-navy);
+    text-wrap: pretty;
+  }
+  .op-pif-check-item:last-child { border-bottom: none; }
+  .op-pif-check-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: var(--op-paper);
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .op-pif-toc-list { grid-template-columns: 1fr; }
+    .op-pif-skill-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 700px) {
-    .pif-hero { padding: 96px 24px 44px; }
-    .pif-howto, .pif-sections-wrapper, .pif-checklist-section { padding: 48px 20px; }
-    .pif-skill-overview { grid-template-columns: 1fr; }
-    .pif-acc-header { padding: 16px; }
-    .pif-acc-body { padding: 0 16px 20px; }
-    .pif-acc-badge { display: none; }
+    .op-pif-section,
+    .op-pif-toc-section,
+    .op-pif-howto-section {
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-top: 48px;
+      padding-bottom: 64px;
+    }
+    .op-pif-card-body { padding: 20px; }
+    .op-pif-card-pill,
+    .op-pif-howto-range,
+    .op-pif-error-tag { display: none; }
+    .op-pif-table th,
+    .op-pif-table td { padding: 10px; font-size: 12px; }
+    .op-pif-gate-field { flex-direction: column; gap: 6px; }
+    .op-pif-enable-row { flex-wrap: wrap; }
+    .op-pif-enable-reason { margin-left: 0; width: 100%; }
   }
 </style>

@@ -1,50 +1,68 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import { getAllProjects, type Project } from '../../data/projects';
-import CTA from '../../components/CTA.astro';
 import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import SpecStrip from '../../components/operator/SpecStrip.astro';
+import MonoCTA from '../../components/operator/MonoCTA.astro';
+import { getAllProjects, type Project } from '../../data/projects';
 
 const SITE_URL = 'https://brothersautomate.com';
 const allProjects = getAllProjects();
 
 function getProjectsBySlug(slugs: string[]): Project[] {
   return slugs
-    .map(slug => allProjects.find(p => p.slug === slug))
+    .map((slug) => allProjects.find((p) => p.slug === slug))
     .filter((p): p is Project => p !== undefined);
 }
 
-const caseStudies = getProjectsBySlug(['quiz-funnels', 'client-scan', 'cpq-agent']);
-const products = getProjectsBySlug(['crisply']);
+// The featured 6 — same lineup as homepage
+const featured = getProjectsBySlug([
+  'quiz-funnels',
+  'cpq-agent',
+  'client-scan',
+  'onboarding-workflow',
+  'screenfast',
+  'inbound-ai-sdr',
+]);
 
+// Case studies (carry-over)
+const caseStudies = getProjectsBySlug(['quiz-funnels', 'client-scan', 'cpq-agent']);
+
+// Outcome groupings (the existing 3-category spine)
 const categories = [
   {
-    id: 'leads',
-    heading: 'Get More and Better Leads',
+    code: 'GROUP_01',
+    heading: 'Get more and better leads.',
     description: 'Systems that capture, qualify, and follow up with leads — automatically, around the clock.',
     projects: getProjectsBySlug(['after-hours-agent', 'cpq-agent', 'signal-engine', 'daily-ads', 'seo-blog-autopilot']),
   },
   {
-    id: 'admin',
-    heading: 'Eliminate Repetitive Admin',
+    code: 'GROUP_02',
+    heading: 'Eliminate repetitive admin.',
     description: 'The onboarding, tracking, and scheduling work that eats your week — handled by systems that run themselves.',
     projects: getProjectsBySlug(['onboarding-workflow', 'automated-inventory', 'route-simply']),
   },
   {
-    id: 'research',
-    heading: 'Speed Up Decisions and Research',
+    code: 'GROUP_03',
+    heading: 'Speed up decisions and research.',
     description: 'Research and analysis that used to take weeks, done in minutes. Better data, faster decisions.',
     projects: getProjectsBySlug(['brand-research', 'screenfast', 'equipment-identifier', 'app-validator', 'client-scan']),
   },
 ];
+
+// Custom one-offs strip (the relegated set)
+const customBuilds = getProjectsBySlug(['equipment-identifier', 'app-validator', 'crisply']);
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
-    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` }
-  ]
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
+  ],
 };
 ---
 
@@ -54,141 +72,184 @@ const breadcrumbSchema = {
 >
   <Header />
   <main>
-    <!-- Hero -->
-    <section class="projects-hero">
-      <div class="hero-bg-grid"></div>
-      <div class="container">
-        <div class="projects-hero-content" data-animate="fade-up">
-          <span class="badge">AI Automations for Service Businesses</span>
-          <h1>Everyone's Talking About AI.<br /><span class="gradient-text">Here's What It Actually Does.</span></h1>
-          <p class="projects-hero-sub">Done-for-you automation for small service teams. We build the systems that handle your follow-up, scheduling, admin, and reporting, so you can take on more clients without hiring more people.</p>
+    {/* Hero */}
+    <section class="op-projhero op-grid-bg">
+      <div class="op-projhero-frame">
+        <div class="op-projhero-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / PROJECTS · ALL BUILDS"
+            right="06 FLAGSHIP · 10+ TOTAL · ALL LIVE"
+            bordered
+          />
+        </div>
 
-          <div class="hero-ctas">
-            <a
-              href="#"
-              class="btn btn-primary btn-lg"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Talk to the Brothers</a>
-            <a href="#projects" class="btn btn-secondary btn-lg">See Our Systems</a>
-          </div>
+        <div data-animate="fade-up"><EyebrowTag label="THE WORK · CUSTOM PER CLIENT" /></div>
 
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-number">10+</span>
-              <span class="hero-stat-label">Systems Deployed</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">85%</span>
-              <span class="hero-stat-label">Less Busywork</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">24/7</span>
-              <span class="hero-stat-label">Working While You Sleep</span>
-            </div>
-          </div>
+        <h1 class="op-projhero-h1" data-animate="fade-up">
+          Everyone's talking about AI.<br />
+          <span class="op-projhero-h1-orange">Here's what it actually does.</span>
+        </h1>
+
+        <p class="op-projhero-sub" data-animate="fade-up">
+          Done-for-you automation for small service teams. We build the systems that handle your follow-up, scheduling, admin, and reporting — so you can take on more clients without hiring more people.
+        </p>
+
+        <div class="op-projhero-ctas" data-animate="fade-up">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            trackLocation="projects-hero"
+            trackLabel="Talk to the Brothers"
+          />
+          <a href="#flagship" class="op-projhero-link op-mono">SEE THE BUILDS →</a>
+        </div>
+
+        <div class="op-projhero-specs">
+          <SpecStrip cells={[
+            { value: '10+', label: 'Systems deployed' },
+            { value: '85%', label: 'Less busywork' },
+            { value: '24/7', label: 'While you sleep' },
+          ]} />
         </div>
       </div>
     </section>
 
-    <!-- Case Studies -->
-    <section class="case-studies">
-      <div class="container">
-        <div class="cs-header" data-animate="fade-up">
-          <span class="badge">Proven Results</span>
-          <h2>Case Studies</h2>
-          <p class="cs-header-sub">Real systems. Real businesses. Real results.</p>
+    {/* Flagship 6 — same as homepage */}
+    <section class="op-flagship op-grid-bg" id="flagship">
+      <div class="op-flagship-frame">
+        <div class="op-flagship-header" data-animate="fade-up">
+          <EyebrowTag label="FLAGSHIP BUILDS · 06 SYSTEMS" />
+          <h2 class="op-flagship-h2">The six builds clients ask for most.</h2>
+          <p class="op-flagship-sub">Custom-built around your business. Each one shipped in 1–3 weeks. No template, no agency retainer.</p>
         </div>
-        <div class="cs-grid" data-animate-stagger>
-          {caseStudies.map((project) => (
-            <a href={`/projects/${project.slug}`} class="cs-card">
-              <span class="cs-card-label">Case Study</span>
-              <h3>{project.name}</h3>
-              <p class="cs-card-tagline">{project.tagline}</p>
-              <p class="cs-card-desc">{project.description}</p>
-              <div class="cs-card-stats">
-                {project.results.stats.slice(0, 2).map((stat) => (
-                  <div class="cs-card-stat">
-                    <span class="cs-card-stat-num">{stat.number}</span>
-                    <span class="cs-card-stat-label">{stat.label}</span>
-                  </div>
-                ))}
+
+        <div class="op-flagship-grid" data-animate-stagger>
+          {featured.map((p, i) => (
+            <a href={`/projects/${p.slug}`} class="op-flagship-card">
+              <div class="op-flagship-card-header">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono">BUILD_{String(i + 1).padStart(2, '0')}</span>
               </div>
-              <span class="cs-card-cta">Read the case study &rarr;</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Products -->
-    <section class="products-section">
-      <div class="container">
-        <div class="products-header" data-animate="fade-up">
-          <span class="badge products-badge">Built by Brothers Automate</span>
-          <h2>Our Products</h2>
-          <p class="products-header-sub">Tools we built for ourselves — and made available to other operators.</p>
-        </div>
-        <div class="products-grid" data-animate-stagger>
-          {products.map((project) => (
-            <a href={`/projects/${project.slug}`} class="product-card">
-              <span class="product-card-label">Product</span>
-              <h3>{project.name}</h3>
-              <p class="product-card-tagline">{project.tagline}</p>
-              <p class="product-card-desc">{project.description}</p>
-              <div class="product-card-stats">
-                {project.results.stats.slice(0, 3).map((stat) => (
-                  <div class="product-card-stat">
-                    <span class="product-card-stat-num">{stat.number}</span>
-                    <span class="product-card-stat-label">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-              <span class="product-card-cta">See the product &rarr;</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects grouped by outcome -->
-    <section class="projects-section" id="projects">
-      <div class="container">
-        {categories.map((category) => (
-          <div class="category-group" data-animate="fade-up">
-            <div class="category-header">
-              <h2>{category.heading}</h2>
-              <p>{category.description}</p>
-            </div>
-            <div class="projects-grid" data-animate-stagger>
-              {category.projects.map((project) => (
-                <a href={`/projects/${project.slug}`} class="project-card">
-                  <div class="card-top">
-                    <div class="project-icon-wrap">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d={project.icon}></path>
-                      </svg>
+              <div class="op-flagship-card-body">
+                <h3>{p.name}</h3>
+                <p class="op-flagship-card-tag">{p.tagline}</p>
+                <div class="op-flagship-card-stats">
+                  {p.results.stats.slice(0, 2).map((s) => (
+                    <div>
+                      <div class="op-flagship-card-stat-num">{s.number}</div>
+                      <div class="op-mono op-flagship-card-stat-label">{s.label}</div>
                     </div>
+                  ))}
+                </div>
+              </div>
+              <div class="op-flagship-card-foot op-mono">
+                SEE THE BUILD <span class="op-flagship-card-arrow">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Case Studies */}
+    <section class="op-cases op-grid-bg">
+      <div class="op-cases-frame">
+        <div class="op-cases-header" data-animate="fade-up">
+          <EyebrowTag label="CASE STUDIES · PROVEN RESULTS" />
+          <h2 class="op-cases-h2">Real systems. Real businesses. Real results.</h2>
+        </div>
+
+        <div class="op-cases-grid" data-animate-stagger>
+          {caseStudies.map((p, i) => (
+            <a href={`/projects/${p.slug}`} class="op-case-card">
+              <div class="op-case-card-header">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono">CASE_{String(i + 1).padStart(2, '0')} · {p.name.toUpperCase().replace(/[^A-Z0-9]+/g, '_')}</span>
+              </div>
+              <div class="op-case-card-body">
+                <h3>{p.name}</h3>
+                <p class="op-case-card-tag">{p.tagline}</p>
+                <p class="op-case-card-desc">{p.description}</p>
+                <div class="op-case-card-stats">
+                  {p.results.stats.slice(0, 2).map((s) => (
+                    <div>
+                      <div class="op-case-card-stat-num">{s.number}</div>
+                      <div class="op-mono op-case-card-stat-label">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div class="op-case-card-foot op-mono">
+                READ THE CASE STUDY <span class="op-flagship-card-arrow">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Outcome-grouped library */}
+    <section class="op-outcomes op-grid-bg" id="library">
+      <div class="op-outcomes-frame">
+        <div class="op-outcomes-intro" data-animate="fade-up">
+          <EyebrowTag label="THE LIBRARY · BY OUTCOME" />
+          <h2 class="op-outcomes-h2">More builds, sorted by what they do for you.</h2>
+        </div>
+
+        {categories.map((cat) => (
+          <div class="op-outcome-group">
+            <div class="op-outcome-header" data-animate="fade-up">
+              <span class="op-mono op-outcome-code">{cat.code}</span>
+              <h3 class="op-outcome-heading">{cat.heading}</h3>
+              <p class="op-outcome-desc">{cat.description}</p>
+            </div>
+            <div class="op-outcome-grid" data-animate-stagger>
+              {cat.projects.map((p) => (
+                <a href={`/projects/${p.slug}`} class="op-outcome-card">
+                  <div class="op-outcome-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d={p.icon}></path>
+                    </svg>
                   </div>
-                  <h3>{project.name}</h3>
-                  <p class="card-problem">{project.problem.headline}</p>
-                  <div class="card-stats">
-                    {project.results.stats.slice(0, 2).map((stat) => (
-                      <div class="card-stat">
-                        <span class="card-stat-num">{stat.number}</span>
-                        <span class="card-stat-label">{stat.label}</span>
+                  <h4 class="op-outcome-card-name">{p.name}</h4>
+                  <p class="op-outcome-card-problem">{p.problem.headline}</p>
+                  <div class="op-outcome-card-stats">
+                    {p.results.stats.slice(0, 2).map((s) => (
+                      <div>
+                        <div class="op-outcome-card-stat-num">{s.number}</div>
+                        <div class="op-mono op-outcome-card-stat-label">{s.label}</div>
                       </div>
                     ))}
                   </div>
-                  <span class="card-cta">See how this works &rarr;</span>
+                  <span class="op-mono op-outcome-card-cta">SEE HOW IT WORKS →</span>
                 </a>
               ))}
             </div>
           </div>
         ))}
+      </div>
+    </section>
+
+    {/* Custom builds strip — minimized at bottom */}
+    <section class="op-custom op-grid-bg">
+      <div class="op-custom-frame">
+        <div class="op-custom-header" data-animate="fade-up">
+          <span class="op-mono op-custom-code">SECONDARY · ALSO BUILT</span>
+          <h2 class="op-custom-h2">Custom AI for unusual problems.</h2>
+          <p class="op-custom-sub">One-offs we built for specific clients. If your problem doesn't fit our flagship lineup, this is the kind of work we'd do for you.</p>
+        </div>
+        <div class="op-custom-grid" data-animate-stagger>
+          {customBuilds.map((p) => (
+            <a href={`/projects/${p.slug}`} class="op-custom-card">
+              <span class="op-mono op-custom-card-id">{p.name.toUpperCase().replace(/[^A-Z0-9]+/g, '_')}</span>
+              <span class="op-custom-card-name">{p.name}</span>
+              <span class="op-custom-card-tag">{p.tagline}</span>
+              <span class="op-custom-card-arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -200,557 +261,462 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
-  /* Hero */
-  .projects-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-3xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
+  /* === Hero === */
+  .op-projhero {
+    padding: 120px var(--op-section-px) 80px;
+    color: var(--op-ink);
   }
+  .op-projhero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-projhero-util { margin-bottom: 32px; }
+  .op-projhero :global(.op-eyebrow) { margin-bottom: 24px; }
 
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  }
-
-  .projects-hero-content {
-    position: relative;
-    max-width: 750px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .projects-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .projects-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .hero-ctas {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    align-items: center;
-    margin-top: var(--space-lg);
-    margin-bottom: var(--space-lg);
-  }
-
-  @media (min-width: 480px) {
-    .hero-ctas {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-    padding: var(--space-lg) var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .hero-stat-number {
-    font-size: 1.75rem;
+  .op-projhero-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
+    font-size: clamp(48px, 6.5vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    max-width: 900px;
+    text-wrap: balance;
   }
+  .op-projhero-h1-orange { color: var(--op-orange); }
 
-  .hero-stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+  .op-projhero-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 32px;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  .hero-stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
-  }
-
-  /* Case Studies */
-  .case-studies {
-    padding: 0 0 var(--space-2xl);
-    margin-top: calc(-1 * var(--space-lg));
-  }
-
-  .cs-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-  }
-
-  .cs-header h2 {
-    margin-bottom: var(--space-xs);
-  }
-
-  .cs-header-sub {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-  }
-
-  .cs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-  }
-
-  .cs-card {
+  .op-projhero-ctas {
     display: flex;
-    flex-direction: column;
-    padding: var(--space-xl);
-    background: linear-gradient(135deg, var(--navy) 0%, #2c5282 100%);
-    border-radius: var(--radius-xl);
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .op-projhero-link {
+    font-size: 11px;
+    color: var(--op-ink);
     text-decoration: none;
-    color: white;
-    transition: all var(--transition);
-    box-shadow: var(--shadow-lg);
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-projhero-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
   }
 
-  .cs-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-    color: white;
+  /* === Flagship === */
+  .op-flagship {
+    padding: 64px var(--op-section-px) 80px;
+    border-top: 1px solid var(--op-rule);
   }
-
-  .cs-card-label {
-    display: inline-block;
-    padding: 4px 10px;
-    background: rgba(237, 137, 54, 0.2);
-    border: 1px solid rgba(237, 137, 54, 0.4);
-    color: var(--orange-light);
-    border-radius: 100px;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-md);
-    align-self: flex-start;
-  }
-
-  .cs-card h3 {
-    font-size: 1.375rem;
-    color: white;
-    margin-bottom: var(--space-xs);
-  }
-
-  .cs-card-tagline {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: var(--space-sm);
-  }
-
-  .cs-card-desc {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    flex: 1;
-  }
-
-  .cs-card-stats {
-    display: flex;
-    gap: var(--space-lg);
-    padding: var(--space-md) 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    margin-bottom: var(--space-md);
-  }
-
-  .cs-card-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .cs-card-stat-num {
-    font-size: 1.5rem;
+  .op-flagship-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-flagship-header { max-width: 720px; margin-bottom: 40px; }
+  .op-flagship-header :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-flagship-h2 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: white;
-    line-height: 1;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
   }
-
-  .cs-card-stat-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
+  .op-flagship-sub {
+    font-family: var(--op-font-body);
+    font-size: 15.5px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
   }
 
-  .cs-card-cta {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--orange-light);
-    transition: color var(--transition);
-  }
-
-  .cs-card:hover .cs-card-cta {
-    color: var(--orange);
-  }
-
-  /* Our Products */
-  .products-section {
-    padding: var(--space-2xl) 0 var(--space-xl);
-  }
-
-  .products-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-  }
-
-  .products-badge {
-    background: rgba(26, 54, 93, 0.08);
-    border-color: rgba(26, 54, 93, 0.25);
-    color: var(--navy);
-  }
-
-  .products-header h2 {
-    margin-bottom: var(--space-xs);
-  }
-
-  .products-header-sub {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    max-width: 560px;
-    margin: 0 auto;
-  }
-
-  .products-grid {
+  .op-flagship-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    max-width: 720px;
-    margin: 0 auto;
+    gap: 18px;
   }
+  @media (min-width: 700px) { .op-flagship-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-flagship-grid { grid-template-columns: repeat(3, 1fr); } }
 
-  .product-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-xl);
-    background: linear-gradient(135deg, #0f1f3d 0%, var(--navy) 50%, #2c5282 100%);
-    border-radius: var(--radius-xl);
-    text-decoration: none;
-    color: white;
-    transition: all var(--transition);
-    box-shadow: var(--shadow-lg);
+  .op-flagship-card,
+  .op-case-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
     overflow: hidden;
-  }
-
-  .product-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-light) 100%);
-  }
-
-  .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-    color: white;
-  }
-
-  .product-card-label {
-    display: inline-block;
-    padding: 4px 10px;
-    background: var(--orange);
-    color: white;
-    border-radius: 100px;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-md);
-    align-self: flex-start;
-  }
-
-  .product-card h3 {
-    font-size: 1.625rem;
-    color: white;
-    margin-bottom: var(--space-xs);
-  }
-
-  .product-card-tagline {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: var(--space-sm);
-  }
-
-  .product-card-desc {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.88);
-    line-height: 1.65;
-    margin-bottom: var(--space-lg);
-  }
-
-  .product-card-stats {
-    display: flex;
-    gap: var(--space-xl);
-    padding: var(--space-md) 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    margin-bottom: var(--space-md);
-  }
-
-  .product-card-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .product-card-stat-num {
-    font-size: 1.375rem;
-    font-weight: 800;
-    color: var(--orange-light);
-    line-height: 1;
-  }
-
-  .product-card-stat-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 500;
-  }
-
-  .product-card-cta {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--orange-light);
-    transition: color var(--transition);
-  }
-
-  .product-card:hover .product-card-cta {
-    color: var(--orange);
-  }
-
-  @media (max-width: 640px) {
-    .product-card-stats {
-      gap: var(--space-md);
-      flex-wrap: wrap;
-    }
-  }
-
-  /* Projects grid */
-  .projects-section {
-    padding: var(--space-xl) 0 var(--space-3xl);
-  }
-
-  .category-group {
-    margin-bottom: var(--space-3xl);
-  }
-
-  .category-group:last-child {
-    margin-bottom: 0;
-  }
-
-  .category-header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .category-header h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: var(--space-xs);
-  }
-
-  .category-header p {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    line-height: 1.6;
-  }
-
-  .projects-grid {
-    display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  }
-
-  .project-card {
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    box-shadow: var(--op-shadow);
     text-decoration: none;
     color: inherit;
-    transition: all var(--transition);
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
   }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 100%);
-    opacity: 0;
-    transition: opacity var(--transition);
-  }
-
-  .project-card:hover {
+  .op-flagship-card:hover,
+  .op-case-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
     color: inherit;
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: transparent;
   }
 
-  .project-card:hover::before {
-    opacity: 1;
-  }
-
-  .card-top {
+  .op-flagship-card-header,
+  .op-case-card-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 9px 14px;
     display: flex;
     align-items: center;
-    margin-bottom: var(--space-md);
+    gap: 10px;
+    border-bottom: var(--op-border);
+    font-size: 9px;
+  }
+  .op-flagship-card-header .op-mono,
+  .op-case-card-header .op-mono { color: var(--op-orange); font-size: 10px; }
+
+  .op-flagship-card-body { padding: 20px 22px; flex: 1; }
+  .op-flagship-card-body h3,
+  .op-case-card-body h3 {
+    font-family: var(--op-font-display);
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 6px;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .op-flagship-card-tag,
+  .op-case-card-tag {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 16px;
+  }
+  .op-flagship-card-stats,
+  .op-case-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--op-rule-soft);
+  }
+  .op-flagship-card-stat-num,
+  .op-case-card-stat-num {
+    font-family: var(--op-font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--op-ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .op-flagship-card-stat-label,
+  .op-case-card-stat-label {
+    font-size: 8px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.18em;
   }
 
-  .project-icon-wrap {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  .op-flagship-card-foot,
+  .op-case-card-foot {
+    padding: 12px 16px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--op-ink);
+  }
+  .op-flagship-card-arrow {
+    transition: transform var(--op-dur-fast) var(--op-ease);
+  }
+  .op-flagship-card:hover .op-flagship-card-arrow,
+  .op-case-card:hover .op-flagship-card-arrow {
+    transform: translateX(3px);
+    color: var(--op-orange);
+  }
+
+  /* === Cases === */
+  .op-cases {
+    padding: 64px var(--op-section-px) 80px;
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-cases-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cases-header { max-width: 720px; margin-bottom: 36px; }
+  .op-cases-header :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-cases-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .op-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 900px) { .op-cases-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-case-card-body { padding: 20px 22px; flex: 1; }
+  .op-case-card-desc {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--op-navy-soft);
+    margin: 0 0 16px;
+  }
+
+  /* === Outcomes === */
+  .op-outcomes {
+    padding: 64px var(--op-section-px) 80px;
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-outcomes-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-outcomes-intro { max-width: 720px; margin-bottom: 48px; }
+  .op-outcomes-intro :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-outcomes-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .op-outcome-group {
+    margin-bottom: 56px;
+  }
+  .op-outcome-group:last-child { margin-bottom: 0; }
+
+  .op-outcome-header {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1.5px solid var(--op-ink);
+    display: grid;
+    gap: 8px;
+  }
+  .op-outcome-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-outcome-heading {
+    font-family: var(--op-font-display);
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-outcome-desc {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  .op-outcome-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 700px) { .op-outcome-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-outcome-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-outcome-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+    box-shadow: var(--op-shadow);
+  }
+  .op-outcome-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
+  }
+
+  .op-outcome-card-icon {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--op-navy);
   }
-
-  .project-card h3 {
-    font-size: 1.25rem;
-    margin: 0 0 var(--space-xs);
-    color: var(--navy);
+  .op-outcome-card-name {
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
   }
-
-  .card-problem {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0 0 var(--space-lg);
+  .op-outcome-card-problem {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
     flex: 1;
   }
-
-  .card-stats {
-    display: flex;
-    gap: var(--space-lg);
-    padding: var(--space-md) 0;
-    border-top: 1px solid var(--border-light);
-    margin-bottom: var(--space-md);
+  .op-outcome-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--op-rule-soft);
   }
-
-  .card-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .card-stat-num {
-    font-size: 1.25rem;
+  .op-outcome-card-stat-num {
+    font-family: var(--op-font-display);
+    font-size: 17px;
     font-weight: 800;
-    color: var(--navy);
+    letter-spacing: -0.03em;
     line-height: 1;
+    color: var(--op-ink);
+    margin-bottom: 3px;
+  }
+  .op-outcome-card-stat-label {
+    font-size: 7.5px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.18em;
+  }
+  .op-outcome-card-cta {
+    font-size: 9px;
+    color: var(--op-orange);
+    margin-top: 4px;
   }
 
-  .card-stat-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 500;
+  /* === Custom builds (minimized strip) === */
+  .op-custom {
+    padding: 56px var(--op-section-px) 72px;
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-custom-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-custom-header { max-width: 720px; margin-bottom: 24px; }
+  .op-custom-code {
+    font-size: 9px;
+    color: var(--op-orange);
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .op-custom-h2 {
+    font-family: var(--op-font-display);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 8px;
+  }
+  .op-custom-sub {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    line-height: 1.55;
   }
 
-  .card-cta {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--blue);
-    transition: color var(--transition);
+  .op-custom-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  @media (min-width: 700px) { .op-custom-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-custom-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-custom-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "id   .     arrow"
+      "name name  arrow"
+      "tag  tag   arrow";
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 4px;
+    padding: 14px 18px;
+    background: var(--op-paper);
+    border: 1px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-custom-card:hover {
+    border-color: var(--op-ink);
+    color: var(--op-ink);
+  }
+  .op-custom-card-id {
+    grid-area: id;
+    font-size: 8px;
+    color: var(--op-orange);
+  }
+  .op-custom-card-name {
+    grid-area: name;
+    font-family: var(--op-font-display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+  }
+  .op-custom-card-tag {
+    grid-area: tag;
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    color: var(--op-navy-soft);
+    line-height: 1.4;
+  }
+  .op-custom-card-arrow {
+    grid-area: arrow;
+    font-size: 16px;
+    color: var(--op-navy-soft);
+    transition: transform var(--op-dur-fast) var(--op-ease), color var(--op-dur-fast) var(--op-ease);
+  }
+  .op-custom-card:hover .op-custom-card-arrow {
+    transform: translateX(3px);
+    color: var(--op-orange);
   }
 
-  .project-card:hover .card-cta {
-    color: var(--orange);
-  }
-
-  /* Responsive */
-  @media (max-width: 767px) {
-    .projects-hero {
-      padding-top: 120px;
-      padding-bottom: var(--space-2xl);
-    }
-
-    .hero-stats {
-      flex-direction: column;
-      gap: var(--space-md);
-      padding: var(--space-md);
-    }
-
-    .hero-stat-divider {
-      width: 60px;
-      height: 1px;
-    }
-
-    .hero-ctas .btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .cs-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .category-group {
-      margin-bottom: var(--space-2xl);
-    }
-
-    .projects-grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 700px) {
+    .op-projhero { padding: 100px 22px 56px; }
+    .op-flagship,
+    .op-cases,
+    .op-outcomes,
+    .op-custom { padding-left: 22px; padding-right: 22px; }
+    .op-projhero-ctas { flex-direction: column; align-items: stretch; }
   }
 </style>

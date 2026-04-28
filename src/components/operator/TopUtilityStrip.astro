@@ -1,0 +1,63 @@
+---
+/**
+ * TopUtilityStrip — full-width mono row above sections.
+ * Left: build/version label. Right: status indicator with pulsing dot.
+ *
+ * Props:
+ *   left:    string   e.g. "BROTHERS_AUTOMATE / V.2026"
+ *   right:   string   status text e.g. "6 SYSTEMS · LIVE IN 47 BUSINESSES"
+ *   showDot: boolean  (default true) — pulsing orange dot before right text
+ *   bordered: boolean (default false) — adds a 1px rule beneath the strip
+ */
+interface Props {
+  left?: string;
+  right?: string;
+  showDot?: boolean;
+  bordered?: boolean;
+}
+const {
+  left = 'BROTHERS_AUTOMATE / V.2026',
+  right = '',
+  showDot = true,
+  bordered = false,
+} = Astro.props;
+---
+
+<div class={`op-util-strip${bordered ? ' op-util-strip--bordered' : ''}`}>
+  <span class="op-util-left op-mono">{left}</span>
+  {right && (
+    <span class="op-util-right op-mono">
+      {showDot && <span class="op-pulse-dot"></span>}
+      {right}
+    </span>
+  )}
+</div>
+
+<style>
+  .op-util-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 10px;
+    color: var(--op-navy-soft);
+  }
+
+  .op-util-strip--bordered {
+    border-bottom: 1px solid var(--op-rule);
+    padding-bottom: 14px;
+  }
+
+  .op-util-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .op-util-strip {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+    }
+  }
+</style>

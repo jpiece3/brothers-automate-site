@@ -1,0 +1,293 @@
+---
+/**
+ * OpBuildPanel — the right-side console in the hero.
+ * Auto-cycles a 4-step pipeline: READ → SCORE → REPLY → LOG every 1.9s.
+ *
+ * Wraps the OperatorPanel primitive but with the specific Inbound AI SDR demo
+ * content baked in. Replicates `design_handoff_operator/src/hero-3-operator.jsx`.
+ *
+ * Props:
+ *   id:           string  the BUILD_NN code in the header (default "BUILD_06 · INBOUND_AI_SDR")
+ *   interval:     number  ms between pipeline steps (default 1900)
+ */
+import OperatorPanel from './OperatorPanel.astro';
+
+interface Props {
+  id?: string;
+  interval?: number;
+}
+const { id = 'BUILD_06 · INBOUND_AI_SDR', interval = 1900 } = Astro.props;
+---
+
+<div
+  class="op-build-panel"
+  data-interval={interval}
+  data-step="0"
+>
+  <OperatorPanel
+    id={id}
+    headerExtra="■&nbsp;&nbsp;■&nbsp;&nbsp;■"
+    minBodyHeight="320px"
+    footerCells={[
+      { value: '47s', label: 'Reply time' },
+      { value: '100%', label: 'Logged' },
+      { value: '24/7', label: 'Running' },
+    ]}
+  >
+    <!-- Pipeline step bar -->
+    <div class="opbp-pipeline">
+      {['READ', 'SCORE', 'REPLY', 'LOG'].map((label, i) => (
+        <div class="opbp-pipe-step" data-step={i}>
+          <span class="op-mono">{String(i + 1).padStart(2, '0')} · {label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Inbound message (visible from step 0 onward) -->
+    <div class="opbp-inbound" data-min-step="0">
+      <div class="op-mono opbp-row-label">INBOUND · 09:42:14</div>
+      <div class="opbp-row-text">
+        "Looking for help automating resume screening — ~200/week, killing my Saturdays."
+      </div>
+    </div>
+
+    <!-- Score row (step 1+) -->
+    <div class="opbp-score" data-min-step="1">
+      {[
+        { l: 'FIT', v: '9/10' },
+        { l: 'URGENCY', v: 'HIGH' },
+        { l: 'REVENUE', v: '$3M' },
+        { l: 'INDUSTRY', v: 'STAFFING' },
+      ].map((t) => (
+        <div class="opbp-score-cell">
+          <div class="op-mono opbp-score-label">{t.l}</div>
+          <div class="opbp-score-value">{t.v}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Reply (step 2+) -->
+    <div class="opbp-reply" data-min-step="2">
+      <div class="op-mono opbp-reply-label">OUTBOUND · 09:42:47 · 33s ELAPSED</div>
+      <div class="opbp-reply-text">
+        "Hey — sounds like 12+ hrs/wk back. Free 20-min call Thursday at 2?"
+      </div>
+    </div>
+
+    <!-- Logged (step 3) -->
+    <div class="opbp-logged" data-min-step="3">
+      <div class="opbp-log-cell">✓ SHEETS</div>
+      <div class="opbp-log-cell">✓ HUBSPOT</div>
+      <div class="opbp-log-cell">● SLACK</div>
+    </div>
+  </OperatorPanel>
+</div>
+
+<style>
+  .op-build-panel { width: 100%; }
+
+  /* === Pipeline === */
+  .opbp-pipeline {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .opbp-pipe-step {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: var(--op-radius-sm);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--op-cream);
+    opacity: 0.5;
+    transition: all var(--op-dur-pipeline) ease;
+  }
+  .opbp-pipe-step .op-mono {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+  /* Each step lights up as data-step increments */
+  .op-build-panel[data-step="0"] .opbp-pipe-step[data-step="0"],
+  .op-build-panel[data-step="1"] .opbp-pipe-step[data-step="0"],
+  .op-build-panel[data-step="1"] .opbp-pipe-step[data-step="1"],
+  .op-build-panel[data-step="2"] .opbp-pipe-step[data-step="0"],
+  .op-build-panel[data-step="2"] .opbp-pipe-step[data-step="1"],
+  .op-build-panel[data-step="2"] .opbp-pipe-step[data-step="2"],
+  .op-build-panel[data-step="3"] .opbp-pipe-step[data-step="0"],
+  .op-build-panel[data-step="3"] .opbp-pipe-step[data-step="1"],
+  .op-build-panel[data-step="3"] .opbp-pipe-step[data-step="2"],
+  .op-build-panel[data-step="3"] .opbp-pipe-step[data-step="3"] {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    opacity: 1;
+  }
+
+  /* === Inbound === */
+  .opbp-inbound {
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--op-cream);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .opbp-row-label {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
+    margin-bottom: 4px;
+  }
+  .opbp-row-text {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    color: var(--op-cream);
+    line-height: 1.5;
+  }
+
+  /* === Score === */
+  .opbp-score {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .opbp-score-cell {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    padding: 6px 8px;
+    border-radius: var(--op-radius-sm);
+    text-align: center;
+  }
+  .opbp-score-label {
+    font-size: 8px;
+    opacity: 0.85;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .opbp-score-value {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* === Reply === */
+  .opbp-reply {
+    background: var(--op-orange);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    color: var(--op-paper);
+    border-radius: var(--op-radius-sm);
+  }
+  .opbp-reply-label {
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    opacity: 0.85;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .opbp-reply-text {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* === Logged === */
+  .opbp-logged {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .opbp-log-cell {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--op-cream);
+    font-weight: 700;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* === Step gating: hide rows whose data-min-step is greater than the current step === */
+  .opbp-score,
+  .opbp-reply,
+  .opbp-logged {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity var(--op-dur-slide) var(--op-ease),
+      transform var(--op-dur-slide) var(--op-ease);
+    pointer-events: none;
+  }
+  .op-build-panel[data-step="1"] .opbp-score[data-min-step="1"],
+  .op-build-panel[data-step="2"] .opbp-score[data-min-step="1"],
+  .op-build-panel[data-step="3"] .opbp-score[data-min-step="1"],
+  .op-build-panel[data-step="2"] .opbp-reply[data-min-step="2"],
+  .op-build-panel[data-step="3"] .opbp-reply[data-min-step="2"],
+  .op-build-panel[data-step="3"] .opbp-logged[data-min-step="3"] {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .opbp-pipe-step,
+    .opbp-score,
+    .opbp-reply,
+    .opbp-logged {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Auto-cycle the pipeline step every `data-interval` ms.
+  // Pauses if the panel is offscreen to keep CPU quiet.
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll<HTMLElement>('.op-build-panel').forEach((panel) => {
+      if ((panel as any).__opbpInited) return;
+      (panel as any).__opbpInited = true;
+
+      const interval = parseInt(panel.getAttribute('data-interval') || '1900', 10);
+      let step = 0;
+      let timer: number | null = null;
+
+      const tick = () => {
+        step = (step + 1) % 4;
+        panel.setAttribute('data-step', String(step));
+      };
+
+      const start = () => {
+        if (timer != null) return;
+        timer = window.setInterval(tick, interval);
+      };
+      const stop = () => {
+        if (timer != null) { clearInterval(timer); timer = null; }
+      };
+
+      if (reduceMotion) {
+        // Hold on step 3 (full state visible) for accessibility users
+        panel.setAttribute('data-step', '3');
+        return;
+      }
+
+      // Pause when offscreen, resume when in view
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) start();
+          else stop();
+        }
+      }, { rootMargin: '0px', threshold: 0.05 });
+      io.observe(panel);
+    });
+  })();
+</script>

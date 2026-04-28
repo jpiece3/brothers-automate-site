@@ -1,0 +1,567 @@
+---
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+---
+
+<section class="op-hww op-grid-bg" id="how-we-work">
+  <div class="op-hww-frame">
+    <div class="op-hww-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / SECTION 03 · HOW WE WORK"
+        right="02 ENGAGEMENT MODES"
+        bordered
+      />
+    </div>
+
+    <div class="op-hww-header" data-animate="fade-up">
+      <EyebrowTag label="WE DO PROJECTS · WE BECOME PART OF YOUR BUSINESS" />
+      <h2 class="op-hww-h2">Pick a build. Or plug us into the business.</h2>
+      <p class="op-hww-sub">
+        Two ways to work with us. One is a <strong>fixed-scope project</strong> — one system, shipped clean, handed off. The other is an <strong>ongoing partnership</strong> — we become the automation arm of your team, and your people get smarter every month.
+      </p>
+    </div>
+
+    {/* Two-card grid */}
+    <div class="op-hww-grid" data-animate-stagger>
+      {/* CARD 1 — Mode A · Partnership (navy, featured) */}
+      <article class="op-hww-card op-hww-card--partner">
+        <div class="op-hww-card-header op-hww-card-header--partner">
+          <span class="op-pulse-dot op-pulse-dot--lg"></span>
+          <span class="op-mono op-hww-card-id">MODE_A · ONGOING PARTNERSHIP</span>
+          <span class="op-mono op-hww-card-tag">MOST POPULAR ↗</span>
+        </div>
+
+        <div class="op-hww-card-body">
+          <div class="op-mono op-hww-card-eyebrow">— AUTOMATION PARTNER</div>
+          <h3 class="op-hww-card-title">Become the automation arm of your team.</h3>
+          <p class="op-hww-card-sub">
+            Ongoing builds, maintenance, and staff training — so your team gets <em>smarter every month</em>, not just more dependent on us.
+          </p>
+
+          <div class="op-mono op-hww-list-label">WHAT YOU GET</div>
+          <ul class="op-hww-list">
+            {[
+              'Up to 2 new automations per month',
+              'Unlimited maintenance on existing systems',
+              'Staff training baked into every build',
+              'Monthly strategy call to plan priorities',
+              'Priority Slack & email support',
+            ].map((item) => (
+              <li><span class="op-hww-check">✓</span> {item}</li>
+            ))}
+          </ul>
+
+          <div class="op-hww-bestfor op-hww-bestfor--partner">
+            <div class="op-mono op-hww-bestfor-label">BEST FOR</div>
+            <div class="op-hww-bestfor-text">
+              Businesses with multiple processes to automate over time. Teams who want to understand their systems, not just use them.
+            </div>
+          </div>
+
+          <div class="op-hww-card-foot">
+            <div class="op-hww-price-row">
+              <div class="op-hww-price">
+                $3,500<span class="op-hww-price-unit">/mo</span>
+              </div>
+              <div class="op-mono op-hww-price-meta">
+                90-DAY ENGAGEMENT<br />
+                <span class="op-hww-price-meta-soft">THEN MONTH-TO-MONTH</span>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="op-hww-cta op-hww-cta--partner"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              data-track="cta_click"
+              data-track-location="how-we-work"
+              data-track-label="Start a partnership"
+            >
+              Start a partnership
+              <span class="op-hww-cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      {/* CARD 2 — Mode B · Project (paper) */}
+      <article class="op-hww-card op-hww-card--project">
+        <div class="op-hww-card-header op-hww-card-header--project">
+          <span class="op-hww-dot-navy"></span>
+          <span class="op-mono op-hww-card-id-navy">MODE_B · FIXED-SCOPE PROJECT</span>
+          <span class="op-mono op-hww-card-tag-navy">ONE-TIME ↗</span>
+        </div>
+
+        <div class="op-hww-card-body op-hww-card-body--project">
+          <div class="op-mono op-hww-card-eyebrow">— SCOPED BUILD</div>
+          <h3 class="op-hww-card-title op-hww-card-title--ink">One system, built to spec, handed off clean.</h3>
+          <p class="op-hww-card-sub op-hww-card-sub--ink">
+            Tell us the problem. We scope it, build it, deploy it on your accounts, and walk your team through everything.
+          </p>
+
+          <div class="op-mono op-hww-list-label op-hww-list-label--ink">WHAT YOU GET</div>
+          <ul class="op-hww-list op-hww-list--ink">
+            {[
+              'End-to-end custom automation',
+              'Full documentation + walkthrough call',
+              '30-day support window after delivery',
+              'Staff training on the delivered system',
+              'Deployed on your accounts with full access',
+              'Clear scope and price before we start',
+            ].map((item) => (
+              <li><span class="op-hww-check op-hww-check--navy">✓</span> {item}</li>
+            ))}
+          </ul>
+
+          <div class="op-hww-bestfor op-hww-bestfor--project">
+            <div class="op-mono op-hww-bestfor-label op-hww-bestfor-label--navy">BEST FOR</div>
+            <div class="op-hww-bestfor-text op-hww-bestfor-text--navy">
+              A specific bottleneck you already know needs fixing. Businesses that want a one-time investment, not a monthly bill.
+            </div>
+          </div>
+
+          <div class="op-hww-card-foot">
+            <div class="op-hww-price-row">
+              <div class="op-hww-price op-hww-price--ink">
+                Custom
+                <span class="op-hww-price-suffix">quote per project</span>
+              </div>
+              <div class="op-mono op-hww-price-meta op-hww-price-meta--ink">
+                1–3 WEEKS<br />
+                <span class="op-hww-price-meta-soft">END-TO-END</span>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="op-hww-cta op-hww-cta--project"
+              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+              data-cal-namespace="free-quiz-audit-automation-brothers"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              data-track="cta_click"
+              data-track-location="how-we-work"
+              data-track-label="Get a scoped quote"
+            >
+              Get a scoped quote
+              <span class="op-hww-cta-arrow op-hww-cta-arrow--orange" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    {/* Process strip */}
+    <div class="op-hww-process" data-animate="fade-up">
+      <div class="op-hww-process-header">
+        <span class="op-mono">EITHER WAY · HERE'S THE PROCESS</span>
+        <span class="op-mono op-hww-process-header-orange">04 STEPS</span>
+      </div>
+      <div class="op-hww-process-grid">
+        {[
+          { n: '01', l: 'Discovery call', d: '30 min. We map the bottleneck and what success looks like.' },
+          { n: '02', l: 'Scope & quote', d: 'We send a clear scope, price, and timeline. No surprises.' },
+          { n: '03', l: 'Build & deploy', d: 'We build on your accounts, not ours. You see progress weekly.' },
+          { n: '04', l: 'Train & hand off', d: 'Your team learns the system. Documentation included.' },
+        ].map((s, i) => (
+          <div class="op-hww-process-cell" data-last={i === 3}>
+            <div class="op-hww-process-n">{s.n}</div>
+            <div class="op-hww-process-title">{s.l}</div>
+            <div class="op-hww-process-body">{s.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .op-hww {
+    padding: 72px var(--op-section-px) 88px;
+  }
+  .op-hww-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .op-hww-util { margin-bottom: 24px; }
+
+  .op-hww-header { margin-bottom: 48px; max-width: 880px; }
+  .op-hww-header > :global(.op-eyebrow) { margin-bottom: 24px; align-self: flex-start; }
+  .op-hww-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  .op-hww-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 720px;
+    text-wrap: pretty;
+  }
+  .op-hww-sub strong { color: var(--op-ink); font-weight: 700; }
+
+  /* === Cards grid === */
+  .op-hww-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .op-hww-grid { grid-template-columns: 1fr; gap: 28px; max-width: 520px; }
+  }
+
+  .op-hww-card {
+    position: relative;
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-md);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .op-hww-card--partner {
+    background: var(--op-navy);
+    color: var(--op-cream);
+  }
+  .op-hww-card--project {
+    background: var(--op-paper);
+    color: var(--op-ink);
+  }
+
+  /* Card header */
+  .op-hww-card-header {
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .op-hww-card-header--partner {
+    background: var(--op-navy-deep);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+  }
+  .op-hww-card-header--project {
+    background: var(--op-paper);
+    border-bottom: var(--op-border);
+  }
+  .op-hww-card-id {
+    font-size: 10px;
+    color: var(--op-orange);
+  }
+  .op-hww-card-id-navy {
+    font-size: 10px;
+    color: var(--op-navy);
+  }
+  .op-hww-dot-navy {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--op-navy);
+  }
+  .op-hww-card-tag {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
+    letter-spacing: 0.18em;
+  }
+  .op-hww-card-tag-navy {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.18em;
+  }
+
+  /* Card body */
+  .op-hww-card-body {
+    padding: 20px 22px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .op-hww-card-eyebrow {
+    font-size: 9px;
+    color: var(--op-orange);
+    margin-bottom: 10px;
+  }
+  .op-hww-card-title {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--op-paper);
+    text-wrap: balance;
+  }
+  .op-hww-card-title--ink { color: var(--op-ink); }
+  .op-hww-card-sub {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--op-cream);
+    opacity: 0.78;
+    margin: 0 0 18px;
+    font-weight: 500;
+    text-wrap: pretty;
+    max-width: 480px;
+  }
+  .op-hww-card-sub--ink {
+    color: var(--op-navy-soft);
+    opacity: 1;
+  }
+  .op-hww-card-sub em {
+    color: var(--op-paper);
+    font-style: normal;
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .op-hww-list-label {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
+    margin-bottom: 8px;
+    letter-spacing: 0.22em;
+  }
+  .op-hww-list-label--ink {
+    color: var(--op-navy-soft);
+    opacity: 1;
+  }
+  .op-hww-list {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+  }
+  .op-hww-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--op-paper);
+  }
+  .op-hww-list--ink li { color: var(--op-ink); }
+
+  .op-hww-check {
+    width: 14px;
+    height: 14px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+  .op-hww-check--navy { background: var(--op-navy); }
+
+  .op-hww-bestfor {
+    padding: 10px 12px;
+    border-left: 3px solid var(--op-orange);
+    margin-bottom: 20px;
+  }
+  .op-hww-bestfor--partner { background: rgba(255, 255, 255, 0.05); }
+  .op-hww-bestfor--project {
+    background: var(--op-cream);
+    border-left-color: var(--op-navy);
+  }
+  .op-hww-bestfor-label {
+    font-size: 8.5px;
+    color: var(--op-orange);
+    margin-bottom: 4px;
+    letter-spacing: 0.22em;
+  }
+  .op-hww-bestfor-label--navy { color: var(--op-navy); }
+  .op-hww-bestfor-text {
+    font-family: var(--op-font-body);
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--op-cream);
+    opacity: 0.85;
+  }
+  .op-hww-bestfor-text--navy {
+    color: var(--op-navy);
+    opacity: 1;
+  }
+
+  .op-hww-card-foot { margin-top: auto; }
+  .op-hww-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .op-hww-price {
+    font-family: var(--op-font-display);
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--op-paper);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .op-hww-price--ink {
+    color: var(--op-ink);
+    font-size: 26px;
+  }
+  .op-hww-price-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--op-cream);
+    opacity: 0.6;
+    letter-spacing: -0.02em;
+  }
+  .op-hww-price-suffix {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--op-orange);
+    letter-spacing: -0.02em;
+    margin-top: 2px;
+  }
+  .op-hww-price-meta {
+    padding-bottom: 4px;
+    font-size: 8.5px;
+    color: var(--op-cream);
+    opacity: 0.5;
+    line-height: 1.4;
+  }
+  .op-hww-price-meta--ink {
+    color: var(--op-navy-soft);
+    opacity: 1;
+  }
+  .op-hww-price-meta-soft { opacity: 0.7; }
+
+  /* CTA buttons */
+  .op-hww-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    font-family: var(--op-font-display);
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hww-cta:hover { transform: translate(-2px, -2px); box-shadow: var(--op-shadow); }
+  .op-hww-cta--partner {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-color: var(--op-paper);
+  }
+  .op-hww-cta--partner:hover { color: var(--op-paper); }
+  .op-hww-cta--project {
+    background: var(--op-navy);
+    color: var(--op-paper);
+  }
+  .op-hww-cta--project:hover { color: var(--op-paper); }
+
+  .op-hww-cta-arrow {
+    width: 18px;
+    height: 18px;
+    border-radius: var(--op-radius-sm);
+    background: var(--op-paper);
+    color: var(--op-orange);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 11px;
+  }
+  .op-hww-cta-arrow--orange {
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+
+  /* === Process strip === */
+  .op-hww-process {
+    margin: 56px auto 0;
+    max-width: 1000px;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    background: var(--op-paper);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
+  }
+  .op-hww-process-header {
+    padding: 10px 18px;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    font-size: 10px;
+    border-bottom: var(--op-border);
+    display: flex;
+    justify-content: space-between;
+  }
+  .op-hww-process-header-orange { color: var(--op-orange); }
+
+  .op-hww-process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .op-hww-process-cell {
+    padding: 20px 22px;
+  }
+  .op-hww-process-cell[data-last="false"] {
+    border-right: var(--op-border);
+  }
+  .op-hww-process-n {
+    font-family: var(--op-font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--op-orange);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .op-hww-process-title {
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .op-hww-process-body {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+  }
+
+  @media (max-width: 900px) {
+    .op-hww-process-grid { grid-template-columns: 1fr 1fr; }
+    .op-hww-process-cell[data-last="false"]:nth-child(2n) { border-right: none; }
+    .op-hww-process-cell:nth-child(n+3) { border-top: var(--op-border); }
+  }
+  @media (max-width: 600px) {
+    .op-hww-process-grid { grid-template-columns: 1fr; }
+    .op-hww-process-cell { border-right: none !important; }
+    .op-hww-process-cell:not(:first-child) { border-top: var(--op-border) !important; }
+    .op-hww-card-body { padding: 22px 22px 20px; }
+    .op-hww-card-title { font-size: 26px; }
+    .op-hww-price { font-size: 42px; }
+    .op-hww-price--ink { font-size: 32px; }
+  }
+</style>

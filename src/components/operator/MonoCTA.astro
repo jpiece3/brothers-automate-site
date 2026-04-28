@@ -1,0 +1,196 @@
+---
+/**
+ * MonoCTA — operator button: orange-with-paper-arrow OR navy-with-orange-arrow.
+ * Hard 1.5px border + offset shadow. Plus Jakarta Sans 800.
+ *
+ * Props:
+ *   label:    string   button text e.g. "Talk to the Brothers"
+ *   variant:  'orange' | 'navy' | 'paper'  (default 'orange')
+ *             - orange = orange bg, paper-bg arrow chip (primary CTA)
+ *             - navy   = navy bg, orange arrow chip (secondary CTA on cream pages)
+ *             - paper  = paper bg, navy arrow chip (tertiary, e.g. inside dark cards)
+ *   size:     'md' | 'lg'  (default 'md')
+ *   href:     string   the link target
+ *   external: boolean  (default false) — adds target=_blank
+ *   calLink:  string   optional Cal.com link (replaces href; sets up data-cal-* attrs)
+ *   trackLocation:  string  optional analytics location label
+ *   trackLabel:     string  optional analytics CTA label
+ *   shadow:    boolean  (default true)
+ *   block:     boolean  (default false) — full-width button
+ *   class:     string   extra classes
+ */
+interface Props {
+  label: string;
+  variant?: 'orange' | 'navy' | 'paper';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  external?: boolean;
+  calLink?: string;
+  trackLocation?: string;
+  trackLabel?: string;
+  shadow?: boolean;
+  block?: boolean;
+  class?: string;
+}
+const {
+  label,
+  variant = 'orange',
+  size = 'md',
+  href = '#',
+  external = false,
+  calLink,
+  trackLocation,
+  trackLabel,
+  shadow = true,
+  block = false,
+  class: className = '',
+} = Astro.props;
+
+const classes = [
+  'op-cta',
+  `op-cta--${variant}`,
+  `op-cta--${size}`,
+  shadow ? 'op-cta--shadow' : '',
+  block ? 'op-cta--block' : '',
+  className,
+].filter(Boolean).join(' ');
+
+const calProps = calLink
+  ? {
+      'data-cal-link': calLink,
+      'data-cal-namespace': calLink.split('/').pop(),
+      'data-cal-config': '{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}',
+    }
+  : {};
+---
+
+<a
+  class={classes}
+  href={calLink ? '#' : href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  data-track={trackLocation || trackLabel ? 'cta_click' : undefined}
+  data-track-location={trackLocation}
+  data-track-label={trackLabel || label}
+  {...calProps}
+>
+  <span class="op-cta-label">{label}</span>
+  <span class="op-cta-arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .op-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease),
+      background var(--op-dur-hover) var(--op-ease);
+  }
+
+  .op-cta--sm {
+    padding: 8px 14px;
+    font-size: 13px;
+    gap: 8px;
+  }
+  .op-cta--sm .op-cta-arrow {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  .op-cta--md {
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+  .op-cta--lg {
+    padding: 16px 26px;
+    font-size: 15px;
+  }
+
+  .op-cta--shadow { box-shadow: var(--op-shadow); }
+
+  .op-cta--block { display: flex; width: 100%; justify-content: center; }
+
+  /* Orange variant — primary CTA */
+  .op-cta--orange {
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+  .op-cta--orange:hover {
+    background: var(--op-orange-deep);
+    color: var(--op-paper);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .op-cta--orange .op-cta-arrow {
+    background: var(--op-paper);
+    color: var(--op-orange);
+  }
+
+  /* Navy variant — secondary CTA */
+  .op-cta--navy {
+    background: var(--op-navy);
+    color: var(--op-cream);
+  }
+  .op-cta--navy:hover {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .op-cta--navy .op-cta-arrow {
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+
+  /* Paper variant — tertiary, used on dark cards */
+  .op-cta--paper {
+    background: var(--op-paper);
+    color: var(--op-ink);
+  }
+  .op-cta--paper:hover {
+    background: var(--op-cream);
+    color: var(--op-ink);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .op-cta--paper .op-cta-arrow {
+    background: var(--op-navy);
+    color: var(--op-paper);
+  }
+
+  /* Arrow chip */
+  .op-cta-arrow {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: transform var(--op-dur-hover) var(--op-ease);
+  }
+
+  .op-cta:hover .op-cta-arrow {
+    transform: translateX(2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .op-cta,
+    .op-cta-arrow {
+      transition: none;
+    }
+    .op-cta:hover {
+      transform: none;
+    }
+  }
+</style>

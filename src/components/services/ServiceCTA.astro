@@ -1,4 +1,7 @@
 ---
+import EyebrowTag from '../operator/EyebrowTag.astro';
+import MonoCTA from '../operator/MonoCTA.astro';
+
 interface Props {
   headline: string;
   headlineHighlight: string;
@@ -8,86 +11,90 @@ interface Props {
 const { headline, headlineHighlight, subheadline } = Astro.props;
 ---
 
-<section class="s-cta-section bg-navy" id="cta">
-  <div class="container">
-    <div class="cta-content">
-      <h2 data-animate="fade-up">{headline} <span class="text-highlight">{headlineHighlight}</span></h2>
-      <p class="cta-subhead" data-animate="fade-up">{subheadline}</p>
-
-      <div class="cta-buttons" data-animate="scale-up">
-        <a
-          href="#"
-          class="btn btn-primary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
+<section class="op-svccta op-grid-bg" id="cta">
+  <div class="op-svccta-frame">
+    <div class="op-svccta-panel" data-animate="scale-up">
+      <div class="op-svccta-panel-header">
+        <span class="op-pulse-dot op-pulse-dot--lg"></span>
+        <span class="op-mono op-svccta-id">SCHEDULE_INTAKE · 30_MIN</span>
+        <span class="op-mono op-svccta-status">● ACCEPTING NEW BUILDS</span>
       </div>
-
-      <p class="cta-note" data-animate="fade-in">Free consultation &bull; No obligation</p>
+      <div class="op-svccta-panel-body">
+        <div class="op-svccta-eyebrow"><EyebrowTag label="GET ON OUR CALENDAR" /></div>
+        <h2 class="op-svccta-h2">
+          {headline} <span class="op-svccta-h2-orange">{headlineHighlight}</span>
+        </h2>
+        <p class="op-svccta-sub">{subheadline}</p>
+        <div class="op-svccta-actions">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            trackLocation="service-cta"
+            trackLabel="Talk to the Brothers"
+          />
+        </div>
+        <p class="op-mono op-svccta-fineprint">FREE CONSULTATION · NO OBLIGATION</p>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .s-cta-section {
-    padding: var(--space-4xl) 0;
-    text-align: center;
-    position: relative;
+  .op-svccta { padding: 72px var(--op-section-px) 96px; }
+  .op-svccta-frame { max-width: 1000px; margin: 0 auto; }
+  .op-svccta-panel {
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
     overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-cream);
   }
-
-  .s-cta-section::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(237, 137, 54, 0.15) 0%, transparent 60%);
-    pointer-events: none;
+  .op-svccta-panel-header {
+    background: var(--op-navy-deep);
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
   }
-
-  .cta-content {
-    position: relative;
+  .op-svccta-id { font-size: 9px; color: var(--op-orange); }
+  .op-svccta-status { margin-left: auto; font-size: 8.5px; color: var(--op-cream); opacity: 0.55; }
+  .op-svccta-panel-body { padding: 36px 32px 32px; text-align: center; }
+  .op-svccta-eyebrow { margin-bottom: 18px; display: flex; justify-content: center; }
+  .op-svccta-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-paper);
+    margin: 0 auto 16px;
     max-width: 700px;
-    margin: 0 auto;
-    z-index: 1;
+    text-wrap: balance;
   }
-
-  .s-cta-section h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: var(--space-md);
+  .op-svccta-h2-orange { color: var(--op-orange); }
+  .op-svccta-sub {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--op-cream);
+    opacity: 0.78;
+    margin: 0 auto 24px;
+    max-width: 600px;
   }
-
-  .text-highlight { color: var(--orange); }
-
-  .cta-subhead {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--space-xl);
+  .op-svccta-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
   }
-
-  .cta-buttons { margin-bottom: var(--space-lg); }
-
-  .cta-buttons .btn-primary {
-    background: var(--orange);
-    color: white;
-    padding: var(--space-md) var(--space-2xl);
-    font-size: 1.125rem;
-    box-shadow: 0 0 30px rgba(237, 137, 54, 0.3);
-  }
-
-  .cta-buttons .btn-primary:hover {
-    background: var(--orange-hover);
-    box-shadow: 0 0 50px rgba(237, 137, 54, 0.5);
-    transform: translateY(-2px);
-  }
-
-  .cta-note {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.6);
+  .op-svccta-fineprint {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
     margin: 0;
   }
+  @media (max-width: 700px) { .op-svccta { padding: 56px 22px 72px; } .op-svccta-panel-body { padding: 28px 22px 26px; } }
 </style>

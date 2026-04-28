@@ -3,6 +3,8 @@ import { getAllServices } from '../data/services';
 import { getAllVerticals } from '../data/verticals';
 import { getAllLocations } from '../data/locations';
 import { projects } from '../data/projects';
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import MonoCTA from './operator/MonoCTA.astro';
 
 const year = new Date().getFullYear();
 const services = getAllServices();
@@ -10,20 +12,59 @@ const verticals = getAllVerticals();
 const locations = getAllLocations();
 ---
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-logo">
-        <img src="/logo.png" alt="Brothers Automate" width="160" height="50" loading="lazy" decoding="async" />
-        <p class="footer-mission">Our mission: to design and install AI systems that quietly run in the background so service businesses get more qualified leads and waste far less time on manual work.</p>
+<footer class="op-footer">
+  <div class="op-footer-frame">
+    <div class="op-footer-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / FOOTER · V.2026"
+        right="● ALL SYSTEMS RUNNING"
+        bordered
+      />
+    </div>
+
+    {/* Top: logo + mission + nav columns */}
+    <div class="op-footer-top">
+      <div class="op-footer-brand">
+        <a href="/" class="op-footer-logo" aria-label="Brothers Automate home">
+          <img src="/logo.png" alt="Brothers Automate" width="160" height="50" loading="lazy" decoding="async" />
+        </a>
+        <p class="op-footer-mission">
+          We design and install AI systems that quietly run in the background — so service businesses get more qualified leads and waste far less time on manual work.
+        </p>
+        <MonoCTA
+          label="Talk to the Brothers"
+          variant="orange"
+          size="sm"
+          calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          trackLocation="footer"
+          trackLabel="Talk to the Brothers"
+          class="op-footer-cta"
+        />
       </div>
 
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Company</h4>
+      <div class="op-footer-cols">
+        <div class="op-footer-col">
+          <div class="op-mono op-footer-col-label">
+            <span class="op-footer-col-num">01</span> THE BUILDS
+          </div>
+          <ul>
+            <li><a href="/projects/inbound-ai-sdr">Inbound AI SDR</a></li>
+            <li><a href="/projects/quiz-funnels">Lead Qualification Quiz</a></li>
+            <li><a href="/projects/cpq-agent">AI Quote Generator</a></li>
+            <li><a href="/projects/client-scan">SEO Audit Engine</a></li>
+            <li><a href="/projects/onboarding-workflow">Client Onboarding</a></li>
+            <li><a href="/projects/screenfast">AI Resume Screener</a></li>
+            <li><a href="/projects">All projects →</a></li>
+          </ul>
+        </div>
+
+        <div class="op-footer-col">
+          <div class="op-mono op-footer-col-label">
+            <span class="op-footer-col-num">02</span> COMPANY
+          </div>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/projects">Projects</a></li>
+            <li><a href="/pricing">Pricing</a></li>
             <li><a href="/blog">Blog</a></li>
             <li><a href="/resources">Resources</a></li>
             <li>
@@ -33,275 +74,290 @@ const locations = getAllLocations();
                 data-cal-namespace="free-quiz-audit-automation-brothers"
                 data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
                 data-track="cta_click" data-track-location="footer" data-track-label="Book a Call"
-              >Book a Call</a>
+              >Book a call</a>
             </li>
+          </ul>
+        </div>
+
+        <div class="op-footer-col">
+          <div class="op-mono op-footer-col-label">
+            <span class="op-footer-col-num">03</span> CONNECT
+          </div>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/james-pinder-52a261372/" target="_blank" rel="noopener noreferrer" data-track="social_click" data-track-label="LinkedIn">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/simpleflo_james/" target="_blank" rel="noopener noreferrer" data-track="social_click" data-track-label="Instagram">Instagram</a></li>
+            <li><a href="https://x.com/simpleflo_james" target="_blank" rel="noopener noreferrer" data-track="social_click" data-track-label="X">X / Twitter</a></li>
+            <li><a href="https://www.youtube.com/@James_simple_flo" target="_blank" rel="noopener noreferrer" data-track="social_click" data-track-label="YouTube">YouTube</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="footer-socials">
-      <a href="https://www.linkedin.com/in/james-pinder-52a261372/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-track="social_click" data-track-label="LinkedIn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/simpleflo_james/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-track="social_click" data-track-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-      <a href="https://x.com/simpleflo_james" target="_blank" rel="noopener noreferrer" aria-label="X" data-track="social_click" data-track-label="X">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://www.youtube.com/@James_simple_flo" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-track="social_click" data-track-label="YouTube">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      </a>
-    </div>
-
-    <details class="seo-links">
-      <summary>Explore All Pages</summary>
-      <div class="seo-links-content">
-        <div class="seo-group">
-          <span class="seo-group-label">Services</span>
-          {services.map((s, i) => (
-            <><a href={`/services/${s.slug}`}>{s.name}</a>{i < services.length - 1 && <span class="seo-sep">&middot;</span>}</>
-          ))}
+    {/* Sitemap details (preserved for SEO) */}
+    <details class="op-footer-sitemap">
+      <summary class="op-mono">
+        <span class="op-footer-sitemap-num">04</span> EXPLORE ALL PAGES
+        <span class="op-footer-sitemap-arrow" aria-hidden="true">+</span>
+      </summary>
+      <div class="op-footer-sitemap-body">
+        <div class="op-footer-sitemap-group">
+          <div class="op-mono op-footer-sitemap-label">SERVICES</div>
+          <div class="op-footer-sitemap-links">
+            {services.map((s) => (
+              <a href={`/services/${s.slug}`}>{s.name}</a>
+            ))}
+          </div>
         </div>
-        <div class="seo-group">
-          <span class="seo-group-label">Industries</span>
-          {verticals.map((v, i) => (
-            <><a href={`/for/${v.slug}`}>{v.shortLabel}</a>{i < verticals.length - 1 && <span class="seo-sep">&middot;</span>}</>
-          ))}
+        <div class="op-footer-sitemap-group">
+          <div class="op-mono op-footer-sitemap-label">INDUSTRIES</div>
+          <div class="op-footer-sitemap-links">
+            {verticals.map((v) => (
+              <a href={`/for/${v.slug}`}>{v.shortLabel}</a>
+            ))}
+          </div>
         </div>
-        <div class="seo-group">
-          <span class="seo-group-label">Locations</span>
-          {locations.map((l, i) => (
-            <><a href={`/in/${l.slug}`}>{l.name}</a>{i < locations.length - 1 && <span class="seo-sep">&middot;</span>}</>
-          ))}
+        <div class="op-footer-sitemap-group">
+          <div class="op-mono op-footer-sitemap-label">LOCATIONS</div>
+          <div class="op-footer-sitemap-links">
+            {locations.map((l) => (
+              <a href={`/in/${l.slug}`}>{l.name}</a>
+            ))}
+          </div>
         </div>
-        <div class="seo-group">
-          <span class="seo-group-label">Projects</span>
-          {projects.map((p, i) => (
-            <><a href={`/projects/${p.slug}`}>{p.name}</a>{i < projects.length - 1 && <span class="seo-sep">&middot;</span>}</>
-          ))}
+        <div class="op-footer-sitemap-group">
+          <div class="op-mono op-footer-sitemap-label">ALL PROJECTS</div>
+          <div class="op-footer-sitemap-links">
+            {projects.map((p) => (
+              <a href={`/projects/${p.slug}`}>{p.name}</a>
+            ))}
+          </div>
         </div>
       </div>
     </details>
 
-    <div class="footer-bottom">
-      <p class="footer-copyright">
-        &copy; {year} Brothers Automate. All rights reserved.
-      </p>
+    {/* Bottom strip */}
+    <div class="op-footer-bottom">
+      <span class="op-mono">© {year} BROTHERS AUTOMATE · ALL RIGHTS RESERVED</span>
+      <span class="op-mono op-footer-built">BUILT IN-HOUSE · NO TEMPLATES</span>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border);
-    padding: var(--space-2xl) 0 var(--space-xl);
+  .op-footer {
+    border-top: var(--op-border);
+    padding: 56px var(--op-section-px) 32px;
+    background: var(--op-navy);
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--op-cream);
   }
 
-  .footer-top {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
+  .op-footer-frame {
+    max-width: var(--op-max-content);
+    margin: 0 auto;
   }
 
-  @media (min-width: 768px) {
-    .footer-top {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+  .op-footer-util {
+    margin-bottom: 36px;
+  }
+
+  /* Top section */
+  .op-footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 900px) {
+    .op-footer-top {
+      grid-template-columns: 1.1fr 2fr;
+      gap: 64px;
     }
   }
 
-  .footer-logo {
-    flex-shrink: 0;
-  }
-
-  .footer-logo img {
-    height: 50px;
-    width: auto;
-  }
-
-  .footer-mission {
-    font-size: 0.8125rem;
-    color: var(--orange);
-    line-height: 1.6;
-    max-width: 240px;
-    margin: var(--space-sm) 0 0;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: var(--space-2xl);
-  }
-
-  .footer-col h4 {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-sm);
-  }
-
-  .footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-col li {
-    margin-bottom: var(--space-xs);
-  }
-
-  .footer-col a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s ease;
-  }
-
-  .footer-col a:hover {
-    color: var(--orange);
-  }
-
-  .footer-socials {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-md);
-    padding: var(--space-lg) 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-socials a {
-    color: var(--text-secondary);
-    transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
-  }
-
-  .footer-socials a:hover {
-    color: var(--orange);
-  }
-
-  /* Collapsible SEO links */
-  .seo-links {
-    border-top: 1px solid var(--border);
-    padding: var(--space-md) 0;
-  }
-
-  .seo-links summary {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-
-  .seo-links summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .seo-links summary::before {
-    content: "\25B8";
-    font-size: 0.625rem;
-    transition: transform 0.2s ease;
-  }
-
-  .seo-links[open] summary::before {
-    transform: rotate(90deg);
-  }
-
-  .seo-links-content {
-    padding-top: var(--space-md);
+  .op-footer-brand {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 20px;
+    align-items: flex-start;
   }
 
-  .seo-group {
+  .op-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    background: var(--op-paper);
+    border: 1.5px solid var(--op-paper);
+    border-radius: var(--op-radius);
+    padding: 10px 16px;
+    box-shadow: var(--op-shadow);
+  }
+  .op-footer-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
+  .op-footer-mission {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: rgba(244, 238, 226, 0.7);
+    max-width: 320px;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-footer-cta { align-self: flex-start; }
+
+  /* Nav columns */
+  .op-footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  @media (max-width: 700px) {
+    .op-footer-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+  @media (max-width: 480px) {
+    .op-footer-cols { grid-template-columns: 1fr; }
+  }
+
+  .op-footer-col-label {
+    font-size: 10px;
+    color: var(--op-cream);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid rgba(244, 238, 226, 0.2);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .op-footer-col-num {
+    color: var(--op-orange);
+    font-size: 9px;
+  }
+
+  .op-footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .op-footer-col a {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(244, 238, 226, 0.75);
+    text-decoration: none;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-footer-col a:hover {
+    color: var(--op-orange);
+  }
+
+  /* Sitemap (collapsible) */
+  .op-footer-sitemap {
+    background: var(--op-navy-deep);
+    border: 1.5px solid rgba(244, 238, 226, 0.15);
+    border-radius: var(--op-radius);
+    margin-bottom: 32px;
+  }
+  .op-footer-sitemap summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--op-cream);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-footer-sitemap summary::-webkit-details-marker { display: none; }
+  .op-footer-sitemap-num {
+    color: var(--op-orange);
+    font-size: 9px;
+  }
+  .op-footer-sitemap-arrow {
+    margin-left: auto;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid rgba(244, 238, 226, 0.4);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-cream);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-footer-sitemap[open] .op-footer-sitemap-arrow {
+    transform: rotate(45deg);
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-color: var(--op-orange);
+  }
+  .op-footer-sitemap summary:hover { color: var(--op-orange); }
+
+  .op-footer-sitemap-body {
+    border-top: 1.5px solid rgba(244, 238, 226, 0.15);
+    padding: 20px 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .op-footer-sitemap-label {
+    font-size: 9px;
+    color: var(--op-orange);
+    margin-bottom: 8px;
+    letter-spacing: 0.22em;
+  }
+  .op-footer-sitemap-links {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 4px;
-    line-height: 1.8;
+    gap: 6px 14px;
+    line-height: 1.7;
   }
-
-  .seo-group-label {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 4px;
-  }
-
-  .seo-group a {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
+  .op-footer-sitemap-links a {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(244, 238, 226, 0.65);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--op-dur-hover) var(--op-ease);
   }
+  .op-footer-sitemap-links a:hover { color: var(--op-orange); }
 
-  .seo-group a:hover {
-    color: var(--orange);
-  }
-
-  .seo-sep {
-    font-size: 0.5rem;
-    color: var(--text-muted);
-    opacity: 0.5;
-  }
-
-  .footer-bottom {
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--border);
+  /* Bottom strip */
+  .op-footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(244, 238, 226, 0.15);
+    font-size: 9px;
+    color: rgba(244, 238, 226, 0.55);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .op-footer-built {
+    color: rgba(244, 238, 226, 0.45);
   }
 
-  .footer-copyright {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  @media (max-width: 767px) {
-    .footer-top {
-      text-align: center;
-    }
-
-    .footer-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .footer-mission {
-      max-width: 300px;
-      text-align: center;
-    }
-
-    .footer-links {
-      justify-content: center;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .seo-links summary {
-      justify-content: center;
-    }
+  @media (max-width: 600px) {
+    .op-footer { padding: 40px 22px 24px; }
+    .op-footer-bottom { font-size: 8.5px; }
   }
 </style>

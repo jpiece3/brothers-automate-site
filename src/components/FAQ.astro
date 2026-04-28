@@ -1,40 +1,63 @@
 ---
-const faqs = [
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+
+// Grouped FAQ for the operator system
+const groups = [
   {
-    question: "What kinds of AI systems do you build?",
-    answer: "We build systems that automate the manual work eating your time: lead follow-up and qualification, ad creative generation, resume screening, review response, brand research, route optimization, and more. If it follows a pattern and a human doesn't need to do it, we can probably automate it."
+    code: 'GROUP_01',
+    label: 'Process & Timeline',
+    questions: [
+      {
+        question: 'How long does a project take?',
+        answer: "Most projects take 1-3 weeks from kickoff to live system. We scope everything upfront so there are no surprises. You'll know the timeline before we start."
+      },
+      {
+        question: 'What do I need to provide?',
+        answer: "A 30-minute kickoff call and access to the tools you're already using (CRM, email platform, scheduling tool, etc.). We handle the research, architecture, build, and deployment. You approve."
+      },
+      {
+        question: 'What do I get when the project is done?',
+        answer: "A working system deployed and running, full documentation explaining how everything works, and a walkthrough call. You'll understand your system inside and out. It runs on its own after handoff."
+      }
+    ]
   },
   {
-    question: "How long does a project take?",
-    answer: "Most projects take 1-3 weeks from kickoff to live system. We scope everything upfront so there are no surprises. You'll know the timeline before we start."
+    code: 'GROUP_02',
+    label: 'Pricing & Guarantees',
+    questions: [
+      {
+        question: 'How much does a project cost?',
+        answer: "Two ways to work with us: a monthly retainer ($3,500/mo) for ongoing automation builds and support, or a one-time scoped project with a custom quote. Either way, pricing is clear upfront — no hidden costs. Talk to us and we'll recommend the best fit."
+      },
+      {
+        question: "What if it doesn't work?",
+        answer: "We include a 30-day guarantee. If the system doesn't do what we scoped, we fix it free. We define deliverables before writing a line of code, so we're both clear on what 'done' looks like."
+      }
+    ]
   },
   {
-    question: "How much does a project cost?",
-    answer: "Two ways to work with us: a monthly retainer ($3,500/mo) for ongoing automation builds and support, or a one-time scoped project with a custom quote. Either way, pricing is clear upfront — no hidden costs. Talk to us and we'll recommend the best fit."
-  },
-  {
-    question: "What do I need to provide?",
-    answer: "A 30-minute kickoff call and access to the tools you're already using (CRM, email platform, scheduling tool, etc.). We handle the research, architecture, build, and deployment. You approve."
-  },
-  {
-    question: "What do I get when the project is done?",
-    answer: "A working system deployed and running, full documentation explaining how everything works, and a walkthrough call. You'll understand your system inside and out. It runs on its own after handoff."
-  },
-  {
-    question: "Who do you work with?",
-    answer: "Service businesses doing $1-5M in revenue. Coaches, contractors, agencies, restaurants, real estate, e-commerce. Any business owner who's great at what they do but drowning in operational busywork."
-  },
-  {
-    question: "What if it doesn't work?",
-    answer: "We include a 30-day guarantee. If the system doesn't do what we scoped, we fix it free. We define deliverables before writing a line of code, so we're both clear on what 'done' looks like."
+    code: 'GROUP_03',
+    label: 'Fit',
+    questions: [
+      {
+        question: 'What kinds of AI systems do you build?',
+        answer: "We build systems that automate the manual work eating your time: lead follow-up and qualification, ad creative generation, resume screening, review response, brand research, route optimization, and more. If it follows a pattern and a human doesn't need to do it, we can probably automate it."
+      },
+      {
+        question: 'Who do you work with?',
+        answer: "Service businesses doing $1-15M in revenue. Coaches, contractors, agencies, restaurants, real estate, e-commerce. Any business owner who's great at what they do but drowning in operational busywork."
+      }
+    ]
   }
 ];
 
-// FAQPage Schema for structured data
+// Flatten for FAQPage schema
+const allFaqs = groups.flatMap(g => g.questions);
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
+  "mainEntity": allFaqs.map(faq => ({
     "@type": "Question",
     "name": faq.question,
     "acceptedAnswer": {
@@ -45,27 +68,39 @@ const faqSchema = {
 };
 ---
 
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>Questions & Answers</h2>
+<section class="op-faq op-grid-bg" id="faq">
+  <div class="op-faq-frame">
+    <div class="op-faq-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / SECTION 05 · FAQ"
+        right={`${allFaqs.length} QUESTIONS · ${groups.length} GROUPS`}
+        bordered
+      />
     </div>
 
-    <div class="faq-list" data-animate-stagger>
-      {faqs.map((faq, index) => (
-        <div class="faq-item">
-          <input type="checkbox" id={`faq-${index}`} class="faq-toggle" />
-          <label for={`faq-${index}`} class="faq-question">
-            <span>{faq.question}</span>
-            <span class="faq-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </span>
-          </label>
-          <div class="faq-answer">
-            <p>{faq.answer}</p>
+    <div class="op-faq-header" data-animate="fade-up">
+      <EyebrowTag label="FAQ · BEFORE YOU BOOK" />
+      <h2 class="op-faq-h2">Questions we get every week.</h2>
+    </div>
+
+    <div class="op-faq-groups" data-animate-stagger>
+      {groups.map((group, gi) => (
+        <div class="op-faq-group">
+          <div class="op-faq-group-header">
+            <span class="op-mono op-faq-group-code">{group.code}</span>
+            <span class="op-mono op-faq-group-label">{group.label}</span>
+          </div>
+          <div class="op-faq-list">
+            {group.questions.map((faq, qi) => (
+              <details class="op-faq-item">
+                <summary class="op-faq-q">
+                  <span class="op-mono op-faq-q-num">{String(gi * 10 + qi + 1).padStart(2, '0')}</span>
+                  <span class="op-faq-q-text">{faq.question}</span>
+                  <span class="op-faq-q-icon" aria-hidden="true">+</span>
+                </summary>
+                <div class="op-faq-a">{faq.answer}</div>
+              </details>
+            ))}
           </div>
         </div>
       ))}
@@ -73,87 +108,140 @@ const faqSchema = {
   </div>
 </section>
 
-<!-- FAQPage Schema -->
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <style>
-  .faq {
-    background: var(--bg-surface-alt);
+  .op-faq {
+    padding: 72px var(--op-section-px) 88px;
   }
-
-  .faq-list {
-    max-width: 750px;
+  .op-faq-frame {
+    max-width: 1000px;
     margin: 0 auto;
   }
+  .op-faq-util { margin-bottom: 32px; }
 
-  .faq-item {
-    border-bottom: 1px solid var(--border);
+  .op-faq-header {
+    margin-bottom: 48px;
+  }
+  .op-faq-header > :global(.op-eyebrow) {
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+  .op-faq-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
   }
 
-  .faq-item:last-child {
-    border-bottom: none;
+  .op-faq-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
   }
 
-  .faq-toggle {
-    display: none;
+  .op-faq-group-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1.5px solid var(--op-ink);
+  }
+  .op-faq-group-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-faq-group-label {
+    font-size: 11px;
+    color: var(--op-ink);
+    letter-spacing: 0.18em;
   }
 
-  .faq-question {
+  .op-faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .op-faq-item {
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .op-faq-item[open] {
+    background: var(--op-paper);
+  }
+
+  .op-faq-q {
+    list-style: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
-    padding: var(--space-lg) 0;
-    cursor: pointer;
-    font-size: 1.0625rem;
+    gap: 18px;
+    padding: 18px 4px;
+    font-family: var(--op-font-body);
+    font-size: 16px;
     font-weight: 600;
-    color: var(--navy);
-    transition: color var(--transition);
+    color: var(--op-ink);
+    transition: color var(--op-dur-hover) var(--op-ease);
   }
-
-  .faq-question:hover {
-    color: var(--orange);
-  }
-
-  .faq-icon {
+  .op-faq-q::-webkit-details-marker { display: none; }
+  .op-faq-q-num {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    display: flex;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    width: 28px;
+  }
+  .op-faq-q-text {
+    flex: 1;
+    text-wrap: balance;
+  }
+  .op-faq-q-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
-    transition: all var(--transition);
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
   }
-
-  .faq-toggle:checked + .faq-question .faq-icon {
+  .op-faq-item[open] .op-faq-q-icon {
     transform: rotate(45deg);
-    background: var(--orange);
-    border-color: var(--orange);
-    color: white;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-color: var(--op-ink);
   }
+  .op-faq-q:hover { color: var(--op-orange); }
+  .op-faq-q:hover .op-faq-q-num { color: var(--op-orange); }
 
-  .faq-answer {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows var(--transition-slow);
-  }
-
-  .faq-answer > p {
-    overflow: hidden;
-    margin: 0;
-    padding: 0 0 0 0;
-    color: var(--text-secondary);
+  .op-faq-a {
+    padding: 4px 4px 22px 50px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
     line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+    max-width: 800px;
   }
 
-  .faq-toggle:checked ~ .faq-answer {
-    grid-template-rows: 1fr;
+  @media (max-width: 700px) {
+    .op-faq { padding: 56px 22px 72px; }
+    .op-faq-q { gap: 12px; padding: 16px 0; font-size: 15px; }
+    .op-faq-a { padding-left: 40px; font-size: 14px; }
+    .op-faq-q-num { width: 24px; }
   }
 
-  .faq-toggle:checked ~ .faq-answer > p {
-    padding: 0 0 var(--space-lg) 0;
+  @media (prefers-reduced-motion: reduce) {
+    .op-faq-q-icon, .op-faq-q { transition: none; }
   }
 </style>
