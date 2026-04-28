@@ -2,9 +2,72 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CaseStudyPage from '../../components/CaseStudyPage.astro';
+import type { CaseStudyProps } from '../../components/CaseStudyPage.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const productUrl = 'https://brothersautomate.com/clientintel/';
+
+const study: CaseStudyProps = {
+  badge: 'SEO Audit Automation',
+  headline: 'SEO Audit Engine.',
+  headlineHighlight: '10 minutes. Full audit.',
+  subtitle: 'Four AI agents run in parallel. They pull SEO rankings, company intel, local visibility, and review data from 20+ sources, then produce five client-ready reports. What used to take half a week now ships before lunch.',
+  meta: {
+    client: 'Marketing Agency',
+    industry: 'Marketing / Agency',
+    timeline: '3–4 weeks to production',
+    techStack: ['DataForSEO', 'Google Lighthouse', 'Apify', 'Google Business Profile'],
+  },
+  metrics: [
+    { number: '10 min', label: 'Time to audit' },
+    { number: '20+', label: 'Data sources' },
+    { number: '50+', label: 'Checks per scan' },
+    { number: '$1.50', label: 'Cost per audit' },
+  ],
+  problemHeadline: 'SEO audits take all week and still miss half the picture.',
+  problemDescription: "Every new prospect means the same routine: open Semrush, check rankings, manually look up Google reviews, screenshot Lighthouse scores, research competitors, hunt for social profiles. 4–6 hours of tab-switching per prospect — and you still walk into the meeting with a spreadsheet and guesswork.",
+  painPoints: [
+    'A single prospect audit takes 4–6 hours across a dozen different tools',
+    "You're checking rankings in one tool, reviews in another, social in a third — nothing connects",
+    'Competitor analysis means manually pulling data for each one and comparing in a spreadsheet',
+    "The deliverable is a Loom and a Google Doc — not something that makes you look like a $10K/month agency",
+    "By the time you've audited one prospect, three more filled out your contact form",
+    'Junior team members miss critical data points that change the entire pitch strategy',
+  ],
+  solutionHeadline: 'Enter a domain. Get a full audit and 5 share-ready reports.',
+  solutionDescription: 'Four AI research agents run simultaneously — one pulls SEO and keyword data, one gathers company intel and hiring signals, one checks Google Maps and local visibility, and one audits social and review platforms. They pull from 20+ sources including DataForSEO, Google Lighthouse, Google Business Profile, and Apify scrapers. Ten minutes later, you have a complete audit and five client-ready PDFs.',
+  pipeline: [
+    { step: 'INTAKE', description: 'Drop a domain. The system queues four parallel agents and sets up the report templates.' },
+    { step: 'SEO AGENT', description: 'Pulls keyword rankings, backlink profile, on-page Lighthouse scores, and competitor gap analysis.' },
+    { step: 'COMPANY AGENT', description: 'Scrapes hiring signals, tech stack, funding, recent press, and team intel.' },
+    { step: 'LOCAL AGENT', description: 'Audits Google Business Profile, reviews, Maps visibility, and local citations.' },
+    { step: 'SOCIAL AGENT', description: 'Checks LinkedIn, Instagram, X, YouTube — engagement, recency, post quality.' },
+    { step: 'REPORT', description: 'AI synthesizes findings into 5 branded PDFs + an internal pitch strategy doc.' },
+  ],
+  features: [
+    { title: '4 parallel research agents', description: "Each agent owns its lane (SEO, company, local, social) so the audit takes ~10 min, not half a day." },
+    { title: '20+ data sources stitched together', description: 'DataForSEO, Lighthouse, Google Business Profile, Apify, BuiltWith, and more — pulled in parallel, normalized into one report.' },
+    { title: '5 client-ready PDFs per scan', description: 'SEO snapshot, competitor brief, local audit, social presence, and an executive summary — all branded and shareable.' },
+    { title: 'Internal pitch playbook included', description: 'Every scan also produces a private doc with talking points, gap insights, and the highest-leverage opportunities for the sales call.' },
+  ],
+  beforeAfter: [
+    { label: 'Time to audit a prospect', before: '4–6 hours of manual research', after: '~10 minutes, fully automated' },
+    { label: 'Cost per audit', before: 'Senior strategist time + tools', after: '~$1.50 in API calls' },
+    { label: 'Deliverable to client', before: 'Loom + Google Doc', after: '5 branded PDFs + pitch playbook' },
+    { label: 'Junior staff capability', before: 'Misses key data points', after: 'Same depth as a senior strategist' },
+    { label: 'Throughput per week', before: '2–3 audits at most', after: '15+ audits with the same headcount' },
+  ],
+  resultsHeadline: 'Built for a marketing agency. Runs in 10 minutes.',
+  resultsStats: [
+    { number: '10 min', label: 'Per audit', context: 'vs. 4–6 hours manual' },
+    { number: '50+', label: 'Data points checked', context: 'Across 20+ sources' },
+    { number: '$1.50', label: 'Cost per audit', context: 'API calls only — no labor' },
+  ],
+  ctaHeadline: 'Want one of these for your agency?',
+  ctaDescription: 'Same engine, custom-branded for your firm. We tune the agents to your niche, white-label the reports, and deploy on your accounts. 30-day guarantee.',
+  productUrl,
+};
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -12,8 +75,8 @@ const breadcrumbSchema = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
     { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
-    { "@type": "ListItem", "position": 3, "name": "SEO Audit Engine", "item": `${SITE_URL}/projects/client-scan` }
-  ]
+    { "@type": "ListItem", "position": 3, "name": "SEO Audit Engine", "item": `${SITE_URL}/projects/client-scan` },
+  ],
 };
 ---
 
@@ -23,819 +86,9 @@ const breadcrumbSchema = {
 >
   <Header />
   <main>
-
-    <!-- HERO -->
-    <section class="project-hero">
-      <div class="hero-bg-grid"></div>
-      <div class="container">
-        <div class="project-hero-content" data-animate="fade-up">
-          <span class="badge">Automated SEO & Digital Presence Auditing</span>
-          <h1>SEO Audit Engine.<br /><span class="gradient-text">10 Minutes. Full Audit.</span></h1>
-          <p class="project-hero-sub">Stop spending 6 hours Googling a prospect. Four AI agents pull rankings, competitors, maps data, social presence, and company intel from 20+ sources — and deliver it as reports you can share.</p>
-
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-number">10 min</span>
-              <span class="hero-stat-label">Full Audit</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">50+</span>
-              <span class="hero-stat-label">Data Points</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">$1.50</span>
-              <span class="hero-stat-label">Per Audit</span>
-            </div>
-          </div>
-
-          <div class="hero-buttons">
-            <a href={productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">See the Dashboard</a>
-            <a
-              href="#"
-              class="btn btn-secondary btn-lg"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Talk to the Brothers</a>
-          </div>
-
-          <!-- Scan Terminal Box -->
-          <div class="sa-scan-box">
-            <div class="sa-scan-bar">
-              <div class="sa-scan-dot" style="background:#e8b4a0"></div>
-              <div class="sa-scan-dot" style="background:#ddd6c8"></div>
-              <div class="sa-scan-dot" style="background:#b8d4b0"></div>
-              <span style="margin-left:6px">seo-audit-engine / scan</span>
-            </div>
-            <div class="sa-scan-input-row">
-              <input class="sa-scan-input" id="scanInput" placeholder="handymanbocaratonfl.com · Boca Raton, FL" />
-              <button class="sa-scan-btn" onclick="runScan()">&#9654; RUN AUDIT</button>
-            </div>
-            <div class="sa-scan-log" id="scanLog"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TICKER -->
-    <div class="sa-ticker">
-      <div class="sa-ticker-inner">
-        DOMAIN &rarr; 4 AGENTS &nbsp;&middot;&nbsp; SEO ANALYSIS &nbsp;&middot;&nbsp; COMPANY INTEL &nbsp;&middot;&nbsp; LOCAL & MAPS &nbsp;&middot;&nbsp; SOCIAL & REVIEWS &nbsp;&middot;&nbsp; 5 REPORTS &nbsp;&middot;&nbsp; PITCH STRATEGY &nbsp;&middot;&nbsp; DASHBOARD &nbsp;&middot;&nbsp;
-        DOMAIN &rarr; 4 AGENTS &nbsp;&middot;&nbsp; SEO ANALYSIS &nbsp;&middot;&nbsp; COMPANY INTEL &nbsp;&middot;&nbsp; LOCAL & MAPS &nbsp;&middot;&nbsp; SOCIAL & REVIEWS &nbsp;&middot;&nbsp; 5 REPORTS &nbsp;&middot;&nbsp; PITCH STRATEGY &nbsp;&middot;&nbsp; DASHBOARD &nbsp;&middot;&nbsp;
-      </div>
-    </div>
-
-    <!-- 01 — HOW IT WORKS -->
-    <section class="sa-section" id="sa-section-1">
-      <div class="sa-section-label">01 — How It Works</div>
-      <h2 class="sa-section-title">One domain.<br><span class="sa-accent">Four agents. Full picture.</span></h2>
-      <p class="sa-section-sub">Enter a domain and location. Four AI research agents run in parallel — each specializing in a different dimension of the prospect's digital presence. Click each agent to see what it pulls.</p>
-
-      <div class="sa-loop">
-        <div class="sa-loop-card active" onclick="toggleLoop(this)">
-          <div class="sa-loop-num">01</div>
-          <div class="sa-loop-title">SEO & Technical</div>
-          <div class="sa-loop-desc">Rankings, keywords, site health</div>
-          <div class="sa-loop-detail">
-            &rarr; Domain rank &amp; total ranked keywords<br>
-            &rarr; Keyword positions with search volume &amp; difficulty<br>
-            &rarr; Competitor discovery &amp; keyword gap analysis<br>
-            &rarr; Lighthouse scores (desktop + mobile)<br>
-            &rarr; Full site crawl: 404s, missing meta, H1 tags<br>
-            &rarr; Tech stack detection (CMS, analytics, plugins)
-          </div>
-        </div>
-        <div class="sa-loop-card" onclick="toggleLoop(this)">
-          <div class="sa-loop-num">02</div>
-          <div class="sa-loop-title">Company Intel</div>
-          <div class="sa-loop-desc">Leadership, revenue, hiring signals</div>
-          <div class="sa-loop-detail">
-            &rarr; Company name, tagline, founding year<br>
-            &rarr; Leadership profiles + LinkedIn<br>
-            &rarr; Revenue estimates &amp; employee count<br>
-            &rarr; Job postings (growth signals)<br>
-            &rarr; Brand mentions &amp; sentiment analysis<br>
-            &rarr; Marketing capability assessment
-          </div>
-        </div>
-        <div class="sa-loop-card" onclick="toggleLoop(this)">
-          <div class="sa-loop-num">03</div>
-          <div class="sa-loop-title">Local & Maps</div>
-          <div class="sa-loop-desc">Google Maps, GBP, organic SERP</div>
-          <div class="sa-loop-detail">
-            &rarr; Google Maps pack rankings (3-5 queries)<br>
-            &rarr; Google Business Profile data<br>
-            &rarr; Organic SERP positions vs. competitors<br>
-            &rarr; Google Trends (12-month keyword interest)<br>
-            &rarr; Competitor reviews with full text<br>
-            &rarr; Places data: photos, Q&amp;A, popular times
-          </div>
-        </div>
-        <div class="sa-loop-card" onclick="toggleLoop(this)">
-          <div class="sa-loop-num">04</div>
-          <div class="sa-loop-title">Social & Reviews</div>
-          <div class="sa-loop-desc">Instagram, Facebook, Yelp, BBB</div>
-          <div class="sa-loop-detail">
-            &rarr; Instagram: followers, posts, engagement rate<br>
-            &rarr; Facebook: likes, followers, rating, ad activity<br>
-            &rarr; Yelp, BBB, and review platform presence<br>
-            &rarr; Competitor social benchmarking<br>
-            &rarr; Contact info scraping (emails, phones)<br>
-            &rarr; Social presence score (0-100)
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 — THE DATA SOURCES -->
-    <section class="sa-section" id="sa-section-2">
-      <div class="sa-section-label">02 — The Data Sources</div>
-      <h2 class="sa-section-title">20+ APIs.<br><span class="sa-accent">One report.</span></h2>
-      <p class="sa-section-sub">Every data point is pulled from a real API — not scraped from a cached database. Live data, every scan. Click a source to see what it provides.</p>
-
-      <div class="sa-tier-table">
-        <div class="sa-tier-header">
-          <div>Source</div>
-          <div>Data Provided</div>
-          <div>Cost</div>
-          <div>Agent</div>
-        </div>
-        <div class="sa-tier-row" onclick="highlightTier(this)">
-          <div><div class="sa-tier-badge sa-t0">DFS</div></div>
-          <div class="sa-tier-info">
-            <div class="sa-tier-name">DataForSEO</div>
-            <div class="sa-tier-source">15+ endpoints &middot; live Google data</div>
-          </div>
-          <div class="sa-tier-cost">~$0.20</div>
-          <div class="sa-tier-filter">SEO, Local</div>
-        </div>
-        <div class="sa-tier-row" onclick="highlightTier(this)">
-          <div><div class="sa-tier-badge sa-t1">LH</div></div>
-          <div class="sa-tier-info">
-            <div class="sa-tier-name">Google Lighthouse</div>
-            <div class="sa-tier-source">Performance, accessibility, SEO scores</div>
-          </div>
-          <div class="sa-tier-cost">~$0.01</div>
-          <div class="sa-tier-filter">SEO</div>
-        </div>
-        <div class="sa-tier-row" onclick="highlightTier(this)">
-          <div><div class="sa-tier-badge sa-t2">API</div></div>
-          <div class="sa-tier-info">
-            <div class="sa-tier-name">Apify Scrapers</div>
-            <div class="sa-tier-source">Instagram, Facebook, Google Places, Reviews</div>
-          </div>
-          <div class="sa-tier-cost">~$0.10</div>
-          <div class="sa-tier-filter">Social, Local</div>
-        </div>
-        <div class="sa-tier-row" onclick="highlightTier(this)">
-          <div><div class="sa-tier-badge sa-t3">AI</div></div>
-          <div class="sa-tier-info">
-            <div class="sa-tier-name">AI Analysis</div>
-            <div class="sa-tier-source">Company intel, sentiment, gap assessment</div>
-          </div>
-          <div class="sa-tier-cost">~$1.00</div>
-          <div class="sa-tier-filter">Intel</div>
-        </div>
-      </div>
-
-      <div class="sa-stat-row">
-        <div class="sa-stat">
-          <div class="sa-stat-num">$1.50</div>
-          <div class="sa-stat-label">total cost per full audit</div>
-        </div>
-        <div class="sa-stat">
-          <div class="sa-stat-num">$0.04</div>
-          <div class="sa-stat-label">per metric refresh (rankings + lighthouse)</div>
-        </div>
-        <div class="sa-stat">
-          <div class="sa-stat-num">0</div>
-          <div class="sa-stat-label">manual research hours</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 — AUDIT RESULTS -->
-    <section class="sa-section" id="sa-section-3">
-      <div class="sa-section-label">03 — What You Get</div>
-      <h2 class="sa-section-title">Before &amp; after.<br><span class="sa-accent">Real example.</span></h2>
-      <p class="sa-section-sub">Here's what the SEO Audit Engine found for a handyman business in Boca Raton — a company with a decent website but zero marketing infrastructure.</p>
-
-      <div class="sa-score-demo">
-        <div class="sa-score-card" onclick="this.classList.toggle('expanded')">
-          <div class="sa-score-card-top">
-            <div class="sa-score-company">1st Home Maintenance</div>
-            <div class="sa-score-badge sa-status-low">Visibility: F</div>
-          </div>
-          <div class="sa-score-num sa-low">6%</div>
-          <div class="sa-score-evidence">Domain rank: 7 &middot; 24 keywords (none on page 1) &middot; 26 monthly visits &middot; zero Google reviews &middot; no social media &middot; no Google Business Profile</div>
-          <div class="sa-score-signals">
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:#c0392b">&cross;</span> Google Business Profile <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:0%;background:#c0392b"></div></div> Not found</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:#c0392b">&cross;</span> Google Reviews <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:0%;background:#c0392b"></div></div> 0 reviews</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:#c0392b">&cross;</span> Social Presence <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:0%;background:#c0392b"></div></div> 0/100</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:var(--sa-green)">&check;</span> Lighthouse Score <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:97%;background:var(--sa-green)"></div></div> 97/100</div>
-          </div>
-        </div>
-        <div class="sa-score-card" onclick="this.classList.toggle('expanded')">
-          <div class="sa-score-card-top">
-            <div class="sa-score-company">Mr. Handyman (competitor)</div>
-            <div class="sa-score-badge sa-status-high">Top Competitor</div>
-          </div>
-          <div class="sa-score-num sa-high">286</div>
-          <div class="sa-score-evidence">Google reviews &middot; 4.9 star rating &middot; 59,210 keywords &middot; $932K traffic value &middot; Maps position #1 for all local queries</div>
-          <div class="sa-score-signals">
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:var(--sa-green)">&check;</span> Google Reviews <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:100%;background:var(--sa-green)"></div></div> 286 reviews</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:var(--sa-green)">&check;</span> Maps Ranking <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:100%;background:var(--sa-green)"></div></div> #1 position</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:var(--sa-green)">&check;</span> Keywords <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:100%;background:var(--sa-green)"></div></div> 59,210</div>
-            <div class="sa-sig-line"><span class="sa-sig-check" style="color:var(--sa-green)">&check;</span> Traffic Value <div class="sa-sig-bar-mini"><div class="sa-sig-fill" style="width:100%;background:var(--sa-green)"></div></div> $932K/mo</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sa-quote-block">
-        <div class="sa-quote-text">"Their site scores 97 on Lighthouse — the foundation is solid. The problem isn't the website, it's that nobody can find it. Zero Maps presence, zero reviews, zero social. The gap isn't technical — it's visibility."</div>
-        <div class="sa-quote-attr">From the audit report</div>
-      </div>
-    </section>
-
-    <!-- 04 — THE REPORTS -->
-    <section class="sa-section" id="sa-section-4">
-      <div class="sa-section-label">04 — The Deliverables</div>
-      <h2 class="sa-section-title">5 reports.<br><span class="sa-accent">Share-ready.</span></h2>
-      <p class="sa-section-sub">Every audit produces five self-contained HTML reports plus three internal strategy documents. The client-facing reports use plain language — no API names, no jargon, no credentials exposed.</p>
-
-      <div class="sa-signal-grid">
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">SEO Analysis</div>
-            <div class="sa-signal-weight">Client-Facing</div>
-          </div>
-          <div class="sa-signal-desc">Keyword gaps, competitor comparison, ranking opportunities — presented as insights, not spreadsheets.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar sa-bar-green" style="width:100%"></div></div>
-          <div class="sa-signal-meta"><span>Rankings + gaps</span><span>Shareable</span></div>
-        </div>
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">Website Audit</div>
-            <div class="sa-signal-weight">Client-Facing</div>
-          </div>
-          <div class="sa-signal-desc">Category scores for performance, content freshness, local visibility, social presence, and technical health.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar sa-bar-green" style="width:92%"></div></div>
-          <div class="sa-signal-meta"><span>Health scores</span><span>Shareable</span></div>
-        </div>
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">Action Plan</div>
-            <div class="sa-signal-weight">Client-Facing</div>
-          </div>
-          <div class="sa-signal-desc">Tiered roadmap: quick wins (green), growth plays (blue), long-term investments (navy) — each with expected ROI.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar" style="width:88%"></div></div>
-          <div class="sa-signal-meta"><span>Prioritized fixes</span><span>Shareable</span></div>
-        </div>
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">Company Intel</div>
-            <div class="sa-signal-weight" style="background:rgba(30,53,87,0.1);color:var(--sa-navy)">Internal</div>
-          </div>
-          <div class="sa-signal-desc">Leadership profiles, revenue estimates, hiring signals, gap-to-service mapping. Your eyes only.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar" style="width:75%;background:var(--sa-navy)"></div></div>
-          <div class="sa-signal-meta"><span>Strategy intel</span><span>Internal only</span></div>
-        </div>
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">Pitch Plan</div>
-            <div class="sa-signal-weight" style="background:rgba(30,53,87,0.1);color:var(--sa-navy)">Internal</div>
-          </div>
-          <div class="sa-signal-desc">Meeting strategy, 3 big problems to lead with, objection handling, recommended close, and talking points.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar" style="width:82%;background:var(--sa-navy)"></div></div>
-          <div class="sa-signal-meta"><span>Meeting prep</span><span>Internal only</span></div>
-        </div>
-        <div class="sa-signal-card">
-          <div class="sa-signal-top">
-            <div class="sa-signal-name">Live Dashboard</div>
-            <div class="sa-signal-weight">Ongoing</div>
-          </div>
-          <div class="sa-signal-desc">All clients in one view. Keyword trends, position tracking, visibility scores, and one-click metric refresh.</div>
-          <div class="sa-signal-bar-wrap"><div class="sa-signal-bar sa-bar-green" style="width:95%"></div></div>
-          <div class="sa-signal-meta"><span>Real-time tracking</span><span>$0.04 refresh</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 — DASHBOARD PREVIEW -->
-    <section class="sa-section" id="sa-section-5">
-      <div class="sa-section-label">05 — The Dashboard</div>
-      <h2 class="sa-section-title">All clients.<br><span class="sa-accent">One place.</span></h2>
-      <p class="sa-section-sub">Every audit feeds into a centralized dashboard. Track visibility scores, keyword positions, competitor gaps, and Google reviews — with trend charts that show how things change between scans.</p>
-
-      <div class="sa-pipeline">
-        <div class="sa-pipe-stage active" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128269;</div>
-          <div class="sa-pipe-name">Scan</div>
-          <div class="sa-pipe-count">Run audit</div>
-        </div>
-        <div class="sa-pipe-stage" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128200;</div>
-          <div class="sa-pipe-name">Track</div>
-          <div class="sa-pipe-count">Dashboard</div>
-        </div>
-        <div class="sa-pipe-stage" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128196;</div>
-          <div class="sa-pipe-name">Report</div>
-          <div class="sa-pipe-count">5 deliverables</div>
-        </div>
-        <div class="sa-pipe-stage" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128640;</div>
-          <div class="sa-pipe-name">Pitch</div>
-          <div class="sa-pipe-count">Win the deal</div>
-        </div>
-        <div class="sa-pipe-stage" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128260;</div>
-          <div class="sa-pipe-name">Refresh</div>
-          <div class="sa-pipe-count">$0.04 / update</div>
-        </div>
-        <div class="sa-pipe-stage sa-won" onclick="togglePipe(this)">
-          <div class="sa-pipe-icon">&#128202;</div>
-          <div class="sa-pipe-name">Trend</div>
-          <div class="sa-pipe-count">Track over time</div>
-        </div>
-      </div>
-
-      <div class="sa-stat-row" style="margin-top:32px">
-        <div class="sa-stat">
-          <div class="sa-stat-num">7</div>
-          <div class="sa-stat-label">tabs per client (overview, SEO, local, social, company, history, reports)</div>
-        </div>
-        <div class="sa-stat">
-          <div class="sa-stat-num">A-F</div>
-          <div class="sa-stat-label">visibility grade based on reviews, keywords, traffic, social</div>
-        </div>
-        <div class="sa-stat">
-          <div class="sa-stat-num">&infin;</div>
-          <div class="sa-stat-label">scans tracked — full history with trend charts</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="sa-cta-section" id="sa-section-6">
-      <div class="sa-section-label" style="justify-content:center;margin-bottom:28px">06 — Get Started</div>
-      <h2 class="sa-cta-title">Domain in.<br>Audit out.<br><span style="color:var(--sa-accent)">10 minutes.</span></h2>
-      <p class="sa-cta-sub">Stop spending all day on prospect research. Walk into every meeting with data, not guesses.</p>
-      <div class="sa-cta-btn-row">
-        <a href={productUrl} class="sa-btn-p" target="_blank" rel="noopener">See the Dashboard &rarr;</a>
-        <a
-          href="#"
-          class="sa-btn-s"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
-      </div>
-      <p style="font-size:11px;color:var(--sa-muted);margin-top:28px;font-family:var(--sa-mono)">SEO Audit Engine &middot; automated prospect intelligence &middot; built for operators</p>
-    </section>
-
+    <CaseStudyPage study={study} />
   </main>
   <Footer />
 
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Layout>
-
-<style>
-  /* ===== HERO (from ProjectPage.astro) ===== */
-  .project-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-3xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  }
-
-  .project-hero-content {
-    position: relative;
-    max-width: 750px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .project-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .project-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto var(--space-lg);
-  }
-
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-xl);
-    padding: var(--space-lg) var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .hero-stat-number { font-size: 1.75rem; font-weight: 800; color: var(--navy); line-height: 1; }
-  .hero-stat-label { font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; }
-  .hero-stat-divider { width: 1px; height: 40px; background: var(--border); }
-
-  .hero-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    align-items: center;
-    margin-bottom: var(--space-xl);
-  }
-
-  @media (min-width: 480px) {
-    .hero-buttons { flex-direction: row; justify-content: center; }
-  }
-
-  /* ===== SCAN TERMINAL BOX ===== */
-  .sa-scan-box {
-    max-width: 520px;
-    width: 100%;
-    margin: 0 auto;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 24px rgba(30,53,87,0.09);
-  }
-  .sa-scan-bar {
-    background: var(--bg-surface-alt);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', var(--font-mono);
-  }
-  .sa-scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .sa-scan-input-row { display: flex; align-items: center; gap: 0; padding: 12px 12px 12px 18px; }
-  .sa-scan-input {
-    flex: 1; background: transparent; border: none; outline: none;
-    font-family: 'DM Mono', var(--font-mono); font-size: 13px; color: var(--navy);
-  }
-  .sa-scan-input::placeholder { color: var(--text-muted); }
-  .sa-scan-btn {
-    background: var(--orange); color: #fff; border: none; padding: 11px 22px; border-radius: 12px;
-    font-family: var(--font-sans); font-weight: 700; font-size: 12px; cursor: pointer;
-    transition: background 0.15s; letter-spacing: 0.01em; white-space: nowrap;
-    animation: btnPulse 2.5s ease-in-out infinite;
-  }
-  .sa-scan-btn:hover { background: var(--orange-hover); animation: none; }
-  @keyframes btnPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,57,0.5); }
-    50% { box-shadow: 0 0 0 8px rgba(224,123,57,0); }
-  }
-  .sa-scan-log {
-    padding: 0 18px 18px; font-family: 'DM Mono', var(--font-mono); font-size: 11px;
-    line-height: 2.1; display: none; border-top: 1px solid var(--border); margin-top: 4px;
-  }
-  .sa-scan-log.visible { display: block; animation: saFadeUp 0.3s ease; }
-
-  /* ===== CUSTOM VARIABLES ===== */
-  :root {
-    --sa-bg: #f2ede4;
-    --sa-surface: #faf7f2;
-    --sa-surface2: #eee8dc;
-    --sa-border: #ddd6c8;
-    --sa-accent: #e07b39;
-    --sa-accent2: #c4622a;
-    --sa-navy: #1e3557;
-    --sa-navy2: #2a4a72;
-    --sa-blue-gray: #7a95b0;
-    --sa-text: #1e3557;
-    --sa-muted: #8a9ab0;
-    --sa-green: #3a9e6e;
-    --sa-green-bg: #e8f5ef;
-    --sa-mono: 'DM Mono', monospace;
-    --sa-sans: 'Plus Jakarta Sans', sans-serif;
-  }
-
-  /* ===== TICKER ===== */
-  .sa-ticker {
-    background: var(--sa-navy);
-    color: rgba(255,255,255,0.7);
-    padding: 10px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .sa-ticker-inner {
-    display: inline-block;
-    animation: saTicker 25s linear infinite;
-    font-family: var(--sa-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-  }
-  @keyframes saTicker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* ===== SECTIONS ===== */
-  .sa-section {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 80px 32px;
-    border-top: 1px solid var(--sa-border);
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .sa-section.visible { opacity: 1; transform: none; }
-
-  .sa-section-label {
-    font-size: 10px; letter-spacing: 0.18em; color: var(--sa-muted);
-    text-transform: uppercase; margin-bottom: 36px;
-    display: flex; align-items: center; gap: 14px; font-weight: 600;
-  }
-  .sa-section-label::after { content: ''; flex: 1; height: 1px; background: var(--sa-border); }
-
-  .sa-section-title {
-    font-size: clamp(30px, 4.5vw, 52px); font-weight: 800; line-height: 1.08;
-    margin-bottom: 14px; color: var(--sa-navy); letter-spacing: -0.025em;
-  }
-  .sa-accent { color: var(--sa-accent); }
-  .sa-section-sub { font-size: 13px; color: var(--sa-blue-gray); max-width: 560px; line-height: 1.75; }
-
-  /* ===== LOOP STEPS ===== */
-  .sa-loop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
-  .sa-loop-card {
-    background: var(--sa-surface); border: 1.5px solid var(--sa-border); border-radius: 16px;
-    padding: 24px 20px; cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 2px 8px rgba(30,53,87,0.05); position: relative;
-  }
-  .sa-loop-card::after {
-    content: '\2192'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%);
-    color: var(--sa-accent); font-size: 16px; font-weight: 700; pointer-events: none;
-  }
-  .sa-loop-card:last-child::after { display: none; }
-  .sa-loop-card:hover, .sa-loop-card.active {
-    border-color: var(--sa-accent); box-shadow: 0 4px 20px rgba(224,123,57,0.14); background: #fff;
-  }
-  .sa-loop-num { font-family: var(--sa-mono); font-size: 10px; color: var(--sa-muted); margin-bottom: 10px; }
-  .sa-loop-title { font-weight: 800; font-size: 16px; color: var(--sa-navy); margin-bottom: 6px; }
-  .sa-loop-desc { font-size: 11px; color: var(--sa-blue-gray); line-height: 1.7; }
-  .sa-loop-detail {
-    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.3s ease;
-    font-size: 11px; color: var(--sa-blue-gray); line-height: 1.9; font-family: var(--sa-mono);
-  }
-  .sa-loop-card.active .sa-loop-detail {
-    max-height: 250px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--sa-border);
-  }
-
-  /* ===== TIER TABLE ===== */
-  .sa-tier-table { margin-top: 48px; border: 1.5px solid var(--sa-border); border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(30,53,87,0.06); }
-  .sa-tier-header { display: grid; grid-template-columns: 70px 1fr 120px 120px; background: var(--sa-surface2); border-bottom: 1.5px solid var(--sa-border); padding: 12px 22px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sa-muted); font-weight: 600; }
-  .sa-tier-row { display: grid; grid-template-columns: 70px 1fr 120px 120px; padding: 18px 22px; border-bottom: 1px solid var(--sa-border); align-items: center; cursor: pointer; transition: background 0.15s; background: var(--sa-surface); }
-  .sa-tier-row:last-child { border-bottom: none; }
-  .sa-tier-row:hover { background: #fff; }
-  .sa-tier-row.highlight { background: rgba(224,123,57,0.04); }
-  .sa-tier-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; font-weight: 800; font-size: 11px; font-family: var(--sa-mono); }
-  .sa-t0 { background: var(--sa-green-bg); color: var(--sa-green); }
-  .sa-t1 { background: rgba(122,149,176,0.15); color: var(--sa-blue-gray); }
-  .sa-t2 { background: rgba(224,123,57,0.1); color: var(--sa-accent); }
-  .sa-t3 { background: rgba(30,53,87,0.1); color: var(--sa-navy); }
-  .sa-tier-info { padding: 0 16px; }
-  .sa-tier-name { font-weight: 700; font-size: 13px; color: var(--sa-navy); margin-bottom: 2px; }
-  .sa-tier-source { font-size: 11px; color: var(--sa-blue-gray); font-family: var(--sa-mono); }
-  .sa-tier-cost { font-family: var(--sa-mono); font-size: 12px; color: var(--sa-text); font-weight: 500; }
-  .sa-tier-filter { font-size: 11px; color: var(--sa-muted); }
-
-  /* ===== STAT ROW ===== */
-  .sa-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
-  .sa-stat { background: var(--sa-surface); border: 1.5px solid var(--sa-border); border-radius: 16px; padding: 28px; text-align: center; }
-  .sa-stat-num { font-size: 44px; font-weight: 900; color: var(--sa-accent); line-height: 1; margin-bottom: 8px; letter-spacing: -0.03em; }
-  .sa-stat-label { font-size: 12px; color: var(--sa-blue-gray); line-height: 1.5; }
-
-  /* ===== SCORE DEMO ===== */
-  .sa-score-demo { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .sa-score-card { background: var(--sa-surface); border: 1.5px solid var(--sa-border); border-radius: 16px; padding: 24px; cursor: pointer; transition: all 0.2s; }
-  .sa-score-card:hover { border-color: var(--sa-accent); }
-  .sa-score-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-  .sa-score-company { font-weight: 800; font-size: 15px; color: var(--sa-navy); }
-  .sa-score-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-family: var(--sa-mono); }
-  .sa-status-high { background: var(--sa-green-bg); color: var(--sa-green); }
-  .sa-status-low { background: rgba(192,57,43,0.1); color: #c0392b; }
-  .sa-score-num { font-size: 52px; font-weight: 900; color: var(--sa-accent); line-height: 1; letter-spacing: -0.04em; margin-bottom: 12px; }
-  .sa-score-num.sa-high { color: var(--sa-green); }
-  .sa-score-num.sa-low { color: #c0392b; }
-  .sa-score-evidence { font-size: 11px; color: var(--sa-blue-gray); line-height: 1.7; font-family: var(--sa-mono); }
-  .sa-score-signals { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
-  .sa-sig-line { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--sa-muted); }
-  .sa-sig-check { font-size: 12px; }
-  .sa-sig-bar-mini { flex: 1; height: 3px; background: var(--sa-surface2); border-radius: 999px; overflow: hidden; }
-  .sa-sig-fill { height: 100%; border-radius: 999px; }
-
-  /* ===== QUOTE ===== */
-  .sa-quote-block { margin-top: 28px; border-left: 4px solid var(--sa-accent); padding: 24px 28px; background: var(--sa-surface); border-radius: 0 16px 16px 0; }
-  .sa-quote-text { font-size: clamp(14px, 2vw, 19px); font-weight: 700; line-height: 1.55; color: var(--sa-navy); margin-bottom: 10px; }
-  .sa-quote-attr { font-size: 10px; color: var(--sa-muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--sa-mono); }
-
-  /* ===== SIGNAL/REPORT CARDS ===== */
-  .sa-signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px; }
-  .sa-signal-card { background: var(--sa-surface); border: 1.5px solid var(--sa-border); border-radius: 14px; padding: 20px; cursor: pointer; transition: all 0.2s; }
-  .sa-signal-card:hover { border-color: var(--sa-accent); box-shadow: 0 4px 16px rgba(224,123,57,0.1); }
-  .sa-signal-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-  .sa-signal-name { font-weight: 700; font-size: 13px; color: var(--sa-navy); }
-  .sa-signal-weight { font-family: var(--sa-mono); font-size: 10px; color: var(--sa-accent); background: rgba(224,123,57,0.1); padding: 3px 8px; border-radius: 6px; font-weight: 500; }
-  .sa-signal-desc { font-size: 11px; color: var(--sa-blue-gray); line-height: 1.6; margin-bottom: 12px; }
-  .sa-signal-bar-wrap { height: 4px; background: var(--sa-surface2); border-radius: 999px; overflow: hidden; }
-  .sa-signal-bar { height: 100%; border-radius: 999px; background: var(--sa-accent); transition: width 0.6s ease; }
-  .sa-bar-green { background: var(--sa-green); }
-  .sa-signal-meta { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--sa-muted); font-family: var(--sa-mono); }
-
-  /* ===== PIPELINE ===== */
-  .sa-pipeline { display: flex; gap: 0; margin-top: 48px; overflow-x: auto; padding-bottom: 4px; }
-  .sa-pipe-stage {
-    flex: 1; min-width: 110px; background: var(--sa-surface); border-top: 3px solid var(--sa-border);
-    border-right: 1px solid var(--sa-border); border-bottom: 1.5px solid var(--sa-border);
-    padding: 20px 16px; text-align: center; cursor: pointer; transition: all 0.2s;
-  }
-  .sa-pipe-stage:first-child { border-left: 1.5px solid var(--sa-border); border-radius: 16px 0 0 16px; }
-  .sa-pipe-stage:last-child { border-right: 1.5px solid var(--sa-border); border-radius: 0 16px 16px 0; }
-  .sa-pipe-stage:hover, .sa-pipe-stage.active { border-top-color: var(--sa-accent); background: #fff; }
-  .sa-pipe-stage.sa-won { border-top-color: var(--sa-green); }
-  .sa-pipe-icon { font-size: 20px; margin-bottom: 8px; }
-  .sa-pipe-name { font-weight: 700; font-size: 11px; color: var(--sa-navy); }
-  .sa-pipe-count { font-size: 10px; color: var(--sa-muted); margin-top: 4px; font-family: var(--sa-mono); }
-
-  /* ===== CTA ===== */
-  .sa-cta-section {
-    max-width: 980px; margin: 0 auto; padding: 80px 32px 120px; border-top: 1px solid var(--sa-border);
-    text-align: center; opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .sa-cta-section.visible { opacity: 1; transform: none; }
-  .sa-cta-title { font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.02; margin-bottom: 18px; color: var(--sa-navy); letter-spacing: -0.03em; }
-  .sa-cta-sub { font-size: 16px; color: var(--sa-blue-gray); max-width: 400px; margin: 0 auto 40px; line-height: 1.7; }
-  .sa-cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .sa-btn-p { display: inline-block; background: var(--sa-accent); color: #fff; border: none; padding: 16px 34px; font-family: var(--sa-sans); font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 999px; transition: background 0.15s; box-shadow: 0 4px 16px rgba(224,123,57,0.3); text-decoration: none; }
-  .sa-btn-p:hover { background: var(--sa-accent2); }
-  .sa-btn-s { display: inline-block; background: transparent; color: var(--sa-navy); border: 2px solid var(--sa-navy); padding: 16px 34px; font-family: var(--sa-sans); font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 999px; transition: all 0.15s; text-decoration: none; }
-  .sa-btn-s:hover { background: var(--sa-navy); color: #fff; }
-
-  /* ===== ANIMATIONS ===== */
-  @keyframes saFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-  /* ===== MOBILE ===== */
-  @media (max-width: 767px) {
-    .project-hero { padding-top: 120px; padding-bottom: var(--space-2xl); }
-    .hero-stats { flex-direction: column; gap: var(--space-md); padding: var(--space-md); }
-    .hero-stat-divider { width: 60px; height: 1px; }
-    .hero-buttons .btn { width: 100%; justify-content: center; }
-  }
-
-  @media (max-width: 640px) {
-    .sa-loop { grid-template-columns: 1fr 1fr; }
-    .sa-loop-card::after { display: none; }
-    .sa-signal-grid { grid-template-columns: 1fr 1fr; }
-    .sa-score-demo { grid-template-columns: 1fr; }
-    .sa-tier-header, .sa-tier-row { grid-template-columns: 50px 1fr 90px; }
-    .sa-tier-filter { display: none; }
-    .sa-stat-row { grid-template-columns: 1fr; }
-  }
-</style>
-
-<!-- DM Mono font -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" />
-
-<script>
-  const scanLines = [
-    ['sa-log-working', '\u27F6 Initializing scan for handymanbocaratonfl.com \u00B7 Boca Raton, FL'],
-    ['sa-log-ok', '\u2713 Input parsed \u00B7 auto-discovering competitors'],
-    ['sa-log-working', '\u27F6 Spawning 4 research agents in parallel...'],
-    ['sa-log-ok', '\u2713 Agent 1: SEO & Technical \u00B7 domain rank, keywords, lighthouse, crawl'],
-    ['sa-log-ok', '\u2713 Agent 2: Company Intel \u00B7 leadership, revenue, hiring signals'],
-    ['sa-log-ok', '\u2713 Agent 3: Local & Maps \u00B7 maps rankings, GBP, organic SERP'],
-    ['sa-log-ok', '\u2713 Agent 4: Social & Reviews \u00B7 Instagram, Facebook, Yelp, BBB'],
-    ['sa-log-working', '\u27F6 All 4 agents complete \u00B7 validating research data...'],
-    ['sa-log-ok', '\u2713 4/4 JSON files verified \u00B7 total API cost: $1.47'],
-    ['sa-log-working', '\u27F6 Generating 5 client-facing reports...'],
-    ['sa-log-ok', '\u2713 SEO analysis, website audit, action plan, methodology \u00B7 done'],
-    ['sa-log-working', '\u27F6 Generating internal strategy docs...'],
-    ['sa-log-ok', '\u2713 Company intel, pitch plan, full keyword tables \u00B7 done'],
-    ['sa-log-qual', '\u2192 Persisting to dashboard \u00B7 24 keywords tracked'],
-    ['sa-log-ok', '\u26A1 Scan complete \u00B7 8 deliverables \u00B7 $1.47 total \u00B7 10 minutes'],
-  ];
-
-  function runScan() {
-    const log = document.getElementById('scanLog');
-    if (!log) return;
-    log.innerHTML = '';
-    log.classList.add('visible');
-    let i = 0;
-    const iv = setInterval(() => {
-      if (i >= scanLines.length) { clearInterval(iv); return; }
-      const [cls, msg] = scanLines[i];
-      const div = document.createElement('div');
-      div.className = cls;
-      div.textContent = msg;
-      log.appendChild(div);
-      log.scrollTop = log.scrollHeight;
-      i++;
-    }, 350);
-  }
-
-  const scanInput = document.getElementById('scanInput');
-  if (scanInput) {
-    scanInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') runScan();
-    });
-  }
-
-  function toggleLoop(el) {
-    document.querySelectorAll('.sa-loop-card').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  function highlightTier(el) {
-    document.querySelectorAll('.sa-tier-row').forEach(r => r.classList.remove('highlight'));
-    el.classList.add('highlight');
-  }
-
-  function togglePipe(el) {
-    document.querySelectorAll('.sa-pipe-stage').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  const saObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.sa-section, .sa-cta-section').forEach(el => saObs.observe(el));
-
-  const signalObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.sa-signal-bar').forEach(b => {
-          const w = b.style.width;
-          b.style.width = '0';
-          requestAnimationFrame(() => { b.style.width = w; });
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.sa-signal-grid').forEach(g => signalObs.observe(g));
-
-  window.runScan = runScan;
-  window.toggleLoop = toggleLoop;
-  window.highlightTier = highlightTier;
-  window.togglePipe = togglePipe;
-</script>
-
-<style is:global>
-  .sa-log-ok { color: #3a9e6e; }
-  .sa-log-working { color: #e07b39; }
-  .sa-log-qual { color: #1e3557; font-weight: 500; }
-</style>

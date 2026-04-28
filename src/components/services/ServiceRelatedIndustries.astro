@@ -6,23 +6,19 @@ interface Props {
 const { industries } = Astro.props;
 ---
 
-<section class="s-industries bg-surface-alt">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>Industries That Use This</h2>
+<section class="op-svcri">
+  <div class="op-svcri-frame">
+    <div class="op-svcri-header" data-animate="fade-up">
+      <span class="op-mono op-svcri-label"><span class="op-svcri-num">06</span> WHO USES THIS</span>
+      <h2 class="op-svcri-h2">Industries that use this build.</h2>
     </div>
-
-    <div class="industries-grid" data-animate-stagger>
-      {industries.map((industry) => (
-        <a href={`/for/${industry.slug}`} class="industry-card card">
-          <h3>{industry.name}</h3>
-          <p>{industry.blurb}</p>
-          <span class="industry-link">
-            Learn more
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </span>
+    <div class="op-svcri-grid" data-animate-stagger>
+      {industries.map((ind, i) => (
+        <a href={`/for/${ind.slug}`} class="op-svcri-card">
+          <span class="op-mono op-svcri-card-id">IND_{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="op-svcri-card-name">{ind.name}</h3>
+          <p class="op-svcri-card-blurb">{ind.blurb}</p>
+          <span class="op-mono op-svcri-card-cta">LEARN MORE →</span>
         </a>
       ))}
     </div>
@@ -30,68 +26,72 @@ const { industries } = Astro.props;
 </section>
 
 <style>
-  .s-industries {
-    padding: var(--space-4xl) 0;
+  .op-svcri { padding: 72px var(--op-section-px); background: var(--op-cream); }
+  .op-svcri-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-svcri-header { max-width: 720px; margin-bottom: 36px; }
+  .op-svcri-label {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
   }
-
-  .industries-grid {
-    display: grid;
-    gap: var(--space-lg);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 768px) {
-    .industries-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .industry-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-xl);
-    text-decoration: none;
-    transition: all var(--transition);
-    border: 1px solid var(--border);
-  }
-
-  .industry-card:hover {
-    border-color: var(--orange);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-  }
-
-  .industry-card h3 {
-    font-size: 1.125rem;
-    color: var(--navy);
+  .op-svcri-num { color: var(--op-orange); font-size: 9px; }
+  .op-svcri-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
     margin: 0;
   }
-
-  .industry-card p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+  .op-svcri-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 700px) { .op-svcri-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-svcri-grid { grid-template-columns: repeat(3, 1fr); } }
+  .op-svcri-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-svcri-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
+  }
+  .op-svcri-card-id { font-size: 9px; color: var(--op-orange); }
+  .op-svcri-card-name {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-svcri-card-blurb {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
     margin: 0;
     flex: 1;
   }
-
-  .industry-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--orange);
-    margin-top: var(--space-sm);
+  .op-svcri-card-cta {
+    margin-top: 4px;
+    font-size: 9px;
+    color: var(--op-orange);
   }
-
-  .industry-card:hover .industry-link svg {
-    transform: translateX(4px);
-  }
-
-  .industry-link svg {
-    transition: transform var(--transition);
-  }
+  @media (max-width: 700px) { .op-svcri { padding: 56px 22px; } }
 </style>

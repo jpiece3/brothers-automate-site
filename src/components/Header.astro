@@ -1,43 +1,48 @@
 ---
+import MonoCTA from './operator/MonoCTA.astro';
+// Operator Header — paper-bg pill nav with hard 1.5px navy border + 3/3 offset shadow.
+// Frosted-glass paper background. Compact CTA via MonoCTA size="sm".
 ---
 
-<header class="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">
+<header class="op-header">
+  <div class="op-header-inner">
+    <a href="/" class="op-logo" aria-label="Brothers Automate home">
       <img src="/logo.png" alt="Brothers Automate" width="140" height="44" fetchpriority="high" />
     </a>
 
     <!-- Desktop nav -->
-    <nav class="nav desktop-nav">
+    <nav class="op-nav desktop-nav" aria-label="Primary">
       <a href="/projects" data-track="nav_click" data-track-label="Projects">Projects</a>
       <a href="/resources" data-track="nav_click" data-track-label="Resources">Resources</a>
       <a href="/pricing" data-track="nav_click" data-track-label="Pricing">Pricing</a>
       <a href="/about" data-track="nav_click" data-track-label="About">About</a>
     </nav>
 
-    <div class="header-ctas">
+    <div class="op-header-ctas">
       <!-- Desktop CTA -->
-      <a
-        href="#"
-        class="btn btn-primary desktop-cta"
-        data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-        data-cal-namespace="free-quiz-audit-automation-brothers"
-        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        data-track="cta_click" data-track-location="header" data-track-label="Talk to the Brothers"
-      >Talk to the Brothers</a>
+      <MonoCTA
+        label="Talk to the Brothers"
+        variant="orange"
+        size="sm"
+        calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        trackLocation="header"
+        trackLabel="Talk to the Brothers"
+        class="desktop-cta"
+      />
 
       <!-- Mobile CTA -->
-      <a
-        href="#"
-        class="btn btn-primary mobile-cta"
-        data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-        data-cal-namespace="free-quiz-audit-automation-brothers"
-        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        data-track="cta_click" data-track-location="header-mobile" data-track-label="Book Call"
-      >Book Call</a>
+      <MonoCTA
+        label="Book Call"
+        variant="orange"
+        size="sm"
+        calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        trackLocation="header-mobile"
+        trackLabel="Book Call"
+        class="mobile-cta"
+      />
 
-      <!-- Hamburger menu button -->
-      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <!-- Hamburger toggle -->
+      <button class="op-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -45,8 +50,8 @@
     </div>
   </div>
 
-  <!-- Mobile nav dropdown -->
-  <nav class="mobile-nav">
+  <!-- Mobile dropdown -->
+  <nav class="op-mobile-nav" aria-label="Primary mobile">
     <a href="/projects" data-track="nav_click" data-track-label="Projects">Projects</a>
     <a href="/resources" data-track="nav_click" data-track-label="Resources">Resources</a>
     <a href="/pricing" data-track="nav_click" data-track-label="Pricing">Pricing</a>
@@ -55,19 +60,18 @@
 </header>
 
 <script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mobileNav = document.querySelector('.mobile-nav');
-  const header = document.querySelector('.header');
+  const menuToggle = document.querySelector('.op-menu-toggle');
+  const mobileNav = document.querySelector('.op-mobile-nav');
+  const header = document.querySelector('.op-header');
 
-  if (menuToggle && mobileNav) {
+  if (menuToggle && mobileNav && header) {
     menuToggle.addEventListener('click', () => {
       const isOpen = mobileNav.classList.toggle('is-open');
       menuToggle.classList.toggle('is-open');
       menuToggle.setAttribute('aria-expanded', isOpen.toString());
     });
 
-    // Close menu when clicking a link
-    mobileNav.querySelectorAll('a').forEach(link => {
+    mobileNav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         mobileNav.classList.remove('is-open');
         menuToggle.classList.remove('is-open');
@@ -75,7 +79,6 @@
       });
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!header.contains(e.target as Node)) {
         mobileNav.classList.remove('is-open');
@@ -87,181 +90,144 @@
 </script>
 
 <style>
-  .header {
+  .op-header {
     position: fixed;
     top: 16px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 32px);
-    max-width: 1000px;
+    max-width: 680px;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius-xl);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    background: rgba(251, 247, 238, 0.78);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
   }
 
-  .header-inner {
+  .op-header-inner {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    padding: 0 8px 0 18px;
+    height: 60px;
+    line-height: 1;
+  }
+
+  /* Every immediate child fills the full bar height + centers its content.
+     Eliminates vertical alignment ambiguity from inline-baseline behavior. */
+  .op-header-inner > * {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
   }
 
-  .logo {
+  /* Logo */
+  .op-logo {
+    text-decoration: none;
     flex-shrink: 0;
   }
-
-  .logo img {
-    height: 44px;
+  .op-logo img {
+    height: 30px;
     width: auto;
+    display: block;
   }
 
   /* Desktop nav */
   .desktop-nav {
     display: flex;
     align-items: center;
-    gap: var(--space-lg);
+    gap: 20px;
+    margin-left: 26px;
+    margin-right: auto;
   }
-
   .desktop-nav a {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    transition: color var(--transition);
-    white-space: nowrap;
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--op-navy);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: color var(--op-dur-hover) var(--op-ease);
   }
-
   .desktop-nav a:hover {
-    color: var(--navy);
+    color: var(--op-orange);
   }
 
-  /* Header CTAs */
-  .header-ctas {
+  /* CTAs */
+  .op-header-ctas {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 12px;
+    margin-left: 8px;
   }
 
-  .header-ctas .btn {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9375rem;
-  }
+  :global(.desktop-cta) { display: inline-flex !important; }
+  :global(.mobile-cta) { display: none !important; }
 
-  /* Desktop/Mobile CTA visibility */
-  .desktop-cta {
-    display: inline-flex;
-  }
-
-  .mobile-cta {
-    display: none;
-  }
-
-  /* Hamburger menu toggle */
-  .menu-toggle {
+  /* Hamburger */
+  .op-menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 40px;
     height: 40px;
-    padding: 0;
     background: transparent;
     border: none;
     cursor: pointer;
     gap: 5px;
+    padding: 0;
   }
-
-  .menu-toggle span {
+  .op-menu-toggle span {
     display: block;
     width: 22px;
     height: 2px;
-    background: var(--navy);
-    border-radius: 2px;
+    background: var(--op-navy);
+    border-radius: 1px;
     transition: all 0.3s ease;
   }
+  .op-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .op-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+  .op-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  .menu-toggle.is-open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .menu-toggle.is-open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.is-open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  /* Mobile nav dropdown */
-  .mobile-nav {
+  /* Mobile dropdown */
+  .op-mobile-nav {
     display: none;
     flex-direction: column;
-    padding: 0 var(--space-md) var(--space-md);
-    border-top: 1px solid var(--border-light);
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-mobile-nav a {
+    padding: 12px 0;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--op-navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--op-rule-soft);
+  }
+  .op-mobile-nav a:last-child { border-bottom: none; }
+  .op-mobile-nav a:hover { color: var(--op-orange); }
+
+  /* Mobile responsive */
+  @media (max-width: 900px) {
+    .desktop-nav { display: none; }
+    :global(.desktop-cta) { display: none !important; }
+    :global(.mobile-cta) { display: inline-flex !important; }
+    .op-menu-toggle { display: flex; }
+    .op-header-inner { gap: 12px; padding: 8px 14px; height: 56px; }
   }
 
-  .mobile-nav a {
-    padding: var(--space-sm) 0;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--navy);
-    border-bottom: 1px solid var(--border-light);
+  @media (max-width: 900px) {
+    .op-logo img { height: 32px; }
+  }
+  @media (max-width: 480px) {
+    .op-header { top: 12px; width: calc(100% - 24px); }
+    .op-logo img { height: 28px; }
   }
 
-  .mobile-nav a:last-child {
-    border-bottom: none;
-  }
-
-  .mobile-nav a:hover {
-    color: var(--orange);
-  }
-
-  /* Mobile styles */
-  @media (max-width: 767px) {
-    .header {
-      top: 12px;
-      width: calc(100% - 24px);
-    }
-
-    .header-inner {
-      height: 56px;
-      padding: 0 var(--space-md);
-    }
-
-    .logo img {
-      height: 32px;
-    }
-
-    /* Hide desktop nav on mobile */
-    .desktop-nav {
-      display: none;
-    }
-
-    /* Show hamburger on mobile */
-    .menu-toggle {
-      display: flex;
-    }
-
-    /* Switch CTA visibility */
-    .desktop-cta {
-      display: none;
-    }
-
-    .mobile-cta {
-      display: inline-flex;
-      padding: 0.5rem 0.875rem;
-      font-size: 0.875rem;
-    }
-
-    /* Mobile nav when open */
-    .mobile-nav.is-open {
-      display: flex;
-    }
-  }
+  .op-mobile-nav.is-open { display: flex; }
 </style>

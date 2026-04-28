@@ -1,0 +1,1089 @@
+---
+import EyebrowTag from './operator/EyebrowTag.astro';
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+
+// The 6 builds — same data as projects.ts but trimmed to what the cards need.
+const cards = [
+  {
+    n: '01',
+    href: '/projects/quiz-funnels',
+    eyebrow: 'Lead Qualification Quiz',
+    title: "Qualify every lead while you're with clients.",
+    body: "Prospects answer 5 questions. They get sorted hot, warm, or cold. Hot ones hit your calendar. The rest drop into auto-follow-up that runs without you.",
+    metrics: [
+      { value: '2–3x', label: 'More qualified leads', target: 2.5, fmt: 'multiplier' },
+      { value: '26', label: 'Auto follow-up emails', target: 26, fmt: 'int' },
+    ],
+    console: 'lead',
+  },
+  {
+    n: '02',
+    href: '/projects/cpq-agent',
+    eyebrow: 'AI Quote Generator',
+    title: 'Send a quote before they hang up.',
+    body: "AI reads the inquiry, asks the right questions, and lands a custom quote in their inbox while you're still on the phone with them.",
+    metrics: [
+      { value: '<2 min', label: 'Quote delivery', target: 2, fmt: 'lt-min' },
+      { value: '24/7', label: 'Always capturing', target: 24, fmt: 'twentyfour' },
+    ],
+    console: 'quote',
+  },
+  {
+    n: '03',
+    href: '/projects/client-scan',
+    eyebrow: 'SEO Audit Engine',
+    title: 'Hand prospects an audit before the sales call.',
+    body: 'Drop a URL. Get a branded report with 50+ checks in 10 minutes. Use it as a lead magnet, sales-call opener, or paid teardown — they walk in already convinced.',
+    metrics: [
+      { value: '10 min', label: 'Full audit', target: 10, fmt: 'min' },
+      { value: '50+', label: 'Data points', target: 50, fmt: 'plus' },
+    ],
+    console: 'audit',
+  },
+  {
+    n: '04',
+    href: '/projects/onboarding-workflow',
+    eyebrow: 'Client Onboarding Automation',
+    title: 'Onboard a client without sending a single email.',
+    body: "Contract signs. Questionnaire goes out. Accounts get provisioned. Kickoff lands on your calendar. Same experience every time. You don't lift a finger.",
+    metrics: [
+      { value: '0', label: 'Manual steps', target: 0, fmt: 'static' },
+      { value: '100%', label: 'Consistency', target: 100, fmt: 'percent' },
+    ],
+    console: 'onboard',
+  },
+  {
+    n: '05',
+    href: '/projects/screenfast',
+    eyebrow: 'AI Resume Screener',
+    title: 'From 200 resumés to 5 finalists in minutes.',
+    body: 'Drop in 200 resumés. AI scores each against your role. You get a ranked top 5 in the time it takes to make coffee — instead of losing your weekend to it.',
+    metrics: [
+      { value: '85%', label: 'Less screening time', target: 85, fmt: 'percent' },
+      { value: 'Sec', label: 'Per resumé', target: 1, fmt: 'static' },
+    ],
+    console: 'resume',
+  },
+  {
+    n: '06',
+    href: '/projects/inbound-ai-sdr',
+    eyebrow: 'Inbound AI SDR',
+    title: 'Reply to every inbound lead in under 60 seconds.',
+    body: 'AI reads the inquiry, scores it 1–10, logs it to Google Sheets, sends a personalized reply, and pings Slack the moment a hot one lands.',
+    metrics: [
+      { value: '<60s', label: 'Reply time', target: 60, fmt: 'lt-s' },
+      { value: '100%', label: 'Logged in Sheets', target: 100, fmt: 'percent' },
+    ],
+    console: 'inbound',
+  },
+];
+
+const pipelineLabels = {
+  lead:    ['INTAKE', 'SCORE', 'SORT', 'ROUTE'],
+  quote:   ['LISTEN', 'PARSE', 'PRICE', 'SEND'],
+  audit:   ['FETCH', 'SCAN', 'SCORE', 'REPORT'],
+  onboard: ['SIGN', 'SEND', 'PROVISION', 'SCHEDULE'],
+  resume:  ['INGEST', 'SCORE', 'RANK', 'SHORTLIST'],
+  inbound: ['READ', 'SCORE', 'REPLY', 'LOG'],
+};
+---
+
+<section class="op-builds op-grid-bg" id="builds">
+  <div class="op-builds-frame">
+    <div class="op-builds-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / SECTION 02 · BUILDS"
+        right="06 SYSTEMS · ALL LIVE"
+        bordered
+      />
+    </div>
+
+    <div class="op-builds-header" data-animate="fade-up">
+      <div class="op-builds-header-left">
+        <EyebrowTag label="THE BUILDS · 06 SYSTEMS" />
+        <h2 class="op-builds-h2">What we ship — and what each one runs while you don't.</h2>
+      </div>
+      <div class="op-builds-header-meta op-mono">
+        HOVER ANY CARD →<br/>
+        <span class="op-builds-header-meta-soft">WATCH THE BUILD RUN</span>
+      </div>
+    </div>
+
+    <div class="op-builds-grid" data-animate-stagger>
+      {cards.map((card, idx) => (
+        <article
+          class={`op-card op-card--${card.console}`}
+          data-step="0"
+          data-active="false"
+          data-card-idx={idx}
+          data-m1-target={card.metrics[0].target}
+          data-m1-fmt={card.metrics[0].fmt}
+          data-m1-value={card.metrics[0].value}
+          data-m2-target={card.metrics[1].target}
+          data-m2-fmt={card.metrics[1].fmt}
+          data-m2-value={card.metrics[1].value}
+        >
+          <a class="op-card-link" href={card.href} aria-label={card.title}></a>
+
+          {/* Header strip */}
+          <div class="op-card-header">
+            <span class="op-pulse-dot op-pulse-dot--lg op-card-dot"></span>
+            <span class="op-card-id op-mono">BUILD_{card.n} · {card.eyebrow.toUpperCase().replace(/[^A-Z0-9]+/g, '_')}</span>
+            <span class="op-card-status">
+              <span></span><span></span><span></span>
+            </span>
+          </div>
+
+          {/* Numeral + headline */}
+          <div class="op-card-numeral-row">
+            <div class="op-card-num">{card.n}</div>
+            <h3 class="op-card-title">{card.title}</h3>
+          </div>
+
+          {/* Console — varies per card */}
+          <div class="op-card-console">
+            {/* Pipeline row (shared across all console types) */}
+            <div class="op-card-pipeline">
+              {pipelineLabels[card.console].map((label, i) => (
+                <div class="op-pipe" data-idx={i}>
+                  <span class="op-mono">{String(i + 1).padStart(2, '0')}·{label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* === LEAD console: 5-Q quiz + bucket sort === */}
+            {card.console === 'lead' && (
+              <>
+                <div class="op-lead-questions">
+                  {[0, 1, 2, 3, 4].map(i => <div class="op-lead-q" data-idx={i}></div>)}
+                </div>
+                <div class="op-mono op-card-statusline">5-Q QUIZ COMPLETE · ROUTING…</div>
+                <div class="op-lead-buckets">
+                  {[
+                    { l: 'HOT', count: 1, fill: true },
+                    { l: 'WARM', count: 2, fill: false },
+                    { l: 'COLD', count: 2, fill: false },
+                  ].map(b => (
+                    <div class={`op-lead-bucket${b.fill ? ' is-fill' : ''}`}>
+                      <div class="op-mono op-lead-bucket-label">{b.l}</div>
+                      <div class="op-lead-bucket-count">{b.count}</div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* === QUOTE console === */}
+            {card.console === 'quote' && (
+              <>
+                <div class="op-quote-msg">
+                  <div class="op-mono op-quote-msg-label">INBOUND · LIVE CALL</div>
+                  <div class="op-quote-msg-text">"...how much for a 12×16 deck?"</div>
+                </div>
+                <div class="op-quote-reply">
+                  <div class="op-mono op-quote-reply-label">QUOTE.PDF · 1m 47s</div>
+                  <div class="op-quote-reply-text">$4,820 — sent to inbox</div>
+                </div>
+                <div class="op-quote-meta op-mono">
+                  <span class="op-quote-live"><span class="op-pulse-dot"></span> LIVE</span>
+                  <span class="op-quote-delivered">✓ DELIVERED</span>
+                  <span class="op-quote-pending">…</span>
+                </div>
+              </>
+            )}
+
+            {/* === AUDIT console === */}
+            {card.console === 'audit' && (
+              <>
+                <div class="op-audit-url">
+                  <span class="op-audit-url-proto op-mono">https://</span>
+                  <span class="op-audit-url-host op-mono">acme.co</span>
+                  <span class="op-audit-url-state op-mono">READY</span>
+                </div>
+                <div class="op-audit-list">
+                  {[
+                    { l: 'Page speed', s: 'PASS' },
+                    { l: 'Meta tags', s: 'FIX' },
+                    { l: 'Mobile UX', s: 'PASS' },
+                    { l: 'Backlinks', s: 'CRIT' },
+                    { l: 'Schema', s: 'PASS' },
+                  ].map((it, i) => (
+                    <div class={`op-audit-row op-audit-row--${it.s.toLowerCase()}`} data-idx={i}>
+                      <div class="op-audit-icon">{it.s === 'PASS' ? '✓' : it.s === 'FIX' ? '!' : '✗'}</div>
+                      <span class="op-audit-label">{it.l}</span>
+                      <span class="op-audit-state op-mono">{it.s}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* === ONBOARD console === */}
+            {card.console === 'onboard' && (
+              <>
+                <div class="op-mono op-card-statusline op-card-statusline--orange">
+                  <span class="op-pulse-dot"></span> NEW CLIENT · RUNNING
+                </div>
+                <div class="op-onboard-list">
+                  {['Contract signed', 'Questionnaire sent', 'Accounts provisioned', 'Kickoff scheduled'].map((s, i) => (
+                    <div class="op-onboard-row" data-idx={i}>
+                      <div class="op-onboard-checkbox">✓</div>
+                      <span class="op-onboard-label">{s}</span>
+                      <span class="op-mono op-onboard-tag">AUTO</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* === RESUME console === */}
+            {card.console === 'resume' && (
+              <>
+                <div class="op-resume-meta op-mono">
+                  <span>200 IN</span>
+                  <span class="op-resume-out">TOP 5 OUT →</span>
+                </div>
+                <div class="op-resume-grid">
+                  {Array.from({ length: 60 }).map((_, i) => (
+                    <div class={`op-resume-dot${i < 5 ? ' is-top' : ''}`} style={`--i:${i}`}></div>
+                  ))}
+                </div>
+                <div class="op-resume-finals">
+                  {[1, 2, 3, 4, 5].map(n => (
+                    <div class="op-resume-final" data-n={n}>#{n}</div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* === INBOUND console === */}
+            {card.console === 'inbound' && (
+              <>
+                <div class="op-inbound-msg">
+                  <div class="op-mono op-inbound-msg-meta">
+                    <span>INBOUND · 09:42</span>
+                    <span class="op-inbound-fit">FIT 9/10</span>
+                  </div>
+                  <div class="op-inbound-msg-text">"Looking for help with..."</div>
+                </div>
+                <div class="op-inbound-reply">
+                  <div class="op-mono op-inbound-reply-meta">REPLIED · 47s</div>
+                  <div class="op-inbound-reply-text">Personalized reply sent</div>
+                </div>
+                <div class="op-inbound-integrations">
+                  <div class="op-mono">✓ SHEETS</div>
+                  <div class="op-mono">● SLACK</div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Body copy */}
+          <p class="op-card-body">{card.body}</p>
+
+          {/* Spec footer: 2 metric cells + CTA */}
+          <div class="op-card-footer">
+            {[0, 1].map((i) => (
+              <div class="op-card-metric">
+                <div class={`op-card-metric-value`} data-metric-idx={i}>
+                  {card.metrics[i].value}
+                </div>
+                <div class="op-mono op-card-metric-label">{card.metrics[i].label}</div>
+              </div>
+            ))}
+            <span class="op-card-cta">
+              <span class="op-card-cta-label">See it run</span>
+              <span class="op-card-cta-arrow" aria-hidden="true">→</span>
+            </span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .op-builds {
+    padding: 80px var(--op-section-px) 96px;
+  }
+
+  .op-builds-frame {
+    max-width: var(--op-max-content);
+    margin: 0 auto;
+  }
+
+  .op-builds-util {
+    margin-bottom: 32px;
+  }
+
+  /* Header */
+  .op-builds-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 56px;
+  }
+  .op-builds-header-left { flex: 1; }
+  .op-builds-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 22px 0 0;
+    max-width: 820px;
+    text-wrap: balance;
+  }
+  .op-builds-header-meta {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    text-align: right;
+    flex-shrink: 0;
+    line-height: 1.4;
+    padding-bottom: 6px;
+  }
+  .op-builds-header-meta-soft { opacity: 0.6; }
+
+  /* Cards grid */
+  .op-builds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 20px;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+  }
+
+  @media (max-width: 1024px) {
+    .op-builds-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .op-builds-grid { grid-template-columns: 1fr; }
+    .op-builds-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .op-builds-header-meta { text-align: left; }
+  }
+
+  /* === Card shell === */
+  .op-card {
+    position: relative;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 4px 0 var(--op-ink);
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .op-card > *:not(.op-card-link) { position: relative; z-index: 0; }
+  .op-card .op-card-cta { z-index: 2; pointer-events: none; }
+
+  /* Card header strip */
+  .op-card-header {
+    background: var(--op-navy-deep);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: var(--op-border);
+  }
+  .op-card-id {
+    font-size: 9px;
+    color: var(--op-orange);
+    letter-spacing: 0.18em;
+  }
+  .op-card-status {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+  }
+  .op-card-status span {
+    width: 6px;
+    height: 6px;
+    background: var(--op-cream);
+    opacity: 0.3;
+  }
+
+  /* Numeral row */
+  .op-card-numeral-row {
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid var(--op-rule-soft);
+  }
+  .op-card-num {
+    font-family: var(--op-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--op-orange);
+    letter-spacing: 0.22em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .op-card-title {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    line-height: 1.18;
+    color: var(--op-ink);
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Console body — shared */
+  .op-card-console {
+    background: var(--op-navy);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+    padding: 10px 12px;
+    min-height: 150px;
+  }
+  .op-card-pipeline {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .op-pipe {
+    flex: 1;
+    padding: 5px 6px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--op-cream);
+    opacity: 0.5;
+    transition: all 280ms ease;
+  }
+  .op-pipe .op-mono {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+  /* Pipeline lights up by step */
+  .op-card[data-active="true"] .op-pipe[data-idx="0"],
+  .op-card[data-active="true"][data-step="1"] .op-pipe[data-idx="1"],
+  .op-card[data-active="true"][data-step="2"] .op-pipe[data-idx="0"],
+  .op-card[data-active="true"][data-step="2"] .op-pipe[data-idx="1"],
+  .op-card[data-active="true"][data-step="2"] .op-pipe[data-idx="2"],
+  .op-card[data-active="true"][data-step="3"] .op-pipe[data-idx="0"],
+  .op-card[data-active="true"][data-step="3"] .op-pipe[data-idx="1"],
+  .op-card[data-active="true"][data-step="3"] .op-pipe[data-idx="2"],
+  .op-card[data-active="true"][data-step="3"] .op-pipe[data-idx="3"] {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    opacity: 1;
+  }
+  /* step 1 needs idx 0 + 1 */
+  .op-card[data-active="true"][data-step="1"] .op-pipe[data-idx="0"] {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    opacity: 1;
+  }
+
+  .op-card-statusline {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
+    margin-bottom: 6px;
+  }
+  .op-card-statusline--orange {
+    color: var(--op-orange);
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* === LEAD console === */
+  .op-lead-questions {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .op-lead-q {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    transition: background 300ms;
+  }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q,
+  .op-card[data-active="true"][data-step="2"] .op-lead-q,
+  .op-card[data-active="true"][data-step="3"] .op-lead-q {
+    background: var(--op-orange);
+  }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q[data-idx="0"] { transition-delay: 0ms; }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q[data-idx="1"] { transition-delay: 80ms; }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q[data-idx="2"] { transition-delay: 160ms; }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q[data-idx="3"] { transition-delay: 240ms; }
+  .op-card[data-active="true"][data-step="1"] .op-lead-q[data-idx="4"] { transition-delay: 320ms; }
+
+  .op-lead-buckets {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .op-lead-bucket {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 6px;
+    text-align: center;
+    transition: all 300ms;
+  }
+  .op-lead-bucket-label {
+    font-size: 8px;
+    color: var(--op-cream);
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .op-lead-bucket-count {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--op-cream);
+    opacity: 0.6;
+    letter-spacing: -0.02em;
+  }
+  .op-card[data-active="true"][data-step="2"] .op-lead-bucket.is-fill,
+  .op-card[data-active="true"][data-step="3"] .op-lead-bucket.is-fill {
+    background: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+  .op-card[data-active="true"][data-step="2"] .op-lead-bucket.is-fill .op-lead-bucket-label,
+  .op-card[data-active="true"][data-step="3"] .op-lead-bucket.is-fill .op-lead-bucket-label,
+  .op-card[data-active="true"][data-step="2"] .op-lead-bucket.is-fill .op-lead-bucket-count,
+  .op-card[data-active="true"][data-step="3"] .op-lead-bucket.is-fill .op-lead-bucket-count {
+    color: var(--op-paper);
+    opacity: 1;
+  }
+
+  /* === QUOTE console === */
+  .op-quote-msg {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--op-cream);
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    color: var(--op-cream);
+    line-height: 1.4;
+  }
+  .op-quote-msg-label {
+    font-size: 8px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+  }
+  .op-quote-reply {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    padding: 8px 10px;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 350ms var(--op-ease), transform 350ms var(--op-ease);
+  }
+  .op-quote-reply-label {
+    font-size: 8px;
+    opacity: 0.85;
+    margin-bottom: 2px;
+  }
+  .op-card[data-active="true"][data-step="2"] .op-quote-reply,
+  .op-card[data-active="true"][data-step="3"] .op-quote-reply {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .op-quote-meta {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    color: var(--op-cream);
+    opacity: 0.5;
+  }
+  .op-quote-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .op-quote-delivered, .op-quote-pending {
+    transition: opacity 300ms;
+  }
+  .op-quote-delivered { opacity: 0; }
+  .op-quote-pending { opacity: 1; }
+  .op-card[data-active="true"][data-step="3"] .op-quote-delivered { opacity: 1; }
+  .op-card[data-active="true"][data-step="3"] .op-quote-pending { opacity: 0; }
+
+  /* === AUDIT console === */
+  .op-audit-url {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    font-size: 10px;
+    color: var(--op-cream);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .op-audit-url-proto { opacity: 0.5; font-size: 10px; letter-spacing: 0; }
+  .op-audit-url-host { flex: 1; font-size: 10px; letter-spacing: 0; }
+  .op-audit-url-state {
+    color: var(--op-orange);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .op-card[data-active="true"][data-step="1"] .op-audit-url-state::before,
+  .op-card[data-active="true"][data-step="2"] .op-audit-url-state::before,
+  .op-card[data-active="true"][data-step="3"] .op-audit-url-state::before {
+    content: 'SCAN';
+  }
+  .op-card[data-active="true"][data-step="1"] .op-audit-url-state,
+  .op-card[data-active="true"][data-step="2"] .op-audit-url-state,
+  .op-card[data-active="true"][data-step="3"] .op-audit-url-state {
+    font-size: 0;
+  }
+  .op-card[data-active="true"][data-step="1"] .op-audit-url-state::before,
+  .op-card[data-active="true"][data-step="2"] .op-audit-url-state::before,
+  .op-card[data-active="true"][data-step="3"] .op-audit-url-state::before {
+    font-size: 9px;
+  }
+
+  .op-audit-list { padding: 2px 0; }
+  .op-audit-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 0;
+    font-family: var(--op-font-mono);
+    font-size: 9.5px;
+    color: var(--op-cream);
+    opacity: 0.3;
+    transform: translateX(-6px);
+    transition: all 300ms;
+  }
+  .op-card[data-active="true"][data-step="1"] .op-audit-row,
+  .op-card[data-active="true"][data-step="2"] .op-audit-row,
+  .op-card[data-active="true"][data-step="3"] .op-audit-row {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .op-audit-row[data-idx="0"] { transition-delay: 0ms; }
+  .op-audit-row[data-idx="1"] { transition-delay: 90ms; }
+  .op-audit-row[data-idx="2"] { transition-delay: 180ms; }
+  .op-audit-row[data-idx="3"] { transition-delay: 270ms; }
+  .op-audit-row[data-idx="4"] { transition-delay: 360ms; }
+
+  .op-audit-icon {
+    width: 11px;
+    height: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--op-navy-deep);
+    font-size: 8px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .op-audit-row--pass .op-audit-icon { background: var(--op-cream); }
+  .op-audit-row--fix  .op-audit-icon { background: var(--op-orange); }
+  .op-audit-row--crit .op-audit-icon { background: var(--op-orange-deep); }
+  .op-audit-label { flex: 1; font-size: 9.5px; }
+  .op-audit-state {
+    font-size: 8px;
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+  }
+
+  /* === ONBOARD console === */
+  .op-onboard-list {}
+  .op-onboard-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 8px;
+    margin-bottom: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--op-font-mono);
+    font-size: 9.5px;
+    color: var(--op-cream);
+    opacity: 0.3;
+    transform: translateX(-6px);
+    transition: all 300ms;
+  }
+  .op-card[data-active="true"] .op-onboard-row {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .op-onboard-row[data-idx="0"] { transition-delay: 0ms; }
+  .op-onboard-row[data-idx="1"] { transition-delay: 180ms; }
+  .op-onboard-row[data-idx="2"] { transition-delay: 360ms; }
+  .op-onboard-row[data-idx="3"] { transition-delay: 540ms; }
+
+  .op-onboard-checkbox {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--op-cream);
+    background: transparent;
+    color: var(--op-paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 800;
+    transition: all 300ms;
+  }
+  .op-card[data-active="true"] .op-onboard-row .op-onboard-checkbox {
+    background: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+  .op-card:not([data-active="true"]) .op-onboard-checkbox { color: transparent; }
+  .op-onboard-label {
+    flex: 1;
+    transition: all 300ms;
+  }
+  .op-card[data-active="true"] .op-onboard-label {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  .op-onboard-tag {
+    font-size: 8px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+  }
+
+  /* === RESUME console === */
+  .op-resume-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+  .op-resume-out {
+    color: var(--op-orange);
+    opacity: 1;
+  }
+  .op-resume-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+  .op-resume-dot {
+    width: 100%;
+    padding-top: 100%;
+    background: rgba(255, 255, 255, 0.18);
+    transition: all 500ms var(--op-ease);
+    transition-delay: calc(var(--i) * 6ms);
+  }
+  .op-card[data-active="true"][data-step="1"] .op-resume-dot,
+  .op-card[data-active="true"][data-step="2"] .op-resume-dot,
+  .op-card[data-active="true"][data-step="3"] .op-resume-dot {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .op-card[data-active="true"][data-step="1"] .op-resume-dot.is-top,
+  .op-card[data-active="true"][data-step="2"] .op-resume-dot.is-top,
+  .op-card[data-active="true"][data-step="3"] .op-resume-dot.is-top {
+    background: var(--op-orange);
+  }
+  .op-card[data-active="true"][data-step="2"] .op-resume-dot.is-top,
+  .op-card[data-active="true"][data-step="3"] .op-resume-dot.is-top {
+    transform: scale(1.4);
+  }
+
+  .op-resume-finals { display: flex; gap: 4px; }
+  .op-resume-final {
+    flex: 1;
+    padding: 5px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--op-cream);
+    opacity: 0.5;
+    transition: all 300ms;
+  }
+  .op-card[data-active="true"][data-step="3"] .op-resume-final {
+    background: var(--op-orange);
+    border-color: var(--op-orange);
+    color: var(--op-paper);
+    opacity: 1;
+  }
+  .op-resume-final[data-n="1"] { transition-delay: 60ms; }
+  .op-resume-final[data-n="2"] { transition-delay: 120ms; }
+  .op-resume-final[data-n="3"] { transition-delay: 180ms; }
+  .op-resume-final[data-n="4"] { transition-delay: 240ms; }
+  .op-resume-final[data-n="5"] { transition-delay: 300ms; }
+
+  /* === INBOUND console === */
+  .op-inbound-msg {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--op-cream);
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    color: var(--op-cream);
+    line-height: 1.4;
+  }
+  .op-inbound-msg-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+  }
+  .op-inbound-fit {
+    color: var(--op-orange);
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  .op-card[data-active="true"][data-step="1"] .op-inbound-fit,
+  .op-card[data-active="true"][data-step="2"] .op-inbound-fit,
+  .op-card[data-active="true"][data-step="3"] .op-inbound-fit { opacity: 1; }
+
+  .op-inbound-reply {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 350ms var(--op-ease);
+  }
+  .op-inbound-reply-meta {
+    font-size: 8px;
+    opacity: 0.85;
+    margin-bottom: 2px;
+  }
+  .op-card[data-active="true"][data-step="2"] .op-inbound-reply,
+  .op-card[data-active="true"][data-step="3"] .op-inbound-reply {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .op-inbound-integrations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 350ms var(--op-ease);
+  }
+  .op-inbound-integrations div {
+    padding: 5px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 9px;
+    color: var(--op-cream);
+    text-align: center;
+  }
+  .op-card[data-active="true"][data-step="3"] .op-inbound-integrations {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === Body copy === */
+  .op-card-body {
+    padding: 12px 16px;
+    flex: 1;
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+    font-weight: 500;
+  }
+
+  /* === Spec footer === */
+  .op-card-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.9fr;
+    border-top: var(--op-border);
+    background: var(--op-paper);
+  }
+  .op-card-metric {
+    padding: 10px 14px;
+    border-right: var(--op-border);
+  }
+  .op-card-metric-value {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--op-ink);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .op-card-metric-label {
+    font-size: 8px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.2em;
+  }
+
+  .op-card-cta {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    padding: 10px 12px;
+    font-family: var(--op-font-display);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .op-card-cta-label { text-transform: none; }
+  .op-card-cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    background: var(--op-paper);
+    color: var(--op-orange);
+    font-weight: 800;
+    font-size: 13px;
+    transition: transform 350ms cubic-bezier(.34, 1.4, .64, 1);
+  }
+  .op-card:hover .op-card-cta-arrow { transform: translateX(3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .op-card,
+    .op-card-cta-arrow,
+    .op-pipe,
+    .op-lead-q,
+    .op-lead-bucket,
+    .op-quote-reply,
+    .op-quote-delivered,
+    .op-quote-pending,
+    .op-audit-row,
+    .op-audit-url-state,
+    .op-onboard-row,
+    .op-onboard-checkbox,
+    .op-onboard-label,
+    .op-resume-dot,
+    .op-resume-final,
+    .op-inbound-fit,
+    .op-inbound-reply,
+    .op-inbound-integrations {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Hover state + step cycling for each operator card.
+  // Also fires count-up animations on metric numbers.
+  (() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function easeOutCubic(t: number): number { return 1 - Math.pow(1 - t, 3); }
+
+    function fmtMetric(target: number, value: number, fmt: string, fallback: string): string {
+      switch (fmt) {
+        case 'multiplier': return `${value.toFixed(1)}x`;
+        case 'lt-min':     return `<${Math.max(1, Math.round(value))} min`;
+        case 'lt-s':       return `<${Math.max(1, Math.round(value))}s`;
+        case 'twentyfour': return `${Math.round(value)}/7`;
+        case 'min':        return `${Math.round(value)} min`;
+        case 'plus':       return `${Math.round(value)}+`;
+        case 'percent':    return `${Math.round(value)}%`;
+        case 'int':        return `${Math.round(value)}`;
+        default:           return fallback;
+      }
+    }
+
+    function animateCountUp(el: HTMLElement, target: number, fmt: string, fallback: string, duration = 900) {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = easeOutCubic(t);
+        el.textContent = fmtMetric(target, target * eased, fmt, fallback);
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = fmtMetric(target, target, fmt, fallback);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    document.querySelectorAll<HTMLElement>('.op-card').forEach((card) => {
+      if ((card as any).__opCardInited) return;
+      (card as any).__opCardInited = true;
+
+      let timer: number | null = null;
+      let step = 0;
+
+      const m1 = card.querySelector<HTMLElement>('.op-card-metric-value[data-metric-idx="0"]');
+      const m2 = card.querySelector<HTMLElement>('.op-card-metric-value[data-metric-idx="1"]');
+      const m1Target = parseFloat(card.dataset.m1Target || '0');
+      const m2Target = parseFloat(card.dataset.m2Target || '0');
+      const m1Fmt = card.dataset.m1Fmt || 'static';
+      const m2Fmt = card.dataset.m2Fmt || 'static';
+      const m1Fallback = card.dataset.m1Value || '';
+      const m2Fallback = card.dataset.m2Value || '';
+
+      const reset = () => {
+        card.setAttribute('data-active', 'false');
+        card.setAttribute('data-step', '0');
+        step = 0;
+        if (timer != null) { clearInterval(timer); timer = null; }
+        if (m1) m1.textContent = m1Fallback;
+        if (m2) m2.textContent = m2Fallback;
+      };
+
+      const activate = () => {
+        if (reduce) {
+          card.setAttribute('data-active', 'true');
+          card.setAttribute('data-step', '3');
+          return;
+        }
+        card.setAttribute('data-active', 'true');
+        step = 0;
+        card.setAttribute('data-step', '0');
+        // start step cycling
+        timer = window.setInterval(() => {
+          step = (step + 1) % 5;
+          if (step === 4) step = 0; // 4 steps: 0..3
+          card.setAttribute('data-step', String(step));
+        }, 700);
+        // fire count-ups (only fmt types that need motion)
+        if (m1 && ['multiplier','lt-min','lt-s','twentyfour','min','plus','percent','int'].includes(m1Fmt)) {
+          animateCountUp(m1, m1Target, m1Fmt, m1Fallback, 900);
+        }
+        if (m2 && ['multiplier','lt-min','lt-s','twentyfour','min','plus','percent','int'].includes(m2Fmt)) {
+          animateCountUp(m2, m2Target, m2Fmt, m2Fallback, 1100);
+        }
+      };
+
+      card.addEventListener('mouseenter', activate);
+      card.addEventListener('mouseleave', reset);
+      card.addEventListener('focusin', activate);
+      card.addEventListener('focusout', reset);
+    });
+  })();
+</script>

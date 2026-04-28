@@ -1,4 +1,10 @@
 ---
+import EyebrowTag from './operator/EyebrowTag.astro';
+import SpecStrip from './operator/SpecStrip.astro';
+import MonoCTA from './operator/MonoCTA.astro';
+import CalloutBox from './operator/CalloutBox.astro';
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+
 export interface CaseStudyMeta {
   client: string;
   industry: string;
@@ -39,9 +45,9 @@ export interface CaseStudyProps {
   painPoints: string[];
   solutionHeadline: string;
   solutionDescription: string;
-  pipeline: PipelineStep[];
+  pipeline?: PipelineStep[];
   features: CaseStudyFeature[];
-  beforeAfter: BeforeAfter[];
+  beforeAfter?: BeforeAfter[];
   resultsHeadline: string;
   resultsStats: { number: string; label: string; context?: string }[];
   testimonial?: { quote: string; author: string; role: string };
@@ -56,76 +62,74 @@ interface Props {
 }
 
 const { study } = Astro.props;
+const slugCode = study.headline.toUpperCase().replace(/[^A-Z0-9]+/g, '_').slice(0, 32);
 ---
 
-<!-- Case Study Hero -->
-<section class="cs-hero">
-  <div class="hero-bg-grid"></div>
-  <div class="container">
-    <div class="cs-hero-content" data-animate="fade-up">
-      <span class="cs-eyebrow">Case Study</span>
-      <h1>{study.headline}<br /><span class="gradient-text">{study.headlineHighlight}</span></h1>
-      <p class="cs-hero-sub">{study.subtitle}</p>
+{/* === Hero === */}
+<section class="op-cs-hero op-grid-bg">
+  <div class="op-cs-hero-frame">
+    <div class="op-cs-util">
+      <TopUtilityStrip
+        left={`BROTHERS_AUTOMATE / CASE_STUDY · ${study.meta.client.toUpperCase()}`}
+        right="● LIVE BUILD · DEPLOYED"
+        bordered
+      />
+    </div>
 
-      <!-- Client Metadata Bar -->
-      <div class="cs-meta-bar">
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Client</span>
-          <span class="cs-meta-value">{study.meta.client}</span>
-        </div>
-        <div class="cs-meta-divider"></div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Industry</span>
-          <span class="cs-meta-value">{study.meta.industry}</span>
-        </div>
-        <div class="cs-meta-divider"></div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Timeline</span>
-          <span class="cs-meta-value">{study.meta.timeline}</span>
-        </div>
-        <div class="cs-meta-divider"></div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Tech Stack</span>
-          <span class="cs-meta-value">{study.meta.techStack.join(' + ')}</span>
-        </div>
+    <EyebrowTag label={`CASE STUDY · ${study.badge.toUpperCase()}`} />
+
+    <h1 class="op-cs-h1">
+      {study.headline}<br />
+      <span class="op-cs-h1-orange">{study.headlineHighlight}</span>
+    </h1>
+
+    <p class="op-cs-sub" data-animate="fade-up">{study.subtitle}</p>
+
+    {/* Client meta strip */}
+    <div class="op-cs-meta-bar" data-animate="fade-up">
+      <div class="op-cs-meta-cell">
+        <div class="op-mono op-cs-meta-label">CLIENT</div>
+        <div class="op-cs-meta-value">{study.meta.client}</div>
+      </div>
+      <div class="op-cs-meta-cell">
+        <div class="op-mono op-cs-meta-label">INDUSTRY</div>
+        <div class="op-cs-meta-value">{study.meta.industry}</div>
+      </div>
+      <div class="op-cs-meta-cell">
+        <div class="op-mono op-cs-meta-label">TIMELINE</div>
+        <div class="op-cs-meta-value">{study.meta.timeline}</div>
+      </div>
+      <div class="op-cs-meta-cell">
+        <div class="op-mono op-cs-meta-label">TECH STACK</div>
+        <div class="op-cs-meta-value">{study.meta.techStack.join(' · ')}</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Metrics Dashboard -->
-<section class="cs-metrics">
-  <div class="container">
-    <div class="cs-metrics-grid" data-animate-stagger>
-      {study.metrics.map((metric) => (
-        <div class="cs-metric-card">
-          <span class="cs-metric-number">{metric.number}</span>
-          <span class="cs-metric-label">{metric.label}</span>
-        </div>
-      ))}
-    </div>
+{/* === Metrics dashboard === */}
+<section class="op-cs-metrics">
+  <div class="op-cs-metrics-frame" data-animate="fade-up">
+    <SpecStrip
+      cells={study.metrics.map((m) => ({ value: m.number, label: m.label }))}
+    />
   </div>
 </section>
 
-<!-- Problem -->
-<section class="cs-problem bg-surface-alt">
-  <div class="container">
-    <div class="cs-problem-content">
-      <div class="cs-problem-text" data-animate="fade-up">
-        <span class="cs-section-label">The Problem</span>
-        <h2>{study.problemHeadline}</h2>
-        <p>{study.problemDescription}</p>
+{/* === Problem === */}
+<section class="op-cs-problem">
+  <div class="op-cs-problem-frame">
+    <div class="op-cs-problem-grid">
+      <div class="op-cs-problem-text" data-animate="slide-left">
+        <span class="op-mono op-cs-section-label"><span class="op-cs-section-num">01</span> THE PROBLEM</span>
+        <h2 class="op-cs-h2">{study.problemHeadline}</h2>
+        <p class="op-cs-h2-sub">{study.problemDescription}</p>
       </div>
-      <div class="cs-pain-points" data-animate-stagger>
+      <div class="op-cs-painlist" data-animate-stagger>
         {study.painPoints.map((point) => (
-          <div class="cs-pain-point">
-            <span class="cs-pain-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </span>
-            <span>{point}</span>
+          <div class="op-cs-pain">
+            <span class="op-cs-pain-x" aria-hidden="true">✗</span>
+            <span class="op-cs-pain-text">{point}</span>
           </div>
         ))}
       </div>
@@ -133,138 +137,157 @@ const { study } = Astro.props;
   </div>
 </section>
 
-<!-- Solution + Pipeline -->
-<section class="cs-solution bg-surface">
-  <div class="container">
-    <div data-animate="fade-up">
-      <span class="cs-section-label">The AI Solution</span>
-      <h2>{study.solutionHeadline}</h2>
-      <p class="cs-solution-desc">{study.solutionDescription}</p>
+{/* === Solution + Pipeline === */}
+<section class="op-cs-solution op-grid-bg">
+  <div class="op-cs-solution-frame">
+    <div class="op-cs-solution-header" data-animate="fade-up">
+      <span class="op-mono op-cs-section-label"><span class="op-cs-section-num">02</span> THE AI SOLUTION</span>
+      <h2 class="op-cs-h2">{study.solutionHeadline}</h2>
+      <p class="op-cs-h2-sub">{study.solutionDescription}</p>
     </div>
 
-    <!-- Pipeline Flow -->
-    <div class="cs-pipeline" data-animate="fade-up">
-      <div class="cs-pipeline-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline></svg>
-        <span>Automation Pipeline</span>
+    {/* Pipeline as an OperatorPanel */}
+    {study.pipeline && study.pipeline.length > 0 && (
+    <div class="op-cs-pipeline" data-animate="fade-up">
+      <div class="op-cs-pipeline-header">
+        <span class="op-pulse-dot op-pulse-dot--lg"></span>
+        <span class="op-mono op-cs-pipeline-id">PIPELINE · {study.pipeline.length} STEPS · {slugCode}</span>
+        <span class="op-mono op-cs-pipeline-status">● LIVE</span>
       </div>
-      <div class="cs-pipeline-steps">
+      <div class="op-cs-pipeline-grid">
         {study.pipeline.map((step, i) => (
-          <div class="cs-pipeline-step">
-            <div class="cs-pipeline-number">{i + 1}</div>
-            <div class="cs-pipeline-info">
-              <strong>{step.step}</strong>
-              <span>{step.description}</span>
-            </div>
-            {i < study.pipeline.length - 1 && (
-              <div class="cs-pipeline-arrow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-            )}
+          <div class="op-cs-pipeline-step">
+            <div class="op-cs-pipeline-num op-mono">{String(i + 1).padStart(2, '0')}</div>
+            <div class="op-cs-pipeline-name">{step.step}</div>
+            <div class="op-cs-pipeline-desc">{step.description}</div>
           </div>
         ))}
       </div>
     </div>
+    )}
 
-    <!-- Features -->
-    <div class="cs-features-grid" data-animate-stagger>
-      {study.features.map((feature) => (
-        <div class="cs-feature-card">
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
+    {/* Features */}
+    <div class="op-cs-features" data-animate-stagger>
+      {study.features.map((feature, i) => (
+        <div class="op-cs-feature">
+          <span class="op-mono op-cs-feature-num">F.{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="op-cs-feature-title">{feature.title}</h3>
+          <p class="op-cs-feature-body">{feature.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- Before / After -->
-<section class="cs-before-after bg-navy">
-  <div class="container">
-    <div data-animate="fade-up">
-      <span class="cs-section-label cs-section-label-light">Before & After</span>
-      <h2>The Transformation</h2>
+{/* === Before / After === */}
+{study.beforeAfter && study.beforeAfter.length > 0 && (
+<section class="op-cs-ba">
+  <div class="op-cs-ba-frame">
+    <div class="op-cs-ba-header" data-animate="fade-up">
+      <span class="op-mono op-cs-section-label"><span class="op-cs-section-num">03</span> THE TRANSFORMATION</span>
+      <h2 class="op-cs-h2">Before vs after.</h2>
     </div>
-    <div class="cs-ba-grid" data-animate-stagger>
+    <div class="op-cs-ba-table" data-animate="fade-up">
+      <div class="op-cs-ba-table-head op-mono">
+        <div>METRIC</div>
+        <div>BEFORE</div>
+        <div class="op-cs-ba-arrow-cell" aria-hidden="true">→</div>
+        <div>AFTER</div>
+      </div>
       {study.beforeAfter.map((item) => (
-        <div class="cs-ba-row">
-          <span class="cs-ba-label">{item.label}</span>
-          <div class="cs-ba-values">
-            <div class="cs-ba-before">
-              <span class="cs-ba-tag">Before</span>
-              <span>{item.before}</span>
+        <div class="op-cs-ba-row">
+          <div class="op-cs-ba-label">{item.label}</div>
+          <div class="op-cs-ba-before">{item.before}</div>
+          <div class="op-cs-ba-arrow-cell" aria-hidden="true">→</div>
+          <div class="op-cs-ba-after">{item.after}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+)}
+
+{/* === Results === */}
+<section class="op-cs-results">
+  <div class="op-cs-results-frame">
+    <div class="op-cs-results-panel" data-animate="scale-up">
+      <div class="op-cs-results-panel-header">
+        <span class="op-pulse-dot op-pulse-dot--lg"></span>
+        <span class="op-mono op-cs-results-id">RESULTS · {slugCode}</span>
+        <span class="op-mono op-cs-results-status">● VERIFIED</span>
+      </div>
+      <div class="op-cs-results-body">
+        <span class="op-mono op-cs-section-label op-cs-section-label--light">
+          <span class="op-cs-section-num">04</span> THE RESULTS
+        </span>
+        <h2 class="op-cs-h2 op-cs-h2--light">{study.resultsHeadline}</h2>
+
+        <div class="op-cs-results-stats">
+          {study.resultsStats.map((s) => (
+            <div class="op-cs-results-stat">
+              <div class="op-cs-results-stat-num">{s.number}</div>
+              <div class="op-cs-results-stat-label">{s.label}</div>
+              {s.context && <div class="op-mono op-cs-results-stat-context">{s.context}</div>}
             </div>
-            <div class="cs-ba-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="cs-ba-after">
-              <span class="cs-ba-tag">After</span>
-              <span>{item.after}</span>
+          ))}
+        </div>
+
+        {study.testimonial && (
+          <div class="op-cs-results-testimonial">
+            <CalloutBox header="WHAT THE CLIENT SAID">
+              <p>"{study.testimonial.quote}"</p>
+            </CalloutBox>
+            <div class="op-mono op-cs-results-testimonial-cite">
+              — {study.testimonial.author} · {study.testimonial.role}
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+        )}
 
-<!-- Results -->
-<section class="cs-results bg-surface-alt">
-  <div class="container">
-    <div data-animate="fade-up">
-      <span class="cs-section-label">The Results</span>
-      <h2>{study.resultsHeadline}</h2>
-    </div>
-    <div class="cs-results-stats" data-animate-stagger>
-      {study.resultsStats.map((stat) => (
-        <div class="cs-result-stat">
-          <span class="cs-result-number">{stat.number}</span>
-          <span class="cs-result-label">{stat.label}</span>
-          {stat.context && <span class="cs-result-context">{stat.context}</span>}
-        </div>
-      ))}
-    </div>
-
-    {study.testimonial && (
-      <blockquote class="cs-testimonial" data-animate="fade-up">
-        <p>"{study.testimonial.quote}"</p>
-        <cite>
-          <strong>{study.testimonial.author}</strong>
-          <span>{study.testimonial.role}</span>
-        </cite>
-      </blockquote>
-    )}
-
-    {study.videoUrl && (
-      <div class="cs-video-embed" data-animate="scale-up">
-        <iframe
-          src={study.videoUrl}
-          title="Case Study Demo"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        {study.videoUrl && (
+          <div class="op-cs-results-video">
+            <div class="op-cs-results-video-frame">
+              <iframe
+                src={study.videoUrl}
+                title="Case Study Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        )}
       </div>
-    )}
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cs-cta-section">
-  <div class="container">
-    <div class="cs-cta-content" data-animate="fade-up">
-      <h2>{study.ctaHeadline}</h2>
-      <p>{study.ctaDescription}</p>
-      <div class="cs-cta-buttons">
-        <a
-          href="#"
-          class="btn btn-primary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
+{/* === CTA === */}
+<section class="op-cs-cta op-grid-bg">
+  <div class="op-cs-cta-frame">
+    <div class="op-cs-cta-block" data-animate="fade-up">
+      <span class="op-mono op-cs-section-label"><span class="op-cs-section-num">05</span> NEXT STEP</span>
+      <h2 class="op-cs-h2 op-cs-cta-h2">{study.ctaHeadline}</h2>
+      <p class="op-cs-h2-sub op-cs-cta-sub">{study.ctaDescription}</p>
+      <div class="op-cs-cta-actions">
+        <MonoCTA
+          label="Talk to the Brothers"
+          variant="orange"
+          size="lg"
+          calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          trackLocation="case-study"
+          trackLabel="Talk to the Brothers"
+        />
         {study.productUrl && (
-          <a href={study.productUrl} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+          <MonoCTA
+            label="Try it live"
+            variant="navy"
+            size="lg"
+            href={study.productUrl}
+            external
+            trackLocation="case-study"
+            trackLabel="Try It Live"
+          />
         )}
       </div>
     </div>
@@ -272,621 +295,478 @@ const { study } = Astro.props;
 </section>
 
 <style>
-  /* ===== HERO ===== */
-  .cs-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-2xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
+  /* === Hero === */
+  .op-cs-hero {
+    padding: 120px var(--op-section-px) 56px;
+    color: var(--op-ink);
   }
+  .op-cs-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cs-util { margin-bottom: 32px; }
+  .op-cs-hero :global(.op-eyebrow) { margin-bottom: 22px; }
 
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  }
-
-  .cs-hero-content {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cs-eyebrow {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-md);
-  }
-
-  .cs-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .cs-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 650px;
-    margin: 0 auto var(--space-xl);
-  }
-
-  /* ===== META BAR ===== */
-  .cs-meta-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    padding: var(--space-md) var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-    flex-wrap: wrap;
-  }
-
-  .cs-meta-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .cs-meta-label {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-  }
-
-  .cs-meta-value {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  .cs-meta-divider {
-    width: 1px;
-    height: 32px;
-    background: var(--border);
-  }
-
-  /* ===== METRICS DASHBOARD ===== */
-  .cs-metrics {
-    padding: 0 0 var(--space-xl);
-    margin-top: calc(-1 * var(--space-md));
-  }
-
-  .cs-metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--space-md);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .cs-metric-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
-    text-align: center;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cs-metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 100%);
-  }
-
-  .cs-metric-number {
-    display: block;
-    font-size: 2rem;
+  .op-cs-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: 4px;
+    font-size: clamp(40px, 5.6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 900px;
+    text-wrap: balance;
   }
+  .op-cs-h1-orange { color: var(--op-orange); }
 
-  .cs-metric-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+  .op-cs-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 36px;
+    max-width: 720px;
+    text-wrap: pretty;
   }
 
-  /* ===== SECTION LABELS ===== */
-  .cs-section-label {
-    display: inline-block;
-    font-size: 0.8125rem;
+  /* Meta bar */
+  .op-cs-meta-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    background: var(--op-paper);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
+    max-width: 1100px;
+  }
+  .op-cs-meta-cell {
+    padding: 14px 18px;
+    border-right: var(--op-border);
+  }
+  .op-cs-meta-cell:last-child { border-right: none; }
+  .op-cs-meta-label {
+    font-size: 8.5px;
+    color: var(--op-orange);
+    margin-bottom: 6px;
+  }
+  .op-cs-meta-value {
+    font-family: var(--op-font-body);
+    font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
+    color: var(--op-ink);
+    line-height: 1.3;
+  }
+  @media (max-width: 800px) {
+    .op-cs-meta-bar { grid-template-columns: 1fr 1fr; }
+    .op-cs-meta-cell:nth-child(2n) { border-right: none; }
+    .op-cs-meta-cell:nth-child(n+3) { border-top: var(--op-border); }
   }
 
-  .cs-section-label-light {
-    color: rgba(237, 137, 54, 0.8);
+  /* Section labels */
+  .op-cs-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-cs-section-label--light { color: var(--op-cream); }
+  .op-cs-section-num { color: var(--op-orange); font-size: 9px; }
+
+  .op-cs-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.02;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .op-cs-h2--light { color: var(--op-paper); }
+  .op-cs-h2-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 720px;
+    text-wrap: pretty;
   }
 
-  /* ===== PROBLEM ===== */
-  .cs-problem {
-    padding: var(--space-4xl) 0;
+  /* === Metrics === */
+  .op-cs-metrics {
+    padding: 32px var(--op-section-px) 56px;
+  }
+  .op-cs-metrics-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  /* === Problem === */
+  .op-cs-problem {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-cs-problem-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cs-problem-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  @media (min-width: 900px) {
+    .op-cs-problem-grid { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   }
 
-  .cs-problem-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cs-problem-text {
-    margin-bottom: var(--space-xl);
-  }
-
-  .cs-problem-text h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .cs-problem-text p {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-  }
-
-  .cs-pain-points {
+  .op-cs-painlist {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: 12px;
   }
-
-  .cs-pain-point {
+  .op-cs-pain {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-surface);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--op-cream);
+    border: 1px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: var(--op-radius-sm);
   }
-
-  .cs-pain-marker {
+  .op-cs-pain-x {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    display: flex;
+    width: 18px;
+    height: 18px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 2px;
+  }
+  .op-cs-pain-text {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-ink);
   }
 
-  .cs-pain-point span:last-child {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
+  /* === Solution + Pipeline === */
+  .op-cs-solution {
+    padding: 72px var(--op-section-px);
   }
+  .op-cs-solution-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cs-solution-header { max-width: 760px; margin-bottom: 40px; }
 
-  /* ===== SOLUTION ===== */
-  .cs-solution {
-    padding: var(--space-4xl) 0;
+  .op-cs-pipeline {
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-md);
+    margin-bottom: 36px;
+    color: var(--op-cream);
   }
-
-  .cs-solution h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .cs-solution-desc {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    max-width: 700px;
-    margin-bottom: var(--space-xl);
-  }
-
-  /* ===== PIPELINE ===== */
-  .cs-pipeline {
-    background: var(--bg-surface-alt);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    margin-bottom: var(--space-xl);
-    max-width: 900px;
-  }
-
-  .cs-pipeline-header {
+  .op-cs-pipeline-header {
+    background: var(--op-navy-deep);
+    padding: 12px 18px;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin-bottom: var(--space-lg);
-    padding-bottom: var(--space-sm);
-    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
   }
-
-  .cs-pipeline-steps {
-    display: flex;
-    align-items: stretch;
-    gap: var(--space-sm);
-    overflow-x: auto;
-    padding-bottom: var(--space-xs);
+  .op-cs-pipeline-id { font-size: 10px; color: var(--op-orange); }
+  .op-cs-pipeline-status {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.55;
   }
-
-  .cs-pipeline-step {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    flex: 1;
-    min-width: 0;
+  .op-cs-pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 8px;
+    gap: 8px;
   }
-
-  .cs-pipeline-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.875rem;
-    flex-shrink: 0;
-  }
-
-  .cs-pipeline-info {
+  .op-cs-pipeline-step {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px;
+    border-radius: var(--op-radius-sm);
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    min-width: 0;
+    gap: 6px;
+    position: relative;
+  }
+  .op-cs-pipeline-num {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-cs-pipeline-name {
+    font-family: var(--op-font-display);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--op-paper);
+    letter-spacing: -0.02em;
+  }
+  .op-cs-pipeline-desc {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--op-cream);
+    opacity: 0.78;
   }
 
-  .cs-pipeline-info strong {
-    font-size: 0.875rem;
-    color: var(--navy);
-    white-space: nowrap;
+  /* Features */
+  .op-cs-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 700px) { .op-cs-features { grid-template-columns: 1fr 1fr; } }
+
+  .op-cs-feature {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-cs-feature-num { font-size: 9px; color: var(--op-orange); }
+  .op-cs-feature-title {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-cs-feature-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
 
-  .cs-pipeline-info span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+  /* === Before / After === */
+  .op-cs-ba {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-cs-ba-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cs-ba-header { max-width: 720px; margin-bottom: 36px; }
+
+  .op-cs-ba-table {
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    background: var(--op-cream);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
+  }
+  .op-cs-ba-table-head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 40px 1fr;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border-bottom: var(--op-border);
+  }
+  .op-cs-ba-table-head > div {
+    padding: 12px 18px;
+    font-size: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .op-cs-ba-table-head > div:last-child { border-right: none; }
+  .op-cs-ba-arrow-cell {
+    text-align: center;
+    color: var(--op-orange);
+    font-weight: 800;
+    font-size: 16px;
+  }
+  .op-cs-ba-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 40px 1fr;
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .op-cs-ba-row:last-child { border-bottom: none; }
+  .op-cs-ba-row > div {
+    padding: 14px 18px;
+    border-right: 1px solid var(--op-rule);
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    color: var(--op-ink);
     line-height: 1.4;
   }
-
-  .cs-pipeline-arrow {
-    color: var(--orange);
-    flex-shrink: 0;
-    margin-left: auto;
+  .op-cs-ba-row > div:last-child { border-right: none; }
+  .op-cs-ba-label {
+    background: var(--op-paper);
+    font-weight: 700 !important;
   }
-
-  /* ===== FEATURES ===== */
-  .cs-features-grid {
-    display: grid;
-    gap: var(--space-md);
-  }
-
-  @media (min-width: 640px) {
-    .cs-features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .cs-feature-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow);
-    transition: all var(--transition);
-  }
-
-  .cs-feature-card:hover {
-    box-shadow: var(--shadow-md);
-  }
-
-  .cs-feature-card h3 {
-    font-size: 1.0625rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-xs);
-  }
-
-  .cs-feature-card p {
-    margin: 0;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* ===== BEFORE / AFTER ===== */
-  .cs-before-after {
-    padding: var(--space-4xl) 0;
-    text-align: center;
-  }
-
-  .cs-before-after h2 {
-    margin-bottom: var(--space-xl);
-  }
-
-  .cs-ba-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cs-ba-row {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    text-align: left;
-  }
-
-  .cs-ba-label {
-    font-size: 0.8125rem;
+  .op-cs-ba-before { color: var(--op-navy-soft) !important; }
+  .op-cs-ba-after {
+    color: var(--op-ink) !important;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.5);
+    background: rgba(224, 112, 60, 0.06);
   }
-
-  .cs-ba-values {
+  .op-cs-ba-row .op-cs-ba-arrow-cell {
+    background: var(--op-paper);
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-  }
-
-  .cs-ba-before,
-  .cs-ba-after {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .cs-ba-tag {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .cs-ba-before .cs-ba-tag {
-    color: #f87171;
-  }
-
-  .cs-ba-after .cs-ba-tag {
-    color: #4ade80;
-  }
-
-  .cs-ba-before span:last-child {
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .cs-ba-after span:last-child {
-    font-size: 1rem;
-    font-weight: 700;
-    color: white;
-  }
-
-  .cs-ba-arrow {
-    color: var(--orange);
-    flex-shrink: 0;
-  }
-
-  /* ===== RESULTS ===== */
-  .cs-results {
-    padding: var(--space-4xl) 0;
-    text-align: center;
-  }
-
-  .cs-results h2 {
-    margin-bottom: var(--space-xl);
-  }
-
-  .cs-results-stats {
-    display: flex;
     justify-content: center;
-    gap: var(--space-2xl);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-xl);
   }
 
-  .cs-result-stat {
-    text-align: center;
+  @media (max-width: 700px) {
+    .op-cs-ba-table-head,
+    .op-cs-ba-row {
+      grid-template-columns: 1fr;
+    }
+    .op-cs-ba-table-head > div,
+    .op-cs-ba-row > div {
+      border-right: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .op-cs-ba-table-head > div:last-child,
+    .op-cs-ba-row > div:last-child { border-bottom: none; }
+    .op-cs-ba-arrow-cell { display: none; }
+    .op-cs-ba-table-head { display: none; }
   }
 
-  .cs-result-number {
-    display: block;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 800;
-    color: var(--orange);
-    line-height: 1;
-    margin-bottom: var(--space-xs);
+  /* === Results === */
+  .op-cs-results {
+    padding: 72px var(--op-section-px);
+    background: var(--op-cream);
   }
-
-  .cs-result-label {
-    display: block;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 2px;
-  }
-
-  .cs-result-context {
-    display: block;
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-  }
-
-  .cs-testimonial {
-    max-width: 600px;
-    margin: var(--space-xl) auto 0;
-    padding: var(--space-lg);
-    border-left: 3px solid var(--orange);
-    text-align: left;
-    background: var(--bg-surface);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    box-shadow: var(--shadow);
-  }
-
-  .cs-testimonial p {
-    font-size: 1.125rem;
-    color: var(--navy);
-    font-style: italic;
-    line-height: 1.7;
-    margin: 0 0 var(--space-md);
-  }
-
-  .cs-testimonial cite {
-    font-style: normal;
-  }
-
-  .cs-testimonial strong {
-    display: block;
-    color: var(--navy);
-    font-size: 0.9375rem;
-  }
-
-  .cs-testimonial cite span {
-    color: var(--text-muted);
-    font-size: 0.8125rem;
-  }
-
-  .cs-video-embed {
-    max-width: 700px;
-    margin: var(--space-xl) auto 0;
-    border-radius: var(--radius-lg);
+  .op-cs-results-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cs-results-panel {
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
     overflow: hidden;
-    aspect-ratio: 16/9;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-cream);
+  }
+  .op-cs-results-panel-header {
+    background: var(--op-navy-deep);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+  }
+  .op-cs-results-id { font-size: 10px; color: var(--op-orange); }
+  .op-cs-results-status {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.55;
+  }
+  .op-cs-results-body { padding: 48px 56px 52px; }
+  @media (max-width: 700px) { .op-cs-results-body { padding: 32px 24px 36px; } }
+
+  .op-cs-results-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 28px;
+  }
+  @media (min-width: 700px) { .op-cs-results-stats { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-cs-results-stat {
+    border-left: 2px solid var(--op-orange);
+    padding-left: 18px;
+  }
+  .op-cs-results-stat-num {
+    font-family: var(--op-font-display);
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--op-paper);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .op-cs-results-stat-label {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--op-cream);
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+  .op-cs-results-stat-context {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
   }
 
-  .cs-video-embed iframe {
+  .op-cs-results-testimonial { margin-top: 36px; }
+  .op-cs-results-testimonial-cite {
+    margin-top: 12px;
+    font-size: 10px;
+    color: var(--op-cream);
+    opacity: 0.6;
+    text-align: right;
+  }
+
+  .op-cs-results-video { margin-top: 36px; }
+  .op-cs-results-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    background: var(--op-navy-deep);
+  }
+  .op-cs-results-video-frame iframe {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    border: 0;
   }
 
-  /* ===== CTA ===== */
-  .cs-cta-section {
-    padding: var(--space-3xl) 0;
+  /* === CTA === */
+  .op-cs-cta {
+    padding: 72px var(--op-section-px);
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-cs-cta-frame { max-width: 900px; margin: 0 auto; }
+  .op-cs-cta-block {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 48px 56px;
+    box-shadow: var(--op-shadow-md);
     text-align: center;
-    background: var(--bg-surface);
   }
-
-  .cs-cta-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .cs-cta-content h2 {
-    margin-bottom: var(--space-sm);
-  }
-
-  .cs-cta-content p {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-lg);
-    font-size: 1.0625rem;
-  }
-
-  .cs-cta-buttons {
+  .op-cs-cta-h2 { margin-left: auto; margin-right: auto; max-width: 720px; }
+  .op-cs-cta-sub { margin: 0 auto 28px; text-align: center; }
+  .op-cs-cta-actions {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
     align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
   }
 
-  @media (min-width: 480px) {
-    .cs-cta-buttons {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 767px) {
-    .cs-hero {
-      padding-top: 120px;
-      padding-bottom: var(--space-xl);
-    }
-
-    .cs-meta-bar {
-      flex-direction: column;
-      gap: var(--space-sm);
-      padding: var(--space-md);
-    }
-
-    .cs-meta-divider {
-      width: 60px;
-      height: 1px;
-    }
-
-    .cs-pipeline-steps {
-      flex-direction: column;
-    }
-
-    .cs-pipeline-arrow {
-      transform: rotate(90deg);
-      margin: 0 auto;
-    }
-
-    .cs-ba-values {
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .cs-ba-arrow {
-      transform: rotate(90deg);
-    }
-
-    .cs-results-stats {
-      gap: var(--space-lg);
-    }
-
-    .cs-cta-buttons .btn {
-      width: 100%;
-      justify-content: center;
-    }
+  @media (max-width: 700px) {
+    .op-cs-hero,
+    .op-cs-metrics,
+    .op-cs-problem,
+    .op-cs-solution,
+    .op-cs-ba,
+    .op-cs-results,
+    .op-cs-cta { padding-left: 22px; padding-right: 22px; }
+    .op-cs-cta-block { padding: 32px 24px; }
+    .op-cs-results-stat-num { font-size: 36px; }
   }
 </style>

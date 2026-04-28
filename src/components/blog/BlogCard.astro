@@ -6,131 +6,149 @@ interface Props {
   category: string;
   slug: string;
   image?: string;
+  index?: number;
 }
 
-const { title, description, date, category, slug, image } = Astro.props;
+const { title, description, date, category, slug, image, index = 0 } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'short',
-  day: 'numeric'
+  day: '2-digit',
 });
+
+const logCode = `LOG_${String(index + 1).padStart(2, '0')}`;
 ---
 
-<a href={`/blog/${slug}`} class="blog-card">
+<a href={`/blog/${slug}`} class="op-blogcard">
+  <div class="op-blogcard-header">
+    <span class="op-pulse-dot"></span>
+    <span class="op-mono op-blogcard-code">{logCode}</span>
+    <span class="op-mono op-blogcard-date">{formattedDate.toUpperCase()}</span>
+  </div>
+
   {image && (
-    <div class="blog-card-image">
+    <div class="op-blogcard-image">
       <img src={image} alt={title} loading="lazy" />
     </div>
   )}
-  <div class="blog-card-content">
-    <div class="blog-card-meta">
-      <span class="category-badge">{category}</span>
-      <time datetime={date.toISOString()}>{formattedDate}</time>
-    </div>
-    <h3>{title}</h3>
-    <p>{description}</p>
-    <span class="read-more">Read article →</span>
+
+  <div class="op-blogcard-body">
+    <span class="op-mono op-blogcard-cat">{category.toUpperCase()}</span>
+    <h3 class="op-blogcard-title">{title}</h3>
+    <p class="op-blogcard-desc">{description}</p>
+  </div>
+
+  <div class="op-blogcard-foot op-mono">
+    READ ARTICLE <span class="op-blogcard-arrow" aria-hidden="true">→</span>
   </div>
 </a>
 
 <style>
-  .blog-card {
+  .op-blogcard {
     display: flex;
     flex-direction: column;
-    background: var(--bg-surface);
-    border-radius: var(--radius-lg);
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all var(--transition);
     text-decoration: none;
+    color: inherit;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-blogcard:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
+  }
+  .op-blogcard:hover .op-blogcard-arrow {
+    transform: translateX(3px);
+    color: var(--op-orange);
   }
 
-  .blog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+  .op-blogcard-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-blogcard-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-blogcard-date {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.55;
   }
 
-  .blog-card-image {
+  .op-blogcard-image {
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: var(--bg-surface-alt);
+    background: var(--op-cream);
+    border-bottom: var(--op-border);
   }
-
-  .blog-card-image img {
+  .op-blogcard-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    transition: transform 600ms var(--op-ease);
   }
+  .op-blogcard:hover .op-blogcard-image img { transform: scale(1.04); }
 
-  .blog-card:hover .blog-card-image img {
-    transform: scale(1.05);
-  }
-
-  .blog-card-content {
-    padding: var(--space-lg);
+  .op-blogcard-body {
+    padding: 18px 20px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    gap: 10px;
+    flex: 1;
   }
-
-  .blog-card-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-sm);
+  .op-blogcard-cat {
+    font-size: 9px;
+    color: var(--op-orange);
   }
-
-  .category-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    background: rgba(49, 130, 206, 0.1);
-    color: var(--blue);
-    border-radius: var(--radius-full);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .op-blogcard-title {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    font-weight: 800;
+    text-wrap: balance;
   }
-
-  .blog-card-meta time {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-  }
-
-  .blog-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-xs);
-    color: var(--navy);
-    line-height: 1.3;
-    transition: color var(--transition);
-  }
-
-  .blog-card:hover h3 {
-    color: var(--blue);
-  }
-
-  .blog-card p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    flex-grow: 1;
+  .op-blogcard-desc {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    flex: 1;
+    text-wrap: pretty;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .read-more {
-    margin-top: var(--space-md);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--orange);
-    transition: color var(--transition);
+  .op-blogcard-foot {
+    padding: 12px 16px;
+    border-top: var(--op-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--op-ink);
+    background: var(--op-paper);
   }
-
-  .blog-card:hover .read-more {
-    color: var(--orange-hover);
+  .op-blogcard-arrow {
+    font-size: 14px;
+    transition: transform var(--op-dur-fast) var(--op-ease), color var(--op-dur-fast) var(--op-ease);
   }
 </style>

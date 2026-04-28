@@ -1,0 +1,49 @@
+---
+/**
+ * EyebrowTag — solid navy chip with mono UPPERCASE label + optional pulsing orange dot.
+ * Use to label every section.
+ *
+ * Props:
+ *   label:   string   the caption text e.g. "AI OPERATIONS · BUILT FOR $2M–$15M REVENUE"
+ *   showDot: boolean  (default true) — leading pulsing dot
+ *   variant: 'navy' | 'paper'  (default 'navy') — 'paper' is inverse: cream bg + navy text
+ */
+interface Props {
+  label: string;
+  showDot?: boolean;
+  variant?: 'navy' | 'paper';
+}
+const { label, showDot = true, variant = 'navy' } = Astro.props;
+---
+
+<span class={`op-eyebrow op-eyebrow--${variant} op-mono`}>
+  {showDot && <span class="op-pulse-dot"></span>}
+  {label}
+</span>
+
+<style>
+  .op-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: var(--op-radius-sm);
+    font-size: 10px;
+  }
+
+  .op-eyebrow--navy {
+    background: var(--op-navy);
+    color: var(--op-cream);
+  }
+
+  .op-eyebrow--paper {
+    background: var(--op-paper);
+    color: var(--op-navy);
+    border: var(--op-border);
+  }
+
+  /* Make sure the pulsing dot scales correctly inside the eyebrow */
+  .op-eyebrow .op-pulse-dot {
+    flex-shrink: 0;
+  }
+</style>

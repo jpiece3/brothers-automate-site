@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import CTA from '../../components/CTA.astro';
 import Footer from '../../components/Footer.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 
@@ -113,32 +115,50 @@ Store in: {audit_log_table}`,
 >
   <Header />
   <main>
-    <section class="principles-hero">
-      <div class="container">
-        <span class="badge" data-animate="fade-up">How We Build</span>
-        <h1 data-animate="fade-up">Top 6 <span class="text-highlight">Agent Principles</span></h1>
-        <p class="principles-sub" data-animate="fade-up">The rules we follow every time we build an AI agent or workflow for a service business. No exceptions.</p>
+    <section class="op-respage-hero op-grid-bg">
+      <div class="op-respage-hero-frame">
+        <div class="op-respage-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / RESOURCES · AGENT PRINCIPLES"
+            right="● BUILD GUIDE · 06 PRINCIPLES"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="HOW WE BUILD · OPERATOR PLAYBOOK" />
+        <h1 class="op-respage-h1">
+          Top 6 <span class="op-respage-h1-orange">Agent Principles.</span>
+        </h1>
+        <p class="op-respage-sub">The rules we follow every time we build an AI agent or workflow for a service business. No exceptions.</p>
       </div>
     </section>
 
-    <section class="principles-grid-section">
-      <div class="container">
-        <div class="principles-grid">
+    <section class="op-pri-grid-section">
+      <div class="op-pri-frame">
+        <div class="op-pri-grid" data-animate-stagger>
           {principles.map((p) => (
-            <div class={`principle-card ${p.variant === 'light' ? 'light' : ''}`} data-animate="fade-up">
-              <div class="card-top">
-                <span class="num">{p.num}</span>
-                <span class="pill">{p.pill}</span>
+            <article class={`op-pri-card ${p.variant === 'light' ? 'light' : 'dark'}`} data-animate="fade-up">
+              <header class="op-pri-card-head">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono op-pri-num">PRINCIPLE_{p.num}</span>
+                <span class="op-mono op-pri-pill">{p.pill.toUpperCase()}</span>
+              </header>
+              <div class="op-pri-card-body">
+                <h3 class="op-pri-title" set:html={p.title} />
+                <div class="op-pri-rule"></div>
+                <div class="op-pri-section">
+                  <span class="op-mono op-pri-label">WHAT WE KNOW</span>
+                  <p class="op-pri-text">{p.know}</p>
+                </div>
+                <div class="op-pri-section">
+                  <span class="op-mono op-pri-label">EXAMPLE SCENARIO</span>
+                  <p class="op-pri-text">{p.scenario}</p>
+                </div>
+                <div class="op-pri-section">
+                  <span class="op-mono op-pri-label">HOW TO IMPLEMENT</span>
+                  <pre class="op-pri-code" set:html={p.code} />
+                </div>
               </div>
-              <div class="card-title" set:html={p.title} />
-              <div class="divider"></div>
-              <div class="section-label">What we know</div>
-              <div class="body-text">{p.know}</div>
-              <div class="section-label">Example scenario</div>
-              <div class="body-text">{p.scenario}</div>
-              <div class="section-label">How to implement</div>
-              <div class="code-block" set:html={p.code} />
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -152,209 +172,137 @@ Store in: {audit_log_table}`,
 </Layout>
 
 <style>
-  /* ─── Hero ──────────────────────────────────────── */
-  .principles-hero {
-    padding: var(--space-4xl) 0 var(--space-2xl);
-    text-align: center;
+  .op-pri-grid-section {
+    padding: 64px var(--op-section-px) 96px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
   }
+  .op-pri-frame { max-width: var(--op-max-content); margin: 0 auto; }
 
-  .principles-hero .badge {
-    display: inline-block;
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-    padding: 6px 16px;
-    border-radius: 99px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .principles-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 800;
-    color: var(--navy);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .principles-sub {
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    max-width: 560px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  /* ─── Grid Section ─────────────────────────────── */
-  .principles-grid-section {
-    padding: 0 0 var(--space-4xl);
-  }
-
-  .principles-grid {
+  .op-pri-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 960px;
-    margin: 0 auto;
+    gap: 22px;
   }
 
-  /* ─── Card ─────────────────────────────────────── */
-  .principle-card {
-    background: var(--navy) !important;
-    border-radius: 16px;
-    padding: 28px 28px 24px;
+  .op-pri-card {
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 12px 40px rgba(1, 31, 98, 0.15);
-    position: relative;
-    overflow: hidden;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pri-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
   }
 
-  .principle-card.light {
-    background: #fff8f2 !important;
-  }
+  .op-pri-card.dark { background: var(--op-navy-deep); }
+  .op-pri-card.light { background: var(--op-cream); }
 
-  .principle-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    background: var(--orange);
-    opacity: 0.07;
-    border-radius: 0 16px 0 80px;
-  }
-
-  /* ─── Card Top ─────────────────────────────────── */
-  .card-top {
+  .op-pri-card-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-pri-card.light .op-pri-card-head {
+    background: var(--op-navy-deep);
+  }
+  .op-pri-num {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pri-pill {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
   }
 
-  .num {
-    font-size: 0.7rem;
+  .op-pri-card-body {
+    padding: 26px 26px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .op-pri-title {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
     font-weight: 800;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--orange);
+    margin: 0;
+    text-wrap: balance;
   }
+  .op-pri-card.dark .op-pri-title { color: var(--op-cream); }
+  .op-pri-card.light .op-pri-title { color: var(--op-ink); }
+  :global(.op-pri-title .accent) { color: var(--op-orange); }
 
-  .pill {
-    font-size: 0.55rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 99px;
-    border: 1px solid rgba(237, 137, 54, 0.4);
-    background: rgba(237, 137, 54, 0.12);
-    color: var(--orange);
-  }
-
-  .principle-card.light .pill {
-    border-color: rgba(26, 54, 93, 0.25);
-    background: rgba(26, 54, 93, 0.07);
-    color: var(--navy);
-    opacity: 0.7;
-  }
-
-  /* ─── Title ────────────────────────────────────── */
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    line-height: 1.15;
-    color: #fff8f2;
-    margin-bottom: 16px;
-  }
-
-  .principle-card.light .card-title {
-    color: var(--navy);
-  }
-
-  :global(.card-title .accent) {
-    color: var(--orange);
-  }
-
-  /* ─── Divider ──────────────────────────────────── */
-  .divider {
+  .op-pri-rule {
     width: 36px;
     height: 3px;
-    background: var(--orange);
-    border-radius: 2px;
-    margin-bottom: 16px;
-    flex-shrink: 0;
+    background: var(--op-orange);
+    margin: -4px 0 4px;
   }
 
-  /* ─── Section Label ────────────────────────────── */
-  .section-label {
-    font-size: 0.55rem;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 5px;
-    margin-top: 14px;
+  .op-pri-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .section-label:first-of-type {
-    margin-top: 0;
+  .op-pri-label {
+    font-size: 9px;
+    color: var(--op-orange);
   }
+  .op-pri-card.light .op-pri-label { color: var(--op-orange); }
 
-  .principle-card.light .section-label {
-    color: var(--navy);
-    opacity: 0.45;
+  .op-pri-text {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0;
+    text-wrap: pretty;
   }
+  .op-pri-card.dark .op-pri-text { color: rgba(244, 238, 226, 0.78); }
+  .op-pri-card.light .op-pri-text { color: var(--op-navy-soft); }
 
-  /* ─── Body Text ────────────────────────────────── */
-  .body-text {
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.65;
-    color: rgba(255, 248, 242, 0.7);
-  }
-
-  .principle-card.light .body-text {
-    color: rgba(26, 54, 93, 0.65);
-  }
-
-  /* ─── Code Block ───────────────────────────────── */
-  .code-block {
-    background: rgba(0, 0, 0, 0.25);
-    border-left: 3px solid var(--orange);
-    border-radius: 0 8px 8px 0;
+  .op-pri-code {
+    font-family: var(--op-font-mono);
+    font-size: 11.5px;
+    line-height: 1.75;
     padding: 12px 14px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
-    color: rgba(255, 248, 242, 0.85);
-    line-height: 1.85;
+    border-left: 3px solid var(--op-orange);
+    border-radius: 0 6px 6px 0;
     white-space: pre;
     overflow-x: auto;
-    margin-top: 8px;
+    margin: 4px 0 0;
   }
-
-  .principle-card.light .code-block {
-    background: rgba(26, 54, 93, 0.07);
-    color: var(--navy);
+  .op-pri-card.dark .op-pri-code {
+    background: rgba(0, 0, 0, 0.28);
+    color: rgba(244, 238, 226, 0.9);
   }
-
-  :global(.code-block .c-orange) {
-    color: var(--orange);
+  .op-pri-card.light .op-pri-code {
+    background: var(--op-paper);
+    color: var(--op-navy);
+    border: 1.5px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+  }
+  :global(.op-pri-code .c-orange) {
+    color: var(--op-orange);
     font-weight: 700;
   }
 
-  /* ─── Responsive ───────────────────────────────── */
-  @media (max-width: 767px) {
-    .principles-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .principles-hero {
-      padding: var(--space-3xl) 0 var(--space-xl);
-    }
+  @media (max-width: 900px) {
+    .op-pri-grid { grid-template-columns: 1fr; }
+    .op-pri-grid-section { padding-left: 22px; padding-right: 22px; }
   }
 </style>

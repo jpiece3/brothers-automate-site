@@ -1,4 +1,6 @@
 ---
+import MonoCTA from '../operator/MonoCTA.astro';
+
 interface Props {
   projects: { slug: string; name: string; description: string }[];
 }
@@ -6,101 +8,123 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<section class="s-projects bg-surface">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <h2>See It In Action</h2>
+<section class="op-svcrp">
+  <div class="op-svcrp-frame">
+    <div class="op-svcrp-header" data-animate="fade-up">
+      <span class="op-mono op-svcrp-label"><span class="op-svcrp-num">05</span> SEE IT IN ACTION</span>
+      <h2 class="op-svcrp-h2">Related projects.</h2>
     </div>
 
-    <div class="projects-grid" data-animate-stagger>
-      {projects.map((project) => (
-        <a href={`/projects/${project.slug}`} class="project-card card">
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
-          <span class="project-link">
-            View project
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </span>
+    <div class="op-svcrp-grid" data-animate-stagger>
+      {projects.map((p, i) => (
+        <a href={`/projects/${p.slug}`} class="op-svcrp-card">
+          <div class="op-svcrp-card-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-svcrp-card-id">PROJECT_{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <div class="op-svcrp-card-body">
+            <h3>{p.name}</h3>
+            <p>{p.description}</p>
+          </div>
+          <div class="op-svcrp-card-foot op-mono">
+            VIEW PROJECT <span class="op-svcrp-arrow" aria-hidden="true">→</span>
+          </div>
         </a>
       ))}
     </div>
 
-    <div class="section-cta" data-animate="fade-up">
-      <a href="/projects" class="btn btn-secondary">See All Projects</a>
+    <div class="op-svcrp-cta-row" data-animate="fade-up">
+      <MonoCTA label="See all projects" variant="navy" size="md" href="/projects" trackLocation="service-related-projects" trackLabel="See All Projects" />
     </div>
   </div>
 </section>
 
 <style>
-  .s-projects {
-    padding: var(--space-4xl) 0;
+  .op-svcrp { padding: 72px var(--op-section-px); background: var(--op-paper); border-top: var(--op-border); border-bottom: var(--op-border); }
+  .op-svcrp-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-svcrp-header { max-width: 720px; margin-bottom: 36px; }
+  .op-svcrp-label {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-svcrp-num { color: var(--op-orange); font-size: 9px; }
+  .op-svcrp-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
   }
 
-  .projects-grid {
+  .op-svcrp-grid {
     display: grid;
-    gap: var(--space-lg);
-    max-width: 900px;
-    margin: 0 auto var(--space-xl);
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
   }
+  @media (min-width: 700px) { .op-svcrp-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-svcrp-grid { grid-template-columns: repeat(3, 1fr); } }
 
-  @media (min-width: 768px) {
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .project-card {
+  .op-svcrp-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--op-shadow);
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-xl);
-    text-decoration: none;
-    transition: all var(--transition);
-    border: 1px solid var(--border);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
   }
-
-  .project-card:hover {
-    border-color: var(--orange);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+  .op-svcrp-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
   }
-
-  .project-card h3 {
-    font-size: 1.125rem;
-    color: var(--navy);
-    margin: 0;
-  }
-
-  .project-card p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
-    flex: 1;
-  }
-
-  .project-link {
-    display: inline-flex;
+  .op-svcrp-card-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 9px 14px;
+    display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--orange);
-    margin-top: var(--space-sm);
+    gap: 10px;
+    border-bottom: var(--op-border);
   }
-
-  .project-card:hover .project-link svg {
-    transform: translateX(4px);
+  .op-svcrp-card-id { font-size: 9px; color: var(--op-orange); }
+  .op-svcrp-card-body { padding: 22px 22px 18px; flex: 1; }
+  .op-svcrp-card-body h3 {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 8px;
   }
-
-  .project-link svg {
-    transition: transform var(--transition);
+  .op-svcrp-card-body p {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
-
-  .section-cta {
-    text-align: center;
-    margin-top: var(--space-xl);
+  .op-svcrp-card-foot {
+    background: var(--op-paper);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: var(--op-border);
+    font-size: 10px;
+    color: var(--op-ink);
   }
+  .op-svcrp-arrow { transition: transform var(--op-dur-fast) var(--op-ease), color var(--op-dur-fast) var(--op-ease); }
+  .op-svcrp-card:hover .op-svcrp-arrow { transform: translateX(3px); color: var(--op-orange); }
+  .op-svcrp-cta-row { display: flex; justify-content: flex-start; }
+  @media (max-width: 700px) { .op-svcrp { padding: 56px 22px; } }
 </style>

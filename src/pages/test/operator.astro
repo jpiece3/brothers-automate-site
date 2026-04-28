@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import SpecStrip from '../../components/operator/SpecStrip.astro';
+import OffsetCard from '../../components/operator/OffsetCard.astro';
+import OperatorPanel from '../../components/operator/OperatorPanel.astro';
+import CalloutBox from '../../components/operator/CalloutBox.astro';
+import MonoCTA from '../../components/operator/MonoCTA.astro';
+import ProcessStrip from '../../components/operator/ProcessStrip.astro';
+---
+
+<Layout title="Operator Primitives — Test" description="Internal preview of the Operator design system primitives.">
+  <main class="op-grid-bg op-test-page">
+    <div class="op-test-container">
+      <!-- ====================================== -->
+      <!-- 01 / TopUtilityStrip -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">01 · TopUtilityStrip</h2>
+        <TopUtilityStrip
+          left="BROTHERS_AUTOMATE / V.2026"
+          right="6 SYSTEMS · LIVE IN 47 BUSINESSES"
+        />
+        <div style="height:24px"></div>
+        <TopUtilityStrip
+          left="BROTHERS_AUTOMATE / SECTION 03 · HOW WE WORK"
+          right="02 ENGAGEMENT MODES"
+          bordered
+        />
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 02 / EyebrowTag -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">02 · EyebrowTag</h2>
+        <div class="op-test-row">
+          <EyebrowTag label="AI OPERATIONS · BUILT FOR $2M–$15M REVENUE" />
+          <EyebrowTag label="WE DO PROJECTS · WE BECOME PART OF YOUR BUSINESS" />
+        </div>
+        <div class="op-test-row" style="margin-top:14px">
+          <EyebrowTag label="ABOUT US · BUILT FROM THE FLOOR UP" showDot={false} />
+          <EyebrowTag label="PAPER VARIANT" variant="paper" showDot={false} />
+        </div>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 03 / SpecStrip -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">03 · SpecStrip (paper, navy)</h2>
+        <SpecStrip cells={[
+          { value: '6', label: 'Systems shipped' },
+          { value: '47', label: 'Live in businesses' },
+          { value: '$2M–$15M', label: 'Revenue range' },
+        ]} />
+        <div style="height:24px"></div>
+        <div style="background: var(--op-navy); padding: 24px; border-radius: var(--op-radius);">
+          <SpecStrip cells={[
+            { value: '47s', label: 'Reply time' },
+            { value: '100%', label: 'Logged' },
+            { value: '24/7', label: 'Running' },
+          ]} variant="navy" />
+        </div>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 04 / OffsetCard -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">04 · OffsetCard (default + featured)</h2>
+        <div class="op-test-grid-2">
+          <OffsetCard>
+            <div class="op-mono" style="font-size:10px; color:var(--op-navy-soft); margin-bottom:10px">DEFAULT · 3/3 SHADOW</div>
+            <h3 style="font-family:var(--op-font-display); font-weight:800; font-size:24px; letter-spacing:-0.03em; color:var(--op-ink); margin:0 0 8px">Resting card.</h3>
+            <p style="font-family:var(--op-font-body); font-size:14px; line-height:1.55; color:var(--op-navy-soft); margin:0">Used for project cards, blog cards, and most list-of-thing slots across the site.</p>
+          </OffsetCard>
+
+          <OffsetCard variant="featured">
+            <div class="op-mono" style="font-size:10px; color:var(--op-navy-soft); margin-bottom:10px">FEATURED · 6/8 SHADOW</div>
+            <h3 style="font-family:var(--op-font-display); font-weight:800; font-size:24px; letter-spacing:-0.03em; color:var(--op-ink); margin:0 0 8px">Featured card.</h3>
+            <p style="font-family:var(--op-font-body); font-size:14px; line-height:1.55; color:var(--op-navy-soft); margin:0">Used for the headline card on a page — featured project, primary engagement mode, etc.</p>
+          </OffsetCard>
+        </div>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 05 / OperatorPanel -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">05 · OperatorPanel</h2>
+        <OperatorPanel
+          id="BUILD_06 · INBOUND_AI_SDR"
+          headerExtra="■ ■ ■"
+          minBodyHeight="240px"
+          footerCells={[
+            { value: '47s', label: 'Reply time' },
+            { value: '100%', label: 'Logged' },
+            { value: '24/7', label: 'Running' },
+          ]}
+        >
+          <div class="op-mono" style="font-size:9px; opacity:0.5; margin-bottom:6px">INBOUND · 09:42:14</div>
+          <div style="font-family:var(--op-font-mono); font-size:12px; line-height:1.5; padding:12px 14px; background:rgba(255,255,255,0.04); border-left:3px solid var(--op-cream); margin-bottom:10px">
+            "Looking for help automating resume screening — ~200/week, killing my Saturdays."
+          </div>
+          <div class="op-mono" style="font-size:9px; opacity:0.5">BODY SLOT — composes per use case</div>
+        </OperatorPanel>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 06 / CalloutBox -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">06 · CalloutBox</h2>
+        <CalloutBox header="THE PROMISE">
+          <p>Pick one build and ship it in 1–3 weeks, or plug us in and we run the AI ops side of your business month-over-month.</p>
+        </CalloutBox>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 07 / MonoCTA -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">07 · MonoCTA (orange / navy / paper)</h2>
+        <div class="op-test-row" style="gap:18px">
+          <MonoCTA label="Talk to the Brothers" variant="orange" size="lg" />
+          <MonoCTA label="See our work" variant="navy" size="lg" />
+          <MonoCTA label="Read more" variant="paper" />
+        </div>
+      </section>
+
+      <!-- ====================================== -->
+      <!-- 08 / ProcessStrip -->
+      <!-- ====================================== -->
+      <section class="op-test-section">
+        <h2 class="op-test-h2">08 · ProcessStrip</h2>
+        <ProcessStrip
+          header="PROCESS · 04 STEPS · WHAT TO EXPECT"
+          steps={[
+            { n: '01', title: 'Discovery call', body: '30 minutes. Map your bottleneck. No pitch deck.' },
+            { n: '02', title: 'Scope & quote', body: 'Written brief, fixed price, timeline. You decide.' },
+            { n: '03', title: 'Build & deploy', body: 'Custom dev. Wired into your stack. Tested in your data.' },
+            { n: '04', title: 'Train & hand off', body: 'Walkthrough call + docs. 30-day support window.' },
+          ]}
+        />
+      </section>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .op-test-page {
+    min-height: 100vh;
+    padding: 56px 24px 96px;
+    font-family: var(--op-font-body);
+    color: var(--op-ink);
+  }
+
+  .op-test-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .op-test-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .op-test-h2 {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--op-orange);
+    text-transform: uppercase;
+    margin: 0;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--op-ink);
+  }
+
+  .op-test-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .op-test-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  @media (max-width: 700px) {
+    .op-test-grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,69 +1,75 @@
 ---
 import type { Project } from '../data/projects';
+import EyebrowTag from './operator/EyebrowTag.astro';
+import SpecStrip from './operator/SpecStrip.astro';
+import MonoCTA from './operator/MonoCTA.astro';
+import CalloutBox from './operator/CalloutBox.astro';
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
 
 interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
+const slugCode = project.slug.toUpperCase().replace(/[^A-Z0-9]+/g, '_');
 ---
 
-<!-- Project Hero -->
-<section class="project-hero">
-  <div class="hero-bg-grid"></div>
-  <div class="container">
-    <div class="project-hero-content" data-animate="fade-up">
-      <span class="badge">{project.tagline}</span>
-      <h1>{project.name}.<br /><span class="gradient-text">{project.results.stats[0].number} {project.results.stats[0].label}.</span></h1>
-      <p class="project-hero-sub">{project.meta.description}</p>
+{/* === Hero === */}
+<section class="op-pp-hero op-grid-bg">
+  <div class="op-pp-hero-frame">
+    <div class="op-pp-hero-util">
+      <TopUtilityStrip
+        left={`BROTHERS_AUTOMATE / PROJECT · ${slugCode}`}
+        right="● LIVE BUILD · DEPLOYED"
+        bordered
+      />
+    </div>
 
-      <div class="hero-stats">
-        {project.results.stats.map((stat, i) => (
-          <>
-            {i > 0 && <div class="hero-stat-divider"></div>}
-            <div class="hero-stat">
-              <span class="hero-stat-number">{stat.number}</span>
-              <span class="hero-stat-label">{stat.label}</span>
-            </div>
-          </>
-        ))}
-      </div>
+    <EyebrowTag label={project.tagline.toUpperCase()} />
 
-      <div class="hero-buttons">
-        {project.productUrl && (
-          <a href={project.productUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Try It Live</a>
-        )}
-        <a
-          href="#"
-          class="btn btn-secondary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
-      </div>
+    <h1 class="op-pp-h1">
+      {project.name}.<br />
+      <span class="op-pp-h1-orange">{project.results.stats[0].number} {project.results.stats[0].label}.</span>
+    </h1>
+
+    <p class="op-pp-sub">{project.meta.description}</p>
+
+    <div class="op-pp-ctas">
+      <MonoCTA
+        label="Talk to the Brothers"
+        variant="orange"
+        size="lg"
+        calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+        trackLocation={`project-hero-${project.slug}`}
+        trackLabel="Talk to the Brothers"
+      />
+      {project.productUrl && (
+        <a class="op-pp-link op-mono" href={project.productUrl} target="_blank" rel="noopener noreferrer">
+          TRY IT LIVE →
+        </a>
+      )}
+    </div>
+
+    <div class="op-pp-hero-specs">
+      <SpecStrip cells={project.results.stats.map((s) => ({ value: s.number, label: s.label }))} />
     </div>
   </div>
 </section>
 
-<!-- Problem -->
-<section class="project-problem bg-surface-alt">
-  <div class="container">
-    <div class="problem-content">
-      <div class="problem-text" data-animate="fade-up">
-        <span class="section-label">The Problem</span>
-        <h2>{project.problem.headline}</h2>
-        <p>{project.problem.description}</p>
+{/* === Problem === */}
+<section class="op-pp-problem">
+  <div class="op-pp-problem-frame">
+    <div class="op-pp-problem-grid">
+      <div class="op-pp-problem-text">
+        <span class="op-mono op-pp-section-label"><span class="op-pp-section-num">01</span> THE PROBLEM</span>
+        <h2 class="op-pp-h2">{project.problem.headline}</h2>
+        <p class="op-pp-h2-sub">{project.problem.description}</p>
       </div>
-      <div class="pain-points" data-animate-stagger>
+      <div class="op-pp-painlist">
         {project.problem.painPoints.map((point) => (
-          <div class="pain-point">
-            <span class="pain-marker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </span>
-            <span>{point}</span>
+          <div class="op-pp-pain">
+            <span class="op-pp-pain-x" aria-hidden="true">✗</span>
+            <span class="op-pp-pain-text">{point}</span>
           </div>
         ))}
       </div>
@@ -71,82 +77,107 @@ const { project } = Astro.props;
   </div>
 </section>
 
-<!-- Solution -->
-<section class="project-solution bg-surface">
-  <div class="container">
-    <div data-animate="fade-up">
-      <span class="section-label">The AI Solution</span>
-      <h2>{project.solution.headline}</h2>
-      <p class="solution-desc">{project.solution.description}</p>
+{/* === Solution === */}
+<section class="op-pp-solution op-grid-bg">
+  <div class="op-pp-solution-frame">
+    <div class="op-pp-solution-header">
+      <span class="op-mono op-pp-section-label"><span class="op-pp-section-num">02</span> THE AI SOLUTION</span>
+      <h2 class="op-pp-h2">{project.solution.headline}</h2>
+      <p class="op-pp-h2-sub">{project.solution.description}</p>
     </div>
-    <div class="features-grid" data-animate-stagger>
-      {project.solution.features.map((feature) => (
-        <div class="feature-card card">
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
+
+    <div class="op-pp-features">
+      {project.solution.features.map((feature, i) => (
+        <div class="op-pp-feature">
+          <span class="op-mono op-pp-feature-num">F.{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="op-pp-feature-title">{feature.title}</h3>
+          <p class="op-pp-feature-body">{feature.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- Results -->
-<section class="project-results bg-navy">
-  <div class="container">
-    <div data-animate="fade-up">
-      <span class="section-label section-label-light">Time & Money Saved</span>
-      <h2>{project.results.headline}</h2>
-    </div>
-    <div class="results-stats" data-animate-stagger>
-      {project.results.stats.map((stat) => (
-        <div class="result-stat">
-          <span class="result-number">{stat.number}</span>
-          <span class="result-label">{stat.label}</span>
-          {stat.context && <span class="result-context">{stat.context}</span>}
-        </div>
-      ))}
-    </div>
-
-    {project.results.testimonial && (
-      <blockquote class="testimonial" data-animate="fade-up">
-        <p>"{project.results.testimonial.quote}"</p>
-        <cite>
-          <strong>{project.results.testimonial.author}</strong>
-          <span>{project.results.testimonial.role}</span>
-        </cite>
-      </blockquote>
-    )}
-
-    {project.videoUrl && (
-      <div class="video-embed" data-animate="scale-up">
-        <iframe
-          src={project.videoUrl}
-          title={`${project.name} Demo`}
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+{/* === Results === */}
+<section class="op-pp-results">
+  <div class="op-pp-results-frame">
+    <div class="op-pp-results-panel">
+      <div class="op-pp-results-panel-header">
+        <span class="op-pulse-dot op-pulse-dot--lg"></span>
+        <span class="op-mono op-pp-results-id">RESULTS · {slugCode}</span>
+        <span class="op-mono op-pp-results-status">● LIVE</span>
       </div>
-    )}
+      <div class="op-pp-results-body">
+        <span class="op-mono op-pp-section-label op-pp-section-label--light"><span class="op-pp-section-num">03</span> TIME &amp; MONEY SAVED</span>
+        <h2 class="op-pp-h2 op-pp-h2--light">{project.results.headline}</h2>
+
+        <div class="op-pp-results-stats">
+          {project.results.stats.map((s) => (
+            <div class="op-pp-results-stat">
+              <div class="op-pp-results-stat-num">{s.number}</div>
+              <div class="op-pp-results-stat-label">{s.label}</div>
+              {s.context && <div class="op-mono op-pp-results-stat-context">{s.context}</div>}
+            </div>
+          ))}
+        </div>
+
+        {project.results.testimonial && (
+          <div class="op-pp-results-testimonial">
+            <CalloutBox header="WHAT THE CLIENT SAID">
+              <p>"{project.results.testimonial.quote}"</p>
+            </CalloutBox>
+            <div class="op-pp-results-testimonial-cite op-mono">
+              — {project.results.testimonial.author} · {project.results.testimonial.role}
+            </div>
+          </div>
+        )}
+
+        {project.videoUrl && (
+          <div class="op-pp-results-video">
+            <div class="op-pp-results-video-frame">
+              <iframe
+                src={project.videoUrl}
+                title={`${project.name} Demo`}
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="project-cta-section bg-surface-alt">
-  <div class="container">
-    <div class="project-cta-content" data-animate="fade-up">
-      <h2>{project.cta.headline}</h2>
-      <p>{project.cta.description}</p>
-      <div class="project-cta-buttons">
-        <a
-          href="#"
-          class="btn btn-primary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        >Talk to the Brothers</a>
+{/* === CTA === */}
+<section class="op-pp-cta op-grid-bg">
+  <div class="op-pp-cta-frame">
+    <div class="op-pp-cta-block">
+      <span class="op-mono op-pp-section-label"><span class="op-pp-section-num">04</span> NEXT STEP</span>
+      <h2 class="op-pp-h2 op-pp-cta-h2">{project.cta.headline}</h2>
+      <p class="op-pp-h2-sub op-pp-cta-sub">{project.cta.description}</p>
+
+      <div class="op-pp-cta-actions">
+        <MonoCTA
+          label="Talk to the Brothers"
+          variant="orange"
+          size="lg"
+          calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+          trackLocation={`project-cta-${project.slug}`}
+          trackLabel="Talk to the Brothers"
+        />
         {project.productUrl && (
-          <a href={project.productUrl} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Try It Live</a>
+          <MonoCTA
+            label="Try it live"
+            variant="navy"
+            size="lg"
+            href={project.productUrl}
+            external
+            trackLocation={`project-cta-${project.slug}`}
+            trackLabel="Try It Live"
+          />
         )}
       </div>
     </div>
@@ -154,388 +185,320 @@ const { project } = Astro.props;
 </section>
 
 <style>
-  /* Project Hero */
-  .project-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-3xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
+  /* === Hero === */
+  .op-pp-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
   }
+  .op-pp-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pp-hero-util { margin-bottom: 32px; }
+  .op-pp-hero :global(.op-eyebrow) { margin-bottom: 24px; }
 
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  }
-
-  .project-hero-content {
-    position: relative;
-    max-width: 750px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .project-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .project-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto var(--space-lg);
-  }
-
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-xl);
-    padding: var(--space-lg) var(--space-xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .hero-stat-number {
-    font-size: 1.75rem;
+  .op-pp-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    max-width: 900px;
+    text-wrap: balance;
   }
+  .op-pp-h1-orange { color: var(--op-orange); }
 
-  .hero-stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+  .op-pp-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
     font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 32px;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  .hero-stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
-  }
-
-  .hero-buttons {
+  .op-pp-ctas {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    gap: 24px;
     align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .op-pp-link {
+    color: var(--op-ink);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pp-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
+
+  /* Section labels (mono caps) */
+  .op-pp-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-pp-section-label--light { color: var(--op-cream); }
+  .op-pp-section-num { color: var(--op-orange); font-size: 9px; }
+
+  /* Section H2s */
+  .op-pp-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.02;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .op-pp-h2--light { color: var(--op-paper); }
+  .op-pp-h2-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  @media (min-width: 480px) {
-    .hero-buttons {
-      flex-direction: row;
-      justify-content: center;
-    }
+  /* === Problem === */
+  .op-pp-problem {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-pp-problem-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pp-problem-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  @media (min-width: 900px) {
+    .op-pp-problem-grid { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   }
 
-  /* Section Labels */
-  .section-label {
-    display: inline-block;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
-  }
-
-  .section-label-light {
-    color: rgba(237, 137, 54, 0.8);
-  }
-
-  /* Problem */
-  .project-problem {
-    padding: var(--space-4xl) 0;
-  }
-
-  .problem-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .problem-text {
-    margin-bottom: var(--space-xl);
-  }
-
-  .problem-text h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .problem-text p {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-  }
-
-  .pain-points {
+  .op-pp-painlist {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: 12px;
   }
-
-  .pain-point {
+  .op-pp-pain {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-surface);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--op-cream);
+    border: 1px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: var(--op-radius-sm);
   }
-
-  .pain-marker {
+  .op-pp-pain-x {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    display: flex;
+    width: 18px;
+    height: 18px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .pain-point span:last-child {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  /* Solution */
-  .project-solution {
-    padding: var(--space-4xl) 0;
-  }
-
-  .project-solution h2 {
-    margin-bottom: var(--space-md);
-  }
-
-  .solution-desc {
-    color: var(--text-secondary);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    max-width: 700px;
-    margin-bottom: var(--space-xl);
-  }
-
-  .features-grid {
-    display: grid;
-    gap: var(--space-md);
-  }
-
-  @media (min-width: 640px) {
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .feature-card {
-    padding: var(--space-lg);
-  }
-
-  .feature-card h3 {
-    font-size: 1.0625rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-xs);
-  }
-
-  .feature-card p {
-    margin: 0;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Results */
-  .project-results {
-    padding: var(--space-4xl) 0;
-    text-align: center;
-  }
-
-  .project-results h2 {
-    margin-bottom: var(--space-xl);
-  }
-
-  .results-stats {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2xl);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-xl);
-  }
-
-  .result-stat {
-    text-align: center;
-  }
-
-  .result-number {
-    display: block;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: 11px;
     font-weight: 800;
-    color: var(--orange);
-    line-height: 1;
-    margin-bottom: var(--space-xs);
+    border-radius: 2px;
+  }
+  .op-pp-pain-text {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-ink);
   }
 
-  .result-label {
-    display: block;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2px;
+  /* === Solution === */
+  .op-pp-solution {
+    padding: 72px var(--op-section-px);
   }
+  .op-pp-solution-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pp-solution-header { max-width: 760px; margin-bottom: 40px; }
 
-  .result-context {
-    display: block;
-    font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.5);
+  .op-pp-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
+  @media (min-width: 700px) { .op-pp-features { grid-template-columns: 1fr 1fr; } }
 
-  .testimonial {
-    max-width: 600px;
-    margin: var(--space-xl) auto 0;
-    padding: var(--space-lg);
-    border-left: 3px solid var(--orange);
-    text-align: left;
-  }
-
-  .testimonial p {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-style: italic;
-    line-height: 1.7;
-    margin: 0 0 var(--space-md);
-  }
-
-  .testimonial cite {
-    font-style: normal;
-  }
-
-  .testimonial strong {
-    display: block;
-    color: white;
-    font-size: 0.9375rem;
-  }
-
-  .testimonial cite span {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.8125rem;
-  }
-
-  .video-embed {
-    max-width: 700px;
-    margin: var(--space-xl) auto 0;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 16/9;
-  }
-
-  .video-embed iframe {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Project CTA */
-  .project-cta-section {
-    padding: var(--space-3xl) 0;
-    text-align: center;
-  }
-
-  .project-cta-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .project-cta-content h2 {
-    margin-bottom: var(--space-sm);
-  }
-
-  .project-cta-content p {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-lg);
-    font-size: 1.0625rem;
-  }
-
-  .project-cta-buttons {
+  .op-pp-feature {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 8px;
+  }
+  .op-pp-feature-num {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-pp-feature-title {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-pp-feature-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+  }
+
+  /* === Results === */
+  .op-pp-results {
+    padding: 72px var(--op-section-px);
+    background: var(--op-cream);
+  }
+  .op-pp-results-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pp-results-panel {
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-cream);
+  }
+  .op-pp-results-panel-header {
+    background: var(--op-navy-deep);
+    padding: 12px 20px;
+    display: flex;
     align-items: center;
+    gap: 12px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+  }
+  .op-pp-results-id { font-size: 10px; color: var(--op-orange); }
+  .op-pp-results-status {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.55;
+  }
+  .op-pp-results-body { padding: 48px 56px 52px; }
+  @media (max-width: 700px) { .op-pp-results-body { padding: 32px 24px 36px; } }
+
+  .op-pp-results-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 32px;
+  }
+  @media (min-width: 700px) { .op-pp-results-stats { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-pp-results-stat {
+    border-left: 2px solid var(--op-orange);
+    padding-left: 18px;
+  }
+  .op-pp-results-stat-num {
+    font-family: var(--op-font-display);
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--op-paper);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .op-pp-results-stat-label {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--op-cream);
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+  .op-pp-results-stat-context {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.5;
   }
 
-  @media (min-width: 480px) {
-    .project-cta-buttons {
-      flex-direction: row;
-      justify-content: center;
-    }
+  .op-pp-results-testimonial {
+    margin-top: 36px;
+  }
+  .op-pp-results-testimonial-cite {
+    margin-top: 12px;
+    font-size: 10px;
+    color: var(--op-cream);
+    opacity: 0.6;
+    text-align: right;
   }
 
-  @media (max-width: 767px) {
-    .project-hero {
-      padding-top: 120px;
-      padding-bottom: var(--space-2xl);
-    }
+  .op-pp-results-video {
+    margin-top: 36px;
+  }
+  .op-pp-results-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    background: var(--op-navy-deep);
+  }
+  .op-pp-results-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 
-    .hero-stats {
-      flex-direction: column;
-      gap: var(--space-md);
-      padding: var(--space-md);
-    }
+  /* === CTA block === */
+  .op-pp-cta {
+    padding: 72px var(--op-section-px);
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-pp-cta-frame { max-width: 900px; margin: 0 auto; }
+  .op-pp-cta-block {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 48px 56px;
+    box-shadow: var(--op-shadow-md);
+    text-align: center;
+  }
+  .op-pp-cta-h2 { margin-left: auto; margin-right: auto; max-width: 720px; }
+  .op-pp-cta-sub {
+    margin: 0 auto 28px;
+    text-align: center;
+  }
+  .op-pp-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
 
-    .hero-stat-divider {
-      width: 60px;
-      height: 1px;
-    }
-
-    .results-stats {
-      gap: var(--space-lg);
-    }
-
-    .project-cta-buttons .btn,
-    .hero-buttons .btn {
-      width: 100%;
-      justify-content: center;
-    }
+  @media (max-width: 700px) {
+    .op-pp-hero,
+    .op-pp-problem,
+    .op-pp-solution,
+    .op-pp-results,
+    .op-pp-cta { padding-left: 22px; padding-right: 22px; }
+    .op-pp-cta-block { padding: 32px 24px; }
+    .op-pp-results-stat-num { font-size: 36px; }
   }
 </style>

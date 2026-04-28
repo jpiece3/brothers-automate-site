@@ -1,0 +1,84 @@
+---
+/**
+ * OffsetCard — paper bg + 1.5px navy border + 3/3 (resting) or 6/8 (featured/hover) offset shadow.
+ * The base card primitive of the Operator system. Never soft.
+ *
+ * Props:
+ *   variant:  'default' | 'featured'   (default 'default')
+ *             - 'default'  = 3/3 resting shadow
+ *             - 'featured' = 6/8 resting shadow (use for the headline card on the page)
+ *   hover:    boolean  (default true) — lift + shadow grow on hover
+ *   bg:       'paper' | 'cream' | 'navy'  (default 'paper')
+ *   padding:  CSS length string  (default '28px')
+ *   tag:      'div' | 'a' | 'article'   (default 'div')
+ *   href:     string  (only used when tag='a')
+ *   class:    string  extra classes from caller
+ */
+interface Props {
+  variant?: 'default' | 'featured';
+  hover?: boolean;
+  bg?: 'paper' | 'cream' | 'navy';
+  padding?: string;
+  tag?: 'div' | 'a' | 'article';
+  href?: string;
+  class?: string;
+}
+const {
+  variant = 'default',
+  hover = true,
+  bg = 'paper',
+  padding = '28px',
+  tag = 'div',
+  href,
+  class: className = '',
+} = Astro.props;
+
+const Tag = tag;
+const classes = [
+  'op-offset-card',
+  `op-offset-card--${variant}`,
+  `op-offset-card--bg-${bg}`,
+  hover ? 'op-offset-card--hover' : '',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<Tag class={classes} href={href} style={`padding:${padding};`}>
+  <slot />
+</Tag>
+
+<style>
+  .op-offset-card {
+    position: relative;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .op-offset-card--bg-paper { background: var(--op-paper); }
+  .op-offset-card--bg-cream { background: var(--op-cream); }
+  .op-offset-card--bg-navy  { background: var(--op-navy); color: var(--op-cream); }
+
+  .op-offset-card--default  { box-shadow: var(--op-shadow); }
+  .op-offset-card--featured { box-shadow: var(--op-shadow-md); }
+
+  .op-offset-card--hover:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .op-offset-card {
+      transition: none;
+    }
+    .op-offset-card--hover:hover {
+      transform: none;
+    }
+  }
+</style>

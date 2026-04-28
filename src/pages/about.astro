@@ -3,124 +3,179 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import SpecStrip from '../components/operator/SpecStrip.astro';
+import CalloutBox from '../components/operator/CalloutBox.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
+
+const values = [
+  {
+    n: 'V.01',
+    title: 'Transparent deliverables',
+    body: 'Full documentation, clear infrastructure, and a system you understand. We build it, explain it, and hand it over.',
+  },
+  {
+    n: 'V.02',
+    title: 'Flat fee per project',
+    body: "Clear pricing upfront. One project, one price, done. The system runs on its own after handoff.",
+  },
+  {
+    n: 'V.03',
+    title: 'Custom, not template',
+    body: "Your business isn't a template. We research your specific workflow, your tools, your bottleneck, then build something that fits.",
+  },
+  {
+    n: 'V.04',
+    title: 'Ship fast, ship right',
+    body: "1–3 weeks from kickoff to live system. Not because we cut corners, but because we've done this enough times to move fast without breaking things.",
+  },
+  {
+    n: 'V.05',
+    title: 'Operator-first language',
+    body: 'We write documentation in plain English. We explain how things work, not just what they do. Because you should understand your own systems.',
+  },
+  {
+    n: 'V.06',
+    title: 'Two brothers, zero account managers',
+    body: 'You talk to us. The same people who design, build, and deploy your system. No junior staff, no handoffs, no telephone game.',
+  },
+];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
-    { "@type": "ListItem", "position": 2, "name": "About", "item": `${SITE_URL}/about` }
-  ]
+    { "@type": "ListItem", "position": 2, "name": "About", "item": `${SITE_URL}/about` },
+  ],
 };
 ---
 
 <Layout
   title="About | Brothers Automate"
-  description="We ran a service business for 5 years. Now we build AI systems that handle the busywork for service businesses doing $1-5M, so owners can focus on what they do best."
+  description="We ran a service business for 5 years. Now we build AI systems that handle the busywork for service businesses doing $1-15M, so owners can focus on what they do best."
 >
   <Header />
   <main>
-    <!-- Hero -->
-    <section class="about-hero">
-      <div class="container">
-        <div class="about-hero-grid">
-          <div class="about-hero-image" data-animate="slide-left">
-            <img src="/brothers.png" alt="James and Brendan, founders of Brothers Automate" width="400" height="400" loading="eager" />
+    {/* Hero */}
+    <section class="op-aboutpage-hero op-grid-bg">
+      <div class="op-aboutpage-hero-frame">
+        <div class="op-aboutpage-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / ABOUT · OPERATORS"
+            right="● 02 BROTHERS · 5 YRS BUILDING"
+            bordered
+          />
+        </div>
+
+        <div class="op-aboutpage-hero-grid" data-animate-stagger>
+          <div class="op-aboutpage-hero-content">
+            <EyebrowTag label="OUR STORY · OPERATORS BUILDING FOR OPERATORS" />
+            <h1 class="op-aboutpage-h1" data-animate="fade-up">
+              Built by Operators,<br />
+              <span class="op-aboutpage-h1-orange">for Operators.</span>
+            </h1>
+            <p class="op-aboutpage-sub" data-animate="fade-up">
+              We're James and Brendan — two brothers who've been in business together for 5 years. We started by running our own service businesses, and we got tired of the busywork eating our weekends.
+            </p>
+            <p class="op-aboutpage-mission">
+              <strong>Our mission:</strong> design and install AI systems that quietly run in the background, so service businesses get more qualified leads and waste far less time on manual work.
+            </p>
           </div>
-          <div class="about-hero-content" data-animate="slide-right">
-            <span class="badge">Our Story</span>
-            <h1>Built by Operators,<br />for Operators</h1>
-            <p class="about-hero-sub">We're James and Brendan, two brothers who've been in business together for 5 years. We started by running our own service businesses, and we got tired of the busywork eating our weekends.</p>
-            <p class="about-mission">Our mission: to design and install AI systems that quietly run in the background so service businesses get more qualified leads and waste far less time on manual work.</p>
+
+          <div class="op-aboutpage-hero-portrait-wrap">
+            <div class="op-aboutpage-hero-portrait">
+              <div class="op-aboutpage-portrait-header" data-animate="fade-up">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono">FOUNDERS · 2026</span>
+                <span class="op-mono op-aboutpage-portrait-id">IMG_001</span>
+              </div>
+              <div class="op-aboutpage-portrait-inset">
+                <img src="/brothers.png" alt="James and Brendan Pinder" />
+              </div>
+              <div class="op-aboutpage-portrait-caption">
+                <span class="op-mono">5 YRS · SERVICE BUSINESS</span>
+                <span class="op-mono op-aboutpage-portrait-arrow">↗ NOW BUILDING</span>
+              </div>
+            </div>
+            <div class="op-aboutpage-sticker">
+              <div class="op-mono op-aboutpage-sticker-top">OPS_TEAM</div>
+              <div class="op-mono">02 BROTHERS</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Story -->
-    <section class="about-story bg-surface">
-      <div class="container">
-        <div class="story-content" data-animate="fade-up">
-          <h2>The Short Version</h2>
-          <p>You started a business to do the thing you're good at. Now you spend most of your time doing everything else.</p>
+    {/* Story */}
+    <section class="op-aboutpage-story">
+      <div class="op-aboutpage-story-frame">
+        <span class="op-mono op-aboutpage-section-label"><span class="op-aboutpage-section-num">01</span> THE SHORT VERSION</span>
+        <h2 class="op-aboutpage-h2">You started a business to do the thing you're good at. Now you spend most of your time doing everything else.</h2>
+        <div class="op-aboutpage-story-body">
           <p>We lived it. We ran a service business for 5 years. You want to meet clients, close deals, deliver great work. But instead you're manually logging leads, writing follow-up emails, posting on social media. Your inbox is a mess and opportunities slip through the cracks.</p>
-          <p>We built AI systems to handle that work automatically, and do it better than a human could. AI can't close your deals or deliver your service, but it can segment and follow up with your leads, create your ads, screen your applicants, and keep your pipeline moving while you focus on what matters.</p>
+          <p>We built AI systems to handle that work automatically — and do it better than a human could. AI can't close your deals or deliver your service, but it can segment and follow up with your leads, create your ads, screen your applicants, and keep your pipeline moving while you focus on what matters.</p>
           <p>We know what to automate because we were operators ourselves. We spent years figuring out what actually moves the needle.</p>
           <p>Agencies charge $10K/month for this work. Hiring someone costs the same or more. Learning it yourself takes hundreds of hours you don't have.</p>
-          <p><strong>We build the systems so you don't have to pay agency prices or sacrifice your time.</strong> Talk to us about your business, then go back to doing what only you can do.</p>
+        </div>
+
+        <div class="op-aboutpage-story-callout">
+          <CalloutBox header="THE PROMISE">
+            <p>We build the systems so you don't have to pay agency prices or sacrifice your time. Talk to us about your business, then go back to doing what only you can do.</p>
+          </CalloutBox>
         </div>
       </div>
     </section>
 
-    <!-- Values -->
-    <section class="about-values bg-surface-alt">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>How We Think About This</h2>
+    {/* Stats */}
+    <section class="op-aboutpage-stats op-grid-bg">
+      <div class="op-aboutpage-stats-frame">
+        <SpecStrip cells={[
+          { value: '5 yrs', label: 'Running a service business' },
+          { value: '14-hr', label: 'Days we lived through' },
+          { value: '$10K', label: 'What agencies charge' },
+          { value: '06', label: 'Flagship systems we ship' },
+        ]} />
+      </div>
+    </section>
+
+    {/* Values */}
+    <section class="op-aboutpage-values">
+      <div class="op-aboutpage-values-frame">
+        <div class="op-aboutpage-values-header" data-animate="fade-up">
+          <span class="op-mono op-aboutpage-section-label"><span class="op-aboutpage-section-num">02</span> HOW WE THINK ABOUT THIS</span>
+          <h2 class="op-aboutpage-h2">Six rules we won't bend.</h2>
         </div>
-        <div class="values-grid" data-animate-stagger>
-          <div class="value-card card">
-            <h3>Transparent Deliverables</h3>
-            <p>Full documentation, clear infrastructure, and a system you understand. We build it, explain it, and hand it over.</p>
-          </div>
-          <div class="value-card card">
-            <h3>Flat Fee Per Project</h3>
-            <p>Clear pricing upfront. One project, one price, done. The system runs on its own after handoff.</p>
-          </div>
-          <div class="value-card card">
-            <h3>Custom, Not Template</h3>
-            <p>Your business isn't a template. We research your specific workflow, your tools, your bottleneck, then build something that fits.</p>
-          </div>
-          <div class="value-card card">
-            <h3>Ship Fast, Ship Right</h3>
-            <p>1-3 weeks from kickoff to live system. Not because we cut corners, but because we've done this enough times to move fast without breaking things.</p>
-          </div>
-          <div class="value-card card">
-            <h3>Operator-First Language</h3>
-            <p>We write documentation in plain English. We explain how things work, not just what they do. Because you should understand your own systems.</p>
-          </div>
-          <div class="value-card card">
-            <h3>Two Brothers, Zero Account Managers</h3>
-            <p>You talk to us. The same people who design, build, and deploy your system. No junior staff, no handoffs, no telephone game.</p>
-          </div>
+        <div class="op-aboutpage-values-grid" data-animate-stagger>
+          {values.map((v) => (
+            <div class="op-aboutpage-value">
+              <span class="op-mono op-aboutpage-value-num">{v.n}</span>
+              <h3 class="op-aboutpage-value-title">{v.title}</h3>
+              <p class="op-aboutpage-value-body">{v.body}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- What We Build -->
-    <section class="about-builds bg-surface">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>What We've Built</h2>
-          <p>A sampling of the kinds of systems we ship.</p>
-        </div>
-        <div class="builds-grid" data-animate-stagger>
-          <a href="/projects/quiz-funnels" class="build-item">
-            <strong>Quiz Funnels</strong>
-            <span>Automated lead qualification with scoring, 26-email nurture sequences, and real-time analytics</span>
-          </a>
-          <a href="/projects/brand-research" class="build-item">
-            <strong>Brand Research</strong>
-            <span>AI-powered audience analysis, competitor intel, and positioning strategy in 48 hours</span>
-          </a>
-          <a href="/projects/daily-ads" class="build-item">
-            <strong>Daily Ads</strong>
-            <span>Fresh ad creative generated daily in 21 formats. Static and video, matched to your brand</span>
-          </a>
-          <a href="/projects/screenfast" class="build-item">
-            <strong>ScreenFast</strong>
-            <span>AI resume screening that reads, scores, and ranks candidates in seconds. Built for YMCA</span>
-          </a>
-          <a href="/projects/google-review-response" class="build-item">
-            <strong>Google Review Response</strong>
-            <span>Automated, personalized review responses that keep your reputation strong 24/7</span>
-          </a>
-          <a href="/projects/route-simply" class="build-item">
-            <strong>Route Simply</strong>
-            <span>AI-optimized routing that cuts drive time by 30% and fits more jobs into every day</span>
-          </a>
+    {/* CTA inline */}
+    <section class="op-aboutpage-inline-cta op-grid-bg">
+      <div class="op-aboutpage-inline-cta-frame">
+        <h2 class="op-aboutpage-h2">Want to see how we'd build for your business?</h2>
+        <p class="op-aboutpage-inline-cta-sub" data-animate="fade-up">30 minutes. We map your bottleneck, you walk away with a plan or with clarity. Either way, no pitch deck.</p>
+        <div class="op-aboutpage-inline-cta-actions">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            trackLocation="about-page"
+            trackLabel="Talk to the Brothers"
+          />
+          <a class="op-mono op-aboutpage-link" href="/projects">SEE THE BUILDS →</a>
         </div>
       </div>
     </section>
@@ -133,179 +188,270 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
-  .about-hero {
-    padding-top: 160px;
-    padding-bottom: var(--space-2xl);
-    background: var(--bg-primary);
+  /* Hero */
+  .op-aboutpage-hero {
+    padding: 120px var(--op-section-px) 80px;
+    color: var(--op-ink);
   }
+  .op-aboutpage-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-aboutpage-util { margin-bottom: 32px; }
 
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .about-hero-grid {
+  .op-aboutpage-hero-grid {
     display: grid;
-    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+    gap: 56px;
     align-items: center;
   }
-
-  @media (min-width: 768px) {
-    .about-hero-grid {
-      grid-template-columns: 300px 1fr;
-      gap: var(--space-3xl);
-    }
+  @media (min-width: 1000px) {
+    .op-aboutpage-hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 72px; }
   }
 
-  .about-hero-image {
+  .op-aboutpage-hero-content :global(.op-eyebrow) { margin-bottom: 24px; }
+  .op-aboutpage-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    text-wrap: balance;
+  }
+  .op-aboutpage-h1-orange { color: var(--op-orange); }
+
+  .op-aboutpage-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 20px;
+    max-width: 580px;
+    text-wrap: pretty;
+  }
+  .op-aboutpage-mission {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-ink);
+    margin: 0;
+    max-width: 580px;
+    padding-left: 14px;
+    border-left: 3px solid var(--op-orange);
+    text-wrap: pretty;
+  }
+  .op-aboutpage-mission strong { font-weight: 700; }
+
+  /* Portrait card */
+  .op-aboutpage-hero-portrait-wrap { position: relative; }
+  .op-aboutpage-hero-portrait {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 18px;
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-aboutpage-portrait-header {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    color: var(--op-navy);
+  }
+  .op-aboutpage-portrait-header .op-mono { font-size: 9px; }
+  .op-aboutpage-portrait-id {
+    margin-left: auto;
+    color: var(--op-navy-soft);
+    opacity: 0.6;
+  }
+  .op-aboutpage-portrait-inset {
+    border: 4px solid var(--op-navy);
+    background: var(--op-cream);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+  .op-aboutpage-portrait-inset img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .op-aboutpage-portrait-caption {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.2em;
+  }
+  .op-aboutpage-portrait-arrow { color: var(--op-orange); }
+
+  .op-aboutpage-sticker {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 8px 12px;
+    box-shadow: var(--op-shadow);
+  }
+  .op-aboutpage-sticker-top {
+    color: var(--op-orange);
+    font-size: 9px;
+    margin-bottom: 2px;
+    letter-spacing: 0.2em;
   }
 
-  .about-hero-image img {
-    width: 280px;
-    height: auto;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+  /* Section labels */
+  .op-aboutpage-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
   }
+  .op-aboutpage-section-num { color: var(--op-orange); font-size: 9px; }
 
-  .about-hero h1 {
-    margin-bottom: var(--space-md);
-  }
-
-  .about-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .about-mission {
-    font-size: clamp(1rem, 1.8vw, 1.125rem);
-    color: var(--navy);
-    font-weight: 600;
-    line-height: 1.7;
-    margin-top: var(--space-md);
-    padding-top: var(--space-md);
-    border-top: 2px solid var(--orange);
+  .op-aboutpage-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 3.8vw, 50px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 28px;
+    text-wrap: balance;
   }
 
   /* Story */
-  .about-story {
-    padding: var(--space-4xl) 0;
+  .op-aboutpage-story {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
   }
+  .op-aboutpage-story-frame { max-width: 880px; margin: 0 auto; }
+  .op-aboutpage-story-body {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .op-aboutpage-story-body p {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-aboutpage-story-callout { max-width: 720px; }
 
-  .story-content {
-    max-width: 700px;
-    margin: 0 auto;
+  /* Stats */
+  .op-aboutpage-stats {
+    padding: 48px var(--op-section-px);
   }
-
-  .story-content h2 {
-    margin-bottom: var(--space-lg);
-  }
-
-  .story-content p {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: var(--space-md);
-  }
-
-  .story-content strong {
-    color: var(--navy);
-  }
+  .op-aboutpage-stats-frame { max-width: var(--op-max-content); margin: 0 auto; }
 
   /* Values */
-  .about-values {
-    padding: var(--space-4xl) 0;
+  .op-aboutpage-values {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
   }
+  .op-aboutpage-values-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-aboutpage-values-header { max-width: 720px; margin-bottom: 36px; }
 
-  .values-grid {
+  .op-aboutpage-values-grid {
     display: grid;
-    gap: var(--space-md);
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
+  @media (min-width: 700px) { .op-aboutpage-values-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-aboutpage-values-grid { grid-template-columns: repeat(3, 1fr); } }
 
-  @media (min-width: 640px) {
-    .values-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .op-aboutpage-value {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--op-shadow);
   }
-
-  @media (min-width: 1024px) {
-    .values-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .op-aboutpage-value-num {
+    font-size: 9px;
+    color: var(--op-orange);
   }
-
-  .value-card {
-    padding: var(--space-lg);
-  }
-
-  .value-card h3 {
-    font-size: 1.0625rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-sm);
-  }
-
-  .value-card p {
+  .op-aboutpage-value-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
     margin: 0;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+  }
+  .op-aboutpage-value-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
 
-  /* What We Build */
-  .about-builds {
-    padding: var(--space-4xl) 0;
+  /* Inline CTA */
+  .op-aboutpage-inline-cta {
+    padding: 72px var(--op-section-px);
+    text-align: center;
   }
-
-  .builds-grid {
-    display: grid;
-    gap: var(--space-md);
-    max-width: 900px;
+  .op-aboutpage-inline-cta-frame {
+    max-width: 760px;
     margin: 0 auto;
   }
-
-  @media (min-width: 640px) {
-    .builds-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .op-aboutpage-inline-cta-frame .op-aboutpage-h2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .op-aboutpage-inline-cta-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    color: var(--op-navy-soft);
+    margin: 0 auto 28px;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .op-aboutpage-inline-cta-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .op-aboutpage-link {
+    color: var(--op-ink);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-aboutpage-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
   }
 
-  .build-item {
-    padding: var(--space-md);
-    border-left: 2px solid var(--orange);
-  }
-
-  .build-item strong {
-    display: block;
-    font-size: 1rem;
-    color: var(--navy);
-    margin-bottom: 2px;
-  }
-
-  .build-item span {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  @media (max-width: 767px) {
-    .about-hero {
-      padding-top: 120px;
-      text-align: center;
-    }
-
-    .about-hero-image img {
-      width: 220px;
-    }
+  @media (max-width: 700px) {
+    .op-aboutpage-hero,
+    .op-aboutpage-story,
+    .op-aboutpage-stats,
+    .op-aboutpage-values,
+    .op-aboutpage-inline-cta { padding-left: 22px; padding-right: 22px; }
   }
 </style>

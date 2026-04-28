@@ -1,5 +1,6 @@
 ---
 import { getAllProjects } from '../data/projects';
+import EyebrowTag from './operator/EyebrowTag.astro';
 
 interface Props {
   compact?: boolean;
@@ -9,28 +10,43 @@ const { compact = false } = Astro.props;
 const projects = getAllProjects();
 ---
 
-<section class:list={['projects-grid-section', { compact }]} id="projects">
-  <div class="container">
+<section class:list={['op-projects-section', { 'op-projects-section--compact': compact }]} id="projects">
+  <div class="op-projects-frame">
     {!compact && (
-      <div class="section-header" data-animate="fade-up">
-        <h2>What We Build</h2>
-        <p>AI systems that save you time and money. Each one built custom for your business.</p>
+      <div class="op-projects-header">
+        <EyebrowTag label="ALL BUILDS · CUSTOM PER CLIENT" />
+        <h2 class="op-projects-h2">What we build.</h2>
+        <p class="op-projects-sub">AI systems that save you time and money. Each one built custom for your business.</p>
       </div>
     )}
 
-    <div class="projects-grid" data-animate-stagger>
-      {projects.map((project) => (
-        <a href={`/projects/${project.slug}`} class="project-card card" data-track="project_card_click" data-track-label={project.name}>
-          <div class="project-icon-area">
-            <span class="project-icon">
+    <div class="op-projects-grid">
+      {projects.map((project, idx) => (
+        <a
+          href={`/projects/${project.slug}`}
+          class="op-proj-card"
+          data-track="project_card_click"
+          data-track-label={project.name}
+        >
+          <div class="op-proj-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-proj-id">PROJECT_{String(idx + 1).padStart(2, '0')}</span>
+          </div>
+
+          <div class="op-proj-body">
+            <div class="op-proj-icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d={project.icon}></path>
               </svg>
-            </span>
+            </div>
+            <h3 class="op-proj-name">{project.name}</h3>
+            <p class="op-proj-desc">{project.description}</p>
           </div>
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
-          <span class="project-cta">{project.ctaLabel} &rarr;</span>
+
+          <div class="op-proj-foot">
+            <span class="op-mono">{project.ctaLabel.toUpperCase()}</span>
+            <span class="op-proj-arrow" aria-hidden="true">→</span>
+          </div>
         </a>
       ))}
     </div>
@@ -38,84 +54,152 @@ const projects = getAllProjects();
 </section>
 
 <style>
-  .projects-grid-section {
-    padding: var(--space-4xl) 0;
+  .op-projects-section {
+    padding: 80px var(--op-section-px) 96px;
+  }
+  .op-projects-section--compact {
+    padding: 56px var(--op-section-px);
   }
 
-  .projects-grid-section.compact {
-    padding: var(--space-3xl) 0;
+  .op-projects-frame {
+    max-width: var(--op-max-content);
+    margin: 0 auto;
   }
 
-  .projects-grid {
+  .op-projects-header {
+    margin-bottom: 48px;
+    max-width: 700px;
+  }
+  .op-projects-header > :global(.op-eyebrow) {
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+  .op-projects-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 4.5vw, 56px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .op-projects-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-projects-grid {
     display: grid;
-    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
-
-  @media (min-width: 640px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 700px) {
+    .op-projects-grid { grid-template-columns: repeat(2, 1fr); }
   }
-
   @media (min-width: 1024px) {
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .op-projects-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
-  .project-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    padding: var(--space-xl);
+  .op-proj-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow);
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease);
   }
-
-  .project-card:hover {
+  .op-proj-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
     color: inherit;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+  }
+  .op-proj-card:hover .op-proj-arrow { transform: translateX(3px); color: var(--op-orange); }
+  .op-proj-card:hover .op-proj-icon {
+    background: var(--op-orange);
+    color: var(--op-paper);
   }
 
-  .project-card:hover .project-cta {
-    color: var(--orange);
+  .op-proj-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-proj-id {
+    font-size: 9px;
+    color: var(--op-orange);
   }
 
-  .project-icon-area {
-    width: 72px;
-    height: 72px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  .op-proj-body {
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+  .op-proj-icon {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-cream);
+    color: var(--op-navy);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
   }
-
-  .project-icon {
-    color: white;
-    display: flex;
-  }
-
-  .project-card h3 {
-    font-size: 1.25rem;
+  .op-proj-name {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
     margin: 0;
-    color: var(--navy);
+    line-height: 1.2;
+    text-wrap: balance;
   }
-
-  .project-card p {
+  .op-proj-desc {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
     margin: 0;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
     flex: 1;
+    text-wrap: pretty;
   }
 
-  .project-cta {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--blue);
-    transition: color var(--transition);
+  .op-proj-foot {
+    background: var(--op-paper);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: var(--op-border);
+    font-size: 10px;
+    color: var(--op-ink);
+  }
+  .op-proj-arrow {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--op-ink);
+    transition: transform var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
   }
 </style>

@@ -2,82 +2,76 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import HowWeWork from '../components/HowWeWork.astro';
+import CTA from '../components/CTA.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import CalloutBox from '../components/operator/CalloutBox.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
+
+const includes = [
+  { title: 'Custom-built', description: 'No templates, no plugins. Built from scratch for your business.' },
+  { title: 'Deployed on your accounts', description: 'Runs under your logins with full access. You own everything.' },
+  { title: 'Staff training included', description: 'We teach your team how to use and maintain what we build.' },
+  { title: 'Plain-English documentation', description: 'So you or your team understand how everything works.' },
+  { title: 'Walkthrough call', description: 'We walk you through everything before handoff.' },
+  { title: '30-day guarantee', description: "If it doesn't do what we scoped, we fix it free." },
+];
+
+const comparison = [
+  { label: 'Cost', agency: '$8K–50K+/mo', freelancer: '$2K–8K', diy: '"Free" + your time', brothers: '$3,500/mo or scoped' },
+  { label: 'Timeline', agency: '6–12 weeks', freelancer: '2–6 weeks', diy: 'Weeks of learning', brothers: 'Days to weeks' },
+  { label: 'Staff training', agency: 'Rarely', freelancer: 'Almost never', diy: 'You figure it out', brothers: 'Built into every build' },
+  { label: 'Custom to you', agency: 'Sometimes', freelancer: 'Usually', diy: 'Template-based', brothers: 'Always' },
+  { label: 'Documentation', agency: 'Minimal', freelancer: 'Varies', diy: 'Platform docs only', brothers: 'Full plain-English docs' },
+  { label: 'Who builds it', agency: 'Junior staff', freelancer: 'One person', diy: 'You', brothers: 'Two brothers, personally' },
+];
+
+const faqs = [
+  {
+    question: "What's included in the retainer?",
+    answer: 'Each month we build, optimize, and maintain your automations. You get up to 2 new automations per month, unlimited maintenance on existing systems, a monthly strategy call to plan priorities, staff training baked into every build, and priority Slack/email support.',
+  },
+  {
+    question: "What if I'm not sure which option is right?",
+    answer: "Book a free call and we'll recommend the best path. Most clients start with a scoped project to see how we work, then move to the retainer for ongoing automation wins. No pressure either way.",
+  },
+  {
+    question: 'Is there a long-term commitment?',
+    answer: "The retainer runs in 90-day engagements. After that, it's month-to-month — cancel anytime with 30 days notice. No long-term lock-in. We keep clients by delivering results, not contracts.",
+  },
+  {
+    question: 'What if I need more than the retainer covers?',
+    answer: "We'll talk about it first. If a month runs heavier than usual, we scope the extra work transparently. No surprise invoices. Retainer clients get priority and preferred rates on additional builds.",
+  },
+  {
+    question: 'What happens after a scoped project is delivered?',
+    answer: 'You own everything we build. You get full documentation, a walkthrough call, and 30 days of support. Want ongoing improvements? Move to the retainer.',
+  },
+  {
+    question: 'How is this different from hiring an agency?',
+    answer: "Agencies charge $8K–50K/month and assign you a junior. We're two brothers who build every automation ourselves. Senior-level work, direct communication, at a fraction of the cost.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+  })),
+};
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
-    { "@type": "ListItem", "position": 2, "name": "Pricing", "item": `${SITE_URL}/pricing` }
-  ]
-};
-
-const includes = [
-  { title: "Custom-built", description: "No templates, no plugins. Built from scratch for your business." },
-  { title: "Deployed on your accounts", description: "Runs under your logins with full access. You own everything." },
-  { title: "Staff training included", description: "We teach your team how to use and maintain what we build." },
-  { title: "Plain-English documentation", description: "So you or your team understand how everything works." },
-  { title: "Walkthrough call", description: "We walk you through everything before handoff." },
-  { title: "30-day guarantee", description: "If it doesn't do what we scoped, we fix it free." }
-];
-
-const comparison = [
-  { label: "Cost", agency: "$8K-50K+/mo", freelancer: "$2K-8K", diy: '"Free" + your time', brothers: "$3,500/mo or custom quote" },
-  { label: "Timeline", agency: "6-12 weeks", freelancer: "2-6 weeks", diy: "Weeks of learning", brothers: "Days to weeks" },
-  { label: "Staff training", agency: "Rarely", freelancer: "Almost never", diy: "You figure it out", brothers: "Built into every engagement" },
-  { label: "Custom to you", agency: "Sometimes", freelancer: "Usually", diy: "Template-based", brothers: "Always" },
-  { label: "Documentation", agency: "Minimal", freelancer: "Varies", diy: "Platform docs only", brothers: "Full plain-English docs" },
-  { label: "Who builds it", agency: "Junior staff", freelancer: "One person", diy: "You", brothers: "Two brothers, personally" }
-];
-
-const faqs = [
-  {
-    question: "What's included in the retainer?",
-    answer: "Each month we build, optimize, and maintain your automations. You get up to 2 new automations per month, unlimited maintenance on existing systems, a monthly strategy call to plan priorities, staff training baked into every build, and priority Slack/email support."
-  },
-  {
-    question: "What if I'm not sure which option is right?",
-    answer: "Book a free call and we'll recommend the best path. Most clients start with a scoped project to see how we work, then move to the retainer for ongoing automation wins. No pressure either way."
-  },
-  {
-    question: "Is there a long-term commitment?",
-    answer: "The retainer runs in 90-day engagements. After that, it's month-to-month — cancel anytime with 30 days notice. No long-term lock-in. We keep clients by delivering results, not contracts."
-  },
-  {
-    question: "What if I need more than the retainer covers in a given month?",
-    answer: "We'll talk about it first. If a month runs heavier than usual, we scope the extra work transparently. No surprise invoices. Retainer clients get priority and preferred rates on additional builds."
-  },
-  {
-    question: "What happens after a scoped project is delivered?",
-    answer: "You own everything we build. You get full documentation, a walkthrough call, and 30 days of support. Want ongoing improvements? Move to the retainer. If you're set, no hard feelings."
-  },
-  {
-    question: "How long does a scoped project take?",
-    answer: "Most projects are delivered in 1-3 weeks depending on complexity. We scope everything upfront so you know the timeline and cost before we start."
-  },
-  {
-    question: "Do you work with my industry / my tools?",
-    answer: "We work with service businesses across industries — coaches, contractors, agencies, restaurants, real estate, e-commerce. We integrate with whatever tools you already use (CRM, email, scheduling, etc.)."
-  },
-  {
-    question: "How is this different from hiring an agency?",
-    answer: "Agencies charge $8K-50K/month and assign you a junior. We're two brothers who build every automation ourselves. Senior-level work, direct communication, at a fraction of the cost."
-  }
-];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
+    { "@type": "ListItem", "position": 2, "name": "Pricing", "item": `${SITE_URL}/pricing` },
+  ],
 };
 ---
 
@@ -87,237 +81,75 @@ const faqSchema = {
 >
   <Header />
   <main>
-    <!-- Hero -->
-    <section class="pricing-hero">
-      <div class="hero-bg-grid"></div>
-      <div class="container">
-        <div class="pricing-hero-content" data-animate="fade-up">
-          <span class="badge">Pricing</span>
-          <h1>Two Ways to<br /><span class="gradient-text">Work With Us.</span></h1>
-          <p class="pricing-hero-sub">Whether you need an ongoing automation partner or a single system built and handed off — we keep it simple. Pick the path that fits.</p>
+    {/* Hero */}
+    <section class="op-pricing-hero op-grid-bg">
+      <div class="op-pricing-hero-frame">
+        <div class="op-pricing-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / PRICING · 02 PATHS"
+            right="● TRANSPARENT · NO HIDDEN FEES"
+            bordered
+          />
         </div>
+        <EyebrowTag label="PRICING · TWO PATHS" />
+        <h1 class="op-pricing-h1" data-animate="fade-up">
+          Two ways to<br />
+          <span class="op-pricing-h1-orange">work with us.</span>
+        </h1>
+        <p class="op-pricing-sub" data-animate="fade-up">
+          Whether you need an ongoing automation partner or a single system built and handed off — we keep it simple. Pick the path that fits.
+        </p>
       </div>
     </section>
 
-    <!-- Pricing Cards -->
-    <section class="pricing-tiers">
-      <div class="container">
-        <div class="pricing-grid" data-animate-stagger>
-          <!-- Retainer Card -->
-          <div class="pricing-card card pricing-card-featured">
-            <span class="featured-badge">Recommended</span>
-            <div class="pricing-header">
-              <h3>Automation Partner</h3>
-              <span class="pricing-price">$3,500<span class="pricing-per">/month</span></span>
-              <span class="pricing-timeline">90-day engagement</span>
-            </div>
-            <p class="pricing-description">Ongoing automation builds, maintenance, and staff training — so your team gets smarter every month, not just more dependent on us.</p>
-            <h4 class="pricing-section-label">What you get:</h4>
-            <ul class="pricing-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Up to 2 new automations per month
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Unlimited maintenance on existing systems
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Staff training baked into every build
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Monthly strategy call to plan priorities
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Priority Slack/email support
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Month-to-month after initial 90 days
-              </li>
-            </ul>
-            <p class="pricing-best-for"><strong>Best for:</strong> Businesses with multiple processes to automate over time. Teams that want to understand their systems, not just use them.</p>
-            <a
-              href="#"
-              class="btn btn-primary pricing-cta-btn"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Book Your Strategy Call</a>
-          </div>
+    {/* Reuse HowWeWork — has both engagement modes + process strip */}
+    <HowWeWork />
 
-          <!-- Scoped Project Card -->
-          <div class="pricing-card card">
-            <div class="pricing-header">
-              <h3>Scoped Build</h3>
-              <span class="pricing-price">Custom Quote</span>
-              <span class="pricing-timeline">1-3 weeks</span>
-            </div>
-            <p class="pricing-description">One system, built to spec, handed off clean. You tell us the problem, we scope it, build it, and walk you through everything.</p>
-            <h4 class="pricing-section-label">What you get:</h4>
-            <ul class="pricing-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                End-to-end custom automation
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Full documentation + walkthrough call
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                30-day support window after delivery
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Staff training on the delivered system
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Deployed on your accounts with full access
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Clear scope and price before we start
-              </li>
-            </ul>
-            <p class="pricing-best-for"><strong>Best for:</strong> A specific bottleneck you already know needs fixing. Businesses that want a one-time investment, not a monthly bill.</p>
-            <a
-              href="#"
-              class="btn btn-secondary pricing-cta-btn"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Scope Your Project</a>
-          </div>
+    {/* Includes panel */}
+    <section class="op-pricing-includes op-grid-bg">
+      <div class="op-pricing-includes-frame">
+        <div class="op-pricing-includes-header" data-animate="fade-up">
+          <span class="op-mono op-pricing-section-label"><span class="op-pricing-section-num">03</span> INCLUDED IN EVERY ENGAGEMENT</span>
+          <h2 class="op-pricing-h2">No matter which path you pick, this comes with it.</h2>
         </div>
-
-        <!-- Quick Fix Expander -->
-        <div class="quick-fix-wrap" data-animate="fade-up">
-          <details class="quick-fix">
-            <summary class="quick-fix-trigger">
-              <span class="quick-fix-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
-              </span>
-              <span>Just need a quick automation or fix?</span>
-              <span class="quick-fix-chevron">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </summary>
-            <div class="quick-fix-content">
-              <div class="quick-fix-body">
-                <div class="quick-fix-details">
-                  <h4>Quick Fix</h4>
-                  <span class="quick-fix-price">$697</span>
-                  <span class="quick-fix-timeline">3-5 days</span>
-                  <p>One targeted automation that saves you hours every week. Perfect when you know exactly what needs fixing and just need someone to build it.</p>
-                </div>
-                <div class="quick-fix-includes">
-                  <ul>
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      Single workflow automation
-                    </li>
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      Connect 2-3 existing tools
-                    </li>
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      Setup + documentation
-                    </li>
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      14-day support window
-                    </li>
-                  </ul>
-                  <div class="quick-fix-examples">
-                    <span class="quick-fix-examples-label">Examples:</span>
-                    Email sequences, inventory sync, appointment reminders, form-to-CRM, report generation
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  class="btn btn-secondary quick-fix-cta"
-                  data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-                  data-cal-namespace="free-quiz-audit-automation-brothers"
-                  data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                >Talk to the Brothers</a>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Decision Helper -->
-    <section class="decision-helper">
-      <div class="container">
-        <div class="decision-card" data-animate="fade-up">
-          <h3>Not sure which is right?</h3>
-          <p>Most clients start with a scoped project, see the results, then move to the retainer when they're ready for ongoing automation wins. Either way, we'll figure out the best path on a call.</p>
-          <a
-            href="#"
-            class="btn btn-primary"
-            data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-            data-cal-namespace="free-quiz-audit-automation-brothers"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-          >Book a Free Call</a>
-          <span class="decision-sub">15 minutes. No pitch deck. Just figuring out what makes sense.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- What Every Engagement Includes -->
-    <section class="pricing-includes bg-surface-alt">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>What Every Engagement Includes</h2>
-        </div>
-        <div class="includes-grid" data-animate-stagger>
-          {includes.map((item) => (
-            <div class="include-card">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <div>
-                <strong>{item.title}</strong>
-                <span>{item.description}</span>
-              </div>
+        <div class="op-pricing-includes-grid" data-animate-stagger>
+          {includes.map((item, i) => (
+            <div class="op-pricing-include">
+              <span class="op-mono op-pricing-include-num">I.{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="op-pricing-include-title">{item.title}</h3>
+              <p class="op-pricing-include-body">{item.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- How We Compare -->
-    <section class="pricing-compare bg-surface">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>How We Compare</h2>
+    {/* Comparison table */}
+    <section class="op-pricing-compare">
+      <div class="op-pricing-compare-frame">
+        <div class="op-pricing-compare-header" data-animate="fade-up">
+          <span class="op-mono op-pricing-section-label"><span class="op-pricing-section-num">04</span> HOW WE COMPARE</span>
+          <h2 class="op-pricing-h2">Same outcome, very different costs.</h2>
         </div>
-        <div class="compare-table-wrap" data-animate="fade-up">
-          <table class="compare-table">
+        <div class="op-pricing-table-wrap">
+          <table class="op-pricing-table">
             <thead>
               <tr>
-                <th></th>
-                <th>Agency</th>
-                <th>Freelancer</th>
-                <th>DIY / No-Code</th>
-                <th class="highlight-col">Brothers Automate</th>
+                <th class="op-mono">SPEC</th>
+                <th class="op-mono">AGENCY</th>
+                <th class="op-mono">FREELANCER</th>
+                <th class="op-mono">DIY</th>
+                <th class="op-mono op-pricing-table-mine">BROTHERS AUTOMATE</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((row) => (
                 <tr>
-                  <td class="row-label">{row.label}</td>
+                  <td class="op-mono op-pricing-table-label">{row.label}</td>
                   <td>{row.agency}</td>
                   <td>{row.freelancer}</td>
                   <td>{row.diy}</td>
-                  <td class="highlight-col">{row.brothers}</td>
+                  <td class="op-pricing-table-mine">{row.brothers}</td>
                 </tr>
               ))}
             </tbody>
@@ -326,629 +158,290 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="pricing-faq bg-surface-alt" id="faq">
-      <div class="container">
-        <div class="section-header" data-animate="fade-up">
-          <h2>Common Questions</h2>
+    {/* Promise callout */}
+    <section class="op-pricing-promise op-grid-bg">
+      <div class="op-pricing-promise-frame">
+        <CalloutBox header="THE PROMISE">
+          <p>30-day guarantee on every build. If a system doesn't do what we scoped, we fix it free. We define deliverables before writing code so we're both clear on what "done" looks like.</p>
+        </CalloutBox>
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section class="op-pricing-faq">
+      <div class="op-pricing-faq-frame">
+        <div class="op-pricing-faq-header" data-animate="fade-up">
+          <span class="op-mono op-pricing-section-label"><span class="op-pricing-section-num">05</span> PRICING FAQ</span>
+          <h2 class="op-pricing-h2">Questions before you book.</h2>
         </div>
-        <div class="faq-list" data-animate="fade-up">
-          {faqs.map((faq) => (
-            <details class="faq-item">
-              <summary class="faq-question">{faq.question}</summary>
-              <div class="faq-answer">
-                <p>{faq.answer}</p>
-              </div>
+        <div class="op-pricing-faq-list" data-animate-stagger>
+          {faqs.map((faq, i) => (
+            <details class="op-pricing-faq-item">
+              <summary class="op-pricing-faq-q">
+                <span class="op-mono op-pricing-faq-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="op-pricing-faq-q-text">{faq.question}</span>
+                <span class="op-pricing-faq-q-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="op-pricing-faq-a">{faq.answer}</div>
             </details>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="pricing-final-cta">
-      <div class="container">
-        <div class="final-cta-content" data-animate="fade-up">
-          <h2>Ready to stop doing the busywork?</h2>
-          <p>Book a free call. We'll ask about your biggest time-suck, show you what's possible, and give you a clear recommendation.</p>
-          <a
-            href="#"
-            class="btn btn-primary"
-            data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-            data-cal-namespace="free-quiz-audit-automation-brothers"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-          >Talk to the Brothers</a>
-        </div>
-      </div>
-    </section>
+    <CTA />
   </main>
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Layout>
 
 <style>
-  /* Hero */
-  .pricing-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-3xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
+  .op-pricing-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
   }
+  .op-pricing-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pricing-util { margin-bottom: 32px; }
+  .op-pricing-hero :global(.op-eyebrow) { margin-bottom: 24px; }
 
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  }
-
-  .pricing-hero-content {
-    position: relative;
-    max-width: 750px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .pricing-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .pricing-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  /* Pricing Tiers */
-  .pricing-tiers {
-    padding: var(--space-2xl) 0 var(--space-xl);
-  }
-
-  .pricing-grid {
-    display: grid;
-    gap: var(--space-lg);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 768px) {
-    .pricing-grid {
-      grid-template-columns: repeat(2, 1fr);
-      align-items: start;
-    }
-  }
-
-  .pricing-card {
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-xl);
-    position: relative;
-    height: 100%;
-  }
-
-  .pricing-card-featured {
-    border: 2px solid var(--orange);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .featured-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--orange);
-    color: white;
-    padding: var(--space-xs) var(--space-md);
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .pricing-header {
-    text-align: center;
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .pricing-header h3 {
-    font-size: 1.25rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-sm);
-  }
-
-  .pricing-price {
-    display: block;
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
+  .op-pricing-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: var(--space-xs);
-  }
-
-  .pricing-per {
-    font-size: 0.5em;
-    font-weight: 600;
-    color: var(--text-secondary);
-  }
-
-  .pricing-timeline {
-    font-size: 0.8125rem;
-    color: var(--orange);
-    font-weight: 600;
-    background: rgba(237, 137, 54, 0.1);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: 100px;
-  }
-
-  .pricing-description {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--space-md);
-  }
-
-  .pricing-section-label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--navy);
-    margin: 0 0 var(--space-sm);
-  }
-
-  .pricing-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .pricing-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-sm);
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-  }
-
-  .pricing-features svg {
-    flex-shrink: 0;
-    color: var(--blue);
-    margin-top: 2px;
-  }
-
-  .pricing-best-for {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    padding: var(--space-sm) var(--space-md);
-    background: var(--bg-surface-alt);
-    border-radius: var(--radius);
-  }
-
-  .pricing-best-for strong {
-    color: var(--navy);
-  }
-
-  .pricing-cta-btn {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-    margin-top: auto;
-  }
-
-  /* Quick Fix Expander */
-  .quick-fix-wrap {
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
     max-width: 900px;
-    margin: var(--space-lg) auto 0;
+    text-wrap: balance;
+  }
+  .op-pricing-h1-orange { color: var(--op-orange); }
+
+  .op-pricing-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  .quick-fix {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--bg-surface);
-    overflow: hidden;
-    transition: box-shadow var(--transition);
-  }
-
-  .quick-fix[open] {
-    box-shadow: var(--shadow);
-  }
-
-  .quick-fix-trigger {
-    display: flex;
+  /* Section label pattern */
+  .op-pricing-section-label {
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
-    cursor: pointer;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--navy);
-    list-style: none;
-    transition: color var(--transition);
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
   }
+  .op-pricing-section-num { color: var(--op-orange); font-size: 9px; }
 
-  .quick-fix-trigger::-webkit-details-marker {
-    display: none;
-  }
-
-  .quick-fix-trigger:hover {
-    color: var(--orange);
-  }
-
-  .quick-fix-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius);
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-    flex-shrink: 0;
-  }
-
-  .quick-fix-chevron {
-    margin-left: auto;
-    color: var(--text-muted);
-    transition: transform var(--transition);
-    flex-shrink: 0;
-  }
-
-  .quick-fix[open] .quick-fix-chevron {
-    transform: rotate(180deg);
-  }
-
-  .quick-fix-content {
-    border-top: 1px solid var(--border);
-  }
-
-  .quick-fix-body {
-    padding: var(--space-lg);
-    display: grid;
-    gap: var(--space-lg);
-  }
-
-  @media (min-width: 768px) {
-    .quick-fix-body {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-
-    .quick-fix-cta {
-      grid-column: 1 / -1;
-    }
-  }
-
-  .quick-fix-details h4 {
-    font-size: 1.125rem;
-    color: var(--navy);
-    margin: 0 0 var(--space-xs);
-  }
-
-  .quick-fix-price {
-    display: inline-block;
-    font-size: 1.5rem;
+  .op-pricing-h2 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    margin-right: var(--space-sm);
-  }
-
-  .quick-fix-timeline {
-    font-size: 0.8125rem;
-    color: var(--orange);
-    font-weight: 600;
-    background: rgba(237, 137, 54, 0.1);
-    padding: 2px var(--space-sm);
-    border-radius: 100px;
-    vertical-align: middle;
-  }
-
-  .quick-fix-details p {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-top: var(--space-sm);
-  }
-
-  .quick-fix-includes ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-md);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .quick-fix-includes li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-  }
-
-  .quick-fix-includes svg {
-    flex-shrink: 0;
-    color: var(--blue);
-  }
-
-  .quick-fix-examples {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .quick-fix-examples-label {
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  .quick-fix-cta {
-    justify-content: center;
-    text-align: center;
-  }
-
-  /* Decision Helper */
-  .decision-helper {
-    padding: var(--space-lg) 0 var(--space-3xl);
-  }
-
-  .decision-card {
-    max-width: 650px;
-    margin: 0 auto;
-    text-align: center;
-    padding: var(--space-2xl);
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-  }
-
-  .decision-card h3 {
-    font-size: 1.375rem;
-    color: var(--navy);
-    margin-bottom: var(--space-sm);
-  }
-
-  .decision-card p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: var(--space-lg);
-  }
-
-  .decision-card .btn {
-    margin-bottom: var(--space-sm);
-  }
-
-  .decision-sub {
-    display: block;
-    font-size: 0.8125rem;
-    color: var(--text-muted);
+    font-size: clamp(32px, 3.6vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
   }
 
   /* Includes */
-  .pricing-includes {
-    padding: var(--space-4xl) 0;
+  .op-pricing-includes {
+    padding: 72px var(--op-section-px);
+    border-top: 1px solid var(--op-rule);
   }
-
-  .includes-grid {
+  .op-pricing-includes-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pricing-includes-header { max-width: 720px; margin-bottom: 36px; }
+  .op-pricing-includes-grid {
     display: grid;
-    gap: var(--space-md);
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
+  @media (min-width: 700px) { .op-pricing-includes-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-pricing-includes-grid { grid-template-columns: repeat(3, 1fr); } }
 
-  @media (min-width: 640px) {
-    .includes-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .includes-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .include-card {
+  .op-pricing-include {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
     display: flex;
-    gap: var(--space-sm);
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-pricing-include-num { font-size: 9px; color: var(--op-orange); }
+  .op-pricing-include-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-pricing-include-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
 
-  .include-card svg {
-    flex-shrink: 0;
-    color: var(--blue);
-    margin-top: 2px;
+  /* Comparison */
+  .op-pricing-compare {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
   }
+  .op-pricing-compare-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-pricing-compare-header { max-width: 720px; margin-bottom: 36px; }
 
-  .include-card strong {
-    display: block;
-    font-size: 0.9375rem;
-    color: var(--navy);
-    margin-bottom: 2px;
-  }
-
-  .include-card span {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  /* Comparison Table */
-  .pricing-compare {
-    padding: var(--space-4xl) 0;
-  }
-
-  .compare-table-wrap {
+  .op-pricing-table-wrap {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    background: var(--op-cream);
   }
-
-  .compare-table {
+  .op-pricing-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 700px;
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    color: var(--op-ink);
   }
-
-  .compare-table th,
-  .compare-table td {
-    padding: var(--space-md) var(--space-lg);
+  .op-pricing-table th,
+  .op-pricing-table td {
+    padding: 14px 18px;
     text-align: left;
-    font-size: 0.9375rem;
-    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--op-rule);
+    border-bottom: 1px solid var(--op-rule);
+    white-space: nowrap;
+  }
+  .op-pricing-table th {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    font-size: 10px;
+    border-right-color: rgba(255, 255, 255, 0.1);
+    border-bottom: var(--op-border);
+  }
+  .op-pricing-table tr:last-child td { border-bottom: none; }
+  .op-pricing-table th:last-child,
+  .op-pricing-table td:last-child { border-right: none; }
+  .op-pricing-table-label {
+    background: var(--op-paper);
+    color: var(--op-ink);
+    font-size: 10px;
+    width: 140px;
+  }
+  .op-pricing-table-mine {
+    background: rgba(224, 112, 60, 0.08);
+    color: var(--op-ink);
+    font-weight: 700;
+  }
+  .op-pricing-table th.op-pricing-table-mine {
+    background: var(--op-orange);
+    color: var(--op-paper);
   }
 
-  .compare-table th {
-    font-weight: 600;
-    color: var(--navy);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: var(--bg-surface-alt);
+  /* Promise */
+  .op-pricing-promise {
+    padding: 64px var(--op-section-px);
   }
-
-  .compare-table td {
-    color: var(--text-secondary);
-  }
-
-  .row-label {
-    font-weight: 600;
-    color: var(--navy) !important;
-  }
-
-  .highlight-col {
-    background: rgba(237, 137, 54, 0.05);
-    color: var(--navy) !important;
-    font-weight: 600;
-  }
-
-  th.highlight-col {
-    color: var(--orange) !important;
+  .op-pricing-promise-frame {
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   /* FAQ */
-  .pricing-faq {
-    padding: var(--space-4xl) 0;
+  .op-pricing-faq {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
   }
-
-  .faq-list {
-    max-width: 750px;
-    margin: 0 auto;
+  .op-pricing-faq-frame { max-width: 1000px; margin: 0 auto; }
+  .op-pricing-faq-header { margin-bottom: 36px; max-width: 720px; }
+  .op-pricing-faq-list {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
+  .op-pricing-faq-item {
+    border-bottom: 1px solid var(--op-rule);
   }
-
-  .faq-question {
-    padding: var(--space-md) 0;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--navy);
-    cursor: pointer;
+  .op-pricing-faq-item[open] { background: var(--op-cream); }
+  .op-pricing-faq-q {
     list-style: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
+    gap: 18px;
+    padding: 18px 4px;
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--op-ink);
+    transition: color var(--op-dur-hover) var(--op-ease);
   }
-
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-question::after {
-    content: '+';
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--text-muted);
+  .op-pricing-faq-q::-webkit-details-marker { display: none; }
+  .op-pricing-faq-num {
+    width: 28px;
     flex-shrink: 0;
-    transition: transform var(--transition);
+    font-size: 9px;
+    color: var(--op-navy-soft);
+  }
+  .op-pricing-faq-q-text { flex: 1; text-wrap: balance; }
+  .op-pricing-faq-q-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-pricing-faq-item[open] .op-pricing-faq-q-icon {
+    transform: rotate(45deg);
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+  .op-pricing-faq-q:hover { color: var(--op-orange); }
+
+  .op-pricing-faq-a {
+    padding: 4px 4px 22px 50px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+    max-width: 800px;
   }
 
-  details[open] .faq-question::after {
-    content: '-';
-  }
-
-  .faq-answer {
-    padding: 0 0 var(--space-md);
-  }
-
-  .faq-answer p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  /* Final CTA */
-  .pricing-final-cta {
-    padding: var(--space-4xl) 0;
-    background: var(--navy);
-    text-align: center;
-  }
-
-  .final-cta-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .final-cta-content h2 {
-    color: white;
-    margin-bottom: var(--space-md);
-  }
-
-  .final-cta-content p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    margin-bottom: var(--space-lg);
-  }
-
-  /* Responsive */
-  @media (max-width: 767px) {
-    .pricing-hero {
-      padding-top: 120px;
-    }
+  @media (max-width: 700px) {
+    .op-pricing-hero,
+    .op-pricing-includes,
+    .op-pricing-compare,
+    .op-pricing-promise,
+    .op-pricing-faq { padding-left: 22px; padding-right: 22px; }
+    .op-pricing-table { font-size: 13px; }
+    .op-pricing-table th,
+    .op-pricing-table td { padding: 10px 14px; }
   }
 </style>

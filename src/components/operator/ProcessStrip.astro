@@ -1,0 +1,112 @@
+---
+/**
+ * ProcessStrip — full-width navy header bar + 4-cell horizontal process grid.
+ * Cells have hard borders, mono step labels, and big numerals.
+ *
+ * Reuse for: "How it works", "What to expect", FAQ.
+ *
+ * Props:
+ *   header:  string   the navy bar text e.g. "PROCESS · 04 STEPS · 1–3 WEEK BUILD"
+ *   steps:   Array<{ n: string; title: string; body: string }>  — 4 recommended
+ */
+interface Step {
+  n: string;
+  title: string;
+  body: string;
+}
+interface Props {
+  header: string;
+  steps: Step[];
+}
+const { header, steps } = Astro.props;
+---
+
+<div class="op-process">
+  <div class="op-process-header op-mono">{header}</div>
+  <div class="op-process-grid" style={`grid-template-columns: repeat(${steps.length}, 1fr);`}>
+    {steps.map((step, i) => (
+      <div class="op-process-cell" data-last={i === steps.length - 1}>
+        <div class="op-process-n op-mono">{step.n}</div>
+        <div class="op-process-title">{step.title}</div>
+        <div class="op-process-body">{step.body}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .op-process {
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    background: var(--op-paper);
+    box-shadow: var(--op-shadow);
+  }
+
+  .op-process-header {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    padding: 12px 18px;
+    font-size: 10px;
+  }
+
+  .op-process-grid {
+    display: grid;
+  }
+
+  .op-process-cell {
+    padding: 22px 22px 24px;
+    background: var(--op-paper);
+  }
+  .op-process-cell[data-last="false"] {
+    border-right: var(--op-border);
+  }
+
+  .op-process-n {
+    font-size: 9px;
+    color: var(--op-orange);
+    margin-bottom: 14px;
+  }
+
+  .op-process-title {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: var(--op-tracking-numeric);
+    color: var(--op-ink);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .op-process-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 900px) {
+    .op-process-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .op-process-cell[data-last="false"]:nth-child(2n) {
+      border-right: none;
+    }
+    .op-process-cell:nth-child(n+3) {
+      border-top: var(--op-border);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .op-process-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .op-process-cell {
+      border-right: none !important;
+    }
+    .op-process-cell:not(:first-child) {
+      border-top: var(--op-border) !important;
+    }
+  }
+</style>

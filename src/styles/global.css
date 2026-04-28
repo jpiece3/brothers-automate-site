@@ -58,6 +58,105 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+
+  /* Type Scale (editorial rhythm — Bakken / Instrument inspired) */
+  --text-display: clamp(3rem, 7vw, 5rem);
+  --text-h1: clamp(2.25rem, 5vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.5rem);
+  --text-h3: clamp(1.25rem, 2.5vw, 1.5rem);
+  --text-lead: clamp(1.125rem, 1.5vw, 1.375rem);
+  --text-body: 1rem;
+  --text-sm: 0.9375rem;
+  --text-xs: 0.8125rem;
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+
+  /* Layout */
+  --max-content: 1180px;
+  --max-narrow: 760px;
+  --section-py-tight: clamp(3rem, 6vw, 5rem);
+  --section-py: clamp(5rem, 9vw, 8rem);
+  --section-py-loose: clamp(7rem, 12vw, 11rem);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
+  --dur-marquee: 900ms;
+
+  /* ============================================================
+     OPERATOR DESIGN SYSTEM — industrial/blueprint/console aesthetic
+     Strict palette per design handoff. Hard borders, offset shadows,
+     mono captions. Coexists with the editorial tokens above during
+     phased migration.
+     ============================================================ */
+
+  /* Operator colors — strict palette */
+  --op-cream:      #F4EEE2;  /* page bg */
+  --op-paper:      #FBF7EE;  /* card/nav bg, slightly warmer */
+  --op-navy:       #011f62;  /* primary, body text, console bg */
+  --op-navy-deep:  #011447;  /* header strips inside navy panels */
+  --op-navy-soft:  #5A6783;  /* secondary text */
+  --op-orange:     #E0703C;  /* accent, CTAs, highlights */
+  --op-orange-deep:#C75A28;  /* hover/critical states */
+  --op-ink:        #011f62;  /* borders (same as navy) */
+  --op-rule:       #D6CCBA;  /* grid lines, subtle dividers */
+  --op-rule-soft:  #E5DCC7;  /* even softer dividers inside paper */
+
+  /* Operator typography */
+  --op-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --op-font-body:    'Inter', system-ui, sans-serif;
+  --op-font-mono:    'JetBrains Mono', 'SF Mono', monospace;
+
+  --op-tracking-display: -0.04em;
+  --op-tracking-numeric: -0.03em;
+  --op-tracking-mono:    0.22em;
+  --op-tracking-mono-tight: 0.18em;
+
+  --op-leading-display: 0.95;
+  --op-leading-body:    1.55;
+
+  /* Operator borders + shadows — the system signature */
+  --op-border:        1.5px solid var(--op-ink);
+  --op-shadow:        3px 3px 0 var(--op-ink);   /* resting */
+  --op-shadow-lg:     6px 8px 0 var(--op-ink);   /* featured / hover */
+  --op-shadow-md:     5px 6px 0 var(--op-ink);   /* between resting and featured */
+
+  /* Operator radii — small, never pilled (except nav) */
+  --op-radius-sm: 4px;   /* chips, buttons */
+  --op-radius:    6px;   /* cards, buttons */
+  --op-radius-md: 8px;   /* nav, large cards */
+  --op-radius-lg: 14px;  /* console panels */
+
+  /* Operator spacing scale (for sections — kept distinct so Operator
+     sections can coexist with editorial sections during migration) */
+  --op-section-py:    88px;
+  --op-section-px:    56px;
+  --op-section-py-tight: 56px;
+  --op-section-py-loose: 120px;
+  --op-max-content:   1280px;
+  --op-max-narrow:    1200px;
+
+  /* Operator motion tokens */
+  --op-ease:          cubic-bezier(.2, .8, .2, 1);
+  --op-dur-cycle:     220ms;     /* cycling word fade */
+  --op-dur-slide:     350ms;     /* row slide-in inside console */
+  --op-dur-pipeline:  300ms;     /* pipeline step transition */
+  --op-int-pulse:     1400ms;    /* pulsing dot interval */
+  --op-int-cycle:     2200ms;    /* cycling word interval */
+  --op-int-pipeline:  1900ms;    /* OpBuildPanel pipeline interval */
+  --op-int-card:       700ms;    /* card-hover console step interval */
+  --op-dur-count:      900ms;    /* count-up animation */
+  --op-dur-hover:      500ms;    /* card hover lift */
 }
 
 /* Reset */
@@ -500,12 +599,223 @@ section {
   transform: translateY(0);
 }
 
+/* Text reveal — split words on the hero h1, animate each in sequence */
+[data-animate="text-reveal"] {
+  opacity: 1;
+  transform: none;
+}
+[data-animate="text-reveal"] .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity var(--dur-marquee) var(--ease-out-expo),
+    transform var(--dur-marquee) var(--ease-out-expo);
+}
+[data-animate="text-reveal"].is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-animate="text-reveal"].is-visible .word:nth-child(1) { transition-delay: 0ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(2) { transition-delay: 60ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(3) { transition-delay: 120ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(4) { transition-delay: 180ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(5) { transition-delay: 240ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(6) { transition-delay: 300ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(7) { transition-delay: 360ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(8) { transition-delay: 420ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(9) { transition-delay: 480ms; }
+[data-animate="text-reveal"].is-visible .word:nth-child(10) { transition-delay: 540ms; }
+
+/* Counter — number animates from 0 to its data-value on scroll-in.
+   Base styles only; the JS sets text content. Visual is baseline. */
+[data-animate="counter"] {
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out-expo);
+}
+[data-animate="counter"].is-visible {
+  opacity: 1;
+}
+
+/* Image reveal — clip-path wipe from left on scroll-in */
+[data-animate="image-reveal"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur-slow) var(--ease-out-expo);
+}
+[data-animate="image-reveal"].is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Sequenced reveal — for hero h1 → subhead → CTA staggered by data-seq number */
+[data-animate="seq"] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo);
+}
+[data-animate="seq"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-animate="seq"][data-seq="1"].is-visible { transition-delay: 0ms; }
+[data-animate="seq"][data-seq="2"].is-visible { transition-delay: 200ms; }
+[data-animate="seq"][data-seq="3"].is-visible { transition-delay: 400ms; }
+[data-animate="seq"][data-seq="4"].is-visible { transition-delay: 600ms; }
+
+/* Tracker label — small editorial caps label that sits above sections */
+.tracker-label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+.tracker-label .num {
+  color: var(--orange);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.5em;
+}
+
+/* Card hover — premium border shift to orange (extends existing .card hover) */
+.card-premium {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition:
+    transform var(--dur-base) var(--ease-out-expo),
+    border-color var(--dur-base) var(--ease-out-expo),
+    box-shadow var(--dur-base) var(--ease-out-expo);
+}
+.card-premium:hover {
+  transform: translateY(-4px);
+  border-color: var(--orange);
+  box-shadow: var(--shadow-md);
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   [data-animate],
-  [data-animate-stagger] > * {
+  [data-animate-stagger] > *,
+  [data-animate="text-reveal"] .word,
+  [data-animate="seq"],
+  [data-animate="image-reveal"] {
     opacity: 1;
     transform: none;
+    clip-path: none;
     transition: none;
   }
+  .card-premium {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   OPERATOR — keyframes, utilities, base classes
+   ============================================================ */
+
+@keyframes opPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+@keyframes opSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes opSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Blueprint grid background — applied to any section needing it */
+.op-grid-bg {
+  background-color: var(--op-cream);
+  background-image:
+    linear-gradient(rgba(214, 204, 186, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 204, 186, 0.4) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Mono caption utility */
+.op-mono {
+  font-family: var(--op-font-mono);
+  font-weight: 700;
+  letter-spacing: var(--op-tracking-mono);
+  text-transform: uppercase;
+}
+
+/* Pulsing orange dot — used in eyebrows, console headers, status strips */
+.op-pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--op-orange);
+  animation: opPulse var(--op-int-pulse) infinite;
+}
+.op-pulse-dot--lg {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 0 3px rgba(224, 112, 60, 0.2);
+}
+
+/* Operator section padding container */
+.op-section {
+  padding: var(--op-section-py) var(--op-section-px);
+}
+
+@media (max-width: 900px) {
+  .op-section {
+    padding: 56px 24px 64px;
+  }
+  .op-grid-bg {
+    background-size: 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .op-pulse-dot {
+    animation: none;
+  }
+}
+
+/* Shared operator hero (used by resource sub-pages) */
+.op-respage-hero {
+  padding: 120px var(--op-section-px) 64px;
+  color: var(--op-ink);
+}
+.op-respage-hero-frame { max-width: 1280px; margin: 0 auto; }
+.op-respage-util { margin-bottom: 32px; }
+.op-respage-hero .op-eyebrow { margin-bottom: 24px; }
+.op-respage-h1 {
+  font-family: var(--op-font-display);
+  font-weight: 800;
+  font-size: clamp(48px, 6.4vw, 84px);
+  line-height: 0.98;
+  letter-spacing: var(--op-tracking-display);
+  color: var(--op-ink);
+  margin: 0 0 22px;
+  max-width: 900px;
+  text-wrap: balance;
+}
+.op-respage-h1-orange { color: var(--op-orange); }
+.op-respage-sub {
+  font-family: var(--op-font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--op-navy-soft);
+  margin: 0;
+  max-width: 700px;
+  text-wrap: pretty;
+}
+@media (max-width: 700px) {
+  .op-respage-hero { padding: 100px 22px 56px; }
 }

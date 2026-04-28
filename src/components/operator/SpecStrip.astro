@@ -1,0 +1,124 @@
+---
+/**
+ * SpecStrip — horizontal grid of 3–4 cells with hard borders, big numeric + mono caption.
+ * Used at the bottom of sections, in About, in OperatorPanel footers, in Footer.
+ *
+ * Props:
+ *   cells:   Array<{ value: string; label: string }>
+ *   variant: 'paper' | 'navy'  (default 'paper')
+ *            - 'paper' = paper bg + navy text + 1.5px navy border (use on cream pages)
+ *            - 'navy'  = navy bg + cream text + 1px white-ish dividers (use inside OperatorPanel footers)
+ *   compact: boolean  (default false) — reduces padding for tight slots
+ */
+interface SpecCell {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  cells: SpecCell[];
+  variant?: 'paper' | 'navy';
+  compact?: boolean;
+}
+const { cells, variant = 'paper', compact = false } = Astro.props;
+---
+
+<div class={`op-spec-strip op-spec-strip--${variant}${compact ? ' op-spec-strip--compact' : ''}`} style={`grid-template-columns: repeat(${cells.length}, 1fr);`}>
+  {cells.map((cell, i) => (
+    <div class="op-spec-cell" data-last={i === cells.length - 1}>
+      <div class="op-spec-value">{cell.value}</div>
+      <div class="op-spec-label op-mono">{cell.label}</div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .op-spec-strip {
+    display: grid;
+    overflow: hidden;
+  }
+
+  /* Paper variant — for use on cream pages */
+  .op-spec-strip--paper {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+  }
+  .op-spec-strip--paper .op-spec-cell {
+    padding: 14px 18px;
+  }
+  .op-spec-strip--paper .op-spec-cell[data-last="false"] {
+    border-right: var(--op-border);
+  }
+  .op-spec-strip--paper .op-spec-value {
+    color: var(--op-ink);
+  }
+  .op-spec-strip--paper .op-spec-label {
+    color: var(--op-navy-soft);
+  }
+
+  /* Navy variant — for use inside dark panels (OperatorPanel footer) */
+  .op-spec-strip--navy {
+    background: var(--op-navy-deep);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.08);
+  }
+  .op-spec-strip--navy .op-spec-cell {
+    padding: 16px 18px;
+  }
+  .op-spec-strip--navy .op-spec-cell[data-last="false"] {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .op-spec-strip--navy .op-spec-value {
+    color: var(--op-cream);
+  }
+  .op-spec-strip--navy .op-spec-label {
+    color: var(--op-cream);
+    opacity: 0.5;
+  }
+
+  .op-spec-strip--compact .op-spec-cell {
+    padding: 10px 14px;
+  }
+
+  .op-spec-value {
+    font-family: var(--op-font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: var(--op-tracking-numeric);
+    line-height: 1;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .op-spec-strip--navy .op-spec-value {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .op-spec-label {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  .op-spec-strip--navy .op-spec-label {
+    font-size: 9px;
+  }
+
+  @media (max-width: 700px) {
+    .op-spec-strip {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .op-spec-cell[data-last="false"]:nth-child(2n) {
+      border-right: none !important;
+    }
+    .op-spec-cell:nth-child(n+3) {
+      border-top: var(--op-border);
+    }
+    .op-spec-strip--navy .op-spec-cell:nth-child(n+3) {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .op-spec-value {
+      font-size: 22px;
+    }
+  }
+</style>

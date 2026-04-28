@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 
@@ -10,43 +13,43 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
-    { "@type": "ListItem", "position": 2, "name": "Resources", "item": `${SITE_URL}/resources` }
-  ]
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": `${SITE_URL}/resources` },
+  ],
 };
 
 const resources = [
   {
-    title: "The Full AI Operations Stack",
-    description: "Every ops category scored by disruption level and consequence of failure. An interactive reference for service businesses planning their AI roadmap.",
-    href: "/resources/ai-ops-stack",
-    icon: "M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z",
-    tag: "Interactive Framework",
-    accent: "blue"
+    code: 'RES_01',
+    tag: 'Interactive Framework',
+    title: 'The Full AI Operations Stack',
+    description: 'Every ops category scored by disruption level and consequence of failure. An interactive reference for service businesses planning their AI roadmap.',
+    href: '/resources/ai-ops-stack',
+    icon: 'M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z',
   },
   {
-    title: "6 Agent Design Principles",
-    description: "The rules we follow when building AI agents that actually work in production. Error handling, human checkpoints, and why most agents fail.",
-    href: "/resources/agent-principles",
-    icon: "M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z",
-    tag: "Build Guide",
-    accent: "orange"
+    code: 'RES_02',
+    tag: 'Build Guide',
+    title: '6 Agent Design Principles',
+    description: 'The rules we follow when building AI agents that actually work in production. Error handling, human checkpoints, and why most agents fail.',
+    href: '/resources/agent-principles',
+    icon: 'M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z',
   },
   {
-    title: "Process Intake Framework",
-    description: "Ten sections to spec any automation from scratch. Workflow maps, agent specs, skill structures, human gates, and a QA checklist before you build.",
-    href: "/resources/process-intake-framework",
-    icon: "M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75",
-    tag: "Framework",
-    accent: "green"
+    code: 'RES_03',
+    tag: 'Framework',
+    title: 'Process Intake Framework',
+    description: 'Ten sections to spec any automation from scratch. Workflow maps, agent specs, skill structures, human gates, and a QA checklist before you build.',
+    href: '/resources/process-intake-framework',
+    icon: 'M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75',
   },
   {
-    title: "The Mid-Market Automation Playbook",
-    description: "Eight real workflow deep-dives for service businesses doing $10-50M. Quote generation, lead routing, invoice processing, and more — with full agent specs.",
-    href: "/resources/automation-playbook",
-    icon: "M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25",
-    tag: "Playbook",
-    accent: "navy"
-  }
+    code: 'RES_04',
+    tag: 'Playbook',
+    title: 'The Mid-Market Automation Playbook',
+    description: 'Eight real workflow deep-dives for service businesses doing $10-50M. Quote generation, lead routing, invoice processing, and more — with full agent specs.',
+    href: '/resources/automation-playbook',
+    icon: 'M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25',
+  },
 ];
 ---
 
@@ -56,37 +59,55 @@ const resources = [
 >
   <Header />
   <main>
-    <section class="resources-hero">
-      <div class="hero-bg-grid"></div>
-      <div class="container">
-        <div class="resources-hero-content" data-animate="fade-up">
-          <span class="badge">Resources</span>
-          <h1>Guides &<br /><span class="gradient-text">Frameworks.</span></h1>
-          <p class="resources-hero-sub">How we think about AI automation — and the tools we use to plan it. Free, no gate, no email required.</p>
+    <section class="op-resources-hero op-grid-bg">
+      <div class="op-resources-hero-frame">
+        <div class="op-resources-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / RESOURCES · LIBRARY"
+            right={`${resources.length} GUIDES · NO GATE · NO EMAIL`}
+            bordered
+          />
         </div>
+        <EyebrowTag label="RESOURCES · GUIDES & FRAMEWORKS" />
+        <h1 class="op-resources-h1" data-animate="fade-up">
+          Guides &<br />
+          <span class="op-resources-h1-orange">Frameworks.</span>
+        </h1>
+        <p class="op-resources-sub" data-animate="fade-up">
+          How we think about AI automation — and the tools we use to plan it. Free, no gate, no email required.
+        </p>
       </div>
     </section>
 
-    <section class="resources-grid-section">
-      <div class="container">
-        <div class="resources-grid" data-animate-stagger>
+    <section class="op-resources-list">
+      <div class="op-resources-list-frame">
+        <div class="op-resources-grid" data-animate-stagger>
           {resources.map((r) => (
-            <a href={r.href} class={`resource-card card accent-${r.accent}`}>
-              <div class="resource-accent-bar"></div>
-              <div class="resource-icon-area">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={r.icon}></path>
-                </svg>
+            <a href={r.href} class="op-resource-card">
+              <div class="op-resource-header" data-animate="fade-up">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono op-resource-code">{r.code}</span>
+                <span class="op-mono op-resource-tag">{r.tag.toUpperCase()}</span>
               </div>
-              <span class="resource-tag">{r.tag}</span>
-              <h3>{r.title}</h3>
-              <p>{r.description}</p>
-              <span class="resource-link">View resource &rarr;</span>
+              <div class="op-resource-body">
+                <div class="op-resource-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={r.icon}></path>
+                  </svg>
+                </div>
+                <h3 class="op-resource-title">{r.title}</h3>
+                <p class="op-resource-desc">{r.description}</p>
+              </div>
+              <div class="op-resource-foot op-mono">
+                READ THE GUIDE <span class="op-resource-arrow" aria-hidden="true">→</span>
+              </div>
             </a>
           ))}
         </div>
       </div>
     </section>
+
+    <CTA />
   </main>
   <Footer />
 
@@ -94,243 +115,148 @@ const resources = [
 </Layout>
 
 <style>
-  .resources-hero {
-    position: relative;
-    padding-top: 160px;
-    padding-bottom: var(--space-3xl);
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface-alt) 100%);
-    text-align: center;
-    overflow: hidden;
+  .op-resources-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
+  }
+  .op-resources-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-resources-util { margin-bottom: 32px; }
+  .op-resources-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-resources-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 800px;
+    text-wrap: balance;
+  }
+  .op-resources-h1-orange { color: var(--op-orange); }
+
+  .op-resources-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 660px;
+    text-wrap: pretty;
   }
 
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(26, 54, 93, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 54, 93, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  .op-resources-list {
+    padding: 56px var(--op-section-px) 96px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
   }
+  .op-resources-list-frame { max-width: var(--op-max-content); margin: 0 auto; }
 
-  .resources-hero-content {
-    position: relative;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .resources-hero h1 {
-    margin-bottom: var(--space-md);
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .resources-hero-sub {
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .resources-grid-section {
-    padding: var(--space-2xl) 0 var(--space-4xl);
-  }
-
-  .resources-grid {
+  .op-resources-grid {
     display: grid;
-    gap: var(--space-lg);
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
+  @media (min-width: 700px) { .op-resources-grid { grid-template-columns: 1fr 1fr; } }
 
-  @media (min-width: 768px) {
-    .resources-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* --- Card base --- */
-  .resource-card {
+  .op-resource-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
     display: flex;
     flex-direction: column;
-    padding: var(--space-xl);
-    padding-top: 0;
-    text-decoration: none;
-    transition: box-shadow var(--transition), transform var(--transition);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-resource-card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: var(--op-shadow-lg);
+    color: inherit;
+  }
+  .op-resource-card:hover .op-resource-arrow {
+    transform: translateX(3px);
+    color: var(--op-orange);
+  }
+  .op-resource-card:hover .op-resource-icon {
+    background: var(--op-orange);
+    color: var(--op-paper);
   }
 
-  .resource-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+  .op-resource-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
   }
+  .op-resource-code { font-size: 9px; color: var(--op-orange); }
+  .op-resource-tag { margin-left: auto; font-size: 9px; color: var(--op-cream); opacity: 0.55; }
 
-  /* --- Top accent bar --- */
-  .resource-accent-bar {
-    height: 4px;
-    margin: 0 calc(-1 * var(--space-xl));
-    margin-bottom: var(--space-lg);
-    transition: height var(--transition);
+  .op-resource-body {
+    padding: 26px 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
   }
-
-  .resource-card:hover .resource-accent-bar {
-    height: 6px;
-  }
-
-  /* --- Icon area --- */
-  .resource-icon-area {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
+  .op-resource-icon {
+    width: 48px;
+    height: 48px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-paper);
+    color: var(--op-navy);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--space-md);
-    transition: transform var(--transition);
+    flex-shrink: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-resource-title {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .op-resource-desc {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    flex: 1;
+    text-wrap: pretty;
   }
 
-  .resource-card:hover .resource-icon-area {
-    transform: scale(1.05);
+  .op-resource-foot {
+    background: var(--op-paper);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: var(--op-border);
+    font-size: 10px;
+    color: var(--op-ink);
+  }
+  .op-resource-arrow {
+    font-size: 14px;
+    transition: transform var(--op-dur-fast) var(--op-ease), color var(--op-dur-fast) var(--op-ease);
   }
 
-  /* --- Tag --- */
-  .resource-tag {
-    display: inline-block;
-    width: fit-content;
-    padding: 2px var(--space-sm);
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
-  }
-
-  .resource-card h3 {
-    font-size: 1.25rem;
-    color: var(--navy);
-    margin-bottom: var(--space-sm);
-    line-height: 1.3;
-  }
-
-  .resource-card p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    flex-grow: 1;
-  }
-
-  .resource-link {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    transition: color var(--transition);
-  }
-
-  /* ========== ACCENT VARIANTS ========== */
-
-  /* Blue */
-  .accent-blue .resource-accent-bar {
-    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-light) 100%);
-  }
-  .accent-blue .resource-icon-area {
-    background: rgba(49, 130, 206, 0.1);
-    color: var(--blue);
-  }
-  .accent-blue .resource-tag {
-    background: rgba(49, 130, 206, 0.1);
-    color: var(--blue);
-  }
-  .accent-blue .resource-link {
-    color: var(--blue);
-  }
-  .accent-blue:hover .resource-link {
-    color: var(--navy);
-  }
-
-  /* Orange */
-  .accent-orange .resource-accent-bar {
-    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-light) 100%);
-  }
-  .accent-orange .resource-icon-area {
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-  }
-  .accent-orange .resource-tag {
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-  }
-  .accent-orange .resource-link {
-    color: var(--orange);
-  }
-  .accent-orange:hover .resource-link {
-    color: var(--orange-hover);
-  }
-
-  /* Green */
-  .accent-green .resource-accent-bar {
-    background: linear-gradient(90deg, var(--green) 0%, #4ade80 100%);
-  }
-  .accent-green .resource-icon-area {
-    background: rgba(22, 163, 74, 0.1);
-    color: var(--green);
-  }
-  .accent-green .resource-tag {
-    background: rgba(22, 163, 74, 0.1);
-    color: var(--green);
-  }
-  .accent-green .resource-link {
-    color: var(--green);
-  }
-  .accent-green:hover .resource-link {
-    color: #15803d;
-  }
-
-  /* Navy */
-  .accent-navy .resource-accent-bar {
-    background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 100%);
-  }
-  .accent-navy .resource-icon-area {
-    background: rgba(26, 54, 93, 0.1);
-    color: var(--navy);
-  }
-  .accent-navy .resource-tag {
-    background: rgba(26, 54, 93, 0.1);
-    color: var(--navy);
-  }
-  .accent-navy .resource-link {
-    color: var(--navy);
-  }
-  .accent-navy:hover .resource-link {
-    color: var(--blue);
-  }
-
-  @media (max-width: 767px) {
-    .resources-hero {
-      padding-top: 120px;
-    }
+  @media (max-width: 700px) {
+    .op-resources-hero,
+    .op-resources-list { padding-left: 22px; padding-right: 22px; }
   }
 </style>

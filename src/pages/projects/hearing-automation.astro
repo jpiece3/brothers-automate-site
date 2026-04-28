@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import SpecStrip from '../../components/operator/SpecStrip.astro';
+import MonoCTA from '../../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 
@@ -23,40 +27,48 @@ const breadcrumbSchema = {
   <main>
 
     <!-- HERO -->
-    <section class="project-hero">
+    <section class="op-respage-hero op-grid-bg">
+      <div class="op-respage-hero-frame">
+        <div class="op-respage-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / PITCH · LIVE BETTER HEARING"
+            right="● 27 LOCATIONS · 10 IDEAS"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="AUTOMATION IDEAS · LIVE BETTER HEARING" />
+        <h1 class="op-respage-h1">
+          27 Locations.<br />
+          <span class="op-respage-h1-orange">Even more potential.</span>
+        </h1>
+        <p class="op-respage-sub">Ideas for saving time, recovering revenue, and reaching more patients through simple automation.</p>
+
+        <div style="margin: 28px 0;">
+          <SpecStrip cells={[
+            { value: '10', label: 'Ideas' },
+            { value: '$150K+', label: 'Revenue recovered' },
+            { value: '25 hrs', label: 'Saved per week' },
+          ]} />
+        </div>
+
+        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+          <MonoCTA label="Explore the ideas" variant="orange" size="lg" href="#ha-workflows" trackLocation="hearing-hero" trackLabel="Explore the Ideas" />
+          <MonoCTA label="Let's chat about it" variant="navy" size="lg" calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers" trackLocation="hearing-hero" trackLabel="Lets Chat About It" />
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGACY HERO (hidden) -->
+    <section class="project-hero" style="display:none;">
       <div class="hero-bg-grid"></div>
       <div class="container">
-        <div class="project-hero-content" data-animate="fade-up">
+        <div class="project-hero-content">
           <span class="badge">Automation Ideas for Live Better Hearing</span>
           <h1>27 Locations.<br /><span class="gradient-text">Even More Potential.</span></h1>
           <p class="project-hero-sub">Ideas for saving time, recovering revenue, and reaching more patients through simple automation.</p>
 
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-number">10</span>
-              <span class="hero-stat-label">Ideas</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">$150K+</span>
-              <span class="hero-stat-label">Revenue Recovered</span>
-            </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">25 hrs</span>
-              <span class="hero-stat-label">Saved Per Week</span>
-            </div>
-          </div>
-
           <div class="hero-buttons">
-            <a href="#ha-workflows" class="btn btn-primary btn-lg">Explore the Ideas</a>
-            <a
-              href="#"
-              class="btn btn-secondary btn-lg"
-              data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-              data-cal-namespace="free-quiz-audit-automation-brothers"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >Let's Chat About It</a>
+            <a href="#ha-workflows">Explore the Ideas</a>
           </div>
 
           <!-- Demo Terminal -->

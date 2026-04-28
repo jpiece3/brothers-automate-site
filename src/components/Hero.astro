@@ -1,197 +1,223 @@
 ---
+import EyebrowTag from './operator/EyebrowTag.astro';
+import SpecStrip from './operator/SpecStrip.astro';
+import MonoCTA from './operator/MonoCTA.astro';
+import CyclingWord from './operator/CyclingWord.astro';
+import OpBuildPanel from './operator/OpBuildPanel.astro';
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
 ---
 
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-content">
-      <span class="badge" data-animate="fade-up">AI-Powered Marketing & Operations</span>
-      <h1 data-animate="fade-up">You Started a Business to Do<br /><span class="text-gradient">the Thing You're Good At</span></h1>
-      <p class="hero-subheadline" data-animate="fade-up">
-        We build AI systems that handle your marketing and operations — lead gen, ad creative, client onboarding, hiring, reviews, and more. So you can get back to the work that matters.
-      </p>
+<section class="op-hero op-grid-bg" id="hero">
+  <div class="op-hero-frame">
+    <!-- Top utility strip — sits above the fold under the fixed header -->
+    <div class="op-hero-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / V.2026"
+        right="LIVE BUILDS · INBOUND AI SDR RUNNING"
+      />
+    </div>
 
-      <div class="hero-cta" data-animate="fade-up">
-        <a href="/projects" class="btn btn-primary btn-lg" data-track="cta_click" data-track-location="hero" data-track-label="See Our Projects">See Our Projects</a>
-        <a
-          href="#"
-          class="btn btn-secondary btn-lg"
-          data-cal-link="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
-          data-cal-namespace="free-quiz-audit-automation-brothers"
-          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-          data-track="cta_click" data-track-location="hero" data-track-label="Talk to the Brothers"
-        >Talk to the Brothers</a>
+    <!-- Two-column hero grid -->
+    <div class="op-hero-grid">
+      <!-- Left -->
+      <div class="op-hero-left">
+        <EyebrowTag label="AI OPERATIONS · BUILT FOR $1M–$15M REVENUE" />
+
+        <h1 class="op-hero-headline">
+          <span class="op-hero-line">Add AI.</span>
+          <span class="op-hero-line">Skip the</span>
+          <span class="op-hero-line op-hero-line-cycling">
+            <CyclingWord words={['hire.', 'hours.', 'handoff.', 'headache.']} />
+          </span>
+        </h1>
+
+        <p class="op-hero-sub">
+          We build the AI systems you'd otherwise hire someone to do — <strong>lead gen, quotes, onboarding, hiring, support</strong>. Custom-built around how your business actually runs.
+        </p>
+
+        <div class="op-hero-ctas">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder-simpleflo/free-quiz-audit-automation-brothers"
+            trackLocation="hero"
+            trackLabel="Talk to the Brothers"
+          />
+          <a class="op-hero-link" href="/projects" data-track="cta_click" data-track-location="hero" data-track-label="See our work">
+            See our work →
+          </a>
+        </div>
+
+        <SpecStrip cells={[
+          { value: '$1M–$15M', label: 'Revenue range we serve' },
+          { value: '1–3 wks', label: 'From kickoff to live' },
+          { value: '30-day', label: 'Money-back guarantee' },
+        ]} />
       </div>
 
-      <div class="stats-bar" data-animate-stagger>
-        <div class="stat">
-          <span class="stat-number">1-3 Wks</span>
-          <span class="stat-label">From Kickoff to Live</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Custom-Built</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">2</span>
-          <span class="stat-label">Brothers, Zero Middlemen</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">Runs Automatically</span>
+      <!-- Right -->
+      <div class="op-hero-right">
+        <OpBuildPanel />
+        <div class="op-hero-meta">
+          <span class="op-mono">↗ ONE OF SIX BUILDS · LIVE PREVIEW</span>
+          <a class="op-mono op-hero-meta-link" href="/projects/inbound-ai-sdr">SEE IT IN ACTION →</a>
         </div>
       </div>
-      <p class="trust-signal" data-animate="fade-in">Two brothers who ran a service business for 5 years. Now we build the systems we wish we'd had.</p>
     </div>
   </div>
 </section>
 
 <style>
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 140px;
-    padding-bottom: var(--space-3xl);
-    background: var(--bg-primary);
+  .op-hero {
+    position: relative;
+    padding: 88px var(--op-section-px) 64px;
+    color: var(--op-ink);
   }
 
-  .hero-content {
-    max-width: 900px;
+  .op-hero-frame {
+    max-width: var(--op-max-content);
     margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
   }
 
-  .badge {
-    display: inline-block;
-    align-self: center;
-    width: fit-content;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-lg);
+  .op-hero-util {
+    margin-bottom: 24px;
   }
 
-  .hero h1 {
-    margin-bottom: var(--space-lg);
-  }
-
-  .text-gradient {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .hero-subheadline {
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-lg);
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-
-  .hero-cta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    align-items: center;
-    margin-bottom: var(--space-md);
-  }
-
-  @media (min-width: 480px) {
-    .hero-cta {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  .stats-bar {
+  .op-hero-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-lg);
-    padding: var(--space-md) 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: var(--space-md);
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
   }
 
-  .stat {
-    text-align: center;
+  .op-hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
   }
 
-  .stat-number {
-    display: block;
-    font-size: 1.75rem;
+  /* Headline */
+  .op-hero-headline {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    color: var(--navy);
-    line-height: 1;
+    font-size: clamp(48px, 6.4vw, 84px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 4px 0 0;
+    text-wrap: balance;
+  }
+  .op-hero-line {
+    display: block;
+  }
+  .op-hero-line-cycling {
+    color: var(--op-orange);
+    min-height: 1em;
+  }
+
+  /* Sub */
+  .op-hero-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    max-width: 520px;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-hero-sub strong {
+    color: var(--op-navy);
+    font-weight: 700;
+  }
+
+  /* CTAs row */
+  .op-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
     margin-bottom: 4px;
   }
-
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 500;
+  .op-hero-link {
+    color: var(--op-ink);
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 2px;
+    letter-spacing: -0.01em;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hero-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
   }
 
-  .trust-signal {
-    font-size: 0.9375rem;
-    font-style: italic;
-    color: var(--text-muted);
+  /* Right side */
+  .op-hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .op-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: var(--op-navy-soft);
+  }
+  .op-hero-meta-link {
+    color: var(--op-ink);
+    text-decoration: none;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hero-meta-link:hover {
+    color: var(--op-orange);
+  }
+
+  /* Tablet */
+  @media (max-width: 1100px) {
+    .op-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .op-hero-headline {
+      font-size: clamp(56px, 9vw, 80px);
+    }
   }
 
   /* Mobile */
-  @media (max-width: 767px) {
-    .hero {
-      padding-top: 90px;
-      padding-bottom: var(--space-lg);
-      min-height: auto;
-      align-items: flex-start;
+  @media (max-width: 700px) {
+    .op-hero {
+      padding: 92px 22px 64px;
     }
-
-    .badge { margin-bottom: var(--space-xs); font-size: 0.75rem; padding: 4px var(--space-sm); }
-    .hero h1 { margin-bottom: var(--space-xs); }
-    .hero-subheadline {
-      margin-bottom: var(--space-md);
-      font-size: 0.9375rem;
-      line-height: 1.5;
+    .op-hero-util {
+      margin-bottom: 24px;
     }
-
-    .hero-cta .btn {
-      width: 100%;
-      justify-content: center;
+    .op-hero-grid {
+      gap: 36px;
     }
-
-    .stats-bar {
-      gap: var(--space-xs);
-      padding: var(--space-sm) 0;
-      margin-bottom: var(--space-xs);
+    .op-hero-left {
+      gap: 22px;
     }
-
-    .stat-number {
-      font-size: 1.125rem;
-      margin-bottom: 2px;
+    .op-hero-headline {
+      font-size: clamp(44px, 11vw, 64px);
     }
-
-    .stat-label {
-      font-size: 0.625rem;
-      letter-spacing: 0.04em;
+    .op-hero-sub {
+      font-size: 16px;
     }
-
-    .trust-signal { font-size: 0.8125rem; }
+    .op-hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+    .op-hero-meta {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      gap: 10px;
+    }
   }
 </style>

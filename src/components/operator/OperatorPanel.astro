@@ -1,0 +1,116 @@
+---
+/**
+ * OperatorPanel — navy console card with header strip + body + optional footer SpecStrip.
+ * Used by: hero OpBuildPanel, every "ship card" mini console, future case studies.
+ *
+ * Props:
+ *   id:           string   the BUILD_NN / SECTION_NN code shown in the header strip
+ *                          e.g. "BUILD_06 · INBOUND_AI_SDR"
+ *   showDot:      boolean  (default true) — pulsing orange dot in header
+ *   headerExtra:  string   optional right-side header cell (e.g. "■■■")
+ *   minBodyHeight: string  CSS length, optional (default 'auto')
+ *   footerCells:  optional array of { value, label } — rendered as navy SpecStrip footer
+ *   class:        extra classes
+ *
+ * Slot: panel body content (you compose what's inside)
+ */
+import SpecStrip from './SpecStrip.astro';
+
+interface FooterCell {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  id: string;
+  showDot?: boolean;
+  headerExtra?: string;
+  minBodyHeight?: string;
+  footerCells?: FooterCell[];
+  class?: string;
+}
+
+const {
+  id,
+  showDot = true,
+  headerExtra = '',
+  minBodyHeight,
+  footerCells,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`op-panel ${className}`.trim()}>
+  <!-- Header strip -->
+  <div class="op-panel-header">
+    {showDot && <span class="op-pulse-dot op-pulse-dot--lg op-panel-dot"></span>}
+    <span class="op-panel-id op-mono">{id}</span>
+    {headerExtra && <span class="op-panel-extra op-mono" set:html={headerExtra}></span>}
+  </div>
+
+  <!-- Body -->
+  <div class="op-panel-body" style={minBodyHeight ? `min-height:${minBodyHeight};` : ''}>
+    <slot />
+  </div>
+
+  <!-- Optional footer SpecStrip (navy variant) -->
+  {footerCells && footerCells.length > 0 && (
+    <SpecStrip cells={footerCells} variant="navy" />
+  )}
+</div>
+
+<style>
+  .op-panel {
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-lg);
+    overflow: hidden;
+    position: relative;
+    color: var(--op-cream);
+  }
+
+  .op-panel-header {
+    background: var(--op-navy-deep);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .op-panel-dot {
+    flex-shrink: 0;
+  }
+
+  .op-panel-id {
+    font-size: 11px;
+    color: var(--op-orange);
+  }
+
+  .op-panel-extra {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.4;
+    letter-spacing: 0.18em;
+    display: inline-flex;
+    gap: 6px;
+  }
+
+  .op-panel-body {
+    padding: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .op-panel-header {
+      padding: 10px 14px;
+    }
+    .op-panel-id {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+    .op-panel-body {
+      padding: 18px;
+    }
+  }
+</style>
