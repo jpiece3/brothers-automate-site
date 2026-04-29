@@ -42,6 +42,12 @@ const SITE_URL = 'https://brothersautomate.com';
             <span class="op-pulse-dot"></span>
             <span class="op-mono op-mq-panel-id" id="mq-step-id">DIAGNOSTIC · IDLE</span>
             <span class="op-mono op-mq-panel-status" id="mq-step-status">● READY</span>
+            <button type="button" class="op-mq-close" id="mq-close" aria-label="Exit quiz">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </header>
           <div class="op-mq-progress" id="mq-progress" hidden>
             <div class="op-mq-progress-fill" id="mq-progress-fill"></div>
@@ -61,68 +67,70 @@ const SITE_URL = 'https://brothersautomate.com';
     // ---------------------------------------------------------------------
     const QUESTIONS = [
       {
-        q: "What kind of business do you run?",
-        sub: "Helps us tailor the recommendation to how your operation actually works.",
+        q: "What kind of operation are you running?",
+        sub: "We tune the recommendation to your actual day-to-day, not a generic SaaS playbook.",
         opts: [
-          { text: "Field service (HVAC, plumbing, electrical, restoration)", val: "field_service", pts: 3 },
-          { text: "Trades or construction (contractor, roofing, landscaping)", val: "trades", pts: 3 },
-          { text: "Real estate / brokerage / property management", val: "real_estate", pts: 3 },
+          { text: "Field service (HVAC, plumbing, electrical, restoration, pest)", val: "field_service", pts: 3 },
+          { text: "Trades or construction (contractors, roofing, landscaping, paving)", val: "trades", pts: 3 },
+          { text: "Real estate, brokerage, or property management", val: "real_estate", pts: 3 },
           { text: "Professional services (legal, accounting, agency, consulting)", val: "pro_service", pts: 3 },
-          { text: "Healthcare, dental, or clinic", val: "healthcare", pts: 3 },
+          { text: "Healthcare, dental, medspa, or clinic", val: "healthcare", pts: 3 },
           { text: "Other service business", val: "other", pts: 2 }
         ]
       },
       {
-        q: "What's eating your team's time right now?",
-        sub: "Pick the one that hurts most. This drives our recommendation.",
+        q: "Where does the wheel spin most?",
+        sub: "The thing that makes you want to throw your phone. We pick the system to fix it.",
         opts: [
-          { text: "Following up with leads", val: "leads", pts: 3 },
-          { text: "Quoting, proposals, or estimates", val: "quoting", pts: 3 },
-          { text: "Scheduling, dispatching, or routing", val: "scheduling", pts: 3 },
-          { text: "Admin (invoicing, paperwork, data entry, onboarding)", val: "admin", pts: 3 },
-          { text: "Hiring and screening resumes", val: "hiring", pts: 3 },
-          { text: "Customer support, after-hours calls, or reviews", val: "support", pts: 3 }
+          { text: "Hot inbound leads sit unanswered for hours", val: "leads", pts: 3 },
+          { text: "Quotes and proposals get rebuilt from scratch every time", val: "quoting", pts: 3 },
+          { text: "Schedules collide, two crews land at the same address, jobs get rerouted on the fly", val: "scheduling", pts: 3 },
+          { text: "Customer info gets retyped into 4 different systems", val: "admin", pts: 3 },
+          { text: "Resume stack sits for weeks while we lose good people to faster shops", val: "hiring", pts: 3 },
+          { text: "Calls drop to voicemail after-hours and reviews go unanswered", val: "support", pts: 3 }
         ]
       },
       {
-        q: "How many new lead inquiries hit you in a typical week?",
-        sub: "Volume tells us how much an AI agent could move the needle.",
+        q: "When a brand-new lead comes in, how fast do you (really) reply?",
+        sub: "Be honest. We've heard worse. Speed-to-reply is the single biggest predictor of close rate in service businesses.",
         opts: [
-          { text: "50+ a week", val: "high_volume", pts: 3 },
-          { text: "20 to 50", val: "mid_volume", pts: 3 },
-          { text: "5 to 20", val: "low_volume", pts: 2 },
-          { text: "Under 5", val: "tiny_volume", pts: 1 }
+          { text: "Under 5 minutes, every time", val: "fast_reply", pts: 3 },
+          { text: "Same day, usually", val: "same_day", pts: 2 },
+          { text: "Next day or two, depending on the week", val: "variable", pts: 1 },
+          { text: "Honestly? Some never get a callback", val: "never", pts: 1 }
         ]
       },
       {
-        q: "How big is your team?",
-        sub: "Bigger teams usually mean more places automation pays off.",
+        q: "If your most reliable person took a 3-week vacation, would the place keep humming?",
+        sub: "Cleanest test for whether your operation is built on systems or on tribal knowledge.",
         opts: [
-          { text: "1 to 5 people", val: "solo_team", pts: 1 },
-          { text: "6 to 15", val: "small_team", pts: 2 },
-          { text: "16 to 50", val: "mid_team", pts: 3 },
-          { text: "50+", val: "big_team", pts: 3 }
+          { text: "Yes, things are documented and other people can step in", val: "systems", pts: 3 },
+          { text: "Mostly, but a few things would drop", val: "mostly", pts: 2 },
+          { text: "Honestly, no. The place runs on tribal knowledge", val: "tribal", pts: 1 },
+          { text: "We don't really do vacations around here", val: "no_vacations", pts: 1 }
         ]
       },
       {
-        q: "What tools are you running today?",
-        sub: "Tells us how clean the integration is going to be.",
+        q: "Where does your customer data actually live?",
+        sub: "Pick all that apply. We've seen every combo, no judgment, just integration math.",
+        multi: true,
         opts: [
-          { text: "HubSpot, Salesforce, or another major CRM", val: "crm", pts: 3 },
-          { text: "GoHighLevel, Pipedrive, or similar", val: "mid_crm", pts: 3 },
-          { text: "QuickBooks, ServiceTitan, or industry ERP", val: "erp", pts: 3 },
-          { text: "Google Sheets and email, mostly", val: "basic", pts: 2 },
-          { text: "Honestly, nothing organized yet", val: "none", pts: 1 }
+          { text: "A real CRM (HubSpot, Salesforce, Pipedrive, GoHighLevel)", val: "crm", pts: 3 },
+          { text: "Industry software (ServiceTitan, Jobber, FieldEdge, JobNimbus)", val: "vertical_sw", pts: 3 },
+          { text: "QuickBooks, Xero, or another accounting / ERP system", val: "erp", pts: 3 },
+          { text: "Spreadsheets, email threads, and Slack", val: "basic", pts: 2 },
+          { text: "Sticky notes, our phones, and people's heads, mostly", val: "ad_hoc", pts: 1 }
         ]
       },
       {
-        q: "If we automated this perfectly, how much would it move the business?",
-        sub: "Helps us right-size the build and the timeline.",
+        q: "If we ship the fix in 3 weeks and it actually works, what changes most?",
+        sub: "Helps us right-size the build and the conversation that follows.",
         opts: [
-          { text: "10+ hours a week back to my team", val: "big_impact", pts: 3 },
-          { text: "More leads converting (we're losing some in the cracks)", val: "more_revenue", pts: 3 },
-          { text: "Both, honestly", val: "both", pts: 3 },
-          { text: "Hard to quantify, but I know it's a problem", val: "unsure", pts: 2 }
+          { text: "10+ hours a week back to me or my team", val: "time_back", pts: 3 },
+          { text: "More leads actually converting (we're losing some in the cracks)", val: "revenue", pts: 3 },
+          { text: "Stuff stops slipping through the cracks. We sleep better.", val: "less_chaos", pts: 3 },
+          { text: "Honestly? I just want to stop having the same problem next year.", val: "resignation", pts: 3 },
+          { text: "Hard to put a number on it, but I know it's a problem.", val: "unsure", pts: 2 }
         ]
       }
     ];
@@ -239,10 +247,54 @@ const SITE_URL = 'https://brothersautomate.com';
 
     function getRecommendation(answers) {
       // Q2 (index 1) is the pain question and drives the primary rec.
+      // Q2 is single-select, so answers[1] is an index, not an array.
       var q2idx = answers[1];
       if (q2idx === undefined) return SERVICE_MAP.leads;
       var val = QUESTIONS[1].opts[q2idx].val;
       return SERVICE_MAP[val] || SERVICE_MAP.leads;
+    }
+
+    function hasAnswer(qIdx) {
+      var a = quizState.answers[qIdx];
+      if (QUESTIONS[qIdx].multi) return Array.isArray(a) && a.length > 0;
+      return a !== undefined && a !== null;
+    }
+
+    function pointsFor(qIdx) {
+      var q = QUESTIONS[qIdx];
+      var a = quizState.answers[qIdx];
+      if (q.multi) {
+        if (!Array.isArray(a) || !a.length) return 0;
+        // For multi, take the max points among selected (don't reward
+        // gaming by checking everything; reward picking the best stack).
+        var max = 0;
+        for (var k = 0; k < a.length; k++) {
+          var p = q.opts[a[k]].pts;
+          if (p > max) max = p;
+        }
+        return max;
+      }
+      return q.opts[a].pts;
+    }
+
+    function buildAnswersArray() {
+      return quizState.answers.map(function(a, i) {
+        var q = QUESTIONS[i];
+        if (q.multi && Array.isArray(a)) {
+          return {
+            question: q.q,
+            answer: a.map(function(j) { return q.opts[j].text; }).join(' | '),
+            value: a.map(function(j) { return q.opts[j].val; }).join(',')
+          };
+        }
+        return { question: q.q, answer: q.opts[a].text, value: q.opts[a].val };
+      });
+    }
+
+    function setFullscreen(active) {
+      var body = document.body;
+      if (active) body.classList.add('op-mq-fullscreen');
+      else body.classList.remove('op-mq-fullscreen');
     }
 
     function escHtml(s) {
@@ -305,18 +357,27 @@ const SITE_URL = 'https://brothersautomate.com';
         setStep('STEP_' + stepNum + ' / ' + totalNum, '● ' + (quizState.currentQ + 1) + ' of ' + QUESTIONS.length, pct);
 
         var selected = quizState.answers[quizState.currentQ];
+        var isMulti = !!q.multi;
         var optsHtml = '';
         for (var i = 0; i < q.opts.length; i++) {
-          var isSel = selected === i;
-          optsHtml += '<button type="button" class="op-mq-opt' + (isSel ? ' is-selected' : '') + '" data-opt="' + i + '">' +
-            '<span class="op-mq-opt-radio" aria-hidden="true"></span>' +
+          var isSel = isMulti
+            ? (Array.isArray(selected) && selected.indexOf(i) !== -1)
+            : (selected === i);
+          var indicatorClass = isMulti ? 'op-mq-opt-check' : 'op-mq-opt-radio';
+          optsHtml += '<button type="button" class="op-mq-opt' + (isMulti ? ' op-mq-opt--multi' : '') + (isSel ? ' is-selected' : '') + '" data-opt="' + i + '">' +
+            '<span class="' + indicatorClass + '" aria-hidden="true">' +
+              (isMulti
+                ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                : '') +
+            '</span>' +
             '<span class="op-mq-opt-text">' + escHtml(q.opts[i].text) + '</span>' +
           '</button>';
         }
         var isLast = quizState.currentQ === QUESTIONS.length - 1;
+        var canAdvance = hasAnswer(quizState.currentQ);
         app.innerHTML =
           '<div class="op-mq-screen op-mq-question">' +
-            '<p class="op-mono op-mq-q-label">QUESTION ' + stepNum + ' / ' + totalNum + '</p>' +
+            '<p class="op-mono op-mq-q-label">QUESTION ' + stepNum + ' / ' + totalNum + (isMulti ? ' · PICK ALL THAT APPLY' : '') + '</p>' +
             '<h2 class="op-mq-q-text">' + escHtml(q.q) + '</h2>' +
             '<p class="op-mq-q-sub">' + escHtml(q.sub) + '</p>' +
             '<div class="op-mq-opts">' + optsHtml + '</div>' +
@@ -324,7 +385,7 @@ const SITE_URL = 'https://brothersautomate.com';
               (quizState.currentQ > 0
                 ? '<button type="button" class="op-mq-btn op-mq-btn--ghost" id="mq-prev"><span aria-hidden="true">←</span> BACK</button>'
                 : '<span></span>') +
-              '<button type="button" class="op-mq-btn op-mq-btn--primary" id="mq-next" ' + (selected === undefined ? 'disabled' : '') + '>' +
+              '<button type="button" class="op-mq-btn op-mq-btn--primary" id="mq-next" ' + (canAdvance ? '' : 'disabled') + '>' +
                 '<span class="op-mq-btn-label">' + (isLast ? 'SEE MY RESULTS' : 'NEXT') + '</span>' +
                 '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
               '</button>' +
@@ -467,12 +528,26 @@ const SITE_URL = 'https://brothersautomate.com';
       quizState.currentQ = 0;
       quizState.answers = [];
       quizState.score = 0;
+      setFullscreen(true);
       renderQuiz();
     }
-    function selectOption(i) { quizState.answers[quizState.currentQ] = i; renderQuiz(); }
+    function selectOption(i) {
+      var qIdx = quizState.currentQ;
+      var q = QUESTIONS[qIdx];
+      if (q.multi) {
+        var arr = Array.isArray(quizState.answers[qIdx]) ? quizState.answers[qIdx].slice() : [];
+        var pos = arr.indexOf(i);
+        if (pos === -1) arr.push(i);
+        else arr.splice(pos, 1);
+        quizState.answers[qIdx] = arr;
+      } else {
+        quizState.answers[qIdx] = i;
+      }
+      renderQuiz();
+    }
     function nextQ() {
-      if (quizState.answers[quizState.currentQ] === undefined) return;
-      quizState.score += QUESTIONS[quizState.currentQ].opts[quizState.answers[quizState.currentQ]].pts;
+      if (!hasAnswer(quizState.currentQ)) return;
+      quizState.score += pointsFor(quizState.currentQ);
       if (quizState.currentQ < QUESTIONS.length - 1) {
         quizState.currentQ++;
         renderQuiz();
@@ -485,14 +560,19 @@ const SITE_URL = 'https://brothersautomate.com';
     function prevQ() {
       if (quizState.currentQ > 0) {
         var prevIdx = quizState.currentQ - 1;
-        quizState.score -= QUESTIONS[prevIdx].opts[quizState.answers[prevIdx]].pts;
+        quizState.score -= pointsFor(prevIdx);
         quizState.currentQ--;
         renderQuiz();
       }
     }
     function resetQuiz() {
       quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null, submitting: false, submitError: '' };
+      setFullscreen(false);
       renderQuiz();
+    }
+    function exitQuiz() {
+      // Close button: exit fullscreen, reset to landing.
+      resetQuiz();
     }
 
     var SUPABASE_URL = 'https://nnxbgderdyjanzwgabxl.supabase.co';
@@ -539,9 +619,7 @@ const SITE_URL = 'https://brothersautomate.com';
       var max = QUESTIONS.length * 3;
       var pct = Math.round((quizState.score / max) * 100);
       var quizSegment = quizState.result === 'high' ? 'partner-ready' : 'partner-nurture';
-      var answersArray = quizState.answers.map(function(a, i) {
-        return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val };
-      });
+      var answersArray = buildAnswersArray();
 
       quizState.submitting = true;
       submitBtn.disabled = true;
@@ -624,15 +702,24 @@ const SITE_URL = 'https://brothersautomate.com';
       });
     }
 
+    // Close button (only visible in fullscreen) + Esc key to exit.
+    var closeBtn = document.getElementById('mq-close');
+    if (closeBtn) closeBtn.addEventListener('click', exitQuiz);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.body.classList.contains('op-mq-fullscreen')) {
+        exitQuiz();
+      }
+    });
+
     renderQuiz();
   </script>
 </Layout>
 
-<style>
+<style is:global>
   .op-mq-hero { padding: 96px var(--op-section-px) 56px; color: var(--op-ink); }
   .op-mq-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
   .op-mq-util { margin-bottom: 32px; }
-  .op-mq-hero :global(.op-eyebrow) { margin-bottom: 22px; }
+  .op-mq-hero .op-eyebrow { margin-bottom: 22px; }
 
   .op-mq-h1 {
     font-family: var(--op-font-display);
@@ -817,8 +904,95 @@ const SITE_URL = 'https://brothersautomate.com';
     flex-shrink: 0;
     transition: background var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
   }
+  .op-mq-opt-check {
+    width: 18px;
+    height: 18px;
+    border-radius: var(--op-radius-sm);
+    border: 1.5px solid var(--op-ink);
+    background: var(--op-cream);
+    color: transparent;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-mq-opt.is-selected .op-mq-opt-check {
+    background: var(--op-orange);
+    border-color: var(--op-orange);
+    color: var(--op-paper);
+  }
   .op-mq-opt-text {
     line-height: 1.4;
+  }
+
+  /* ------- CLOSE BUTTON (only visible in fullscreen) ------- */
+  .op-mq-close {
+    margin-left: auto;
+    background: transparent;
+    border: 1.5px solid rgba(244, 238, 226, 0.25);
+    color: var(--op-cream);
+    width: 26px;
+    height: 26px;
+    border-radius: var(--op-radius-sm);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-mq-close:hover {
+    background: rgba(244, 238, 226, 0.1);
+    border-color: var(--op-orange);
+    color: var(--op-orange);
+  }
+  body.op-mq-fullscreen .op-mq-close { display: flex; }
+  body.op-mq-fullscreen .op-mq-panel-status { margin-left: 0; }
+
+  /* ------- FULLSCREEN MODE ------- */
+  body.op-mq-fullscreen { overflow: hidden; }
+  body.op-mq-fullscreen .op-mq-hero,
+  body.op-mq-fullscreen footer,
+  body.op-mq-fullscreen .op-fq {
+    visibility: hidden;
+  }
+  body.op-mq-fullscreen .op-mq-body {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    padding: 0;
+    background: var(--op-cream);
+    background-image:
+      linear-gradient(var(--op-rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--op-rule) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: 0 0;
+    border-top: none;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body.op-mq-fullscreen .op-mq-body-frame {
+    width: 100%;
+    max-width: 880px;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  body.op-mq-fullscreen .op-mq-panel {
+    margin-top: 0;
+    box-shadow: var(--op-shadow-lg);
+  }
+  body.op-mq-fullscreen header[class*="header"],
+  body.op-mq-fullscreen .op-header,
+  body.op-mq-fullscreen [data-astro-cid] header {
+    /* Don't fight the site header — let it stay so users keep nav context.
+       (No-op rule kept for clarity if we ever want to hide it.) */
+  }
+
+  @media (max-width: 700px) {
+    body.op-mq-fullscreen .op-mq-body-frame { padding: 12px; }
   }
 
   /* ------- NAV / BUTTONS ------- */
