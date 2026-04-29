@@ -152,7 +152,7 @@ For the broader AI tool picture across marketing, sales, and operations, see our
 
 ## How to set up invoice automation in 4 weeks
 
-Here's the plan we walk clients through. You can do this yourself. If you want done-for-you, that's what we build — book a [free audit call](https://cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers) and we'll map it out for you.
+Here's the plan we walk clients through. You can do this yourself. If you want done-for-you, that's what we build — book a [free audit call](https://cal.com/james-pinder/simple-automation-discovery) and we'll map it out for you.
 
 ### Week 1: Map your current flow and pick the tool
 
