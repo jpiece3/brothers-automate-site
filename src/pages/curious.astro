@@ -179,8 +179,13 @@ const breadcrumbSchema = {
 
         setLoading(true);
 
-        // Fire Gumloop webhook — fetch + keepalive + JSON.
-        // sendBeacon forces text/plain which Gumloop accepts but can't parse.
+        // Fire Gumloop webhook with application/json body.
+        // Do NOT use keepalive: true — keepalive requests are restricted
+        // to CORS-safelisted Content-Types (text/plain, form-data,
+        // x-www-form-urlencoded). With application/json + keepalive,
+        // some browsers silently drop the body and Gumloop receives {}.
+        // The page stays loaded after submit (success state replaces
+        // the form in-place), so keepalive isn't needed here.
         var payload = JSON.stringify({
           pipeline_inputs: [
             { input_name: 'first_name', value: firstName },
@@ -195,8 +200,7 @@ const breadcrumbSchema = {
         fetch(GUMLOOP_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: payload,
-          keepalive: true
+          body: payload
         })
           .then(function (res) {
             if (!res.ok) throw new Error('HTTP ' + res.status);
