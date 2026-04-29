@@ -145,7 +145,11 @@ const breadcrumbSchema = {
       var submitBtn = document.getElementById('cf-submit');
       if (!form || !success || !submitBtn) return;
 
-      var GUMLOOP_URL = 'https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=mdFhBuc3fUEdd6ifQskQc5';
+      // Posts through our same-origin Vercel function, which proxies to
+      // Gumloop server-side. Browser → Gumloop direct call hits a CORS
+      // preflight that Gumloop answers without Allow-Origin headers, so
+      // the actual POST body never lands and the pipeline runs blank.
+      var SUBMIT_URL = '/api/curious-submit';
 
       function setError(msg) {
         errorEl.textContent = msg || '';
@@ -185,26 +189,16 @@ const breadcrumbSchema = {
 
         setLoading(true);
 
-        // Fire Gumloop webhook with application/json body.
-        // Do NOT use keepalive: true — keepalive requests are restricted
-        // to CORS-safelisted Content-Types (text/plain, form-data,
-        // x-www-form-urlencoded). With application/json + keepalive,
-        // some browsers silently drop the body and Gumloop receives {}.
-        // The page stays loaded after submit (success state replaces
-        // the form in-place), so keepalive isn't needed here.
         var payload = JSON.stringify({
-          pipeline_inputs: [
-            { input_name: 'first_name', value: firstName },
-            { input_name: 'last_name', value: lastName },
-            { input_name: 'email', value: email },
-            { input_name: 'business', value: business },
-            { input_name: 'notes', value: notes },
-            { input_name: 'source', value: 'curious-page' },
-            { input_name: 'submitted_at', value: new Date().toISOString() }
-          ]
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          business: business,
+          notes: notes,
+          source: 'curious-page'
         });
 
-        fetch(GUMLOOP_URL, {
+        fetch(SUBMIT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: payload
