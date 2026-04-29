@@ -84,7 +84,14 @@ const { id = 'BUILD_06 · INBOUND_AI_SDR', interval = 1900 } = Astro.props;
 </div>
 
 <style>
-  .op-build-panel { width: 100%; }
+  .op-build-panel {
+    width: 100%;
+    /* Local lift on the navy so this build panel reads a touch lighter than
+       the standard OperatorPanel used in case studies. Header strip stays
+       slightly darker for hierarchy. */
+    --op-navy: #0a2870;
+    --op-navy-deep: #06204f;
+  }
 
   /* === Pipeline === */
   .opbp-pipeline {
@@ -172,10 +179,10 @@ const { id = 'BUILD_06 · INBOUND_AI_SDR', interval = 1900 } = Astro.props;
 
   /* === Reply === */
   .opbp-reply {
-    background: var(--op-orange);
+    background: var(--op-cream);
     padding: 12px 14px;
     margin-bottom: 10px;
-    color: var(--op-paper);
+    color: var(--op-navy);
     border-radius: var(--op-radius-sm);
   }
   .opbp-reply-label {
