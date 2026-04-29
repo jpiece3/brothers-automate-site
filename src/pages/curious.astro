@@ -1,0 +1,510 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Curious about AI", "item": `${SITE_URL}/curious` }
+  ]
+};
+---
+
+<Layout
+  title="Curious about AI? Drop us a note | Brothers Automate"
+  description="Not ready to hop on a call? Tell us what's eating your time and we'll write back within 24 hours. First name + email is all we need."
+  canonicalUrl={`${SITE_URL}/curious/`}
+>
+  <Header />
+  <main>
+    <section class="op-curious-hero op-grid-bg">
+      <div class="op-curious-hero-frame">
+        <div class="op-curious-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / NOTE · CURIOUS"
+            right="● ASYNC INTAKE · NO CALENDAR REQUIRED"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="DROP US A NOTE · NO PRESSURE" />
+        <h1 class="op-curious-h1" data-animate="fade-up">
+          Curious about AI but<br />
+          <span class="op-curious-h1-orange">not ready to chat?</span>
+        </h1>
+        <p class="op-curious-sub" data-animate="fade-up">
+          Tell us what you're stuck on. We'll write back within 24 hours with a plain-English read on whether AI fits — and what we'd build if it does. No call required, no deck, no pitch.
+        </p>
+      </div>
+    </section>
+
+    <section class="op-curious-form-section">
+      <div class="op-curious-form-frame">
+        <div class="op-curious-panel" data-animate="fade-up">
+          <div class="op-curious-panel-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-curious-panel-id">INTAKE_FORM · ASYNC</span>
+            <span class="op-mono op-curious-panel-status">● ACCEPTING NOTES</span>
+          </div>
+
+          <form id="curious-form" class="op-curious-form" novalidate>
+            <div class="op-curious-row">
+              <label class="op-curious-field">
+                <span class="op-mono op-curious-label">FIRST NAME <span class="op-curious-req">*</span></span>
+                <input type="text" name="first_name" id="cf-first-name" required autocomplete="given-name" maxlength="80" />
+              </label>
+              <label class="op-curious-field">
+                <span class="op-mono op-curious-label">LAST NAME <span class="op-curious-opt">OPTIONAL</span></span>
+                <input type="text" name="last_name" id="cf-last-name" autocomplete="family-name" maxlength="80" />
+              </label>
+            </div>
+
+            <label class="op-curious-field">
+              <span class="op-mono op-curious-label">EMAIL <span class="op-curious-req">*</span></span>
+              <input type="email" name="email" id="cf-email" required autocomplete="email" maxlength="160" inputmode="email" />
+            </label>
+
+            <label class="op-curious-field">
+              <span class="op-mono op-curious-label">BUSINESS <span class="op-curious-opt">OPTIONAL</span></span>
+              <input type="text" name="business" id="cf-business" autocomplete="organization" maxlength="160" placeholder="What you do — e.g. plumbing, real estate, agency" />
+            </label>
+
+            <!-- Honeypot — bots fill this; humans never see it -->
+            <div class="op-curious-honeypot" aria-hidden="true">
+              <label>Website</label>
+              <input type="text" name="website_hp" id="cf-website-hp" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="op-curious-actions">
+              <button type="submit" id="cf-submit" class="op-curious-submit op-mono">
+                <span class="op-curious-submit-label">SEND THE NOTE</span>
+                <span class="op-curious-submit-arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="op-curious-fineprint op-mono">
+                <span>WE WRITE BACK WITHIN 24H</span>
+                <span class="op-curious-dot">·</span>
+                <span>NEVER SHARED</span>
+                <span class="op-curious-dot">·</span>
+                <span>NO MAILING LIST</span>
+              </p>
+            </div>
+
+            <p class="op-curious-error" id="cf-error" role="alert" aria-live="polite"></p>
+          </form>
+
+          <!-- Success state, hidden until submit succeeds -->
+          <div class="op-curious-success" id="cf-success" hidden>
+            <div class="op-curious-success-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <p class="op-mono op-curious-success-eyebrow">NOTE LOGGED · 24H REPLY WINDOW</p>
+            <h2 class="op-curious-success-title">Got it. We'll write back.</h2>
+            <p class="op-curious-success-body">
+              You'll hear from <strong>James or Brendan</strong> within 24 hours — straight from our actual inbox, not a sequence. If you change your mind and want to grab time directly, the calendar's right there.
+            </p>
+            <div class="op-curious-success-actions">
+              <a href="https://cal.com/james-pinder/simple-automation-discovery" class="op-curious-success-cal op-mono" target="_blank" rel="noopener">
+                OR GRAB A SLOT INSTEAD <span aria-hidden="true">→</span>
+              </a>
+              <a href="/projects" class="op-curious-success-link op-mono">SEE THE BUILDS →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('curious-form');
+      var success = document.getElementById('cf-success');
+      var errorEl = document.getElementById('cf-error');
+      var submitBtn = document.getElementById('cf-submit');
+      if (!form || !success || !submitBtn) return;
+
+      var GUMLOOP_URL = 'https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=mdFhBuc3fUEdd6ifQskQc5';
+
+      function setError(msg) {
+        errorEl.textContent = msg || '';
+        errorEl.style.display = msg ? 'block' : 'none';
+      }
+
+      function setLoading(loading) {
+        submitBtn.disabled = loading;
+        submitBtn.classList.toggle('is-loading', loading);
+        var label = submitBtn.querySelector('.op-curious-submit-label');
+        if (label) label.textContent = loading ? 'SENDING…' : 'SEND THE NOTE';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setError('');
+
+        var firstName = (document.getElementById('cf-first-name').value || '').trim();
+        var lastName = (document.getElementById('cf-last-name').value || '').trim();
+        var email = (document.getElementById('cf-email').value || '').trim();
+        var business = (document.getElementById('cf-business').value || '').trim();
+        var honeypot = (document.getElementById('cf-website-hp').value || '').trim();
+
+        // Honeypot: silently succeed without submitting
+        if (honeypot) {
+          form.style.display = 'none';
+          success.hidden = false;
+          return;
+        }
+
+        if (!firstName) { setError('Please enter your first name.'); return; }
+        if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+          setError('Please enter a valid email address.');
+          return;
+        }
+
+        setLoading(true);
+
+        // Fire Gumloop webhook — fetch + keepalive + JSON.
+        // sendBeacon forces text/plain which Gumloop accepts but can't parse.
+        var payload = JSON.stringify({
+          pipeline_inputs: [
+            { input_name: 'first_name', value: firstName },
+            { input_name: 'last_name', value: lastName },
+            { input_name: 'email', value: email },
+            { input_name: 'business', value: business },
+            { input_name: 'source', value: 'curious-page' },
+            { input_name: 'submitted_at', value: new Date().toISOString() }
+          ]
+        });
+
+        fetch(GUMLOOP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res;
+          })
+          .then(function () {
+            // Track conversion if Meta Pixel + GA are loaded
+            if (typeof fbq !== 'undefined') { try { fbq('track', 'Lead'); } catch (e) {} }
+            if (typeof gtag !== 'undefined') {
+              try { gtag('event', 'curious_form_submit', { method: 'curious_page' }); } catch (e) {}
+            }
+            form.style.display = 'none';
+            success.hidden = false;
+            success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          })
+          .catch(function (err) {
+            console.error('Curious form submit failed:', err);
+            setLoading(false);
+            setError("Hmm, that didn't go through. Email james@simpleflosolutions.com directly — we'll pick it up there.");
+          });
+      });
+    })();
+  </script>
+</Layout>
+
+<style>
+  .op-curious-hero { padding: 120px var(--op-section-px) 64px; color: var(--op-ink); }
+  .op-curious-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-curious-util { margin-bottom: 32px; }
+  .op-curious-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-curious-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 800px;
+    text-wrap: balance;
+  }
+  .op-curious-h1-orange { color: var(--op-orange); }
+  .op-curious-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 660px;
+    text-wrap: pretty;
+  }
+
+  .op-curious-form-section {
+    padding: 56px var(--op-section-px) 120px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+  }
+  .op-curious-form-frame { max-width: 760px; margin: 0 auto; }
+
+  .op-curious-panel {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+  }
+
+  .op-curious-panel-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-curious-panel-id { font-size: 9px; color: var(--op-orange); }
+  .op-curious-panel-status {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.6;
+  }
+
+  .op-curious-form {
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .op-curious-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .op-curious-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .op-curious-label {
+    font-size: 10px;
+    color: var(--op-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .op-curious-req { color: var(--op-orange); }
+  .op-curious-opt {
+    color: var(--op-navy-soft);
+    font-size: 9px;
+    opacity: 0.7;
+    letter-spacing: 0.2em;
+  }
+
+  .op-curious-form input[type="text"],
+  .op-curious-form input[type="email"] {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-ink);
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .op-curious-form input::placeholder {
+    color: var(--op-navy-soft);
+    opacity: 0.55;
+  }
+  .op-curious-form input:focus {
+    outline: none;
+    border-color: var(--op-orange);
+    box-shadow: 3px 3px 0 var(--op-orange);
+  }
+  .op-curious-form input:invalid:not(:placeholder-shown) {
+    border-color: var(--op-orange-deep);
+  }
+
+  .op-curious-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .op-curious-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    margin-top: 4px;
+  }
+
+  .op-curious-submit {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 14px 22px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-curious-submit:hover {
+    background: var(--op-orange-deep);
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-curious-submit:active {
+    transform: translate(0, 0);
+    box-shadow: 1px 1px 0 var(--op-ink);
+  }
+  .op-curious-submit:disabled {
+    cursor: progress;
+    opacity: 0.85;
+  }
+  .op-curious-submit.is-loading .op-curious-submit-arrow {
+    animation: op-curious-spin 0.9s linear infinite;
+    display: inline-block;
+  }
+  @keyframes op-curious-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .op-curious-submit-arrow { font-size: 18px; }
+
+  .op-curious-fineprint {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    opacity: 0.75;
+  }
+  .op-curious-dot { opacity: 0.5; }
+
+  .op-curious-error {
+    display: none;
+    background: rgba(224, 112, 60, 0.08);
+    border-left: 3px solid var(--op-orange-deep);
+    padding: 10px 14px;
+    margin: 0;
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    color: var(--op-navy);
+  }
+
+  /* Success state */
+  .op-curious-success {
+    padding: 48px 32px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .op-curious-success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .op-curious-success-eyebrow {
+    font-size: 10px;
+    color: var(--op-orange);
+    margin: 0;
+  }
+  .op-curious-success-title {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-curious-success-body {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--op-navy-soft);
+    max-width: 520px;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-curious-success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 16px;
+  }
+  .op-curious-success-cal {
+    font-size: 11px;
+    color: var(--op-paper);
+    background: var(--op-navy-deep);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 10px 16px;
+    text-decoration: none;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-curious-success-cal:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-orange);
+  }
+  .op-curious-success-link {
+    color: var(--op-navy);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-navy);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-curious-success-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+
+  @media (max-width: 700px) {
+    .op-curious-hero,
+    .op-curious-form-section { padding-left: 22px; padding-right: 22px; }
+    .op-curious-form { padding: 26px 22px 22px; }
+    .op-curious-row { grid-template-columns: 1fr; gap: 22px; }
+    .op-curious-success { padding: 40px 22px 32px; }
+  }
+</style>
