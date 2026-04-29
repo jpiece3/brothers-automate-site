@@ -33,20 +33,25 @@ const breadcrumbSchema = {
             bordered
           />
         </div>
-        <EyebrowTag label="DROP US A NOTE · NO PRESSURE" />
-        <h1 class="op-curious-h1" data-animate="fade-up">
-          Curious about AI but<br />
-          <span class="op-curious-h1-orange">not ready to chat?</span>
-        </h1>
-        <p class="op-curious-sub" data-animate="fade-up">
-          Tell us what you're stuck on. We'll write back within 24 hours with a plain-English read on whether AI fits — and what we'd build if it does. No call required, no deck, no pitch.
-        </p>
-      </div>
-    </section>
 
-    <section class="op-curious-form-section">
-      <div class="op-curious-form-frame">
-        <div class="op-curious-panel" data-animate="fade-up">
+        <div class="op-curious-grid">
+          <div class="op-curious-intro">
+            <EyebrowTag label="DROP US A NOTE · NO PRESSURE" />
+            <h1 class="op-curious-h1" data-animate="fade-up">
+              Curious about AI but<br />
+              <span class="op-curious-h1-orange">not ready to chat?</span>
+            </h1>
+            <p class="op-curious-sub" data-animate="fade-up">
+              Tell us what you're stuck on. We'll write back within 24 hours with a plain-English read on whether AI fits — and what we'd build if it does. No call required, no deck, no pitch.
+            </p>
+            <ul class="op-curious-bullets op-mono">
+              <li><span class="op-pulse-dot"></span><span>REPLY WITHIN 24 HOURS</span></li>
+              <li><span class="op-pulse-dot"></span><span>FROM JAMES OR BRENDAN — NOT A SEQUENCE</span></li>
+              <li><span class="op-pulse-dot"></span><span>NO MAILING LIST · NEVER SHARED</span></li>
+            </ul>
+          </div>
+
+          <div class="op-curious-panel" data-animate="fade-up">
           <div class="op-curious-panel-header">
             <span class="op-pulse-dot"></span>
             <span class="op-mono op-curious-panel-id">INTAKE_FORM · ASYNC</span>
@@ -118,6 +123,7 @@ const breadcrumbSchema = {
               <a href="/projects" class="op-curious-success-link op-mono">SEE THE BUILDS →</a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -217,40 +223,65 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
-  .op-curious-hero { padding: 120px var(--op-section-px) 64px; color: var(--op-ink); }
+  .op-curious-hero { padding: 120px var(--op-section-px) 96px; color: var(--op-ink); }
   .op-curious-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
-  .op-curious-util { margin-bottom: 32px; }
-  .op-curious-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+  .op-curious-util { margin-bottom: 36px; }
+  .op-curious-hero :global(.op-eyebrow) { margin-bottom: 22px; }
+
+  /* Two-column grid: hero copy on the left, form panel on the right */
+  .op-curious-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .op-curious-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 64px;
+    }
+  }
+
+  .op-curious-intro { display: flex; flex-direction: column; }
 
   .op-curious-h1 {
     font-family: var(--op-font-display);
     font-weight: 800;
-    font-size: clamp(44px, 6vw, 80px);
+    font-size: clamp(38px, 4.6vw, 64px);
     line-height: 0.98;
     letter-spacing: var(--op-tracking-display);
     color: var(--op-ink);
     margin: 0 0 22px;
-    max-width: 800px;
+    max-width: 640px;
     text-wrap: balance;
   }
   .op-curious-h1-orange { color: var(--op-orange); }
   .op-curious-sub {
     font-family: var(--op-font-body);
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.55;
     font-weight: 500;
     color: var(--op-navy-soft);
-    margin: 0;
-    max-width: 660px;
+    margin: 0 0 26px;
+    max-width: 540px;
     text-wrap: pretty;
   }
 
-  .op-curious-form-section {
-    padding: 56px var(--op-section-px) 120px;
-    background: var(--op-paper);
-    border-top: var(--op-border);
+  .op-curious-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 10px;
+    color: var(--op-navy);
   }
-  .op-curious-form-frame { max-width: 760px; margin: 0 auto; }
+  .op-curious-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
   .op-curious-panel {
     background: var(--op-cream);
@@ -501,8 +532,7 @@ const breadcrumbSchema = {
   }
 
   @media (max-width: 700px) {
-    .op-curious-hero,
-    .op-curious-form-section { padding-left: 22px; padding-right: 22px; }
+    .op-curious-hero { padding: 96px 22px 64px; }
     .op-curious-form { padding: 26px 22px 22px; }
     .op-curious-row { grid-template-columns: 1fr; gap: 22px; }
     .op-curious-success { padding: 40px 22px 32px; }
