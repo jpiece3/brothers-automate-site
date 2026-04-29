@@ -453,7 +453,9 @@ const breadcrumbSchema = {
     color: var(--op-navy);
   }
 
-  /* Success state */
+  /* Success state — display: flex would override the [hidden] attribute,
+     so explicitly hide it here too. */
+  .op-curious-success[hidden] { display: none; }
   .op-curious-success {
     padding: 48px 32px 40px;
     text-align: center;
