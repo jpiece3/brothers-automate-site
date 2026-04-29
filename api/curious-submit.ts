@@ -59,16 +59,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  // Gumloop pipeline uses a Webhook Input node, which captures the entire
+  // request body as one blob exposed as "Webhook Body". So we send the
+  // fields as a flat JSON object — NOT wrapped in pipeline_inputs (that
+  // wrapper is for pipelines with named Input nodes, not webhook inputs).
   const payload = {
-    pipeline_inputs: [
-      { input_name: 'first_name', value: firstName },
-      { input_name: 'last_name', value: lastName },
-      { input_name: 'email', value: email },
-      { input_name: 'business', value: business },
-      { input_name: 'notes', value: notes },
-      { input_name: 'source', value: source },
-      { input_name: 'submitted_at', value: new Date().toISOString() },
-    ],
+    first_name: firstName,
+    last_name: lastName,
+    email,
+    business,
+    notes,
+    source,
+    submitted_at: new Date().toISOString(),
   };
 
   try {
