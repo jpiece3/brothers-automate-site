@@ -1,0 +1,186 @@
+---
+// FloatingQuiz — bottom-right CTA on every page.
+// Replaces the old FloatingGuide ("Free AI Guide" download).
+// Punchy: "Find your bottleneck." → /meta-quiz.
+---
+
+<aside class="op-fq" id="op-fq" aria-label="60-second quiz">
+  <a class="op-fq-card" href="/meta-quiz" data-track="cta_click" data-track-location="floating-quiz" data-track-label="Take the quiz">
+    <div class="op-fq-header">
+      <span class="op-pulse-dot"></span>
+      <span class="op-mono op-fq-code">60_SEC_DIAGNOSTIC</span>
+    </div>
+    <div class="op-fq-body">
+      <p class="op-fq-line">Find your bottleneck.</p>
+      <p class="op-mono op-fq-cta">TAKE THE QUIZ <span aria-hidden="true">→</span></p>
+    </div>
+  </a>
+  <button type="button" class="op-fq-close" id="op-fq-close" aria-label="Dismiss quiz prompt">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Mobile: collapsed icon-only fallback. Toggles on small screens via CSS. -->
+  <a class="op-fq-mini" href="/meta-quiz" aria-label="Take the 60-second quiz" data-track="cta_click" data-track-location="floating-quiz-mini" data-track-label="Take the quiz">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M9 11l3 3L22 4"></path>
+      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+    </svg>
+  </a>
+</aside>
+
+<script is:inline>
+  (function () {
+    var DISMISS_KEY = 'ba_quiz_dismissed';
+    var root = document.getElementById('op-fq');
+    var closeBtn = document.getElementById('op-fq-close');
+    if (!root || !closeBtn) return;
+
+    try {
+      if (localStorage.getItem(DISMISS_KEY) === '1') {
+        root.style.display = 'none';
+        return;
+      }
+    } catch (e) { /* localStorage blocked, just show it */ }
+
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      root.style.display = 'none';
+      try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
+    });
+  })();
+</script>
+
+<style>
+  .op-fq {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 90;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Desktop card */
+  .op-fq-card {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    width: 248px;
+    overflow: hidden;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-fq-card:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-cream);
+  }
+  .op-fq-card:hover .op-fq-cta {
+    color: var(--op-orange);
+  }
+
+  .op-fq-header {
+    background: var(--op-navy-deep);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+  }
+  .op-fq-code {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+
+  .op-fq-body {
+    padding: 14px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-fq-line {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--op-paper);
+    margin: 0;
+  }
+  .op-fq-cta {
+    font-size: 10px;
+    color: var(--op-cream);
+    margin: 0;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+
+  /* Close button */
+  .op-fq-close {
+    background: var(--op-paper);
+    color: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    width: 22px;
+    height: 22px;
+    box-shadow: var(--op-shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-fq-close:hover {
+    color: var(--op-orange);
+    transform: translate(-1px, -1px);
+  }
+
+  /* Mobile fallback (icon only) hidden on desktop */
+  .op-fq-mini { display: none; }
+
+  /* Mobile: collapse the card to an icon button */
+  @media (max-width: 700px) {
+    .op-fq {
+      right: 16px;
+      bottom: 16px;
+      gap: 4px;
+    }
+    .op-fq-card { display: none; }
+    .op-fq-mini {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: var(--op-orange);
+      color: var(--op-paper);
+      border: var(--op-border);
+      border-radius: var(--op-radius-md);
+      box-shadow: var(--op-shadow);
+      text-decoration: none;
+      transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+    }
+    .op-fq-mini:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: var(--op-shadow-lg);
+    }
+    .op-fq-close {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* Hide entirely when print */
+  @media print {
+    .op-fq { display: none !important; }
+  }
+</style>

@@ -2,134 +2,232 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
 ---
 
-<Layout title="What Should You Automate First for Your Clients? | Brothers Automate" description="Answer 7 quick questions about your consulting practice and we'll tell you exactly which AI automation to start offering, plus how to position it.">
+<Layout
+  title="Where's AI worth it for your business? | Brothers Automate"
+  description="Six questions, plain English. We'll match the bottleneck eating your team's time to the system we'd build to fix it. Plus a rough read on time saved and cost."
+  canonicalUrl={`${SITE_URL}/meta-quiz/`}
+>
   <Header />
-  <h1 class="sr-only">Find the Right AI Automation for Your Business</h1>
-  <div class="quiz-container" id="app"></div>
+  <main>
+    <section class="op-mq-hero op-grid-bg">
+      <div class="op-mq-hero-frame">
+        <div class="op-mq-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / DIAGNOSTIC · 60_SEC"
+            right="● 6 QUESTIONS · NO PITCH"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="60-SECOND DIAGNOSTIC" />
+        <h1 class="op-mq-h1" data-animate="fade-up">
+          Where's AI<br />
+          <span class="op-mq-h1-orange">worth it</span> for your business?
+        </h1>
+        <p class="op-mq-sub" data-animate="fade-up">
+          Six questions, plain English. We'll match the bottleneck eating your team's time to the system we'd build to fix it, plus a rough read on time saved and what it'd cost.
+        </p>
+      </div>
+    </section>
+
+    <section class="op-mq-body">
+      <div class="op-mq-body-frame">
+        <div class="op-mq-panel" data-animate="fade-up">
+          <header class="op-mq-panel-head">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-mq-panel-id" id="mq-step-id">DIAGNOSTIC · IDLE</span>
+            <span class="op-mono op-mq-panel-status" id="mq-step-status">● READY</span>
+          </header>
+          <div class="op-mq-progress" id="mq-progress" hidden>
+            <div class="op-mq-progress-fill" id="mq-progress-fill"></div>
+          </div>
+          <div class="op-mq-app" id="app"></div>
+        </div>
+      </div>
+    </section>
+  </main>
   <Footer />
 
   <script is:inline>
+    // ---------------------------------------------------------------------
+    // QUESTIONS — 6 items, all 3 pts max so max score = 18.
+    // Q2 drives the primary recommendation (pain-driven).
+    // The score is preserved for Gumloop compatibility (readiness tier).
+    // ---------------------------------------------------------------------
     const QUESTIONS = [
       {
-        q: "What type of clients do you primarily serve?",
-        sub: "This helps us match the right automation to your practice.",
+        q: "What kind of business do you run?",
+        sub: "Helps us tailor the recommendation to how your operation actually works.",
         opts: [
-          { text: "B2B companies (SaaS, professional services, manufacturing)", val: "b2b", pts: 3 },
-          { text: "Local businesses (contractors, clinics, real estate)", val: "local", pts: 2 },
-          { text: "E-commerce or DTC brands", val: "ecom", pts: 2 },
-          { text: "A mix of everything", val: "mix", pts: 1 }
+          { text: "Field service (HVAC, plumbing, electrical, restoration)", val: "field_service", pts: 3 },
+          { text: "Trades or construction (contractor, roofing, landscaping)", val: "trades", pts: 3 },
+          { text: "Real estate / brokerage / property management", val: "real_estate", pts: 3 },
+          { text: "Professional services (legal, accounting, agency, consulting)", val: "pro_service", pts: 3 },
+          { text: "Healthcare, dental, or clinic", val: "healthcare", pts: 3 },
+          { text: "Other service business", val: "other", pts: 2 }
         ]
       },
       {
-        q: "What\u2019s the biggest pain point your clients mention?",
-        sub: "What keeps coming up in client conversations?",
+        q: "What's eating your team's time right now?",
+        sub: "Pick the one that hurts most. This drives our recommendation.",
         opts: [
-          { text: "They're drowning in manual follow-up and lead management", val: "follow_up", pts: 3 },
-          { text: "Quoting and proposals take too long to get out the door", val: "quoting", pts: 3 },
-          { text: "Data entry across CRM, ERP, and spreadsheets is eating time", val: "data_entry", pts: 2 },
-          { text: "They don't really know \u2014 they just want to \"do AI\"", val: "vague", pts: 1 }
+          { text: "Following up with leads", val: "leads", pts: 3 },
+          { text: "Quoting, proposals, or estimates", val: "quoting", pts: 3 },
+          { text: "Scheduling, dispatching, or routing", val: "scheduling", pts: 3 },
+          { text: "Admin (invoicing, paperwork, data entry, onboarding)", val: "admin", pts: 3 },
+          { text: "Hiring and screening resumes", val: "hiring", pts: 3 },
+          { text: "Customer support, after-hours calls, or reviews", val: "support", pts: 3 }
         ]
       },
       {
-        q: "How technical are you or your team?",
-        sub: "Be honest \u2014 there's no wrong answer here.",
+        q: "How many new lead inquiries hit you in a typical week?",
+        sub: "Volume tells us how much an AI agent could move the needle.",
         opts: [
-          { text: "Very \u2014 we build integrations and workflows already", val: "very_tech", pts: 3 },
-          { text: "Moderate \u2014 comfortable with Zapier, HubSpot, Airtable", val: "mod_tech", pts: 3 },
-          { text: "Not very \u2014 we're strategy and advisory, not technical", val: "low_tech", pts: 2 },
-          { text: "Zero \u2014 that's exactly why I need a partner", val: "no_tech", pts: 2 }
+          { text: "50+ a week", val: "high_volume", pts: 3 },
+          { text: "20 to 50", val: "mid_volume", pts: 3 },
+          { text: "5 to 20", val: "low_volume", pts: 2 },
+          { text: "Under 5", val: "tiny_volume", pts: 1 }
         ]
       },
       {
-        q: "How are you currently delivering results for clients?",
-        sub: "What does your typical engagement look like?",
+        q: "How big is your team?",
+        sub: "Bigger teams usually mean more places automation pays off.",
         opts: [
-          { text: "Monthly retainers with ongoing deliverables", val: "retainer", pts: 3 },
-          { text: "Project-based engagements (start and end date)", val: "project", pts: 2 },
-          { text: "Hourly consulting or coaching calls", val: "hourly", pts: 1 },
-          { text: "I'm building my practice and still figuring it out", val: "early", pts: 1 }
+          { text: "1 to 5 people", val: "solo_team", pts: 1 },
+          { text: "6 to 15", val: "small_team", pts: 2 },
+          { text: "16 to 50", val: "mid_team", pts: 3 },
+          { text: "50+", val: "big_team", pts: 3 }
         ]
       },
       {
-        q: "Have any of your clients specifically asked about AI automation?",
-        sub: "This tells us how warm your market already is.",
+        q: "What tools are you running today?",
+        sub: "Tells us how clean the integration is going to be.",
         opts: [
-          { text: "Yes \u2014 multiple clients have asked and I had to say no", val: "asked_many", pts: 3 },
-          { text: "One or two have mentioned it", val: "asked_some", pts: 2 },
-          { text: "Not directly, but I know they need it", val: "not_asked", pts: 2 },
-          { text: "No \u2014 I'd be introducing the concept", val: "introducing", pts: 1 }
+          { text: "HubSpot, Salesforce, or another major CRM", val: "crm", pts: 3 },
+          { text: "GoHighLevel, Pipedrive, or similar", val: "mid_crm", pts: 3 },
+          { text: "QuickBooks, ServiceTitan, or industry ERP", val: "erp", pts: 3 },
+          { text: "Google Sheets and email, mostly", val: "basic", pts: 2 },
+          { text: "Honestly, nothing organized yet", val: "none", pts: 1 }
         ]
       },
       {
-        q: "What tools do your clients typically use?",
-        sub: "Select the most common stack you see across clients.",
+        q: "If we automated this perfectly, how much would it move the business?",
+        sub: "Helps us right-size the build and the timeline.",
         opts: [
-          { text: "HubSpot, Salesforce, or a major CRM", val: "crm", pts: 3 },
-          { text: "QuickBooks, ERP systems, or industry-specific software", val: "erp", pts: 3 },
-          { text: "Google Workspace, spreadsheets, and email", val: "basic", pts: 2 },
-          { text: "I honestly don't know their tech stack well", val: "unknown", pts: 1 }
-        ]
-      },
-      {
-        q: "How many clients could you offer AI automation to in the next 90 days?",
-        sub: "Think about your current active relationships.",
-        opts: [
-          { text: "5+ clients \u2014 I have a solid book of business", val: "five_plus", pts: 3 },
-          { text: "3-4 clients who'd be a great fit", val: "three_four", pts: 3 },
-          { text: "1-2 that I'd want to start with", val: "one_two", pts: 2 },
-          { text: "None yet \u2014 I need to build the pipeline first", val: "none", pts: 1 }
+          { text: "10+ hours a week back to my team", val: "big_impact", pts: 3 },
+          { text: "More leads converting (we're losing some in the cracks)", val: "more_revenue", pts: 3 },
+          { text: "Both, honestly", val: "both", pts: 3 },
+          { text: "Hard to quantify, but I know it's a problem", val: "unsure", pts: 2 }
         ]
       }
     ];
 
-    const RESULTS = {
-      high: {
-        title: "Lead Qualification & Follow-Up Automation",
-        badge: "HIGH READINESS",
-        badgeClass: "high",
-        barClass: "high",
-        sub: "Your clients need AI agents that capture, qualify, and follow up with leads 24/7 \u2014 and your practice is perfectly positioned to deliver it.",
-        cards: [
-          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "An AI agent that qualifies inbound leads, sends personalized follow-up sequences, and pushes qualified deals into your client\u2019s CRM automatically. This runs around the clock and eliminates the gap between lead capture and first response.", tag: "Avg. client savings: $3,000-5,000/month" },
-          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "You have retainer clients with real pain around lead management. This automation delivers measurable ROI in the first month \u2014 which means easy renewals and stickier retainers.", tag: "Partner-ready" },
-          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Book a free 30-minute partner diagnostic with Brothers Automate. We\u2019ll map out exactly how this works for your top 2-3 clients, show you the ROI numbers, and build a co-branded pitch you can use this week.", tag: null }
-        ],
-        cta: "book",
-        ctaText: "Book Your Free Partner Diagnostic"
+    // ---------------------------------------------------------------------
+    // SERVICE_MAP — Q2 answer → primary recommendation.
+    // ---------------------------------------------------------------------
+    const SERVICE_MAP = {
+      leads: {
+        title: "Lead Follow-Up Automation",
+        oneLiner: "An AI agent that responds to every inbound lead in under 60 seconds, qualifies them, and books or routes the hot ones to your calendar.",
+        timeBack: "8 to 12 hrs / week",
+        outcome: "30 to 50% more booked calls",
+        timeline: "1 to 3 weeks",
+        serviceLink: "/services/lead-follow-up",
+        caseLink: "/projects/inbound-ai-sdr",
+        caseLabel: "INBOUND AI SDR · LIVE BUILD"
       },
-      mid: {
-        title: "Quoting & Proposal Automation",
-        badge: "STRONG POTENTIAL",
-        badgeClass: "mid",
-        barClass: "mid",
-        sub: "Your clients are spending hours on manual quoting and proposals. AI can cut that to minutes \u2014 and you\u2019re in a great position to offer it.",
-        cards: [
-          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "An AI agent that generates quotes and proposals from intake forms, emails, or CRM data \u2014 automatically formatted, sent for approval, and tracked. No more manual data entry or copy-paste between systems.", tag: "Avg. time saved: 10-15 hours/month per client" },
-          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "Quoting automation has the clearest ROI story \u2014 you can show clients exactly how many hours they\u2019re spending and what it costs. That makes the sell easy, especially when Brothers Automate handles the free audit upfront.", tag: "Easy first conversation" },
-          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Get the free Partner Playbook \u2014 a step-by-step guide to positioning AI automation in your next client conversation. Includes scripts, objection handling, and a co-branded audit framework.", tag: null }
-        ],
-        cta: "email",
-        ctaText: "Get the Free Partner Playbook"
+      quoting: {
+        title: "AI Quote Generator",
+        oneLiner: "Auto-generated quotes from intake forms or emails. Inquiry to professional quote in under 10 minutes, no copy-paste, no missed line items.",
+        timeBack: "10 to 15 hrs / week",
+        outcome: "40% faster close cycle",
+        timeline: "2 to 3 weeks",
+        serviceLink: "/projects/cpq-agent",
+        caseLink: "/projects/cpq-agent",
+        caseLabel: "AI QUOTE GENERATOR · LIVE BUILD"
       },
-      low: {
-        title: "CRM & Data Integration Automation",
-        badge: "BUILDING MOMENTUM",
-        badgeClass: "low",
-        barClass: "low",
-        sub: "Before diving into complex automations, your clients need their data flowing properly between systems. That\u2019s the foundation \u2014 and it\u2019s where you start.",
-        cards: [
-          { icon: "\u26A1", title: "Your #1 Automation to Offer", body: "Start with AI-powered data sync between your clients\u2019 tools \u2014 CRM updates, spreadsheet imports, email parsing, and contact enrichment running automatically. It\u2019s the least risky, highest-impact starting point.", tag: "Lowest barrier to entry" },
-          { icon: "\uD83C\uDFAF", title: "Why This Fits Your Practice", body: "You\u2019re still building your automation muscle, and that\u2019s fine. Data integration is the simplest automation to explain, deliver, and show ROI on. It builds your credibility and opens the door to bigger projects.", tag: "Great starting point" },
-          { icon: "\uD83D\uDCCB", title: "Your Next Step", body: "Download the AI Automation Starter Kit \u2014 covers the 5 highest-impact automations for consultants, how to spot them in client conversations, and how to price them.", tag: null }
-        ],
-        cta: "email",
-        ctaText: "Get the Free Starter Kit"
+      scheduling: {
+        title: "Route + Dispatch Optimization",
+        oneLiner: "AI plans your day's routes and assigns jobs to the right tech automatically. Cuts windshield time and double-bookings.",
+        timeBack: "20 to 30% more jobs / day",
+        outcome: "Less drive time, fewer reschedules",
+        timeline: "2 to 3 weeks",
+        serviceLink: "/services/route-optimization",
+        caseLink: "/projects/route-simply",
+        caseLabel: "ROUTE SIMPLY · LIVE BUILD"
+      },
+      admin: {
+        title: "Client Onboarding + Admin Automation",
+        oneLiner: "Pulls customer data into your systems automatically, fires welcome sequences, and handles invoice + paperwork generation end to end.",
+        timeBack: "15 to 20 hrs / week",
+        outcome: "Onboarding time cut by 70%",
+        timeline: "2 to 3 weeks",
+        serviceLink: "/services/client-onboarding",
+        caseLink: "/projects/onboarding-workflow",
+        caseLabel: "ONBOARDING WORKFLOW · LIVE BUILD"
+      },
+      hiring: {
+        title: "AI Resume Screener",
+        oneLiner: "Scores incoming resumes 1 to 10 against your fit criteria so your team only spends time on the top tier.",
+        timeBack: "8 to 10 hrs / week",
+        outcome: "Top-3 candidates surfaced same day",
+        timeline: "1 to 2 weeks",
+        serviceLink: "/services/resume-screening",
+        caseLink: "/projects/screenfast",
+        caseLabel: "SCREENFAST · BUILT FOR YMCA"
+      },
+      support: {
+        title: "AI Receptionist + Review Management",
+        oneLiner: "Picks up after-hours calls, answers FAQs, books appointments, and responds to reviews automatically.",
+        timeBack: "5 to 7 hrs / week",
+        outcome: "Never miss a call again",
+        timeline: "1 to 2 weeks",
+        serviceLink: "/services/review-management",
+        caseLink: "/projects/after-hours-agent",
+        caseLabel: "AFTER-HOURS AGENT · LIVE BUILD"
       }
     };
 
-    var quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null };
+    // ---------------------------------------------------------------------
+    // READINESS — score → tier copy + CTA shape.
+    // ---------------------------------------------------------------------
+    const READINESS = {
+      high: {
+        badge: "READY TO SHIP",
+        line: "You're set up well. We can have this live in 1 to 3 weeks.",
+        primary: { kind: "cal", label: "Talk to the Brothers" },
+        secondary: { href: "/curious", label: "OR SEND A NOTE FIRST →" }
+      },
+      mid: {
+        badge: "STRONG FIT",
+        line: "Strong fit. Let's talk through scope. No deck, no pitch, just a 30-min call to map it out.",
+        primary: { kind: "cal", label: "Book a discovery call" },
+        secondary: { href: "/curious", label: "OR SEND A NOTE FIRST →" }
+      },
+      low: {
+        badge: "EARLIER STAGE",
+        line: "Earlier stage, but workable. Start with the Process Intake Framework or send us a note and we'll point you at where to begin.",
+        primary: { kind: "note", href: "/curious", label: "Send us a note" },
+        secondary: { href: "/resources/process-intake-framework", label: "OR READ THE FRAMEWORK →" }
+      }
+    };
+
+    var quizState = {
+      screen: 'landing',
+      currentQ: 0,
+      answers: [],
+      score: 0,
+      name: '',
+      email: '',
+      result: null,
+      submitting: false,
+      submitError: ''
+    };
 
     function getResult(score) {
       var max = QUESTIONS.length * 3;
@@ -139,707 +237,854 @@ import Footer from '../components/Footer.astro';
       return 'low';
     }
 
+    function getRecommendation(answers) {
+      // Q2 (index 1) is the pain question and drives the primary rec.
+      var q2idx = answers[1];
+      if (q2idx === undefined) return SERVICE_MAP.leads;
+      var val = QUESTIONS[1].opts[q2idx].val;
+      return SERVICE_MAP[val] || SERVICE_MAP.leads;
+    }
+
+    function escHtml(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+      });
+    }
+
+    function setStep(idLabel, statusLabel, progressPct) {
+      var idEl = document.getElementById('mq-step-id');
+      var statusEl = document.getElementById('mq-step-status');
+      var progress = document.getElementById('mq-progress');
+      var fill = document.getElementById('mq-progress-fill');
+      if (idEl) idEl.textContent = idLabel;
+      if (statusEl) statusEl.textContent = statusLabel;
+      if (progress) {
+        if (progressPct == null) {
+          progress.hidden = true;
+        } else {
+          progress.hidden = false;
+          if (fill) fill.style.width = progressPct + '%';
+        }
+      }
+    }
+
     function renderQuiz() {
       var app = document.getElementById('app');
       if (!app) return;
 
       if (quizState.screen === 'landing') {
+        setStep('DIAGNOSTIC · IDLE', '● READY', null);
         app.innerHTML =
-          '<div class="quiz-landing fade-in">' +
-            '<div class="landing-badge">Free Assessment \u00b7 2 Minutes</div>' +
-            '<h2>What Should You <span class="gradient-text">Automate First</span> for Your Clients?</h2>' +
-            '<p>Answer 7 quick questions about your consulting practice and we\'ll tell you exactly which AI automation to start offering, plus how to position it.</p>' +
-            '<div class="landing-features">' +
-              '<div class="landing-feature"><div class="icon">\u2713</div> Personalized recommendation</div>' +
-              '<div class="landing-feature"><div class="icon">\u2713</div> Based on your practice type</div>' +
-              '<div class="landing-feature"><div class="icon">\u2713</div> Includes next steps</div>' +
+          '<div class="op-mq-screen op-mq-landing">' +
+            '<div class="op-mq-landing-grid">' +
+              '<div class="op-mq-landing-cell"><span class="op-mono op-mq-cell-label">QUESTIONS</span><span class="op-mq-cell-value">6</span></div>' +
+              '<div class="op-mq-landing-cell"><span class="op-mono op-mq-cell-label">TIME</span><span class="op-mq-cell-value">~60s</span></div>' +
+              '<div class="op-mq-landing-cell"><span class="op-mono op-mq-cell-label">RESULT</span><span class="op-mq-cell-value">Real rec</span></div>' +
             '</div>' +
-            '<button class="quiz-btn-primary" onclick="startQuiz()">Find Your #1 Automation \u2192</button>' +
+            '<button class="op-mq-btn op-mq-btn--primary" type="button" id="mq-start">' +
+              '<span class="op-mq-btn-label">START THE DIAGNOSTIC</span>' +
+              '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
+            '</button>' +
+            '<p class="op-mq-fineprint op-mono">' +
+              '<span>NO EMAIL TO START</span>' +
+              '<span class="op-mq-dot">·</span>' +
+              '<span>NO PITCH</span>' +
+              '<span class="op-mq-dot">·</span>' +
+              '<span>RESULT IS A REAL RECOMMENDATION</span>' +
+            '</p>' +
           '</div>';
+        var startBtn = document.getElementById('mq-start');
+        if (startBtn) startBtn.addEventListener('click', startQuiz);
       }
 
       else if (quizState.screen === 'question') {
         var q = QUESTIONS[quizState.currentQ];
         var pct = ((quizState.currentQ) / QUESTIONS.length) * 100;
+        var stepNum = String(quizState.currentQ + 1).padStart(2, '0');
+        var totalNum = String(QUESTIONS.length).padStart(2, '0');
+        setStep('STEP_' + stepNum + ' / ' + totalNum, '● ' + (quizState.currentQ + 1) + ' of ' + QUESTIONS.length, pct);
+
         var selected = quizState.answers[quizState.currentQ];
         var optsHtml = '';
         for (var i = 0; i < q.opts.length; i++) {
-          optsHtml += '<div class="option ' + (selected === i ? 'selected' : '') + '" onclick="selectOption(' + i + ')">' +
-            '<div class="option-radio"></div>' +
-            '<div class="option-content"><h4>' + q.opts[i].text + '</h4></div>' +
-          '</div>';
+          var isSel = selected === i;
+          optsHtml += '<button type="button" class="op-mq-opt' + (isSel ? ' is-selected' : '') + '" data-opt="' + i + '">' +
+            '<span class="op-mq-opt-radio" aria-hidden="true"></span>' +
+            '<span class="op-mq-opt-text">' + escHtml(q.opts[i].text) + '</span>' +
+          '</button>';
         }
+        var isLast = quizState.currentQ === QUESTIONS.length - 1;
         app.innerHTML =
-          '<div class="progress-wrap">' +
-            '<div class="progress-top">' +
-              '<span class="progress-label">Your Automation Match</span>' +
-              '<span class="progress-count">' + (quizState.currentQ + 1) + ' of ' + QUESTIONS.length + '</span>' +
-            '</div>' +
-            '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
-          '</div>' +
-          '<div class="question-screen fade-in">' +
-            '<div class="question-text">' + q.q + '</div>' +
-            '<div class="question-sub">' + q.sub + '</div>' +
-            '<div class="options">' + optsHtml + '</div>' +
-            '<div class="nav-row">' +
-              (quizState.currentQ > 0 ? '<button class="quiz-btn-secondary" onclick="prevQ()">\u2190 Back</button>' : '<div></div>') +
-              '<button class="quiz-btn-primary" ' + (selected === undefined ? 'disabled' : '') + ' onclick="nextQ()">' +
-                (quizState.currentQ === QUESTIONS.length - 1 ? 'See My Results' : 'Next \u2192') +
+          '<div class="op-mq-screen op-mq-question">' +
+            '<p class="op-mono op-mq-q-label">QUESTION ' + stepNum + ' / ' + totalNum + '</p>' +
+            '<h2 class="op-mq-q-text">' + escHtml(q.q) + '</h2>' +
+            '<p class="op-mq-q-sub">' + escHtml(q.sub) + '</p>' +
+            '<div class="op-mq-opts">' + optsHtml + '</div>' +
+            '<div class="op-mq-nav">' +
+              (quizState.currentQ > 0
+                ? '<button type="button" class="op-mq-btn op-mq-btn--ghost" id="mq-prev"><span aria-hidden="true">←</span> BACK</button>'
+                : '<span></span>') +
+              '<button type="button" class="op-mq-btn op-mq-btn--primary" id="mq-next" ' + (selected === undefined ? 'disabled' : '') + '>' +
+                '<span class="op-mq-btn-label">' + (isLast ? 'SEE MY RESULTS' : 'NEXT') + '</span>' +
+                '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
               '</button>' +
             '</div>' +
           '</div>';
+
+        // Wire up option buttons
+        var optBtns = app.querySelectorAll('.op-mq-opt');
+        optBtns.forEach(function(b) {
+          b.addEventListener('click', function() {
+            selectOption(parseInt(b.getAttribute('data-opt'), 10));
+          });
+        });
+        var prevBtn = document.getElementById('mq-prev');
+        var nextBtn = document.getElementById('mq-next');
+        if (prevBtn) prevBtn.addEventListener('click', prevQ);
+        if (nextBtn) nextBtn.addEventListener('click', nextQ);
       }
 
       else if (quizState.screen === 'email') {
+        setStep('STEP_07 / 07 · GATE', '● ALMOST THERE', 100);
         app.innerHTML =
-          '<div class="email-screen fade-in">' +
-            '<h2>Your results are ready.</h2>' +
-            '<p>Enter your name and email to see your personalized automation recommendation and next steps.</p>' +
-            '<div class="email-form">' +
-              '<input type="text" placeholder="Your name" id="nameInput" value="' + quizState.name + '" />' +
-              '<input type="email" placeholder="Your best email" id="emailInput" value="' + quizState.email + '" />' +
-              '<button class="quiz-btn-primary" style="width:100%" onclick="submitQuizEmail()">Show My Results \u2192</button>' +
-            '</div>' +
-            '<div class="email-trust">\uD83D\uDD12 No spam. Unsubscribe anytime. We respect your inbox.</div>' +
+          '<div class="op-mq-screen op-mq-email">' +
+            '<p class="op-mono op-mq-q-label">RESULTS · READY</p>' +
+            '<h2 class="op-mq-q-text">Your match is locked in.</h2>' +
+            '<p class="op-mq-q-sub">Drop your name + email and we\'ll show you the system we\'d build, the time it gives back, and what it\'d cost. We\'ll also send a copy.</p>' +
+            '<form class="op-mq-form" id="mq-form" novalidate>' +
+              '<div class="op-mq-row">' +
+                '<label class="op-mq-field">' +
+                  '<span class="op-mono op-mq-label">NAME <span class="op-mq-req">*</span></span>' +
+                  '<input type="text" name="name" id="mq-name" autocomplete="name" required maxlength="120" value="' + escHtml(quizState.name) + '" />' +
+                '</label>' +
+                '<label class="op-mq-field">' +
+                  '<span class="op-mono op-mq-label">EMAIL <span class="op-mq-req">*</span></span>' +
+                  '<input type="email" name="email" id="mq-email" autocomplete="email" required maxlength="160" inputmode="email" value="' + escHtml(quizState.email) + '" />' +
+                '</label>' +
+              '</div>' +
+              '<div class="op-mq-honeypot" aria-hidden="true">' +
+                '<label>Website</label>' +
+                '<input type="text" name="website_hp" id="mq-hp" tabindex="-1" autocomplete="off" />' +
+              '</div>' +
+              '<div class="op-mq-nav op-mq-nav--end">' +
+                '<button type="button" class="op-mq-btn op-mq-btn--ghost" id="mq-back-to-q"><span aria-hidden="true">←</span> BACK</button>' +
+                '<button type="submit" class="op-mq-btn op-mq-btn--primary" id="mq-submit">' +
+                  '<span class="op-mq-btn-label">SHOW MY RESULTS</span>' +
+                  '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
+                '</button>' +
+              '</div>' +
+              '<p class="op-mq-error" id="mq-error" role="alert" aria-live="polite">' + escHtml(quizState.submitError) + '</p>' +
+              '<p class="op-mq-fineprint op-mono">' +
+                '<span>NEVER SHARED</span>' +
+                '<span class="op-mq-dot">·</span>' +
+                '<span>NO MAILING LIST</span>' +
+                '<span class="op-mq-dot">·</span>' +
+                '<span>UNSUBSCRIBE ANY TIME</span>' +
+              '</p>' +
+            '</form>' +
           '</div>';
-        var ni = document.getElementById('nameInput');
-        var ei = document.getElementById('emailInput');
-        if (ni) ni.addEventListener('input', function() { quizState.name = this.value; });
-        if (ei) ei.addEventListener('input', function() { quizState.email = this.value; });
+        var nameI = document.getElementById('mq-name');
+        var emailI = document.getElementById('mq-email');
+        var form = document.getElementById('mq-form');
+        var backBtn = document.getElementById('mq-back-to-q');
+        if (nameI) nameI.addEventListener('input', function() { quizState.name = this.value; });
+        if (emailI) emailI.addEventListener('input', function() { quizState.email = this.value; });
+        if (form) form.addEventListener('submit', function(e) { e.preventDefault(); submitQuiz(); });
+        if (backBtn) backBtn.addEventListener('click', function() {
+          quizState.screen = 'question';
+          quizState.currentQ = QUESTIONS.length - 1;
+          renderQuiz();
+        });
       }
 
       else if (quizState.screen === 'results') {
-        var r = RESULTS[quizState.result];
+        setStep('RESULT · LOCKED', '● MATCH FOUND', 100);
+        var rec = getRecommendation(quizState.answers);
         var max = QUESTIONS.length * 3;
         var scorePct = Math.round((quizState.score / max) * 100);
-        var firstName = quizState.name ? quizState.name.split(' ')[0] + ', your' : 'Your';
-        var cardsHtml = '';
-        for (var j = 0; j < r.cards.length; j++) {
-          var c = r.cards[j];
-          cardsHtml += '<div class="result-card">' +
-            '<h3>' + c.icon + ' ' + c.title + '</h3>' +
-            '<p>' + c.body + '</p>' +
-            (c.tag ? '<div class="tag">' + c.tag + '</div>' : '') +
-          '</div>';
-        }
-        var ctaHtml = '';
-        if (r.cta === 'book') {
-          ctaHtml = '<p>You\'re ready to start offering AI automation to your clients.</p>' +
-            '<a href="/book" class="quiz-btn-primary">' + r.ctaText + ' \u2192</a>';
-        } else {
-          ctaHtml = '<p>We\'ll send your personalized playbook and automation recommendations.</p>' +
-            '<button class="quiz-btn-primary" onclick="alert(\'Sent to ' + quizState.email + '! Check your inbox.\')">' + r.ctaText + ' \u2192</button>';
-        }
-        app.innerHTML =
-          '<div class="results-screen fade-in">' +
-            '<div class="result-type-badge ' + r.badgeClass + '">' + r.badge + '</div>' +
-            '<h2>' + firstName + ' #1 automation to offer:<br/>' + r.title + '</h2>' +
-            '<p class="result-sub">' + r.sub + '</p>' +
-            '<div class="score-bar-wrap">' +
-              '<div class="score-bar-label"><span>Partner Readiness Score</span><span class="score-val">' + scorePct + '%</span></div>' +
-              '<div class="score-bar"><div class="score-bar-fill ' + r.barClass + '" style="width:0%" id="scoreBar"></div></div>' +
-            '</div>' +
-            cardsHtml +
-            '<div class="results-cta">' + ctaHtml +
-              '<div style="margin-top:16px"><button class="quiz-btn-secondary" onclick="resetQuiz()">Retake Quiz</button></div>' +
-            '</div>' +
-          '</div>';
-        setTimeout(function() { var bar = document.getElementById('scoreBar'); if (bar) bar.style.width = scorePct + '%'; }, 300);
+        var tier = READINESS[quizState.result] || READINESS.low;
+        var firstName = quizState.name ? quizState.name.split(' ')[0] : '';
 
-        // Fire Meta Pixel Lead event
+        var primaryBtnHtml;
+        if (tier.primary.kind === 'cal') {
+          primaryBtnHtml = '<button type="button" class="op-mq-btn op-mq-btn--primary" data-cal-link="james-pinder/simple-automation-discovery" data-cal-namespace="simple-automation-discovery" data-cal-config=\'{"layout":"month_view"}\' data-track="cta_click" data-track-location="quiz-results" data-track-label="' + escHtml(tier.primary.label) + '">' +
+            '<span class="op-mq-btn-label">' + escHtml(tier.primary.label).toUpperCase() + '</span>' +
+            '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
+          '</button>';
+        } else {
+          primaryBtnHtml = '<a class="op-mq-btn op-mq-btn--primary" href="' + escHtml(tier.primary.href) + '" data-track="cta_click" data-track-location="quiz-results" data-track-label="' + escHtml(tier.primary.label) + '">' +
+            '<span class="op-mq-btn-label">' + escHtml(tier.primary.label).toUpperCase() + '</span>' +
+            '<span class="op-mq-btn-arrow" aria-hidden="true">→</span>' +
+          '</a>';
+        }
+
+        app.innerHTML =
+          '<div class="op-mq-screen op-mq-results">' +
+            '<div class="op-mq-result-head">' +
+              '<span class="op-mono op-mq-result-tier">' + escHtml(tier.badge) + '</span>' +
+              '<span class="op-mono op-mq-result-score">READINESS · ' + scorePct + '%</span>' +
+            '</div>' +
+            '<h2 class="op-mq-result-h">' +
+              (firstName ? escHtml(firstName) + ', the system we\'d build:' : 'The system we\'d build:') + '<br />' +
+              '<span class="op-mq-result-h-orange">' + escHtml(rec.title) + '.</span>' +
+            '</h2>' +
+            '<p class="op-mq-result-blurb">' + escHtml(rec.oneLiner) + '</p>' +
+            '<div class="op-mq-result-strip">' +
+              '<div class="op-mq-result-cell"><span class="op-mono op-mq-cell-label">TIME BACK</span><span class="op-mq-cell-value">' + escHtml(rec.timeBack) + '</span></div>' +
+              '<div class="op-mq-result-cell"><span class="op-mono op-mq-cell-label">OUTCOME</span><span class="op-mq-cell-value">' + escHtml(rec.outcome) + '</span></div>' +
+              '<div class="op-mq-result-cell"><span class="op-mono op-mq-cell-label">TIMELINE</span><span class="op-mq-cell-value">' + escHtml(rec.timeline) + '</span></div>' +
+            '</div>' +
+            '<p class="op-mq-result-readiness">' + escHtml(tier.line) + '</p>' +
+            '<div class="op-mq-result-actions">' +
+              primaryBtnHtml +
+              '<a class="op-mq-result-link op-mono" href="' + escHtml(tier.secondary.href) + '">' + escHtml(tier.secondary.label) + '</a>' +
+            '</div>' +
+            '<div class="op-mq-result-aside">' +
+              '<a class="op-mq-result-aside-link" href="' + escHtml(rec.caseLink) + '">' +
+                '<span class="op-mono op-mq-aside-tag">SEE IT IN ACTION</span>' +
+                '<span class="op-mq-aside-label">' + escHtml(rec.caseLabel) + '</span>' +
+                '<span class="op-mq-aside-arrow" aria-hidden="true">→</span>' +
+              '</a>' +
+            '</div>' +
+            '<button type="button" class="op-mq-retake op-mono" id="mq-retake">RETAKE QUIZ ↻</button>' +
+          '</div>';
+
+        var retakeBtn = document.getElementById('mq-retake');
+        if (retakeBtn) retakeBtn.addEventListener('click', resetQuiz);
+
+        // Tracking — preserved from original
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Lead');
+          try { fbq('track', 'Lead'); } catch (e) {}
         }
         if (typeof gtag !== 'undefined') {
-          gtag('event', 'generate_lead', { method: 'meta_quiz' });
+          try { gtag('event', 'generate_lead', { method: 'meta_quiz' }); } catch (e) {}
         }
       }
     }
 
-    function startQuiz() { quizState.screen = 'question'; quizState.currentQ = 0; quizState.answers = []; quizState.score = 0; renderQuiz(); }
+    function startQuiz() {
+      quizState.screen = 'question';
+      quizState.currentQ = 0;
+      quizState.answers = [];
+      quizState.score = 0;
+      renderQuiz();
+    }
     function selectOption(i) { quizState.answers[quizState.currentQ] = i; renderQuiz(); }
     function nextQ() {
       if (quizState.answers[quizState.currentQ] === undefined) return;
       quizState.score += QUESTIONS[quizState.currentQ].opts[quizState.answers[quizState.currentQ]].pts;
-      if (quizState.currentQ < QUESTIONS.length - 1) { quizState.currentQ++; renderQuiz(); }
-      else { quizState.result = getResult(quizState.score); quizState.screen = 'email'; renderQuiz(); }
+      if (quizState.currentQ < QUESTIONS.length - 1) {
+        quizState.currentQ++;
+        renderQuiz();
+      } else {
+        quizState.result = getResult(quizState.score);
+        quizState.screen = 'email';
+        renderQuiz();
+      }
     }
     function prevQ() {
       if (quizState.currentQ > 0) {
-        quizState.score -= QUESTIONS[quizState.currentQ - 1].opts[quizState.answers[quizState.currentQ - 1]].pts;
+        var prevIdx = quizState.currentQ - 1;
+        quizState.score -= QUESTIONS[prevIdx].opts[quizState.answers[prevIdx]].pts;
         quizState.currentQ--;
         renderQuiz();
       }
+    }
+    function resetQuiz() {
+      quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null, submitting: false, submitError: '' };
+      renderQuiz();
     }
 
     var SUPABASE_URL = 'https://nnxbgderdyjanzwgabxl.supabase.co';
     var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGJnZGVyZHlqYW56d2dhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxODA3MzgsImV4cCI6MjA4NDc1NjczOH0.jpjZ_gH1-2GZgyhXPRzPrZzWWnJtAVgU4yui4KM6wZ8';
 
-    function submitQuizEmail() {
-      var name = document.getElementById('nameInput').value.trim();
-      var email = document.getElementById('emailInput').value.trim();
-      if (!name || !email || email.indexOf('@') === -1) { alert('Please enter your name and a valid email.'); return; }
+    function setSubmitError(msg) {
+      quizState.submitError = msg || '';
+      var errEl = document.getElementById('mq-error');
+      if (errEl) {
+        errEl.textContent = quizState.submitError;
+        errEl.style.display = quizState.submitError ? 'block' : 'none';
+      }
+    }
+
+    function submitQuiz() {
+      var nameEl = document.getElementById('mq-name');
+      var emailEl = document.getElementById('mq-email');
+      var hpEl = document.getElementById('mq-hp');
+      var submitBtn = document.getElementById('mq-submit');
+      if (!nameEl || !emailEl || !submitBtn) return;
+      if (quizState.submitting) return;
+
+      var name = (nameEl.value || '').trim();
+      var email = (emailEl.value || '').trim();
+      var honeypot = hpEl ? (hpEl.value || '').trim() : '';
+
+      // Honeypot — silently advance to results without submitting
+      if (honeypot) {
+        quizState.screen = 'results';
+        renderQuiz();
+        return;
+      }
+
+      if (!name) { setSubmitError('Please enter your name.'); return; }
+      if (!email || email.indexOf('@') === -1 || email.lastIndexOf('.') < email.indexOf('@')) {
+        setSubmitError('Please enter a valid email address.');
+        return;
+      }
+      setSubmitError('');
+
       quizState.name = name;
       quizState.email = email;
-      var r = RESULTS[quizState.result];
+      var rec = getRecommendation(quizState.answers);
       var max = QUESTIONS.length * 3;
       var pct = Math.round((quizState.score / max) * 100);
-      var answersArray = quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; });
-
-      // 1. Fire Gumloop webhook. Must be fetch+keepalive with application/json ,
-      // sendBeacon forces text/plain (to dodge CORS preflight), which Gumloop
-      // accepts but can't parse, so pipeline_inputs come through empty.
-      var gumloopUrl = 'https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=2xf7HgFbJf6dDWQDZUVDxZ';
-      var gumloopPayload = JSON.stringify({
-        pipeline_inputs: [
-          { input_name: 'name', value: quizState.name },
-          { input_name: 'email', value: quizState.email },
-          { input_name: 'quiz_score', value: String(pct) },
-          { input_name: 'quiz_result', value: quizState.result },
-          { input_name: 'quiz_segment', value: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture' },
-          { input_name: 'recommended_automation', value: r.title },
-          { input_name: 'answers', value: JSON.stringify(answersArray) }
-        ]
+      var quizSegment = quizState.result === 'high' ? 'partner-ready' : 'partner-nurture';
+      var answersArray = quizState.answers.map(function(a, i) {
+        return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val };
       });
-      fetch(gumloopUrl, {
+
+      quizState.submitting = true;
+      submitBtn.disabled = true;
+      var labelEl = submitBtn.querySelector('.op-mq-btn-label');
+      if (labelEl) labelEl.textContent = 'SENDING…';
+
+      // 1. Fire Gumloop via the same-origin proxy. The proxy forwards to
+      // Gumloop server-side using the Authorization Bearer header so we
+      // dodge the CORS preflight that was eating the body.
+      var gumloopBody = JSON.stringify({
+        name: name,
+        email: email,
+        quiz_score: String(pct),
+        quiz_result: quizState.result,
+        quiz_segment: quizSegment,
+        recommended_automation: rec.title,
+        answers: JSON.stringify(answersArray)
+      });
+
+      var gumloopPromise = fetch('/api/quiz-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: gumloopPayload,
-        keepalive: true
-      }).catch(function(e) { console.log('Gumloop error:', e); });
+        body: gumloopBody
+      }).then(function(res) {
+        if (!res.ok) throw new Error('Proxy returned ' + res.status);
+        return res.json();
+      }).catch(function(e) {
+        console.log('Quiz submit error:', e);
+      });
 
-      // 2. Save lead to Supabase
-      var supabaseHeaders = { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Prefer': 'return=representation' };
-      fetch(SUPABASE_URL + '/rest/v1/meta_quiz_leads', {
+      // 2. Save lead to Supabase (preserved). Same-origin would be ideal,
+      // but Supabase REST is fine cross-origin (it sends proper CORS
+      // headers, unlike Gumloop).
+      var supabaseHeaders = {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Prefer': 'return=representation'
+      };
+      var supabasePromise = fetch(SUPABASE_URL + '/rest/v1/meta_quiz_leads', {
         method: 'POST',
         headers: supabaseHeaders,
         body: JSON.stringify({
-          name: quizState.name,
-          email: quizState.email,
+          name: name,
+          email: email,
           quiz_score: pct,
           quiz_result: quizState.result,
-          quiz_segment: quizState.result === 'high' ? 'partner-ready' : 'partner-nurture',
-          recommended_automation: r.title
-        }),
-        keepalive: true
+          quiz_segment: quizSegment,
+          recommended_automation: rec.title
+        })
       }).then(function(res) { return res.json(); })
         .then(function(data) {
           if (data && data[0] && data[0].id) {
             var leadId = data[0].id;
             var responses = answersArray.map(function(a, i) {
-              return { lead_id: leadId, question_index: i, question_text: a.question, answer_text: a.answer, answer_value: a.value };
+              return {
+                lead_id: leadId,
+                question_index: i,
+                question_text: a.question,
+                answer_text: a.answer,
+                answer_value: a.value
+              };
             });
-            fetch(SUPABASE_URL + '/rest/v1/meta_quiz_responses', {
+            return fetch(SUPABASE_URL + '/rest/v1/meta_quiz_responses', {
               method: 'POST',
               headers: supabaseHeaders,
-              body: JSON.stringify(responses),
-              keepalive: true
-            }).catch(function(e) { console.log('Supabase responses error:', e); });
+              body: JSON.stringify(responses)
+            });
           }
-        }).catch(function(e) { console.log('Supabase lead error:', e); });
+        }).catch(function(e) {
+          console.log('Supabase write error:', e);
+        });
 
-      quizState.screen = 'results';
-      renderQuiz();
+      // Wait for the Gumloop call (the most important one); we don't
+      // block on Supabase since it's a logging-only side effect.
+      Promise.all([gumloopPromise, supabasePromise]).finally(function() {
+        quizState.submitting = false;
+        quizState.screen = 'results';
+        renderQuiz();
+      });
     }
-
-    function resetQuiz() { quizState = { screen: 'landing', currentQ: 0, answers: [], score: 0, name: '', email: '', result: null }; renderQuiz(); }
 
     renderQuiz();
   </script>
 </Layout>
 
-<style is:global>
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-  .quiz-container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 120px 20px 60px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+<style>
+  .op-mq-hero { padding: 96px var(--op-section-px) 56px; color: var(--op-ink); }
+  .op-mq-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-mq-util { margin-bottom: 32px; }
+  .op-mq-hero :global(.op-eyebrow) { margin-bottom: 22px; }
 
-  /* Landing */
-  .quiz-landing {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 0;
-  }
-
-  .landing-badge {
-    display: inline-block;
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 6px 18px;
-    border-radius: var(--radius-full);
-    margin-bottom: 24px;
-  }
-
-  .quiz-landing h1 {
-    font-size: clamp(2rem, 5vw, 2.75rem);
+  .op-mq-h1 {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 16px;
+    font-size: clamp(40px, 5.4vw, 72px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 20px;
+    max-width: 800px;
+    text-wrap: balance;
+  }
+  .op-mq-h1-orange { color: var(--op-orange); }
+
+  .op-mq-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    max-width: 640px;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-mq-body {
+    padding: 24px var(--op-section-px) 96px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+  }
+  .op-mq-body-frame { max-width: 760px; margin: 0 auto; }
+
+  .op-mq-panel {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+    margin-top: 32px;
+  }
+  .op-mq-panel-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+    font-size: 9px;
+  }
+  .op-mq-panel-id { color: var(--op-orange); }
+  .op-mq-panel-status {
+    margin-left: auto;
+    color: var(--op-cream);
+    opacity: 0.6;
+  }
+
+  .op-mq-progress {
+    height: 4px;
+    background: var(--op-rule);
+  }
+  .op-mq-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--op-orange);
+    transition: width 320ms var(--op-ease);
+  }
+
+  .op-mq-app { padding: 32px 30px 28px; }
+
+  /* Screens (shared) */
+  .op-mq-screen { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ------- LANDING ------- */
+  .op-mq-landing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    overflow: hidden;
+    background: var(--op-paper);
+  }
+  .op-mq-landing-cell {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1.5px solid var(--op-rule);
+  }
+  .op-mq-landing-cell:last-child { border-right: none; }
+  .op-mq-cell-label {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-mq-cell-value {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--navy);
+    color: var(--op-ink);
   }
 
-  .quiz-landing h1 .gradient-text {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .quiz-landing p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 520px;
-    margin: 0 auto 32px;
-    line-height: 1.7;
-  }
-
-  .landing-features {
+  .op-mq-fineprint {
     display: flex;
-    gap: 24px;
-    justify-content: center;
-    margin-bottom: 40px;
     flex-wrap: wrap;
-  }
-
-  .landing-feature {
-    display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-weight: 500;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    margin: 4px 0 0;
+    opacity: 0.8;
   }
+  .op-mq-dot { opacity: 0.5; }
 
-  .landing-feature .icon {
-    width: 22px;
-    height: 22px;
-    background: rgba(22, 163, 74, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--green);
-    font-size: 11px;
-    flex-shrink: 0;
+  /* ------- QUESTION ------- */
+  .op-mq-q-label {
+    font-size: 10px;
+    color: var(--op-orange);
+    margin: 0;
   }
-
-  /* Progress */
-  .progress-wrap { margin-bottom: 32px; }
-
-  .progress-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .progress-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .progress-count {
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-weight: 600;
-  }
-
-  .progress-bar {
-    height: 4px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--orange), var(--orange-hover));
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
-
-  /* Question */
-  .question-screen {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .question-text {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  .op-mq-q-text {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    margin-bottom: 8px;
-    line-height: 1.3;
-    color: var(--navy);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.15;
     letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
   }
-
-  .question-sub {
+  .op-mq-q-sub {
+    font-family: var(--op-font-body);
     font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 28px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
   }
 
-  .options {
+  .op-mq-opts {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 32px;
-    flex: 1;
+    margin-top: 4px;
   }
-
-  .option {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 18px 20px;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: left;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  }
-
-  .option:hover {
-    border-color: var(--navy);
-    box-shadow: var(--shadow);
-  }
-
-  .option.selected {
-    background: rgba(237, 137, 54, 0.06);
-    border-color: var(--orange);
-    box-shadow: 0 0 0 1px var(--orange);
-  }
-
-  .option-radio {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 2px;
+  .op-mq-opt {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 14px 16px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+    gap: 14px;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    color: var(--op-ink);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
+    width: 100%;
   }
-
-  .option.selected .option-radio {
-    border-color: var(--orange);
-    background: var(--orange);
+  .op-mq-opt:hover {
+    transform: translate(-1px, -2px);
+    box-shadow: var(--op-shadow);
   }
-
-  .option.selected .option-radio::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: white;
+  .op-mq-opt.is-selected {
+    background: var(--op-navy-deep);
+    color: var(--op-paper);
+    border-color: var(--op-navy-deep);
+    box-shadow: var(--op-shadow);
+  }
+  .op-mq-opt.is-selected .op-mq-opt-radio {
+    background: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+  .op-mq-opt-radio {
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
+    border: 1.5px solid var(--op-ink);
+    background: var(--op-cream);
+    flex-shrink: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-mq-opt-text {
+    line-height: 1.4;
   }
 
-  .option-content h4 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  .nav-row {
+  /* ------- NAV / BUTTONS ------- */
+  .op-mq-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-  }
-
-  /* Email */
-  .email-screen {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 0;
-  }
-
-  .email-screen h2 {
-    font-size: clamp(1.5rem, 4vw, 1.875rem);
-    font-weight: 800;
-    margin-bottom: 12px;
-    color: var(--navy);
-    letter-spacing: -0.02em;
-  }
-
-  .email-screen p {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 32px;
-    max-width: 440px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-
-  .email-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .email-form input {
-    width: 100%;
-    padding: 14px 18px;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    color: var(--navy);
-    font-size: 15px;
-    font-family: var(--font-sans);
-    outline: none;
-    transition: border 0.2s;
-  }
-
-  .email-form input:focus { border-color: var(--orange); }
-  .email-form input::placeholder { color: var(--text-muted); }
-
-  .email-trust {
-    font-size: 12px;
-    color: var(--text-muted);
+    gap: 14px;
     margin-top: 8px;
   }
+  .op-mq-nav--end { justify-content: space-between; }
 
-  /* Results */
-  .results-screen { padding: 20px 0; }
-
-  .result-type-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: var(--radius-full);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .result-type-badge.high {
-    background: rgba(22, 163, 74, 0.1);
-    border: 1px solid rgba(22, 163, 74, 0.3);
-    color: var(--green);
-  }
-
-  .result-type-badge.mid {
-    background: rgba(237, 137, 54, 0.1);
-    border: 1px solid rgba(237, 137, 54, 0.3);
-    color: var(--orange);
-  }
-
-  .result-type-badge.low {
-    background: rgba(49, 130, 206, 0.1);
-    border: 1px solid rgba(49, 130, 206, 0.3);
-    color: var(--blue);
-  }
-
-  .results-screen h2 {
-    font-size: clamp(1.5rem, 4vw, 1.75rem);
+  .op-mq-btn {
+    font-family: var(--op-font-display);
     font-weight: 800;
-    margin-bottom: 8px;
-    line-height: 1.2;
-    color: var(--navy);
-    letter-spacing: -0.02em;
-  }
-
-  .results-screen .result-sub {
-    font-size: 15px;
-    color: var(--text-secondary);
-    margin-bottom: 32px;
-    line-height: 1.7;
-  }
-
-  .result-card {
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    margin-bottom: 12px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  }
-
-  .result-card h3 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--navy);
-  }
-
-  .result-card p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .result-card .tag {
-    display: inline-block;
-    background: rgba(237, 137, 54, 0.1);
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-    margin-top: 12px;
-  }
-
-  .score-bar-wrap { margin-bottom: 32px; }
-
-  .score-bar-label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-
-  .score-bar-label span {
     font-size: 13px;
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  .score-bar-label .score-val { color: var(--orange); }
-
-  .score-bar {
-    height: 6px;
-    background: var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .score-bar-fill {
-    height: 100%;
-    border-radius: 6px;
-    transition: width 1s ease;
-  }
-
-  .score-bar-fill.high { background: linear-gradient(90deg, var(--green), #34d399); }
-  .score-bar-fill.mid { background: linear-gradient(90deg, var(--orange), #fbbf24); }
-  .score-bar-fill.low { background: linear-gradient(90deg, var(--blue), #63b3ed); }
-
-  .results-cta {
-    text-align: center;
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-  }
-
-  .results-cta p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-  }
-
-  .results-cta a.quiz-btn-primary {
-    text-decoration: none;
-    color: white;
-  }
-
-  /* Quiz Buttons */
-  .quiz-btn-primary {
+    letter-spacing: 0.16em;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 13px 22px;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--orange);
-    color: white;
-    font-size: 1.05rem;
-    font-weight: 700;
-    padding: 16px 36px;
-    border: none;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: var(--font-sans);
-    box-shadow: var(--shadow);
-    align-self: center;
+    gap: 12px;
+    box-shadow: var(--op-shadow);
+    text-decoration: none;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
   }
-
-  .quiz-btn-primary:hover {
-    background: var(--orange-hover);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+  .op-mq-btn--primary { background: var(--op-orange); color: var(--op-paper); }
+  .op-mq-btn--primary:hover {
+    background: var(--op-orange-deep);
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
   }
-
-  .quiz-btn-primary:disabled {
-    opacity: 0.4;
+  .op-mq-btn--ghost {
+    background: var(--op-cream);
+    color: var(--op-ink);
+    box-shadow: none;
+    padding: 13px 18px;
+  }
+  .op-mq-btn--ghost:hover {
+    background: var(--op-paper);
+    color: var(--op-orange);
+    box-shadow: var(--op-shadow);
+    transform: translate(-1px, -2px);
+  }
+  .op-mq-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 1px 1px 0 var(--op-ink);
+  }
+  .op-mq-btn:disabled {
+    opacity: 0.45;
     cursor: not-allowed;
     transform: none;
-    box-shadow: none;
+    box-shadow: var(--op-shadow);
+  }
+  .op-mq-btn-arrow { font-size: 16px; }
+
+  /* ------- EMAIL ------- */
+  .op-mq-form { display: flex; flex-direction: column; gap: 18px; margin-top: 4px; }
+  .op-mq-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .op-mq-field { display: flex; flex-direction: column; gap: 6px; }
+  .op-mq-label { font-size: 10px; color: var(--op-navy); display: flex; gap: 8px; }
+  .op-mq-req { color: var(--op-orange); }
+
+  .op-mq-form input[type="text"],
+  .op-mq-form input[type="email"] {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-ink);
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 12px 14px;
+    transition: border-color var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .op-mq-form input:focus {
+    outline: none;
+    border-color: var(--op-orange);
+    box-shadow: 3px 3px 0 var(--op-orange);
   }
 
-  .quiz-btn-secondary {
-    display: inline-flex;
+  .op-mq-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .op-mq-error {
+    display: none;
+    background: rgba(224, 112, 60, 0.08);
+    border-left: 3px solid var(--op-orange-deep);
+    padding: 10px 14px;
+    margin: 0;
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    color: var(--op-navy);
+  }
+
+  /* ------- RESULTS ------- */
+  .op-mq-result-head {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px;
+    gap: 14px;
+    flex-wrap: wrap;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 8px 12px;
+    font-size: 9.5px;
+  }
+  .op-mq-result-tier { color: var(--op-orange); }
+  .op-mq-result-score { color: var(--op-navy-soft); }
+
+  .op-mq-result-h {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-mq-result-h-orange { color: var(--op-orange); }
+
+  .op-mq-result-blurb {
+    font-family: var(--op-font-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--op-navy);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-mq-result-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    overflow: hidden;
+    background: var(--op-paper);
+  }
+  .op-mq-result-cell {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1.5px solid var(--op-rule);
+  }
+  .op-mq-result-cell:last-child { border-right: none; }
+
+  .op-mq-result-readiness {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 4px 0 0;
+    text-wrap: pretty;
+  }
+
+  .op-mq-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    margin-top: 6px;
+  }
+  .op-mq-result-link {
+    color: var(--op-navy);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-navy);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-mq-result-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+
+  .op-mq-result-aside {
+    margin-top: 12px;
+  }
+  .op-mq-result-aside-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 14px 16px;
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    text-decoration: none;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-mq-result-aside-link:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
+    color: var(--op-cream);
+  }
+  .op-mq-result-aside-link:hover .op-mq-aside-arrow { color: var(--op-orange); }
+  .op-mq-aside-tag {
+    font-size: 9px;
+    color: var(--op-orange);
+  }
+  .op-mq-aside-label {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .op-mq-aside-arrow {
+    font-size: 18px;
+    color: var(--op-cream);
+    transition: color var(--op-dur-hover) var(--op-ease), transform var(--op-dur-hover) var(--op-ease);
+  }
+
+  .op-mq-retake {
+    align-self: flex-start;
     background: transparent;
-    color: var(--navy);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: 2px solid var(--navy);
-    border-radius: var(--radius-full);
+    border: none;
+    color: var(--op-navy-soft);
+    font-size: 10px;
     cursor: pointer;
-    transition: all 0.2s;
-    font-family: var(--font-sans);
+    padding: 4px 0;
+    margin-top: 8px;
+    transition: color var(--op-dur-hover) var(--op-ease);
   }
+  .op-mq-retake:hover { color: var(--op-orange); }
 
-  .quiz-btn-secondary:hover { background: var(--navy); color: white; }
+  /* ------- Mobile ------- */
+  @media (max-width: 700px) {
+    .op-mq-hero,
+    .op-mq-body { padding-left: 22px; padding-right: 22px; }
+    .op-mq-app { padding: 26px 22px 22px; }
 
-  /* Animations */
-  .fade-in { animation: quizFadeIn 0.3s ease; }
+    .op-mq-landing-grid,
+    .op-mq-result-strip {
+      grid-template-columns: 1fr 1fr;
+    }
+    .op-mq-landing-cell:nth-child(2),
+    .op-mq-result-cell:nth-child(2) {
+      border-right: none;
+    }
+    .op-mq-landing-cell:nth-child(3),
+    .op-mq-result-cell:nth-child(3) {
+      grid-column: 1 / -1;
+      border-top: 1.5px solid var(--op-rule);
+      border-right: none;
+    }
 
-  @keyframes quizFadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 640px) {
-    .quiz-landing h1 { font-size: 1.75rem; }
-    .landing-features { flex-direction: column; align-items: center; }
-    .question-text { font-size: 1.2rem; }
-    .results-screen h2 { font-size: 1.4rem; }
-    .quiz-container { padding-top: 100px; }
+    .op-mq-row { grid-template-columns: 1fr; }
+    .op-mq-nav {
+      flex-direction: column-reverse;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .op-mq-btn { width: 100%; justify-content: center; }
+    .op-mq-result-actions { flex-direction: column; align-items: stretch; gap: 14px; }
   }
 </style>

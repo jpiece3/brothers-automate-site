@@ -31,8 +31,7 @@ const organizationSchema = {
   "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more.",
   "sameAs": []
 };
-import FloatingGuide from '../components/FloatingGuide.astro';
-import QuizPopup from '../components/QuizPopup.astro';
+import FloatingQuiz from '../components/FloatingQuiz.astro';
 ---
 
 <!DOCTYPE html>
@@ -161,8 +160,7 @@ import QuizPopup from '../components/QuizPopup.astro';
 </head>
 <body>
   <slot />
-  <FloatingGuide />
-  <QuizPopup />
+  <FloatingQuiz />
 
   <script>
     // Pre-process text-reveal elements: wrap each word in a span so CSS can stagger
