@@ -103,7 +103,7 @@ export const services: Record<string, ServiceData> = {
     name: 'Lead Follow-Up Automation',
     shortName: 'Lead Follow-Up',
     icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-    tagline: 'Respond to every lead in under 5 minutes — even at 2am',
+    tagline: 'Respond to every lead in under 5 minutes, even at 2am',
 
     meta: {
       title: 'Lead Follow-Up Automation for Service Businesses | Brothers Automate',
@@ -128,7 +128,7 @@ export const services: Record<string, ServiceData> = {
       headline: 'Your Best Leads Are Going to Your Competitors',
       painPoints: [
         'A lead fills out your form at 9pm. You see it at 8am. They already booked with someone else.',
-        'Your follow-up depends on whoever remembers to check the inbox — and some days, nobody does.',
+        'Your follow-up depends on whoever remembers to check the inbox, and some days, nobody does.',
         'You have no idea which leads are hot and which are just browsing, so everyone gets the same treatment.',
         'Competitors with automated systems respond in minutes. You respond in hours. The math is obvious.',
       ],
@@ -138,7 +138,7 @@ export const services: Record<string, ServiceData> = {
     solution: {
       headline: 'What Happens When',
       headlineHighlight: 'Every Lead Gets a Response in Minutes',
-      description: 'We wire up a follow-up system that watches your lead sources — forms, ads, referrals — and responds instantly with a personalized message. Then it keeps following up on a smart schedule until they book or say no.',
+      description: 'We wire up a follow-up system that watches your lead sources, forms, ads, referrals, and responds instantly with a personalized message. Then it keeps following up on a smart schedule until they book or say no.',
       features: [
         {
           title: 'Instant First Response',
@@ -157,7 +157,7 @@ export const services: Record<string, ServiceData> = {
         },
         {
           title: 'Lead Scoring and Routing',
-          description: 'The system scores leads based on their behavior — form answers, email engagement, page visits — and routes the hottest ones to you first. Cold leads get nurtured. Tire-kickers get filtered out.',
+          description: 'The system scores leads based on their behavior, form answers, email engagement, page visits, and routes the hottest ones to you first. Cold leads get nurtured. Tire-kickers get filtered out.',
           icon: 'M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z',
         },
       ],
@@ -172,10 +172,10 @@ export const services: Record<string, ServiceData> = {
 
     relatedIndustries: [
       { slug: 'coaches', name: 'Coaches & Consultants', blurb: 'Coaches lose 30% of leads to slow follow-up on discovery calls' },
-      { slug: 'real-estate', name: 'Real Estate', blurb: 'Buyer leads go cold within hours — speed to response wins listings' },
+      { slug: 'real-estate', name: 'Real Estate', blurb: 'Buyer leads go cold within hours, speed to response wins listings' },
       { slug: 'home-services', name: 'Home Services', blurb: 'Homeowners call 3 contractors and hire the first one who responds' },
       { slug: 'dental', name: 'Dental Practices', blurb: 'New patient inquiries drop off 40% when response takes over an hour' },
-      { slug: 'hvac', name: 'HVAC Companies', blurb: 'Emergency calls go to whoever picks up first — not whoever is best' },
+      { slug: 'hvac', name: 'HVAC Companies', blurb: 'Emergency calls go to whoever picks up first, not whoever is best' },
     ],
 
     socialProof: {
@@ -190,7 +190,7 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Does this replace my CRM?',
-        answer: "No. It plugs into whatever you already use — HubSpot, GoHighLevel, Salesforce, even a Google Sheet. The system sends follow-ups and logs everything back to your CRM so your team sees the full picture.",
+        answer: "No. It plugs into whatever you already use, HubSpot, GoHighLevel, Salesforce, even a Google Sheet. The system sends follow-ups and logs everything back to your CRM so your team sees the full picture.",
       },
       {
         question: 'Will leads know it is automated?',
@@ -213,7 +213,7 @@ export const services: Record<string, ServiceData> = {
     cta: {
       headline: 'Stop Losing Deals to',
       headlineHighlight: 'Slow Follow-Up',
-      subheadline: 'Book a call and we will show you exactly where leads are falling through the cracks — and how to fix it in under two weeks.',
+      subheadline: 'Book a call and we will show you exactly where leads are falling through the cracks, and how to fix it in under two weeks.',
     },
 
     schema: {
@@ -230,11 +230,11 @@ export const services: Record<string, ServiceData> = {
     name: 'Client Onboarding Automation',
     shortName: 'Client Onboarding',
     icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
-    tagline: 'Same perfect onboarding for every client — zero manual steps',
+    tagline: 'Same perfect onboarding for every client, zero manual steps',
 
     meta: {
       title: 'Client Onboarding Automation for Service Businesses | Brothers Automate',
-      description: 'Automate your entire client onboarding flow — welcome emails, document collection, scheduling, and data sync. Every client gets the same great experience.',
+      description: 'Automate your entire client onboarding flow, welcome emails, document collection, scheduling, and data sync. Every client gets the same great experience.',
     },
 
     hero: {
@@ -256,7 +256,7 @@ export const services: Record<string, ServiceData> = {
       painPoints: [
         'New client signs up and the welcome email goes out... two days later. Or never. Depends on who was supposed to send it.',
         'You ask for the same documents every time, but the process for collecting them changes depending on who is handling it.',
-        'Client details get typed into three different systems by hand. Something always gets wrong — a misspelled name, a wrong address, a missed detail.',
+        'Client details get typed into three different systems by hand. Something always gets wrong, a misspelled name, a wrong address, a missed detail.',
         'When things get busy, onboarding steps get skipped entirely. The client notices. They just don\'t always tell you.',
       ],
       costOfInaction: 'A botched onboarding costs you 3-5x more in client churn than the automation costs to build. First impressions are the hardest to undo.',
@@ -274,26 +274,26 @@ export const services: Record<string, ServiceData> = {
         },
         {
           title: 'Document Collection on Autopilot',
-          description: 'Contracts, W-9s, insurance certs, project briefs — whatever you need. The system sends requests, tracks what is missing, and follows up until everything is in. No chasing.',
+          description: 'Contracts, W-9s, insurance certs, project briefs, whatever you need. The system sends requests, tracks what is missing, and follows up until everything is in. No chasing.',
           icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
         },
         {
           title: 'Scheduling Without the Back-and-Forth',
-          description: 'Kickoff calls, walkthroughs, check-ins — the system sends scheduling links at the right time. No 6-email thread trying to find a time that works. The client picks a slot and it is done.',
+          description: 'Kickoff calls, walkthroughs, check-ins, the system sends scheduling links at the right time. No 6-email thread trying to find a time that works. The client picks a slot and it is done.',
           icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
         },
         {
           title: 'Data Synced Everywhere',
-          description: 'Client name, project details, contact info — entered once, synced to every tool you use. CRM, project management, accounting. No copy-paste. No mismatches. No forgotten updates.',
+          description: 'Client name, project details, contact info, entered once, synced to every tool you use. CRM, project management, accounting. No copy-paste. No mismatches. No forgotten updates.',
           icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
         },
       ],
       conclusion: 'The client feels taken care of from day one. Your team does not have to think about it. Every onboarding runs the same proven playbook without anyone managing it manually.',
-      callout: 'New client signs up. The system handles it. Welcome email, documents, scheduling, data sync — all done before you finish your coffee.',
+      callout: 'New client signs up. The system handles it. Welcome email, documents, scheduling, data sync, all done before you finish your coffee.',
     },
 
     relatedProjects: [
-      { slug: 'onboarding-workflow', name: 'Onboarding Workflow', description: 'See how we automated the entire new-client flow for a paving company — comms, scheduling, and docs with zero manual work.' },
+      { slug: 'onboarding-workflow', name: 'Onboarding Workflow', description: 'See how we automated the entire new-client flow for a paving company, comms, scheduling, and docs with zero manual work.' },
     ],
 
     relatedIndustries: [
@@ -315,7 +315,7 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Will this work with my existing tools?',
-        answer: "Yes. We build around whatever you already use — HubSpot, Monday, Notion, Google Workspace, QuickBooks, you name it. The system connects your tools so data flows between them without anyone touching a spreadsheet.",
+        answer: "Yes. We build around whatever you already use, HubSpot, Monday, Notion, Google Workspace, QuickBooks, you name it. The system connects your tools so data flows between them without anyone touching a spreadsheet.",
       },
       {
         question: 'What if my onboarding process is different for different services?',
@@ -331,7 +331,7 @@ export const services: Record<string, ServiceData> = {
       },
       {
         question: 'Can I change the process later?',
-        answer: "Absolutely. We hand you full documentation and access. When your process evolves — new steps, new tools, new service lines — you can adjust the flow yourself or bring us back to update it.",
+        answer: "Absolutely. We hand you full documentation and access. When your process evolves, new steps, new tools, new service lines, you can adjust the flow yourself or bring us back to update it.",
       },
     ],
 
@@ -355,7 +355,7 @@ export const services: Record<string, ServiceData> = {
     name: 'AI Ad Creative',
     shortName: 'Ad Creative',
     icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
-    tagline: 'Fresh, on-brand ad creative every day — no designer, no agency',
+    tagline: 'Fresh, on-brand ad creative every day, no designer, no agency',
 
     meta: {
       title: 'AI Ad Creative for Service Businesses | Brothers Automate',
@@ -381,7 +381,7 @@ export const services: Record<string, ServiceData> = {
       painPoints: [
         'You are running the same 3-5 ad images you made 6 months ago. Your audience has seen them so many times they scroll right past.',
         'Your designer costs $3K-5K per month and still takes a week to turn around new variations. By the time new creative is ready, you needed it yesterday.',
-        'You know you should be testing more variants — different hooks, different visuals, different formats — but producing that volume is impossible at your budget.',
+        'You know you should be testing more variants, different hooks, different visuals, different formats, but producing that volume is impossible at your budget.',
         'Your cost per lead keeps climbing and you cannot figure out why. The answer is almost always stale creative.',
       ],
       costOfInaction: 'Ad fatigue increases your cost per acquisition by 20-50% over time. Every week you run the same creative, you are paying more for worse results.',
@@ -390,11 +390,11 @@ export const services: Record<string, ServiceData> = {
     solution: {
       headline: 'What Happens When',
       headlineHighlight: 'Fresh Ads Show Up Every Morning',
-      description: 'We train an AI engine on your brand — colors, fonts, voice, imagery style — and it generates new ad creative every single day. Static images, video cuts, copy variations. You pick the winners and deploy them.',
+      description: 'We train an AI engine on your brand, colors, fonts, voice, imagery style, and it generates new ad creative every single day. Static images, video cuts, copy variations. You pick the winners and deploy them.',
       features: [
         {
           title: 'Brand-Trained Generation',
-          description: 'The AI learns your brand identity — visual style, color palette, messaging tone, product photography. Every piece of creative looks and sounds like it came from your team, because it was trained on your team\'s work.',
+          description: 'The AI learns your brand identity, visual style, color palette, messaging tone, product photography. Every piece of creative looks and sounds like it came from your team, because it was trained on your team\'s work.',
           icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
         },
         {
@@ -418,7 +418,7 @@ export const services: Record<string, ServiceData> = {
     },
 
     relatedProjects: [
-      { slug: 'daily-ads', name: 'Daily Ads', description: 'See the AI ad engine in action — fresh creative generated daily across 15+ static and 6 video formats.' },
+      { slug: 'daily-ads', name: 'Daily Ads', description: 'See the AI ad engine in action, fresh creative generated daily across 15+ static and 6 video formats.' },
     ],
 
     relatedIndustries: [
@@ -439,7 +439,7 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Will the creative actually look like my brand?',
-        answer: "Yes. We spend the first few days training the system on your brand identity — logo usage, color palette, font hierarchy, photography style, messaging tone. The output looks like it came from your in-house team, because the AI learned from your in-house team's work.",
+        answer: "Yes. We spend the first few days training the system on your brand identity, logo usage, color palette, font hierarchy, photography style, messaging tone. The output looks like it came from your in-house team, because the AI learned from your in-house team's work.",
       },
       {
         question: 'What platforms does this work for?',
@@ -447,7 +447,7 @@ export const services: Record<string, ServiceData> = {
       },
       {
         question: 'Do I still need to manage my ad campaigns?',
-        answer: "Yes — this generates the creative, not the campaigns. You (or your media buyer) still handle targeting, budgets, and optimization. We give you a steady stream of fresh creative to test. If you do not have a media buyer, we can recommend one.",
+        answer: "Yes, this generates the creative, not the campaigns. You (or your media buyer) still handle targeting, budgets, and optimization. We give you a steady stream of fresh creative to test. If you do not have a media buyer, we can recommend one.",
       },
       {
         question: 'How long does setup take?',
@@ -455,7 +455,7 @@ export const services: Record<string, ServiceData> = {
       },
       {
         question: "What's the investment?",
-        answer: "The ad engine build starts at $2,497. That includes brand training, format configuration, and the first month of daily generation. Ongoing generation after that is a flat monthly fee — still a fraction of what a designer or agency would charge.",
+        answer: "The ad engine build starts at $2,497. That includes brand training, format configuration, and the first month of daily generation. Ongoing generation after that is a flat monthly fee, still a fraction of what a designer or agency would charge.",
       },
     ],
 
@@ -479,7 +479,7 @@ export const services: Record<string, ServiceData> = {
     name: 'AI Resume Screening',
     shortName: 'Resume Screening',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
-    tagline: 'Screen hundreds of resumes in seconds — hire the right people faster',
+    tagline: 'Screen hundreds of resumes in seconds, hire the right people faster',
 
     meta: {
       title: 'AI Resume Screening for Service Businesses | Brothers Automate',
@@ -490,7 +490,7 @@ export const services: Record<string, ServiceData> = {
       badge: 'AI Resume Screening',
       headline: 'You Need Good People.',
       headlineGradient: 'Not More Hours Reading Resumes.',
-      subheadline: 'Every open position brings a flood of applications. Most are not a fit. But finding the ones who are means reading every single resume — or it used to. We build screening systems that score and rank candidates against your specific criteria in seconds.',
+      subheadline: 'Every open position brings a flood of applications. Most are not a fit. But finding the ones who are means reading every single resume, or it used to. We build screening systems that score and rank candidates against your specific criteria in seconds.',
       stats: [
         { number: '85%', label: 'Less Screening Time' },
         { number: 'Seconds', label: 'Per Resume' },
@@ -506,7 +506,7 @@ export const services: Record<string, ServiceData> = {
         'A single job posting generates 50-200 applications. Reading through them takes 3+ hours per position, and that is time you could spend running the business.',
         'Your best candidates are getting hired by faster companies while your resumes sit in an inbox waiting for someone to review them.',
         'Screening quality depends entirely on who is doing the reading. Monday morning energy is different from Friday afternoon energy. The criteria shifts.',
-        'Seasonal hiring means this painful cycle repeats every few months — same bottleneck, same time drain, same inconsistency.',
+        'Seasonal hiring means this painful cycle repeats every few months, same bottleneck, same time drain, same inconsistency.',
       ],
       costOfInaction: 'A bad hire costs 30% of their first-year salary. A good hire you missed because you were too slow to screen? That cost is invisible but just as real.',
     },
@@ -518,12 +518,12 @@ export const services: Record<string, ServiceData> = {
       features: [
         {
           title: 'Custom Criteria Matching',
-          description: 'You tell us what matters — certifications, years of experience, specific skills, availability, location. The system evaluates every resume against your exact requirements, not a generic template.',
+          description: 'You tell us what matters, certifications, years of experience, specific skills, availability, location. The system evaluates every resume against your exact requirements, not a generic template.',
           icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
         },
         {
           title: 'Instant Scoring',
-          description: 'Every resume gets scored within seconds of submission. The system reads the full document — not just keywords — and evaluates fit based on context, not checkbox matching.',
+          description: 'Every resume gets scored within seconds of submission. The system reads the full document, not just keywords, and evaluates fit based on context, not checkbox matching.',
           icon: 'M13 10V3L4 14h7v7l9-11h-7z',
         },
         {
@@ -548,7 +548,7 @@ export const services: Record<string, ServiceData> = {
     relatedIndustries: [
       { slug: 'cleaning', name: 'Cleaning Companies', blurb: 'Cleaning companies hire constantly and cannot spend all day reading applications' },
       { slug: 'landscaping', name: 'Landscaping', blurb: 'Seasonal landscaping crews mean screening surges every spring and fall' },
-      { slug: 'hvac', name: 'HVAC Companies', blurb: 'HVAC techs are hard to find — you need to move fast on qualified applicants' },
+      { slug: 'hvac', name: 'HVAC Companies', blurb: 'HVAC techs are hard to find, you need to move fast on qualified applicants' },
     ],
 
     socialProof: {
@@ -563,11 +563,11 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Will this work for non-technical roles?',
-        answer: "Absolutely. We have built this for seasonal camp counselors, maintenance staff, front desk roles, and field technicians. The system evaluates whatever criteria you define — availability, certifications, soft skills, experience level. It is not limited to tech hiring.",
+        answer: "Absolutely. We have built this for seasonal camp counselors, maintenance staff, front desk roles, and field technicians. The system evaluates whatever criteria you define, availability, certifications, soft skills, experience level. It is not limited to tech hiring.",
       },
       {
         question: 'How does it handle resumes in different formats?',
-        answer: "PDFs, Word docs, plain text — the system reads them all. It extracts the relevant information regardless of formatting. A beautifully designed resume and a plain text email both get evaluated on the same criteria.",
+        answer: "PDFs, Word docs, plain text, the system reads them all. It extracts the relevant information regardless of formatting. A beautifully designed resume and a plain text email both get evaluated on the same criteria.",
       },
       {
         question: 'Can it integrate with our job posting platform?',
@@ -603,18 +603,18 @@ export const services: Record<string, ServiceData> = {
     name: 'Review Response Automation',
     shortName: 'Review Management',
     icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
-    tagline: 'Every Google review answered — fast, personal, on-brand',
+    tagline: 'Every Google review answered, fast, personal, on-brand',
 
     meta: {
       title: 'Review Response Automation for Service Businesses | Brothers Automate',
-      description: 'Never miss a Google review again. Our AI responds to every review within an hour — personalized, on-brand, and tone-matched. Built for service businesses.',
+      description: 'Never miss a Google review again. Our AI responds to every review within an hour, personalized, on-brand, and tone-matched. Built for service businesses.',
     },
 
     hero: {
       badge: 'Review Response Automation',
       headline: 'Your Reputation Is Your Pipeline.',
       headlineGradient: 'Protect It Automatically.',
-      subheadline: '90% of customers read reviews before choosing a service business. But most businesses let reviews pile up unanswered — especially the negative ones. We build systems that respond to every review within an hour, in your voice, with the right tone for the situation.',
+      subheadline: '90% of customers read reviews before choosing a service business. But most businesses let reviews pile up unanswered, especially the negative ones. We build systems that respond to every review within an hour, in your voice, with the right tone for the situation.',
       stats: [
         { number: '< 1hr', label: 'Response Time' },
         { number: '5-Star', label: 'Reputation' },
@@ -628,7 +628,7 @@ export const services: Record<string, ServiceData> = {
       headline: 'Unanswered Reviews Are Costing You Customers',
       painPoints: [
         'You have 47 Google reviews and only responded to 12 of them. Every unanswered review tells the next customer you do not care about feedback.',
-        'A 1-star review went up last Tuesday. You meant to respond but got busy. Now it is been a week and the damage is done — future customers see silence where they expected accountability.',
+        'A 1-star review went up last Tuesday. You meant to respond but got busy. Now it is been a week and the damage is done, future customers see silence where they expected accountability.',
         'Writing a thoughtful review response takes 10-15 minutes. Multiply that by 5-10 reviews per month and it is another task that never makes it to the top of the list.',
         'Google rewards businesses that respond to reviews with better local search rankings. Every unanswered review is a missed SEO opportunity.',
       ],
@@ -638,7 +638,7 @@ export const services: Record<string, ServiceData> = {
     solution: {
       headline: 'What Happens When',
       headlineHighlight: 'Every Review Gets a Reply',
-      description: 'We build a monitoring system that watches your Google Business Profile around the clock. When a new review comes in — positive or negative — the system crafts a personalized, tone-appropriate response and posts it within the hour.',
+      description: 'We build a monitoring system that watches your Google Business Profile around the clock. When a new review comes in, positive or negative, the system crafts a personalized, tone-appropriate response and posts it within the hour.',
       features: [
         {
           title: 'Instant Review Monitoring',
@@ -652,7 +652,7 @@ export const services: Record<string, ServiceData> = {
         },
         {
           title: 'Sentiment Analysis',
-          description: 'The system reads the review deeply — not just the star rating. A 3-star review that mentions great work but slow communication gets a different response than a 3-star review about pricing. Context matters.',
+          description: 'The system reads the review deeply, not just the star rating. A 3-star review that mentions great work but slow communication gets a different response than a 3-star review about pricing. Context matters.',
           icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
         },
         {
@@ -670,10 +670,10 @@ export const services: Record<string, ServiceData> = {
     ],
 
     relatedIndustries: [
-      { slug: 'dental', name: 'Dental Practices', blurb: 'Dental practices live on Google reviews — one bad review can cancel out ten good ones' },
-      { slug: 'home-services', name: 'Home Services', blurb: 'Homeowners check reviews before calling any contractor — response rate matters' },
-      { slug: 'hvac', name: 'HVAC Companies', blurb: 'HVAC is an emergency purchase — reviews are the first thing people check' },
-      { slug: 'cleaning', name: 'Cleaning Companies', blurb: 'Trust is everything in cleaning — reviews prove you are reliable' },
+      { slug: 'dental', name: 'Dental Practices', blurb: 'Dental practices live on Google reviews, one bad review can cancel out ten good ones' },
+      { slug: 'home-services', name: 'Home Services', blurb: 'Homeowners check reviews before calling any contractor, response rate matters' },
+      { slug: 'hvac', name: 'HVAC Companies', blurb: 'HVAC is an emergency purchase, reviews are the first thing people check' },
+      { slug: 'cleaning', name: 'Cleaning Companies', blurb: 'Trust is everything in cleaning, reviews prove you are reliable' },
     ],
 
     socialProof: {
@@ -688,11 +688,11 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Will people know the responses are automated?',
-        answer: "No. Every response is written in your voice, personalized to the specific review. We reference details from the review itself — the service they received, the team member they mentioned, the specific outcome. It reads like the owner typed it, because the AI was trained on how the owner talks.",
+        answer: "No. Every response is written in your voice, personalized to the specific review. We reference details from the review itself, the service they received, the team member they mentioned, the specific outcome. It reads like the owner typed it, because the AI was trained on how the owner talks.",
       },
       {
         question: 'What about negative reviews? Can AI handle those?',
-        answer: "Yes, and carefully. Negative reviews get a response that acknowledges the concern, takes responsibility where appropriate, and offers to make it right — all in a professional, measured tone. You can also set it up so negative reviews get flagged for your personal approval before the response goes live.",
+        answer: "Yes, and carefully. Negative reviews get a response that acknowledges the concern, takes responsibility where appropriate, and offers to make it right, all in a professional, measured tone. You can also set it up so negative reviews get flagged for your personal approval before the response goes live.",
       },
       {
         question: 'Does this help with getting more reviews too?',
@@ -739,7 +739,7 @@ export const services: Record<string, ServiceData> = {
       badge: 'AI Prospect Research',
       headline: 'Generic Outreach Gets Ignored.',
       headlineGradient: 'Informed Outreach Gets Replies.',
-      subheadline: 'Your sales team spends hours Googling companies, scrolling LinkedIn, and piecing together intel before a single email goes out. We build research systems that do all of that in minutes — and hand you a brief with the data points and outreach angle that actually gets a reply.',
+      subheadline: 'Your sales team spends hours Googling companies, scrolling LinkedIn, and piecing together intel before a single email goes out. We build research systems that do all of that in minutes, and hand you a brief with the data points and outreach angle that actually gets a reply.',
       stats: [
         { number: '10min', label: 'Research Per Prospect' },
         { number: '90%', label: 'Time Saved' },
@@ -752,9 +752,9 @@ export const services: Record<string, ServiceData> = {
     problem: {
       headline: 'Manual Research Is Your Most Expensive Bottleneck',
       painPoints: [
-        'Your sales rep spends 20-30 minutes researching each company before sending an email. At 10 prospects per day, that is 3-5 hours just on research — not selling.',
+        'Your sales rep spends 20-30 minutes researching each company before sending an email. At 10 prospects per day, that is 3-5 hours just on research, not selling.',
         'Despite all that research, the outreach still sounds generic. "I noticed you are growing fast" is not personalization. It is a template pretending to be personal.',
-        'You have no system for tracking trigger events — funding rounds, leadership changes, job postings, expansion signals — that indicate a prospect is ready to buy right now.',
+        'You have no system for tracking trigger events, funding rounds, leadership changes, job postings, expansion signals, that indicate a prospect is ready to buy right now.',
         'By the time you finish researching a company, your competitor who has automated this process already sent a relevant, timely email three days ago.',
       ],
       costOfInaction: 'Every hour your sales team spends on manual research is an hour they are not spending on calls, demos, and closing. At $50/hour fully loaded, that is $250/day in research costs for a single rep.',
@@ -763,21 +763,21 @@ export const services: Record<string, ServiceData> = {
     solution: {
       headline: 'What Happens When',
       headlineHighlight: 'AI Does the Research for You',
-      description: 'We build a research system that takes your prospect list and runs a multi-source analysis on each company. Websites, news, job postings, social profiles, funding data — all synthesized into a brief your team can act on immediately.',
+      description: 'We build a research system that takes your prospect list and runs a multi-source analysis on each company. Websites, news, job postings, social profiles, funding data, all synthesized into a brief your team can act on immediately.',
       features: [
         {
           title: 'Automated Company Research',
-          description: 'The system scans websites, press releases, social profiles, and public filings to build a complete picture of each company. Industry, size, tech stack, recent news, competitive positioning — all pulled together in one brief.',
+          description: 'The system scans websites, press releases, social profiles, and public filings to build a complete picture of each company. Industry, size, tech stack, recent news, competitive positioning, all pulled together in one brief.',
           icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
         },
         {
           title: 'Decision-Maker Mapping',
-          description: 'Who owns the budget? Who influences the decision? The system identifies key contacts at each company — titles, roles, LinkedIn profiles — so your outreach lands on the right desk, not a gatekeeper\'s inbox.',
+          description: 'Who owns the budget? Who influences the decision? The system identifies key contacts at each company, titles, roles, LinkedIn profiles, so your outreach lands on the right desk, not a gatekeeper\'s inbox.',
           icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
         },
         {
           title: 'Trigger Event Detection',
-          description: 'New funding round? Key hire? Office expansion? Job posting for a role you solve? The system flags these signals so your team reaches out at exactly the right moment — when the prospect has a need, not just a budget.',
+          description: 'New funding round? Key hire? Office expansion? Job posting for a role you solve? The system flags these signals so your team reaches out at exactly the right moment, when the prospect has a need, not just a budget.',
           icon: 'M13 10V3L4 14h7v7l9-11h-7z',
         },
         {
@@ -813,7 +813,7 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'Where does the data come from?',
-        answer: "Public sources — company websites, press releases, job postings, LinkedIn profiles, funding databases, news articles, and SEC filings when applicable. We do not scrape anything behind a login or violate terms of service. The system aggregates what is already public and organizes it so your team does not have to.",
+        answer: "Public sources, company websites, press releases, job postings, LinkedIn profiles, funding databases, news articles, and SEC filings when applicable. We do not scrape anything behind a login or violate terms of service. The system aggregates what is already public and organizes it so your team does not have to.",
       },
       {
         question: 'How accurate is the research?',
@@ -821,7 +821,7 @@ export const services: Record<string, ServiceData> = {
       },
       {
         question: 'Can it monitor for trigger events over time?',
-        answer: "Yes. We can set up weekly re-scans of your prospect list to catch new signals — funding rounds, leadership changes, job postings, expansion announcements. When a trigger fires, your team gets alerted with an updated brief and a fresh outreach angle.",
+        answer: "Yes. We can set up weekly re-scans of your prospect list to catch new signals, funding rounds, leadership changes, job postings, expansion announcements. When a trigger fires, your team gets alerted with an updated brief and a fresh outreach angle.",
       },
       {
         question: 'How long does setup take?',
@@ -853,7 +853,7 @@ export const services: Record<string, ServiceData> = {
     name: 'Route Optimization',
     shortName: 'Route Optimization',
     icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
-    tagline: 'Less driving, more jobs, lower fuel bills — every single day',
+    tagline: 'Less driving, more jobs, lower fuel bills, every single day',
 
     meta: {
       title: 'Route Optimization for Service Businesses | Brothers Automate',
@@ -878,7 +878,7 @@ export const services: Record<string, ServiceData> = {
       headline: 'Windshield Time Is Your Invisible Expense',
       painPoints: [
         'Your dispatcher or crew lead spends 20-30 minutes every morning figuring out the order of jobs. That is planning time, not billable time.',
-        'Crews drive past jobs they will visit later in the day to get to one that was scheduled first. Nobody optimized the sequence — they just go in the order the jobs were booked.',
+        'Crews drive past jobs they will visit later in the day to get to one that was scheduled first. Nobody optimized the sequence, they just go in the order the jobs were booked.',
         'A last-minute cancellation or add-on throws the whole day off. Re-routing manually means stopping, calling, and figuring it out on the fly.',
         'You know you could fit more jobs per day if the driving was tighter, but nobody has time to sit down with a map and figure out the math.',
       ],
@@ -888,11 +888,11 @@ export const services: Record<string, ServiceData> = {
     solution: {
       headline: 'What Happens When',
       headlineHighlight: 'AI Plans Your Routes',
-      description: 'We build a routing system that takes your daily job list and outputs the optimal sequence — factoring in location, time windows, job duration, traffic patterns, and crew assignments. Your team gets a route each morning that minimizes driving and maximizes the number of jobs they can complete.',
+      description: 'We build a routing system that takes your daily job list and outputs the optimal sequence, factoring in location, time windows, job duration, traffic patterns, and crew assignments. Your team gets a route each morning that minimizes driving and maximizes the number of jobs they can complete.',
       features: [
         {
           title: 'Daily Route Sequencing',
-          description: 'Feed in your jobs for the day and the system outputs the optimal order. Not just shortest distance — it accounts for time windows, job duration, and traffic patterns. Your crews spend less time on the road and more time on the job.',
+          description: 'Feed in your jobs for the day and the system outputs the optimal order. Not just shortest distance, it accounts for time windows, job duration, and traffic patterns. Your crews spend less time on the road and more time on the job.',
           icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
         },
         {
@@ -916,14 +916,14 @@ export const services: Record<string, ServiceData> = {
     },
 
     relatedProjects: [
-      { slug: 'route-simply', name: 'Route Simply', description: 'See Route Simply in action — AI-optimized daily routing that cut drive time by 30% for a contractor operation.' },
+      { slug: 'route-simply', name: 'Route Simply', description: 'See Route Simply in action, AI-optimized daily routing that cut drive time by 30% for a contractor operation.' },
     ],
 
     relatedIndustries: [
-      { slug: 'home-services', name: 'Home Services', blurb: 'Contractors drive to 5-8 job sites per day — route order matters enormously' },
+      { slug: 'home-services', name: 'Home Services', blurb: 'Contractors drive to 5-8 job sites per day, route order matters enormously' },
       { slug: 'hvac', name: 'HVAC Companies', blurb: 'HVAC techs cover wide service areas where inefficient routing wastes hours' },
-      { slug: 'landscaping', name: 'Landscaping', blurb: 'Landscaping crews visit 8-15 properties per day — route sequence drives profitability' },
-      { slug: 'cleaning', name: 'Cleaning Companies', blurb: 'Cleaning teams hit 4-8 locations daily — tight routes mean fitting more clients' },
+      { slug: 'landscaping', name: 'Landscaping', blurb: 'Landscaping crews visit 8-15 properties per day, route sequence drives profitability' },
+      { slug: 'cleaning', name: 'Cleaning Companies', blurb: 'Cleaning teams hit 4-8 locations daily, tight routes mean fitting more clients' },
     ],
 
     socialProof: {
@@ -942,11 +942,11 @@ export const services: Record<string, ServiceData> = {
       },
       {
         question: 'Does this work for multi-crew operations?',
-        answer: "Yes. The system optimizes routes across multiple crews simultaneously. It assigns jobs to the crew that can reach them most efficiently, balances workloads, and minimizes total fleet drive time — not just individual routes.",
+        answer: "Yes. The system optimizes routes across multiple crews simultaneously. It assigns jobs to the crew that can reach them most efficiently, balances workloads, and minimizes total fleet drive time, not just individual routes.",
       },
       {
         question: 'What if we already use a scheduling tool?',
-        answer: "We integrate with whatever you use — ServiceTitan, Jobber, Housecall Pro, even Google Sheets. The routing system reads your job list from your existing tool and outputs optimized routes. You do not need to switch platforms.",
+        answer: "We integrate with whatever you use, ServiceTitan, Jobber, Housecall Pro, even Google Sheets. The routing system reads your job list from your existing tool and outputs optimized routes. You do not need to switch platforms.",
       },
       {
         question: 'How long does setup take?',
@@ -978,7 +978,7 @@ export const services: Record<string, ServiceData> = {
     name: 'Inventory Automation',
     shortName: 'Inventory',
     icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
-    tagline: 'Daily inventory reports in your inbox — no logging in, no spreadsheets',
+    tagline: 'Daily inventory reports in your inbox, no logging in, no spreadsheets',
 
     meta: {
       title: 'Inventory Automation for Service Businesses | Brothers Automate',
@@ -1002,7 +1002,7 @@ export const services: Record<string, ServiceData> = {
     problem: {
       headline: 'You Are Running Your Inventory on Guesswork',
       painPoints: [
-        'You find out something is out of stock when a customer asks for it and you walk to the back to check. That is not inventory management — that is a guessing game.',
+        'You find out something is out of stock when a customer asks for it and you walk to the back to check. That is not inventory management, that is a guessing game.',
         'Pulling inventory data from your POS means logging in, navigating to reports, exporting a CSV, and trying to make sense of a spreadsheet. Nobody does that daily.',
         'Reorder decisions are based on gut feel, not data. You over-order some items and run out of others because there is no system tracking trends over time.',
         'Seasonal shifts catch you off guard. You did not notice that item was trending up until you were already out of stock for two weeks.',
@@ -1032,7 +1032,7 @@ export const services: Record<string, ServiceData> = {
         },
         {
           title: 'Low-Stock Alerts',
-          description: 'Set reorder thresholds for any item or category. When stock drops below the line, you get an alert immediately — not at the end of the week when it is already out. You reorder before customers ever notice.',
+          description: 'Set reorder thresholds for any item or category. When stock drops below the line, you get an alert immediately, not at the end of the week when it is already out. You reorder before customers ever notice.',
           icon: 'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9',
         },
       ],
@@ -1041,7 +1041,7 @@ export const services: Record<string, ServiceData> = {
     },
 
     relatedProjects: [
-      { slug: 'automated-inventory', name: 'Automated Inventory', description: 'See how we built automated daily inventory reports for a pet store using Square POS — synced every night, delivered every morning.' },
+      { slug: 'automated-inventory', name: 'Automated Inventory', description: 'See how we built automated daily inventory reports for a pet store using Square POS, synced every night, delivered every morning.' },
     ],
 
     relatedIndustries: [
@@ -1053,22 +1053,22 @@ export const services: Record<string, ServiceData> = {
       stats: [
         { number: 'Daily', label: 'Visibility', context: 'know your inventory position every single morning' },
         { number: '0', label: 'Manual Data Entry', context: 'the system handles every update automatically' },
-        { number: '100%', label: 'Accuracy', context: 'synced directly from your POS — no human errors' },
+        { number: '100%', label: 'Accuracy', context: 'synced directly from your POS, no human errors' },
       ],
     },
 
     faq: [
       {
         question: 'What POS systems do you support?',
-        answer: "Square, Shopify, Clover, Lightspeed, Toast — if it has an API, we can connect to it. We built the first version for a Square-based pet store, but the system architecture works with any modern POS. If you use something else, just ask and we will let you know.",
+        answer: "Square, Shopify, Clover, Lightspeed, Toast, if it has an API, we can connect to it. We built the first version for a Square-based pet store, but the system architecture works with any modern POS. If you use something else, just ask and we will let you know.",
       },
       {
         question: 'Can I customize what shows up in the daily report?',
-        answer: "Absolutely. You tell us what matters — top sellers, low stock items, dead stock, category breakdowns, revenue by product line — and we configure the report to show exactly that. Some owners want a one-page summary. Others want the full breakdown. We build what works for you.",
+        answer: "Absolutely. You tell us what matters, top sellers, low stock items, dead stock, category breakdowns, revenue by product line, and we configure the report to show exactly that. Some owners want a one-page summary. Others want the full breakdown. We build what works for you.",
       },
       {
         question: 'What if I have multiple locations?',
-        answer: "The system handles it. Each location syncs independently, and you can get a combined report or per-location reports — or both. Multi-location businesses actually get the most value because tracking inventory across stores manually is nearly impossible.",
+        answer: "The system handles it. Each location syncs independently, and you can get a combined report or per-location reports, or both. Multi-location businesses actually get the most value because tracking inventory across stores manually is nearly impossible.",
       },
       {
         question: 'How long does setup take?',

@@ -275,7 +275,7 @@ function SEOTab({ scan, keywords, competitors }: { scan: ScanRow; keywords: Keyw
 
   return (
     <>
-      {/* Position Distribution — computed from live keyword data */}
+      {/* Position Distribution, computed from live keyword data */}
       {keywords.length > 0 && (
         <Section title="Position Distribution">
           <div style={{ ...card, display: 'flex', flexWrap: 'wrap', gap: '12px' }}>

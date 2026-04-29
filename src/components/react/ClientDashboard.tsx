@@ -78,7 +78,7 @@ function computeHealthGrade(client: ClientOverview): { grade: string; color: str
   let score = 0;
   let maxScore = 0;
 
-  // Google reviews (0-30 pts) — most important for local businesses
+  // Google reviews (0-30 pts), most important for local businesses
   maxScore += 30;
   if (client.google_review_count !== null && client.google_review_count > 0) {
     score += Math.min(client.google_review_count / 50 * 30, 30);
@@ -91,7 +91,7 @@ function computeHealthGrade(client: ClientOverview): { grade: string; color: str
     score += Math.min(client.total_keywords / 100 * 20, 20);
   }
 
-  // Traffic (ETV) — actual estimated visitors
+  // Traffic (ETV), actual estimated visitors
   maxScore += 20;
   if (client.etv && client.etv > 0) {
     score += Math.min(client.etv / 500 * 20, 20);
@@ -235,7 +235,7 @@ export default function ClientDashboard() {
     };
 
     if (seoData) {
-      // Competitor — check traffic_comparison first (structured), then discovered array
+      // Competitor, check traffic_comparison first (structured), then discovered array
       const tc = seoData.competitors?.traffic_comparison;
       const disc = seoData.competitors?.discovered;
       if (tc && Array.isArray(tc) && tc.length >= 2) {

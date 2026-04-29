@@ -223,7 +223,7 @@ import QuizPopup from '../components/QuizPopup.astro';
       observer.observe(el);
     });
 
-    // Hero entrance — fire on load (no scroll required) for above-the-fold elements
+    // Hero entrance, fire on load (no scroll required) for above-the-fold elements
     requestAnimationFrame(() => {
       document.querySelectorAll('[data-animate-onload]').forEach(el => {
         el.classList.add('is-visible');

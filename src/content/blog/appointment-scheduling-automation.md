@@ -19,16 +19,16 @@ The short version: software does the booking, the confirming, the reminding, the
 
 The long version splits into a few jobs that used to live on your front desk or your phone:
 
-- **Intake** — someone asks for an appointment (web form, phone call, text, DM)
-- **Availability check** — the system looks at your real calendar, not last week's spreadsheet
-- **Booking** — the slot is locked in, customer info captured, payment collected if needed
-- **Confirmation** — instant text and email, calendar invite, prep instructions
-- **Reminders** — 48 hours out, 24 hours out, morning of
-- **Reschedule and cancel** — customer can move themselves, no human required
-- **Waitlist fill** — when someone cancels, the open slot gets offered to the next person automatically
-- **Follow-up** — review request, rebook nudge, dormant customer reactivation
+- **Intake**, someone asks for an appointment (web form, phone call, text, DM)
+- **Availability check**, the system looks at your real calendar, not last week's spreadsheet
+- **Booking**, the slot is locked in, customer info captured, payment collected if needed
+- **Confirmation**, instant text and email, calendar invite, prep instructions
+- **Reminders**, 48 hours out, 24 hours out, morning of
+- **Reschedule and cancel**, customer can move themselves, no human required
+- **Waitlist fill**, when someone cancels, the open slot gets offered to the next person automatically
+- **Follow-up**, review request, rebook nudge, dormant customer reactivation
 
-Most "scheduling tools" do the first half. The automation part — the gap-filling, the reminders, the AI taking the call at 9pm — is what turns it from a calendar app into an actual operations system.
+Most "scheduling tools" do the first half. The automation part, the gap-filling, the reminders, the AI taking the call at 9pm, is what turns it from a calendar app into an actual operations system.
 
 ## The numbers most owners don't want to hear
 
@@ -103,11 +103,11 @@ Here's what's running under the hood:
 
 - **Booking and calendar**: their existing Jobber account, with the customer-facing booking page turned on
 - **AI phone**: a custom-trained voice agent that knows their service area, common job types, and pricing ranges
-- **Workflow logic**: we use Gumloop for this. Gumloop handles the routing — when a booking comes in, it pulls customer history, checks for existing accounts, posts to Slack if it's a high-value job, and triggers the right reminder sequence based on service type
+- **Workflow logic**: we use Gumloop for this. Gumloop handles the routing, when a booking comes in, it pulls customer history, checks for existing accounts, posts to Slack if it's a high-value job, and triggers the right reminder sequence based on service type
 - **SMS**: Twilio behind the scenes, but the customer never sees it
 - **AI development**: we built the voice agent and the Gumloop logic with Claude Code
 
-Tools like Zapier and Make can handle the simpler connections, but for real workflow automation — the kind with branching, AI steps, and conditional logic — we use Gumloop. It's just better at the actual operations part.
+Tools like Zapier and Make can handle the simpler connections, but for real workflow automation, the kind with branching, AI steps, and conditional logic, we use Gumloop. It's just better at the actual operations part.
 
 ## What it costs
 
@@ -130,7 +130,7 @@ Real ranges, not vendor pricing pages.
 - Existing field service software (whatever they're already on)
 - Custom AI voice agent: ~$150-300/mo runtime
 - Gumloop workflows: ~$100/mo
-- Build cost (one-time): varies — but the ROI math is usually under 60 days
+- Build cost (one-time): varies, but the ROI math is usually under 60 days
 
 The payback rule we use: if the stack costs $X/mo, it should save or earn at least 5X in the first 90 days. If it doesn't, something's wrong with the setup.
 
@@ -138,7 +138,7 @@ The payback rule we use: if the stack costs $X/mo, it should save or earn at lea
 
 We've watched these go wrong enough times to flag them.
 
-**Over-automating the front of the funnel.** Don't replace human voice for high-value, complex jobs. If you sell $50K commercial installs, the AI shouldn't book those — it should qualify them and route to a human. Use automation for routine work.
+**Over-automating the front of the funnel.** Don't replace human voice for high-value, complex jobs. If you sell $50K commercial installs, the AI shouldn't book those, it should qualify them and route to a human. Use automation for routine work.
 
 **Reminder fatigue.** Three reminders is too many. Customers tune out. Pick two and time them well.
 
@@ -154,7 +154,7 @@ Worth saying out loud: scheduling automation won't fix a broken business. If you
 
 This works best when the rest of the operation is already pretty solid and the bottleneck is genuinely the manual scheduling work. Which, for most $1-5M service businesses we talk to, it is.
 
-If you want the broader picture of how this fits with the rest of your stack, we wrote about [business process automation](/blog/business-process-automation) and [AI tools for business automation](/blog/ai-tools-for-business-automation) — both worth a read after this.
+If you want the broader picture of how this fits with the rest of your stack, we wrote about [business process automation](/blog/business-process-automation) and [AI tools for business automation](/blog/ai-tools-for-business-automation), both worth a read after this.
 
 ## Frequently asked questions
 
@@ -168,7 +168,7 @@ Yes, when it's trained on your services, pricing ranges, and service area. The m
 
 ### How do I reduce no-shows without annoying customers?
 
-Two reminders, well-timed: one 24 hours out (with reschedule link) and one 2-3 hours before. Add a confirmation request that requires a one-tap response. That's the sweet spot — under 5% no-show without reminder fatigue.
+Two reminders, well-timed: one 24 hours out (with reschedule link) and one 2-3 hours before. Add a confirmation request that requires a one-tap response. That's the sweet spot, under 5% no-show without reminder fatigue.
 
 ### Can I keep my existing calendar tool?
 

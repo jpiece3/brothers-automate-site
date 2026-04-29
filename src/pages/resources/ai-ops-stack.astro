@@ -7,7 +7,7 @@ import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
 import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 ---
 
-<Layout title="AI Operations Stack — Brothers Automate" description="Every ops category scored by disruption level and consequence of failure. An interactive reference framework for service businesses planning their AI operations roadmap.">
+<Layout title="AI Operations Stack, Brothers Automate" description="Every ops category scored by disruption level and consequence of failure. An interactive reference framework for service businesses planning their AI operations roadmap.">
   <Header />
   <main class="ops-stack-page">
 
@@ -25,7 +25,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         <h1 class="op-respage-h1">
           The Full <span class="op-respage-h1-orange">AI Operations</span> Stack.
         </h1>
-        <p class="op-respage-sub">Every ops category scored by disruption level — plus a second axis: what breaks if you get it wrong.</p>
+        <p class="op-respage-sub">Every ops category scored by disruption level, plus a second axis: what breaks if you get it wrong.</p>
         <div class="op-ops-hero-note" data-animate="fade-up">
           <span class="op-pulse-dot"></span>
           <span><strong>Two axes, not one.</strong> Disruption level tells you how much AI is changing the category. Consequence of failure tells you how carefully to move.</span>
@@ -55,7 +55,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             </div>
             <div class="op-ops-risk-body">
               <p class="op-ops-risk-title">Reversible</p>
-              <p class="op-ops-risk-desc">Errors are catchable and fixable without lasting damage. Low cost of mistakes — good place to move fast and experiment.</p>
+              <p class="op-ops-risk-desc">Errors are catchable and fixable without lasting damage. Low cost of mistakes, good place to move fast and experiment.</p>
             </div>
           </div>
           <div class="op-ops-risk-col" data-animate="fade-up">
@@ -201,7 +201,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 
 <style is:global>
   /* ================================================================
-     AI OPS STACK — OPERATOR DESIGN SYSTEM
+     AI OPS STACK, OPERATOR DESIGN SYSTEM
      ================================================================ */
 
   .ops-stack-page {
@@ -888,10 +888,10 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         items: [
           { name: "Process Documentation & SOPs", level: "transformative", isNew: false, risk: "reversible",
             short: "AI that drafts, structures, and maintains standard operating procedures from recorded walkthroughs, interviews, or existing docs.",
-            detail: "One of the highest-ROI starting points for AI in ops. A single operator can document a process in minutes that would have taken days. The bigger shift is keeping docs current — AI can monitor process changes and flag stale SOPs automatically.",
+            detail: "One of the highest-ROI starting points for AI in ops. A single operator can document a process in minutes that would have taken days. The bigger shift is keeping docs current, AI can monitor process changes and flag stale SOPs automatically.",
             riskNote: "Errors produce bad documentation, not broken operations. Easy to review, correct, and republish. Low cost of mistakes makes this a strong first deployment." },
           { name: "Process Mining & Analysis", level: "high", isNew: false, risk: "reversible",
-            short: "AI that analyzes system logs and event data to map how processes actually run — versus how they’re supposed to run.",
+            short: "AI that analyzes system logs and event data to map how processes actually run, versus how they’re supposed to run.",
             detail: "The gap between the documented process and the real process is almost always larger than expected. AI process mining surfaces bottlenecks, rework loops, and compliance deviations that manual reviews miss entirely. Particularly powerful in finance, HR, and customer ops where system logs are rich.",
             riskNote: "Analysis outputs are recommendations, not actions. Worst case is a misread pattern that gets caught in review. Good place to experiment aggressively." },
           { name: "Workflow Automation Design", level: "high", isNew: true, risk: "moderate",
@@ -900,7 +900,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "A poorly designed automation can create data issues or process breakdowns before they’re caught. Pilot with non-critical workflows first, review outputs before activating in production." },
           { name: "Bottleneck & Waste Identification", level: "high", isNew: false, risk: "reversible",
             short: "AI analysis of operational data to surface inefficiencies, delays, and redundant steps across business functions.",
-            detail: "AI can now ingest data from across the business — HRIS, ERP, CRM, support tickets — and surface patterns that indicate waste or friction. The output is a prioritized list of improvement opportunities, not automated action. This is the diagnostic layer before intervention.",
+            detail: "AI can now ingest data from across the business, HRIS, ERP, CRM, support tickets, and surface patterns that indicate waste or friction. The output is a prioritized list of improvement opportunities, not automated action. This is the diagnostic layer before intervention.",
             riskNote: "Outputs are analytical, not operational. The risk is acting on a false positive and redesigning a process that was actually working. Validate findings before committing to change." }
         ]
       },
@@ -909,7 +909,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         items: [
           { name: "Job Description & Hiring Materials", level: "high", isNew: false, risk: "moderate",
             short: "AI-generated job descriptions, screening criteria, and interview question frameworks that reduce bias and improve consistency.",
-            detail: "AI dramatically speeds up the creation of hiring materials and can flag language that tends to reduce candidate diversity. The quality ceiling has risen significantly — a strong prompt produces better structured JDs than most hiring managers write manually.",
+            detail: "AI dramatically speeds up the creation of hiring materials and can flag language that tends to reduce candidate diversity. The quality ceiling has risen significantly, a strong prompt produces better structured JDs than most hiring managers write manually.",
             riskNote: "Biased or inaccurate JDs affect candidate quality and legal exposure. Human review of AI output is non-negotiable, especially for protected class language and qualification requirements." },
           { name: "Resume Screening & Shortlisting", level: "high", isNew: false, risk: "critical",
             short: "AI-assisted screening that filters and ranks candidates against defined criteria before human review.",
@@ -917,19 +917,19 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "Discriminatory screening decisions create legal liability and reputational damage. Human sign-off on all shortlisting decisions is required." },
           { name: "Onboarding Workflow Automation", level: "high", isNew: false, risk: "moderate",
             short: "AI-orchestrated onboarding sequences that automate task assignment, system provisioning, document routing, and progress tracking.",
-            detail: "Onboarding is full of repetitive, time-sensitive tasks that AI handles well — generating welcome packs, routing paperwork, triggering system access requests, scheduling check-ins. Most orgs still do this manually.",
+            detail: "Onboarding is full of repetitive, time-sensitive tasks that AI handles well, generating welcome packs, routing paperwork, triggering system access requests, scheduling check-ins. Most orgs still do this manually.",
             riskNote: "A broken onboarding flow creates poor first impressions and can delay system access or compliance training completion. Run parallel with existing process during pilot." },
           { name: "Performance Documentation", level: "medium", isNew: false, risk: "critical",
             short: "AI-assisted drafting of performance reviews, feedback summaries, and improvement plans from structured input.",
-            detail: "AI can help managers write clearer, more consistent performance documentation — reducing vagueness and emotional language. The risk is using AI output without meaningful human input or reflection.",
+            detail: "AI can help managers write clearer, more consistent performance documentation, reducing vagueness and emotional language. The risk is using AI output without meaningful human input or reflection.",
             riskNote: "Performance records affect pay, promotion, and termination decisions. AI-drafted content that is factually wrong or legally non-compliant creates significant HR and legal exposure." },
           { name: "HR Policy Q&A & Knowledge Access", level: "transformative", isNew: true, risk: "moderate",
             short: "AI assistants trained on internal HR policies that answer employee questions instantly and consistently, reducing HR team load.",
-            detail: "One of the clearest quick wins in people ops. Employees have the same recurring questions — leave policies, benefits, expense rules — and HR teams spend significant time answering them. An AI trained on current policy docs handles the volume at near-zero marginal cost.",
+            detail: "One of the clearest quick wins in people ops. Employees have the same recurring questions, leave policies, benefits, expense rules, and HR teams spend significant time answering them. An AI trained on current policy docs handles the volume at near-zero marginal cost.",
             riskNote: "An outdated or incorrect policy answer creates compliance risk and employee frustration. Policy knowledge bases need a clear update process and a fallback to human HR." },
           { name: "Workforce Planning & Capacity Modelling", level: "medium", isNew: false, risk: "moderate",
             short: "AI-assisted modelling of headcount needs, team capacity, and hiring timelines against business forecasts.",
-            detail: "AI can ingest multiple data sources — attrition trends, project pipelines, budget forecasts — and model hiring scenarios faster than spreadsheet-based approaches. Still requires significant human judgment on inputs and assumptions.",
+            detail: "AI can ingest multiple data sources, attrition trends, project pipelines, budget forecasts, and model hiring scenarios faster than spreadsheet-based approaches. Still requires significant human judgment on inputs and assumptions.",
             riskNote: "Bad capacity models lead to over or underhiring, with direct cost implications. AI outputs need human sanity-checking against business reality." }
         ]
       },
@@ -943,7 +943,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
           { name: "Spend Analysis & Category Intelligence", level: "high", isNew: false, risk: "reversible",
             short: "AI analysis of procurement data to surface spending patterns, vendor concentration risk, and savings opportunities.",
             detail: "AI can classify and analyse spend data at a level of granularity that manual analysis can’t match. Tail spend categories that were previously too fragmented to manage are now visible.",
-            riskNote: "Analytical output only — no direct action is taken. Errors produce wrong recommendations rather than wrong transactions." },
+            riskNote: "Analytical output only, no direct action is taken. Errors produce wrong recommendations rather than wrong transactions." },
           { name: "Vendor & Contract Intelligence", level: "high", isNew: false, risk: "moderate",
             short: "AI extraction and analysis of contract terms, renewal dates, SLAs, and risk clauses across vendor agreements.",
             detail: "Most orgs have contracts scattered across email and shared drives with no systematic view of obligations. AI can ingest the full contract estate and build a searchable, queryable knowledge layer.",
@@ -954,7 +954,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "An incorrect variance narrative that reaches leadership creates confusion and erodes trust. Finance team review before distribution is essential." },
           { name: "Expense Management & Compliance", level: "high", isNew: false, risk: "moderate",
             short: "AI-powered expense categorisation, policy compliance checking, and anomaly detection in employee expense claims.",
-            detail: "AI can review every expense submission against policy rules in real-time — catching out-of-policy claims, duplicate submissions, and unusual patterns that manual spot-checks miss.",
+            detail: "AI can review every expense submission against policy rules in real-time, catching out-of-policy claims, duplicate submissions, and unusual patterns that manual spot-checks miss.",
             riskNote: "False positives create employee friction. False negatives miss fraud. The system needs clear escalation paths." },
           { name: "Financial Forecasting", level: "medium", isNew: false, risk: "critical",
             short: "AI-assisted revenue and cost forecasting using historical patterns, pipeline data, and external signals.",
@@ -966,16 +966,16 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         id: "04", title: "IT & Systems Ops",
         items: [
           { name: "IT Helpdesk & Ticket Resolution", level: "transformative", isNew: false, risk: "reversible",
-            short: "AI agents that resolve common IT requests — password resets, access provisioning, software installs — without human intervention.",
+            short: "AI agents that resolve common IT requests, password resets, access provisioning, software installs, without human intervention.",
             detail: "Tier-1 IT support is one of the strongest early use cases for agentic AI. A large portion of IT helpdesk volume is repetitive and low-risk. The impact on IT team capacity is significant.",
             riskNote: "A wrong resolution restarts a ticket. No lasting damage in most cases. The risk ceiling rises for access-related requests." },
           { name: "Incident Detection & Response", level: "high", isNew: false, risk: "moderate",
             short: "AI monitoring that detects system anomalies, correlates signals across infrastructure, and initiates first-response actions.",
-            detail: "AI can monitor infrastructure at a scale and speed that human teams can’t match — correlating signals across logs, metrics, and traces to surface incidents earlier.",
+            detail: "AI can monitor infrastructure at a scale and speed that human teams can’t match, correlating signals across logs, metrics, and traces to surface incidents earlier.",
             riskNote: "Automated first-response actions can make incidents worse if misapplied. Human approval for any action that affects production systems is best practice." },
           { name: "Security Threat Monitoring", level: "high", isNew: false, risk: "critical",
             short: "AI-powered threat detection, behavioural anomaly analysis, and automated security alert triage.",
-            detail: "AI has become foundational to modern security operations — the volume of signals is too high for human analysts to process manually.",
+            detail: "AI has become foundational to modern security operations, the volume of signals is too high for human analysts to process manually.",
             riskNote: "A missed threat creates breach exposure. Human analysts in the loop on all material alerts is non-negotiable." },
           { name: "Technical Documentation Generation", level: "high", isNew: false, risk: "reversible",
             short: "AI that generates, updates, and maintains technical documentation, runbooks, and architecture records from code and system data.",
@@ -999,7 +999,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             detail: "The jump from rule-based chatbots to LLM agents is a step change in what automated support can resolve. These agents can understand context and handle ambiguity.",
             riskNote: "A poorly handled customer interaction damages trust. Escalation logic needs to be robust. Monitor resolution quality and sentiment regularly." },
           { name: "Quality Assurance & Conversation Review", level: "high", isNew: false, risk: "reversible",
-            short: "AI that reviews 100% of support interactions for quality, compliance, and coaching opportunities — replacing sample-based QA.",
+            short: "AI that reviews 100% of support interactions for quality, compliance, and coaching opportunities, replacing sample-based QA.",
             detail: "Traditional QA reviews 2-5% of interactions. AI QA reviews all of them. This changes both the coverage and the nature of the insights.",
             riskNote: "Wrong QA scores can unfairly affect agent performance records. Outputs should be treated as inputs to coaching conversations." },
           { name: "Voice of Customer Analysis", level: "high", isNew: false, risk: "reversible",
@@ -1008,7 +1008,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "Analytical output with no direct customer-facing action. Errors produce wrong priorities. Low consequence compared to direct customer impact." },
           { name: "SLA Monitoring & Escalation", level: "high", isNew: false, risk: "moderate",
             short: "AI monitoring of support queues that predicts SLA breach risk and triggers proactive escalation before deadlines are missed.",
-            detail: "Reactive SLA management — catching breaches after they happen — is the norm. AI that monitors queue velocity can predict breaches hours in advance.",
+            detail: "Reactive SLA management, catching breaches after they happen, is the norm. AI that monitors queue velocity can predict breaches hours in advance.",
             riskNote: "Late escalations still result in SLA breaches and customer impact. The system needs clear alert thresholds." }
         ]
       },
@@ -1028,12 +1028,12 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             detail: "The barrier to building useful dashboards has historically been technical. AI that can translate natural language into a working dashboard removes that bottleneck.",
             riskNote: "A misconfigured dashboard shows the wrong metric. Easy to spot and fix. Errors don’t propagate downstream unless driving automated decisions." },
           { name: "Data Quality Monitoring", level: "high", isNew: false, risk: "moderate",
-            short: "AI that continuously monitors data pipelines for quality issues — missing values, schema drift, statistical anomalies — before they reach reports.",
+            short: "AI that continuously monitors data pipelines for quality issues, missing values, schema drift, statistical anomalies, before they reach reports.",
             detail: "Bad data reaching operational reports is a persistent, expensive problem. AI data quality monitoring catches issues at the pipeline level rather than the report level.",
             riskNote: "Missed data quality issues produce wrong reports and wrong decisions downstream. The system needs clear remediation workflows." },
           { name: "KPI Definition & Alignment", level: "low", isNew: false, risk: "moderate",
             short: "AI-assisted documentation of metric definitions, calculation logic, and ownership to reduce confusion across teams.",
-            detail: "Metric inconsistency — different teams calculating the same KPI differently — is a chronic ops problem. AI can help document and standardise definitions, but the alignment work is fundamentally human.",
+            detail: "Metric inconsistency, different teams calculating the same KPI differently, is a chronic ops problem. AI can help document and standardise definitions, but the alignment work is fundamentally human.",
             riskNote: "Wrong or contested metric definitions drive misaligned priorities. AI can assist the documentation, but definitional decisions require human agreement." }
         ]
       },
@@ -1046,7 +1046,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "A missed regulatory change creates compliance exposure. AI monitoring reduces the risk but doesn’t eliminate it. Human legal review of flagged changes is required." },
           { name: "Contract Review & Redlining", level: "high", isNew: false, risk: "critical",
             short: "AI-assisted contract review that flags non-standard clauses, liability risks, and deviations from preferred terms.",
-            detail: "AI contract review tools have matured significantly — they can identify risk clauses, compare against standard playbooks, and suggest redlines across large volumes.",
+            detail: "AI contract review tools have matured significantly, they can identify risk clauses, compare against standard playbooks, and suggest redlines across large volumes.",
             riskNote: "A missed clause in a significant contract creates legal and financial exposure. Human legal review on all material contracts is non-negotiable." },
           { name: "Audit Trail & Documentation", level: "high", isNew: false, risk: "moderate",
             short: "AI that automatically generates and maintains audit trails, evidence packages, and compliance documentation from operational data.",
@@ -1074,7 +1074,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             detail: "AI can optimise inventory levels across multiple locations simultaneously, accounting for lead times, demand variability, and carrying costs.",
             riskNote: "Over-ordering ties up capital. Under-ordering creates stockouts and lost sales. Both have real cost implications." },
           { name: "Supplier Risk Monitoring", level: "medium", isNew: false, risk: "moderate",
-            short: "AI monitoring of supplier health indicators — financial stability, delivery performance, news sentiment, and geopolitical risk.",
+            short: "AI monitoring of supplier health indicators, financial stability, delivery performance, news sentiment, and geopolitical risk.",
             detail: "AI can monitor supplier risk signals at a breadth and speed that manual approaches can’t match. Particularly valuable for critical tier-1 and tier-2 suppliers.",
             riskNote: "A missed supplier risk signal can result in supply disruption. AI monitoring improves coverage but requires clear escalation workflows." }
         ]
@@ -1087,7 +1087,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             detail: "The amount of time employees spend searching for internal information is staggering. AI that can surface relevant answers from across wikis, docs, and Slack is a clear productivity win.",
             riskNote: "A wrong answer wastes time. An outdated answer causes rework. Easy to correct and the cost of errors is low relative to the time saved." },
           { name: "Content Generation & Editing", level: "transformative", isNew: false, risk: "moderate",
-            short: "AI that drafts, edits, and formats business content — reports, proposals, presentations, communications — from prompts or templates.",
+            short: "AI that drafts, edits, and formats business content, reports, proposals, presentations, communications, from prompts or templates.",
             detail: "This is the category most people experience first. AI dramatically accelerates content production. The quality ceiling depends on the operator’s ability to prompt and edit.",
             riskNote: "Published content with errors, inappropriate tone, or incorrect claims creates reputational risk. Human review and approval workflows are required for external content." },
           { name: "Translation & Localisation", level: "high", isNew: false, risk: "moderate",
@@ -1125,9 +1125,9 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         focus: ["Resume screening & hiring", "Financial reporting & forecasts", "Contract review", "Access & identity management"] },
       { num: "03", title: "The AI Does the <em>First Draft</em>", desc: "For moderate-risk categories, the best pattern is AI generating the first version and a human reviewing, editing, and approving. This captures most of the time savings while maintaining quality.",
         focus: ["Performance reviews", "Budget variance reports", "Onboarding workflows", "Content generation"] },
-      { num: "04", title: "Monitor the <em>AI’s Work</em>, Not Just the Output", desc: "Once AI handles a process, you need visibility into how it’s performing — not just whether the final output looks right. Build monitoring from day one.",
+      { num: "04", title: "Monitor the <em>AI’s Work</em>, Not Just the Output", desc: "Once AI handles a process, you need visibility into how it’s performing, not just whether the final output looks right. Build monitoring from day one.",
         focus: ["QA review of AI support interactions", "Audit trails for automated decisions", "Anomaly detection on AI outputs", "Regular accuracy reviews"] },
-      { num: "05", title: "Combine Categories for <em>Compound Impact</em>", desc: "The biggest gains come from connecting AI across categories — not deploying it in isolation. Process mining that feeds automation design that feeds knowledge management.",
+      { num: "05", title: "Combine Categories for <em>Compound Impact</em>", desc: "The biggest gains come from connecting AI across categories, not deploying it in isolation. Process mining that feeds automation design that feeds knowledge management.",
         focus: ["Process mining → workflow automation", "Support triage → knowledge base updates", "Invoice processing → spend analysis", "Demand forecasting → inventory management"] },
       { num: "06", title: "Disruption Level Is Not <em>Priority Level</em>", desc: "The most transformative categories are not necessarily where you should start. Priority = disruption level × relevance to your business ÷ consequence of failure.",
         focus: ["Map your current pain points first", "Score by operational impact, not hype", "Factor in your team’s readiness", "Build a phased roadmap, not a big bang"] }

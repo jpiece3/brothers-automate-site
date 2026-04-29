@@ -2,7 +2,7 @@
 import EyebrowTag from './operator/EyebrowTag.astro';
 import TopUtilityStrip from './operator/TopUtilityStrip.astro';
 
-// The 6 builds — same data as projects.ts but trimmed to what the cards need.
+// The 6 builds, same data as projects.ts but trimmed to what the cards need.
 const cards = [
   {
     n: '01',
@@ -33,7 +33,7 @@ const cards = [
     href: '/projects/client-scan',
     eyebrow: 'SEO Audit Engine',
     title: 'Hand prospects an audit before the sales call.',
-    body: 'Drop a URL. Get a branded report with 50+ checks in 10 minutes. Use it as a lead magnet, sales-call opener, or paid teardown — they walk in already convinced.',
+    body: 'Drop a URL. Get a branded report with 50+ checks in 10 minutes. Use it as a lead magnet, sales-call opener, or paid teardown, they walk in already convinced.',
     metrics: [
       { value: '10 min', label: 'Full audit', target: 10, fmt: 'min' },
       { value: '50+', label: 'Data points', target: 50, fmt: 'plus' },
@@ -57,7 +57,7 @@ const cards = [
     href: '/projects/screenfast',
     eyebrow: 'AI Resume Screener',
     title: 'From 200 resumés to 5 finalists in minutes.',
-    body: 'Drop in 200 resumés. AI scores each against your role. You get a ranked top 5 in the time it takes to make coffee — instead of losing your weekend to it.',
+    body: 'Drop in 200 resumés. AI scores each against your role. You get a ranked top 5 in the time it takes to make coffee, instead of losing your weekend to it.',
     metrics: [
       { value: '85%', label: 'Less screening time', target: 85, fmt: 'percent' },
       { value: 'Sec', label: 'Per resumé', target: 1, fmt: 'static' },
@@ -101,7 +101,7 @@ const pipelineLabels = {
     <div class="op-builds-header" data-animate="fade-up">
       <div class="op-builds-header-left">
         <EyebrowTag label="THE BUILDS · 06 SYSTEMS" />
-        <h2 class="op-builds-h2">What we ship — and what each one runs while you don't.</h2>
+        <h2 class="op-builds-h2">What we ship, and what each one runs while you don't.</h2>
       </div>
       <div class="op-builds-header-meta op-mono">
         HOVER ANY CARD →<br/>
@@ -140,7 +140,7 @@ const pipelineLabels = {
             <h3 class="op-card-title">{card.title}</h3>
           </div>
 
-          {/* Console — varies per card */}
+          {/* Console, varies per card */}
           <div class="op-card-console">
             {/* Pipeline row (shared across all console types) */}
             <div class="op-card-pipeline">
@@ -182,7 +182,7 @@ const pipelineLabels = {
                 </div>
                 <div class="op-quote-reply">
                   <div class="op-mono op-quote-reply-label">QUOTE.PDF · 1m 47s</div>
-                  <div class="op-quote-reply-text">$4,820 — sent to inbox</div>
+                  <div class="op-quote-reply-text">$4,820, sent to inbox</div>
                 </div>
                 <div class="op-quote-meta op-mono">
                   <span class="op-quote-live"><span class="op-pulse-dot"></span> LIVE</span>
@@ -445,7 +445,7 @@ const pipelineLabels = {
     text-wrap: balance;
   }
 
-  /* Console body — shared */
+  /* Console body, shared */
   .op-card-console {
     background: var(--op-navy);
     border-top: var(--op-border);

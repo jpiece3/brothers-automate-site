@@ -42,11 +42,11 @@ const breadcrumbSchema = {
               <span class="op-curious-h1-orange">not ready to chat?</span>
             </h1>
             <p class="op-curious-sub" data-animate="fade-up">
-              Tell us what you're stuck on. We'll write back within 24 hours with a plain-English read on whether AI fits — and what we'd build if it does. No call required, no deck, no pitch.
+              Tell us what you're stuck on. We'll write back within 24 hours with a plain-English read on whether AI fits, and what we'd build if it does. No call required, no deck, no pitch.
             </p>
             <ul class="op-curious-bullets op-mono">
               <li><span class="op-pulse-dot"></span><span>REPLY WITHIN 24 HOURS</span></li>
-              <li><span class="op-pulse-dot"></span><span>FROM JAMES OR BRENDAN — NOT A SEQUENCE</span></li>
+              <li><span class="op-pulse-dot"></span><span>FROM JAMES OR BRENDAN, NOT A SEQUENCE</span></li>
               <li><span class="op-pulse-dot"></span><span>NO MAILING LIST · NEVER SHARED</span></li>
             </ul>
           </div>
@@ -77,15 +77,15 @@ const breadcrumbSchema = {
 
             <label class="op-curious-field">
               <span class="op-mono op-curious-label">BUSINESS <span class="op-curious-opt">OPTIONAL</span></span>
-              <input type="text" name="business" id="cf-business" autocomplete="organization" maxlength="160" placeholder="What you do — e.g. plumbing, real estate, agency" />
+              <input type="text" name="business" id="cf-business" autocomplete="organization" maxlength="160" placeholder="What you do, e.g. plumbing, real estate, agency" />
             </label>
 
             <label class="op-curious-field">
               <span class="op-mono op-curious-label">WHAT'S ON YOUR MIND? <span class="op-curious-opt">OPTIONAL</span></span>
-              <textarea name="notes" id="cf-notes" rows="5" maxlength="2000" placeholder="What's eating your time? Where do you think AI might fit? Any automations you've tried that didn't stick? Skip it if you'd rather just chat — we'll figure it out together."></textarea>
+              <textarea name="notes" id="cf-notes" rows="5" maxlength="2000" placeholder="What's eating your time? Where do you think AI might fit? Any automations you've tried that didn't stick? Skip it if you'd rather just chat, we'll figure it out together."></textarea>
             </label>
 
-            <!-- Honeypot — bots fill this; humans never see it -->
+            <!-- Honeypot, bots fill this; humans never see it -->
             <div class="op-curious-honeypot" aria-hidden="true">
               <label>Website</label>
               <input type="text" name="website_hp" id="cf-website-hp" tabindex="-1" autocomplete="off" />
@@ -119,7 +119,7 @@ const breadcrumbSchema = {
             <p class="op-mono op-curious-success-eyebrow">NOTE LOGGED · 24H REPLY WINDOW</p>
             <h2 class="op-curious-success-title">Got it. We'll write back.</h2>
             <p class="op-curious-success-body">
-              You'll hear from <strong>James or Brendan</strong> within 24 hours — straight from our actual inbox, not a sequence. If you change your mind and want to grab time directly, the calendar's right there.
+              You'll hear from <strong>James or Brendan</strong> within 24 hours, straight from our actual inbox, not a sequence. If you change your mind and want to grab time directly, the calendar's right there.
             </p>
             <div class="op-curious-success-actions">
               <a href="https://cal.com/james-pinder/simple-automation-discovery" class="op-curious-success-cal op-mono" target="_blank" rel="noopener">
@@ -220,7 +220,7 @@ const breadcrumbSchema = {
           .catch(function (err) {
             console.error('Curious form submit failed:', err);
             setLoading(false);
-            setError("Hmm, that didn't go through. Email james@simpleflosolutions.com directly — we'll pick it up there.");
+            setError("Hmm, that didn't go through. Email james@simpleflosolutions.com directly, we'll pick it up there.");
           });
       });
     })();
@@ -462,7 +462,7 @@ const breadcrumbSchema = {
     color: var(--op-navy);
   }
 
-  /* Success state — display: flex would override the [hidden] attribute,
+  /* Success state, display: flex would override the [hidden] attribute,
      so explicitly hide it here too. */
   .op-curious-success[hidden] { display: none; }
   .op-curious-success {

@@ -37,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Vercel parses JSON bodies automatically when Content-Type is application/json.
   const body = (req.body ?? {}) as Record<string, unknown>;
 
-  // Honeypot — bots fill this; humans never see the field. Silently succeed.
+  // Honeypot, bots fill this; humans never see the field. Silently succeed.
   if (clean(body.website_hp, 200)) {
     res.status(200).json({ status: 'ok' });
     return;
@@ -61,7 +61,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Gumloop pipeline uses a Webhook Input node, which captures the entire
   // request body as one blob exposed as "Webhook Body". So we send the
-  // fields as a flat JSON object — NOT wrapped in pipeline_inputs (that
+  // fields as a flat JSON object, NOT wrapped in pipeline_inputs (that
   // wrapper is for pipelines with named Input nodes, not webhook inputs).
   const payload = {
     first_name: firstName,

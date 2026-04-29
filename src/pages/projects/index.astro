@@ -18,7 +18,7 @@ function getProjectsBySlug(slugs: string[]): Project[] {
     .filter((p): p is Project => p !== undefined);
 }
 
-// The featured 6 — same lineup as homepage
+// The featured 6, same lineup as homepage
 const featured = getProjectsBySlug([
   'quiz-funnels',
   'cpq-agent',
@@ -36,13 +36,13 @@ const categories = [
   {
     code: 'GROUP_01',
     heading: 'Get more and better leads.',
-    description: 'Systems that capture, qualify, and follow up with leads — automatically, around the clock.',
+    description: 'Systems that capture, qualify, and follow up with leads, automatically, around the clock.',
     projects: getProjectsBySlug(['after-hours-agent', 'cpq-agent', 'signal-engine', 'daily-ads', 'seo-blog-autopilot']),
   },
   {
     code: 'GROUP_02',
     heading: 'Eliminate repetitive admin.',
-    description: 'The onboarding, tracking, and scheduling work that eats your week — handled by systems that run themselves.',
+    description: 'The onboarding, tracking, and scheduling work that eats your week, handled by systems that run themselves.',
     projects: getProjectsBySlug(['onboarding-workflow', 'automated-inventory', 'route-simply']),
   },
   {
@@ -91,7 +91,7 @@ const breadcrumbSchema = {
         </h1>
 
         <p class="op-projhero-sub" data-animate="fade-up">
-          Done-for-you automation for small service teams. We build the systems that handle your follow-up, scheduling, admin, and reporting — so you can take on more clients without hiring more people.
+          Done-for-you automation for small service teams. We build the systems that handle your follow-up, scheduling, admin, and reporting, so you can take on more clients without hiring more people.
         </p>
 
         <div class="op-projhero-ctas" data-animate="fade-up">
@@ -116,7 +116,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    {/* Flagship 6 — same as homepage */}
+    {/* Flagship 6, same as homepage */}
     <section class="op-flagship op-grid-bg" id="flagship">
       <div class="op-flagship-frame">
         <div class="op-flagship-header" data-animate="fade-up">
@@ -232,7 +232,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    {/* Custom builds strip — minimized at bottom */}
+    {/* Custom builds strip, minimized at bottom */}
     <section class="op-custom op-grid-bg">
       <div class="op-custom-frame">
         <div class="op-custom-header" data-animate="fade-up">

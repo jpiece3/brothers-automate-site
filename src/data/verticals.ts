@@ -1004,7 +1004,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for Dental Practices',
       headline: 'Your Chair Time Is Valuable.',
       headlineGradient: "Stop Losing Patients to Missed Calls.",
-      subheadline: "The average dental practice misses 30% of incoming calls. That's new patients choosing the office down the street. We build AI systems that capture every inquiry, automate your recall list, and keep your reviews pristine — so your front desk can focus on the patients in the chair.",
+      subheadline: "The average dental practice misses 30% of incoming calls. That's new patients choosing the office down the street. We build AI systems that capture every inquiry, automate your recall list, and keep your reviews pristine, so your front desk can focus on the patients in the chair.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '30%', label: 'Fewer Missed Calls' },
@@ -1043,12 +1043,12 @@ export const verticals: Record<string, VerticalData> = {
       features: [
         {
           title: 'Capture Every Patient Inquiry',
-          description: "An AI system responds to new patient inquiries within 60 seconds — by text, web form, or after-hours call. It qualifies insurance, collects basic info, and books directly into your schedule. No more missed calls turning into missed patients.",
+          description: "An AI system responds to new patient inquiries within 60 seconds, by text, web form, or after-hours call. It qualifies insurance, collects basic info, and books directly into your schedule. No more missed calls turning into missed patients.",
           icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
         },
         {
           title: 'Automated Recall Campaigns',
-          description: "The system tracks every patient's last visit and sends personalized recall sequences — text, email, even voicemail drops. Patients who haven't been in 6 months get a gentle nudge. Those at 12 months get a stronger one. Your hygiene schedule stays full without your team lifting a finger.",
+          description: "The system tracks every patient's last visit and sends personalized recall sequences, text, email, even voicemail drops. Patients who haven't been in 6 months get a gentle nudge. Those at 12 months get a stronger one. Your hygiene schedule stays full without your team lifting a finger.",
           icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
         },
         {
@@ -1057,7 +1057,7 @@ export const verticals: Record<string, VerticalData> = {
           icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
         },
       ],
-      conclusion: "Your front desk goes from overwhelmed to organized. New patients get captured, existing patients come back, and your online reputation grows — all automatically.",
+      conclusion: "Your front desk goes from overwhelmed to organized. New patients get captured, existing patients come back, and your online reputation grows, all automatically.",
       callout: "Most dental practices see a full ROI within 60 days. The systems pay for themselves with just 2-3 new patients.",
     },
 
@@ -1065,7 +1065,7 @@ export const verticals: Record<string, VerticalData> = {
       headline: 'Systems Built for Dental Practices',
       subheadline: 'Real projects we build for practices like yours',
       systems: [
-        { slug: 'quiz-funnels', name: 'New Patient Inquiry Quiz', description: 'Qualifies insurance, collects patient info, and books appointments — all before your front desk picks up the phone.' },
+        { slug: 'quiz-funnels', name: 'New Patient Inquiry Quiz', description: 'Qualifies insurance, collects patient info, and books appointments, all before your front desk picks up the phone.' },
         { slug: 'brand-research', name: 'Competitor Analysis', description: "See exactly how nearby practices position themselves, what patients say about them, and where you can win." },
         { slug: 'daily-ads', name: 'Patient Acquisition Ads', description: 'Fresh ad creative generated daily for Google and Meta. No more running the same tired ads for months.' },
       ],
@@ -1096,7 +1096,7 @@ export const verticals: Record<string, VerticalData> = {
       },
       {
         question: 'Will patients know they\'re talking to AI?',
-        answer: "The system is designed to feel like a knowledgeable front desk team member. It handles the initial qualification and booking, then your team takes over for anything clinical. Patients get fast, helpful responses — that's what matters.",
+        answer: "The system is designed to feel like a knowledgeable front desk team member. It handles the initial qualification and booking, then your team takes over for anything clinical. Patients get fast, helpful responses, that's what matters.",
       },
       {
         question: 'How long does it take to set up?',
@@ -1141,7 +1141,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for Law Firms',
       headline: 'Every Missed Inquiry Is a',
       headlineGradient: 'Case That Went Somewhere Else.',
-      subheadline: "Potential clients contact 3-4 firms before choosing one. The firm that responds fastest and most professionally wins. We build AI systems that qualify leads instantly, automate your intake process, and give you intelligence on competing firms — so you win more cases without more admin hours.",
+      subheadline: "Potential clients contact 3-4 firms before choosing one. The firm that responds fastest and most professionally wins. We build AI systems that qualify leads instantly, automate your intake process, and give you intelligence on competing firms, so you win more cases without more admin hours.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '5min', label: 'Avg Response Time' },
@@ -1167,7 +1167,7 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '40',
           unit: '% unqualified',
-          text: "40% of initial consultations are with prospects who aren't a good fit — wrong practice area, unrealistic expectations, or no budget. Each wasted consultation costs you an hour of attorney time."
+          text: "40% of initial consultations are with prospects who aren't a good fit, wrong practice area, unrealistic expectations, or no budget. Each wasted consultation costs you an hour of attorney time."
         },
       ],
       bottomStat: "The average law firm spends 30% of its time on non-billable administrative work. That's nearly a third of your capacity going to paperwork instead of practicing law.",
@@ -1180,7 +1180,7 @@ export const verticals: Record<string, VerticalData> = {
       features: [
         {
           title: 'Qualify Clients Instantly',
-          description: "An AI intake system asks the right questions — practice area, timeline, budget range, case details — and routes qualified prospects to your calendar. Unqualified inquiries get helpful resources instead of your time.",
+          description: "An AI intake system asks the right questions, practice area, timeline, budget range, case details, and routes qualified prospects to your calendar. Unqualified inquiries get helpful resources instead of your time.",
           icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
         },
         {
@@ -1190,7 +1190,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Competitive Intelligence',
-          description: "Know exactly what other firms in your market are doing — their positioning, their reviews, their ad spend. The system monitors your competitive landscape daily so you can position where competitors are weakest.",
+          description: "Know exactly what other firms in your market are doing, their positioning, their reviews, their ad spend. The system monitors your competitive landscape daily so you can position where competitors are weakest.",
           icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
         },
       ],
@@ -1202,7 +1202,7 @@ export const verticals: Record<string, VerticalData> = {
       headline: 'Systems Built for Law Firms',
       subheadline: 'Real projects we build for firms like yours',
       systems: [
-        { slug: 'quiz-funnels', name: 'Case Qualification System', description: 'Qualifies prospects by practice area, timeline, and budget — then books qualified leads directly onto your calendar.' },
+        { slug: 'quiz-funnels', name: 'Case Qualification System', description: 'Qualifies prospects by practice area, timeline, and budget, then books qualified leads directly onto your calendar.' },
         { slug: 'signal-engine', name: 'Competitive Intelligence', description: "Track competing firms' positioning, reviews, and market moves. Know where to win before they do." },
         { slug: 'onboarding-workflow', name: 'Client Onboarding', description: 'Collect retainers, documents, and case info automatically. Clients arrive to their first meeting fully prepared.' },
       ],
@@ -1233,7 +1233,7 @@ export const verticals: Record<string, VerticalData> = {
       },
       {
         question: 'Does this work for my practice area?',
-        answer: "Personal injury, family law, estate planning, business law, criminal defense, immigration — if clients find you online and need to be qualified, these systems work. We customize the intake flow to your specific practice areas.",
+        answer: "Personal injury, family law, estate planning, business law, criminal defense, immigration, if clients find you online and need to be qualified, these systems work. We customize the intake flow to your specific practice areas.",
       },
       {
         question: 'How long does setup take?',
@@ -1294,12 +1294,12 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '23',
           unit: 'touches per client',
-          text: "The average accounting firm contacts each client 23 times to collect all their tax documents. That's emails, calls, texts, and follow-ups — for every single client. Multiply that by your client list and you've got a full-time job that adds zero billable value."
+          text: "The average accounting firm contacts each client 23 times to collect all their tax documents. That's emails, calls, texts, and follow-ups, for every single client. Multiply that by your client list and you've got a full-time job that adds zero billable value."
         },
         {
           number: '6',
           unit: 'hrs onboarding',
-          text: "New client onboarding takes 6+ hours of manual work per client — engagement letters, W-9s, prior year returns, entity documents. Most of it is copy-paste and follow-up. Your CPAs should be advising clients, not chasing paperwork."
+          text: "New client onboarding takes 6+ hours of manual work per client, engagement letters, W-9s, prior year returns, entity documents. Most of it is copy-paste and follow-up. Your CPAs should be advising clients, not chasing paperwork."
         },
         {
           number: '45',
@@ -1322,7 +1322,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Client Onboarding on Autopilot',
-          description: "New clients get a seamless onboarding flow: engagement letter, document checklist, portal access, and prior year data requests — all sent and tracked automatically. Your team gets notified when everything is complete and ready for work.",
+          description: "New clients get a seamless onboarding flow: engagement letter, document checklist, portal access, and prior year data requests, all sent and tracked automatically. Your team gets notified when everything is complete and ready for work.",
           icon: 'M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z',
         },
         {
@@ -1331,7 +1331,7 @@ export const verticals: Record<string, VerticalData> = {
           icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
         },
       ],
-      conclusion: "Your team focuses on advisory work and client relationships. The admin runs itself — during busy season and beyond.",
+      conclusion: "Your team focuses on advisory work and client relationships. The admin runs itself, during busy season and beyond.",
       callout: "Firms that automate document collection report finishing busy season 2-3 weeks earlier. That's time back for your team and your family.",
     },
 
@@ -1339,7 +1339,7 @@ export const verticals: Record<string, VerticalData> = {
       headline: 'Systems Built for Accounting Firms',
       subheadline: 'Real projects we build for firms like yours',
       systems: [
-        { slug: 'onboarding-workflow', name: 'Client Onboarding System', description: 'Engagement letters, document checklists, and portal setup — all automated from the moment a client signs.' },
+        { slug: 'onboarding-workflow', name: 'Client Onboarding System', description: 'Engagement letters, document checklists, and portal setup, all automated from the moment a client signs.' },
         { slug: 'screenfast', name: 'Seasonal Hiring Pipeline', description: 'Screen and rank seasonal staff applications automatically. Interview the best, skip the rest.' },
         { slug: 'brand-research', name: 'Market Intelligence', description: 'See how competing firms position themselves, what clients say about them, and where you can differentiate.' },
       ],
@@ -1370,7 +1370,7 @@ export const verticals: Record<string, VerticalData> = {
       },
       {
         question: 'Can this handle different entity types?',
-        answer: "Absolutely. The system customizes document requests based on entity type — sole props get different checklists than S-corps or partnerships. Multi-entity clients get separate, organized requests for each entity.",
+        answer: "Absolutely. The system customizes document requests based on entity type, sole props get different checklists than S-corps or partnerships. Multi-entity clients get separate, organized requests for each entity.",
       },
       {
         question: 'How long does setup take?',
@@ -1415,7 +1415,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for HVAC Companies',
       headline: 'When the AC Goes Out,',
       headlineGradient: 'Speed Wins the Job.',
-      subheadline: "Homeowners call 2-3 HVAC companies when their system breaks. The company that responds first gets the job. We build AI systems that capture every service call — day or night — optimize your truck routes, and fill your seasonal crew without the hiring headache.",
+      subheadline: "Homeowners call 2-3 HVAC companies when their system breaks. The company that responds first gets the job. We build AI systems that capture every service call, day or night, optimize your truck routes, and fill your seasonal crew without the hiring headache.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '24/7', label: 'Call Capture' },
@@ -1431,7 +1431,7 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '35',
           unit: '% calls after hours',
-          text: "Over a third of HVAC service calls come in after 5pm, on weekends, or on holidays — exactly when your office is closed. Those callers don't leave voicemails. They call the next company on Google."
+          text: "Over a third of HVAC service calls come in after 5pm, on weekends, or on holidays, exactly when your office is closed. Those callers don't leave voicemails. They call the next company on Google."
         },
         {
           number: '25',
@@ -1454,7 +1454,7 @@ export const verticals: Record<string, VerticalData> = {
       features: [
         {
           title: '24/7 Service Call Capture',
-          description: "An AI system answers every call — emergency or routine — qualifies the job type, collects property details, and books it into your schedule. Emergency calls get flagged for immediate dispatch. Routine maintenance gets slotted into open windows. You never lose a job to voicemail again.",
+          description: "An AI system answers every call, emergency or routine, qualifies the job type, collects property details, and books it into your schedule. Emergency calls get flagged for immediate dispatch. Routine maintenance gets slotted into open windows. You never lose a job to voicemail again.",
           icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
         },
         {
@@ -1552,7 +1552,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for Landscaping',
       headline: 'Stop Driving to Estimates That',
       headlineGradient: 'Go Nowhere.',
-      subheadline: "Half the estimates you write never turn into jobs. You're spending afternoons driving to properties, measuring, and pricing — for people who were just shopping around. We build AI systems that qualify leads before you leave the truck, optimize your crew routes, and keep your ads fresh all season.",
+      subheadline: "Half the estimates you write never turn into jobs. You're spending afternoons driving to properties, measuring, and pricing, for people who were just shopping around. We build AI systems that qualify leads before you leave the truck, optimize your crew routes, and keep your ads fresh all season.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '50%', label: 'Fewer Wasted Estimates' },
@@ -1568,7 +1568,7 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '50',
           unit: '% close rate',
-          text: "The average landscaping company closes only half its estimates. That means for every 10 estimates you write, 5 were a waste of your afternoon. Driving, measuring, pricing — for someone who picked the cheapest bid anyway."
+          text: "The average landscaping company closes only half its estimates. That means for every 10 estimates you write, 5 were a waste of your afternoon. Driving, measuring, pricing, for someone who picked the cheapest bid anyway."
         },
         {
           number: '30',
@@ -1582,7 +1582,7 @@ export const verticals: Record<string, VerticalData> = {
         },
       ],
       bottomStat: "A landscaping company running 5 crews wastes an average of $2,000/week on inefficient routing alone. Add in wasted estimates and stale marketing, and you're bleeding $150,000+ per year.",
-      conclusion: "Your crews do great work. The problem is everything around the work — the tire-kicker estimates, the zigzag routes, and the marketing that stopped working months ago.",
+      conclusion: "Your crews do great work. The problem is everything around the work, the tire-kicker estimates, the zigzag routes, and the marketing that stopped working months ago.",
     },
 
     solution: {
@@ -1601,7 +1601,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Fresh Ads All Season',
-          description: "Our ad engine generates on-brand creative daily — seasonal promotions, before/after project photos, service highlights. No more running last year's ads. Your cost per lead drops because creative fatigue stops.",
+          description: "Our ad engine generates on-brand creative daily, seasonal promotions, before/after project photos, service highlights. No more running last year's ads. Your cost per lead drops because creative fatigue stops.",
           icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
         },
       ],
@@ -1640,7 +1640,7 @@ export const verticals: Record<string, VerticalData> = {
     faq: [
       {
         question: 'Does this work for both residential and commercial?',
-        answer: "Absolutely. The qualification system adapts to your service types — residential lawn care, commercial maintenance, hardscaping, irrigation, whatever you offer. Different question flows for different job types.",
+        answer: "Absolutely. The qualification system adapts to your service types, residential lawn care, commercial maintenance, hardscaping, irrigation, whatever you offer. Different question flows for different job types.",
       },
       {
         question: 'How does route optimization handle same-day changes?',
@@ -1689,7 +1689,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for Cleaning Companies',
       headline: 'Your Best Clients Should',
       headlineGradient: 'Rebook Without Being Asked.',
-      subheadline: "Every cleaning company knows the math: recurring clients are 5x more profitable than one-time jobs. But rebooking takes follow-up your team doesn't have time for. We build AI systems that keep your schedule full, your routes tight, and your hiring pipeline stocked — all automatically.",
+      subheadline: "Every cleaning company knows the math: recurring clients are 5x more profitable than one-time jobs. But rebooking takes follow-up your team doesn't have time for. We build AI systems that keep your schedule full, your routes tight, and your hiring pipeline stocked, all automatically.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '40%', label: 'More Rebookings' },
@@ -1705,7 +1705,7 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '35',
           unit: '% don\'t rebook',
-          text: "Over a third of your one-time clients never come back — not because they weren't happy, but because nobody followed up. A simple rebooking sequence would convert most of them into recurring revenue. But who has time to send those messages manually?"
+          text: "Over a third of your one-time clients never come back, not because they weren't happy, but because nobody followed up. A simple rebooking sequence would convert most of them into recurring revenue. But who has time to send those messages manually?"
         },
         {
           number: '25',
@@ -1719,7 +1719,7 @@ export const verticals: Record<string, VerticalData> = {
         },
       ],
       bottomStat: "A cleaning company running 8 crews that loses even one client per crew per month is losing $50,000+ in annual recurring revenue. Most of those clients would have stayed with a simple follow-up.",
-      conclusion: "You're great at cleaning. The systems around the cleaning — rebooking, routing, hiring — are what's holding you back.",
+      conclusion: "You're great at cleaning. The systems around the cleaning, rebooking, routing, hiring, are what's holding you back.",
     },
 
     solution: {
@@ -1738,7 +1738,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Hiring Pipeline on Autopilot',
-          description: "Post once and let AI screen every application. The system evaluates reliability indicators, availability, transportation, and experience — then ranks candidates for your review. You interview the best 5 instead of reading 100 applications.",
+          description: "Post once and let AI screen every application. The system evaluates reliability indicators, availability, transportation, and experience, then ranks candidates for your review. You interview the best 5 instead of reading 100 applications.",
           icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
         },
       ],
@@ -1750,7 +1750,7 @@ export const verticals: Record<string, VerticalData> = {
       headline: 'Systems Built for Cleaning Companies',
       subheadline: 'Real projects we build for companies like yours',
       systems: [
-        { slug: 'quiz-funnels', name: 'Service Booking Quiz', description: 'Qualifies new clients by property size, service type, and frequency — then books them into your schedule automatically.' },
+        { slug: 'quiz-funnels', name: 'Service Booking Quiz', description: 'Qualifies new clients by property size, service type, and frequency, then books them into your schedule automatically.' },
         { slug: 'route-simply', name: 'Crew Route Optimization', description: 'Plans daily routes for maximum efficiency. More houses cleaned per day, less fuel burned.' },
         { slug: 'screenfast', name: 'Hiring Pipeline', description: 'Screens and ranks every application automatically. Fill positions faster and reduce early-stage turnover.' },
       ],
@@ -1777,7 +1777,7 @@ export const verticals: Record<string, VerticalData> = {
     faq: [
       {
         question: 'Does this work for both residential and commercial cleaning?',
-        answer: "Yes. The rebooking sequences, route optimization, and hiring systems all adapt to your service types. Residential, commercial, move-in/move-out, deep cleaning — the system handles different job types with different workflows.",
+        answer: "Yes. The rebooking sequences, route optimization, and hiring systems all adapt to your service types. Residential, commercial, move-in/move-out, deep cleaning, the system handles different job types with different workflows.",
       },
       {
         question: 'Will this feel spammy to my clients?',
@@ -1826,7 +1826,7 @@ export const verticals: Record<string, VerticalData> = {
       badge: 'AI Automation for Medical Spas',
       headline: 'Your Treatments Are Excellent.',
       headlineGradient: 'Help Clients Pick the Right One.',
-      subheadline: "Most med spa visitors browse your menu and freeze — too many options, not enough guidance. We build AI systems that match each client to the perfect treatment, keep your ad creative fresh daily, and manage your online reputation automatically. More bookings, less guesswork.",
+      subheadline: "Most med spa visitors browse your menu and freeze, too many options, not enough guidance. We build AI systems that match each client to the perfect treatment, keep your ad creative fresh daily, and manage your online reputation automatically. More bookings, less guesswork.",
       stats: [
         { number: '1-3', label: 'Weeks to Launch' },
         { number: '35%', label: 'More Bookings' },
@@ -1852,7 +1852,7 @@ export const verticals: Record<string, VerticalData> = {
         {
           number: '88',
           unit: '% read reviews',
-          text: "88% of consumers trust online reviews as much as personal recommendations. For med spas, reviews are everything — one bad review about a treatment outcome can cost you dozens of potential clients. But managing reviews manually takes hours every week."
+          text: "88% of consumers trust online reviews as much as personal recommendations. For med spas, reviews are everything, one bad review about a treatment outcome can cost you dozens of potential clients. But managing reviews manually takes hours every week."
         },
       ],
       bottomStat: "The average med spa loses $8,000-$12,000/month in potential revenue from website visitors who never book because they couldn't decide on a treatment.",
@@ -1865,21 +1865,21 @@ export const verticals: Record<string, VerticalData> = {
       features: [
         {
           title: 'Treatment Recommendation Quiz',
-          description: "A personalized quiz asks about their goals, skin concerns, budget, and preferences — then recommends the exact treatments they'll love. Clients book with confidence instead of browsing in circles. Average order value goes up because the recommendation is tailored.",
+          description: "A personalized quiz asks about their goals, skin concerns, budget, and preferences, then recommends the exact treatments they'll love. Clients book with confidence instead of browsing in circles. Average order value goes up because the recommendation is tailored.",
           icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
         },
         {
           title: 'Daily Fresh Ad Creative',
-          description: "Our ad engine generates on-brand creative every day — seasonal promotions, treatment spotlights, before/after content. No $5K/month designer. No stale images running for months. Your cost per acquisition drops because creative fatigue stops.",
+          description: "Our ad engine generates on-brand creative every day, seasonal promotions, treatment spotlights, before/after content. No $5K/month designer. No stale images running for months. Your cost per acquisition drops because creative fatigue stops.",
           icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
         },
         {
           title: 'Reputation on Autopilot',
-          description: "Every satisfied client gets a review request at the perfect moment — right after their appointment when they're feeling great. Negative reviews get professional responses within hours. Your Google rating climbs while you focus on treatments.",
+          description: "Every satisfied client gets a review request at the perfect moment, right after their appointment when they're feeling great. Negative reviews get professional responses within hours. Your Google rating climbs while you focus on treatments.",
           icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
         },
       ],
-      conclusion: "Clients find the right treatment, your ads stay fresh, and your reputation grows — all without adding to your team's workload.",
+      conclusion: "Clients find the right treatment, your ads stay fresh, and your reputation grows, all without adding to your team's workload.",
       callout: "Med spas with treatment recommendation quizzes see a 25-35% increase in booking rate and a 20% higher average ticket. Guided clients spend more and come back more often.",
     },
 
@@ -1914,7 +1914,7 @@ export const verticals: Record<string, VerticalData> = {
     faq: [
       {
         question: 'Can the quiz handle medical contraindications?',
-        answer: "The quiz asks screening questions and flags potential contraindications for your clinical team to review. It doesn't replace a medical consultation — it gets the right information upfront so your team can make informed recommendations faster.",
+        answer: "The quiz asks screening questions and flags potential contraindications for your clinical team to review. It doesn't replace a medical consultation, it gets the right information upfront so your team can make informed recommendations faster.",
       },
       {
         question: 'Will the ad creative match our brand aesthetic?',

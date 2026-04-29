@@ -59,7 +59,7 @@
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* Type Scale (editorial rhythm — Bakken / Instrument inspired) */
+  /* Type Scale (editorial rhythm, Bakken / Instrument inspired) */
   --text-display: clamp(3rem, 7vw, 5rem);
   --text-h1: clamp(2.25rem, 5vw, 3.5rem);
   --text-h2: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -94,13 +94,13 @@
   --dur-marquee: 900ms;
 
   /* ============================================================
-     OPERATOR DESIGN SYSTEM — industrial/blueprint/console aesthetic
+     OPERATOR DESIGN SYSTEM, industrial/blueprint/console aesthetic
      Strict palette per design handoff. Hard borders, offset shadows,
      mono captions. Coexists with the editorial tokens above during
      phased migration.
      ============================================================ */
 
-  /* Operator colors — strict palette */
+  /* Operator colors, strict palette */
   --op-cream:      #F4EEE2;  /* page bg */
   --op-paper:      #FBF7EE;  /* card/nav bg, slightly warmer */
   --op-navy:       #011f62;  /* primary, body text, console bg */
@@ -125,19 +125,19 @@
   --op-leading-display: 0.95;
   --op-leading-body:    1.55;
 
-  /* Operator borders + shadows — the system signature */
+  /* Operator borders + shadows, the system signature */
   --op-border:        1.5px solid var(--op-ink);
   --op-shadow:        3px 3px 0 var(--op-ink);   /* resting */
   --op-shadow-lg:     6px 8px 0 var(--op-ink);   /* featured / hover */
   --op-shadow-md:     5px 6px 0 var(--op-ink);   /* between resting and featured */
 
-  /* Operator radii — small, never pilled (except nav) */
+  /* Operator radii, small, never pilled (except nav) */
   --op-radius-sm: 4px;   /* chips, buttons */
   --op-radius:    6px;   /* cards, buttons */
   --op-radius-md: 8px;   /* nav, large cards */
   --op-radius-lg: 14px;  /* console panels */
 
-  /* Operator spacing scale (for sections — kept distinct so Operator
+  /* Operator spacing scale (for sections, kept distinct so Operator
      sections can coexist with editorial sections during migration) */
   --op-section-py:    88px;
   --op-section-px:    56px;
@@ -599,7 +599,7 @@ section {
   transform: translateY(0);
 }
 
-/* Text reveal — split words on the hero h1, animate each in sequence */
+/* Text reveal, split words on the hero h1, animate each in sequence */
 [data-animate="text-reveal"] {
   opacity: 1;
   transform: none;
@@ -627,7 +627,7 @@ section {
 [data-animate="text-reveal"].is-visible .word:nth-child(9) { transition-delay: 480ms; }
 [data-animate="text-reveal"].is-visible .word:nth-child(10) { transition-delay: 540ms; }
 
-/* Counter — number animates from 0 to its data-value on scroll-in.
+/* Counter, number animates from 0 to its data-value on scroll-in.
    Base styles only; the JS sets text content. Visual is baseline. */
 [data-animate="counter"] {
   opacity: 0;
@@ -637,7 +637,7 @@ section {
   opacity: 1;
 }
 
-/* Image reveal — clip-path wipe from left on scroll-in */
+/* Image reveal, clip-path wipe from left on scroll-in */
 [data-animate="image-reveal"] {
   opacity: 1;
   transform: none;
@@ -648,7 +648,7 @@ section {
   clip-path: inset(0 0 0 0);
 }
 
-/* Sequenced reveal — for hero h1 → subhead → CTA staggered by data-seq number */
+/* Sequenced reveal, for hero h1 → subhead → CTA staggered by data-seq number */
 [data-animate="seq"] {
   opacity: 0;
   transform: translateY(16px);
@@ -665,7 +665,7 @@ section {
 [data-animate="seq"][data-seq="3"].is-visible { transition-delay: 400ms; }
 [data-animate="seq"][data-seq="4"].is-visible { transition-delay: 600ms; }
 
-/* Tracker label — small editorial caps label that sits above sections */
+/* Tracker label, small editorial caps label that sits above sections */
 .tracker-label {
   display: inline-block;
   font-size: var(--text-xs);
@@ -681,7 +681,7 @@ section {
   margin-right: 0.5em;
 }
 
-/* Card hover — premium border shift to orange (extends existing .card hover) */
+/* Card hover, premium border shift to orange (extends existing .card hover) */
 .card-premium {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -716,7 +716,7 @@ section {
 }
 
 /* ============================================================
-   OPERATOR — keyframes, utilities, base classes
+   OPERATOR, keyframes, utilities, base classes
    ============================================================ */
 
 @keyframes opPulse {
@@ -734,7 +734,7 @@ section {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Blueprint grid background — applied to any section needing it */
+/* Blueprint grid background, applied to any section needing it */
 .op-grid-bg {
   background-color: var(--op-cream);
   background-image:
@@ -751,7 +751,7 @@ section {
   text-transform: uppercase;
 }
 
-/* Pulsing orange dot — used in eyebrows, console headers, status strips */
+/* Pulsing orange dot, used in eyebrows, console headers, status strips */
 .op-pulse-dot {
   display: inline-block;
   width: 6px;

@@ -1,4 +1,4 @@
-// Skills & Agents Map — Data Layer
+// Skills & Agents Map, Data Layer
 // All 53 skills, 40 agents, and their connections
 
 export type SkillCategory =
@@ -124,7 +124,7 @@ export const skills: Skill[] = [
   { id: 'apify-content-analytics', name: 'Apify Content Analytics', category: 'apify', description: 'Track engagement metrics, campaign ROI, and content performance across social platforms.', mcpTools: ['Apify'] },
   { id: 'apify-ecommerce', name: 'Apify E-Commerce', category: 'apify', description: 'Scrape pricing, reviews, and seller data from Amazon, Walmart, eBay, and 50+ marketplaces.', mcpTools: ['Apify'] },
   { id: 'apify-ultimate-scraper', name: 'Apify Universal Scraper', category: 'apify', description: 'Universal AI-powered web scraper for any platform. 55+ Actors for Instagram, Facebook, TikTok, YouTube, Google Maps.', mcpTools: ['Apify'] },
-  { id: 'apify-actor-development', name: 'Apify Actor Dev', category: 'apify', description: 'Develop, debug, and deploy Apify Actors — serverless cloud programs for web scraping and automation.', mcpTools: ['Apify'] },
+  { id: 'apify-actor-development', name: 'Apify Actor Dev', category: 'apify', description: 'Develop, debug, and deploy Apify Actors, serverless cloud programs for web scraping and automation.', mcpTools: ['Apify'] },
 
   // Specialized (8)
   { id: 'gumloop-workflow-designer', name: 'Gumloop Workflows', category: 'specialized', description: 'Design or analyze Gumloop automations. Two modes: ANALYZE (reverse-engineer) and BUILD (design from scratch).' },
@@ -182,7 +182,7 @@ export const agents: Agent[] = [
   { id: 'lmq-copy', name: 'Copy Agent', parentSkill: 'lead-magnet-quiz', stage: 3, description: 'Landing page, quiz questions, results, 26 emails, content blocks, strategy pack (ads, social, scripts)' },
   { id: 'lmq-build', name: 'Build Agent', parentSkill: 'lead-magnet-quiz', stage: 4, description: 'Vercel-ready Astro project: quiz UI, serverless APIs, analytics dashboard, social ad video' },
 
-  // Lead Magnet Vision Board (7 agents — 4 forked + 3 reused)
+  // Lead Magnet Vision Board (7 agents, 4 forked + 3 reused)
   { id: 'vb-research', name: 'Research Agent', parentSkill: 'lead-magnet-vision-board', stage: 1, parallelWith: ['vb-scraper'], description: 'Market research (reused from quiz workflow)' },
   { id: 'vb-scraper', name: 'Service Scraper', parentSkill: 'lead-magnet-vision-board', stage: 1, parallelWith: ['vb-research'], description: 'Service/portfolio extraction (forked from product scraper)' },
   { id: 'vb-architecture', name: 'VB Architecture', parentSkill: 'lead-magnet-vision-board', stage: 2, parallelWith: ['vb-design'], description: 'Preference dimensions, selection flow, tag-based profile matching' },

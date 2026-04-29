@@ -299,4 +299,4 @@ Or start with one pillar from this guide and build from there. Either way, stop 
 
 ## Ready to Automate Your Coaching Lead Generation?
 
-We build custom quiz funnels specifically for coaching businesses—qualifying leads, scoring readiness, and nurturing with personalized emails, all on autopilot. [See how it works for coaches →](/for/coaches)
+We build custom quiz funnels specifically for coaching businesses,qualifying leads, scoring readiness, and nurturing with personalized emails, all on autopilot. [See how it works for coaches →](/for/coaches)

@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="What Should You Automate First for Your Clients? | Brothers Automate" description="Answer 7 quick questions about your consulting practice and we'll tell you exactly which AI automation to start offering — plus how to position it.">
+<Layout title="What Should You Automate First for Your Clients? | Brothers Automate" description="Answer 7 quick questions about your consulting practice and we'll tell you exactly which AI automation to start offering, plus how to position it.">
   <Header />
   <h1 class="sr-only">Find the Right AI Automation for Your Business</h1>
   <div class="quiz-container" id="app"></div>
@@ -286,7 +286,7 @@ import Footer from '../components/Footer.astro';
       var pct = Math.round((quizState.score / max) * 100);
       var answersArray = quizState.answers.map(function(a, i) { return { question: QUESTIONS[i].q, answer: QUESTIONS[i].opts[a].text, value: QUESTIONS[i].opts[a].val }; });
 
-      // 1. Fire Gumloop webhook. Must be fetch+keepalive with application/json —
+      // 1. Fire Gumloop webhook. Must be fetch+keepalive with application/json ,
       // sendBeacon forces text/plain (to dodge CORS preflight), which Gumloop
       // accepts but can't parse, so pipeline_inputs come through empty.
       var gumloopUrl = 'https://api.gumloop.com/api/v1/start_pipeline?api_key=14fc1dec6b58454e8c528db04f4e744d&user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=2xf7HgFbJf6dDWQDZUVDxZ';

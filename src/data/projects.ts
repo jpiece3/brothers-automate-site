@@ -73,17 +73,17 @@ export const projects: Project[] = [
       painPoints: [
         'Hot leads wait hours for a reply because nobody\'s watching the inbox',
         'You spend time qualifying tire-kickers that should never have hit your calendar',
-        'Lead notes get scattered across email threads — never logged, never measured',
+        'Lead notes get scattered across email threads, never logged, never measured',
         'Follow-up tone changes depending on who reads the inbox first'
       ]
     },
     solution: {
       headline: 'An AI SDR that triages every inquiry the second it lands',
-      description: 'We built an AI sales agent that reads inbound inquiries, decides if they qualify, scores them on a 1-10 scale, logs them to Google Sheets, and sends a personalized follow-up — all before you\'ve finished your coffee. Hot leads (7-10) trigger an instant Slack ping so you can jump on the call window while it\'s still warm.',
+      description: 'We built an AI sales agent that reads inbound inquiries, decides if they qualify, scores them on a 1-10 scale, logs them to Google Sheets, and sends a personalized follow-up, all before you\'ve finished your coffee. Hot leads (7-10) trigger an instant Slack ping so you can jump on the call window while it\'s still warm.',
       features: [
         { title: '1-10 Lead Scoring', description: 'Scores every inquiry on decision-maker status, budget, urgency, company size, and pain clarity' },
         { title: 'Three Lead Buckets', description: 'Hot (7-10) gets a Slack alert + priority reply. Nurture (4-6) gets a soft sequence. Not-a-fit (1-3) gets a polite decline.' },
-        { title: 'Logged Before Replied', description: 'Every qualifying lead hits Google Sheets first — full structured record, no inbox archaeology later' },
+        { title: 'Logged Before Replied', description: 'Every qualifying lead hits Google Sheets first, full structured record, no inbox archaeology later' },
         { title: 'Smart Lead Routing', description: 'Hot leads ping Slack instantly. Nurture leads drop into a sequence. The right reply goes to the right inbox without you sorting it.' }
       ]
     },
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     name: 'AI Equipment Cataloger',
     tagline: 'AI-powered equipment cataloging from photos',
     icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
-    description: 'Auction company: AI identifies heavy equipment from photos in seconds. Lot titles that used to take minutes per item — done in a batch, instantly.',
+    description: 'Auction company: AI identifies heavy equipment from photos in seconds. Lot titles that used to take minutes per item, done in a batch, instantly.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
@@ -172,10 +172,10 @@ export const projects: Project[] = [
     },
     solution: {
       headline: 'Upload a photo. Get a lot title.',
-      description: 'Drag and drop equipment photos. AI vision reads nameplates, decals, and serial prefixes to generate structured lot titles in the standard auction format. Review, correct, and export — all from one screen.',
+      description: 'Drag and drop equipment photos. AI vision reads nameplates, decals, and serial prefixes to generate structured lot titles in the standard auction format. Review, correct, and export, all from one screen.',
       features: [
         { title: 'Batch Processing', description: 'Upload entire folders of photos. AI identifies them all in parallel.' },
-        { title: '51 Equipment Categories', description: 'From hydraulic excavators to aerial lifts — every category an auction house needs.' },
+        { title: '51 Equipment Categories', description: 'From hydraulic excavators to aerial lifts, every category an auction house needs.' },
         { title: 'Learns From Corrections', description: 'Thumbs down a result and correct it. The AI uses your corrections for the rest of the batch.' },
         { title: '4 Export Targets', description: 'CSV, Google Sheets with photo formulas, Notion, or Airtable. Ready for your auction software.' }
       ]
@@ -204,7 +204,7 @@ export const projects: Project[] = [
     ctaType: 'product-link',
     meta: {
       title: 'After Hours Agent | AI Lead Capture Chat | Brothers Automate',
-      description: 'Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep — embedded on your website in one line of code.'
+      description: 'Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep, embedded on your website in one line of code.'
     },
     problem: {
       headline: 'You\'re losing leads every night',
@@ -218,7 +218,7 @@ export const projects: Project[] = [
     },
     solution: {
       headline: 'An AI agent that handles leads while you sleep',
-      description: 'A chat widget that lives on your website and talks to visitors 24/7. It qualifies their needs, gives accurate quotes based on your pricing, checks your real calendar for availability, and books appointments — all while you\'re off the clock.',
+      description: 'A chat widget that lives on your website and talks to visitors 24/7. It qualifies their needs, gives accurate quotes based on your pricing, checks your real calendar for availability, and books appointments, all while you\'re off the clock.',
       features: [
         { title: 'Lead Qualification', description: 'Asks the right questions to determine if a visitor is a real prospect before booking' },
         { title: 'Real-Time Quotes', description: 'Uses your actual service menu and pricing to give accurate estimates on the spot' },
@@ -236,7 +236,7 @@ export const projects: Project[] = [
     },
     cta: {
       headline: 'Stop losing leads after hours',
-      description: 'Let\'s put an AI agent on your site that qualifies, quotes, and books — even when you\'re asleep.'
+      description: 'Let\'s put an AI agent on your site that qualifies, quotes, and books, even when you\'re asleep.'
     }
   },
   {
@@ -382,7 +382,7 @@ export const projects: Project[] = [
     name: 'AI Prospect Scorer',
     tagline: 'AI-powered prospect scoring and outreach',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    description: 'B2B sales: upload your ideal customer profile and a company list. Get back ranked prospects with outreach angles — scored in minutes, not weeks.',
+    description: 'B2B sales: upload your ideal customer profile and a company list. Get back ranked prospects with outreach angles, scored in minutes, not weeks.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
@@ -404,7 +404,7 @@ export const projects: Project[] = [
       description: 'Upload your ideal customer profile and a company list. Signal Engine scans their websites, news, job postings, and funding data through a 4-tier waterfall. You get back a ranked list with scores, evidence, and a personalized outreach angle for each company.',
       features: [
         { title: 'ICP-Based Scoring', description: 'Upload a PDF describing your ideal customer. AI generates 15-25 detection signals automatically.' },
-        { title: '4-Tier Waterfall', description: 'Cheapest checks first — spreadsheet filters, website scans, web search, then deep enrichment.' },
+        { title: '4-Tier Waterfall', description: 'Cheapest checks first, spreadsheet filters, website scans, web search, then deep enrichment.' },
         { title: 'Outreach Angles', description: 'Every qualified company gets a 2-3 sentence personalized opener connecting their situation to your offer.' },
         { title: 'Weekly Monitoring', description: 'Re-scan your list weekly to catch new signals, score changes, and newly qualified companies.' }
       ]
@@ -428,16 +428,16 @@ export const projects: Project[] = [
     name: 'Client Onboarding Automation',
     tagline: 'Automated client onboarding for service businesses',
     icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
-    description: 'Paving company: automated the entire new-client onboarding flow — comms, scheduling, and docs — same steps every time, zero manual work.',
+    description: 'Paving company: automated the entire new-client onboarding flow, comms, scheduling, and docs, same steps every time, zero manual work.',
     ctaLabel: 'Watch the Demo',
     ctaType: 'video',
     meta: {
       title: 'Onboarding Workflow | Automated Client Onboarding | Brothers Automate',
-      description: 'Stop doing the same onboarding steps manually for every new client. We automate the entire flow — emails, scheduling, documents — pulled from your database.'
+      description: 'Stop doing the same onboarding steps manually for every new client. We automate the entire flow, emails, scheduling, documents, pulled from your database.'
     },
     problem: {
       headline: 'Every new client means the same manual work',
-      description: 'New project comes in. You pull the client info, send the welcome email, schedule the walkthrough, prep the docs. Same steps every time — different client, different address, different details. All done by hand.',
+      description: 'New project comes in. You pull the client info, send the welcome email, schedule the walkthrough, prep the docs. Same steps every time, different client, different address, different details. All done by hand.',
       painPoints: [
         'Every new client triggers the same 10-step onboarding process',
         'Client details get copied and pasted between systems manually',
@@ -447,7 +447,7 @@ export const projects: Project[] = [
     },
     solution: {
       headline: 'Your onboarding flow, fully automated',
-      description: 'We build a system that pulls client info from your database and runs the entire onboarding sequence automatically. Emails go out, appointments get scheduled, documents get prepped — same flow every time, zero manual work.',
+      description: 'We build a system that pulls client info from your database and runs the entire onboarding sequence automatically. Emails go out, appointments get scheduled, documents get prepped, same flow every time, zero manual work.',
       features: [
         { title: 'Database-Driven', description: 'Pulls client name, address, project details, and preferences automatically' },
         { title: 'Automated Comms', description: 'Welcome emails, scheduling confirmations, and follow-ups sent on time, every time' },
@@ -465,7 +465,7 @@ export const projects: Project[] = [
     },
     cta: {
       headline: 'Stop doing the same onboarding steps by hand',
-      description: 'Let\'s automate your client onboarding so every new project starts the same way — without you lifting a finger.'
+      description: 'Let\'s automate your client onboarding so every new project starts the same way, without you lifting a finger.'
     },
     videoUrl: 'https://www.youtube.com/embed/2rGAhxD5Hdk'
   },
@@ -566,7 +566,7 @@ export const projects: Project[] = [
     name: 'AI App Idea Validator',
     tagline: 'AI-powered app idea validation with live market data',
     icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-    description: 'Founders: validate any app idea with live keyword data, competitor analysis, and an AI-generated go/no-go verdict — in under 2 minutes.',
+    description: 'Founders: validate any app idea with live keyword data, competitor analysis, and an AI-generated go/no-go verdict, in under 2 minutes.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
@@ -575,7 +575,7 @@ export const projects: Project[] = [
     },
     problem: {
       headline: 'You\'re about to spend 6 months building something nobody wants',
-      description: 'Most app ideas fail because founders skip validation. They build first, research later, and discover the market doesn\'t exist — after burning through time and money.',
+      description: 'Most app ideas fail because founders skip validation. They build first, research later, and discover the market doesn\'t exist, after burning through time and money.',
       painPoints: [
         'You Google your app idea and find 3 competitors but have no idea how big the market actually is',
         'Keyword research tools cost $100+/month and take hours to learn',
@@ -585,11 +585,11 @@ export const projects: Project[] = [
     },
     solution: {
       headline: 'A full market validation report in under 2 minutes',
-      description: 'Describe your app idea in one sentence. Our pipeline hits live APIs — DataForSEO for keyword demand, Tavily for competitor intelligence, and Claude AI for synthesis — then delivers an investor-grade validation report with a clear verdict.',
+      description: 'Describe your app idea in one sentence. Our pipeline hits live APIs, DataForSEO for keyword demand, Tavily for competitor intelligence, and Claude AI for synthesis, then delivers an investor-grade validation report with a clear verdict.',
       features: [
         { title: 'Demand Signals', description: 'Live keyword volumes, search trends, difficulty scores, and community signal mining from Reddit and forums' },
         { title: 'Competitive Landscape', description: 'App Store competitors identified, rated, and analyzed for pricing, funding, and market gaps' },
-        { title: '5-Dimension Scoring', description: 'Demand, competition, differentiation, monetization, and timing — each scored 1-10 with data-backed rationale' },
+        { title: '5-Dimension Scoring', description: 'Demand, competition, differentiation, monetization, and timing, each scored 1-10 with data-backed rationale' },
         { title: 'Marketing Playbook', description: 'Positioning angles, ASO strategy, channel recommendations, monetization model, and a 30-day launch plan' }
       ]
     },
@@ -603,7 +603,7 @@ export const projects: Project[] = [
     },
     cta: {
       headline: 'Validate before you build',
-      description: 'Submit your app idea and get a data-backed GO, CONDITIONAL GO, or NO-GO verdict — first one\'s free.'
+      description: 'Submit your app idea and get a data-backed GO, CONDITIONAL GO, or NO-GO verdict, first one\'s free.'
     },
     productUrl: 'https://validate.brothersautomate.com/'
   },
@@ -612,12 +612,12 @@ export const projects: Project[] = [
     name: 'AI Quote Generator',
     tagline: 'After-hours quote automation for B2B',
     icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
-    description: 'B2B manufacturer: AI agent qualifies leads, looks up real ERP pricing, books sales calls, and pushes deals to HubSpot — 24/7, zero manual data entry.',
+    description: 'B2B manufacturer: AI agent qualifies leads, looks up real ERP pricing, books sales calls, and pushes deals to HubSpot, 24/7, zero manual data entry.',
     ctaLabel: 'Read the Case Study',
     ctaType: 'case-study',
     meta: {
       title: 'CPQ Agent | After-Hours Quote Automation | Brothers Automate',
-      description: 'An AI agent that qualifies leads, checks real ERP pricing, books sales calls, and pushes deals to HubSpot — 24/7 while your team sleeps.'
+      description: 'An AI agent that qualifies leads, checks real ERP pricing, books sales calls, and pushes deals to HubSpot, 24/7 while your team sleeps.'
     },
     problem: {
       headline: '35-45% of B2B inquiries arrive outside business hours',
@@ -655,14 +655,14 @@ export const projects: Project[] = [
   {
     slug: 'seo-blog-autopilot',
     name: 'Automated SEO Blog',
-    tagline: 'SEO content that writes, publishes, and syndicates itself — 3x a week, on autopilot.',
+    tagline: 'SEO content that writes, publishes, and syndicates itself, 3x a week, on autopilot.',
     icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
-    description: 'Our blog has 35 posts, targets 42,990 monthly searches, and generates 13 backlinks — all written and published by Claude Code agents, 3x a week, with zero writers on staff.',
+    description: 'Our blog has 35 posts, targets 42,990 monthly searches, and generates 13 backlinks, all written and published by Claude Code agents, 3x a week, with zero writers on staff.',
     ctaLabel: 'See It Working',
     ctaType: 'case-study',
     meta: {
       title: 'Automated SEO Blog | AI Content That Ranks | Brothers Automate',
-      description: 'An AI pipeline that finds keyword gaps, writes SEO-optimized posts in your brand voice, publishes to your site, and syndicates for backlinks — 3x a week on autopilot.'
+      description: 'An AI pipeline that finds keyword gaps, writes SEO-optimized posts in your brand voice, publishes to your site, and syndicates for backlinks, 3x a week on autopilot.'
     },
     problem: {
       headline: 'You know you need blog content. You just can\'t keep up.',
@@ -676,11 +676,11 @@ export const projects: Project[] = [
     },
     solution: {
       headline: 'An AI pipeline that runs your entire blog',
-      description: 'We built a 5-stage autopilot powered by Claude Code agents that finds keyword gaps your competitors exploit, writes human-sounding posts in your brand voice, publishes directly to your site, and cross-posts for backlinks. It runs on a cron schedule — Mon/Wed/Fri — with zero manual work.',
+      description: 'We built a 5-stage autopilot powered by Claude Code agents that finds keyword gaps your competitors exploit, writes human-sounding posts in your brand voice, publishes directly to your site, and cross-posts for backlinks. It runs on a cron schedule, Mon/Wed/Fri, with zero manual work.',
       features: [
         { title: 'Competitor Gap Analysis', description: 'Finds keywords your competitors rank for that you don\'t, prioritized by volume and difficulty' },
-        { title: 'Brand Voice Writing', description: 'Writes in your voice with real stats, internal links, and SEO structure — not generic AI slop' },
-        { title: 'Auto-Publish', description: 'Commits to your repo, deploys via Vercel/Netlify — post goes live without you touching a thing' },
+        { title: 'Brand Voice Writing', description: 'Writes in your voice with real stats, internal links, and SEO structure, not generic AI slop' },
+        { title: 'Auto-Publish', description: 'Commits to your repo, deploys via Vercel/Netlify, post goes live without you touching a thing' },
         { title: 'Backlink Syndication', description: 'Cross-posts to Dev.to with canonical URLs so you build domain authority automatically' }
       ]
     },
@@ -694,7 +694,7 @@ export const projects: Project[] = [
     },
     cta: {
       headline: 'Get an automated SEO blog running on your site',
-      description: 'We\'ll set up the same autopilot that runs our blog — competitor analysis, AI writing, auto-publishing, and syndication — custom-built for your business.'
+      description: 'We\'ll set up the same autopilot that runs our blog, competitor analysis, AI writing, auto-publishing, and syndication, custom-built for your business.'
     }
   },
   {
@@ -702,34 +702,34 @@ export const projects: Project[] = [
     name: 'SEO Audit Engine',
     tagline: 'Automated SEO & digital presence auditing',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z M9 12h6 M12 9v6',
-    description: 'Marketing agency: Automated SEO audits that pull rankings, competitor data, Google Maps visibility, and website health into client-ready reports — in 10 minutes, not 10 hours.',
+    description: 'Marketing agency: Automated SEO audits that pull rankings, competitor data, Google Maps visibility, and website health into client-ready reports, in 10 minutes, not 10 hours.',
     ctaLabel: 'See a Sample Report',
     ctaType: 'product-link',
     meta: {
       title: 'SEO Audit Engine | Automated Digital Presence Audits | Brothers Automate',
-      description: 'Automated SEO audits in 10 minutes. Keyword rankings, competitor gaps, Google Maps visibility, Lighthouse scores, social presence, and company intel — delivered as shareable client-ready reports.'
+      description: 'Automated SEO audits in 10 minutes. Keyword rankings, competitor gaps, Google Maps visibility, Lighthouse scores, social presence, and company intel, delivered as shareable client-ready reports.'
     },
     problem: {
       headline: 'Your SEO audits take all week and still miss half the picture',
-      description: 'Every new prospect means the same routine: open Semrush, check their keywords, manually look up their Google reviews, screenshot their Lighthouse scores, research their competitors, try to find their social profiles. Four to six hours of tab-switching per prospect — and you still walk into the meeting with a spreadsheet and guesswork.',
+      description: 'Every new prospect means the same routine: open Semrush, check their keywords, manually look up their Google reviews, screenshot their Lighthouse scores, research their competitors, try to find their social profiles. Four to six hours of tab-switching per prospect, and you still walk into the meeting with a spreadsheet and guesswork.',
       painPoints: [
         'A single prospect audit takes 4-6 hours of manual research across a dozen different tools',
-        'You\'re checking rankings in one tool, reviews in another, social in a third — nothing connects',
+        'You\'re checking rankings in one tool, reviews in another, social in a third, nothing connects',
         'Competitor analysis means separately pulling data for each competitor and manually comparing',
-        'The deliverable is a Loom and a Google Doc — not something that makes you look like a $10K/month agency',
+        'The deliverable is a Loom and a Google Doc, not something that makes you look like a $10K/month agency',
         'By the time you\'ve audited one prospect, three more filled out your contact form',
         'Junior team members miss critical data points that change the entire pitch strategy'
       ]
     },
     solution: {
       headline: 'Enter a domain. Get back a complete SEO audit with reports you can share.',
-      description: 'Four AI research agents run simultaneously — one pulls SEO rankings and keyword data, another gathers company intel and hiring signals, a third checks Google Maps and local visibility, and a fourth audits social media and review platforms. They pull from 20+ data sources including DataForSEO, Google Lighthouse, Google Business Profile, and Apify scrapers. Ten minutes later, you have a complete audit with five client-ready reports and an internal pitch strategy.',
+      description: 'Four AI research agents run simultaneously, one pulls SEO rankings and keyword data, another gathers company intel and hiring signals, a third checks Google Maps and local visibility, and a fourth audits social media and review platforms. They pull from 20+ data sources including DataForSEO, Google Lighthouse, Google Business Profile, and Apify scrapers. Ten minutes later, you have a complete audit with five client-ready reports and an internal pitch strategy.',
       features: [
         { title: 'SEO & Technical Analysis', description: 'Domain rank, keyword positions, search volumes, keyword difficulty scores, competitor keyword gaps, Lighthouse performance and accessibility scores (desktop + mobile), full site crawl with 404s, missing meta descriptions, and tech stack detection.' },
         { title: 'Local & Maps Intelligence', description: 'Google Maps pack rankings for local search queries, Google Business Profile data (rating, review count, category), organic SERP positions vs. competitors, and Google Trends data for their service keywords in their market.' },
         { title: 'Social & Review Audit', description: 'Instagram followers and engagement rate, Facebook page metrics and ad activity, Yelp and BBB presence check, Google review analysis with competitor review benchmarking, and contact information scraping.' },
         { title: 'Company & Competitive Intel', description: 'Leadership profiles, estimated revenue and employee count, hiring signals from job boards, brand mention analysis with sentiment scoring, marketing capability assessment, and gap-to-service mapping based on your angle.' },
-        { title: '5 Client-Facing Reports', description: 'Self-contained HTML files with no technical jargon — SEO analysis, website health audit, tiered action plan with ROI estimates, and research methodology overview. Branded, shareable, and designed to make your agency look like the obvious choice.' },
+        { title: '5 Client-Facing Reports', description: 'Self-contained HTML files with no technical jargon, SEO analysis, website health audit, tiered action plan with ROI estimates, and research methodology overview. Branded, shareable, and designed to make your agency look like the obvious choice.' },
         { title: 'Live Dashboard + Ongoing Tracking', description: 'Every audit feeds into a centralized dashboard where you can track all clients, compare metrics over time, see keyword position trends, and refresh metrics with one click for $0.04. History tab shows how rankings change between scans.' }
       ]
     },
@@ -739,7 +739,7 @@ export const projects: Project[] = [
         { number: '10 min', label: 'Full Audit', context: 'vs. 4-6 hours of manual research across multiple tools' },
         { number: '50+', label: 'Data Points', context: 'SEO rankings, maps, social, reviews, company intel, tech stack' },
         { number: '20+', label: 'Data Sources', context: 'DataForSEO, Lighthouse, Google Maps, Apify scrapers' },
-        { number: '$1.50', label: 'Per Audit', context: 'Total API cost — less than a cup of coffee' }
+        { number: '$1.50', label: 'Per Audit', context: 'Total API cost, less than a cup of coffee' }
       ],
       testimonial: {
         quote: 'We used to spend a full day prepping for a single prospect meeting. Now we run the scan before the call, walk in with a 5-report package, and the prospect asks how we know so much about their business. It changed how we pitch entirely.',
@@ -749,7 +749,7 @@ export const projects: Project[] = [
     },
     cta: {
       headline: 'Stop spending all day on prospect research',
-      description: 'We\'ll set up the same SEO audit engine we use internally — automated audits, client-ready reports, and a dashboard that tracks every prospect. Walk into every meeting with data, not guesses.'
+      description: 'We\'ll set up the same SEO audit engine we use internally, automated audits, client-ready reports, and a dashboard that tracks every prospect. Walk into every meeting with data, not guesses.'
     },
     productUrl: 'https://brothersautomate.com/clientintel/'
   },
@@ -758,7 +758,7 @@ export const projects: Project[] = [
     name: 'Crisply',
     tagline: 'AI-powered client portals for agencies and operators',
     icon: 'M9 17v-2a4 4 0 014-4h4M9 7h10M5 12h4m-4 5h4M5 7h4m10 10V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2z',
-    description: 'Turn raw data into branded, interactive reports your clients can actually use. Hosted, shareable, chat-enabled portals — built so Claude-generated work ships like a finished product.',
+    description: 'Turn raw data into branded, interactive reports your clients can actually use. Hosted, shareable, chat-enabled portals, built so Claude-generated work ships like a finished product.',
     ctaLabel: 'See the Product',
     ctaType: 'product-link',
     meta: {
@@ -767,7 +767,7 @@ export const projects: Project[] = [
     },
     problem: {
       headline: 'Your AI work doesn\'t ship like a product',
-      description: 'You run Claude, ChatGPT, or an agent pipeline and end up with a markdown file or a messy PDF. Clients don\'t experience it as a deliverable — they skim it once, then forget it exists.',
+      description: 'You run Claude, ChatGPT, or an agent pipeline and end up with a markdown file or a messy PDF. Clients don\'t experience it as a deliverable, they skim it once, then forget it exists.',
       painPoints: [
         'Raw AI output looks like a chat transcript, not a report',
         'No place for the client to come back and re-read or ask follow-up questions',
@@ -779,11 +779,11 @@ export const projects: Project[] = [
       headline: 'A client portal that turns AI output into a finished product',
       description: 'Crisply wraps your AI-generated reports in a branded, interactive portal at a shareable URL. Clients get a polished report with built-in chat, analytics on engagement, and a portal where all their deliverables live.',
       features: [
-        { title: 'Interactive AI Reports', description: 'Branded HTML reports generated from raw data — hosted at shareable links, no PDF attachments.' },
+        { title: 'Interactive AI Reports', description: 'Branded HTML reports generated from raw data, hosted at shareable links, no PDF attachments.' },
         { title: 'Conversational Chat', description: 'Clients ask questions about their report and get answers grounded in their own data.' },
         { title: 'Client Portals', description: 'Every client gets a single home base where all their reports and deliverables live.' },
         { title: 'Engagement Analytics', description: 'See exactly which reports clients opened, how long they spent, and what they asked.' },
-        { title: 'API-Driven Generation', description: 'Plug Crisply into your existing Claude / automation workflows — reports generate on demand.' },
+        { title: 'API-Driven Generation', description: 'Plug Crisply into your existing Claude / automation workflows, reports generate on demand.' },
         { title: 'Branded Per Client', description: 'Colors, logo, and layout match each client\'s brand, so it feels like their product, not ours.' }
       ]
     },

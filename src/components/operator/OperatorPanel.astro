@@ -1,15 +1,15 @@
 ---
 /**
- * OperatorPanel — navy console card with header strip + body + optional footer SpecStrip.
+ * OperatorPanel, navy console card with header strip + body + optional footer SpecStrip.
  * Used by: hero OpBuildPanel, every "ship card" mini console, future case studies.
  *
  * Props:
  *   id:           string   the BUILD_NN / SECTION_NN code shown in the header strip
  *                          e.g. "BUILD_06 · INBOUND_AI_SDR"
- *   showDot:      boolean  (default true) — pulsing orange dot in header
+ *   showDot:      boolean  (default true), pulsing orange dot in header
  *   headerExtra:  string   optional right-side header cell (e.g. "■■■")
  *   minBodyHeight: string  CSS length, optional (default 'auto')
- *   footerCells:  optional array of { value, label } — rendered as navy SpecStrip footer
+ *   footerCells:  optional array of { value, label }, rendered as navy SpecStrip footer
  *   class:        extra classes
  *
  * Slot: panel body content (you compose what's inside)

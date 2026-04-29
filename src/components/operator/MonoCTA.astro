@@ -1,6 +1,6 @@
 ---
 /**
- * MonoCTA — operator button: orange-with-paper-arrow OR navy-with-orange-arrow.
+ * MonoCTA, operator button: orange-with-paper-arrow OR navy-with-orange-arrow.
  * Hard 1.5px border + offset shadow. Plus Jakarta Sans 800.
  *
  * Props:
@@ -11,12 +11,12 @@
  *             - paper  = paper bg, navy arrow chip (tertiary, e.g. inside dark cards)
  *   size:     'md' | 'lg'  (default 'md')
  *   href:     string   the link target
- *   external: boolean  (default false) — adds target=_blank
+ *   external: boolean  (default false), adds target=_blank
  *   calLink:  string   optional Cal.com link (replaces href; sets up data-cal-* attrs)
  *   trackLocation:  string  optional analytics location label
  *   trackLabel:     string  optional analytics CTA label
  *   shadow:    boolean  (default true)
- *   block:     boolean  (default false) — full-width button
+ *   block:     boolean  (default false), full-width button
  *   class:     string   extra classes
  */
 interface Props {
@@ -118,7 +118,7 @@ const calProps = calLink
 
   .op-cta--block { display: flex; width: 100%; justify-content: center; }
 
-  /* Orange variant — primary CTA */
+  /* Orange variant, primary CTA */
   .op-cta--orange {
     background: var(--op-orange);
     color: var(--op-paper);
@@ -134,7 +134,7 @@ const calProps = calLink
     color: var(--op-orange);
   }
 
-  /* Navy variant — secondary CTA */
+  /* Navy variant, secondary CTA */
   .op-cta--navy {
     background: var(--op-navy);
     color: var(--op-cream);
@@ -150,7 +150,7 @@ const calProps = calLink
     color: var(--op-paper);
   }
 
-  /* Paper variant — tertiary, used on dark cards */
+  /* Paper variant, tertiary, used on dark cards */
   .op-cta--paper {
     background: var(--op-paper);
     color: var(--op-ink);

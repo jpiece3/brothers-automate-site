@@ -181,6 +181,6 @@ Whatever you choose, pick two methods and commit for 90 days. That's how you sto
 
 ---
 
-## Stop Chasing Clients—Let Them Come to You
+## Stop Chasing Clients,Let Them Come to You
 
 A quiz funnel qualifies coaching prospects automatically, so every discovery call is with someone ready to invest. [See how it works for coaches →](/for/coaches)

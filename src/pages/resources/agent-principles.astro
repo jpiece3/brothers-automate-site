@@ -24,7 +24,7 @@ const principles = [
     pill: "Most critical",
     title: '<span class="accent">Graceful</span> error handling',
     know: "We build for failure, not just the happy path. APIs fail, return empty, or time out. Without handling this, agents loop infinitely or silently die mid-workflow.",
-    scenario: "Agent calls a CRM, gets null back, tries to access contact.email — and crashes the entire run.",
+    scenario: "Agent calls a CRM, gets null back, tries to access contact.email, and crashes the entire run.",
     code: `<span class="c-orange">if</span> (!contact || !contact.email) {
   <span class="c-orange">// log · notify · fallback
   // NEVER continue blindly</span>
@@ -36,7 +36,7 @@ const principles = [
     num: "02",
     pill: "Safety",
     title: 'Human-in-the-loop <span class="accent">checkpoints</span>',
-    know: "We know which actions to automate and which to gate. Some are irreversible — sending emails, deleting records, charging payments. The wrong automation at the wrong moment is worse than none.",
+    know: "We know which actions to automate and which to gate. Some are irreversible, sending emails, deleting records, charging payments. The wrong automation at the wrong moment is worse than none.",
     scenario: "Agent drafts and sends a refund email to 200 customers before anyone reviews. One line was wrong. You can't unsend it.",
     code: `<span class="c-orange">&#x26A0;&#xFE0F; NEVER execute without approval:</span>
 - send_email
@@ -50,7 +50,7 @@ Draft → show human → confirm → act.`,
     num: "03",
     pill: "Architecture",
     title: 'Lean prompt + <span class="accent">on-demand</span> skills',
-    know: "We keep system prompts lean — identity, tone, guardrails only. Process logic lives in separate skills loaded on demand. Leaner prompts mean more predictable, more maintainable agents.",
+    know: "We keep system prompts lean, identity, tone, guardrails only. Process logic lives in separate skills loaded on demand. Leaner prompts mean more predictable, more maintainable agents.",
     scenario: "A 3,000-word system prompt covering 12 workflows. The agent starts mixing up instructions between processes.",
     code: `<span class="c-orange">System prompt:</span> identity + rules only
   → under 300 words
@@ -65,7 +65,7 @@ Draft → show human → confirm → act.`,
     num: "04",
     pill: "Maintainability",
     title: 'Keep data <span class="accent">external</span> and editable',
-    know: "We separate instructions from data. Pricing, FAQs, and templates live in external sources the agent reads live — so anyone on the team can update content without touching the agent.",
+    know: "We separate instructions from data. Pricing, FAQs, and templates live in external sources the agent reads live, so anyone on the team can update content without touching the agent.",
     scenario: "Pricing changes. Agent still quotes last month's rates because they're hardcoded in a prompt only a developer can edit.",
     code: `<span class="c-orange">"Before quoting pricing, fetch the
 current rate card from Notion page
@@ -78,7 +78,7 @@ current rate card from Notion page
   {
     num: "05",
     pill: "Reliability",
-    title: '<span class="accent">Idempotency</span> — design for retries',
+    title: '<span class="accent">Idempotency</span>, design for retries',
     know: "We design every workflow to be safe to re-run. Triggers fire twice. Retries happen. An idempotent workflow produces the same result regardless of how many times it executes.",
     scenario: "A Zap fires twice after a timeout. Agent creates two CRM contacts, sends two welcome emails, charges the card twice.",
     code: `existing = search_crm(email)
@@ -88,14 +88,14 @@ current rate card from Notion page
 <span class="c-orange">else:</span>
   create_record(new_data)
 
-<span class="c-orange"># Never blindly CREATE — check first.</span>`,
+<span class="c-orange"># Never blindly CREATE, check first.</span>`,
     variant: "dark"
   },
   {
     num: "06",
     pill: "Observability",
     title: 'Log what the agent <span class="accent">did and why</span>',
-    know: "We build observability in from the start. Every meaningful action — what the agent read, decided, and executed — is logged. That's how you debug, audit, and improve over time.",
+    know: "We build observability in from the start. Every meaningful action, what the agent read, decided, and executed, is logged. That's how you debug, audit, and improve over time.",
     scenario: "Agent misroutes 40 support tickets to the wrong team. No log exists. You can't diagnose why or prove it happened.",
     code: `<span class="c-orange">After each action, log:</span>
   - input received
