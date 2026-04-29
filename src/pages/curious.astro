@@ -80,6 +80,11 @@ const breadcrumbSchema = {
               <input type="text" name="business" id="cf-business" autocomplete="organization" maxlength="160" placeholder="What you do — e.g. plumbing, real estate, agency" />
             </label>
 
+            <label class="op-curious-field">
+              <span class="op-mono op-curious-label">WHAT'S ON YOUR MIND? <span class="op-curious-opt">OPTIONAL</span></span>
+              <textarea name="notes" id="cf-notes" rows="5" maxlength="2000" placeholder="What's eating your time? Where do you think AI might fit? Any automations you've tried that didn't stick? Skip it if you'd rather just chat — we'll figure it out together."></textarea>
+            </label>
+
             <!-- Honeypot — bots fill this; humans never see it -->
             <div class="op-curious-honeypot" aria-hidden="true">
               <label>Website</label>
@@ -162,6 +167,7 @@ const breadcrumbSchema = {
         var lastName = (document.getElementById('cf-last-name').value || '').trim();
         var email = (document.getElementById('cf-email').value || '').trim();
         var business = (document.getElementById('cf-business').value || '').trim();
+        var notes = (document.getElementById('cf-notes').value || '').trim();
         var honeypot = (document.getElementById('cf-website-hp').value || '').trim();
 
         // Honeypot: silently succeed without submitting
@@ -192,6 +198,7 @@ const breadcrumbSchema = {
             { input_name: 'last_name', value: lastName },
             { input_name: 'email', value: email },
             { input_name: 'business', value: business },
+            { input_name: 'notes', value: notes },
             { input_name: 'source', value: 'curious-page' },
             { input_name: 'submitted_at', value: new Date().toISOString() }
           ]
@@ -347,7 +354,8 @@ const breadcrumbSchema = {
   }
 
   .op-curious-form input[type="text"],
-  .op-curious-form input[type="email"] {
+  .op-curious-form input[type="email"],
+  .op-curious-form textarea {
     font-family: var(--op-font-body);
     font-size: 15px;
     color: var(--op-ink);
@@ -361,11 +369,18 @@ const breadcrumbSchema = {
     -webkit-appearance: none;
     appearance: none;
   }
-  .op-curious-form input::placeholder {
+  .op-curious-form textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.55;
+  }
+  .op-curious-form input::placeholder,
+  .op-curious-form textarea::placeholder {
     color: var(--op-navy-soft);
     opacity: 0.55;
   }
-  .op-curious-form input:focus {
+  .op-curious-form input:focus,
+  .op-curious-form textarea:focus {
     outline: none;
     border-color: var(--op-orange);
     box-shadow: 3px 3px 0 var(--op-orange);
