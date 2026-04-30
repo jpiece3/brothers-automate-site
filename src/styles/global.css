@@ -1,6 +1,40 @@
 /* Brothers Automate - Global Styles */
 /* Design: UX Studio-inspired layout with light theme */
 
+/* Metrics-matched fallback faces. Each renders from a system font but
+   uses overrides so its layout metrics match the real web font. While
+   Plus Jakarta Sans / Inter / JetBrains Mono are loading from Google
+   Fonts, text is laid out using these fallbacks at the same widths it
+   will have in the real font. When the real font swaps in, glyphs
+   replace in place with zero reflow. Eliminates the left-to-right nav
+   bar flash on page navigation.
+
+   Values from industrialempathy.com/perfect-ish-font-fallback. */
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial');
+  size-adjust: 100.06%;
+  ascent-override: 96.7%;
+  descent-override: 24.2%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90%;
+  descent-override: 22.4%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Menlo'), local('Consolas');
+  size-adjust: 95%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
 /* CSS Variables */
 :root {
   /* Colors */
@@ -113,9 +147,9 @@
   --op-rule-soft:  #E5DCC7;  /* even softer dividers inside paper */
 
   /* Operator typography */
-  --op-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  --op-font-body:    'Inter', system-ui, sans-serif;
-  --op-font-mono:    'JetBrains Mono', 'SF Mono', monospace;
+  --op-font-display: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', 'Inter', sans-serif;
+  --op-font-body:    'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --op-font-mono:    'JetBrains Mono', 'JetBrains Mono Fallback', 'SF Mono', monospace;
 
   --op-tracking-display: -0.04em;
   --op-tracking-numeric: -0.03em;
