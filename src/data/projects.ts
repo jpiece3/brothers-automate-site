@@ -801,6 +801,96 @@ export const projects: Project[] = [
     },
     productUrl: 'https://www.crisply.fyi/',
     videoUrl: 'https://www.youtube.com/embed/LyVEeBVOLI0'
+  },
+  {
+    slug: 'database-reactivation',
+    name: 'Database Reactivation',
+    tagline: 'Your past customers are your easiest sales',
+    icon: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99',
+    description: 'Service business: an AI agent that pulls dormant customers out of your CRM, segments them, and reaches out one by one until they book again.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'book-call',
+    meta: {
+      title: 'Database Reactivation | Win Back Past Customers with AI | Brothers Automate',
+      description: 'Most service businesses sit on hundreds of past customers nobody has touched in 12+ months. We build an AI agent that segments your dormant list, sends personalized outreach, and books replies straight to your calendar.'
+    },
+    problem: {
+      headline: 'Your warmest leads are sitting in your CRM, getting cold',
+      description: "Every service business ends up with the same pile: hundreds or thousands of past customers nobody has reached out to in a year or more. They already know you, already paid you, already trust the work. Most teams know this list is gold and still never get around to working it. Manual outreach takes too long and the team is busy with new leads.",
+      painPoints: [
+        "You've got a CRM full of paying customers from 12 to 36 months ago and zero plan to win them back",
+        "Reactivation lives on a someday list because the person who would do it is buried in operational work",
+        "Outreach that does happen is one-shot blasts that ignore who the customer is or what they bought",
+        "Negative replies and unsubscribes get mixed in with everyone else, hurting future deliverability"
+      ]
+    },
+    solution: {
+      headline: 'An AI agent that works your dormant list one customer at a time',
+      description: "We pull your CRM into a structured table, tier customers by recency and lifetime value, and run an AI agent that drafts a personalized outreach for each one referencing what they actually bought. Messages go out on a smart cadence across email and SMS. Replies get triaged: hot intent books straight to your calendar, soft interest drops into a nurture sequence, hard no's get tagged and removed.",
+      features: [
+        { title: 'Recency + Value Segmentation', description: 'Customers tier by last contact and lifetime spend so the highest-value sleepers get the priority touch first' },
+        { title: 'Personalized Drafts at Scale', description: "Each outreach references the actual job, product, or service the customer bought, not a generic 'we miss you' template" },
+        { title: 'Multi-Channel Cadence', description: 'Email plus SMS on a 3-step cadence with deliverability guardrails so warm-up does not blow up your sender reputation' },
+        { title: 'Reply Triage Built In', description: 'Hot replies route to your calendar, soft interest drops into nurture, hard no\'s get suppressed automatically. No manual sorting.' }
+      ]
+    },
+    results: {
+      headline: 'Built to make a stale list pay rent',
+      stats: [
+        { number: '5-15%', label: 'Reactivation Rate', context: 'Industry benchmark on a 12-month-stale list' },
+        { number: '5x', label: 'Cheaper Than Cold', context: 'Won-back leads vs. new acquisition cost' },
+        { number: '1-2 wks', label: 'Build To Live', context: 'Plugged into your existing CRM' }
+      ]
+    },
+    cta: {
+      headline: 'Stop letting your warmest leads sit on the shelf',
+      description: "Let's set up a Database Reactivation agent for your business so the customers who already know you get the next call without anyone on your team having to remember."
+    }
+  },
+  {
+    slug: 'five-star-autopilot',
+    name: '5-Star Autopilot',
+    tagline: 'Turn every happy customer into a public review',
+    icon: 'M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z',
+    description: 'Service business: AI catches happy customers the moment they are happy, asks for a review, and intercepts unhappy ones before they post a 1-star.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'book-call',
+    meta: {
+      title: '5-Star Autopilot | AI Review Generation for Local Business | Brothers Automate',
+      description: 'Most happy customers never leave a review unless asked. We build an AI system that watches for completion signals, routes happy customers to public review channels, and intercepts unhappy ones before they post.'
+    },
+    problem: {
+      headline: 'Reviews drive your local SEO and you have no system for getting them',
+      description: 'About 90% of customers do not leave a review unless someone asks. The few who do anyway tend to be mad. Asking manually works for a week, then the team gets busy and stops. The result is a review profile that does not match the actual quality of the work, and the unhappy minority gets the megaphone.',
+      painPoints: [
+        'Most jobs end well and never produce a review because nobody remembers to ask',
+        'Manual review requests die the first week the team gets slammed',
+        'The customers who do post unprompted are disproportionately the unhappy ones',
+        'Negative reviews go straight public when a private channel could have caught them first'
+      ]
+    },
+    solution: {
+      headline: 'A review system that runs the second a job ends',
+      description: 'We wire up your job-completion or payment signals (whatever you already track) so the moment work wraps, the AI fires a personalized review request. Happy signals get routed to your public channels (Google, Yelp, industry-specific). Unhappy signals get caught in a private feedback flow that goes to you, not to the internet. Reminder cadence and channel-of-record selection are built in.',
+      features: [
+        { title: 'Trigger On Completion Signals', description: 'Job closed, invoice paid, NPS submitted, whatever your system already records, the AI watches for it and fires automatically' },
+        { title: 'Sentiment Gate', description: 'Pre-checks customer sentiment from any signal you have (NPS, support tone, payment behavior) before deciding which path to send them down' },
+        { title: 'Public vs. Private Routing', description: 'Happy customers get sent to Google or Yelp. Unhappy customers get sent to a private feedback form that emails you, not the internet.' },
+        { title: 'Cadence Without Spam', description: '2 to 3 well-timed touches across email and SMS. Stops automatically once the review is posted or the customer opts out.' }
+      ]
+    },
+    results: {
+      headline: 'Built to make your review profile reflect your actual work',
+      stats: [
+        { number: '3-5x', label: 'Review Volume', context: 'Within 60 days of launch' },
+        { number: '+0.5★', label: 'Average Rating Lift', context: 'From a fairer mix of voices' },
+        { number: '1 wk', label: 'Build To Live', context: 'Triggers on any completion event you already track' }
+      ]
+    },
+    cta: {
+      headline: 'Get the review profile your work actually deserves',
+      description: "Let's set up 5-Star Autopilot so every happy customer becomes a public review and the rare unhappy one gets a private channel to land in instead."
+    }
   }
 ];
 
