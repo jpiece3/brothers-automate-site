@@ -7,6 +7,7 @@ import CTA from '../components/CTA.astro';
 import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
 import EyebrowTag from '../components/operator/EyebrowTag.astro';
 import CalloutBox from '../components/operator/CalloutBox.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 
@@ -164,6 +165,29 @@ const breadcrumbSchema = {
         <CalloutBox header="THE PROMISE">
           <p>30-day guarantee on every build. If a system doesn't do what we scoped, we fix it free. We define deliverables before writing code so we're both clear on what "done" looks like.</p>
         </CalloutBox>
+      </div>
+    </section>
+
+    {/* Agency partnership callout */}
+    <section class="op-pricing-agency">
+      <div class="op-pricing-agency-frame">
+        <div class="op-pricing-agency-card">
+          <div class="op-pricing-agency-left">
+            <span class="op-mono op-pricing-agency-eyebrow"><span class="op-pulse-dot"></span> WORKING ON BEHALF OF CLIENTS?</span>
+            <h3 class="op-pricing-agency-title">Need AI automation for <span class="op-pricing-agency-title-orange">your</span> clients?</h3>
+            <p class="op-pricing-agency-sub">We partner with coaches, consultants, and agencies as their build team. White-label or co-delivered. Your clients never know we exist unless you want them to.</p>
+          </div>
+          <div class="op-pricing-agency-right">
+            <MonoCTA
+              label="See agency partnership"
+              variant="orange"
+              size="md"
+              href="/partnership"
+              trackLocation="pricing-agency"
+              trackLabel="See agency partnership"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -360,6 +384,72 @@ const breadcrumbSchema = {
   .op-pricing-promise-frame {
     max-width: 720px;
     margin: 0 auto;
+  }
+
+  /* Agency callout */
+  .op-pricing-agency {
+    padding: 0 var(--op-section-px) 56px;
+  }
+  .op-pricing-agency-frame {
+    max-width: var(--op-max-content);
+    margin: 0 auto;
+  }
+  .op-pricing-agency-card {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-lg);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    .op-pricing-agency-card {
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      padding: 32px 40px;
+    }
+  }
+  .op-pricing-agency-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-orange);
+    margin-bottom: 10px;
+  }
+  .op-pricing-agency-title {
+    font-family: var(--op-font-display);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-cream);
+    margin: 0 0 8px;
+    text-wrap: balance;
+    line-height: 1.15;
+  }
+  .op-pricing-agency-title-orange {
+    color: var(--op-orange);
+    font-style: italic;
+  }
+  .op-pricing-agency-sub {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(244, 238, 226, 0.78);
+    margin: 0;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .op-pricing-agency-right {
+    display: flex;
+    justify-content: flex-start;
+  }
+  @media (min-width: 800px) {
+    .op-pricing-agency-right { justify-content: flex-end; }
   }
 
   /* FAQ */

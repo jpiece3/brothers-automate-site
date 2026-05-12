@@ -1,0 +1,1062 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import CalloutBox from '../components/operator/CalloutBox.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const tiers = [
+  {
+    n: '01',
+    name: 'Embedded',
+    price: '$2,500',
+    cadence: '/ month',
+    summary: 'You add "AI build team" to your offer without hiring one. Quote AI work to your clients with confidence.',
+    includes: [
+      'Active production capacity for your client roster',
+      'Maintenance on every build we ship for you',
+      'Monthly strategy call with your team',
+      'White-label or co-delivered, your call per engagement',
+      'Shared Slack channel for project comms',
+    ],
+    bestFor: 'Coaches, consultants, and small agencies adding AI to their offer for the first time.',
+    highlighted: false,
+  },
+  {
+    n: '02',
+    name: 'Studio',
+    price: '$5,000',
+    cadence: '/ month',
+    summary: 'Your AI studio in a box. Parallel engagements across your client roster, branded as yours.',
+    includes: [
+      'Dedicated production capacity, parallel engagements supported',
+      'Unlimited maintenance across your roster',
+      'Dedicated Slack channel · same-day responses',
+      'Branded deliverables, docs, dashboards under your name',
+      'Strategic input on your AI service positioning + pricing',
+    ],
+    bestFor: 'Agencies with 5+ active clients asking about AI. Firms turning AI into a real revenue line.',
+    highlighted: true,
+  },
+  {
+    n: '03',
+    name: 'Bespoke',
+    price: 'Custom',
+    cadence: 'tailored',
+    summary: 'For agencies running 10+ active client deployments or building a full AI service line with us.',
+    includes: [
+      'Custom build cadence and team allocation',
+      'Joint go-to-market support · co-authored case studies',
+      'Direct access to both Brothers',
+      'Revenue-share or fixed-fee structures available',
+      'Quarterly business reviews · roadmap alignment',
+    ],
+    bestFor: 'Agencies $1M+ in ARR ready to make AI a real revenue line, not a side experiment.',
+    highlighted: false,
+  },
+];
+
+const modes = [
+  {
+    name: 'WHITE-LABEL',
+    label: 'You stay the face. We stay invisible.',
+    body: 'Deliverables, docs, and dashboards go out under your brand. Your client never knows we exist. Best when AI is becoming a core part of your service line and you own the relationship.',
+    points: [
+      'Branded reports, docs, and dashboards',
+      'You run all client comms',
+      'We bill you · you bill the client',
+      'NDAs in place from day one',
+    ],
+  },
+  {
+    name: 'CO-DELIVERED',
+    label: "We're the AI partner you bring in.",
+    body: "Your client knows we're the build team. We join calls, present work, answer technical questions. You stay on strategy and the relationship. Best when AI is one capability you bring to a broader engagement.",
+    points: [
+      'Introduced as "our AI partner"',
+      'We join client calls when useful',
+      'Shared credit on case studies',
+      'Builds your firm\'s AI reputation faster',
+    ],
+  },
+];
+
+const why = [
+  {
+    n: '01',
+    title: "Clients are asking. You can't hire fast enough.",
+    body: "Every client deck now mentions AI. The briefs are coming in. Hiring a senior AI engineer is $180K, 6 months, and a flight risk. Hiring a freelancer is quality roulette. Saying \"we'll get back to you\" loses the deal.",
+  },
+  {
+    n: '02',
+    title: 'Your agency stack already does this work, just not with AI yet.',
+    body: "You already run lead pipelines, content engines, and reporting workflows for clients. Adding AI doesn't mean rebuilding your business. It means plugging in a build team that ships the AI layer behind your existing service.",
+  },
+  {
+    n: '03',
+    title: 'We are that build team.',
+    body: "We've shipped AI automations for service businesses for years. We know what actually works in production vs. demo. We work fast, document everything, and operate under your brand or ours. We don't poach your clients.",
+  },
+];
+
+const month = [
+  {
+    week: 'WEEK 01',
+    title: 'Brief intake + scoping',
+    body: "You drop client briefs in our shared Slack. We scope each one within 48 hours, send back a build plan, and start production on the highest-priority work.",
+  },
+  {
+    week: 'WEEK 02',
+    title: 'First deploys go live',
+    body: "Builds ship on your client's accounts. Docs and dashboards delivered under your brand. Next-in-queue work starts the same day.",
+  },
+  {
+    week: 'WEEK 03',
+    title: 'Strategy call + ongoing production',
+    body: "Mid-month sync to review the pipeline, prioritize what's next, and flag bottlenecks. Production never stops while we plan.",
+  },
+  {
+    week: 'WEEK 04',
+    title: 'Wrap + monthly report',
+    body: 'Final deploys for the cycle. Plain-English client report you can forward as-is, plus an internal scorecard for your team.',
+  },
+];
+
+const ownership = [
+  { n: '01', title: 'Client owns the code', body: 'Everything runs on your client\'s accounts, under their logins. Standard. Same as if you built it in-house.' },
+  { n: '02', title: 'You own the relationship', body: 'We never market to your clients. Never reach out. Never accept a direct engagement from them without your say-so.' },
+  { n: '03', title: 'You own the brand', body: 'In white-label mode, our name appears nowhere. Reports, docs, dashboards, emails, all yours.' },
+  { n: '04', title: 'We own our methods', body: 'Our internal frameworks, prompts, and templates stay ours. We bring them to every engagement. Faster builds, lower cost for you.' },
+  { n: '05', title: 'Shared case studies', body: 'In co-delivered mode we publish joint case studies (with your client\'s permission). Both brands get credit. Builds both our pipelines.' },
+  { n: '06', title: 'Exit is clean', body: 'Cancel any month after 90 days. Everything we built keeps running. We hand off documentation, you keep the client.' },
+];
+
+const faqs = [
+  {
+    question: 'Will my client know I work with you?',
+    answer: 'Your call. White-label mode means we are invisible. Reports, docs, deliverables all go out under your brand. Co-delivered mode means we are introduced as your AI partner and may join client calls. You pick the mode per engagement, not per contract, so you can mix as it suits each client.',
+  },
+  {
+    question: 'How does the work get prioritized each month?',
+    answer: 'You drop briefs in our shared Slack. We scope each one within 48 hours and slot it into our production queue based on urgency and your input. The tier sets our team allocation, not a rigid output count. If multiple urgent things land at once we flag it on the strategy call and decide together what gets pushed. Slow months get credited toward the next.',
+  },
+  {
+    question: 'Do you have an NDA / non-solicit with us?',
+    answer: 'Yes. Both directions. We sign a partnership agreement before any client work that includes a non-solicit on your client roster and an NDA on anything we see. You can share our agreement template with us, or use ours.',
+  },
+  {
+    question: 'How fast can you turn around a build?',
+    answer: "Most client builds ship in 1-2 weeks. Quick wins (lead intake, follow-up, simple automations) often in 3-5 days. Bigger systems (custom dashboards, multi-step pipelines) closer to 3 weeks. We give you a real ETA inside 48 hours of brief intake, not a vague 'soon.'",
+  },
+  {
+    question: 'Who handles the client relationship?',
+    answer: "You do. Always. We don't message your clients directly unless you put us on the channel. We don't sell them more work. We don't follow up after a build is delivered. The relationship is yours to deepen.",
+  },
+  {
+    question: 'What if a client wants ongoing AI support?',
+    answer: 'You sell that to them. It is a great upsell line on top of your existing retainer. Our partnership covers unlimited maintenance on what we build for you, so you can include it in your client retainer at zero variable cost to you.',
+  },
+  {
+    question: 'What if I want to exit the partnership?',
+    answer: 'After the initial 90 days, cancel any month with 30 days notice. We hand off all documentation, code, and accounts. Everything we built for your clients keeps running. We do not hold anything hostage. You keep the client. We do not reach out.',
+  },
+  {
+    question: "Can I trial the partnership before committing?",
+    answer: "Yes. We run a paid 30-day pilot, one client build at a standard build price, to see if we work well together before you commit to the 90-day partnership. Most agencies do this and roll into Embedded or Studio after.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Brothers Automate Agency Partnership",
+  "description": "White-label or co-delivered AI build partnership for coaches, consultants, and agencies whose clients are asking for AI automation. Two tiers from $2,500/mo and bespoke partnerships available.",
+  "provider": { "@type": "Organization", "name": "Brothers Automate", "url": SITE_URL },
+  "serviceType": "Agency AI Build Partnership",
+  "areaServed": "Worldwide",
+  "offers": tiers.map((tier) => ({
+    "@type": "Offer",
+    "name": tier.name,
+    "priceCurrency": "USD",
+    ...(tier.price !== 'Custom' && {
+      "price": tier.price.replace('$', '').replace(',', ''),
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": tier.price.replace('$', '').replace(',', ''),
+        "priceCurrency": "USD",
+        "unitText": "MONTH",
+      },
+    }),
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "For Agencies", "item": `${SITE_URL}/partnership` },
+  ],
+};
+---
+
+<Layout
+  title="AI Build Partnership for Agencies & Consultants | Brothers Automate"
+  description="Your clients are asking about AI. We're the build team behind coaches, consultants, and agencies who deliver AI work without hiring engineers. White-label or co-delivered. From $2,500/month."
+>
+  <Header />
+  <main>
+    {/* Hero */}
+    <section class="op-partner-hero op-grid-bg">
+      <div class="op-partner-hero-frame">
+        <div class="op-partner-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / FOR AGENCIES · WHITE-LABEL OR CO-DELIVERED"
+            right="● ACCEPTING NEW PARTNERS · 02 TIERS + BESPOKE"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="AGENCY PARTNERSHIP · AI BUILD TEAM" />
+        <h1 class="op-partner-h1" data-animate="fade-up">
+          Your clients are asking about AI.<br />
+          <span class="op-partner-h1-orange">Be the agency that ships it.</span>
+        </h1>
+        <p class="op-partner-sub" data-animate="fade-up">
+          We're the AI build team behind coaches, consultants, and agencies. You sell the work. We build it, on your client's stack, under your brand or ours. From $2,500/month. No hires. No freelancer roulette.
+        </p>
+        <div class="op-partner-hero-cta" data-animate="fade-up">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder/simple-automation-discovery"
+            trackLocation="partnership-hero"
+            trackLabel="Talk to the Brothers"
+          />
+          <a href="#tiers" class="op-partner-hero-link op-mono" data-track="cta_click" data-track-location="partnership-hero" data-track-label="See the tiers">SEE THE TIERS ↓</a>
+        </div>
+      </div>
+    </section>
+
+    {/* Why agencies bring us in */}
+    <section class="op-partner-why">
+      <div class="op-partner-why-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">01</span> WHY AGENCIES BRING US IN</span>
+          <h2 class="op-partner-h2">The brief lands. You need a build team. The math doesn't work in-house.</h2>
+        </div>
+
+        <div class="op-partner-why-grid" data-animate-stagger>
+          {why.map((item) => (
+            <div class="op-partner-why-card">
+              <span class="op-mono op-partner-why-num">W.{item.n}</span>
+              <h3 class="op-partner-why-title">{item.title}</h3>
+              <p class="op-partner-why-body">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Tiers */}
+    <section class="op-partner-tiers op-grid-bg" id="tiers">
+      <div class="op-partner-tiers-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">02</span> THE TIERS</span>
+          <h2 class="op-partner-h2">Two packages, one custom. All flat monthly so you can quote AI to your clients without doing math each time.</h2>
+        </div>
+
+        <div class="op-partner-tier-grid" data-animate-stagger>
+          {tiers.map((tier) => (
+            <article class={`op-partner-tier${tier.highlighted ? ' op-partner-tier--featured' : ''}`}>
+              <div class="op-partner-tier-header">
+                <span class="op-pulse-dot op-pulse-dot--lg"></span>
+                <span class="op-mono op-partner-tier-id">TIER_{tier.n} · {tier.name.toUpperCase()}</span>
+                {tier.highlighted && <span class="op-mono op-partner-tier-badge">MOST POPULAR</span>}
+              </div>
+
+              <div class="op-partner-tier-body">
+                <div class="op-partner-tier-num op-mono">T.{tier.n}</div>
+                <h3 class="op-partner-tier-name">{tier.name}</h3>
+
+                <div class="op-partner-tier-price">
+                  <span class="op-partner-tier-price-amount">{tier.price}</span>
+                  <span class="op-partner-tier-price-cadence">{tier.cadence}</span>
+                </div>
+
+                <p class="op-partner-tier-summary">{tier.summary}</p>
+
+                <ul class="op-partner-tier-includes">
+                  {tier.includes.map((item) => (
+                    <li>
+                      <span class="op-partner-tier-check" aria-hidden="true">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="op-partner-tier-builton">
+                  <span class="op-mono op-partner-tier-builton-label">BEST FOR</span>
+                  <span class="op-partner-tier-builton-body">{tier.bestFor}</span>
+                </div>
+
+                <MonoCTA
+                  label={tier.price === 'Custom' ? 'Talk to us about Bespoke' : `Start with ${tier.name}`}
+                  variant={tier.highlighted ? 'orange' : 'navy'}
+                  size="md"
+                  calLink="james-pinder/simple-automation-discovery"
+                  trackLocation="partnership-tier"
+                  trackLabel={`Start with ${tier.name}`}
+                  block
+                />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Two modes */}
+    <section class="op-partner-modes">
+      <div class="op-partner-modes-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">03</span> HOW WE WORK WITH YOU</span>
+          <h2 class="op-partner-h2">White-label or co-delivered. You pick per engagement, not per contract.</h2>
+        </div>
+
+        <div class="op-partner-modes-grid" data-animate-stagger>
+          {modes.map((mode) => (
+            <article class="op-partner-mode-card">
+              <div class="op-partner-mode-header">
+                <span class="op-mono op-partner-mode-name">{mode.name}</span>
+              </div>
+              <div class="op-partner-mode-body">
+                <h3 class="op-partner-mode-label">{mode.label}</h3>
+                <p class="op-partner-mode-text">{mode.body}</p>
+                <ul class="op-partner-mode-points">
+                  {mode.points.map((point) => (
+                    <li>
+                      <span class="op-partner-mode-check" aria-hidden="true">✓</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="op-partner-modes-callout" data-animate="fade-up">
+          <CalloutBox header="THE FLEX">
+            <p>Most agencies start co-delivered to build trust with their first 1-2 clients, then move to white-label as they scale the AI offer. You don't have to pick once. We adapt per engagement.</p>
+          </CalloutBox>
+        </div>
+      </div>
+    </section>
+
+    {/* A month with us */}
+    <section class="op-partner-proof op-grid-bg">
+      <div class="op-partner-proof-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">04</span> A MONTH WORKING TOGETHER</span>
+          <h2 class="op-partner-h2">Production runs every week. You bill your clients. We never speak to them.</h2>
+        </div>
+
+        <div class="op-partner-proof-grid" data-animate-stagger>
+          {month.map((m) => (
+            <div class="op-partner-proof-card">
+              <div class="op-partner-proof-card-header">
+                <span class="op-mono op-partner-proof-week">{m.week}</span>
+                <span class="op-mono op-partner-proof-status">● SHIPPED</span>
+              </div>
+              <h3 class="op-partner-proof-title">{m.title}</h3>
+              <p class="op-partner-proof-body">{m.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="op-partner-proof-stats" data-animate="fade-up">
+          <div class="op-partner-proof-stat">
+            <div class="op-partner-proof-stat-value">&lt;48hr</div>
+            <div class="op-mono op-partner-proof-stat-label">BRIEF TO SCOPE</div>
+          </div>
+          <div class="op-partner-proof-stat">
+            <div class="op-partner-proof-stat-value">$5K</div>
+            <div class="op-mono op-partner-proof-stat-label">YOUR FLAT MONTHLY</div>
+          </div>
+          <div class="op-partner-proof-stat">
+            <div class="op-partner-proof-stat-value">100%</div>
+            <div class="op-mono op-partner-proof-stat-label">BRAND CONTROL</div>
+          </div>
+          <div class="op-partner-proof-stat">
+            <div class="op-partner-proof-stat-value">0</div>
+            <div class="op-mono op-partner-proof-stat-label">INTERNAL HIRES</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Ownership */}
+    <section class="op-partner-own">
+      <div class="op-partner-own-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">05</span> WHAT'S YOURS · WHAT'S OURS</span>
+          <h2 class="op-partner-h2">Clean ownership lines from day one. No grey areas, no client poaching.</h2>
+        </div>
+
+        <div class="op-partner-own-grid" data-animate-stagger>
+          {ownership.map((item) => (
+            <div class="op-partner-own-card">
+              <span class="op-mono op-partner-own-num">O.{item.n}</span>
+              <h3 class="op-partner-own-title">{item.title}</h3>
+              <p class="op-partner-own-body">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section class="op-partner-faq op-grid-bg">
+      <div class="op-partner-faq-frame">
+        <div class="op-partner-section-header" data-animate="fade-up">
+          <span class="op-mono op-partner-section-label"><span class="op-partner-section-num">06</span> PARTNERSHIP FAQ</span>
+          <h2 class="op-partner-h2">The questions every agency asks before we sign.</h2>
+        </div>
+
+        <div class="op-partner-faq-list" data-animate-stagger>
+          {faqs.map((faq, i) => (
+            <details class="op-partner-faq-item">
+              <summary class="op-partner-faq-q">
+                <span class="op-mono op-partner-faq-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="op-partner-faq-q-text">{faq.question}</span>
+                <span class="op-partner-faq-q-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="op-partner-faq-a">{faq.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<style>
+  /* Hero */
+  .op-partner-hero {
+    padding: 120px var(--op-section-px) 72px;
+    color: var(--op-ink);
+  }
+  .op-partner-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-partner-util { margin-bottom: 32px; }
+  .op-partner-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-partner-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    max-width: 900px;
+    text-wrap: balance;
+  }
+  .op-partner-h1-orange { color: var(--op-orange); }
+
+  .op-partner-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 32px;
+    max-width: 720px;
+    text-wrap: pretty;
+  }
+
+  .op-partner-hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .op-partner-hero-link {
+    color: var(--op-navy);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-navy);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-partner-hero-link:hover {
+    color: var(--op-orange);
+    border-color: var(--op-orange);
+  }
+
+  /* Section header */
+  .op-partner-section-header {
+    max-width: 820px;
+    margin-bottom: 40px;
+  }
+  .op-partner-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-partner-section-num { color: var(--op-orange); font-size: 9px; }
+
+  .op-partner-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  /* Why agencies bring us in */
+  .op-partner-why {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-partner-why-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .op-partner-why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 900px) { .op-partner-why-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-partner-why-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 24px 26px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .op-partner-why-num { font-size: 9px; color: var(--op-orange); letter-spacing: 0.22em; }
+  .op-partner-why-title {
+    font-family: var(--op-font-display);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-partner-why-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* Tiers */
+  .op-partner-tiers {
+    padding: 80px var(--op-section-px);
+  }
+  .op-partner-tiers-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .op-partner-tier-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    align-items: stretch;
+  }
+  @media (min-width: 900px) {
+    .op-partner-tier-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .op-partner-tier {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 4px 0 var(--op-ink);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-partner-tier:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 6px 0 var(--op-ink);
+  }
+  .op-partner-tier--featured {
+    border-color: var(--op-orange);
+    border-width: 2px;
+  }
+
+  .op-partner-tier-header {
+    background: var(--op-navy-deep);
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-partner-tier-id {
+    font-size: 9px;
+    color: var(--op-orange);
+    letter-spacing: 0.18em;
+  }
+  .op-partner-tier-badge {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-paper);
+    background: var(--op-orange);
+    padding: 3px 8px;
+    border-radius: var(--op-radius-sm);
+    letter-spacing: 0.15em;
+  }
+
+  .op-partner-tier-body {
+    padding: 24px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .op-partner-tier-num {
+    font-size: 10px;
+    color: var(--op-orange);
+    letter-spacing: 0.22em;
+    margin-bottom: 10px;
+  }
+  .op-partner-tier-name {
+    font-family: var(--op-font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 16px;
+  }
+
+  .op-partner-tier-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--op-rule-soft);
+  }
+  .op-partner-tier-price-amount {
+    font-family: var(--op-font-display);
+    font-size: clamp(32px, 3.8vw, 42px);
+    font-weight: 800;
+    color: var(--op-ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .op-partner-tier-price-cadence {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--op-navy-soft);
+  }
+
+  .op-partner-tier-summary {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    font-weight: 500;
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+
+  .op-partner-tier-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .op-partner-tier-includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--op-ink);
+    font-weight: 500;
+  }
+  .op-partner-tier-check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: var(--op-radius-sm);
+    margin-top: 1px;
+  }
+
+  .op-partner-tier-builton {
+    padding: 12px 14px;
+    background: var(--op-cream);
+    border: 1px solid var(--op-rule);
+    border-radius: var(--op-radius-sm);
+    margin-bottom: 18px;
+  }
+  .op-partner-tier-builton-label {
+    display: block;
+    font-size: 8.5px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+  }
+  .op-partner-tier-builton-body {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    color: var(--op-ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Two modes */
+  .op-partner-modes {
+    padding: 80px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-partner-modes-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .op-partner-modes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+  @media (min-width: 900px) { .op-partner-modes-grid { grid-template-columns: 1fr 1fr; } }
+
+  .op-partner-mode-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  .op-partner-mode-header {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    padding: 10px 18px;
+    border-bottom: var(--op-border);
+  }
+  .op-partner-mode-name {
+    font-size: 10px;
+    color: var(--op-orange);
+    letter-spacing: 0.22em;
+  }
+  .op-partner-mode-body { padding: 24px 26px 26px; flex: 1; display: flex; flex-direction: column; }
+  .op-partner-mode-label {
+    font-family: var(--op-font-display);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .op-partner-mode-text {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    font-weight: 500;
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .op-partner-mode-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-partner-mode-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--op-ink);
+    font-weight: 500;
+  }
+  .op-partner-mode-check {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: var(--op-radius-sm);
+    margin-top: 1px;
+  }
+
+  .op-partner-modes-callout {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* A month */
+  .op-partner-proof {
+    padding: 80px var(--op-section-px);
+  }
+  .op-partner-proof-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .op-partner-proof-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+  @media (min-width: 700px) { .op-partner-proof-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-partner-proof-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .op-partner-proof-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 22px 24px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .op-partner-proof-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    margin-bottom: 4px;
+  }
+  .op-partner-proof-week { color: var(--op-orange); }
+  .op-partner-proof-status { color: var(--op-navy-soft); }
+  .op-partner-proof-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-partner-proof-body {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .op-partner-proof-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 28px 24px;
+    box-shadow: var(--op-shadow);
+  }
+  @media (min-width: 700px) { .op-partner-proof-stats { grid-template-columns: repeat(4, 1fr); } }
+  .op-partner-proof-stat { text-align: center; }
+  .op-partner-proof-stat-value {
+    font-family: var(--op-font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--op-orange);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 8px;
+  }
+  .op-partner-proof-stat-label {
+    font-size: 9px;
+    color: var(--op-cream);
+    opacity: 0.7;
+    letter-spacing: 0.2em;
+  }
+
+  /* Ownership */
+  .op-partner-own {
+    padding: 80px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-partner-own-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .op-partner-own-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 700px) { .op-partner-own-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-partner-own-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-partner-own-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-partner-own-num { font-size: 9px; color: var(--op-orange); letter-spacing: 0.22em; }
+  .op-partner-own-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-partner-own-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+  }
+
+  /* FAQ */
+  .op-partner-faq {
+    padding: 80px var(--op-section-px);
+  }
+  .op-partner-faq-frame { max-width: 1000px; margin: 0 auto; }
+
+  .op-partner-faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .op-partner-faq-item {
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .op-partner-faq-item[open] { background: var(--op-paper); }
+  .op-partner-faq-q {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 4px;
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--op-ink);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-partner-faq-q::-webkit-details-marker { display: none; }
+  .op-partner-faq-num {
+    width: 28px;
+    flex-shrink: 0;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+  }
+  .op-partner-faq-q-text { flex: 1; text-wrap: balance; }
+  .op-partner-faq-q-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-partner-faq-item[open] .op-partner-faq-q-icon {
+    transform: rotate(45deg);
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+  .op-partner-faq-q:hover { color: var(--op-orange); }
+
+  .op-partner-faq-a {
+    padding: 4px 4px 22px 50px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+    max-width: 820px;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .op-partner-hero,
+    .op-partner-why,
+    .op-partner-tiers,
+    .op-partner-modes,
+    .op-partner-proof,
+    .op-partner-own,
+    .op-partner-faq { padding-left: 22px; padding-right: 22px; }
+  }
+</style>
