@@ -1,0 +1,635 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import { themes, totalPacks, totalSkills } from '../../data/skill-packs';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Resources', item: `${SITE_URL}/resources` },
+    { '@type': 'ListItem', position: 3, name: 'Skill Packs', item: `${SITE_URL}/resources/skill-packs` },
+  ],
+};
+---
+
+<Layout
+  title="Skill Packs · The Operator's Catalog | Brothers Automate"
+  description={`${totalPacks} skill packs across 7 themes — every chained workflow we use to deliver AI marketing and operations work for service businesses. Email-gated.`}
+>
+  <Header />
+  <main>
+    <!-- HERO -->
+    <section class="op-sp-hero op-grid-bg">
+      <div class="op-sp-frame">
+        <div class="op-sp-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / RESOURCES · SKILL PACKS"
+            right={`${totalPacks} PACKS · 7 THEMES · EMAIL UNLOCK`}
+            bordered
+          />
+        </div>
+        <EyebrowTag label="OPERATOR'S CATALOG · SKILL PACKS" />
+        <h1 class="op-sp-h1" data-animate="fade-up">
+          {totalPacks} Skill Packs.<br />
+          <span class="op-sp-h1-orange">One Operating System.</span>
+        </h1>
+        <p class="op-sp-sub" data-animate="fade-up">
+          Each Pack is a chained sequence of skills built to deliver a specific business outcome — launch a newsletter, win a pitch, build a viral content sprint, run a paid campaign. Skills compose. Outcomes ship. This is the catalog we run our own work through.
+        </p>
+        <p class="op-sp-meta op-mono" data-animate="fade-up">
+          {totalSkills}+ INDIVIDUAL SKILLS · {themes.length} THEMES · {totalPacks} OUTCOME-SPECIFIC PACKS
+        </p>
+      </div>
+    </section>
+
+    <!-- EMAIL GATE -->
+    <section class="op-sp-gate-section" id="gate-section">
+      <div class="op-sp-frame">
+        <div class="op-sp-gate" data-animate="fade-up" id="gate-panel">
+          <div class="op-sp-gate-strip op-mono">
+            <span class="op-pulse-dot"></span>
+            ACCESS · EMAIL UNLOCK · NO SPAM
+          </div>
+          <div class="op-sp-gate-body">
+            <h2 class="op-sp-gate-h2">Drop your email to view the catalog.</h2>
+            <p class="op-sp-gate-p">
+              We'll send the catalog to your inbox plus occasional operator notes on what's working in AI ops for service businesses. Unsubscribe in one click. We don't sell or share.
+            </p>
+
+            <form class="op-sp-form" id="email-gate-form" novalidate>
+              <input
+                type="email"
+                name="email"
+                id="email-input"
+                placeholder="you@yourbusiness.com"
+                autocomplete="email"
+                required
+                class="op-sp-input"
+              />
+              <button type="submit" class="op-sp-submit" id="submit-btn">
+                <span class="op-sp-submit-label">Unlock the catalog</span>
+                <span class="op-sp-submit-arrow" aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <p class="op-sp-gate-fine" id="gate-status"></p>
+          </div>
+          <div class="op-sp-gate-foot op-mono">
+            <span>SOURCE · SKILL_PACKS_RESOURCE_PAGE</span>
+            <span class="op-sp-gate-foot-right">RLS-PROTECTED · SUPABASE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG (hidden until unlocked) -->
+    <div id="catalog-wrapper" class="op-sp-catalog-wrapper" hidden>
+      {themes.map((theme) => (
+        <section class="op-sp-theme">
+          <div class="op-sp-frame">
+            <div class="op-sp-theme-header">
+              <span class="op-mono op-sp-theme-num">THEME · {theme.number}</span>
+              <h2 class="op-sp-theme-name">{theme.name}</h2>
+              <p class="op-sp-theme-blurb">{theme.blurb}</p>
+            </div>
+
+            <div class="op-sp-pack-grid" data-animate-stagger>
+              {theme.packs.map((pack) => (
+                <article class="op-sp-pack-card">
+                  <div class="op-sp-pack-header">
+                    <span class="op-pulse-dot"></span>
+                    <span class="op-mono op-sp-pack-code">{theme.number}.{(theme.packs.indexOf(pack) + 1).toString().padStart(2, '0')}</span>
+                    <span class="op-mono op-sp-pack-tag">PACK</span>
+                  </div>
+                  <div class="op-sp-pack-body">
+                    <h3 class="op-sp-pack-title">{pack.name}</h3>
+                    <p class="op-sp-pack-mission">{pack.mission}</p>
+                    <div class="op-sp-chain">
+                      {pack.chain.map((skill, i) => (
+                        <>
+                          <span class="op-sp-chain-step op-mono">{skill}</span>
+                          {i < pack.chain.length - 1 && (
+                            <span class="op-sp-chain-arrow" aria-hidden="true">→</span>
+                          )}
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <!-- HOW IT WORKS -->
+      <section class="op-sp-how">
+        <div class="op-sp-frame">
+          <div class="op-sp-how-strip op-mono">
+            <span class="op-pulse-dot"></span>
+            HOW A PACK RUNS · 3 STAGES
+          </div>
+          <div class="op-sp-how-grid">
+            <div class="op-sp-how-card">
+              <span class="op-mono op-sp-how-num">01</span>
+              <h3 class="op-sp-how-title">Diagnose</h3>
+              <p class="op-sp-how-desc">Strategy session locks the goal and picks the right Pack. Skip if the goal is already clear.</p>
+            </div>
+            <div class="op-sp-how-card">
+              <span class="op-mono op-sp-how-num">02</span>
+              <h3 class="op-sp-how-title">Chain</h3>
+              <p class="op-sp-how-desc">Each skill in the Pack hands off to the next with compressed context — Tier 1 essentials only, no context bloat.</p>
+            </div>
+            <div class="op-sp-how-card">
+              <span class="op-mono op-sp-how-num">03</span>
+              <h3 class="op-sp-how-title">Ship</h3>
+              <p class="op-sp-how-desc">Final outputs polished through the Voice & Anti-Slop layer before they go live. No AI tells.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <CTA />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</Layout>
+
+<script>
+  import { supabase } from '../../lib/supabase';
+
+  const STORAGE_KEY = 'skill_packs_unlocked';
+  const gatePanel = document.getElementById('gate-panel');
+  const gateSection = document.getElementById('gate-section');
+  const catalog = document.getElementById('catalog-wrapper');
+  const form = document.getElementById('email-gate-form') as HTMLFormElement | null;
+  const input = document.getElementById('email-input') as HTMLInputElement | null;
+  const status = document.getElementById('gate-status');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+
+  function isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function unlockCatalog(scrollIntoView = false) {
+    if (gateSection) gateSection.style.display = 'none';
+    if (catalog) {
+      catalog.hidden = false;
+      if (scrollIntoView) {
+        setTimeout(() => {
+          catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 60);
+      }
+    }
+  }
+
+  // Check if already unlocked
+  if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_KEY) === '1') {
+    unlockCatalog(false);
+  }
+
+  if (form && input && status && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+
+      if (!isValidEmail(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        status.dataset.state = 'error';
+        input.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      status.dataset.state = 'pending';
+      status.textContent = 'Unlocking…';
+
+      try {
+        const { error } = await supabase.from('skill_pack_signups').insert({
+          email: email.toLowerCase(),
+          source: 'skill-packs-resource-page',
+          user_agent: navigator.userAgent.slice(0, 500),
+          referrer: document.referrer ? document.referrer.slice(0, 500) : null,
+        });
+
+        if (error) {
+          // Duplicate emails are fine — still unlock.
+          const isDuplicate = error.code === '23505' || /duplicate/i.test(error.message);
+          if (!isDuplicate) {
+            console.error('Skill packs signup error', error);
+            status.textContent = 'Something went wrong. Please try again or email simpleflosolutions@gmail.com.';
+            status.dataset.state = 'error';
+            submitBtn.disabled = false;
+            return;
+          }
+        }
+
+        localStorage.setItem(STORAGE_KEY, '1');
+        status.textContent = 'Unlocked. Welcome to the catalog.';
+        status.dataset.state = 'success';
+
+        // Track if dataLayer exists
+        if ((window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: 'skill_packs_unlock',
+            email_domain: email.split('@')[1] || 'unknown',
+          });
+        }
+
+        unlockCatalog(true);
+      } catch (err) {
+        console.error('Skill packs signup exception', err);
+        status.textContent = 'Network error. Please try again.';
+        status.dataset.state = 'error';
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  /* HERO */
+  .op-sp-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
+  }
+  .op-sp-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-sp-util { margin-bottom: 32px; }
+  .op-sp-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-sp-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 900px;
+    text-wrap: balance;
+  }
+  .op-sp-h1-orange { color: var(--op-orange); }
+
+  .op-sp-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 18px;
+    max-width: 720px;
+    text-wrap: pretty;
+  }
+
+  .op-sp-meta {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    letter-spacing: var(--op-tracking-mono);
+  }
+
+  /* GATE SECTION */
+  .op-sp-gate-section {
+    padding: 56px var(--op-section-px) 96px;
+    background: var(--op-paper);
+    border-top: var(--op-border);
+  }
+
+  .op-sp-gate {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-md);
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .op-sp-gate-strip {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+    font-size: 10px;
+  }
+
+  .op-sp-gate-body {
+    padding: 36px 36px 28px;
+  }
+
+  .op-sp-gate-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .op-sp-gate-p {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 26px;
+    text-wrap: pretty;
+  }
+
+  .op-sp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  @media (min-width: 560px) {
+    .op-sp-form {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  .op-sp-input {
+    flex: 1;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 14px 16px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-ink);
+    outline: none;
+    transition: box-shadow var(--op-dur-fast) var(--op-ease), border-color var(--op-dur-fast) var(--op-ease);
+  }
+  .op-sp-input:focus {
+    box-shadow: var(--op-shadow);
+    border-color: var(--op-orange);
+  }
+  .op-sp-input::placeholder { color: var(--op-navy-soft); opacity: 0.65; }
+
+  .op-sp-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 14px 22px;
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: var(--op-shadow);
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease),
+      background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-sp-submit:hover:not(:disabled) {
+    background: var(--op-orange-deep);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .op-sp-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .op-sp-submit-arrow {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--op-radius-sm);
+    background: var(--op-paper);
+    color: var(--op-orange);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .op-sp-gate-fine {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 20px;
+    color: var(--op-navy-soft);
+  }
+  .op-sp-gate-fine[data-state='error'] { color: #c0392b; }
+  .op-sp-gate-fine[data-state='success'] { color: #1a7f4d; }
+  .op-sp-gate-fine[data-state='pending'] { color: var(--op-navy-soft); }
+
+  .op-sp-gate-foot {
+    background: var(--op-paper);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: var(--op-border);
+    font-size: 10px;
+    color: var(--op-navy-soft);
+  }
+
+  /* CATALOG */
+  .op-sp-catalog-wrapper { background: var(--op-cream); }
+
+  .op-sp-theme {
+    padding: 64px var(--op-section-px) 16px;
+    border-top: var(--op-border);
+  }
+  .op-sp-theme:first-child { border-top: none; padding-top: 88px; }
+
+  .op-sp-theme-header { margin-bottom: 28px; max-width: 760px; }
+  .op-sp-theme-num {
+    font-size: 10px;
+    color: var(--op-orange);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .op-sp-theme-name {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--op-ink);
+    margin: 8px 0 12px;
+    text-wrap: balance;
+  }
+  .op-sp-theme-blurb {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-sp-pack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-bottom: 48px;
+  }
+  @media (min-width: 760px) { .op-sp-pack-grid { grid-template-columns: 1fr 1fr; } }
+
+  .op-sp-pack-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-sp-pack-card:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-md);
+  }
+
+  .op-sp-pack-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+    font-size: 10px;
+  }
+  .op-sp-pack-code { color: var(--op-orange); }
+  .op-sp-pack-tag { margin-left: auto; opacity: 0.55; }
+
+  .op-sp-pack-body {
+    padding: 22px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .op-sp-pack-title {
+    font-family: var(--op-font-display);
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .op-sp-pack-mission {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .op-sp-chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .op-sp-chain-step {
+    background: var(--op-cream);
+    color: var(--op-ink);
+    padding: 4px 10px;
+    border-radius: var(--op-radius-sm);
+    border: 1px solid var(--op-rule);
+    font-size: 10.5px;
+    line-height: 1.3;
+    letter-spacing: var(--op-tracking-mono-tight);
+    white-space: nowrap;
+  }
+  .op-sp-chain-arrow {
+    color: var(--op-orange);
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  /* HOW IT WORKS */
+  .op-sp-how {
+    padding: 80px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+  }
+  .op-sp-how-strip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    margin-bottom: 28px;
+  }
+  .op-sp-how-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  @media (min-width: 760px) { .op-sp-how-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-sp-how-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 26px;
+    box-shadow: var(--op-shadow);
+  }
+  .op-sp-how-num {
+    font-size: 11px;
+    color: var(--op-orange);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .op-sp-how-title {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--op-ink);
+    margin: 8px 0 10px;
+    letter-spacing: -0.02em;
+  }
+  .op-sp-how-desc {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    .op-sp-hero,
+    .op-sp-gate-section,
+    .op-sp-theme,
+    .op-sp-how { padding-left: 22px; padding-right: 22px; }
+    .op-sp-gate-body { padding: 26px 22px 22px; }
+  }
+</style>
