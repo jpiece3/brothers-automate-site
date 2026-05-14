@@ -82,7 +82,7 @@ export const themes: PackTheme[] = [
       },
       {
         slug: 'operator-newsletter',
-        name: 'Operator Newsletter (JFlo)',
+        name: 'Operator Newsletter',
         mission: 'Run the Operator’s AI Playbook pipeline end-to-end — research, draft, publish, atomize, measure.',
         chain: ['operator-playbook-drafter', 'newsletter-autopilot', 'operator-social-atomizer'],
         icon: ICONS.newspaper,

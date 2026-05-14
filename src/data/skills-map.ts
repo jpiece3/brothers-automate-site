@@ -128,7 +128,7 @@ export const skills: Skill[] = [
 
   // Specialized (8)
   { id: 'gumloop-workflow-designer', name: 'Gumloop Workflows', category: 'specialized', description: 'Design or analyze Gumloop automations. Two modes: ANALYZE (reverse-engineer) and BUILD (design from scratch).' },
-  { id: 'operator-playbook-drafter', name: 'Operator Playbook', category: 'specialized', description: 'Transform raw notes into formatted Operator\'s AI Playbook newsletter editions in JFlo\'s voice.' },
+  { id: 'operator-playbook-drafter', name: 'Operator Playbook', category: 'specialized', description: 'Transform raw notes into formatted Operator\'s AI Playbook newsletter editions in the operator voice.' },
   { id: 'operator-social-atomizer', name: 'Operator Social Atomizer', category: 'specialized', description: 'Turn newsletter editions into Instagram carousels (8-10 slides), reel scripts, and story sequences.' },
   { id: 'ui', name: 'UI Designer', category: 'specialized', description: 'Generate production-ready UI designs in 4 styles: Soft, Sharp, Glass, Glossy. Dashboards, landing pages, marketing sites.' },
   { id: 'code-explainer', name: 'Code Explainer', category: 'specialized', description: 'Explains code in a clear, structured, and educational way for any function or codebase component.' },

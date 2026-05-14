@@ -50,15 +50,19 @@ const resources = [
     href: '/resources/automation-playbook',
     icon: 'M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25',
   },
-  {
-    code: 'RES_05',
-    tag: 'Operator’s Catalog · Email Unlock',
-    title: 'The Skill Packs Catalog',
-    description: '36 chained skill packs across 7 themes — every workflow we use to deliver content engines, lead funnels, conversion pages, research dossiers, and paid acquisition. Email-gated.',
-    href: '/resources/skill-packs',
-    icon: 'M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6',
-  },
 ];
+
+// Featured resource — pinned next to the hero, NOT in the grid below.
+const featured = {
+  code: 'RES_05',
+  tag: 'Operator’s Catalog · Email Unlock',
+  title: 'The Skill Packs Catalog',
+  description: '36 chained skill packs across 7 themes — every workflow we use to deliver content engines, lead funnels, conversion pages, research dossiers, and paid acquisition. Email-gated.',
+  href: '/resources/skill-packs',
+  icon: 'M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6',
+};
+
+const totalResourceCount = resources.length + 1;
 ---
 
 <Layout
@@ -72,18 +76,43 @@ const resources = [
         <div class="op-resources-util">
           <TopUtilityStrip
             left="BROTHERS_AUTOMATE / RESOURCES · LIBRARY"
-            right={`${resources.length} GUIDES · MOST FREE · NO SPAM`}
+            right={`${totalResourceCount} GUIDES · MOST FREE · NO SPAM`}
             bordered
           />
         </div>
-        <EyebrowTag label="RESOURCES · GUIDES & FRAMEWORKS" />
-        <h1 class="op-resources-h1" data-animate="fade-up">
-          Guides &<br />
-          <span class="op-resources-h1-orange">Frameworks.</span>
-        </h1>
-        <p class="op-resources-sub" data-animate="fade-up">
-          How we think about AI automation, and the tools we use to plan it. Most are free with no gate. The Operator&rsquo;s Catalog requires an email — it&rsquo;s the only one.
-        </p>
+
+        <div class="op-resources-hero-grid">
+          <div class="op-resources-hero-text">
+            <EyebrowTag label="RESOURCES · GUIDES & FRAMEWORKS" />
+            <h1 class="op-resources-h1" data-animate="fade-up">
+              Guides &<br />
+              <span class="op-resources-h1-orange">Frameworks.</span>
+            </h1>
+            <p class="op-resources-sub" data-animate="fade-up">
+              How we think about AI automation, and the tools we use to plan it. Most are free with no gate. The Operator&rsquo;s Catalog requires an email — it&rsquo;s the only one.
+            </p>
+          </div>
+
+          <a href={featured.href} class="op-resource-card op-resource-card--featured" data-animate="fade-up">
+            <div class="op-resource-header">
+              <span class="op-pulse-dot"></span>
+              <span class="op-mono op-resource-code">FEATURED</span>
+              <span class="op-mono op-resource-tag">{featured.tag.toUpperCase()}</span>
+            </div>
+            <div class="op-resource-body">
+              <div class="op-resource-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={featured.icon}></path>
+                </svg>
+              </div>
+              <h3 class="op-resource-title">{featured.title}</h3>
+              <p class="op-resource-desc">{featured.description}</p>
+            </div>
+            <div class="op-resource-foot op-mono">
+              UNLOCK THE CATALOG <span class="op-resource-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -131,15 +160,64 @@ const resources = [
   .op-resources-util { margin-bottom: 32px; }
   .op-resources-hero :global(.op-eyebrow) { margin-bottom: 24px; }
 
+  /* 2-column hero: text left, featured card right */
+  .op-resources-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .op-resources-hero-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+      gap: 64px;
+      align-items: center;
+    }
+  }
+  .op-resources-hero-text { min-width: 0; }
+
+  .op-resource-card--featured {
+    width: 100%;
+    max-width: 520px;
+    box-shadow: var(--op-shadow-md);
+  }
+  @media (min-width: 960px) {
+    .op-resource-card--featured { justify-self: end; }
+  }
+  .op-resource-card--featured .op-resource-header {
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-bottom: var(--op-border);
+  }
+  .op-resource-card--featured .op-resource-code {
+    color: var(--op-paper);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .op-resource-card--featured .op-resource-tag {
+    color: var(--op-paper);
+    opacity: 0.78;
+  }
+  .op-resource-card--featured .op-resource-icon {
+    background: var(--op-paper);
+    color: var(--op-orange);
+  }
+  .op-resource-card--featured:hover .op-resource-icon {
+    background: var(--op-navy);
+    color: var(--op-paper);
+  }
+  .op-resource-card--featured:hover {
+    box-shadow: var(--op-shadow-lg);
+  }
+
   .op-resources-h1 {
     font-family: var(--op-font-display);
     font-weight: 800;
-    font-size: clamp(48px, 6.4vw, 88px);
+    font-size: clamp(48px, 5.6vw, 76px);
     line-height: 0.98;
     letter-spacing: var(--op-tracking-display);
     color: var(--op-ink);
     margin: 0 0 22px;
-    max-width: 800px;
+    max-width: 640px;
     text-wrap: balance;
   }
   .op-resources-h1-orange { color: var(--op-orange); }
