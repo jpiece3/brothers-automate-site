@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import CTA from '../../components/CTA.astro';
 import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
 import EyebrowTag from '../../components/operator/EyebrowTag.astro';
-import { themes, totalPacks, totalSkills } from '../../data/skill-packs';
+import { themes, totalPacks, totalSkills, downloadIcon, downloadHref } from '../../data/skill-packs';
 
 const SITE_URL = 'https://brothersautomate.com';
 
@@ -92,6 +92,35 @@ const breadcrumbSchema = {
 
     <!-- CATALOG (hidden until unlocked) -->
     <div id="catalog-wrapper" class="op-sp-catalog-wrapper" hidden>
+
+      <!-- DOWNLOAD STRIP (top of catalog, post-unlock) -->
+      <section class="op-sp-download">
+        <div class="op-sp-frame">
+          <div class="op-sp-download-card">
+            <div class="op-sp-download-strip op-mono">
+              <span class="op-pulse-dot"></span>
+              CATALOG · TAKE IT WITH YOU
+            </div>
+            <div class="op-sp-download-body">
+              <div class="op-sp-download-text">
+                <h2 class="op-sp-download-h2">Download the catalog.</h2>
+                <p class="op-sp-download-p">
+                  ZIP bundle: <code>PACKS.md</code> index + 36 individual pack manifests with chains, sample briefs, timelines, and anti-patterns. Open in any markdown editor or read straight in your editor.
+                </p>
+              </div>
+              <a href={downloadHref} download class="op-sp-download-btn" data-track="cta_click" data-track-location="skill-packs-download" data-track-label="Download Catalog ZIP">
+                <span class="op-sp-download-btn-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={downloadIcon}></path>
+                  </svg>
+                </span>
+                <span class="op-sp-download-btn-label">Download ZIP</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {themes.map((theme) => (
         <section class="op-sp-theme">
           <div class="op-sp-frame">
@@ -102,14 +131,19 @@ const breadcrumbSchema = {
             </div>
 
             <div class="op-sp-pack-grid" data-animate-stagger>
-              {theme.packs.map((pack) => (
+              {theme.packs.map((pack, packIdx) => (
                 <article class="op-sp-pack-card">
                   <div class="op-sp-pack-header">
                     <span class="op-pulse-dot"></span>
-                    <span class="op-mono op-sp-pack-code">{theme.number}.{(theme.packs.indexOf(pack) + 1).toString().padStart(2, '0')}</span>
+                    <span class="op-mono op-sp-pack-code">{theme.number}.{(packIdx + 1).toString().padStart(2, '0')}</span>
                     <span class="op-mono op-sp-pack-tag">PACK</span>
                   </div>
                   <div class="op-sp-pack-body">
+                    <div class="op-sp-pack-icon">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d={pack.icon}></path>
+                      </svg>
+                    </div>
                     <h3 class="op-sp-pack-title">{pack.name}</h3>
                     <p class="op-sp-pack-mission">{pack.mission}</p>
                     <div class="op-sp-chain">
@@ -524,8 +558,26 @@ const breadcrumbSchema = {
     padding: 22px 22px 22px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     flex: 1;
+  }
+
+  .op-sp-pack-icon {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-cream);
+    color: var(--op-navy);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-sp-pack-card:hover .op-sp-pack-icon {
+    background: var(--op-orange);
+    color: var(--op-paper);
   }
 
   .op-sp-pack-title {
@@ -624,12 +676,121 @@ const breadcrumbSchema = {
     text-wrap: pretty;
   }
 
+  /* DOWNLOAD STRIP */
+  .op-sp-download {
+    padding: 56px var(--op-section-px) 16px;
+    background: var(--op-paper);
+    border-bottom: var(--op-border);
+  }
+  .op-sp-download-card {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-md);
+    overflow: hidden;
+  }
+  .op-sp-download-strip {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(244, 238, 226, 0.12);
+    font-size: 10px;
+  }
+  .op-sp-download-body {
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  @media (min-width: 760px) {
+    .op-sp-download-body {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .op-sp-download-text { flex: 1; }
+  .op-sp-download-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--op-cream);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .op-sp-download-p {
+    font-family: var(--op-font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: rgba(244, 238, 226, 0.78);
+    margin: 0;
+    max-width: 540px;
+    text-wrap: pretty;
+  }
+  .op-sp-download-p code {
+    background: rgba(224, 112, 60, 0.18);
+    color: var(--op-orange);
+    padding: 1px 6px;
+    border-radius: var(--op-radius-sm);
+    font-family: var(--op-font-mono);
+    font-size: 12.5px;
+  }
+  .op-sp-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 14px 22px;
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    box-shadow: var(--op-shadow);
+    flex-shrink: 0;
+    transition:
+      transform var(--op-dur-hover) var(--op-ease),
+      box-shadow var(--op-dur-hover) var(--op-ease),
+      background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-sp-download-btn:hover {
+    background: var(--op-orange-deep);
+    color: var(--op-paper);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .op-sp-download-btn-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--op-radius-sm);
+    background: var(--op-paper);
+    color: var(--op-orange);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
   /* MOBILE */
   @media (max-width: 700px) {
     .op-sp-hero,
     .op-sp-gate-section,
     .op-sp-theme,
-    .op-sp-how { padding-left: 22px; padding-right: 22px; }
+    .op-sp-how,
+    .op-sp-download { padding-left: 22px; padding-right: 22px; }
     .op-sp-gate-body { padding: 26px 22px 22px; }
+    .op-sp-download-body { padding: 22px 20px; }
+    .op-sp-download-btn { width: 100%; justify-content: center; }
   }
 </style>
