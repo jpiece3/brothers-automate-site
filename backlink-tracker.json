@@ -6,7 +6,7 @@
     "newsletter_name": "The Operator's AI Playbook",
     "newsletter_url": ""
   },
-  "last_updated": "2026-04-22",
+  "last_updated": "2026-05-18",
   "directories": [
     {
       "name": "There's An AI For That",
@@ -520,6 +520,70 @@
       "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-tools-for-business-automation-15-we-actually-use-in-2026-4d2m",
       "devto_article_id": 3537729,
       "syndicated_date": "2026-04-22",
+      "status": "live"
+    },
+    {
+      "slug": "appointment-scheduling-automation",
+      "original_url": "https://brothersautomate.com/blog/appointment-scheduling-automation/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/appointment-scheduling-automation-for-small-business-16o7",
+      "devto_article_id": 3587308,
+      "syndicated_date": "2026-04-29",
+      "status": "live"
+    },
+    {
+      "slug": "workflow-automation-platforms",
+      "original_url": "https://brothersautomate.com/blog/workflow-automation-platforms/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/workflow-automation-platforms-small-business-buyers-guide-48mh",
+      "devto_article_id": 3587966,
+      "syndicated_date": "2026-04-29",
+      "status": "live"
+    },
+    {
+      "slug": "crm-automation-small-business",
+      "original_url": "https://brothersautomate.com/blog/crm-automation-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/crm-automation-for-small-business-what-actually-saves-time-2f1l",
+      "devto_article_id": 3616092,
+      "syndicated_date": "2026-05-05",
+      "status": "live"
+    },
+    {
+      "slug": "ai-bookkeeping-for-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-bookkeeping-for-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-bookkeeping-for-small-business-honest-2026-guide-2e22",
+      "devto_article_id": 3635333,
+      "syndicated_date": "2026-05-08",
+      "status": "live"
+    },
+    {
+      "slug": "no-code-ai-agent",
+      "original_url": "https://brothersautomate.com/blog/no-code-ai-agent/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/no-code-ai-agent-a-small-business-owners-honest-guide-44o2",
+      "devto_article_id": 3651780,
+      "syndicated_date": "2026-05-11",
+      "status": "live"
+    },
+    {
+      "slug": "automated-quoting",
+      "original_url": "https://brothersautomate.com/blog/automated-quoting/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/automated-quoting-for-small-business-2026-guide-2338",
+      "devto_article_id": 3665491,
+      "syndicated_date": "2026-05-13",
+      "status": "live"
+    },
+    {
+      "slug": "personal-ai-assistant-small-business",
+      "original_url": "https://brothersautomate.com/blog/personal-ai-assistant-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/personal-ai-assistants-for-small-business-owners-2026-5h7b",
+      "devto_article_id": 3679361,
+      "syndicated_date": "2026-05-15",
+      "status": "live"
+    },
+    {
+      "slug": "ai-scheduling-assistant",
+      "original_url": "https://brothersautomate.com/blog/ai-scheduling-assistant/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-scheduling-assistant-2026-guide-for-small-businesses-30hg",
+      "devto_article_id": 3695279,
+      "syndicated_date": "2026-05-18",
       "status": "live"
     }
   ],
