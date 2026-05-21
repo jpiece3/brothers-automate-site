@@ -261,7 +261,7 @@ const breadcrumbSchema = {
           const isDuplicate = error.code === '23505' || /duplicate/i.test(error.message);
           if (!isDuplicate) {
             console.error('Skill packs signup error', error);
-            status.textContent = 'Something went wrong. Please try again or email simpleflosolutions@gmail.com.';
+            status.textContent = 'Something went wrong. Please try again or email james@brothersautomate.com.';
             status.dataset.state = 'error';
             submitBtn.disabled = false;
             return;
