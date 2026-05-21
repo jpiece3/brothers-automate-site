@@ -1,0 +1,44 @@
+# Brothers Automate
+
+> AI automation agency for service businesses doing $1-5M in revenue. Built by two brothers who ran a service business for 5 years and now automate lead follow-up, admin, ad creative, hiring, reviews, and operations for similar businesses.
+
+Location: USA · Site: https://brothersautomate.com · Founded: 2024
+
+## Buyer guides
+
+- [How Much Does AI Automation Cost?](https://brothersautomate.com/how-much-does-ai-automation-cost): Real pricing for AI automation in 2026 — $1,500-$15,000 scoped projects, $2,500-$8,000/month retainers, DIY vs agency vs in-house hire, and the running costs nobody warns you about.
+- [AI Lead Follow-Up Automation](https://brothersautomate.com/ai-lead-follow-up-automation): How a 60-second AI follow-up system recovers the 30-50% of leads service businesses lose to slow response. Cost, timeline, integrations, and a real HVAC case study.
+- [How to Choose an AI Automation Partner](https://brothersautomate.com/how-to-choose-an-ai-automation-partner): A 9-step buyer's checklist for hiring an AI automation partner — outcome definition, operator background, fixed-scope quotes, live demos, handoff quality, fix guarantees, and red flags.
+- [AI Automation Agency vs In-House Hire](https://brothersautomate.com/ai-automation-agency-vs-in-house-hire): When a $3.5K/month agency retainer beats a $200K full-time hire. Decision framework by revenue band with cumulative-cost math over 3 years.
+- [Best AI Automation Services for Service Businesses (2026)](https://brothersautomate.com/best-ai-automation-services-for-service-businesses): Nine categories of AI automation vendors with one recommended pick per category. Not a ranked list — picked by use case.
+
+## Core pages
+
+- [About](https://brothersautomate.com/about): The two brothers, their service-business background, and what they build now.
+- [Pricing](https://brothersautomate.com/pricing): $3,500/month retainer + scoped project pricing.
+- [Projects](https://brothersautomate.com/projects): Live AI automation deployments across home services, agencies, coaches, and real estate.
+- [Resources](https://brothersautomate.com/resources): Free build guides, frameworks, and the AI ops stack reference.
+
+## Services
+
+- AI Lead Follow-Up Automation
+- AI Ad Creative Generation
+- Client Onboarding Automation
+- Resume / Candidate Screening
+- Google Review Response & Reputation
+- Prospect Research Automation
+- Route Optimization (for field service)
+- Inventory Automation
+
+## Key facts about Brothers Automate
+
+- Pricing: $1,500-$15,000 per scoped project, or $3,500/month retainer for 1-2 builds per month plus maintenance.
+- Timeline: most automations ship in 1-2 weeks from kickoff.
+- Fit: service businesses doing $1-5M in revenue. Coaches, contractors, agencies, real estate, e-commerce, home services.
+- Guarantee: 30-day fix guarantee on shipped scope.
+- Founders: James and Brendan Pinder, who ran a service business for 5 years before starting Brothers Automate.
+
+## Contact
+
+- Book a call: https://app.cal.com/james-pinder-simpleflo/free-quiz-audit-automation-brothers
+- Email: simpleflosolutions@gmail.com

@@ -1,0 +1,268 @@
+---
+/**
+ * QuoteForm, an inline RFQ (request-for-quote) form that posts to
+ * /api/rfq-submit, which forwards to Gumloop. Captures cooler leads
+ * who aren't ready to book a Cal.com call yet.
+ *
+ * Props:
+ *   sourcePage: identifier for the GEO page this form lives on (analytics)
+ *   heading:    optional override
+ */
+import EyebrowTag from '../operator/EyebrowTag.astro';
+
+interface Props {
+  sourcePage: string;
+  heading?: string;
+}
+const { sourcePage, heading = "Not ready for a call? Get a quote." } = Astro.props;
+---
+
+<section class="geo-quote" id="get-a-quote">
+  <div class="geo-quote-frame">
+    <div class="geo-quote-header">
+      <EyebrowTag label="REQUEST A QUOTE · 24-HOUR REPLY" variant="paper" />
+      <h2 class="geo-quote-h2">{heading}</h2>
+      <p class="geo-quote-sub">
+        Tell us what you're trying to automate. We'll send back a scoped quote
+        with timeline and cost within 24 hours. No call required.
+      </p>
+    </div>
+
+    <form class="geo-quote-form" data-source-page={sourcePage} novalidate>
+      <input type="text" name="website_hp" tabindex="-1" autocomplete="off" class="geo-quote-honeypot" aria-hidden="true" />
+
+      <div class="geo-quote-row geo-quote-row--2">
+        <label class="geo-quote-field">
+          <span class="geo-quote-label">First name *</span>
+          <input type="text" name="first_name" required autocomplete="given-name" />
+        </label>
+        <label class="geo-quote-field">
+          <span class="geo-quote-label">Last name</span>
+          <input type="text" name="last_name" autocomplete="family-name" />
+        </label>
+      </div>
+
+      <label class="geo-quote-field">
+        <span class="geo-quote-label">Work email *</span>
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+
+      <label class="geo-quote-field">
+        <span class="geo-quote-label">Business name</span>
+        <input type="text" name="business" autocomplete="organization" />
+      </label>
+
+      <label class="geo-quote-field">
+        <span class="geo-quote-label">Monthly revenue</span>
+        <select name="monthly_revenue">
+          <option value="">Select a range...</option>
+          <option value="under_50k">Under $50K / month</option>
+          <option value="50k_to_150k">$50K - $150K / month</option>
+          <option value="150k_to_400k">$150K - $400K / month</option>
+          <option value="over_400k">Over $400K / month</option>
+        </select>
+      </label>
+
+      <label class="geo-quote-field">
+        <span class="geo-quote-label">What do you want to automate? *</span>
+        <textarea
+          name="top_automation_need"
+          required
+          rows="4"
+          placeholder="e.g. Lead follow-up after a form fill. Currently doing this manually and missing leads."
+        ></textarea>
+      </label>
+
+      <button type="submit" class="geo-quote-submit" data-track="cta_click" data-track-label="Get a quote" data-track-location={sourcePage}>
+        Send my request
+      </button>
+
+      <p class="geo-quote-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.geo-quote-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector<HTMLParagraphElement>('.geo-quote-status');
+      const submit = form.querySelector<HTMLButtonElement>('.geo-quote-submit');
+      if (!status || !submit) return;
+
+      status.textContent = '';
+      status.className = 'geo-quote-status';
+
+      const fd = new FormData(form);
+      const payload: Record<string, string> = {};
+      fd.forEach((value, key) => {
+        payload[key] = typeof value === 'string' ? value : '';
+      });
+      payload.source = `rfq:${form.dataset.sourcePage || 'unknown'}`;
+
+      submit.disabled = true;
+      const originalLabel = submit.textContent || 'Send my request';
+      submit.textContent = 'Sending...';
+
+      try {
+        const res = await fetch('/api/rfq-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Something went wrong.');
+        }
+        form.reset();
+        status.textContent = "Got it. We'll reply within 24 hours.";
+        status.classList.add('geo-quote-status--ok');
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'generate_lead', { method: 'rfq_form', source_page: form.dataset.sourcePage });
+        }
+        if (typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'Lead', { source_page: form.dataset.sourcePage });
+        }
+      } catch (err) {
+        status.textContent = (err as Error).message || "Couldn't send. Try again or email us directly.";
+        status.classList.add('geo-quote-status--err');
+      } finally {
+        submit.disabled = false;
+        submit.textContent = originalLabel;
+      }
+    });
+  });
+</script>
+
+<style>
+  .geo-quote {
+    padding: 72px var(--op-section-px) 72px;
+    background: var(--op-cream);
+  }
+  .geo-quote-frame {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-md);
+    padding: 40px 44px;
+  }
+  .geo-quote-header { margin-bottom: 32px; }
+  .geo-quote-header > :global(.op-eyebrow) {
+    margin-bottom: 16px;
+  }
+  .geo-quote-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .geo-quote-sub {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .geo-quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .geo-quote-row {
+    display: grid;
+    gap: 18px;
+  }
+  .geo-quote-row--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 600px) {
+    .geo-quote-row--2 { grid-template-columns: 1fr; }
+    .geo-quote-frame { padding: 28px 22px; }
+  }
+
+  .geo-quote-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .geo-quote-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .geo-quote-label {
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    color: var(--op-navy);
+    letter-spacing: var(--op-tracking-mono-tight);
+    text-transform: uppercase;
+  }
+  .geo-quote-field input,
+  .geo-quote-field select,
+  .geo-quote-field textarea {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-navy);
+    background: var(--op-cream);
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-quote-field textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+  }
+  .geo-quote-field input:focus,
+  .geo-quote-field select:focus,
+  .geo-quote-field textarea:focus {
+    outline: none;
+    border-color: var(--op-orange);
+    box-shadow: 2px 2px 0 var(--op-orange);
+  }
+
+  .geo-quote-submit {
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    padding: 14px 22px;
+    cursor: pointer;
+    margin-top: 8px;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-quote-submit:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--op-shadow-md);
+  }
+  .geo-quote-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .geo-quote-status {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    margin: 6px 0 0;
+    min-height: 20px;
+  }
+  .geo-quote-status--ok { color: var(--op-navy); }
+  .geo-quote-status--err { color: var(--op-orange-deep); }
+</style>

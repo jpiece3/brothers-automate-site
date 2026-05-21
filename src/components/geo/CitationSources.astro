@@ -1,0 +1,86 @@
+---
+/**
+ * CitationSources, a block of 2-4 outbound source links. Pages that
+ * cite authoritative external sources (HBR, McKinsey, Gartner, Pew,
+ * government data) get cited more often by AI engines themselves.
+ * Counterintuitive but well-documented.
+ *
+ * Props:
+ *   sources: array of { title, publisher, url, year }
+ */
+interface Source {
+  title: string;
+  publisher: string;
+  url: string;
+  year?: string | number;
+}
+interface Props {
+  sources: Source[];
+  heading?: string;
+}
+const { sources, heading = 'Sources' } = Astro.props;
+---
+
+<aside class="geo-sources" aria-label={heading}>
+  <p class="geo-sources-label op-mono">{heading.toUpperCase()}</p>
+  <ul class="geo-sources-list">
+    {sources.map(src => (
+      <li class="geo-sources-item">
+        <a href={src.url} target="_blank" rel="noopener noreferrer nofollow" class="geo-sources-link">
+          <span class="geo-sources-title">{src.title}</span>
+          <span class="geo-sources-meta">
+            {src.publisher}{src.year ? ` · ${src.year}` : ''}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  .geo-sources {
+    border-top: 1.5px solid var(--op-rule);
+    border-bottom: 1.5px solid var(--op-rule);
+    padding: 24px 0;
+    margin: 40px 0;
+  }
+  .geo-sources-label {
+    font-size: 10px;
+    color: var(--op-orange);
+    margin: 0 0 14px;
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .geo-sources-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .geo-sources-item {
+    padding: 0;
+  }
+  .geo-sources-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-decoration: none;
+    color: var(--op-navy);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-sources-link:hover {
+    color: var(--op-orange);
+  }
+  .geo-sources-title {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .geo-sources-meta {
+    font-family: var(--op-font-mono);
+    font-size: 11px;
+    color: var(--op-navy-soft);
+    letter-spacing: var(--op-tracking-mono-tight);
+  }
+</style>

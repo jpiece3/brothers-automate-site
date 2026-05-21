@@ -1,0 +1,182 @@
+---
+/**
+ * PageFAQ, like the global FAQ.astro but accepts a `faqs` prop so each
+ * GEO page passes its own questions. Mirrors FAQ.astro's FAQPage schema
+ * (FAQ.astro lines 55-68) but per-page.
+ *
+ * Props:
+ *   faqs:    array of { question, answer }
+ *   heading: visible H2 (default "Frequently asked")
+ *   code:    section code for TopUtilityStrip (default "FAQ")
+ */
+import TopUtilityStrip from '../operator/TopUtilityStrip.astro';
+import EyebrowTag from '../operator/EyebrowTag.astro';
+
+interface Faq {
+  question: string;
+  answer: string;
+}
+interface Props {
+  faqs: Faq[];
+  heading?: string;
+  code?: string;
+}
+const { faqs, heading = 'Frequently asked.', code = 'FAQ' } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+
+<section class="geo-faq op-grid-bg" id="faq">
+  <div class="geo-faq-frame">
+    <div class="geo-faq-util">
+      <TopUtilityStrip
+        left={`BROTHERS_AUTOMATE / ${code}`}
+        right={`${faqs.length} QUESTIONS`}
+        bordered
+      />
+    </div>
+
+    <div class="geo-faq-header" data-animate="fade-up">
+      <EyebrowTag label="FAQ · BEFORE YOU BOOK" />
+      <h2 class="geo-faq-h2">{heading}</h2>
+    </div>
+
+    <div class="geo-faq-list" data-animate-stagger>
+      {faqs.map((faq, i) => (
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">
+            <span class="op-mono geo-faq-q-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="geo-faq-q-text">{faq.question}</span>
+            <span class="geo-faq-q-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="geo-faq-a">{faq.answer}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .geo-faq {
+    padding: 72px var(--op-section-px) 88px;
+  }
+  .geo-faq-frame {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .geo-faq-util { margin-bottom: 32px; }
+
+  .geo-faq-header {
+    margin-bottom: 40px;
+  }
+  .geo-faq-header > :global(.op-eyebrow) {
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+  .geo-faq-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .geo-faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .geo-faq-item {
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .geo-faq-item[open] {
+    background: var(--op-paper);
+  }
+
+  .geo-faq-q {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 4px;
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--op-ink);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-faq-q::-webkit-details-marker { display: none; }
+  .geo-faq-q-num {
+    flex-shrink: 0;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    width: 28px;
+  }
+  .geo-faq-q-text {
+    flex: 1;
+    text-wrap: balance;
+  }
+  .geo-faq-q-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-faq-item[open] .geo-faq-q-icon {
+    transform: rotate(45deg);
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border-color: var(--op-ink);
+  }
+  .geo-faq-q:hover { color: var(--op-orange); }
+  .geo-faq-q:hover .geo-faq-q-num { color: var(--op-orange); }
+
+  .geo-faq-a {
+    padding: 4px 4px 22px 50px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+    max-width: 800px;
+  }
+
+  @media (max-width: 700px) {
+    .geo-faq { padding: 56px 22px 72px; }
+    .geo-faq-q { gap: 12px; padding: 16px 0; font-size: 15px; }
+    .geo-faq-a { padding-left: 40px; font-size: 14px; }
+    .geo-faq-q-num { width: 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .geo-faq-q-icon, .geo-faq-q { transition: none; }
+  }
+</style>

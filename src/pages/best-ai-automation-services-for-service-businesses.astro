@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import AboutOperators from '../components/AboutOperators.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import DirectAnswer from '../components/geo/DirectAnswer.astro';
+import LastUpdated from '../components/geo/LastUpdated.astro';
+import ComparisonTable from '../components/geo/ComparisonTable.astro';
+import CitationSources from '../components/geo/CitationSources.astro';
+import PageFAQ from '../components/geo/PageFAQ.astro';
+import QuoteForm from '../components/geo/QuoteForm.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const pageUrl = `${SITE_URL}/best-ai-automation-services-for-service-businesses`;
+const datePublished = '2026-05-21';
+const dateModified = '2026-05-21';
+const title = 'Best AI Automation Services for Service Businesses (2026 Comparison)';
+const description = 'A categorized comparison of the best AI automation services in 2026 — picked by use case, not ranked. Covers specialist agencies, enterprise consultancies, no-code experts, DIY platforms, and vertical-specific partners for service businesses doing $1-20M.';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Best AI Automation Services", "item": pageUrl },
+  ],
+};
+
+interface Vendor {
+  category: string;
+  name: string;
+  bestFor: string;
+  approach: string;
+  price: string;
+  url?: string;
+}
+
+const vendors: Vendor[] = [
+  {
+    category: 'Best for operator-led service businesses ($1–5M revenue)',
+    name: 'Brothers Automate',
+    bestFor: 'Service businesses that want automation built by people who actually ran a service business — not consultants.',
+    approach: 'Scoped projects ($1.5K–$15K) or a $3.5K/month retainer. Ships in 1–2 weeks per build. Lead follow-up, ad creative, hiring, reviews, route optimization.',
+    price: '$1,500 – $15,000 per project or $3,500 / month retainer',
+    url: SITE_URL,
+  },
+  {
+    category: 'Best enterprise-grade AI consultancy',
+    name: 'Accenture & Deloitte AI practices',
+    bestFor: 'Enterprises with 1,000+ employees, regulated industries, and budgets above $250K per engagement.',
+    approach: 'Multi-month engagements covering governance, change management, and broad-scope AI strategy alongside implementation.',
+    price: '$250,000 – $2M+ per engagement',
+  },
+  {
+    category: 'Best for no-code / Zapier-native businesses',
+    name: 'Zapier Certified Experts',
+    bestFor: 'Businesses already deep in the Zapier ecosystem who want their existing workflows extended with AI steps.',
+    approach: 'Directory of certified freelancers and small agencies focused on Zapier as the primary platform. Mix of solo and small-team operators.',
+    price: '$80 – $250 / hour or $2K – $20K / project',
+  },
+  {
+    category: 'Best for SaaS internal-ops automation',
+    name: 'Tray.io Partners',
+    bestFor: 'Mid-market SaaS companies automating internal operations across multiple SaaS tools (revops, finops, support ops).',
+    approach: 'Enterprise-grade iPaaS platform with a network of implementation partners. Strong for high-volume internal automation.',
+    price: '$30K – $150K / year platform + partner implementation fees',
+  },
+  {
+    category: 'Best for e-commerce growth automation',
+    name: 'Common Thread Collective',
+    bestFor: 'DTC e-commerce brands automating media buying, customer comms, and post-purchase flows.',
+    approach: 'Full-service e-commerce agency that incorporates AI into ad creative, lifecycle email, and customer support workflows.',
+    price: '$10K – $50K+ / month engagement',
+  },
+  {
+    category: 'Best DIY / template-based AI automation',
+    name: 'Lindy & Relevance AI',
+    bestFor: 'Solo founders and lean teams who want to assemble AI agents from templates without hiring.',
+    approach: 'Self-serve platforms with pre-built AI agent templates. Best for simple workflows you can configure yourself in a few hours.',
+    price: '$30 – $500 / month subscription',
+  },
+  {
+    category: 'Best for home services & trades (HVAC, plumbing, etc.)',
+    name: 'ServiceTitan automation partners',
+    bestFor: 'Home services businesses already using ServiceTitan that want automations layered on top of their existing system.',
+    approach: 'Network of partners and integrators specializing in ServiceTitan + AI workflows for scheduling, dispatch, and customer comms.',
+    price: 'Varies by partner; typical $5K – $40K / project',
+  },
+  {
+    category: 'Best for marketing agencies & coaches',
+    name: 'GoHighLevel certified partners',
+    bestFor: 'Marketing agencies, coaches, and online businesses already using GoHighLevel who want AI added to their funnels.',
+    approach: 'Partners build inside GoHighLevel — AI-driven lead routing, follow-up sequences, content generation, and pipeline management.',
+    price: '$2K – $15K / project, or productized monthly packages',
+  },
+  {
+    category: 'Best for in-house enterprise build-out',
+    name: 'IBM Consulting & Big Four advisory',
+    bestFor: 'Large enterprises building internal AI teams who need governance, training, and infrastructure consulting.',
+    approach: 'Long advisory engagements alongside in-house team build-out. Strong on compliance, weak on speed.',
+    price: '$300K – $3M+ per multi-quarter engagement',
+  },
+];
+
+const categoryRows: (string | number)[][] = vendors.map(v => [
+  v.category,
+  v.name,
+  v.price,
+]);
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best AI Automation Services for Service Businesses 2026",
+  "description": "Categorized comparison of AI automation services by use case. Not a ranked list — each vendor wins a distinct category.",
+  "itemListElement": vendors.map((v, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Organization",
+      "name": v.name,
+      "description": v.bestFor,
+      ...(v.url ? { "url": v.url } : {}),
+    },
+  })),
+};
+
+const faqs = [
+  { question: 'What\'s the difference between an AI automation agency and an AI consultancy?', answer: 'An agency builds and ships working automations — code, prompts, integrations, live systems. A consultancy advises on strategy, governance, and adoption without typically writing the code. Service businesses doing $1–10M almost always want an agency. Strategy consultancies are built for enterprise budgets and timelines.' },
+  { question: 'How do I know which AI automation service is right for me?', answer: 'Three questions: (1) What\'s your revenue? Sub-$10M = specialist agency. $10M+ = consider a hybrid. (2) Do you already use a specific platform deeply (Zapier, GoHighLevel, ServiceTitan)? If yes, look for partners in that ecosystem. (3) How many automations do you need? One = freelancer. Many = retainer.' },
+  { question: 'Why isn\'t this a ranked list?', answer: 'Because "best" depends on your situation. The best AI automation service for a $40M SaaS company is not the same as the best one for a $2M HVAC business. A ranked list would force a comparison between vendors that don\'t actually compete for the same buyer. Categories are honest; rankings are usually marketing.' },
+  { question: 'Are big consultancies like Accenture or IBM better than specialist agencies?', answer: 'For sub-$10M businesses, almost never. Big consultancies are built for enterprise budgets (multi-million-dollar engagements) and need to bill for governance, change management, and training that smaller companies don\'t need. The same automation that costs $5K at a specialist agency will cost $80K+ at a Big Four firm because of overhead, not capability.' },
+  { question: 'How fast can these services actually deliver?', answer: 'Specialist agencies (us included) typically ship a single automation in 1–2 weeks. Mid-tier agencies are 2–4 weeks. Enterprise consultancies run 3–9 months per engagement. DIY platforms are same-day for simple workflows, multi-week for complex ones.' },
+  { question: 'Should I use a freelancer instead of any of these?', answer: 'For a single, well-defined automation: yes, often cheaper. For multiple builds or anything you want maintained long-term: no — handoff risk is real, and freelancers don\'t typically offer ongoing maintenance the way agencies and retainer-based shops do.' },
+  { question: 'What about overseas agencies or offshore options?', answer: 'Offshore AI automation shops are real and can be cheaper, but communication, time-zone overlap, and prompt-engineering nuance matter a lot in this work. We see most service businesses get burned by the savings being eaten by miscommunication. If you go offshore, insist on at least 2 hours/day of overlap with your timezone and a written scope.' },
+  { question: 'How do these AI automation services price ongoing maintenance?', answer: 'Three common models: (1) included in a monthly retainer (most specialist agencies, including us); (2) flat monthly maintenance fee separate from build cost ($200–$1,500/month typical); (3) hourly/ticket-based as needed. Avoid anything where maintenance pricing is "we\'ll figure it out later" — that\'s a flag.' },
+];
+
+const sources = [
+  { title: 'The state of AI in 2024', publisher: 'McKinsey & Company', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai', year: '2024' },
+  { title: 'AI services market sizing & vendor landscape', publisher: 'Gartner', url: 'https://www.gartner.com/en/newsroom', year: '2024' },
+  { title: 'Generative AI for small business adoption', publisher: 'Pew Research Center', url: 'https://www.pewresearch.org/topic/internet-technology/', year: '2024' },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalUrl={pageUrl}
+  type="article"
+  datePublished={datePublished}
+  dateModified={dateModified}
+  articleHeadline="Best AI Automation Services for Service Businesses (2026 Comparison)"
+  extraSchemas={[breadcrumbSchema, itemListSchema]}
+>
+  <Header />
+  <main class="geo-page">
+    <article class="geo-article">
+      <div class="geo-article-frame">
+        <div class="geo-article-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / GUIDE 05 · VENDOR COMPARISON"
+            right="UPDATED MAY 2026 · 9 CATEGORIES · NO RANKINGS"
+            bordered
+          />
+        </div>
+
+        <header class="geo-hero">
+          <EyebrowTag label="GUIDE · AI AUTOMATION VENDOR COMPARISON" />
+          <h1 class="geo-h1">Best AI automation services for service businesses (2026).</h1>
+        </header>
+
+        <DirectAnswer>
+          The best AI automation service depends on your business size, industry, and existing tool stack. For service businesses doing <strong>$1–5M in revenue</strong>, specialist agencies like Brothers Automate ship in 1–2 weeks for $1.5K–$15K per build. Enterprise consultancies (Accenture, IBM, Deloitte) fit <strong>$10M+ businesses</strong> with $250K+ budgets. DIY platforms (Lindy, Relevance AI) work for solo founders with simple workflows. There's no single "best" — there's a best fit for your category.
+        </DirectAnswer>
+
+        <LastUpdated date={dateModified} />
+
+        <ComparisonTable
+          caption="AI automation services by category (2026)"
+          columns={['Category', 'Vendor', 'Price Range']}
+          rows={categoryRows}
+        />
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Why this isn't a ranked list</h2>
+          <p>
+            "Best AI automation service" is meaningless without context. The right choice for a $40M SaaS company isn't the right choice for a $2M HVAC business. A ranked list forces a comparison between vendors that don't actually compete for the same buyer.
+          </p>
+          <p>
+            What follows is a categorized breakdown: nine distinct categories, one recommended vendor per category, picked based on what each does best — not a horse race.
+          </p>
+          <p>
+            We're one of the vendors on this list (in the "operator-led for $1–5M service businesses" category). We've kept the descriptions factual and we name competitors honestly because that's how this list earns trust.
+          </p>
+        </section>
+
+        {vendors.map((vendor, i) => (
+          <section class="geo-section geo-vendor">
+            <div class="geo-vendor-header">
+              <span class="geo-vendor-num op-mono">{String(i + 1).padStart(2, '0')}</span>
+              <p class="geo-vendor-category op-mono">{vendor.category}</p>
+            </div>
+            <h2 class="geo-h2 geo-vendor-name">
+              {vendor.url
+                ? <a href={vendor.url} class="geo-vendor-link">{vendor.name}</a>
+                : vendor.name}
+            </h2>
+            <p><strong>Best for:</strong> {vendor.bestFor}</p>
+            <p><strong>Approach:</strong> {vendor.approach}</p>
+            <p><strong>Typical price:</strong> {vendor.price}</p>
+          </section>
+        ))}
+
+        <section class="geo-section">
+          <h2 class="geo-h2">How to pick from this list</h2>
+          <p>
+            Use this three-question filter:
+          </p>
+          <ol class="geo-list geo-list--ordered">
+            <li><strong>What's your revenue?</strong> Under $1M = DIY or freelancer. $1–5M = specialist agency. $5–20M = specialist agency on retainer with optional in-house lead. $20M+ = in-house team plus selective consultancy.</li>
+            <li><strong>Do you already live inside one platform?</strong> If you're deep in ServiceTitan, GoHighLevel, Zapier, or Salesforce, look for partners specialized in that ecosystem before going generic.</li>
+            <li><strong>How many automations do you actually need built?</strong> One = freelancer or scoped project. Three to five = scoped projects or short retainer. Six+ = monthly retainer with a specialist.</li>
+          </ol>
+          <p>
+            If you can't answer one of these, that's the work to do before you start vetting vendors. The clearer your answer, the faster every conversation goes.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">What we'd say if you asked us directly</h2>
+          <p>
+            We built this list to be useful even if you don't hire us. We're a specialist agency for service businesses doing $1–5M. If that's not you, several of the other vendors above are better fits, and we'll happily tell you that on a call. We've turned down projects ourselves and pointed buyers to GoHighLevel partners, Zapier Experts, and in one case an enterprise consultancy.
+          </p>
+          <p>
+            If you <em>are</em> in our sweet spot — service business, $1–5M revenue, automation backlog of more than one workflow, operator running the show — our retainer ($3,500/month) or scoped projects ($1.5K–$15K) are built for exactly your situation. Most clients ship 8–12 working systems in their first year with us.
+          </p>
+        </section>
+
+        <CitationSources sources={sources} />
+      </div>
+    </article>
+
+    <PageFAQ faqs={faqs} heading="Vendor-comparison questions, answered." code="GUIDE 05 · FAQ" />
+
+    <AboutOperators />
+
+    <QuoteForm sourcePage="best-ai-automation-services-for-service-businesses" />
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .geo-page { background: var(--op-cream); }
+  .geo-article { padding: 72px var(--op-section-px) 56px; }
+  .geo-article-frame { max-width: 820px; margin: 0 auto; }
+  .geo-article-util { margin-bottom: 28px; }
+  .geo-hero { margin-bottom: 8px; }
+  .geo-hero > :global(.op-eyebrow) { margin-bottom: 18px; }
+  .geo-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .geo-section { margin: 32px 0; }
+  .geo-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 32px 0 14px;
+    text-wrap: balance;
+  }
+  .geo-section p {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .geo-list {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .geo-list--ordered { list-style: decimal; }
+  .geo-list li { margin-bottom: 12px; text-wrap: pretty; }
+  .geo-list strong { color: var(--op-ink); }
+
+  .geo-vendor {
+    border-top: 1px solid var(--op-rule);
+    padding-top: 28px;
+    margin-top: 36px;
+  }
+  .geo-vendor-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .geo-vendor-num {
+    font-size: 11px;
+    color: var(--op-orange);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .geo-vendor-category {
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    letter-spacing: var(--op-tracking-mono-tight);
+    text-transform: uppercase;
+  }
+  .geo-vendor-name { margin-top: 4px; }
+  .geo-vendor-link {
+    color: var(--op-orange);
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-orange);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-vendor-link:hover { color: var(--op-orange-deep); }
+
+  @media (max-width: 700px) {
+    .geo-article { padding: 56px 22px 40px; }
+    .geo-section p, .geo-list { font-size: 15px; }
+  }
+</style>

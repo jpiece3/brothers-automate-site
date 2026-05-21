@@ -1,0 +1,112 @@
+---
+/**
+ * ComparisonTable, a props-driven table component for cost/comparison/
+ * listicle pages. Tabular data is overrepresented in AI citations, so
+ * place at least one of these within the first 600 words of the page.
+ *
+ * Props:
+ *   caption:  short description above the table
+ *   columns:  array of column header labels (first column is the row label)
+ *   rows:     2D array; rows[i][0] is the row label, rest are values
+ *   highlight (optional): row index to visually mark as the recommended/winning row
+ */
+interface Props {
+  caption: string;
+  columns: string[];
+  rows: (string | number)[][];
+  highlight?: number;
+}
+const { caption, columns, rows, highlight } = Astro.props;
+---
+
+<figure class="geo-table-figure">
+  <figcaption class="geo-table-caption">{caption}</figcaption>
+  <div class="geo-table-wrap">
+    <table class="geo-table">
+      <thead>
+        <tr>
+          {columns.map((col, i) => (
+            <th scope="col" class={i === 0 ? 'geo-table-rowhead' : ''}>{col}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, ri) => (
+          <tr class={highlight === ri ? 'geo-table-row--highlight' : ''}>
+            {row.map((cell, ci) => (
+              ci === 0
+                ? <th scope="row" class="geo-table-rowhead">{cell}</th>
+                : <td>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</figure>
+
+<style>
+  .geo-table-figure {
+    margin: 32px 0 40px;
+  }
+  .geo-table-caption {
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    letter-spacing: var(--op-tracking-mono-tight);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .geo-table-wrap {
+    overflow-x: auto;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    background: var(--op-paper);
+    box-shadow: var(--op-shadow);
+  }
+  .geo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    color: var(--op-navy);
+  }
+  .geo-table thead {
+    background: var(--op-navy);
+    color: var(--op-cream);
+  }
+  .geo-table th,
+  .geo-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--op-rule);
+    vertical-align: top;
+  }
+  .geo-table thead th {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid var(--op-ink);
+  }
+  .geo-table tbody tr:last-child th,
+  .geo-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .geo-table-rowhead {
+    font-weight: 700;
+    color: var(--op-navy);
+    white-space: nowrap;
+  }
+  .geo-table-row--highlight {
+    background: rgba(224, 112, 60, 0.08);
+  }
+  .geo-table-row--highlight .geo-table-rowhead {
+    color: var(--op-orange-deep);
+  }
+
+  @media (max-width: 700px) {
+    .geo-table { font-size: 13px; }
+    .geo-table th, .geo-table td { padding: 10px 12px; }
+  }
+</style>

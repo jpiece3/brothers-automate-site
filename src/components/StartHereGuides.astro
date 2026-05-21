@@ -1,0 +1,166 @@
+---
+/**
+ * StartHereGuides, a homepage block linking to the 3 highest-intent
+ * GEO guide pages. Helps AI crawlers discover the guides and helps
+ * undecided visitors find the page that matches their stage.
+ */
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+
+const guides = [
+  {
+    code: '01',
+    title: 'How much does AI automation cost?',
+    teaser: 'Real pricing ranges. Project vs retainer. The running costs nobody talks about.',
+    href: '/how-much-does-ai-automation-cost',
+  },
+  {
+    code: '02',
+    title: 'Agency vs in-house hire?',
+    teaser: '$3.5K/mo agency vs $200K full-time hire. The math, the timeline, the risks.',
+    href: '/ai-automation-agency-vs-in-house-hire',
+  },
+  {
+    code: '03',
+    title: 'How to choose an AI partner.',
+    teaser: 'A 9-step buyer\'s checklist. The questions to ask. The red flags to walk from.',
+    href: '/how-to-choose-an-ai-automation-partner',
+  },
+];
+---
+
+<section class="start-here op-grid-bg" id="start-here">
+  <div class="start-here-frame">
+    <div class="start-here-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / BUYER GUIDES"
+        right="3 GUIDES · NO EMAIL REQUIRED"
+        bordered
+      />
+    </div>
+
+    <div class="start-here-header" data-animate="fade-up">
+      <EyebrowTag label="THINKING ABOUT IT? · START HERE" />
+      <h2 class="start-here-h2">Not ready for a call? Start here.</h2>
+      <p class="start-here-sub">
+        Three guides that answer the questions buyers ask us before they book. No email, no popup, no fluff.
+      </p>
+    </div>
+
+    <div class="start-here-grid" data-animate-stagger>
+      {guides.map(guide => (
+        <a href={guide.href} class="start-here-card" data-track="cta_click" data-track-label={guide.title} data-track-location="home_start_here">
+          <div class="start-here-card-header">
+            <span class="start-here-code op-mono">GUIDE {guide.code}</span>
+            <span class="start-here-arrow op-mono" aria-hidden="true">→</span>
+          </div>
+          <h3 class="start-here-card-title">{guide.title}</h3>
+          <p class="start-here-card-teaser">{guide.teaser}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .start-here {
+    padding: 72px var(--op-section-px) 88px;
+    background: var(--op-cream);
+  }
+  .start-here-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .start-here-util { margin-bottom: 32px; }
+
+  .start-here-header {
+    margin-bottom: 40px;
+    max-width: 760px;
+  }
+  .start-here-header > :global(.op-eyebrow) { margin-bottom: 18px; }
+  .start-here-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .start-here-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    color: var(--op-navy-soft);
+    margin: 0;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .start-here-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .start-here-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    padding: 24px 26px;
+    text-decoration: none;
+    color: var(--op-navy);
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .start-here-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .start-here-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .start-here-code {
+    font-size: 10px;
+    color: var(--op-orange);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .start-here-arrow {
+    font-size: 16px;
+    color: var(--op-ink);
+    transition: transform var(--op-dur-hover) var(--op-ease);
+  }
+  .start-here-card:hover .start-here-arrow {
+    transform: translateX(4px);
+  }
+  .start-here-card-title {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .start-here-card-teaser {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 900px) {
+    .start-here-grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+  @media (max-width: 700px) {
+    .start-here { padding: 56px 22px 72px; }
+  }
+</style>

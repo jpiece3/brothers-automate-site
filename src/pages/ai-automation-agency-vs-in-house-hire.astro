@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import AboutOperators from '../components/AboutOperators.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import DirectAnswer from '../components/geo/DirectAnswer.astro';
+import LastUpdated from '../components/geo/LastUpdated.astro';
+import ComparisonTable from '../components/geo/ComparisonTable.astro';
+import CitationSources from '../components/geo/CitationSources.astro';
+import PageFAQ from '../components/geo/PageFAQ.astro';
+import QuoteForm from '../components/geo/QuoteForm.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const pageUrl = `${SITE_URL}/ai-automation-agency-vs-in-house-hire`;
+const datePublished = '2026-05-21';
+const dateModified = '2026-05-21';
+const title = 'AI Automation Agency vs In-House Hire: Which Is Right for Your Business? (2026)';
+const description = 'Hiring an AI automation agency costs $40K-$100K/year on a retainer. A full-time AI engineer costs $180K-$240K all-in. Here\'s how to decide which is right for your business based on revenue, project volume, and time-to-value.';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "Agency vs In-House Hire", "item": pageUrl },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "AI Automation Agency vs In-House Hire",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Thing",
+        "name": "AI Automation Agency",
+        "description": "Specialist agency on retainer or scoped projects, ships in 1-4 weeks per build, $40K-$100K/year typical spend.",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Typical Cost", "value": "$40K-$100K/year" },
+          { "@type": "PropertyValue", "name": "Time to First Build", "value": "1-2 weeks" },
+          { "@type": "PropertyValue", "name": "Risk", "value": "Low to medium" },
+        ],
+      },
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Thing",
+        "name": "In-House AI Engineer Hire",
+        "description": "Full-time AI engineer or automation lead, $180K-$240K all-in, 6-12 weeks to first shipped build.",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Typical Cost", "value": "$180K-$240K/year all-in" },
+          { "@type": "PropertyValue", "name": "Time to First Build", "value": "6-12 weeks" },
+          { "@type": "PropertyValue", "name": "Risk", "value": "Medium to high" },
+        ],
+      },
+    },
+  ],
+};
+
+const headToHeadRows: (string | number)[][] = [
+  ['Annual cost', '$40K – $100K (retainer or 6–8 projects)', '$180K – $240K all-in (salary + benefits + tools)'],
+  ['Time to first shipped build', '1–2 weeks', '6–12 weeks (hire + ramp)'],
+  ['Hiring & onboarding risk', 'None (paused/dropped on notice)', 'High (firing AI engineers is slow and expensive)'],
+  ['Range of expertise', 'Multiple specialists rotate in', 'Limited to one person\'s skillset'],
+  ['Long-term cost (3+ years)', '$120K – $300K cumulative', '$540K – $720K cumulative + retention risk'],
+  ['Ownership of IP', 'Yours (negotiated upfront)', 'Yours by default'],
+  ['Best fit revenue', '$1M – $20M', '$10M+'],
+  ['Continuity if person leaves', 'Agency keeps running', 'You start over'],
+];
+
+const decisionRows: (string | number)[][] = [
+  ['Under $1M revenue', 'Neither', 'DIY (Zapier/Make) or freelancer per project'],
+  ['$1M – $5M revenue', 'Agency retainer', 'Speed and breadth matter more than full ownership'],
+  ['$5M – $10M revenue', 'Agency retainer + part-time ops automation lead', 'Hire only after 12+ months of clear automation backlog'],
+  ['$10M – $20M revenue', 'Hybrid: agency for breadth, in-house for ownership', 'Agency handles peaks, hire handles core systems'],
+  ['$20M+ revenue', 'In-house team + agency for specific projects', 'Governance and security at this scale needs employees'],
+];
+
+const faqs = [
+  { question: 'When does it make sense to hire a full-time AI engineer instead of using an agency?', answer: 'Past $10M in revenue, with a clear 12+ month backlog of automation projects, AND a manager who can lead them. Below that, an agency retainer ships faster, costs less, and carries less risk. The breakeven math: a full-time hire at $200K all-in needs to produce more than $200K of automation value annually, which is hard without an experienced manager directing the work.' },
+  { question: 'How much does an in-house AI engineer actually cost?', answer: '$140K-$180K base salary for mid-level (2-5 years experience) in most US markets, $180K-$240K all-in with benefits, equity, hardware, and tooling. Senior AI engineers run $220K-$320K base. That doesn\'t include recruiting cost (typically $25K-$40K in agency fees or 6-9 months of internal hiring time) or the 6-12 week ramp.' },
+  { question: 'What\'s the real cost of an AI automation agency retainer?', answer: 'Most specialist agencies serving service businesses charge $2,500-$8,000/month for retainers. Ours is $3,500/month, which is mid-market. For that you get 1-2 new automations built per month plus ongoing maintenance of everything previously built. Annual spend lands between $30K and $96K depending on the agency.' },
+  { question: 'Will my in-house engineer build better-fitting systems than an agency?', answer: 'Eventually, yes — but it can take 6-12 months of ramp before that\'s true. An experienced agency hits the ground running because they\'ve already built similar systems for similar businesses. A new hire has to learn your business first. If you\'re willing to wait, in-house wins on context. If you need shipping now, agency wins on speed.' },
+  { question: 'Can an agency really replace a full-time hire?', answer: 'For service businesses doing under $10M, yes — usually with capacity to spare. Most $1-5M businesses have a backlog of 8-15 automations they actually want. That\'s 6-12 months of agency retainer work, not a full-time job. Hiring full-time at that scale usually leaves the engineer under-utilized within a year.' },
+  { question: 'What about the IP and ownership question?', answer: 'Reputable agencies hand over all prompts, integrations, documentation, and admin credentials at delivery. Confirm this in writing before signing. An in-house hire is automatic — anything they build is yours. If IP ownership is your top concern, in-house is simpler. If outcomes are your top concern, agency wins more often.' },
+  { question: 'What happens if I want to switch from an agency to in-house later?', answer: 'It\'s a clean transition with a good agency. You already own the systems, prompts, and documentation. Your new hire walks into a working environment with full context, instead of a blank repo. This is actually a common path: companies use an agency to build the foundation, then hire to maintain and extend.' },
+  { question: 'Are there any cases where an agency is the wrong call?', answer: 'Yes, three: (1) you need real-time IP protection on highly proprietary processes, (2) you have severe data sensitivity (HIPAA, classified, financial advisor regulated workflows), or (3) you\'re past $20M and have enough sustained backlog to justify a team. In those cases, hire.' },
+];
+
+const sources = [
+  { title: 'AI Talent Costs and Hiring Trends', publisher: 'Levels.fyi', url: 'https://www.levels.fyi/', year: '2024-2025' },
+  { title: 'The economic potential of generative AI', publisher: 'McKinsey & Company', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights', year: '2024' },
+  { title: 'How to build an AI team', publisher: 'Harvard Business Review', url: 'https://hbr.org/topic/subject/ai-and-machine-learning' },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalUrl={pageUrl}
+  type="article"
+  datePublished={datePublished}
+  dateModified={dateModified}
+  articleHeadline="AI Automation Agency vs In-House Hire: Which Is Right for Your Business?"
+  extraSchemas={[breadcrumbSchema, itemListSchema]}
+>
+  <Header />
+  <main class="geo-page">
+    <article class="geo-article">
+      <div class="geo-article-frame">
+        <div class="geo-article-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / GUIDE 04 · AGENCY VS HIRE"
+            right="UPDATED MAY 2026 · FOR $1–20M BUSINESSES"
+            bordered
+          />
+        </div>
+
+        <header class="geo-hero">
+          <EyebrowTag label="GUIDE · AGENCY VS IN-HOUSE" />
+          <h1 class="geo-h1">AI automation agency vs in-house hire: which is right for your business?</h1>
+        </header>
+
+        <DirectAnswer>
+          For service businesses doing <strong>under $10M in revenue</strong>, an AI automation agency ($40K–$100K/year) ships faster, costs less, and carries less risk than a full-time hire ($180K–$240K all-in). Hire in-house once you have a 12+ month automation backlog AND a manager to direct the work — typically past <strong>$10M revenue</strong>. Below that, an agency retainer wins on every metric.
+        </DirectAnswer>
+
+        <LastUpdated date={dateModified} />
+
+        <ComparisonTable
+          caption="AI automation agency vs in-house AI engineer hire (2026, US market)"
+          columns={['Factor', 'Agency Retainer', 'Full-Time Hire']}
+          rows={headToHeadRows}
+        />
+
+        <section class="geo-section">
+          <h2 class="geo-h2">The honest math on cost</h2>
+          <p>
+            A typical specialist AI automation agency retainer runs <strong>$3,500–$8,000/month</strong>, or <strong>$42K–$96K/year</strong>. That buys you 1–2 new automations per month plus ongoing maintenance of everything previously shipped.
+          </p>
+          <p>
+            A full-time AI engineer at the mid level (2–5 years experience) lands around <strong>$140K–$180K base salary</strong> in most US markets. All-in — benefits, equity, hardware, software, and recruiting cost — that's <strong>$180K–$240K/year</strong>. Senior engineers run higher.
+          </p>
+          <p>
+            Over three years, the cumulative difference is significant:
+          </p>
+          <ul class="geo-list">
+            <li><strong>Agency retainer:</strong> $126K–$288K total over 3 years.</li>
+            <li><strong>Full-time hire:</strong> $540K–$720K total over 3 years, not counting raises or replacement costs.</li>
+          </ul>
+          <p>
+            That's a $250K–$600K spread over three years. The agency option is only worse if the in-house hire produces materially more output, which depends heavily on what you actually need built.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Time to first shipped automation</h2>
+          <p>
+            This is where the math breaks down for in-house hires at small companies.
+          </p>
+          <ul class="geo-list">
+            <li><strong>Agency retainer:</strong> first build shipped in <strong>1–2 weeks</strong>. The agency has already built similar systems and knows the playbook.</li>
+            <li><strong>Full-time hire:</strong> first build shipped in <strong>6–12 weeks</strong>, factoring in recruiting (4–8 weeks to fill the role), onboarding (1–2 weeks), and learning your business (3–6 weeks before they ship anything production-ready).</li>
+          </ul>
+          <p>
+            For a business losing money to manual follow-up right now, those 4–10 weeks of delay can be more expensive than a full year of agency retainer.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Range of expertise</h2>
+          <p>
+            One engineer knows one thing well, two things okay, and is shaky on the rest. A specialist agency rotates in different people for different jobs: someone who's good at prompt design for the AI agent, someone who's good at CRM integrations for the wiring, someone who's good at SMS/email deliverability for the messaging.
+          </p>
+          <p>
+            For a sub-$10M business with a varied automation backlog, that breadth usually beats depth. For a $20M+ business with one core workflow they want to optimize aggressively, depth in one engineer beats agency breadth.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Risk: what happens when things go wrong</h2>
+          <p>
+            Two risks to weigh:
+          </p>
+          <ul class="geo-list">
+            <li><strong>Hire-and-fire risk.</strong> A bad agency engagement ends with 30 days' notice. A bad hire can take 3–6 months to recognize, another 1–3 months to part ways with, plus severance. The downside of a wrong hire at $200K all-in is materially worse than a wrong agency choice.</li>
+            <li><strong>Continuity risk.</strong> When an in-house engineer leaves (typical AI engineer tenure is 18–24 months), you start over. An agency has team continuity — multiple people know your systems, and your documentation stays current as a deliverable.</li>
+          </ul>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Which one fits your business size?</h2>
+
+          <ComparisonTable
+            caption="Decision framework by revenue range"
+            columns={['Revenue', 'Recommendation', 'Reasoning']}
+            rows={decisionRows}
+          />
+
+          <p>
+            The wrong choice gets expensive fast. We've watched $3M businesses hire a $200K AI engineer who couldn't fill their first 6 months of work. We've also watched $40M businesses run on agency-only and burn out the agency relationship trying to scale without internal ownership. Match the choice to your size.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">The hybrid path most growing businesses take</h2>
+          <p>
+            Most service businesses we work with don't actually choose "agency or hire." They sequence:
+          </p>
+          <ol class="geo-list geo-list--ordered">
+            <li><strong>Phase 1 ($1–5M):</strong> agency retainer. You don't have the volume of automation work to justify a hire. Ship 8–15 automations in year one.</li>
+            <li><strong>Phase 2 ($5–10M):</strong> agency retainer + part-time ops automation lead (often promoted from operations). The lead manages the agency and handles tuning. Light internal capacity, agency does the heavy builds.</li>
+            <li><strong>Phase 3 ($10–20M):</strong> hire a full-time ops automation engineer who reports to your ops lead. Keep the agency on a smaller retainer for specialty projects (ML, vision, novel integrations).</li>
+            <li><strong>Phase 4 ($20M+):</strong> in-house team of 2–4 engineers + selective agency engagements. The team owns core systems; agencies handle peaks and niche skills.</li>
+          </ol>
+          <p>
+            The mistake is skipping Phase 1 and 2 because you think you should "just hire." You won't have enough work, your hire will be under-utilized, and you'll churn through them within 18 months.
+          </p>
+        </section>
+
+        <CitationSources sources={sources} />
+      </div>
+    </article>
+
+    <PageFAQ faqs={faqs} heading="Common questions on agency vs hire." code="GUIDE 04 · FAQ" />
+
+    <AboutOperators />
+
+    <QuoteForm sourcePage="ai-automation-agency-vs-in-house-hire" heading="Curious about the retainer side?" />
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .geo-page { background: var(--op-cream); }
+  .geo-article { padding: 72px var(--op-section-px) 56px; }
+  .geo-article-frame { max-width: 820px; margin: 0 auto; }
+  .geo-article-util { margin-bottom: 28px; }
+  .geo-hero { margin-bottom: 8px; }
+  .geo-hero > :global(.op-eyebrow) { margin-bottom: 18px; }
+  .geo-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .geo-section { margin: 32px 0; }
+  .geo-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 32px 0 14px;
+    text-wrap: balance;
+  }
+  .geo-section p {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .geo-list {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .geo-list--ordered { list-style: decimal; }
+  .geo-list li { margin-bottom: 12px; text-wrap: pretty; }
+  .geo-list strong { color: var(--op-ink); }
+
+  @media (max-width: 700px) {
+    .geo-article { padding: 56px 22px 40px; }
+    .geo-section p, .geo-list { font-size: 15px; }
+  }
+</style>

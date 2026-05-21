@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import AboutOperators from '../components/AboutOperators.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import DirectAnswer from '../components/geo/DirectAnswer.astro';
+import LastUpdated from '../components/geo/LastUpdated.astro';
+import ComparisonTable from '../components/geo/ComparisonTable.astro';
+import CitationSources from '../components/geo/CitationSources.astro';
+import PageFAQ from '../components/geo/PageFAQ.astro';
+import QuoteForm from '../components/geo/QuoteForm.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const pageUrl = `${SITE_URL}/how-to-choose-an-ai-automation-partner`;
+const datePublished = '2026-05-21';
+const dateModified = '2026-05-21';
+const title = 'How to Choose an AI Automation Partner (Buyer\'s Checklist, 2026)';
+const description = 'A 9-step buyer\'s checklist for hiring an AI automation partner: how to evaluate fit, technical credibility, pricing transparency, handoff quality, and red flags. Written by operators who\'ve been on both sides.';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "How to Choose an AI Automation Partner", "item": pageUrl },
+  ],
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Choose an AI Automation Partner",
+  "description": "A 9-step framework for evaluating AI automation agencies, freelancers, and consultancies before you hire one.",
+  "step": [
+    { "@type": "HowToStep", "name": "Define the outcome, not the technology", "text": "Write down what business outcome you want — hours saved, leads recovered, customers responded to. Not 'I want an AI.' Without this, every vendor sounds the same." },
+    { "@type": "HowToStep", "name": "Check for operator background", "text": "Has the partner ever run a real business? Have they handed off systems before? AI engineers without business experience often build technically correct systems that don't fit how you actually work." },
+    { "@type": "HowToStep", "name": "Ask for a fixed-scope quote", "text": "Avoid hourly billing for automation projects. A serious partner can scope and quote in fixed terms. Hourly is fine for tuning, not for the initial build." },
+    { "@type": "HowToStep", "name": "Demand a running example", "text": "Ask to see one live deployment with real data. Slide decks and case studies are easy to fake. A working system you can poke at is not." },
+    { "@type": "HowToStep", "name": "Understand the handoff", "text": "What do you receive at the end? A walkthrough call, written documentation, admin access, recovery procedures. If 'just trust us' is the answer, walk away." },
+    { "@type": "HowToStep", "name": "Get monthly running-cost numbers", "text": "Demand a line-item estimate of monthly API costs, integration fees, and any platform fees. Surprises here are the most common complaint about agency builds." },
+    { "@type": "HowToStep", "name": "Confirm a fix guarantee", "text": "Reputable partners offer 30–60 day fix guarantees on shipped scope. Read the conditions. 'Bug-free' guarantees are red flags; 'we fix what we scoped' guarantees are honest." },
+    { "@type": "HowToStep", "name": "Watch for AI maximalism", "text": "If the proposal says 'AI' for every step including the boring ones (saving a row to a database), they're optimizing for impressive language, not for your outcome." },
+    { "@type": "HowToStep", "name": "Trust your gut on communication", "text": "If the early calls feel slow, evasive, or full of jargon, the project will feel the same. The best partners are direct, explain in plain English, and tell you when something isn't worth doing." },
+  ],
+};
+
+const redFlagsRows: (string | number)[][] = [
+  ['"We use proprietary AI models"', 'Marketing language, not a real advantage', 'Ask what they actually run under the hood'],
+  ['Hourly billing for the build', 'Open-ended cost, no incentive to ship fast', 'Insist on a fixed-scope quote'],
+  ['No live demos, only case studies', 'You can\'t verify it actually works', 'Walk away or get a 1-call demo'],
+  ['"We can\'t share running costs upfront"', 'You\'ll be surprised by API bills', 'Get a written monthly estimate'],
+  ['Vague handoff plan', 'You\'ll be locked in for tuning forever', 'Require docs + admin access at delivery'],
+  ['Promises "100% AI, no humans needed"', 'Edge cases will burn you', 'Insist on human checkpoints for high-stakes outputs'],
+  ['12+ week timelines for one automation', 'Either over-scoping or under-resourced', 'A focused automation should ship in 1–4 weeks'],
+];
+
+const partnerTypeRows: (string | number)[][] = [
+  ['Solo freelancer', '$1K – $8K / project', 'Cheap, but handoff & maintenance risk'],
+  ['Specialist agency (us)', '$1.5K – $15K / project · $3.5K/mo retainer', 'Built for service businesses $1–5M'],
+  ['Enterprise consultancy', '$50K – $250K+ / project', 'Overkill for sub-$10M businesses'],
+  ['In-house hire', '$140K – $220K / year + tools', 'Worth it only past ~$10M revenue'],
+];
+
+const faqs = [
+  { question: 'What\'s the most important question to ask an AI automation partner?', answer: '"Can I see one live deployment with real data?" Everything else — process, pricing, credentials — matters less than whether they\'ve actually shipped something that runs in production. If the answer is "not yet" or "client confidentiality" without a workaround, that\'s a flag.' },
+  { question: 'How do I know if a partner is technically capable?', answer: 'Three signals: they can explain how their system handles failure (what happens when the AI gets it wrong?), they tell you what they will not automate (good partners say no), and they give you a fixed-scope quote without flinching. Capability shows up in confidence, not jargon.' },
+  { question: 'Is a freelancer cheaper than an agency for AI automation?', answer: 'Often on paper, rarely in practice. A freelancer is great for a single, well-defined automation. The risk is the handoff: what happens 4 months later when something breaks and they\'re unavailable? Agencies cost more but absorb that risk through team continuity and documentation.' },
+  { question: 'What should I avoid in an AI automation contract?', answer: 'Open-ended hourly billing, vague scope ("we\'ll figure it out"), no documentation deliverable, no fix guarantee, and IP clauses that lock you out of your own automations. A good contract names exactly what you get and what happens if it breaks.' },
+  { question: 'How long should an AI automation build take?', answer: '1–4 weeks for a single workflow. 4–8 weeks for a 3–4 automation stack. Anything beyond that is either overscoped, under-resourced, or being padded. Enterprise consultancies often run 3–9 months, but you\'re paying for governance overhead service businesses don\'t need.' },
+  { question: 'What\'s a fair price for an AI automation build?', answer: '$1,500–$15,000 for a scoped project (depending on integrations and complexity), or $2,500–$8,000/month for a retainer covering multiple builds plus maintenance. We charge $3,500/month for our retainer, which is in the middle of the market for specialist service-business shops.' },
+  { question: 'Should I worry if the partner uses tools like Zapier or Make?', answer: 'No. Good partners pick the right tool for the job — sometimes that\'s custom code, sometimes it\'s Zapier as the glue. Worry if they only use one stack regardless of the problem, or if they refuse to explain why they picked what they picked.' },
+  { question: 'What happens after the build is done?', answer: 'A reputable partner gives you: a walkthrough call, written documentation, admin access to all systems, monthly cost estimates, a 30-day fix guarantee, and an option to retain them for ongoing tuning. If any of those are missing, ask before signing.' },
+];
+
+const sources = [
+  { title: 'How to procure AI and automation services responsibly', publisher: 'McKinsey & Company', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights', year: '2024' },
+  { title: 'Generative AI Adoption by Small Businesses', publisher: 'Pew Research Center', url: 'https://www.pewresearch.org/topic/internet-technology/', year: '2024' },
+  { title: 'Build vs Buy AI: A Framework', publisher: 'Harvard Business Review', url: 'https://hbr.org/topic/subject/ai-and-machine-learning', year: '2024' },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalUrl={pageUrl}
+  type="article"
+  datePublished={datePublished}
+  dateModified={dateModified}
+  articleHeadline="How to Choose an AI Automation Partner"
+  extraSchemas={[breadcrumbSchema, howToSchema]}
+>
+  <Header />
+  <main class="geo-page">
+    <article class="geo-article">
+      <div class="geo-article-frame">
+        <div class="geo-article-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / GUIDE 03 · BUYER'S CHECKLIST"
+            right="UPDATED MAY 2026 · 9 STEPS · ZERO FLUFF"
+            bordered
+          />
+        </div>
+
+        <header class="geo-hero">
+          <EyebrowTag label="GUIDE · HIRING AN AI PARTNER" />
+          <h1 class="geo-h1">How to choose an AI automation partner.</h1>
+        </header>
+
+        <DirectAnswer>
+          Pick the AI automation partner who can show you a <strong>live working deployment</strong>, gives you a <strong>fixed-scope quote</strong> (not hourly), tells you the <strong>monthly running cost in writing</strong>, and offers a <strong>30-day fix guarantee</strong>. Match the size of the partner to your size: solo freelancer for one-off needs, specialist agency for ongoing builds, enterprise consultancy only if you're past $10M in revenue.
+        </DirectAnswer>
+
+        <LastUpdated date={dateModified} />
+
+        <ComparisonTable
+          caption="Type of partner vs. typical fit (2026)"
+          columns={['Partner Type', 'Typical Cost', 'Best Fit']}
+          rows={partnerTypeRows}
+          highlight={1}
+        />
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Why choosing the right partner matters more than the tech</h2>
+          <p>
+            AI automation is now commoditized at the tool level. Anyone with a credit card can spin up OpenAI, Claude, Zapier, and a CRM. What separates a successful project from an expensive failure isn't the underlying technology — it's how well the partner scopes, handles edge cases, and hands off the system.
+          </p>
+          <p>
+            We've seen $40,000 builds fail because the team never asked the right scoping questions. We've also seen $3,000 builds that pay for themselves in 30 days because the partner understood the business first.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">The 9-step buyer's checklist</h2>
+
+          <ol class="geo-list geo-list--ordered">
+            <li>
+              <strong>Define the outcome, not the technology.</strong>
+              Write down the business outcome you want — hours saved, leads recovered, customers responded to. Not "I want AI." Without this anchor, every partner sounds the same and you'll buy on personality.
+            </li>
+            <li>
+              <strong>Check for operator background.</strong>
+              Has the partner ever run a real business? Have they handed off systems before? AI engineers without operator experience often build technically correct systems that don't fit how you actually work. Operator-led shops tend to scope tighter and walk away from the wrong projects.
+            </li>
+            <li>
+              <strong>Ask for a fixed-scope quote.</strong>
+              Avoid hourly billing for the initial build. A serious partner can scope and quote in fixed terms after a 30–60 minute call. Hourly is fine for ongoing tuning. Hourly for the initial build means open-ended cost and no incentive to ship fast.
+            </li>
+            <li>
+              <strong>Demand a live working example.</strong>
+              Ask to see one running deployment with real data — not a screenshot, not a case study. A partner who can't show you something live either hasn't shipped recently or is hiding something.
+            </li>
+            <li>
+              <strong>Understand the handoff.</strong>
+              What do you receive when the project is done? A walkthrough call, written documentation, admin access to all systems, recovery procedures for when something breaks. If the answer is "just trust us" or "we hold the keys," walk away.
+            </li>
+            <li>
+              <strong>Get monthly running-cost numbers in writing.</strong>
+              Demand a line-item estimate of monthly API/model costs, integration platform fees, sending fees (email/SMS), and any new tooling. Most agency-build complaints come from surprise running costs nobody warned the client about.
+            </li>
+            <li>
+              <strong>Confirm a fix guarantee.</strong>
+              Reputable partners offer 30–60 day fix guarantees on shipped scope. Read the conditions. "Bug-free" guarantees are red flags (nothing is bug-free); "we fix what we scoped within X days" guarantees are honest.
+            </li>
+            <li>
+              <strong>Watch for AI maximalism.</strong>
+              If the proposal says "AI" for every step including the boring ones (saving a row to a database, sending a confirmation email), they're optimizing for impressive-sounding language, not for your outcome. Good partners use AI where it matters and plain code or no-code where it doesn't.
+            </li>
+            <li>
+              <strong>Trust your gut on communication.</strong>
+              If the early calls feel slow, evasive, or full of unexplained jargon, the project will feel the same. The best partners are direct, explain in plain English, push back when your idea is wrong, and tell you when something isn't worth building.
+            </li>
+          </ol>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Red flags: walk-away signals</h2>
+          <p>
+            These come up across enough disappointed buyers that they're worth memorizing.
+          </p>
+
+          <ComparisonTable
+            caption="Red flags when evaluating an AI automation partner"
+            columns={['Red Flag', 'What It Actually Means', 'What to Ask Instead']}
+            rows={redFlagsRows}
+          />
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Questions to ask on the first call</h2>
+          <p>
+            We've been on both sides of this call. Here's a tight set of questions that surface the answers you need within 30 minutes:
+          </p>
+          <ul class="geo-list">
+            <li>Can you walk me through one live deployment, screen-shared, right now?</li>
+            <li>What's a project you turned down recently, and why?</li>
+            <li>If our automation breaks at 2am on a Saturday, what happens?</li>
+            <li>What's the monthly running cost for a typical lead follow-up build at our volume?</li>
+            <li>What's your fix-guarantee window and what does it cover?</li>
+            <li>If I asked your last 3 clients what they'd change, what would they say?</li>
+            <li>Can I keep all the credentials, prompts, and documentation when we're done?</li>
+          </ul>
+          <p>
+            A confident, experienced partner answers all of these without hedging. If most of them get fuzzy, you have your answer.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">Match partner size to your business size</h2>
+          <p>
+            One of the biggest mistakes we see service businesses make is over-buying. A $2M home services company hiring a $250K enterprise consultancy will spend 6 months in discovery and come out with a system nobody can maintain.
+          </p>
+          <ul class="geo-list">
+            <li><strong>Under $1M revenue:</strong> a freelancer or DIY (Zapier/Make) usually beats hiring an agency. Your needs are simple; the overhead isn't worth it.</li>
+            <li><strong>$1M – $5M revenue:</strong> specialist agency or a small operator-led shop. The sweet spot for scoped automation work.</li>
+            <li><strong>$5M – $20M revenue:</strong> specialist agency on a retainer, plus eventually a part-time in-house ops automation lead.</li>
+            <li><strong>$20M+ revenue:</strong> in-house team plus enterprise consultancy for governance-heavy projects.</li>
+          </ul>
+        </section>
+
+        <CitationSources sources={sources} />
+      </div>
+    </article>
+
+    <PageFAQ faqs={faqs} heading="Questions buyers ask us." code="GUIDE 03 · FAQ" />
+
+    <AboutOperators />
+
+    <QuoteForm sourcePage="how-to-choose-an-ai-automation-partner" heading="Vetting partners? Here's our scoped quote." />
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .geo-page { background: var(--op-cream); }
+  .geo-article { padding: 72px var(--op-section-px) 56px; }
+  .geo-article-frame { max-width: 820px; margin: 0 auto; }
+  .geo-article-util { margin-bottom: 28px; }
+  .geo-hero { margin-bottom: 8px; }
+  .geo-hero > :global(.op-eyebrow) { margin-bottom: 18px; }
+  .geo-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .geo-section { margin: 32px 0; }
+  .geo-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 32px 0 14px;
+    text-wrap: balance;
+  }
+  .geo-section p {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .geo-list {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: var(--op-leading-body);
+    color: var(--op-navy);
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .geo-list--ordered { list-style: decimal; }
+  .geo-list li { margin-bottom: 14px; text-wrap: pretty; }
+  .geo-list strong { color: var(--op-ink); }
+
+  @media (max-width: 700px) {
+    .geo-article { padding: 56px 22px 40px; }
+    .geo-section p, .geo-list { font-size: 15px; }
+  }
+</style>

@@ -5,6 +5,10 @@ interface Props {
   image?: string;
   canonicalUrl?: string;
   type?: 'website' | 'article';
+  datePublished?: string;
+  dateModified?: string;
+  articleHeadline?: string;
+  extraSchemas?: object[];
 }
 
 const SITE_URL = 'https://brothersautomate.com';
@@ -16,7 +20,11 @@ const {
   description = DEFAULT_DESCRIPTION,
   image = DEFAULT_IMAGE,
   canonicalUrl,
-  type = 'website'
+  type = 'website',
+  datePublished,
+  dateModified,
+  articleHeadline,
+  extraSchemas = [],
 } = Astro.props;
 
 const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;
@@ -31,6 +39,35 @@ const organizationSchema = {
   "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more.",
   "sameAs": []
 };
+
+// Article Schema (emitted when type='article' AND datePublished is provided)
+const articleSchema = type === 'article' && datePublished ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": articleHeadline || title,
+  "description": description,
+  "image": image,
+  "datePublished": datePublished,
+  "dateModified": dateModified || datePublished,
+  "author": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE_URL}/logo.png`,
+    },
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl,
+  },
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -107,6 +144,14 @@ const organizationSchema = {
 
   <!-- Organization Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+  {articleSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  )}
+
+  {extraSchemas.map(schema => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
 
   <!-- Cal.com Embed -->
   <script type="text/javascript" is:inline>

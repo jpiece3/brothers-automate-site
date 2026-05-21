@@ -1,0 +1,49 @@
+---
+/**
+ * LastUpdated, a small dated line that shows freshness to both readers
+ * and AI crawlers. Citation rates correlate strongly with recent
+ * dateModified values, so refresh this quarterly.
+ *
+ * Props:
+ *   date: ISO date string e.g. "2026-05-21"
+ */
+interface Props {
+  date: string;
+}
+const { date } = Astro.props;
+
+const formatted = new Date(date + 'T00:00:00Z').toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<p class="geo-last-updated op-mono">
+  <span class="geo-last-updated-dot" aria-hidden="true"></span>
+  Last updated <time datetime={date}>{formatted}</time>
+</p>
+
+<style>
+  .geo-last-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-navy-soft);
+    margin: 0 0 28px;
+    letter-spacing: var(--op-tracking-mono-tight);
+  }
+  .geo-last-updated time {
+    color: var(--op-navy);
+    font-weight: 600;
+  }
+  .geo-last-updated-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--op-orange);
+    flex-shrink: 0;
+  }
+</style>
