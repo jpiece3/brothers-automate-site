@@ -7,17 +7,17 @@ import EyebrowTag from './operator/EyebrowTag.astro';
   <div class="op-hww-frame">
     <div class="op-hww-util">
       <TopUtilityStrip
-        left="BROTHERS_AUTOMATE / SECTION 03 · HOW WE WORK"
+        left="BROTHERS_AUTOMATE / SECTION 06 · HOW WE WORK"
         right="02 ENGAGEMENT MODES"
         bordered
       />
     </div>
 
     <div class="op-hww-header" data-animate="fade-up">
-      <EyebrowTag label="WE DO PROJECTS · WE BECOME PART OF YOUR BUSINESS" />
-      <h2 class="op-hww-h2">Pick a build. Or plug us into the business.</h2>
+      <EyebrowTag label="TWO WAYS TO WORK · PROJECT OR PARTNER" />
+      <h2 class="op-hww-h2">Focused build. Or embedded partner.</h2>
       <p class="op-hww-sub">
-        Two ways to work with us. One is a <strong>fixed-scope project</strong>, one system, shipped clean, handed off. The other is an <strong>ongoing partnership</strong>, we become the automation arm of your team, and your people get smarter every month.
+        Two ways to work with us. A <strong>Focused Build</strong> — one painful workflow, one system, scoped and shipped clean. Or an <strong>Embedded Partner</strong> arrangement — we work directly with your team to keep finding, building, and improving systems as you scale.
       </p>
     </div>
 
@@ -27,7 +27,7 @@ import EyebrowTag from './operator/EyebrowTag.astro';
       <article class="op-hww-card op-hww-card--partner">
         <div class="op-hww-card-header op-hww-card-header--partner">
           <span class="op-pulse-dot op-pulse-dot--lg"></span>
-          <span class="op-mono op-hww-card-id">MODE_A · ONGOING PARTNERSHIP</span>
+          <span class="op-mono op-hww-card-id">EMBEDDED_PARTNER · ONGOING</span>
           <span class="op-mono op-hww-card-tag">MOST POPULAR ↗</span>
         </div>
 
@@ -36,6 +36,11 @@ import EyebrowTag from './operator/EyebrowTag.astro';
           <h3 class="op-hww-card-title">Become the automation arm of your team.</h3>
           <p class="op-hww-card-sub">
             Ongoing builds, maintenance, and staff training, so your team gets <em>smarter every month</em>, not just more dependent on us.
+          </p>
+
+          <p class="op-hww-translation">
+            <span class="op-hww-translation-label op-mono">TRANSLATION ↗</span>
+            An automation team on call, without the $20K/mo agency invoice or the awkward "we'll get back to you."
           </p>
 
           <div class="op-mono op-hww-list-label">WHAT YOU GET</div>
@@ -89,7 +94,7 @@ import EyebrowTag from './operator/EyebrowTag.astro';
       <article class="op-hww-card op-hww-card--project">
         <div class="op-hww-card-header op-hww-card-header--project">
           <span class="op-hww-dot-navy"></span>
-          <span class="op-mono op-hww-card-id-navy">MODE_B · FIXED-SCOPE PROJECT</span>
+          <span class="op-mono op-hww-card-id-navy">FOCUSED_BUILD · ONE SYSTEM</span>
           <span class="op-mono op-hww-card-tag-navy">ONE-TIME ↗</span>
         </div>
 
@@ -98,6 +103,11 @@ import EyebrowTag from './operator/EyebrowTag.astro';
           <h3 class="op-hww-card-title op-hww-card-title--ink">One system, built to spec, handed off clean.</h3>
           <p class="op-hww-card-sub op-hww-card-sub--ink">
             Tell us the problem. We scope it, build it, deploy it on your accounts, and walk your team through everything.
+          </p>
+
+          <p class="op-hww-translation op-hww-translation--ink">
+            <span class="op-hww-translation-label op-mono op-hww-translation-label--ink">TRANSLATION ↗</span>
+            One specific thing off your plate, forever. The kind of thing that's been "on the list" for two years.
           </p>
 
           <div class="op-mono op-hww-list-label op-hww-list-label--ink">WHAT YOU GET</div>
@@ -326,6 +336,39 @@ import EyebrowTag from './operator/EyebrowTag.astro';
     font-style: normal;
     font-weight: 600;
     opacity: 1;
+  }
+
+  .op-hww-translation {
+    font-family: var(--op-font-body);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--op-cream);
+    opacity: 0.85;
+    margin: 0 0 18px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--op-orange);
+    text-wrap: pretty;
+    max-width: 480px;
+  }
+  .op-hww-translation--ink {
+    color: var(--op-navy-soft);
+    background: var(--op-cream);
+    border-left-color: var(--op-orange);
+    opacity: 1;
+  }
+  .op-hww-translation-label {
+    display: block;
+    font-style: normal;
+    font-size: 9px;
+    color: var(--op-orange);
+    letter-spacing: 0.22em;
+    margin-bottom: 4px;
+    opacity: 1;
+  }
+  .op-hww-translation-label--ink {
+    color: var(--op-orange);
   }
 
   .op-hww-list-label {

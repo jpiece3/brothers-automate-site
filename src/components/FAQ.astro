@@ -10,7 +10,7 @@ const groups = [
     questions: [
       {
         question: 'How long does a project take?',
-        answer: "Most projects take 1-3 weeks from kickoff to live system. We scope everything upfront so there are no surprises. You'll know the timeline before we start."
+        answer: "Most projects go live in weeks, not months. We scope everything upfront so there are no surprises. You'll know the timeline before we start."
       },
       {
         question: 'What do I need to provide?',
@@ -49,6 +49,24 @@ const groups = [
         answer: "Service businesses doing $1-15M in revenue. Coaches, contractors, agencies, restaurants, real estate, e-commerce. Any business owner who's great at what they do but drowning in operational busywork."
       }
     ]
+  },
+  {
+    code: 'GROUP_04',
+    label: 'Honest Doubts',
+    questions: [
+      {
+        question: 'I barely have time to read this page. How am I supposed to onboard you?',
+        answer: "30-minute call. You talk, we listen. We come back with a plan you can say yes or no to. Total time from your end in week one is under 90 minutes. We do the rest."
+      },
+      {
+        question: "What if my team won't actually use this?",
+        answer: "We train your staff on every build and document everything in plain English. If your team doesn't touch it, the system still runs — that's the point. Most clients tell us their team adopts it faster than the last three SaaS tools they bought."
+      },
+      {
+        question: 'How do I know I won\'t spend $4K and get nothing?',
+        answer: "30-day money-back guarantee. We scope what 'done' looks like before we write code, so we're both clear on what we agreed to. If we don't ship what we agreed to, you don't pay."
+      }
+    ]
   }
 ];
 
@@ -72,7 +90,7 @@ const faqSchema = {
   <div class="op-faq-frame">
     <div class="op-faq-util">
       <TopUtilityStrip
-        left="BROTHERS_AUTOMATE / SECTION 05 · FAQ"
+        left="BROTHERS_AUTOMATE / SECTION 07 · FAQ"
         right={`${allFaqs.length} QUESTIONS · ${groups.length} GROUPS`}
         bordered
       />

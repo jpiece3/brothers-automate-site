@@ -123,7 +123,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Coaches & Consultants | Brothers Automate',
-      description: 'AI systems that qualify your leads, generate ad creative, and research your market. Built for coaching businesses doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that qualify your leads, generate ad creative, and research your market. Built for coaching businesses doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -301,7 +301,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Financial Advisors | Brothers Automate',
-      description: 'AI systems that generate qualified prospects, manage your online reputation, and research your competitive landscape. Built for advisory firms doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that generate qualified prospects, manage your online reputation, and research your competitive landscape. Built for advisory firms doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -475,7 +475,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Real Estate Agents | Brothers Automate',
-      description: 'AI systems that qualify buyer and seller leads, generate fresh ad creative daily, and respond to every Google review. Built for real estate teams doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that qualify buyer and seller leads, generate fresh ad creative daily, and respond to every Google review. Built for real estate teams doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -649,7 +649,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Contractors & Home Services | Brothers Automate',
-      description: 'AI systems that qualify homeowner projects, optimize your daily routes, and respond to every Google review. Built for contractors doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that qualify homeowner projects, optimize your daily routes, and respond to every Google review. Built for contractors doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -823,7 +823,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for E-commerce & DTC Brands | Brothers Automate',
-      description: 'AI systems that recommend products, generate fresh ad creative daily, and research your competitive landscape. Built for e-commerce brands doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that recommend products, generate fresh ad creative daily, and research your competitive landscape. Built for e-commerce brands doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -997,7 +997,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Dental Practices | Brothers Automate',
-      description: 'AI systems that capture new patient inquiries 24/7, automate recall campaigns, and manage your online reviews. Built for dental practices doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that capture new patient inquiries 24/7, automate recall campaigns, and manage your online reviews. Built for dental practices doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1134,7 +1134,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Law Firms | Brothers Automate',
-      description: 'AI systems that qualify potential clients 24/7, streamline intake paperwork, and track your competitive landscape. Built for law firms doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that qualify potential clients 24/7, streamline intake paperwork, and track your competitive landscape. Built for law firms doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1271,7 +1271,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Accounting Firms | Brothers Automate',
-      description: 'AI systems that automate client onboarding, collect documents without chasing, and screen seasonal hires. Built for accounting firms doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that automate client onboarding, collect documents without chasing, and screen seasonal hires. Built for accounting firms doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1408,7 +1408,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for HVAC Companies | Brothers Automate',
-      description: 'AI systems that capture service calls 24/7, optimize technician routes, and screen seasonal hires automatically. Built for HVAC companies doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that capture service calls 24/7, optimize technician routes, and screen seasonal hires automatically. Built for HVAC companies doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1545,7 +1545,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Landscaping Companies | Brothers Automate',
-      description: 'AI systems that qualify estimate requests, optimize daily crew routes, and generate fresh ad creative. Built for landscaping companies doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that qualify estimate requests, optimize daily crew routes, and generate fresh ad creative. Built for landscaping companies doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1682,7 +1682,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Cleaning Companies | Brothers Automate',
-      description: 'AI systems that automate rebooking sequences, optimize daily routes, and screen new hires. Built for cleaning companies doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that automate rebooking sequences, optimize daily routes, and screen new hires. Built for cleaning companies doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -1819,7 +1819,7 @@ export const verticals: Record<string, VerticalData> = {
 
     meta: {
       title: 'AI Automation for Medical Spas | Brothers Automate',
-      description: 'AI systems that recommend treatments, generate daily ad creative, and manage your online reputation. Built for medical spas doing $1-5M. Custom-built in 1-3 weeks.',
+      description: 'AI systems that recommend treatments, generate daily ad creative, and manage your online reputation. Built for medical spas doing $1-5M. Custom-built in weeks, not months.',
     },
 
     hero: {

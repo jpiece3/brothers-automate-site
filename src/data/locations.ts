@@ -88,7 +88,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Philadelphia Businesses | Brothers Automate',
-      description: 'We build AI automations for Philadelphia service businesses doing $1-5M. Automated lead follow-up, review management, ad creative, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Philadelphia service businesses doing $1-5M. Automated lead follow-up, review management, ad creative, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -194,7 +194,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How long does it take to get up and running?',
-        answer: "Most projects launch in 1-3 weeks. We scope everything on our first call so you know the timeline and cost before we start. No surprises.",
+        answer: "Most projects launch in weeks, not months. We scope everything on our first call so you know the timeline and cost before we start. No surprises.",
       },
     ],
 
@@ -217,7 +217,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Montgomery County Businesses | Brothers Automate',
-      description: 'We build AI automations for Montgomery County, PA service businesses. Automated lead follow-up, route optimization, onboarding, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Montgomery County, PA service businesses. Automated lead follow-up, route optimization, onboarding, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -318,7 +318,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How quickly can we get started?',
-        answer: "Book a call and we scope your project that same week. Most systems launch in 1-3 weeks from kickoff.",
+        answer: "Book a call and we scope your project that same week. Most systems launch in weeks, not months.",
       },
     ],
 
@@ -341,7 +341,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Delaware County Businesses | Brothers Automate',
-      description: 'We build AI automations for Delaware County, PA service businesses. Automated lead follow-up, review management, route optimization, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Delaware County, PA service businesses. Automated lead follow-up, review management, route optimization, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -442,7 +442,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How fast can we launch?',
-        answer: "Most projects go live in 1-3 weeks. We scope everything on the first call so you know the timeline and investment up front.",
+        answer: "Most projects go live in weeks, not months. We scope everything on the first call so you know the timeline and investment up front.",
       },
     ],
 
@@ -465,7 +465,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Chester County Businesses | Brothers Automate',
-      description: 'We build AI automations for Chester County, PA service businesses. Automated lead follow-up, review management, ad creative, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Chester County, PA service businesses. Automated lead follow-up, review management, ad creative, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -566,7 +566,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How fast can we get started?',
-        answer: "Book a call and we will scope your project that same week. Most systems launch in 1-3 weeks.",
+        answer: "Book a call and we will scope your project that same week. Most systems launch in weeks, not months.",
       },
     ],
 
@@ -589,7 +589,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Bucks County Businesses | Brothers Automate',
-      description: 'We build AI automations for Bucks County, PA service businesses. Automated lead follow-up, route optimization, review management, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Bucks County, PA service businesses. Automated lead follow-up, route optimization, review management, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -690,7 +690,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How fast can we get started?',
-        answer: "Book a call this week, launch in 1-3 weeks. We scope everything on the first call so there are no surprises.",
+        answer: "Book a call this week, launch in weeks, not months. We scope everything on the first call so there are no surprises.",
       },
     ],
 
@@ -713,7 +713,7 @@ export const locations: Record<string, LocationData> = {
 
     meta: {
       title: 'AI Automation for Burlington County, NJ Businesses | Brothers Automate',
-      description: 'We build AI automations for Burlington County, NJ service businesses. Automated lead follow-up, review management, route optimization, and more. Custom-built in 1-3 weeks.',
+      description: 'We build AI automations for Burlington County, NJ service businesses. Automated lead follow-up, review management, route optimization, and more. Custom-built in weeks, not months.',
     },
 
     hero: {
@@ -814,7 +814,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: 'How fast can we get started?',
-        answer: "Book a call and we scope your project that same week. Most systems launch in 1-3 weeks from kickoff.",
+        answer: "Book a call and we scope your project that same week. Most systems launch in weeks, not months.",
       },
     ],
 

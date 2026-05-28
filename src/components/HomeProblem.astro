@@ -1,0 +1,218 @@
+---
+/**
+ * HomeProblem, the diagnose-before-solution section that sits between
+ * Hero and Builds. Names the manual work that's eating teams alive,
+ * then bridges to "systems, not one-off automations" as the wedge.
+ */
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+
+const painPoints = [
+  { code: 'P_01', text: 'Reports built manually every week.' },
+  { code: 'P_02', text: 'Leads followed up with too slowly.' },
+  { code: 'P_03', text: 'Research copied across tabs and spreadsheets.' },
+  { code: 'P_04', text: 'Internal handoffs depending on memory.' },
+  { code: 'P_05', text: 'Ops leaders stuck fixing the same problems over and over.' },
+];
+---
+
+<section class="op-prob op-grid-bg" id="problem">
+  <div class="op-prob-frame">
+    <div class="op-prob-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / SECTION 02 · THE PROBLEM"
+        right="05 SIGNALS · YOU'LL RECOGNIZE THEM"
+        bordered
+      />
+    </div>
+
+    <div class="op-prob-header" data-animate="fade-up">
+      <EyebrowTag label="THE DIAGNOSIS · WHY YOUR TEAM IS STUCK" />
+      <h2 class="op-prob-h2">
+        Your team is not short on effort.<br />
+        <span class="op-prob-h2-orange">They are buried in repeat work.</span>
+      </h2>
+      <p class="op-prob-sub">
+        If two or more of these sound like a normal week, you're not behind. You're paying real people to do work a system should be doing.
+      </p>
+    </div>
+
+    <div class="op-prob-grid" data-animate-stagger>
+      {painPoints.map((p) => (
+        <article class="op-prob-card">
+          <div class="op-prob-card-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-prob-card-code">{p.code}</span>
+            <span class="op-mono op-prob-card-flag">REPEATABLE ↗</span>
+          </div>
+          <p class="op-prob-card-text">{p.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="op-prob-bridge" data-animate="fade-up">
+      <div class="op-prob-bridge-rule"></div>
+      <div class="op-prob-bridge-content">
+        <span class="op-mono op-prob-bridge-label">THE FIX</span>
+        <p class="op-prob-bridge-text">
+          We turn those repeatable processes into working AI systems. <strong>Systems, not one-off automations.</strong> Workflows you own, with documentation, ownership, review points, and improvement loops baked in.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .op-prob {
+    padding: 72px var(--op-section-px) 88px;
+  }
+  .op-prob-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .op-prob-util { margin-bottom: 48px; }
+
+  .op-prob-header {
+    max-width: 820px;
+    margin-bottom: 48px;
+  }
+  .op-prob-header > :global(.op-eyebrow) {
+    margin-bottom: 24px;
+    align-self: flex-start;
+  }
+  .op-prob-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .op-prob-h2-orange { color: var(--op-orange); }
+  .op-prob-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 680px;
+    text-wrap: pretty;
+  }
+
+  .op-prob-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 1100px) {
+    .op-prob-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .op-prob-grid { grid-template-columns: 1fr; }
+  }
+
+  .op-prob-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-prob-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--op-shadow-md);
+  }
+
+  .op-prob-card-header {
+    background: var(--op-navy-deep);
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: var(--op-border);
+  }
+  .op-prob-card-code {
+    font-size: 9px;
+    color: var(--op-orange);
+    letter-spacing: 0.18em;
+  }
+  .op-prob-card-flag {
+    margin-left: auto;
+    font-size: 8px;
+    color: var(--op-cream);
+    opacity: 0.45;
+    letter-spacing: 0.16em;
+  }
+
+  .op-prob-card-text {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--op-ink);
+    font-weight: 600;
+    margin: 0;
+    padding: 16px 14px 18px;
+    text-wrap: pretty;
+  }
+
+  /* Bridge to the solution */
+  .op-prob-bridge {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 24px 28px;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    max-width: 920px;
+  }
+  .op-prob-bridge-rule {
+    height: 2px;
+    background: var(--op-orange);
+  }
+  .op-prob-bridge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-prob-bridge-label {
+    font-size: 10px;
+    color: var(--op-orange);
+    letter-spacing: var(--op-tracking-mono);
+  }
+  .op-prob-bridge-text {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--op-navy);
+    font-weight: 500;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .op-prob-bridge-text strong {
+    color: var(--op-ink);
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .op-prob { padding: 56px 22px 64px; }
+    .op-prob-util { margin-bottom: 32px; }
+    .op-prob-header { margin-bottom: 32px; }
+    .op-prob-bridge {
+      grid-template-columns: 1fr;
+      padding: 20px 22px;
+    }
+    .op-prob-bridge-rule {
+      width: 60px;
+    }
+  }
+</style>
