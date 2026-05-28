@@ -1,0 +1,166 @@
+---
+/**
+ * HeroVideoPanel — lite YouTube facade wrapped in the operator panel chrome.
+ *
+ * Shows the YouTube thumbnail with a play overlay. The real iframe only
+ * loads on click, preserving LCP and avoiding the ~500KB cookie payload
+ * that a vanilla YouTube embed ships on every page view.
+ *
+ * Uses the youtube-nocookie.com endpoint so no cookies are set until
+ * the user actually presses play.
+ *
+ * Props:
+ *   videoId:   string  required, the YouTube video ID (e.g. "ydMTXjYEiOM")
+ *   panelId:   string  header strip code (default "BUILD_07 · INTRO_VIDEO")
+ *   title:     string  used for aria-label + iframe title (default "Intro video")
+ *   duration:  string  optional small duration badge (e.g. "1:23"); omit if unknown
+ */
+import OperatorPanel from './OperatorPanel.astro';
+
+interface Props {
+  videoId: string;
+  panelId?: string;
+  title?: string;
+  duration?: string;
+}
+
+const {
+  videoId,
+  panelId = 'BUILD_07 · INTRO_VIDEO',
+  title = 'Intro video',
+  duration = '',
+} = Astro.props;
+
+const thumbWebp = `https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp`;
+const thumbJpg = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+const thumbFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<OperatorPanel id={panelId} headerExtra="■&nbsp;&nbsp;■&nbsp;&nbsp;■" minBodyHeight="320px">
+  <div class="op-hvp" data-video-id={videoId} data-title={title}>
+    <button class="op-hvp-trigger" type="button" aria-label={`Play ${title}`}>
+      <picture>
+        <source type="image/webp" srcset={thumbWebp} />
+        <img
+          src={thumbJpg}
+          loading="lazy"
+          decoding="async"
+          alt={`${title} thumbnail`}
+          onerror={`this.onerror=null;this.src='${thumbFallback}';`}
+          width="1280"
+          height="720"
+        />
+      </picture>
+      <span class="op-hvp-play" aria-hidden="true">
+        <svg viewBox="0 0 68 48" width="68" height="48">
+          <path class="op-hvp-play-bg" d="M 66.52,7.74 C 65.69,4.65 63.27,2.22 60.18,1.39 54.6,0 33.95,0 33.95,0 33.95,0 13.3,0 7.72,1.39 4.63,2.22 2.21,4.65 1.38,7.74 0,13.29 0,24 0,24 c 0,0 0,10.71 1.38,16.26 0.83,3.09 3.25,5.52 6.34,6.35 C 13.3,48 33.95,48 33.95,48 33.95,48 54.6,48 60.18,46.61 63.27,45.78 65.69,43.35 66.52,40.26 67.9,34.71 67.9,24 67.9,24 67.9,24 67.9,13.29 66.52,7.74 Z" />
+          <path d="M 45,24 27,14 v 20 z" fill="#fff" />
+        </svg>
+      </span>
+      {duration && <span class="op-hvp-duration op-mono">{duration}</span>}
+    </button>
+  </div>
+</OperatorPanel>
+
+<script is:inline>
+  (function () {
+    var panels = document.querySelectorAll('.op-hvp');
+    panels.forEach(function (panel) {
+      var trigger = panel.querySelector('.op-hvp-trigger');
+      if (!trigger) return;
+      trigger.addEventListener('click', function () {
+        var videoId = panel.getAttribute('data-video-id');
+        var title = panel.getAttribute('data-title') || 'Video';
+        if (!videoId) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+        iframe.title = title;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.loading = 'lazy';
+        iframe.className = 'op-hvp-iframe';
+        trigger.replaceWith(iframe);
+      });
+    });
+  })();
+</script>
+
+<style>
+  .op-hvp {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--op-radius-sm);
+    overflow: hidden;
+    background: var(--op-navy-deep);
+  }
+  .op-hvp-trigger {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: var(--op-navy-deep);
+    display: block;
+    overflow: hidden;
+  }
+  .op-hvp-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--op-dur-hover) var(--op-ease), filter var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hvp-trigger:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.04);
+  }
+  .op-hvp-trigger:focus-visible {
+    outline: 2px solid var(--op-orange);
+    outline-offset: 2px;
+  }
+  .op-hvp-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+    transition: transform var(--op-dur-hover) var(--op-ease), filter var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hvp-play-bg {
+    fill: #cc0000;
+    fill-opacity: 0.88;
+    transition: fill var(--op-dur-hover) var(--op-ease), fill-opacity var(--op-dur-hover) var(--op-ease);
+  }
+  .op-hvp-trigger:hover .op-hvp-play {
+    transform: translate(-50%, -50%) scale(1.08);
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.6));
+  }
+  .op-hvp-trigger:hover .op-hvp-play-bg {
+    fill: var(--op-orange);
+    fill-opacity: 0.96;
+  }
+  .op-hvp-duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .op-hvp-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>
