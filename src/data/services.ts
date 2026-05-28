@@ -938,7 +938,7 @@ export const services: Record<string, ServiceData> = {
     faq: [
       {
         question: 'How does this work with last-minute schedule changes?',
-        answer: "It handles them. When a job gets cancelled or a same-day request comes in, the system re-optimizes the route in real time. Your dispatcher sees the updated route instantly and can push it to the crew. No more phone calls to figure out the new plan.",
+        answer: "It handles them. When a job gets canceled or a same-day request comes in, the system re-optimizes the route in real time. Your dispatcher sees the updated route instantly and can push it to the crew. No more phone calls to figure out the new plan.",
       },
       {
         question: 'Does this work for multi-crew operations?',

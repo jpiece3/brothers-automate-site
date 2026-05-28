@@ -109,7 +109,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         <div class="op-ops-matrix" data-animate="fade-up">
           <div class="op-ops-section-header">
             <span class="op-mono op-ops-section-num">FRAMEWORK</span>
-            <h2 class="op-ops-section-title">How to Prioritise Your AI Ops Roadmap</h2>
+            <h2 class="op-ops-section-title">How to Prioritize Your AI Ops Roadmap</h2>
           </div>
           <div class="op-ops-matrix-grid" data-animate-stagger>
             <div class="op-ops-matrix-cell" data-animate="fade-up">
@@ -927,8 +927,8 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             short: "AI assistants trained on internal HR policies that answer employee questions instantly and consistently, reducing HR team load.",
             detail: "One of the clearest quick wins in people ops. Employees have the same recurring questions, leave policies, benefits, expense rules, and HR teams spend significant time answering them. An AI trained on current policy docs handles the volume at near-zero marginal cost.",
             riskNote: "An outdated or incorrect policy answer creates compliance risk and employee frustration. Policy knowledge bases need a clear update process and a fallback to human HR." },
-          { name: "Workforce Planning & Capacity Modelling", level: "medium", isNew: false, risk: "moderate",
-            short: "AI-assisted modelling of headcount needs, team capacity, and hiring timelines against business forecasts.",
+          { name: "Workforce Planning & Capacity Modeling", level: "medium", isNew: false, risk: "moderate",
+            short: "AI-assisted modeling of headcount needs, team capacity, and hiring timelines against business forecasts.",
             detail: "AI can ingest multiple data sources, attrition trends, project pipelines, budget forecasts, and model hiring scenarios faster than spreadsheet-based approaches. Still requires significant human judgment on inputs and assumptions.",
             riskNote: "Bad capacity models lead to over or underhiring, with direct cost implications. AI outputs need human sanity-checking against business reality." }
         ]
@@ -942,7 +942,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "AP errors affect cash flow, vendor relationships, and financial reporting. Human review of exceptions and anomalies is required." },
           { name: "Spend Analysis & Category Intelligence", level: "high", isNew: false, risk: "reversible",
             short: "AI analysis of procurement data to surface spending patterns, vendor concentration risk, and savings opportunities.",
-            detail: "AI can classify and analyse spend data at a level of granularity that manual analysis can’t match. Tail spend categories that were previously too fragmented to manage are now visible.",
+            detail: "AI can classify and analyze spend data at a level of granularity that manual analysis can’t match. Tail spend categories that were previously too fragmented to manage are now visible.",
             riskNote: "Analytical output only, no direct action is taken. Errors produce wrong recommendations rather than wrong transactions." },
           { name: "Vendor & Contract Intelligence", level: "high", isNew: false, risk: "moderate",
             short: "AI extraction and analysis of contract terms, renewal dates, SLAs, and risk clauses across vendor agreements.",
@@ -974,7 +974,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             detail: "AI can monitor infrastructure at a scale and speed that human teams can’t match, correlating signals across logs, metrics, and traces to surface incidents earlier.",
             riskNote: "Automated first-response actions can make incidents worse if misapplied. Human approval for any action that affects production systems is best practice." },
           { name: "Security Threat Monitoring", level: "high", isNew: false, risk: "critical",
-            short: "AI-powered threat detection, behavioural anomaly analysis, and automated security alert triage.",
+            short: "AI-powered threat detection, behavioral anomaly analysis, and automated security alert triage.",
             detail: "AI has become foundational to modern security operations, the volume of signals is too high for human analysts to process manually.",
             riskNote: "A missed threat creates breach exposure. Human analysts in the loop on all material alerts is non-negotiable." },
           { name: "Technical Documentation Generation", level: "high", isNew: false, risk: "reversible",
@@ -991,7 +991,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         id: "05", title: "Customer Ops",
         items: [
           { name: "Support Ticket Triage & Routing", level: "transformative", isNew: false, risk: "reversible",
-            short: "AI that classifies, prioritises, and routes incoming support tickets to the right team or agent without manual review.",
+            short: "AI that classifies, prioritizes, and routes incoming support tickets to the right team or agent without manual review.",
             detail: "Intelligent triage is one of the fastest deployments in customer ops. AI classification improves routing accuracy and reduces first-response time. The ROI is immediate.",
             riskNote: "A misrouted ticket creates a delay and a reassignment. Minor friction, not broken experience." },
           { name: "AI Customer Support Agents", level: "transformative", isNew: true, risk: "moderate",
@@ -1033,7 +1033,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             riskNote: "Missed data quality issues produce wrong reports and wrong decisions downstream. The system needs clear remediation workflows." },
           { name: "KPI Definition & Alignment", level: "low", isNew: false, risk: "moderate",
             short: "AI-assisted documentation of metric definitions, calculation logic, and ownership to reduce confusion across teams.",
-            detail: "Metric inconsistency, different teams calculating the same KPI differently, is a chronic ops problem. AI can help document and standardise definitions, but the alignment work is fundamentally human.",
+            detail: "Metric inconsistency, different teams calculating the same KPI differently, is a chronic ops problem. AI can help document and standardize definitions, but the alignment work is fundamentally human.",
             riskNote: "Wrong or contested metric definitions drive misaligned priorities. AI can assist the documentation, but definitional decisions require human agreement." }
         ]
       },
@@ -1042,7 +1042,7 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
         items: [
           { name: "Policy & Regulatory Monitoring", level: "high", isNew: false, risk: "moderate",
             short: "AI monitoring of regulatory updates, policy changes, and compliance requirements relevant to the business.",
-            detail: "The volume of regulatory change is too high for manual tracking across most industries. AI can monitor regulatory feeds, identify relevant changes, and summarise implications.",
+            detail: "The volume of regulatory change is too high for manual tracking across most industries. AI can monitor regulatory feeds, identify relevant changes, and summarize implications.",
             riskNote: "A missed regulatory change creates compliance exposure. AI monitoring reduces the risk but doesn’t eliminate it. Human legal review of flagged changes is required." },
           { name: "Contract Review & Redlining", level: "high", isNew: false, risk: "critical",
             short: "AI-assisted contract review that flags non-standard clauses, liability risks, and deviations from preferred terms.",
@@ -1065,13 +1065,13 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             short: "AI-driven demand prediction using historical sales, external signals, and market indicators.",
             detail: "AI demand forecasting can incorporate far more variables than traditional statistical models and adapt to changing patterns faster.",
             riskNote: "Over-forecasting creates excess inventory. Under-forecasting creates stockouts. Both have direct cost implications." },
-          { name: "Route & Delivery Optimisation", level: "high", isNew: false, risk: "reversible",
-            short: "AI-powered route planning that optimises for cost, time, and capacity constraints across delivery networks.",
-            detail: "Route optimisation is one of the more mature AI applications in logistics. The gains from dynamic rerouting based on real-time conditions are well-established.",
+          { name: "Route & Delivery Optimization", level: "high", isNew: false, risk: "reversible",
+            short: "AI-powered route planning that optimizes for cost, time, and capacity constraints across delivery networks.",
+            detail: "Route optimization is one of the more mature AI applications in logistics. The gains from dynamic rerouting based on real-time conditions are well-established.",
             riskNote: "A bad route costs extra time and fuel for that delivery window. Easy to correct and low lasting impact." },
           { name: "Inventory Management", level: "high", isNew: false, risk: "moderate",
-            short: "AI-automated reorder points, stock level optimisation, and multi-location inventory balancing.",
-            detail: "AI can optimise inventory levels across multiple locations simultaneously, accounting for lead times, demand variability, and carrying costs.",
+            short: "AI-automated reorder points, stock level optimization, and multi-location inventory balancing.",
+            detail: "AI can optimize inventory levels across multiple locations simultaneously, accounting for lead times, demand variability, and carrying costs.",
             riskNote: "Over-ordering ties up capital. Under-ordering creates stockouts and lost sales. Both have real cost implications." },
           { name: "Supplier Risk Monitoring", level: "medium", isNew: false, risk: "moderate",
             short: "AI monitoring of supplier health indicators, financial stability, delivery performance, news sentiment, and geopolitical risk.",
@@ -1107,13 +1107,13 @@ import EyebrowTag from '../../components/operator/EyebrowTag.astro';
             short: "AI that predicts equipment failures from sensor data and usage patterns, enabling proactive maintenance scheduling.",
             detail: "Predictive maintenance is one of the most proven AI use cases in facilities and manufacturing. Moving from scheduled to predictive maintenance reduces both downtime and unnecessary servicing.",
             riskNote: "A missed failure prediction results in unplanned downtime. An over-prediction results in unnecessary maintenance costs. Both are meaningful but manageable." },
-          { name: "Space & Occupancy Optimisation", level: "medium", isNew: false, risk: "reversible",
-            short: "AI analysis of occupancy data to optimise space utilisation, desk allocation, and facilities planning.",
-            detail: "With hybrid work patterns, space utilisation data is more important and more variable. AI can model occupancy patterns and recommend space configurations.",
+          { name: "Space & Occupancy Optimization", level: "medium", isNew: false, risk: "reversible",
+            short: "AI analysis of occupancy data to optimize space utilization, desk allocation, and facilities planning.",
+            detail: "With hybrid work patterns, space utilization data is more important and more variable. AI can model occupancy patterns and recommend space configurations.",
             riskNote: "A bad space recommendation creates employee inconvenience. Easy to reverse and test alternatives." },
           { name: "Energy Management", level: "medium", isNew: false, risk: "reversible",
-            short: "AI-controlled HVAC, lighting, and energy systems that optimise for cost and comfort based on occupancy and conditions.",
-            detail: "AI energy management can reduce facility energy costs by 15-30% through real-time optimisation. The ROI is well-established in commercial buildings.",
+            short: "AI-controlled HVAC, lighting, and energy systems that optimize for cost and comfort based on occupancy and conditions.",
+            detail: "AI energy management can reduce facility energy costs by 15-30% through real-time optimization. The ROI is well-established in commercial buildings.",
             riskNote: "Uncomfortable temperature or lighting conditions are noticeable and quickly correctable. Low lasting impact." }
         ]
       }

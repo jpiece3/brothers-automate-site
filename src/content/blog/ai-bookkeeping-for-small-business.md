@@ -36,7 +36,7 @@ What we do not mean:
 - Tax strategy
 - Audit defense
 - Multi-entity consolidation with messy intercompany
-- Judgment calls on grey-area expenses
+- Judgment calls on gray-area expenses
 - Financial planning conversations with a human who knows your business
 
 If a vendor is selling you AI bookkeeping that handles all of the above, read the contract twice. They're either bundling a human accountant in (Zeni does this, transparently) or overselling.
@@ -174,7 +174,7 @@ Keep these in human hands:
 - **Tax strategy.** Whether to take the home office deduction, when to elect S-corp, how to time year-end purchases. AI doesn't know your full tax situation, your future plans, or your risk tolerance.
 - **Period-close adjustments.** Accruals, prepaid expenses, depreciation entries. Rules-based in theory, judgment-driven in practice.
 - **Intercompany transactions.** If you have multiple entities, the consolidation work is too situational for current AI.
-- **Grey-area expenses.** Is that client dinner 100% deductible or 50%? Is the new laptop a business expense or partial personal? AI guesses. A CPA reasons.
+- **Gray-area expenses.** Is that client dinner 100% deductible or 50%? Is the new laptop a business expense or partial personal? AI guesses. A CPA reasons.
 - **Audit defense.** If the IRS comes knocking, you want a human you can call.
 - **Financial planning conversations.** "Should we hire?" "Can we afford this expansion?" These need a human who understands your business, not a chatbot.
 
