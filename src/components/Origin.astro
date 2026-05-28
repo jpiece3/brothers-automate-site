@@ -1,11 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import brothersImg from '../assets/brothers.png';
 ---
 
 <section class="origin" id="origin">
   <div class="container">
     <div class="origin-grid">
       <div class="origin-image" data-animate="slide-left">
-        <img src="/brothers.png" alt="James and Brendan, founders of Brothers Automate" width="280" height="280" loading="lazy" decoding="async" />
+        <Image src={brothersImg} alt="James and Brendan, founders of Brothers Automate" width={560} height={560} loading="lazy" decoding="async" format="webp" quality={82} />
       </div>
       <div class="origin-content" data-animate="slide-right">
         <h2>Built by Operators, for Operators</h2>

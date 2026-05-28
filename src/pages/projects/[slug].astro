@@ -28,11 +28,27 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": project.name, "item": `${SITE_URL}/projects/${project.slug}` }
   ]
 };
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": project.name,
+  "serviceType": project.tagline,
+  "description": project.meta.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL,
+  },
+  "areaServed": "United States",
+  "url": `${SITE_URL}/projects/${project.slug}`,
+};
 ---
 
 <Layout
   title={project.meta.title}
   description={project.meta.description}
+  extraSchemas={[serviceSchema]}
 >
   <Header />
   <main>

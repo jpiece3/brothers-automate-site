@@ -58,18 +58,18 @@ export const projects: Project[] = [
   {
     slug: 'inbound-ai-sdr',
     name: 'Inbound AI SDR',
-    tagline: 'AI sales agent that qualifies inbound leads in under 60 seconds',
+    tagline: 'AI SDR for small business — qualifies inbound leads in under 60 seconds',
     icon: 'M3 5a2 2 0 012-2h14a2 2 0 012 2v3l-9 6-9-6V5zM3 11l9 6 9-6v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z',
     description: 'Service business: every inbound lead gets scored, logged, and replied to in under a minute. Hot leads ping Slack the second they land.',
     ctaLabel: 'See How It Works',
     ctaType: 'video',
     meta: {
-      title: 'Inbound AI SDR | AI Sales Agent for Lead Qualification | Brothers Automate',
-      description: 'Stop missing inbound leads. Our AI SDR reads every inquiry, scores it 1-10, logs it to Google Sheets, sends a personalized reply, and alerts you when a hot lead lands.'
+      title: 'AI SDR for Small Business | Inbound Sales Agent | Brothers Automate',
+      description: 'AI SDR for small business that reads every inbound inquiry, scores it 1-10, logs it to Google Sheets, sends a personalized reply, and pings you the moment a hot lead lands.'
     },
     problem: {
-      headline: 'Inbound lead qualification is the bottleneck',
-      description: 'Inbound leads come in at random hours. Strong ones wait too long for a reply. Weak ones eat up the time you should be spending on the strong ones. Notes live in email instead of a system, and nobody has a real record of what\'s coming in.',
+      headline: 'Inbound lead qualification is the bottleneck for small businesses',
+      description: 'Inbound leads come in at random hours. Strong ones wait too long for a reply. Weak ones eat up the time you should be spending on the strong ones. Notes live in email instead of a system, and nobody has a real record of what\'s coming in. This is exactly what an AI SDR for small business is built to fix.',
       painPoints: [
         'Hot leads wait hours for a reply because nobody\'s watching the inbox',
         'You spend time qualifying tire-kickers that should never have hit your calendar',
@@ -78,7 +78,7 @@ export const projects: Project[] = [
       ]
     },
     solution: {
-      headline: 'An AI SDR that triages every inquiry the second it lands',
+      headline: 'An AI SDR for small business that triages every inquiry the second it lands',
       description: 'We built an AI sales agent that reads inbound inquiries, decides if they qualify, scores them on a 1-10 scale, logs them to Google Sheets, and sends a personalized follow-up, all before you\'ve finished your coffee. Hot leads (7-10) trigger an instant Slack ping so you can jump on the call window while it\'s still warm.',
       features: [
         { title: '1-10 Lead Scoring', description: 'Scores every inquiry on decision-maker status, budget, urgency, company size, and pain clarity' },
@@ -196,19 +196,19 @@ export const projects: Project[] = [
   },
   {
     slug: 'after-hours-agent',
-    name: 'After-Hours AI Receptionist',
-    tagline: 'AI chat that captures leads while you sleep',
+    name: 'After-Hours AI Chat',
+    tagline: 'Afterhours AI chat that captures leads while you sleep',
     icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
     description: 'Service business: AI chat widget qualifies leads, gives quotes, and books appointments 24/7. No missed inquiries, no after-hours gaps.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
-      title: 'After Hours Agent | AI Lead Capture Chat | Brothers Automate',
-      description: 'Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep, embedded on your website in one line of code.'
+      title: 'After Hours AI Chat | Lead Capture While You Sleep | Brothers Automate',
+      description: 'After hours AI chat that qualifies prospects, gives accurate quotes, and books appointments at 11pm so you stop losing leads to competitors who replied first. One line of code to install.'
     },
     problem: {
-      headline: 'You\'re losing leads every night',
-      description: 'A potential customer visits your site at 9pm. They have questions, they want a quote, they\'re ready to book. But nobody\'s there. By morning, they\'ve already called your competitor.',
+      headline: 'You\'re losing leads every night without an after hours AI chat',
+      description: 'A potential customer visits your site at 9pm. They have questions, they want a quote, they\'re ready to book. But nobody\'s there. By morning, they\'ve already called your competitor. An afterhours AI chat solves exactly this — it answers, qualifies, and books while you\'re asleep.',
       painPoints: [
         'After-hours inquiries go unanswered until the next business day',
         'Potential customers leave your site and call someone who responds faster',
@@ -217,8 +217,8 @@ export const projects: Project[] = [
       ]
     },
     solution: {
-      headline: 'An AI agent that handles leads while you sleep',
-      description: 'A chat widget that lives on your website and talks to visitors 24/7. It qualifies their needs, gives accurate quotes based on your pricing, checks your real calendar for availability, and books appointments, all while you\'re off the clock.',
+      headline: 'An after hours AI chat that handles leads while you sleep',
+      description: 'A chat widget that lives on your website and talks to visitors 24/7. It qualifies their needs, gives accurate quotes based on your pricing, checks your real calendar for availability, and books appointments, all while you\'re off the clock. This is what afterhours AI chat actually looks like in production.',
       features: [
         { title: 'Lead Qualification', description: 'Asks the right questions to determine if a visitor is a real prospect before booking' },
         { title: 'Real-Time Quotes', description: 'Uses your actual service menu and pricing to give accurate estimates on the spot' },

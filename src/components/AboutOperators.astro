@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import brothersImg from '../assets/brothers.png';
 import TopUtilityStrip from './operator/TopUtilityStrip.astro';
 import EyebrowTag from './operator/EyebrowTag.astro';
 import CalloutBox from './operator/CalloutBox.astro';
@@ -29,7 +31,7 @@ import SpecStrip from './operator/SpecStrip.astro';
 
           {/* Portrait inset, real photo of the brothers */}
           <div class="op-about-portrait-inset">
-            <img src="/brothers.png" alt="James and Brendan Pinder, the brothers behind Brothers Automate" />
+            <Image src={brothersImg} alt="James and Brendan Pinder, the brothers behind Brothers Automate" width={720} height={720} loading="lazy" decoding="async" format="webp" quality={82} />
           </div>
 
           {/* Caption strip */}

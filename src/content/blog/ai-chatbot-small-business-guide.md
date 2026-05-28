@@ -13,6 +13,8 @@ We get asked about chatbots constantly. Which platform, how much, is it worth it
 
 If you're already using [AI automation for small business](/blog/ai-automation-for-small-business), a chatbot is usually the next logical step. It's the front door of your automation stack.
 
+Looking for the done-for-you version instead of a comparison? Jump to our [AI chatbot for small business build page](/ai-chatbot-for-small-business) — same idea, but with us building it on your real service data and shipping it in 1-2 weeks.
+
 ## What AI Chatbots Actually Do for Small Businesses
 
 First, some quick definitions. A rule-based chatbot follows a decision tree. If customer says X, respond with Y. These have been around since the early 2010s and they're fine for basic FAQ pages.

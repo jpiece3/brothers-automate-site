@@ -9,8 +9,8 @@ const SITE_URL = 'https://brothersautomate.com';
 const slug = 'after-hours-agent';
 
 const study = projectToCaseStudy(slug, {
-  badge: 'After-Hours Lead Capture',
-  headline: 'After-Hours AI Receptionist.',
+  badge: 'Afterhours AI Chat',
+  headline: 'After-Hours AI Chat.',
   headlineHighlight: 'Capture leads while you sleep.',
   meta: {
     client: 'Service Business',
@@ -26,12 +26,31 @@ const breadcrumbSchema = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
     { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE_URL}/projects` },
-    { "@type": "ListItem", "position": 3, "name": "After-Hours Agent", "item": `${SITE_URL}/projects/${slug}` },
+    { "@type": "ListItem", "position": 3, "name": "After Hours AI Chat", "item": `${SITE_URL}/projects/${slug}` },
   ],
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "After Hours AI Chat",
+  "serviceType": "Afterhours AI Chat Agent",
+  "description": "After hours AI chat widget that qualifies leads, gives quotes from your real service menu, and books appointments against your calendar — 24/7, no missed inquiries.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL,
+  },
+  "areaServed": "United States",
+  "url": `${SITE_URL}/projects/${slug}`,
 };
 ---
 
-<Layout title="After Hours Agent | AI Lead Capture Chat | Brothers Automate" description="Stop losing after-hours leads. Our AI chat agent qualifies prospects, provides quotes, and books appointments while you sleep, embedded on your website in one line of code.">
+<Layout
+  title="After Hours AI Chat | Lead Capture While You Sleep | Brothers Automate"
+  description="After hours AI chat that qualifies prospects, gives accurate quotes, and books appointments at 11pm so you stop losing leads to competitors who replied first. One line of code to install."
+  extraSchemas={[serviceSchema]}
+>
   <Header />
   <main><CaseStudyPage study={study} /></main>
   <Footer />

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import brothersImg from '../assets/brothers.png';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import CTA from '../components/CTA.astro';
@@ -94,7 +96,7 @@ const breadcrumbSchema = {
                 <span class="op-mono op-aboutpage-portrait-id">IMG_001</span>
               </div>
               <div class="op-aboutpage-portrait-inset">
-                <img src="/brothers.png" alt="James and Brendan Pinder" />
+                <Image src={brothersImg} alt="James and Brendan Pinder" width={720} height={720} loading="lazy" decoding="async" format="webp" quality={82} />
               </div>
               <div class="op-aboutpage-portrait-caption">
                 <span class="op-mono">5 YRS · SERVICE BUSINESS</span>

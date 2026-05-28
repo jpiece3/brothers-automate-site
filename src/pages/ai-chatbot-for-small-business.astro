@@ -1,0 +1,582 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import CalloutBox from '../components/operator/CalloutBox.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const useCases = [
+  {
+    title: 'Lead capture and qualification',
+    description: 'Visitor lands on your site at 9pm with a question. The AI chatbot greets them, asks the right qualifying questions, scores them, and routes hot leads to your inbox by morning.',
+  },
+  {
+    title: 'Appointment booking',
+    description: 'Chatbot reads your real Google or Outlook calendar, offers available slots, and books the appointment without you touching anything. No more email ping-pong over scheduling.',
+  },
+  {
+    title: 'Real-time quotes',
+    description: 'Pulls from your actual service menu and pricing logic to give accurate estimates on the spot. No "we\'ll get back to you" — visitors get a number before they leave the site.',
+  },
+  {
+    title: 'Customer support and FAQs',
+    description: 'Answers the 20 questions your team gets every week (hours, pricing, service area, what\'s included) so your team only handles the ones that actually need a human.',
+  },
+  {
+    title: 'Lead routing and notifications',
+    description: 'Hot leads ping your Slack or phone the moment they qualify. Nurture leads drop into an email sequence. Not-a-fit gets a polite decline. Every conversation, logged.',
+  },
+];
+
+const howItWorks = [
+  { num: '01', title: 'We audit your inbox', body: 'What questions are you actually getting? What converts? What slows you down? We pull from your real conversations to design the bot, not a generic template.' },
+  { num: '02', title: 'We train it on your business', body: 'Your service menu, pricing logic, scheduling rules, qualifying criteria, brand voice. The bot sounds like you, not a robot reading a script.' },
+  { num: '03', title: 'We ship it in 1-2 weeks', body: 'One line of code on your site. Connected to your calendar, your CRM, your Slack. We watch the first week of live traffic and tune anything that needs tuning.' },
+  { num: '04', title: 'It runs while you sleep', body: 'Captures leads at 11pm. Books appointments at 6am. Sends you the hot ones. The system handles it — you focus on serving clients.' },
+];
+
+const faqs = [
+  {
+    question: 'How much does an AI chatbot for small business cost?',
+    answer: 'A done-for-you AI chatbot for small business starts around $1,500 for a focused build (lead capture + qualification) and ranges to $4,000-7,000 for a full system with calendar booking, quote logic, and CRM integration. After the build, runtime cost is typically $50-300/month depending on volume. Way less than a part-time receptionist, way more useful than a contact form.',
+  },
+  {
+    question: 'Will the chatbot actually sound like my business, or like a robot?',
+    answer: 'Sound like your business — that\'s the whole point. We train it on your service menu, your pricing, your tone, your qualifying questions. We also map out edge cases (what if someone asks about a service you don\'t offer? what if they\'re rude?) so the bot has a real personality, not a canned one.',
+  },
+  {
+    question: 'How fast can you build and launch an AI chatbot?',
+    answer: '1-2 weeks for a standard build. Week 1 is discovery and design — we audit your existing inbox, document your qualifying logic, and write the conversational flows. Week 2 is build, test, and launch. We watch the first week of live traffic and fix any edge cases that come up.',
+  },
+  {
+    question: 'What if my customers prefer talking to a human?',
+    answer: 'Good chatbots know when to hand off. We build in clear escalation rules — if someone explicitly asks for a person, or if the conversation gets out of scope, the bot offers to book a call or notify you immediately. Most small businesses see chatbot adoption land around 60-80% because the bot solves the easy questions, leaving humans for the ones that matter.',
+  },
+  {
+    question: 'Can the chatbot integrate with my existing tools?',
+    answer: 'Yes. We connect to Google Calendar, Outlook, Cal.com, HubSpot, Pipedrive, Slack, Twilio (SMS), and most major CRMs out of the box. If you have something more obscure, we usually have a webhook path or can build a custom connector. Tell us what you use and we\'ll scope it.',
+  },
+  {
+    question: "What's the difference between this and the chatbot widgets I see on big SaaS sites?",
+    answer: 'Big SaaS chatbots (Intercom, Drift, etc.) are built for support tickets and aimed at companies with 50+ employees. They\'re expensive, generic, and require a team to maintain. We build focused AI chatbots for small business — one specific job, done right, no overhead. You pay once for the build, not monthly per-seat fees.',
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Chatbot for Small Business",
+  "serviceType": "AI Chatbot Build & Deployment",
+  "description": "Done-for-you AI chatbot for small business — captures leads, qualifies prospects, books appointments, and answers FAQs 24/7. Built and trained on your real service data, deployed in 1-2 weeks.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brothers Automate",
+    "url": SITE_URL,
+  },
+  "areaServed": "United States",
+  "url": `${SITE_URL}/ai-chatbot-for-small-business`,
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "1500",
+    "highPrice": "7000",
+    "priceCurrency": "USD",
+    "description": "One-time scoped build, $1,500-$7,000 depending on complexity.",
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": "AI Chatbot for Small Business", "item": `${SITE_URL}/ai-chatbot-for-small-business` },
+  ],
+};
+---
+
+<Layout
+  title="AI Chatbot for Small Business | Done-for-You Build | Brothers Automate"
+  description="An AI chatbot for small business that captures leads, books appointments, and answers questions 24/7. Built on your real service data, launched in 1-2 weeks. From $1,500."
+  canonicalUrl={`${SITE_URL}/ai-chatbot-for-small-business`}
+  extraSchemas={[serviceSchema, faqSchema, breadcrumbSchema]}
+>
+  <Header />
+  <main>
+    {/* Hero */}
+    <section class="op-chatbot-hero op-grid-bg">
+      <div class="op-chatbot-hero-frame">
+        <div class="op-chatbot-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / AI_CHATBOT"
+            right="● BUILD · DEPLOY · RUN"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="AI CHATBOT FOR SMALL BUSINESS · DONE-FOR-YOU" />
+        <h1 class="op-chatbot-h1" data-animate="fade-up">
+          AI chatbot for small business,<br />
+          <span class="op-chatbot-h1-orange">built to actually convert.</span>
+        </h1>
+        <p class="op-chatbot-sub" data-animate="fade-up">
+          Capture leads at 11pm. Book appointments at 6am. Answer the questions your team gets every week — without losing the conversations that need a human. One line of code on your site. We build it on your real service data and ship it in 1-2 weeks.
+        </p>
+        <div class="op-chatbot-hero-ctas" data-animate="fade-up">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink="james-pinder/simple-automation-discovery"
+            trackLocation="chatbot-hero"
+            trackLabel="Talk to the Brothers"
+          />
+          <a class="op-chatbot-link op-mono" href="/blog/ai-chatbot-small-business-guide">READ THE DEEP-DIVE →</a>
+        </div>
+      </div>
+    </section>
+
+    {/* Use cases */}
+    <section class="op-chatbot-cases">
+      <div class="op-chatbot-cases-frame">
+        <div class="op-chatbot-cases-header" data-animate="fade-up">
+          <span class="op-mono op-chatbot-section-label"><span class="op-chatbot-section-num">01</span> WHAT IT ACTUALLY DOES</span>
+          <h2 class="op-chatbot-h2">An AI chatbot earns its keep five ways.</h2>
+          <p class="op-chatbot-h2-sub">Generic chatbots greet people. A real AI chatbot for small business does the work your team can't keep up with — capturing, qualifying, quoting, booking, and routing leads on autopilot.</p>
+        </div>
+        <div class="op-chatbot-cases-grid" data-animate-stagger>
+          {useCases.map((c, i) => (
+            <div class="op-chatbot-case">
+              <span class="op-mono op-chatbot-case-num">U.{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="op-chatbot-case-title">{c.title}</h3>
+              <p class="op-chatbot-case-body">{c.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* How it works */}
+    <section class="op-chatbot-process op-grid-bg">
+      <div class="op-chatbot-process-frame">
+        <div class="op-chatbot-process-header" data-animate="fade-up">
+          <span class="op-mono op-chatbot-section-label"><span class="op-chatbot-section-num">02</span> HOW WE BUILD IT</span>
+          <h2 class="op-chatbot-h2">From kickoff to live in 1-2 weeks.</h2>
+        </div>
+        <div class="op-chatbot-process-grid" data-animate-stagger>
+          {howItWorks.map((step) => (
+            <div class="op-chatbot-step">
+              <span class="op-mono op-chatbot-step-num">{step.num}</span>
+              <h3 class="op-chatbot-step-title">{step.title}</h3>
+              <p class="op-chatbot-step-body">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Pricing teaser */}
+    <section class="op-chatbot-pricing">
+      <div class="op-chatbot-pricing-frame">
+        <CalloutBox header="WHAT IT COSTS">
+          <p><strong>$1,500 to $7,000</strong> as a one-time scoped build, depending on what you need wired up. Lead capture only sits on the low end. Full system with calendar booking, quote logic, and CRM integration sits on the high end. Runtime after that is typically $50-300/month depending on conversation volume.</p>
+          <p>Need ongoing improvements? Move to the $4,000/month retainer and we'll keep tuning, adding flows, and connecting new tools.</p>
+          <div class="op-chatbot-pricing-cta">
+            <a href="/pricing" class="op-chatbot-link op-mono">SEE FULL PRICING →</a>
+          </div>
+        </CalloutBox>
+      </div>
+    </section>
+
+    {/* Related project callout */}
+    <section class="op-chatbot-related">
+      <div class="op-chatbot-related-frame">
+        <div class="op-chatbot-related-card">
+          <div class="op-chatbot-related-left">
+            <span class="op-mono op-chatbot-related-eyebrow"><span class="op-pulse-dot"></span> RELATED BUILD · LIVE</span>
+            <h3 class="op-chatbot-related-title">See our <span class="op-chatbot-related-title-orange">after-hours AI chat</span> in production</h3>
+            <p class="op-chatbot-related-sub">We built a live afterhours AI chat agent for a service business. Captures leads, gives quotes, books appointments — entirely while the owner sleeps. Same pattern we'd build for you.</p>
+          </div>
+          <div class="op-chatbot-related-right">
+            <MonoCTA
+              label="See the build"
+              variant="orange"
+              size="md"
+              href="/projects/after-hours-agent"
+              trackLocation="chatbot-related"
+              trackLabel="See After Hours Build"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section class="op-chatbot-faq">
+      <div class="op-chatbot-faq-frame">
+        <div class="op-chatbot-faq-header" data-animate="fade-up">
+          <span class="op-mono op-chatbot-section-label"><span class="op-chatbot-section-num">03</span> AI CHATBOT FAQ</span>
+          <h2 class="op-chatbot-h2">Questions before you book a call.</h2>
+        </div>
+        <div class="op-chatbot-faq-list" data-animate-stagger>
+          {faqs.map((faq, i) => (
+            <details class="op-chatbot-faq-item">
+              <summary class="op-chatbot-faq-q">
+                <span class="op-mono op-chatbot-faq-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="op-chatbot-faq-q-text">{faq.question}</span>
+                <span class="op-chatbot-faq-q-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="op-chatbot-faq-a">{faq.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .op-chatbot-hero {
+    padding: 120px var(--op-section-px) 64px;
+    color: var(--op-ink);
+  }
+  .op-chatbot-hero-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-chatbot-util { margin-bottom: 32px; }
+  .op-chatbot-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+
+  .op-chatbot-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 6.4vw, 84px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 24px;
+    max-width: 900px;
+    text-wrap: balance;
+  }
+  .op-chatbot-h1-orange { color: var(--op-orange); }
+
+  .op-chatbot-sub {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 28px;
+    max-width: 680px;
+    text-wrap: pretty;
+  }
+
+  .op-chatbot-hero-ctas {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .op-chatbot-link {
+    color: var(--op-ink);
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--op-ink);
+    padding-bottom: 4px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-chatbot-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
+
+  .op-chatbot-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 16px;
+  }
+  .op-chatbot-section-num { color: var(--op-orange); font-size: 9px; }
+
+  .op-chatbot-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 3.6vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .op-chatbot-h2-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 680px;
+    text-wrap: pretty;
+  }
+
+  /* Use cases */
+  .op-chatbot-cases {
+    padding: 72px var(--op-section-px);
+    border-top: 1px solid var(--op-rule);
+  }
+  .op-chatbot-cases-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-chatbot-cases-header { max-width: 720px; margin-bottom: 36px; }
+  .op-chatbot-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 700px) { .op-chatbot-cases-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .op-chatbot-cases-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .op-chatbot-case {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-chatbot-case-num { font-size: 9px; color: var(--op-orange); }
+  .op-chatbot-case-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-chatbot-case-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+  }
+
+  /* Process */
+  .op-chatbot-process {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-chatbot-process-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-chatbot-process-header { max-width: 720px; margin-bottom: 36px; }
+  .op-chatbot-process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 700px) { .op-chatbot-process-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .op-chatbot-process-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .op-chatbot-step {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 22px 24px;
+    box-shadow: var(--op-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .op-chatbot-step-num {
+    font-size: 11px;
+    color: var(--op-orange);
+    font-weight: 700;
+  }
+  .op-chatbot-step-title {
+    font-family: var(--op-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0;
+  }
+  .op-chatbot-step-body {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+  }
+
+  /* Pricing teaser */
+  .op-chatbot-pricing {
+    padding: 64px var(--op-section-px);
+  }
+  .op-chatbot-pricing-frame {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .op-chatbot-pricing-cta {
+    margin-top: 16px;
+  }
+
+  /* Related callout */
+  .op-chatbot-related {
+    padding: 0 var(--op-section-px) 56px;
+  }
+  .op-chatbot-related-frame {
+    max-width: var(--op-max-content);
+    margin: 0 auto;
+  }
+  .op-chatbot-related-card {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-lg);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    .op-chatbot-related-card {
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      padding: 32px 40px;
+    }
+  }
+  .op-chatbot-related-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-orange);
+    margin-bottom: 10px;
+  }
+  .op-chatbot-related-title {
+    font-family: var(--op-font-display);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-cream);
+    margin: 0 0 8px;
+    text-wrap: balance;
+    line-height: 1.15;
+  }
+  .op-chatbot-related-title-orange {
+    color: var(--op-orange);
+    font-style: italic;
+  }
+  .op-chatbot-related-sub {
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(244, 238, 226, 0.78);
+    margin: 0;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .op-chatbot-related-right {
+    display: flex;
+    justify-content: flex-start;
+  }
+  @media (min-width: 800px) {
+    .op-chatbot-related-right { justify-content: flex-end; }
+  }
+
+  /* FAQ */
+  .op-chatbot-faq {
+    padding: 72px var(--op-section-px);
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .op-chatbot-faq-frame { max-width: 1000px; margin: 0 auto; }
+  .op-chatbot-faq-header { margin-bottom: 36px; max-width: 720px; }
+  .op-chatbot-faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .op-chatbot-faq-item {
+    border-bottom: 1px solid var(--op-rule);
+  }
+  .op-chatbot-faq-item[open] { background: var(--op-cream); }
+  .op-chatbot-faq-q {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 4px;
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--op-ink);
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-chatbot-faq-q::-webkit-details-marker { display: none; }
+  .op-chatbot-faq-num {
+    width: 28px;
+    flex-shrink: 0;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+  }
+  .op-chatbot-faq-q-text { flex: 1; text-wrap: balance; }
+  .op-chatbot-faq-q-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--op-ink);
+    line-height: 1;
+    transition: transform var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-chatbot-faq-item[open] .op-chatbot-faq-q-icon {
+    transform: rotate(45deg);
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+  .op-chatbot-faq-q:hover { color: var(--op-orange); }
+
+  .op-chatbot-faq-a {
+    padding: 4px 4px 22px 50px;
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    text-wrap: pretty;
+    max-width: 800px;
+  }
+
+  @media (max-width: 700px) {
+    .op-chatbot-hero,
+    .op-chatbot-cases,
+    .op-chatbot-process,
+    .op-chatbot-pricing,
+    .op-chatbot-faq { padding-left: 22px; padding-right: 22px; }
+  }
+</style>

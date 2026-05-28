@@ -37,7 +37,12 @@ const organizationSchema = {
   "url": SITE_URL,
   "logo": `${SITE_URL}/logo.png`,
   "description": "AI automations for service businesses doing $1-5M. We build the systems that handle your busywork : lead follow-up, ad creative, hiring, reviews, and more.",
-  "sameAs": []
+  "sameAs": [
+    "https://www.linkedin.com/in/james-pinder-52a261372/",
+    "https://www.instagram.com/simpleflo_james/",
+    "https://x.com/simpleflo_james",
+    "https://www.youtube.com/@James_simple_flo"
+  ]
 };
 
 // Article Schema (emitted when type='article' AND datePublished is provided)
@@ -128,11 +133,18 @@ const articleSchema = type === 'article' && datePublished ? {
   <meta name="theme-color" content="#1a365d">
   <meta name="author" content="Brothers Automate">
 
-  <!-- Fonts -->
+  <!-- Fonts (non-blocking via media=print + onload swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  </noscript>
 
   <!-- Resource hints for third-party services -->
   <link rel="preconnect" href="https://connect.facebook.net">
@@ -153,46 +165,59 @@ const articleSchema = type === 'article' && datePublished ? {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   ))}
 
-  <!-- Cal.com Embed -->
+  <!-- Cal.com Embed (deferred to idle / first interaction for LCP) -->
   <script type="text/javascript" is:inline>
+    // Define the Cal() queue immediately (tiny, no network).
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "simple-automation-discovery", {origin:"https://app.cal.com"});
-    Cal.ns["simple-automation-discovery"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","useSlotsViewOnSmallScreen":"true"});
 
-    // Meta Pixel - Track Cal.com bookings as Schedule + Lead events
-    // Uses both Cal SDK callback AND direct postMessage listener for reliability
-    Cal.ns["simple-automation-discovery"]("on", {
-      action: "bookingSuccessful",
-      callback: function() {
-        if (!window.__leadEventFired) {
-          window.__leadEventFired = true;
-          if (typeof fbq !== 'undefined') {
-            fbq('track', 'Schedule');
-            fbq('track', 'Lead');
-            console.log('[BA] Meta Lead event fired via Cal callback');
-          }
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'booking_complete', { method: 'cal_popup' });
+    // Defer the init call (which triggers embed.js download) until idle
+    // OR until the user interacts with a Cal.com booking element.
+    window.__calInitDone = false;
+    function __initCal() {
+      if (window.__calInitDone) return;
+      window.__calInitDone = true;
+      Cal("init", "simple-automation-discovery", {origin:"https://app.cal.com"});
+      Cal.ns["simple-automation-discovery"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","useSlotsViewOnSmallScreen":"true"});
+
+      // Track Cal.com bookings as Schedule + Lead events (Meta + GA).
+      Cal.ns["simple-automation-discovery"]("on", {
+        action: "bookingSuccessful",
+        callback: function() {
+          if (!window.__leadEventFired) {
+            window.__leadEventFired = true;
+            if (typeof fbq !== 'undefined') { fbq('track', 'Schedule'); fbq('track', 'Lead'); }
+            if (typeof gtag !== 'undefined') { gtag('event', 'booking_complete', { method: 'cal_popup' }); }
           }
         }
-      }
+      });
+    }
+
+    // Idle-time init (runs after first paint).
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(__initCal, { timeout: 4000 });
+    } else {
+      setTimeout(__initCal, 2500);
+    }
+
+    // First-interaction init (in case the user clicks a Cal button before idle fires).
+    ['pointerdown', 'touchstart', 'keydown'].forEach(function(evt) {
+      window.addEventListener(evt, function calInteractionHandler() {
+        __initCal();
+        ['pointerdown','touchstart','keydown'].forEach(function(e) {
+          window.removeEventListener(e, calInteractionHandler, { capture: true });
+        });
+      }, { capture: true, passive: true, once: false });
     });
 
-    // Fallback: listen for Cal.com postMessage directly
+    // postMessage fallback for booking events (works even if Cal callback is missed).
     window.addEventListener('message', function(e) {
       if (e.origin !== 'https://app.cal.com') return;
       try {
         var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
         if (data && data.action === 'bookingSuccessful' && !window.__leadEventFired) {
           window.__leadEventFired = true;
-          if (typeof fbq !== 'undefined') {
-            fbq('track', 'Schedule');
-            fbq('track', 'Lead');
-            console.log('[BA] Meta Lead event fired via postMessage fallback');
-          }
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'booking_complete', { method: 'cal_popup' });
-          }
+          if (typeof fbq !== 'undefined') { fbq('track', 'Schedule'); fbq('track', 'Lead'); }
+          if (typeof gtag !== 'undefined') { gtag('event', 'booking_complete', { method: 'cal_popup' }); }
         }
       } catch(err) {}
     });
