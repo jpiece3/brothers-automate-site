@@ -6,7 +6,7 @@
     "newsletter_name": "The Operator's AI Playbook",
     "newsletter_url": ""
   },
-  "last_updated": "2026-05-18",
+  "last_updated": "2026-05-22",
   "directories": [
     {
       "name": "There's An AI For That",
@@ -584,6 +584,38 @@
       "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-scheduling-assistant-2026-guide-for-small-businesses-30hg",
       "devto_article_id": 3695279,
       "syndicated_date": "2026-05-18",
+      "status": "live"
+    },
+    {
+      "slug": "ai-voice-agent-small-business-guide",
+      "original_url": "https://brothersautomate.com/blog/ai-voice-agent-small-business-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-voice-agent-the-small-business-guide-for-2026-5d7",
+      "devto_article_id": 3711103,
+      "syndicated_date": "2026-05-20",
+      "status": "live"
+    },
+    {
+      "slug": "ai-sales-for-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-sales-for-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-sales-for-small-business-the-2026-playbook-431l",
+      "devto_article_id": 3727688,
+      "syndicated_date": "2026-05-22",
+      "status": "live"
+    },
+    {
+      "slug": "ai-for-restaurants",
+      "original_url": "https://brothersautomate.com/blog/ai-for-restaurants/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-for-restaurants-an-operators-guide-for-2026-3a81",
+      "devto_article_id": 3751720,
+      "syndicated_date": "2026-05-25",
+      "status": "live"
+    },
+    {
+      "slug": "ai-for-recruitment-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-for-recruitment-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-for-recruitment-the-small-business-hiring-playbook-59ek",
+      "devto_article_id": 3766121,
+      "syndicated_date": "2026-05-27",
       "status": "live"
     }
   ],
