@@ -43,7 +43,8 @@ const thumbFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
         <source type="image/webp" srcset={thumbWebp} />
         <img
           src={thumbJpg}
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
           alt={`${title} thumbnail`}
           onerror={`this.onerror=null;this.src='${thumbFallback}';`}

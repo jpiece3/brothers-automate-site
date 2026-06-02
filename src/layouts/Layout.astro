@@ -81,32 +81,52 @@ const articleSchema = type === 'article' && datePublished ? {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S4S0F38JN"></script>
+  <!-- Analytics (GA4 + Meta Pixel) — deferred to idle so they don't
+       compete with above-the-fold paint on mobile. Both pixels define
+       their queueing functions immediately so any code can call gtag()
+       or fbq() before the actual SDKs arrive; the SDKs flush the queue
+       when they load. PageView events are captured ~500-2000ms after
+       first paint instead of synchronously — standard tradeoff for CWV. -->
   <script is:inline>
+    // GA4 — define gtag() queue immediately, load gtag.js on idle.
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    window.gtag = function(){dataLayer.push(arguments);};
     gtag('js', new Date());
     gtag('config', 'G-5S4S0F38JN');
-  </script>
 
-  <!-- Meta Pixel Code -->
-  <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+    // Meta Pixel — define fbq() queue immediately, load fbevents.js on idle.
+    (function(f,b,e){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];})(window, document, 'script');
     fbq('init', '958976529966289');
     fbq('track', 'PageView');
+
+    // Defer the actual SDK downloads until the browser is idle.
+    function __loadAnalytics() {
+      if (window.__analyticsLoaded) return;
+      window.__analyticsLoaded = true;
+      // GA4 gtag.js
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-5S4S0F38JN';
+      document.head.appendChild(ga);
+      // Meta Pixel fbevents.js
+      var fb = document.createElement('script');
+      fb.async = true;
+      fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(fb);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(__loadAnalytics, { timeout: 3000 });
+    } else {
+      setTimeout(__loadAnalytics, 1500);
+    }
+    // First-interaction fallback in case the user interacts before idle fires.
+    ['pointerdown','touchstart','keydown','scroll'].forEach(function(evt){
+      window.addEventListener(evt, __loadAnalytics, { capture: true, passive: true, once: true });
+    });
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=958976529966289&ev=PageView&noscript=1"
   /></noscript>
-  <!-- End Meta Pixel Code -->
 
   <meta name="description" content={description}>
   <title>{title}</title>
@@ -147,6 +167,7 @@ const articleSchema = type === 'article' && datePublished ? {
   </noscript>
 
   <!-- Resource hints for third-party services -->
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
   <link rel="preconnect" href="https://connect.facebook.net">
   <link rel="preconnect" href="https://app.cal.com">
   <link rel="dns-prefetch" href="https://app.cal.com">
