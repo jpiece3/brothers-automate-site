@@ -1,6 +1,6 @@
 ---
-title: "Best Lead Magnets by Industry: What Works in 2026"
-description: "The best lead magnets for coaches, e-commerce, SaaS, consultants, and service businesses in 2026. See what converts in each industry with specific examples."
+title: "Best Lead Magnets by Industry: 6 Playbooks Ranked for 2026"
+description: "Compare lead magnets across 6 industries — coaches, SaaS, e-commerce, local services, courses, agencies. Conversion rates + the format that wins each one."
 date: 2026-01-29
 category: "Lead Magnets"
 author: "Brothers Automate"
