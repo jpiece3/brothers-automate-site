@@ -31,23 +31,32 @@ const {
   duration = '',
 } = Astro.props;
 
+// Responsive thumbnails: small screens pull a lightweight variant instead of
+// the 1280x720 maxres, which is ~3.5x oversized on a phone-width hero panel.
+// mq/sd/maxres always exist as webp + jpg; the panel uses object-fit: cover
+// so the slight aspect differences are cropped cleanly.
 const thumbWebp = `https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp`;
 const thumbJpg = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 const thumbFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+const webpSrcset = `https://i.ytimg.com/vi_webp/${videoId}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${videoId}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp 1280w`;
+const jpgSrcset = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg 320w, https://i.ytimg.com/vi/${videoId}/sddefault.jpg 640w, https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg 1280w`;
+const thumbSizes = '(max-width: 767px) 92vw, 600px';
 ---
 
 <OperatorPanel id={panelId} headerExtra="■&nbsp;&nbsp;■&nbsp;&nbsp;■" minBodyHeight="320px">
   <div class="op-hvp" data-video-id={videoId} data-title={title}>
     <button class="op-hvp-trigger" type="button" aria-label={`Play ${title}`}>
       <picture>
-        <source type="image/webp" srcset={thumbWebp} />
+        <source type="image/webp" srcset={webpSrcset} sizes={thumbSizes} />
         <img
           src={thumbJpg}
+          srcset={jpgSrcset}
+          sizes={thumbSizes}
           loading="eager"
           fetchpriority="high"
           decoding="async"
           alt={`${title} thumbnail`}
-          onerror={`this.onerror=null;this.src='${thumbFallback}';`}
+          onerror={`this.onerror=null;this.srcset='';this.src='${thumbFallback}';`}
           width="1280"
           height="720"
         />

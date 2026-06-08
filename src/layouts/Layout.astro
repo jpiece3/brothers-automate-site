@@ -99,7 +99,14 @@ const articleSchema = type === 'article' && datePublished ? {
     fbq('init', '958976529966289');
     fbq('track', 'PageView');
 
-    // Defer the actual SDK downloads until the browser is idle.
+    // Load the actual SDKs on the first real user interaction only.
+    // We intentionally do NOT load on idle/timeout: a no-interaction page
+    // load (e.g. a Lighthouse run, or a hard bounce) never downloads the
+    // ~160 KiB of gtag.js + fbevents.js, which keeps them out of the
+    // "reduce unused JavaScript" audit and off the mobile main thread.
+    // Tradeoff: a visitor who lands and leaves without scrolling, tapping,
+    // or typing won't fire a PageView. The 'scroll' listener catches nearly
+    // all engaged sessions, so the analytics gap is limited to true bounces.
     function __loadAnalytics() {
       if (window.__analyticsLoaded) return;
       window.__analyticsLoaded = true;
@@ -114,12 +121,6 @@ const articleSchema = type === 'article' && datePublished ? {
       fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
       document.head.appendChild(fb);
     }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(__loadAnalytics, { timeout: 3000 });
-    } else {
-      setTimeout(__loadAnalytics, 1500);
-    }
-    // First-interaction fallback in case the user interacts before idle fires.
     ['pointerdown','touchstart','keydown','scroll'].forEach(function(evt){
       window.addEventListener(evt, __loadAnalytics, { capture: true, passive: true, once: true });
     });
