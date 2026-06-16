@@ -1,9 +1,9 @@
 ---
-title: "AI Chatbots for Small Business: 2026 Guide"
-description: "Compare the best AI chatbot for small business options in 2026. See pricing, ROI stats, setup steps, and which platform fits your customer service needs."
+title: "AI Chatbot for Business: Small Business Guide"
+description: "AI chatbot for business in 2026: compare the best platforms on pricing, ROI, and setup, and see which one actually fits your small business."
 date: 2026-04-13
 category: "Customer Service Automation"
-author: "Brothers Automate"
+author: "James Pinder"
 tags: ["AI chatbot", "customer service automation", "small business tools", "conversational AI", "chatbot comparison"]
 ---
 
@@ -47,7 +47,7 @@ E-commerce businesses get hammered with "where's my order?" messages. That's pur
 
 ## Best AI Chatbot Platforms Compared
 
-We've tested, researched, and gotten feedback on the platforms that small businesses actually use. Here's what we found.
+We've tested, researched, and gotten feedback on the platforms that small businesses actually use. Here's what we found. If you want the full head-to-head, we ranked the [9 best AI chatbots for business](/blog/best-ai-chatbots-for-business) by the exact situation you're in.
 
 | Platform | Starting Price | Best For | AI Model | Key Strength |
 |----------|---------------|----------|----------|-------------|

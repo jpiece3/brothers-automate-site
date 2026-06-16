@@ -65,7 +65,7 @@ Your phone rings. You're on a job, on a call, or trying to eat dinner. The call 
 
 [AI voice agents](/blog/ai-voice-agent-small-business-guide) are the fix. They answer 24/7, ask qualifying questions, book appointments straight onto your calendar, and text you the summary. Vapi and Retell are the two we recommend most often for small businesses. Setup is a weekend, not a quarter.
 
-Same logic applies for the website — a smart chatbot (not the dumb 2019 kind) can qualify inbound leads, answer pricing questions, and either book a meeting or hand off to a human when it matters. For service businesses where the question is "do you do X and how much does it cost," AI handles 80% of that without you ever knowing the conversation happened. Pair this with [automated quoting](/blog/automated-quoting) and you can take a lead from first touch to signed quote without a human in the loop.
+Same logic applies for the website — a [smart chatbot](/blog/ai-chatbot-small-business-guide) (not the dumb 2019 kind) can qualify inbound leads, answer pricing questions, and either book a meeting or hand off to a human when it matters. For service businesses where the question is "do you do X and how much does it cost," AI handles 80% of that without you ever knowing the conversation happened. Pair this with [automated quoting](/blog/automated-quoting) and you can take a lead from first touch to signed quote without a human in the loop.
 
 ### 5. Conversation Intelligence for Sales Calls
 

@@ -57,7 +57,7 @@ Think about it: how many people visited your website last month and left without
 
 If you want to [build a lead scoring model](/blog/lead-scoring-model) without HubSpot's price tag, tools like **Zoho Zia** offer similar AI scoring at a fraction of the cost. Zia analyzes your CRM data, spots patterns in who converts, and ranks your pipeline automatically.
 
-**Drift** (now part of Salesloft) turned chatbots from annoying pop-ups into actual sales reps. Their AI chatbot qualifies visitors, books meetings, and routes leads to the right person, all while you're doing something else. One B2B company automated a 3-email follow-up sequence after demos and saw their qualified-lead-to-meeting conversion rate jump 22% in six weeks.
+**Drift** (now part of Salesloft) turned [chatbots](/blog/ai-chatbot-small-business-guide) from annoying pop-ups into actual sales reps. Their AI chatbot qualifies visitors, books meetings, and routes leads to the right person, all while you're doing something else. One B2B company automated a 3-email follow-up sequence after demos and saw their qualified-lead-to-meeting conversion rate jump 22% in six weeks.
 
 **Apollo.io** combines prospecting, email sequencing, and AI-written outreach in one tool. Their AI generates personalized first lines based on the prospect's LinkedIn activity, recent company news, and job title. At $49/month for the basic plan, it's one of the better deals in the sales AI space.
 

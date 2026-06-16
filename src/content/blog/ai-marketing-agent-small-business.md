@@ -228,4 +228,4 @@ Not if you use the right tools. Gumloop is fully no-code — drag-and-drop workf
 
 ### What's the difference between an AI marketing agent and a chatbot?
 
-A chatbot responds to inputs. It waits for someone to say something, then replies. An AI marketing agent proactively takes action toward a goal — monitoring data, making decisions, executing tasks — whether or not anyone is talking to it. A chatbot is reactive. An agent is autonomous.
+A [chatbot](/blog/ai-chatbot-small-business-guide) responds to inputs. It waits for someone to say something, then replies. An AI marketing agent proactively takes action toward a goal — monitoring data, making decisions, executing tasks — whether or not anyone is talking to it. A chatbot is reactive. An agent is autonomous.

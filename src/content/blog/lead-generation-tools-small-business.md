@@ -184,7 +184,7 @@ If you want to take this further and [build a marketing funnel that runs without
 
 ### What is the best AI lead generation tool?
 
-For B2B outbound: Clay if you have the budget, Apollo.io if you don't. For inbound lead generation, AI chatbots like Tidio's AI features or Intercom's Fin handle qualification conversations without you being online.
+For B2B outbound: Clay if you have the budget, Apollo.io if you don't. For inbound lead generation, [AI chatbots for business](/blog/ai-chatbot-small-business-guide) like Tidio's AI features or Intercom's Fin handle qualification conversations without you being online.
 
 There's no single "best", it depends on whether you're finding leads (outbound) or converting visitors who found you (inbound).
 
