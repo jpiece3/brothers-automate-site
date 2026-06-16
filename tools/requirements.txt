@@ -1,0 +1,6 @@
+# Brothers Automate, internal AI audit tooling
+# Python 3.10+
+
+requests>=2.31.0        # HTTP (website fetch, PageSpeed Insights, OpenAI)
+beautifulsoup4>=4.12.0  # HTML parsing for audit_website.py
+lxml>=4.9.0             # fast parser backend for BeautifulSoup

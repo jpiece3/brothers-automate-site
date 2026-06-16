@@ -57,6 +57,15 @@ const painPoints = [
         <p class="op-prob-bridge-text">
           We turn those repeatable processes into working AI systems. <strong>Systems, not one-off automations.</strong> Workflows you own, with documentation, ownership, review points, and improvement loops baked in.
         </p>
+        <a
+          href="/free-ai-audit"
+          class="op-mono op-prob-bridge-cta"
+          data-track="cta_click"
+          data-track-location="home-problem"
+          data-track-label="Free AI Audit"
+        >
+          RUN A FREE AI AUDIT ON YOUR BUSINESS <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </div>
@@ -201,6 +210,27 @@ const painPoints = [
   .op-prob-bridge-text strong {
     color: var(--op-ink);
     font-weight: 700;
+  }
+  .op-prob-bridge-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--op-paper);
+    background: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 9px 14px;
+    text-decoration: none;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-prob-bridge-cta:hover {
+    color: var(--op-orange);
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
   }
 
   @media (max-width: 700px) {
