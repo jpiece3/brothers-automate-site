@@ -1,6 +1,12 @@
 -- Free AI Audit lead capture
 -- Stores a row per completed audit (the email-gated step in /api/audit-submit).
--- Run in the Supabase SQL editor or via `supabase db push`.
+--
+-- Target project: Brothers Automate (ghoomqpsgdtvffielnaq)
+--   URL: https://ghoomqpsgdtvffielnaq.supabase.co
+--
+-- Run in that project's SQL Editor, or:
+--   supabase link --project-ref ghoomqpsgdtvffielnaq
+--   supabase db push
 
 create extension if not exists "pgcrypto";
 

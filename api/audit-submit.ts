@@ -26,10 +26,15 @@ const OPENAI_MODEL = process.env.OPENAI_AUDIT_MODEL || 'gpt-4o-mini';
 const AUDIT_WEBHOOK_URL = process.env.AUDIT_WEBHOOK_URL || '';
 const AUDIT_WEBHOOK_AUTH = process.env.AUDIT_WEBHOOK_AUTH || 'Bearer 14fc1dec6b58454e8c528db04f4e744d';
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://nnxbgderdyjanzwgabxl.supabase.co';
-const SUPABASE_ANON_KEY =
-  process.env.SUPABASE_ANON_KEY ||
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGJnZGVyZHlqYW56d2dhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxODA3MzgsImV4cCI6MjA4NDc1NjczOH0.jpjZ_gH1-2GZgyhXPRzPrZzWWnJtAVgU4yui4KM6wZ8';
+// Audit leads live in the dedicated Brothers Automate Supabase project
+// (ghoomqpsgdtvffielnaq), separate from the legacy client-intel project.
+// Override via Vercel env vars if you rotate keys.
+const AUDIT_SUPABASE_URL =
+  process.env.AUDIT_SUPABASE_URL || 'https://ghoomqpsgdtvffielnaq.supabase.co';
+const AUDIT_SUPABASE_KEY =
+  process.env.AUDIT_SUPABASE_PUBLISHABLE_KEY ||
+  process.env.AUDIT_SUPABASE_KEY ||
+  'sb_publishable_q-1g28SUvy8lEqbjkWwJvg_TJPXQn5O';
 
 // Brothers Automate build catalog, used to ground recommendations so the LLM
 // (and the fallback) always map findings back to something we actually ship.
@@ -272,12 +277,12 @@ async function forwardLead(payload: Record<string, unknown>): Promise<void> {
 
 async function persistSupabase(row: Record<string, unknown>): Promise<void> {
   try {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/audit_leads`, {
+    const r = await fetch(`${AUDIT_SUPABASE_URL}/rest/v1/audit_leads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: AUDIT_SUPABASE_KEY,
+        Authorization: `Bearer ${AUDIT_SUPABASE_KEY}`,
         Prefer: 'return=minimal',
       },
       body: JSON.stringify(row),
