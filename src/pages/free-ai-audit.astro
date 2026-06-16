@@ -1,0 +1,955 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const PAGE_URL = `${SITE_URL}/free-ai-audit/`;
+const CAL_LINK = 'james-pinder/simple-automation-discovery';
+
+const phases = [
+  {
+    num: '01',
+    title: 'Instant Site Audit',
+    time: '20 seconds',
+    body: 'Drop in your URL. We scan speed, SEO, mobile, trust, and how well your site captures leads, and score it on the spot.',
+  },
+  {
+    num: '02',
+    title: 'AI Opportunity Analysis',
+    time: 'On submit',
+    body: 'Our engine turns the findings, plus the pain point you tell us, into 5-7 specific automations mapped to systems we actually build.',
+  },
+  {
+    num: '03',
+    title: 'Discovery Call',
+    time: '30 minutes',
+    body: "We walk through your day and where time leaks. No pitch, we're pulling problems, not pushing tools.",
+  },
+  {
+    num: '04',
+    title: 'Review & Roadmap',
+    time: '30 minutes',
+    body: 'You get a prioritized roadmap with quick wins, ROI, and a 4-day quick-start. Implement it yourself or have us build it.',
+  },
+];
+
+const audience = [
+  { label: 'Home & field service', detail: 'HVAC, plumbing, electrical, remodels, drowning in quotes and follow-up.' },
+  { label: 'Engineering & construction', detail: 'Civil, structural, and design firms running complex multi-stage projects.' },
+  { label: 'Managed IT & MSPs', detail: 'Help desks and IT providers buried in tickets, intake, and compliance admin.' },
+  { label: 'Local high-margin operators', detail: 'Coaches, agencies, clinics, and pros doing $1-15M who want capacity without hiring.' },
+];
+
+const stats = [
+  { value: '<60s', label: 'Inbound lead reply time', context: 'Inbound AI SDR' },
+  { value: '2-3x', label: 'More qualified leads', context: 'Lead Qualification Quiz' },
+  { value: '<2 min', label: 'Quote delivery', context: 'AI Quote Generator' },
+  { value: '6+ hrs', label: 'Freed up per week', context: 'For ~$40/mo in tool costs' },
+];
+
+const faqs = [
+  {
+    q: 'Is the audit really free?',
+    a: "Yes. The instant site score and the AI opportunity report cost nothing, and the 30-minute discovery and review calls are free too. We give away the audit because it's the fastest way to show you what we'd build. No card, no obligation.",
+  },
+  {
+    q: 'What do I need to provide?',
+    a: 'To run the instant audit, just your website URL. To get the full report, your name, email, and a sentence on what is eating your time. For the optional discovery call, 30 minutes and access to the tools you already use.',
+  },
+  {
+    q: 'Will you just try to sell me?',
+    a: "No. The call is built to pull problems, not push tools. You walk away with a roadmap either way. If you want to implement it yourself, great. If you want help, we'll scope it, that's the only upsell.",
+  },
+  {
+    q: 'How accurate is the instant audit?',
+    a: 'It pulls real signals: a live crawl of your page plus Google Lighthouse performance and SEO scores. It is a fast, honest snapshot, the human + AI analysis in the full report is where the real opportunities surface.',
+  },
+  {
+    q: 'Who is this for?',
+    a: 'Service and technical businesses doing roughly $1-15M, home service, engineering, IT/MSPs, agencies, clinics, and similar local operators who are great at the work but losing hours to manual busywork.',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Free AI Audit', item: PAGE_URL },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Free AI Business Audit',
+  provider: { '@type': 'Organization', name: 'Brothers Automate', url: SITE_URL },
+  areaServed: 'United States',
+  description:
+    'A free AI audit for service and technical businesses. Get an instant website score plus a prioritized report of 5-7 AI automations that save time and capture more leads.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<Layout
+  title="Free AI Audit for Service Businesses | Brothers Automate"
+  description="Get a free, instant AI audit of your business. Score your website in 20 seconds, then get a prioritized report of 5-7 AI automations that save hours and capture more leads. No cost, no obligation."
+  canonicalUrl={PAGE_URL}
+  extraSchemas={[breadcrumbSchema, faqSchema, serviceSchema]}
+>
+  <Header />
+  <main>
+    <!-- ============================ HERO + AUDIT ENGINE ============================ -->
+    <section class="op-audit-hero op-grid-bg">
+      <div class="op-audit-frame">
+        <div class="op-audit-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / AUDIT · FREE"
+            right="● AUDIT ENGINE ONLINE · NO CARD REQUIRED"
+            bordered
+          />
+        </div>
+
+        <div class="op-audit-grid">
+          <div class="op-audit-intro">
+            <EyebrowTag label="FREE AI AUDIT · FOR SERVICE & TECHNICAL BUSINESSES" />
+            <h1 class="op-audit-h1" data-animate="fade-up">
+              Find the hours AI<br />
+              <span class="op-audit-h1-orange">should be doing for you.</span>
+            </h1>
+            <p class="op-audit-sub" data-animate="fade-up">
+              Drop in your website and get an instant score, then a prioritized report of the
+              5-7 automations that would save you the most time and capture the most leads.
+              Built on the same systems we run for $1-15M service businesses.
+            </p>
+            <ul class="op-audit-bullets op-mono">
+              <li><span class="op-pulse-dot"></span><span>INSTANT SCORE · NO SIGNUP TO SEE IT</span></li>
+              <li><span class="op-pulse-dot"></span><span>5-7 AI OPPORTUNITIES MAPPED TO YOUR GAPS</span></li>
+              <li><span class="op-pulse-dot"></span><span>FREE · NO OBLIGATION · NEVER SHARED</span></li>
+            </ul>
+          </div>
+
+          <!-- AUDIT CONSOLE -->
+          <div class="op-audit-panel" data-animate="fade-up">
+            <div class="op-audit-panel-header">
+              <span class="op-pulse-dot"></span>
+              <span class="op-mono op-audit-panel-id">AUDIT_ENGINE · v.2026</span>
+              <span class="op-mono op-audit-panel-status" id="audit-status">● READY</span>
+            </div>
+
+            <!-- STAGE: input -->
+            <div class="op-audit-stage" id="stage-input">
+              <form id="audit-scan-form" novalidate>
+                <label class="op-audit-field">
+                  <span class="op-mono op-audit-label">YOUR WEBSITE</span>
+                  <input
+                    type="text"
+                    id="audit-url"
+                    name="url"
+                    inputmode="url"
+                    autocomplete="url"
+                    placeholder="yourcompany.com"
+                    maxlength="300"
+                  />
+                </label>
+                <button type="submit" id="audit-scan-btn" class="op-audit-submit op-mono">
+                  <span class="op-audit-submit-label">RUN MY FREE AUDIT</span>
+                  <span class="op-audit-submit-arrow" aria-hidden="true">→</span>
+                </button>
+                <p class="op-audit-fineprint op-mono">FREE · INSTANT SCORE · ~20 SECONDS · NO SIGNUP TO SEE IT</p>
+                <p class="op-audit-error" id="scan-error" role="alert" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <!-- STAGE: loading -->
+            <div class="op-audit-stage" id="stage-loading" hidden>
+              <p class="op-mono op-audit-loading-head"><span class="op-pulse-dot"></span> SCANNING <span id="loading-domain">YOUR SITE</span></p>
+              <ul class="op-audit-steps op-mono" id="loading-steps">
+                <li data-step>FETCHING PAGE</li>
+                <li data-step>CHECKING SEO &amp; META</li>
+                <li data-step>TESTING MOBILE &amp; SPEED</li>
+                <li data-step>SCORING LEAD CAPTURE</li>
+                <li data-step>COMPILING FINDINGS</li>
+              </ul>
+            </div>
+
+            <!-- STAGE: teaser -->
+            <div class="op-audit-stage" id="stage-teaser" hidden>
+              <div class="op-audit-scoreline">
+                <div class="op-audit-gauge" id="score-gauge">
+                  <div class="op-audit-gauge-inner">
+                    <span class="op-audit-gauge-num" id="score-num">0</span>
+                    <span class="op-audit-gauge-of op-mono">/100</span>
+                  </div>
+                </div>
+                <div class="op-audit-scoremeta">
+                  <span class="op-mono op-audit-scoremeta-label">OVERALL SCORE · <span id="score-domain"></span></span>
+                  <span class="op-audit-grade" id="score-grade">B</span>
+                  <span class="op-audit-grade-note op-mono" id="score-note"></span>
+                </div>
+              </div>
+
+              <div class="op-audit-cats" id="score-cats"></div>
+
+              <div class="op-audit-findings">
+                <p class="op-mono op-audit-findings-head">TOP FINDINGS</p>
+                <ul id="teaser-findings"></ul>
+              </div>
+
+              <div class="op-audit-gate">
+                <div class="op-audit-gate-head">
+                  <span class="op-pulse-dot"></span>
+                  <span class="op-mono">UNLOCK YOUR FULL AI OPPORTUNITY REPORT</span>
+                </div>
+                <p class="op-audit-gate-sub">
+                  Get the 5-7 specific automations we'd build to fix what we found, with impact, effort, and ROI. Sent free.
+                </p>
+                <form id="audit-lead-form" novalidate>
+                  <div class="op-audit-row">
+                    <label class="op-audit-field">
+                      <span class="op-mono op-audit-label">NAME <span class="op-audit-req">*</span></span>
+                      <input type="text" id="lead-name" name="name" required autocomplete="name" maxlength="120" />
+                    </label>
+                    <label class="op-audit-field">
+                      <span class="op-mono op-audit-label">EMAIL <span class="op-audit-req">*</span></span>
+                      <input type="email" id="lead-email" name="email" required autocomplete="email" inputmode="email" maxlength="160" />
+                    </label>
+                  </div>
+                  <div class="op-audit-row">
+                    <label class="op-audit-field">
+                      <span class="op-mono op-audit-label">PHONE <span class="op-audit-opt">OPTIONAL</span></span>
+                      <input type="tel" id="lead-phone" name="phone" autocomplete="tel" maxlength="40" />
+                    </label>
+                    <label class="op-audit-field">
+                      <span class="op-mono op-audit-label">BUSINESS TYPE <span class="op-audit-opt">OPTIONAL</span></span>
+                      <input type="text" id="lead-biztype" name="business_type" maxlength="120" placeholder="e.g. HVAC, IT MSP, agency" />
+                    </label>
+                  </div>
+                  <label class="op-audit-field">
+                    <span class="op-mono op-audit-label">BIGGEST TIME DRAIN <span class="op-audit-opt">OPTIONAL BUT HELPS</span></span>
+                    <textarea id="lead-pain" name="pain_point" rows="3" maxlength="2000" placeholder="Where do you lose the most time? Slow follow-up, manual quoting, scheduling, hiring..."></textarea>
+                  </label>
+
+                  <div class="op-audit-honeypot" aria-hidden="true">
+                    <label>Website</label>
+                    <input type="text" id="lead-hp" name="website_hp" tabindex="-1" autocomplete="off" />
+                  </div>
+
+                  <button type="submit" id="lead-submit" class="op-audit-submit op-mono">
+                    <span class="op-audit-submit-label">GET MY AI REPORT</span>
+                    <span class="op-audit-submit-arrow" aria-hidden="true">→</span>
+                  </button>
+                  <p class="op-audit-fineprint op-mono">FREE · NO OBLIGATION · WE NEVER SHARE YOUR INFO</p>
+                  <p class="op-audit-error" id="lead-error" role="alert" aria-live="polite"></p>
+                </form>
+              </div>
+            </div>
+
+            <!-- STAGE: report -->
+            <div class="op-audit-stage" id="stage-report" hidden>
+              <div class="op-audit-report-head">
+                <span class="op-mono op-audit-report-eyebrow">● AI OPPORTUNITY REPORT · READY</span>
+                <h2 class="op-audit-report-title" id="report-headline">Your AI opportunity report</h2>
+                <p class="op-audit-report-summary" id="report-summary"></p>
+              </div>
+              <div class="op-audit-recs" id="report-recs"></div>
+              <div class="op-audit-impact">
+                <div class="op-audit-impact-num"><span id="report-hours">6</span><span class="op-audit-impact-unit">hrs/wk</span></div>
+                <p class="op-audit-impact-text">Estimated time these automations could free up, for roughly <strong>$40/mo</strong> in tool costs.</p>
+              </div>
+              <div class="op-audit-report-cta">
+                <a
+                  href="#"
+                  class="op-audit-book op-mono"
+                  data-cal-link={CAL_LINK}
+                  data-cal-namespace="simple-automation-discovery"
+                  data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                  data-track="cta_click"
+                  data-track-location="audit-report"
+                  data-track-label="Book Audit Review Call"
+                >
+                  BOOK YOUR FREE REVIEW CALL <span aria-hidden="true">→</span>
+                </a>
+                <a href="/projects" class="op-audit-report-link op-mono">SEE THE BUILDS →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PROOF METRICS ============================ -->
+    <section class="op-audit-proof">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="PROOF · FROM SYSTEMS WE ACTUALLY RUN" variant="paper" />
+          <h2 class="op-audit-h2">Not theory. Numbers from live builds.</h2>
+        </div>
+        <div class="op-audit-stats">
+          {stats.map((s) => (
+            <div class="op-audit-stat">
+              <span class="op-audit-stat-num">{s.value}</span>
+              <span class="op-audit-stat-label">{s.label}</span>
+              <span class="op-mono op-audit-stat-context">{s.context}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WHO IT'S FOR ============================ -->
+    <section class="op-audit-who op-grid-bg">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="WHO IT'S FOR" variant="paper" />
+          <h2 class="op-audit-h2">Built for operators buried in repeat work.</h2>
+          <p class="op-audit-section-sub">
+            If you're great at the work but losing hours to follow-up, quoting, scheduling, and admin, this audit is built for you.
+          </p>
+        </div>
+        <div class="op-audit-who-grid">
+          {audience.map((a, i) => (
+            <div class="op-audit-who-card">
+              <span class="op-mono op-audit-who-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="op-audit-who-label">{a.label}</h3>
+              <p class="op-audit-who-detail">{a.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PROCESS ============================ -->
+    <section class="op-audit-process">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="THE PROCESS · 04 STEPS" variant="paper" />
+          <h2 class="op-audit-h2">From URL to roadmap.</h2>
+          <p class="op-audit-section-sub">
+            The first two steps happen right here, in seconds. The last two are free calls, only if you want them.
+          </p>
+        </div>
+        <div class="op-audit-steps-grid">
+          {phases.map((p) => (
+            <div class="op-audit-phase">
+              <div class="op-audit-phase-top">
+                <span class="op-mono op-audit-phase-num">{p.num}</span>
+                <span class="op-mono op-audit-phase-time">{p.time}</span>
+              </div>
+              <h3 class="op-audit-phase-title">{p.title}</h3>
+              <p class="op-audit-phase-body">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WHY FREE ============================ -->
+    <section class="op-audit-whyfree">
+      <div class="op-audit-section-frame op-audit-whyfree-inner">
+        <div>
+          <EyebrowTag label="WHY IT'S FREE" />
+          <h2 class="op-audit-h2 op-audit-h2-light">We'd rather show you than tell you.</h2>
+        </div>
+        <div class="op-audit-whyfree-body">
+          <p>
+            Most operators know AI could help but have no idea where to start, so they do nothing.
+            The audit fixes that. It shows you exactly where automation fits and what it's worth, on your real business, in plain English.
+          </p>
+          <p>
+            If you take the roadmap and build it yourself, genuinely great. If you'd rather we handle it,
+            we do project builds and an embedded partnership, but there's never any pressure. The audit stands on its own.
+          </p>
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="lg"
+            calLink={CAL_LINK}
+            trackLocation="audit-whyfree"
+            trackLabel="Talk to the Brothers"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ ============================ -->
+    <section class="op-audit-faq op-grid-bg">
+      <div class="op-audit-section-frame op-audit-faq-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="FAQ · BEFORE YOU RUN IT" variant="paper" />
+          <h2 class="op-audit-h2">Questions, answered straight.</h2>
+        </div>
+        <div class="op-audit-faq-list">
+          {faqs.map((f) => (
+            <details class="op-audit-faq-item">
+              <summary>
+                <span>{f.q}</span>
+                <span class="op-audit-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    (function () {
+      var SCAN_URL = '/api/audit-scan';
+      var SUBMIT_URL = '/api/audit-submit';
+
+      var scanForm = document.getElementById('audit-scan-form');
+      var leadForm = document.getElementById('audit-lead-form');
+      if (!scanForm || !leadForm) return;
+
+      var stages = {
+        input: document.getElementById('stage-input'),
+        loading: document.getElementById('stage-loading'),
+        teaser: document.getElementById('stage-teaser'),
+        report: document.getElementById('stage-report'),
+      };
+      var statusEl = document.getElementById('audit-status');
+      var scanBtn = document.getElementById('audit-scan-btn');
+      var leadBtn = document.getElementById('lead-submit');
+      var scanError = document.getElementById('scan-error');
+      var leadError = document.getElementById('lead-error');
+
+      var scanData = null;
+
+      function show(stage) {
+        Object.keys(stages).forEach(function (k) {
+          if (stages[k]) stages[k].hidden = k !== stage;
+        });
+      }
+      function setStatus(text) { if (statusEl) statusEl.textContent = text; }
+      function setError(el, msg) {
+        if (!el) return;
+        el.textContent = msg || '';
+        el.style.display = msg ? 'block' : 'none';
+      }
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+      function bandColor(score) {
+        if (score >= 75) return 'var(--green)';
+        if (score >= 45) return 'var(--op-orange)';
+        return 'var(--red)';
+      }
+
+      // ---- loading step animation ----
+      var loadingTimer = null;
+      function startLoading(domain) {
+        var dEl = document.getElementById('loading-domain');
+        if (dEl) dEl.textContent = (domain || 'your site').toUpperCase();
+        var steps = Array.prototype.slice.call(document.querySelectorAll('#loading-steps [data-step]'));
+        steps.forEach(function (s) { s.classList.remove('is-done', 'is-active'); });
+        var i = 0;
+        if (steps[0]) steps[0].classList.add('is-active');
+        loadingTimer = setInterval(function () {
+          if (steps[i]) { steps[i].classList.remove('is-active'); steps[i].classList.add('is-done'); }
+          i++;
+          if (i < steps.length) steps[i].classList.add('is-active');
+          else clearInterval(loadingTimer);
+        }, 1400);
+      }
+      function stopLoading() { if (loadingTimer) clearInterval(loadingTimer); }
+
+      // ---- render teaser ----
+      function renderTeaser(data) {
+        var num = document.getElementById('score-num');
+        var grade = document.getElementById('score-grade');
+        var gauge = document.getElementById('score-gauge');
+        var note = document.getElementById('score-note');
+        var domEl = document.getElementById('score-domain');
+        if (domEl) domEl.textContent = data.domain || '';
+        if (grade) grade.textContent = data.grade;
+        if (gauge) gauge.style.setProperty('--gauge-color', bandColor(data.score));
+        if (note) {
+          note.textContent = data.score >= 80 ? 'Strong, with room to automate' : data.score >= 60 ? 'Decent, real gaps to close' : 'Big opportunities waiting';
+        }
+        // animate the number
+        if (num) {
+          var target = data.score, start = performance.now(), dur = 900;
+          (function tick(now) {
+            var t = Math.min(1, (now - start) / dur);
+            var eased = 1 - Math.pow(1 - t, 3);
+            num.textContent = Math.round(target * eased);
+            if (gauge) gauge.style.setProperty('--gauge-pct', (target * eased) + '%');
+            if (t < 1) requestAnimationFrame(tick);
+          })(start);
+        }
+
+        var cats = document.getElementById('score-cats');
+        if (cats) {
+          cats.innerHTML = data.categories.map(function (c) {
+            return (
+              '<div class="op-audit-cat">' +
+              '<div class="op-audit-cat-top"><span class="op-audit-cat-label">' + esc(c.label) + '</span>' +
+              '<span class="op-audit-cat-score" style="color:' + bandColor(c.score) + '">' + c.score + '</span></div>' +
+              '<div class="op-audit-cat-bar"><span style="width:' + c.score + '%;background:' + bandColor(c.score) + '"></span></div>' +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        var findings = document.getElementById('teaser-findings');
+        if (findings) {
+          findings.innerHTML = data.teaser.map(function (f) {
+            return (
+              '<li class="op-audit-finding op-audit-finding--' + esc(f.severity) + '">' +
+              '<span class="op-audit-finding-tag op-mono">' + esc(f.label) + '</span>' +
+              '<span class="op-audit-finding-msg">' + esc(f.message) + '</span></li>'
+            );
+          }).join('');
+        }
+      }
+
+      // ---- render report ----
+      function renderReport(report) {
+        var h = document.getElementById('report-headline');
+        var sum = document.getElementById('report-summary');
+        var hours = document.getElementById('report-hours');
+        if (h) h.textContent = report.headline || 'Your AI opportunity report';
+        if (sum) sum.textContent = report.executiveSummary || '';
+        if (hours) hours.textContent = report.estimatedHoursPerWeek || 6;
+
+        var wrap = document.getElementById('report-recs');
+        if (wrap) {
+          wrap.innerHTML = (report.recommendations || []).map(function (r, i) {
+            var build = r.build
+              ? '<a class="op-audit-rec-build op-mono" href="/projects/' + esc(r.build.slug) + '">' + esc(r.build.name) + ' →</a>'
+              : '';
+            var cat = r.category === 'strategic' ? 'STRATEGIC' : 'QUICK WIN';
+            return (
+              '<div class="op-audit-rec">' +
+              '<div class="op-audit-rec-head">' +
+              '<span class="op-mono op-audit-rec-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+              '<span class="op-mono op-audit-rec-cat op-audit-rec-cat--' + (r.category || 'quick-win') + '">' + cat + '</span>' +
+              '<span class="op-mono op-audit-rec-meta">IMPACT ' + esc(r.impact) + ' · EFFORT ' + esc(r.effort) + '</span>' +
+              '</div>' +
+              '<h3 class="op-audit-rec-title">' + esc(r.title) + '</h3>' +
+              '<p class="op-audit-rec-desc">' + esc(r.description) + '</p>' +
+              (r.reasoning ? '<p class="op-audit-rec-why"><span class="op-mono">WHY</span> ' + esc(r.reasoning) + '</p>' : '') +
+              build +
+              '</div>'
+            );
+          }).join('');
+        }
+      }
+
+      // ---- scan submit ----
+      scanForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setError(scanError, '');
+        var url = (document.getElementById('audit-url').value || '').trim();
+        if (!url || url.indexOf('.') === -1) {
+          setError(scanError, 'Enter your website address, e.g. yourcompany.com');
+          return;
+        }
+        var domainGuess = url.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
+        scanBtn.disabled = true;
+        setStatus('● SCANNING');
+        show('loading');
+        startLoading(domainGuess);
+
+        fetch(SCAN_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: url }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              if (!res.ok) throw new Error(data && data.error ? data.error : 'Scan failed.');
+              return data;
+            });
+          })
+          .then(function (data) {
+            scanData = data;
+            stopLoading();
+            renderTeaser(data);
+            setStatus('● SCORE READY');
+            show('teaser');
+            if (typeof gtag !== 'undefined') { try { gtag('event', 'audit_scan_complete', { score: data.score }); } catch (e) {} }
+            if (typeof fbq !== 'undefined') { try { fbq('trackCustom', 'AuditScan', { score: data.score }); } catch (e) {} }
+            stages.teaser.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          })
+          .catch(function (err) {
+            stopLoading();
+            scanBtn.disabled = false;
+            setStatus('● READY');
+            show('input');
+            setError(scanError, err.message || "We couldn't scan that site. Check the address and try again.");
+          });
+      });
+
+      // ---- lead submit ----
+      leadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setError(leadError, '');
+        var honeypot = (document.getElementById('lead-hp').value || '').trim();
+        if (honeypot) { show('report'); return; }
+
+        var name = (document.getElementById('lead-name').value || '').trim();
+        var email = (document.getElementById('lead-email').value || '').trim();
+        if (!name) { setError(leadError, 'Please enter your name.'); return; }
+        if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+          setError(leadError, 'Please enter a valid email.');
+          return;
+        }
+
+        leadBtn.disabled = true;
+        leadBtn.classList.add('is-loading');
+        var label = leadBtn.querySelector('.op-audit-submit-label');
+        if (label) label.textContent = 'BUILDING REPORT…';
+        setStatus('● ANALYZING');
+
+        var payload = {
+          name: name,
+          email: email,
+          phone: (document.getElementById('lead-phone').value || '').trim(),
+          business_type: (document.getElementById('lead-biztype').value || '').trim(),
+          pain_point: (document.getElementById('lead-pain').value || '').trim(),
+          url: scanData ? scanData.url : '',
+          domain: scanData ? scanData.domain : '',
+          score: scanData ? scanData.score : null,
+          signals: scanData ? scanData.signals : {},
+          source: 'free-ai-audit',
+        };
+
+        fetch(SUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              if (!res.ok) throw new Error(data && data.error ? data.error : 'Could not build report.');
+              return data;
+            });
+          })
+          .then(function (data) {
+            if (typeof fbq !== 'undefined') { try { fbq('track', 'Lead'); } catch (e) {} }
+            if (typeof gtag !== 'undefined') { try { gtag('event', 'audit_report_unlocked', { method: 'free_ai_audit' }); } catch (e) {} }
+            renderReport(data.report || {});
+            setStatus('● REPORT READY');
+            show('report');
+            stages.report.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          })
+          .catch(function (err) {
+            leadBtn.disabled = false;
+            leadBtn.classList.remove('is-loading');
+            if (label) label.textContent = 'GET MY AI REPORT';
+            setStatus('● SCORE READY');
+            setError(leadError, err.message || "That didn't go through. Email james@simpleflosolutions.com and we'll send it manually.");
+          });
+      });
+    })();
+  </script>
+</Layout>
+
+<style>
+  /* ============================ HERO ============================ */
+  .op-audit-hero { padding: 120px var(--op-section-px) 88px; color: var(--op-ink); }
+  .op-audit-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-audit-util { margin-bottom: 36px; }
+  .op-audit-hero :global(.op-eyebrow) { margin-bottom: 22px; }
+
+  .op-audit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (min-width: 1000px) {
+    .op-audit-grid { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 56px; }
+  }
+
+  .op-audit-intro { display: flex; flex-direction: column; position: sticky; top: 96px; }
+  @media (max-width: 999px) { .op-audit-intro { position: static; } }
+
+  .op-audit-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(38px, 4.8vw, 66px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .op-audit-h1-orange { color: var(--op-orange); }
+  .op-audit-sub {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0 0 26px;
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+  .op-audit-bullets {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+    font-size: 10px; color: var(--op-navy);
+  }
+  .op-audit-bullets li { display: flex; align-items: center; gap: 10px; }
+
+  /* ============================ CONSOLE PANEL ============================ */
+  .op-audit-panel {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+  }
+  .op-audit-panel-header {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .op-audit-panel-id { font-size: 9px; color: var(--op-orange); }
+  .op-audit-panel-status { margin-left: auto; font-size: 9px; color: var(--op-cream); opacity: 0.7; }
+
+  .op-audit-stage { padding: 28px 28px 26px; }
+  .op-audit-stage[hidden] { display: none; }
+
+  .op-audit-field { display: flex; flex-direction: column; gap: 8px; }
+  .op-audit-label { font-size: 10px; color: var(--op-navy); display: flex; align-items: center; gap: 8px; }
+  .op-audit-req { color: var(--op-orange); }
+  .op-audit-opt { color: var(--op-navy-soft); font-size: 9px; opacity: 0.7; letter-spacing: 0.2em; }
+
+  .op-audit-panel input[type="text"],
+  .op-audit-panel input[type="email"],
+  .op-audit-panel input[type="tel"],
+  .op-audit-panel input[type="url"],
+  .op-audit-panel textarea {
+    font-family: var(--op-font-body);
+    font-size: 15px;
+    color: var(--op-ink);
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 13px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+    -webkit-appearance: none; appearance: none;
+  }
+  .op-audit-panel textarea { resize: vertical; min-height: 84px; line-height: 1.55; }
+  .op-audit-panel input::placeholder, .op-audit-panel textarea::placeholder { color: var(--op-navy-soft); opacity: 0.55; }
+  .op-audit-panel input:focus, .op-audit-panel textarea:focus {
+    outline: none; border-color: var(--op-orange); box-shadow: 3px 3px 0 var(--op-orange);
+  }
+
+  .op-audit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  #audit-scan-form .op-audit-field { margin-bottom: 16px; }
+
+  .op-audit-submit {
+    font-family: var(--op-font-display);
+    font-weight: 800; font-size: 14px; letter-spacing: 0.16em;
+    background: var(--op-orange); color: var(--op-paper);
+    border: var(--op-border); border-radius: var(--op-radius);
+    padding: 14px 22px; cursor: pointer; width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-submit:hover { background: var(--op-orange-deep); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
+  .op-audit-submit:active { transform: translate(0, 0); box-shadow: 1px 1px 0 var(--op-ink); }
+  .op-audit-submit:disabled { cursor: progress; opacity: 0.85; }
+  .op-audit-submit.is-loading .op-audit-submit-arrow { animation: op-audit-spin 0.9s linear infinite; }
+  @keyframes op-audit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .op-audit-submit-arrow { font-size: 17px; }
+
+  .op-audit-fineprint { font-size: 9px; color: var(--op-navy-soft); margin: 12px 0 0; opacity: 0.78; text-align: center; }
+  .op-audit-error {
+    display: none; background: rgba(220, 38, 38, 0.08);
+    border-left: 3px solid var(--red); padding: 10px 14px; margin: 14px 0 0;
+    font-family: var(--op-font-body); font-size: 13.5px; color: var(--op-navy);
+  }
+
+  .op-audit-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* ---- loading ---- */
+  .op-audit-loading-head { font-size: 11px; color: var(--op-navy); display: flex; align-items: center; gap: 8px; margin: 4px 0 18px; }
+  .op-audit-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .op-audit-steps li { font-size: 10px; color: var(--op-navy-soft); opacity: 0.4; display: flex; align-items: center; gap: 10px; transition: opacity var(--op-dur-base) var(--op-ease), color var(--op-dur-base) var(--op-ease); }
+  .op-audit-steps li::before { content: '○'; color: var(--op-navy-soft); }
+  .op-audit-steps li.is-active { opacity: 1; color: var(--op-orange); }
+  .op-audit-steps li.is-active::before { content: '◐'; color: var(--op-orange); }
+  .op-audit-steps li.is-done { opacity: 1; color: var(--op-navy); }
+  .op-audit-steps li.is-done::before { content: '●'; color: var(--green); }
+
+  /* ---- teaser: score ---- */
+  .op-audit-scoreline { display: flex; align-items: center; gap: 22px; margin-bottom: 24px; }
+  .op-audit-gauge {
+    --gauge-pct: 0%; --gauge-color: var(--op-orange);
+    width: 96px; height: 96px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(var(--gauge-color) var(--gauge-pct), var(--op-rule-soft) 0);
+    display: flex; align-items: center; justify-content: center;
+    border: var(--op-border);
+  }
+  .op-audit-gauge-inner {
+    width: 74px; height: 74px; border-radius: 50%; background: var(--op-paper);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1;
+  }
+  .op-audit-gauge-num { font-family: var(--op-font-display); font-weight: 800; font-size: 30px; color: var(--op-ink); letter-spacing: var(--op-tracking-numeric); }
+  .op-audit-gauge-of { font-size: 9px; color: var(--op-navy-soft); margin-top: 2px; }
+  .op-audit-scoremeta { display: flex; flex-direction: column; gap: 6px; }
+  .op-audit-scoremeta-label { font-size: 9px; color: var(--op-navy-soft); }
+  .op-audit-grade { font-family: var(--op-font-display); font-weight: 800; font-size: 34px; color: var(--op-ink); line-height: 1; }
+  .op-audit-grade-note { font-size: 9px; color: var(--op-orange); }
+
+  .op-audit-cats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .op-audit-cat-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+  .op-audit-cat-label { font-family: var(--op-font-body); font-size: 12.5px; font-weight: 600; color: var(--op-navy); }
+  .op-audit-cat-score { font-family: var(--op-font-mono); font-size: 12px; font-weight: 700; }
+  .op-audit-cat-bar { height: 6px; background: var(--op-rule-soft); border-radius: 99px; overflow: hidden; }
+  .op-audit-cat-bar span { display: block; height: 100%; border-radius: 99px; transition: width var(--op-dur-slow) var(--op-ease); }
+
+  .op-audit-findings { border-top: 1px solid var(--op-rule); padding-top: 18px; margin-bottom: 22px; }
+  .op-audit-findings-head { font-size: 9px; color: var(--op-navy-soft); margin: 0 0 12px; }
+  .op-audit-findings ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .op-audit-finding { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; background: var(--op-paper); border: 1px solid var(--op-rule); border-left-width: 3px; border-radius: var(--op-radius-sm); }
+  .op-audit-finding--high { border-left-color: var(--red); }
+  .op-audit-finding--medium { border-left-color: var(--op-orange); }
+  .op-audit-finding-tag { font-size: 8.5px; color: var(--op-orange); }
+  .op-audit-finding-msg { font-family: var(--op-font-body); font-size: 13px; color: var(--op-navy); line-height: 1.45; }
+
+  /* ---- gate ---- */
+  .op-audit-gate { background: var(--op-navy); border-radius: var(--op-radius); padding: 22px 20px; margin: 4px -4px 0; }
+  .op-audit-gate-head { display: flex; align-items: center; gap: 8px; color: var(--op-cream); font-size: 10px; }
+  .op-audit-gate-head .op-mono { color: var(--op-cream); }
+  .op-audit-gate-sub { font-family: var(--op-font-body); font-size: 13px; color: rgba(244,238,226,0.72); margin: 10px 0 18px; line-height: 1.5; }
+  .op-audit-gate .op-audit-label { color: var(--op-cream); }
+  .op-audit-gate .op-audit-opt { color: rgba(244,238,226,0.6); }
+  .op-audit-gate input, .op-audit-gate textarea { background: var(--op-paper) !important; }
+  .op-audit-gate .op-audit-fineprint { color: rgba(244,238,226,0.6); }
+
+  /* ---- report ---- */
+  .op-audit-report-head { margin-bottom: 22px; }
+  .op-audit-report-eyebrow { font-family: var(--op-font-mono); font-weight: 700; letter-spacing: var(--op-tracking-mono); text-transform: uppercase; font-size: 9px; color: var(--op-orange); }
+  .op-audit-report-title { font-family: var(--op-font-display); font-weight: 800; font-size: clamp(22px, 3vw, 30px); letter-spacing: var(--op-tracking-display); color: var(--op-ink); margin: 12px 0 10px; text-wrap: balance; }
+  .op-audit-report-summary { font-family: var(--op-font-body); font-size: 14.5px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; }
+
+  .op-audit-recs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+  .op-audit-rec { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius-sm); padding: 16px 16px 15px; box-shadow: var(--op-shadow); }
+  .op-audit-rec-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 9px; }
+  .op-audit-rec-num { font-size: 10px; color: var(--op-navy-soft); }
+  .op-audit-rec-cat { font-size: 8.5px; padding: 3px 7px; border-radius: 99px; border: 1px solid currentColor; }
+  .op-audit-rec-cat--quick-win { color: var(--green); }
+  .op-audit-rec-cat--strategic { color: var(--op-orange); }
+  .op-audit-rec-meta { font-size: 8.5px; color: var(--op-navy-soft); margin-left: auto; }
+  .op-audit-rec-title { font-family: var(--op-font-display); font-weight: 800; font-size: 16px; color: var(--op-ink); margin: 0 0 7px; letter-spacing: -0.01em; }
+  .op-audit-rec-desc { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy); margin: 0 0 8px; }
+  .op-audit-rec-why { font-family: var(--op-font-body); font-size: 12.5px; line-height: 1.5; color: var(--op-navy-soft); margin: 0 0 8px; }
+  .op-audit-rec-why .op-mono { font-size: 8.5px; color: var(--op-orange); margin-right: 4px; }
+  .op-audit-rec-build { display: inline-block; font-size: 9px; color: var(--op-navy); border-bottom: 1.5px solid var(--op-orange); padding-bottom: 2px; text-decoration: none; transition: color var(--op-dur-hover) var(--op-ease); }
+  .op-audit-rec-build:hover { color: var(--op-orange); }
+
+  .op-audit-impact { display: flex; align-items: center; gap: 16px; background: var(--op-navy); border-radius: var(--op-radius); padding: 18px 20px; margin-bottom: 20px; }
+  .op-audit-impact-num { font-family: var(--op-font-display); font-weight: 800; font-size: 40px; color: var(--op-orange); line-height: 0.9; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; }
+  .op-audit-impact-unit { font-size: 13px; color: var(--op-cream); }
+  .op-audit-impact-text { font-family: var(--op-font-body); font-size: 13px; line-height: 1.5; color: rgba(244,238,226,0.8); margin: 0; }
+  .op-audit-impact-text strong { color: var(--op-cream); }
+
+  .op-audit-report-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+  .op-audit-book {
+    font-family: var(--op-font-display); font-weight: 800; font-size: 13px; letter-spacing: 0.14em;
+    background: var(--op-orange); color: var(--op-paper);
+    border: var(--op-border); border-radius: var(--op-radius);
+    padding: 13px 20px; text-decoration: none; box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-book:hover { background: var(--op-orange-deep); color: var(--op-paper); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
+  .op-audit-report-link { font-size: 10px; color: var(--op-navy); text-decoration: none; border-bottom: 1.5px solid var(--op-navy); padding-bottom: 3px; transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease); }
+  .op-audit-report-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
+
+  /* ============================ SHARED SECTION CHROME ============================ */
+  .op-audit-section-frame { max-width: var(--op-max-content); margin: 0 auto; padding: 0 var(--op-section-px); }
+  .op-audit-section-head { max-width: 720px; margin-bottom: 44px; }
+  .op-audit-section-head :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-audit-h2 { font-family: var(--op-font-display); font-weight: 800; font-size: clamp(26px, 3.6vw, 42px); line-height: 1.02; letter-spacing: var(--op-tracking-display); color: var(--op-ink); margin: 0 0 14px; text-wrap: balance; }
+  .op-audit-h2-light { color: var(--op-cream); }
+  .op-audit-section-sub { font-family: var(--op-font-body); font-size: 16px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; max-width: 620px; }
+
+  /* ---- proof ---- */
+  .op-audit-proof { background: var(--op-paper); padding: var(--op-section-py) 0; border-top: var(--op-border); border-bottom: var(--op-border); }
+  .op-audit-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (min-width: 800px) { .op-audit-stats { grid-template-columns: repeat(4, 1fr); } }
+  .op-audit-stat { background: var(--op-cream); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 22px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .op-audit-stat-num { font-family: var(--op-font-display); font-weight: 800; font-size: clamp(30px, 4vw, 44px); color: var(--op-orange); line-height: 1; letter-spacing: var(--op-tracking-numeric); }
+  .op-audit-stat-label { font-family: var(--op-font-body); font-size: 14px; font-weight: 600; color: var(--op-navy); }
+  .op-audit-stat-context { font-size: 9px; color: var(--op-navy-soft); }
+
+  /* ---- who ---- */
+  .op-audit-who { padding: var(--op-section-py) 0; }
+  .op-audit-who-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .op-audit-who-grid { grid-template-columns: repeat(2, 1fr); } }
+  .op-audit-who-card { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 24px 22px; transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease); }
+  .op-audit-who-card:hover { transform: translate(-2px, -3px); box-shadow: var(--op-shadow-md); }
+  .op-audit-who-num { font-size: 10px; color: var(--op-orange); }
+  .op-audit-who-label { font-family: var(--op-font-display); font-weight: 800; font-size: 18px; color: var(--op-ink); margin: 10px 0 8px; }
+  .op-audit-who-detail { font-family: var(--op-font-body); font-size: 14px; line-height: 1.55; color: var(--op-navy-soft); margin: 0; }
+
+  /* ---- process ---- */
+  .op-audit-process { background: var(--op-cream); padding: var(--op-section-py) 0; border-top: var(--op-border); }
+  .op-audit-steps-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .op-audit-steps-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .op-audit-steps-grid { grid-template-columns: repeat(4, 1fr); } }
+  .op-audit-phase { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 22px 20px; display: flex; flex-direction: column; }
+  .op-audit-phase-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .op-audit-phase-num { font-family: var(--op-font-display); font-weight: 800; font-size: 22px; color: var(--op-orange); }
+  .op-audit-phase-time { font-size: 8.5px; color: var(--op-navy-soft); border: 1px solid var(--op-rule); border-radius: 99px; padding: 4px 8px; }
+  .op-audit-phase-title { font-family: var(--op-font-display); font-weight: 800; font-size: 16px; color: var(--op-ink); margin: 0 0 8px; }
+  .op-audit-phase-body { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy-soft); margin: 0; }
+
+  /* ---- why free ---- */
+  .op-audit-whyfree { background: var(--op-navy); padding: var(--op-section-py) 0; }
+  .op-audit-whyfree :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-audit-whyfree-inner { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  @media (min-width: 900px) { .op-audit-whyfree-inner { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; } }
+  .op-audit-whyfree-body p { font-family: var(--op-font-body); font-size: 15.5px; line-height: 1.65; color: rgba(244,238,226,0.82); margin: 0 0 18px; }
+  .op-audit-whyfree-body :global(.op-cta) { margin-top: 6px; }
+
+  /* ---- faq ---- */
+  .op-audit-faq { padding: var(--op-section-py) 0; }
+  .op-audit-faq-frame { max-width: 860px; }
+  .op-audit-faq-list { display: flex; flex-direction: column; gap: 12px; }
+  .op-audit-faq-item { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); overflow: hidden; }
+  .op-audit-faq-item summary { list-style: none; cursor: pointer; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--op-font-display); font-weight: 700; font-size: 15.5px; color: var(--op-ink); }
+  .op-audit-faq-item summary::-webkit-details-marker { display: none; }
+  .op-audit-faq-plus { font-family: var(--op-font-display); font-weight: 800; font-size: 20px; color: var(--op-orange); flex-shrink: 0; transition: transform var(--op-dur-hover) var(--op-ease); }
+  .op-audit-faq-item[open] .op-audit-faq-plus { transform: rotate(45deg); }
+  .op-audit-faq-item p { font-family: var(--op-font-body); font-size: 14px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; padding: 0 20px 20px; }
+
+  /* ============================ RESPONSIVE ============================ */
+  @media (max-width: 700px) {
+    .op-audit-hero { padding: 96px 20px 64px; }
+    .op-audit-stage { padding: 22px 18px 20px; }
+    .op-audit-row { grid-template-columns: 1fr; gap: 14px; }
+    .op-audit-section-frame { padding: 0 20px; }
+    .op-audit-gate { margin-left: -2px; margin-right: -2px; }
+  }
+</style>

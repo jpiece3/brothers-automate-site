@@ -16,6 +16,7 @@ import MonoCTA from './operator/MonoCTA.astro';
       <a href="/resources" data-track="nav_click" data-track-label="Resources">Resources</a>
       <a href="/pricing" data-track="nav_click" data-track-label="Pricing">Pricing</a>
       <a href="/about" data-track="nav_click" data-track-label="About">About</a>
+      <a href="/free-ai-audit" class="op-nav-audit" data-track="nav_click" data-track-label="Free AI Audit">Free Audit</a>
     </nav>
 
     <div class="op-header-ctas">
@@ -56,6 +57,7 @@ import MonoCTA from './operator/MonoCTA.astro';
     <a href="/resources" data-track="nav_click" data-track-label="Resources">Resources</a>
     <a href="/pricing" data-track="nav_click" data-track-label="Pricing">Pricing</a>
     <a href="/about" data-track="nav_click" data-track-label="About">About</a>
+    <a href="/free-ai-audit" data-track="nav_click" data-track-label="Free AI Audit">Free AI Audit</a>
   </nav>
 </header>
 
@@ -96,7 +98,7 @@ import MonoCTA from './operator/MonoCTA.astro';
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 32px);
-    max-width: 680px;
+    max-width: 760px;
     z-index: 1000;
     background: rgba(251, 247, 238, 0.78);
     backdrop-filter: blur(20px) saturate(140%);
@@ -137,8 +139,8 @@ import MonoCTA from './operator/MonoCTA.astro';
   .desktop-nav {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-left: 26px;
+    gap: 16px;
+    margin-left: 20px;
     margin-right: auto;
   }
   .desktop-nav a {
@@ -150,10 +152,19 @@ import MonoCTA from './operator/MonoCTA.astro';
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     transition: color var(--op-dur-hover) var(--op-ease);
   }
   .desktop-nav a:hover {
     color: var(--op-orange);
+  }
+  /* Free Audit, accented lead-gen entry point in the nav */
+  .desktop-nav a.op-nav-audit {
+    color: var(--op-orange);
+    font-weight: 700;
+  }
+  .desktop-nav a.op-nav-audit:hover {
+    color: var(--op-orange-deep);
   }
 
   /* CTAs */
