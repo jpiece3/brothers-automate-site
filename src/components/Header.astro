@@ -223,16 +223,17 @@ import MonoCTA from './operator/MonoCTA.astro';
   .op-mobile-nav a:last-child { border-bottom: none; }
   .op-mobile-nav a:hover { color: var(--op-orange); }
 
-  /* Mobile responsive */
-  @media (max-width: 900px) {
-    .desktop-nav { display: none; }
+  /* Mobile / compact: hamburger menu. Must beat `.op-header-inner > * { display:flex }`
+     which otherwise keeps the desktop nav visible and overflowing the pill bar. */
+  @media (max-width: 1100px) {
+    .op-header-inner > .desktop-nav { display: none; }
     :global(.desktop-cta) { display: none !important; }
     :global(.mobile-cta) { display: inline-flex !important; }
     .op-menu-toggle { display: flex; }
     .op-header-inner { gap: 12px; padding: 8px 14px; height: 56px; }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
     .op-logo img { height: 32px; }
   }
   @media (max-width: 480px) {
