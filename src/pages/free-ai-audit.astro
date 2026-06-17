@@ -8,7 +8,9 @@ import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const PAGE_URL = `${SITE_URL}/free-ai-audit/`;
-const CAL_LINK = 'james-pinder/simple-automation-discovery';
+// Brendan's AI Wins discovery call — only used on this page. All other site CTAs stay on James's Cal.
+const CAL_LINK = 'brendan-pinder-dp3d5v/30min';
+const CAL_NAMESPACE = '30min';
 
 const phases = [
   {
@@ -128,9 +130,22 @@ const serviceSchema = {
           <div class="op-audit-intro">
             <EyebrowTag label="FREE AI AUDIT · FOR SERVICE & TECHNICAL BUSINESSES" />
             <h1 class="op-audit-h1" data-animate="fade-up">
-              Find the hours AI<br />
-              <span class="op-audit-h1-orange">should be doing for you.</span>
+              How many hours can AI<br />
+              <span class="op-audit-h1-orange">save YOU?</span>
             </h1>
+            <a
+              href="#"
+              class="op-audit-cal-cta op-mono"
+              data-cal-link={CAL_LINK}
+              data-cal-namespace={CAL_NAMESPACE}
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              data-track="cta_click"
+              data-track-location="audit-hero"
+              data-track-label="Find Your AI Wins"
+              data-animate="fade-up"
+            >
+              FIND YOUR AI WINS <span aria-hidden="true">→</span>
+            </a>
             <p class="op-audit-sub" data-animate="fade-up">
               Drop in your website and get an instant score, then a prioritized report of the
               5-7 automations that would save you the most time and capture the most leads.
@@ -276,7 +291,7 @@ const serviceSchema = {
                   href="#"
                   class="op-audit-book op-mono"
                   data-cal-link={CAL_LINK}
-                  data-cal-namespace="simple-automation-discovery"
+                  data-cal-namespace={CAL_NAMESPACE}
                   data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
                   data-track="cta_click"
                   data-track-location="audit-report"
@@ -375,12 +390,12 @@ const serviceSchema = {
             we do project builds and an embedded partnership, but there's never any pressure. The audit stands on its own.
           </p>
           <MonoCTA
-            label="Talk to the Brothers"
+            label="Find Your AI Wins"
             variant="orange"
             size="lg"
             calLink={CAL_LINK}
             trackLocation="audit-whyfree"
-            trackLabel="Talk to the Brothers"
+            trackLabel="Find Your AI Wins"
           />
         </div>
       </div>
@@ -522,6 +537,13 @@ const serviceSchema = {
         }
       }
 
+      function formatRecTags(r) {
+        var type = r.category === 'strategic' ? 'Strategic' : 'Quick Win';
+        var impact = r.impact || 'Medium';
+        var effort = r.effort || 'Medium';
+        return type + ', Impact ' + impact + ' · Effort ' + effort;
+      }
+
       // ---- render report ----
       function renderReport(report) {
         var h = document.getElementById('report-headline');
@@ -537,13 +559,12 @@ const serviceSchema = {
             var build = r.build
               ? '<a class="op-audit-rec-build op-mono" href="/projects/' + esc(r.build.slug) + '">' + esc(r.build.name) + ' →</a>'
               : '';
-            var cat = r.category === 'strategic' ? 'STRATEGIC' : 'QUICK WIN';
+            var tags = formatRecTags(r);
             return (
               '<div class="op-audit-rec">' +
               '<div class="op-audit-rec-head">' +
-              '<span class="op-mono op-audit-rec-num">' + String(i + 1).padStart(2, '0') + '</span>' +
-              '<span class="op-mono op-audit-rec-cat op-audit-rec-cat--' + (r.category || 'quick-win') + '">' + cat + '</span>' +
-              '<span class="op-mono op-audit-rec-meta">IMPACT ' + esc(r.impact) + ' · EFFORT ' + esc(r.effort) + '</span>' +
+              '<span class="op-audit-rec-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+              '<span class="op-audit-rec-tags op-audit-rec-cat--' + (r.category || 'quick-win') + '">' + esc(tags) + '</span>' +
               '</div>' +
               '<h3 class="op-audit-rec-title">' + esc(r.title) + '</h3>' +
               '<p class="op-audit-rec-desc">' + esc(r.description) + '</p>' +
@@ -663,6 +684,31 @@ const serviceSchema = {
       });
     })();
   </script>
+
+  <!-- Init Brendan's Cal.com namespace for popup booking on this page only -->
+  <script is:inline>
+    (function () {
+      function initBrendanCal() {
+        if (typeof Cal === 'undefined') return false;
+        Cal('init', '30min', { origin: 'https://app.cal.com' });
+        Cal.ns['30min']('ui', {
+          hideEventTypeDetails: false,
+          layout: 'month_view',
+          useSlotsViewOnSmallScreen: 'true',
+        });
+        return true;
+      }
+      if (!initBrendanCal()) {
+        var tries = 0;
+        var timer = setInterval(function () {
+          if (initBrendanCal() || ++tries > 50) clearInterval(timer);
+        }, 200);
+      }
+      ['pointerdown', 'touchstart', 'keydown'].forEach(function (evt) {
+        window.addEventListener(evt, initBrendanCal, { capture: true, passive: true, once: true });
+      });
+    })();
+  </script>
 </Layout>
 
 <style>
@@ -696,6 +742,33 @@ const serviceSchema = {
     text-wrap: balance;
   }
   .op-audit-h1-orange { color: var(--op-orange); }
+  .op-audit-cal-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: flex-start;
+    margin: 0 0 20px;
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 13px 20px;
+    text-decoration: none;
+    box-shadow: var(--op-shadow);
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-cal-cta:hover {
+    background: var(--op-orange-deep);
+    color: var(--op-paper);
+    transform: translate(-2px, -3px);
+    box-shadow: var(--op-shadow-lg);
+  }
   .op-audit-sub {
     font-family: var(--op-font-body);
     font-size: 16px;
@@ -855,12 +928,25 @@ const serviceSchema = {
 
   .op-audit-recs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
   .op-audit-rec { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius-sm); padding: 16px 16px 15px; box-shadow: var(--op-shadow); }
-  .op-audit-rec-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 9px; }
-  .op-audit-rec-num { font-size: 10px; color: var(--op-navy-soft); }
-  .op-audit-rec-cat { font-size: 8.5px; padding: 3px 7px; border-radius: 99px; border: 1px solid currentColor; }
+  .op-audit-rec-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .op-audit-rec-num {
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.04em;
+  }
+  .op-audit-rec-tags {
+    font-family: var(--op-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: normal;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid currentColor;
+  }
   .op-audit-rec-cat--quick-win { color: var(--green); }
   .op-audit-rec-cat--strategic { color: var(--op-orange); }
-  .op-audit-rec-meta { font-size: 8.5px; color: var(--op-navy-soft); margin-left: auto; }
   .op-audit-rec-title { font-family: var(--op-font-display); font-weight: 800; font-size: 16px; color: var(--op-ink); margin: 0 0 7px; letter-spacing: -0.01em; }
   .op-audit-rec-desc { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy); margin: 0 0 8px; }
   .op-audit-rec-why { font-family: var(--op-font-body); font-size: 12.5px; line-height: 1.5; color: var(--op-navy-soft); margin: 0 0 8px; }
@@ -875,14 +961,16 @@ const serviceSchema = {
   .op-audit-impact-text strong { color: var(--op-cream); }
 
   .op-audit-report-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
-  .op-audit-book {
+  .op-audit-book,
+  .op-audit-cal-cta {
     font-family: var(--op-font-display); font-weight: 800; font-size: 13px; letter-spacing: 0.14em;
     background: var(--op-orange); color: var(--op-paper);
     border: var(--op-border); border-radius: var(--op-radius);
     padding: 13px 20px; text-decoration: none; box-shadow: var(--op-shadow);
     transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
   }
-  .op-audit-book:hover { background: var(--op-orange-deep); color: var(--op-paper); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
+  .op-audit-book:hover,
+  .op-audit-cal-cta:hover { background: var(--op-orange-deep); color: var(--op-paper); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
   .op-audit-report-link { font-size: 10px; color: var(--op-navy); text-decoration: none; border-bottom: 1.5px solid var(--op-navy); padding-bottom: 3px; transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease); }
   .op-audit-report-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
 
