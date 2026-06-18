@@ -517,8 +517,10 @@ const serviceSchema = {
           cats.innerHTML = data.categories.map(function (c) {
             return (
               '<div class="op-audit-cat">' +
-              '<div class="op-audit-cat-top"><span class="op-audit-cat-label">' + esc(c.label) + '</span>' +
-              '<span class="op-audit-cat-score" style="color:' + bandColor(c.score) + '">' + c.score + '</span></div>' +
+              '<div class="op-audit-cat-top">' +
+              '<span class="op-audit-cat-label">' + esc(c.label) + '</span>' +
+              '<span class="op-audit-cat-score" style="color:' + bandColor(c.score) + '">' + c.score + '</span>' +
+              '</div>' +
               '<div class="op-audit-cat-bar"><span style="width:' + c.score + '%;background:' + bandColor(c.score) + '"></span></div>' +
               '</div>'
             );
@@ -530,8 +532,8 @@ const serviceSchema = {
           findings.innerHTML = data.teaser.map(function (f) {
             return (
               '<li class="op-audit-finding op-audit-finding--' + esc(f.severity) + '">' +
-              '<span class="op-audit-finding-tag op-mono">' + esc(f.label) + '</span>' +
-              '<span class="op-audit-finding-msg">' + esc(f.message) + '</span></li>'
+              '<p class="op-audit-finding-tag">' + esc(f.label) + '</p>' +
+              '<p class="op-audit-finding-msg">' + esc(f.message) + '</p></li>'
             );
           }).join('');
         }
@@ -557,7 +559,7 @@ const serviceSchema = {
         if (wrap) {
           wrap.innerHTML = (report.recommendations || []).map(function (r, i) {
             var build = r.build
-              ? '<a class="op-audit-rec-build op-mono" href="/projects/' + esc(r.build.slug) + '">' + esc(r.build.name) + ' →</a>'
+              ? '<a class="op-audit-rec-build" href="/projects/' + esc(r.build.slug) + '">' + esc(r.build.name) + ' →</a>'
               : '';
             var tags = formatRecTags(r);
             return (
@@ -568,7 +570,12 @@ const serviceSchema = {
               '</div>' +
               '<h3 class="op-audit-rec-title">' + esc(r.title) + '</h3>' +
               '<p class="op-audit-rec-desc">' + esc(r.description) + '</p>' +
-              (r.reasoning ? '<p class="op-audit-rec-why"><span class="op-mono">WHY</span> ' + esc(r.reasoning) + '</p>' : '') +
+              (r.reasoning
+                ? '<div class="op-audit-rec-why">' +
+                  '<span class="op-audit-rec-why-label">Why</span>' +
+                  '<p class="op-audit-rec-why-text">' + esc(r.reasoning) + '</p>' +
+                  '</div>'
+                : '') +
               build +
               '</div>'
             );
@@ -895,20 +902,74 @@ const serviceSchema = {
   .op-audit-grade-note { font-size: 9px; color: var(--op-orange); }
 
   .op-audit-cats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-  .op-audit-cat-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
-  .op-audit-cat-label { font-family: var(--op-font-body); font-size: 12.5px; font-weight: 600; color: var(--op-navy); }
-  .op-audit-cat-score { font-family: var(--op-font-mono); font-size: 12px; font-weight: 700; }
-  .op-audit-cat-bar { height: 6px; background: var(--op-rule-soft); border-radius: 99px; overflow: hidden; }
-  .op-audit-cat-bar span { display: block; height: 100%; border-radius: 99px; transition: width var(--op-dur-slow) var(--op-ease); }
+  /* :global() — category rows are injected via innerHTML (Astro scoped CSS won't reach them otherwise) */
+  .op-audit-cats :global(.op-audit-cat-top) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 5px;
+  }
+  .op-audit-cats :global(.op-audit-cat-label) {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--op-navy);
+    flex: 1;
+    min-width: 0;
+  }
+  .op-audit-cats :global(.op-audit-cat-score) {
+    font-family: var(--op-font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: normal;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .op-audit-cats :global(.op-audit-cat-bar) {
+    height: 6px;
+    background: var(--op-rule-soft);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .op-audit-cats :global(.op-audit-cat-bar span) {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    transition: width var(--op-dur-slow) var(--op-ease);
+  }
 
   .op-audit-findings { border-top: 1px solid var(--op-rule); padding-top: 18px; margin-bottom: 22px; }
   .op-audit-findings-head { font-size: 9px; color: var(--op-navy-soft); margin: 0 0 12px; }
   .op-audit-findings ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-  .op-audit-finding { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; background: var(--op-paper); border: 1px solid var(--op-rule); border-left-width: 3px; border-radius: var(--op-radius-sm); }
-  .op-audit-finding--high { border-left-color: var(--red); }
-  .op-audit-finding--medium { border-left-color: var(--op-orange); }
-  .op-audit-finding-tag { font-size: 8.5px; color: var(--op-orange); }
-  .op-audit-finding-msg { font-family: var(--op-font-body); font-size: 13px; color: var(--op-navy); line-height: 1.45; }
+  .op-audit-findings :global(.op-audit-finding) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    background: var(--op-paper);
+    border: 1px solid var(--op-rule);
+    border-left-width: 3px;
+    border-radius: var(--op-radius-sm);
+  }
+  .op-audit-findings :global(.op-audit-finding--high) { border-left-color: var(--red); }
+  .op-audit-findings :global(.op-audit-finding--medium) { border-left-color: var(--op-orange); }
+  .op-audit-findings :global(.op-audit-finding-tag) {
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--op-orange);
+    margin: 0;
+  }
+  .op-audit-findings :global(.op-audit-finding-msg) {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    color: var(--op-navy);
+    line-height: 1.45;
+    margin: 0;
+  }
 
   /* ---- gate ---- */
   .op-audit-gate { background: var(--op-navy); border-radius: var(--op-radius); padding: 22px 20px; margin: 4px -4px 0; }
@@ -927,16 +988,30 @@ const serviceSchema = {
   .op-audit-report-summary { font-family: var(--op-font-body); font-size: 14.5px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; }
 
   .op-audit-recs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
-  .op-audit-rec { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius-sm); padding: 16px 16px 15px; box-shadow: var(--op-shadow); }
-  .op-audit-rec-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 9px; }
-  .op-audit-rec-num {
+  /* :global() — recommendation cards are injected via innerHTML */
+  .op-audit-recs :global(.op-audit-rec) {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-sm);
+    padding: 16px 16px 15px;
+    box-shadow: var(--op-shadow);
+  }
+  .op-audit-recs :global(.op-audit-rec-head) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+  }
+  .op-audit-recs :global(.op-audit-rec-num) {
     font-family: var(--op-font-mono);
     font-size: 10px;
     font-weight: 700;
     color: var(--op-navy-soft);
     letter-spacing: 0.04em;
+    flex-shrink: 0;
   }
-  .op-audit-rec-tags {
+  .op-audit-recs :global(.op-audit-rec-tags) {
     font-family: var(--op-font-body);
     font-size: 11px;
     font-weight: 600;
@@ -945,14 +1020,58 @@ const serviceSchema = {
     border-radius: 99px;
     border: 1px solid currentColor;
   }
-  .op-audit-rec-cat--quick-win { color: var(--green); }
-  .op-audit-rec-cat--strategic { color: var(--op-orange); }
-  .op-audit-rec-title { font-family: var(--op-font-display); font-weight: 800; font-size: 16px; color: var(--op-ink); margin: 0 0 7px; letter-spacing: -0.01em; }
-  .op-audit-rec-desc { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy); margin: 0 0 8px; }
-  .op-audit-rec-why { font-family: var(--op-font-body); font-size: 12.5px; line-height: 1.5; color: var(--op-navy-soft); margin: 0 0 8px; }
-  .op-audit-rec-why .op-mono { font-size: 8.5px; color: var(--op-orange); margin-right: 4px; }
-  .op-audit-rec-build { display: inline-block; font-size: 9px; color: var(--op-navy); border-bottom: 1.5px solid var(--op-orange); padding-bottom: 2px; text-decoration: none; transition: color var(--op-dur-hover) var(--op-ease); }
-  .op-audit-rec-build:hover { color: var(--op-orange); }
+  .op-audit-recs :global(.op-audit-rec-cat--quick-win) { color: var(--green); }
+  .op-audit-recs :global(.op-audit-rec-cat--strategic) { color: var(--op-orange); }
+  .op-audit-recs :global(.op-audit-rec-title) {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--op-ink);
+    margin: 0 0 7px;
+    letter-spacing: -0.01em;
+  }
+  .op-audit-recs :global(.op-audit-rec-desc) {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--op-navy);
+    margin: 0 0 8px;
+  }
+  .op-audit-recs :global(.op-audit-rec-why) {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0 0 10px;
+  }
+  .op-audit-recs :global(.op-audit-rec-why-label) {
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--op-orange);
+  }
+  .op-audit-recs :global(.op-audit-rec-why-text) {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--op-navy-soft);
+    margin: 0;
+  }
+  .op-audit-recs :global(.op-audit-rec-build) {
+    display: inline-block;
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--op-navy);
+    border-bottom: 1.5px solid var(--op-orange);
+    padding-bottom: 2px;
+    text-decoration: none;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-recs :global(.op-audit-rec-build:hover) { color: var(--op-orange); }
 
   .op-audit-impact { display: flex; align-items: center; gap: 16px; background: var(--op-navy); border-radius: var(--op-radius); padding: 18px 20px; margin-bottom: 20px; }
   .op-audit-impact-num { font-family: var(--op-font-display); font-weight: 800; font-size: 40px; color: var(--op-orange); line-height: 0.9; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; }
