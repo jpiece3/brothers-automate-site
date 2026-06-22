@@ -102,48 +102,50 @@ export const projects: Project[] = [
     videoUrl: 'https://www.youtube.com/embed/0CiVsCRH-V8'
   },
   {
-    slug: 'ai-customer-qualifier',
-    name: 'AI Customer Qualifier',
-    tagline: 'Qualifies, routes, and logs every inbound request in under two minutes',
+    slug: 'ai-intake-agent',
+    name: 'AI Intake Agent',
+    tagline: 'Screens, answers, logs, and routes every intake application in under two minutes',
     icon: 'M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.879a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z',
-    description: 'Every inbound request checked against your rules, classified, answered, logged, and routed to the right person, end-to-end in under two minutes.',
+    description: 'Stop processing intake forms by hand. The agent screens every application against your live eligibility rules, replies, logs it, and routes it, in under two minutes.',
     ctaLabel: 'See How It Works',
     ctaType: 'video',
     meta: {
-      title: 'AI Customer Qualifier | Automated Intake & Routing | Brothers Automate',
-      description: 'An AI agent that checks every inbound request against your eligibility rules, classifies it, replies instantly, logs it, and routes it to the right team member.'
+      title: 'AI Intake Agent | Automated Application Screening | Brothers Automate',
+      description: 'An AI intake agent that screens every application against your live eligibility rules, sends a personalized reply, logs it, and routes it to the right person in under 2 minutes.'
     },
     problem: {
-      headline: 'Inbound requests pile up, get inconsistent answers, and slip through the cracks',
-      description: 'Every request gets handled a little differently depending on who picks it up first. Eligibility decisions live in someone\'s head instead of a consistent rule set, submissions get logged late or not at all, and requests sit unrouted while the person waits for a reply.',
+      headline: 'Processing intake by hand burns hours every week',
+      description: 'Every intake application takes about 30 minutes to screen, log, reply to, and route by hand. Any nonprofit, service business, or program running intake manually is burning hours every week on work that should never touch a person, and the manual version is slow, inconsistent, and hard to audit.',
       painPoints: [
-        'Every request is handled differently depending on who answers it first',
-        'Eligibility rules live in someone\'s head, not a consistent system',
-        'Submissions get logged late, incompletely, or never, so there\'s no audit trail',
-        'Requests sit unrouted while the requester waits and cools off'
+        'Every intake form eats around 30 minutes of manual screening, logging, and replying',
+        'Eligibility rules live in someone\'s head, so decisions vary by who reviews',
+        'Applicants wait for a response while their form sits in a queue',
+        'Records come out inconsistent, which makes reporting and audits painful'
       ]
     },
     solution: {
-      headline: 'An AI agent that runs intake end-to-end in under two minutes',
-      description: 'Every time a request comes in, the agent checks the details against your current qualification rules, classifies it, replies to the requester, logs the full submission, routes it to the right person, and notifies your team, all without anyone touching it.',
+      headline: 'An agent that runs the whole intake in under two minutes',
+      description: 'When a new application comes in, the agent reads your current eligibility criteria live from a Notion page, screens the applicant, replies to them, logs everything into Airtable, routes the case, and notifies your team, all without anyone touching it. Every submission, eligible or not, gets handled the exact same way.',
       features: [
-        { title: 'Rule-Based Qualification', description: 'Checks each request against your current eligibility rules, kept up to date in a simple internal doc you control.' },
-        { title: 'Clear Classification + Rationale', description: 'Sorts every request into eligible, ineligible, or needs-review, with the reasoning attached so decisions stay consistent.' },
-        { title: 'Instant Personalized Reply', description: 'The requester gets an immediate confirmation or referral message, not a reply hours later.' },
-        { title: 'Logged, Routed, Announced', description: 'A clean structured record gets logged, the case routes to the right team member, and staff get an internal summary with the result and assignment.' }
+        { title: 'Live Eligibility Rules', description: 'Reads your current criteria straight from a Notion page, so staff can update the rules anytime without touching the agent. Policy changes apply uniformly the moment they\'re made, no training lag.' },
+        { title: 'Structured Screening', description: 'Screens every applicant against the same rule set, every time, with a consistent rationale attached to the record so leadership gets clean reporting and easy audits.' },
+        { title: 'Instant Personalized Reply', description: 'Sends an immediate email confirming receipt and next steps, or a referral if they don\'t qualify, no matter when they apply.' },
+        { title: 'Logged Across Linked Records', description: 'Writes the full submission into Airtable across linked tables for the applicant, household, and submission status. Nothing gets re-keyed.' },
+        { title: 'Smart Case Routing', description: 'Routes each case to the right person based on aid type and complexity, so case managers open their inbox to a pre-screened, fully documented queue.' },
+        { title: 'Team Notified Internally', description: 'Messages the team with a full summary and the screening result, so everyone is on the same page the moment an application lands.' }
       ]
     },
     results: {
-      headline: 'Faster responses, consistent decisions, and a clean record for every submission.',
+      headline: 'Every submission handled the same way, in two minutes instead of thirty.',
       stats: [
-        { number: '<2 min', label: 'End To End', context: 'Intake to replied, logged, routed' },
-        { number: '3 buckets', label: 'Consistent Decisions', context: 'Eligible / ineligible / review' },
-        { number: '100%', label: 'Audit-Ready Record', context: 'Every submission, structured' }
+        { number: '<2 min', label: 'Per Application', context: 'vs. ~30 minutes by hand' },
+        { number: '13-18 hrs', label: 'Saved Per Month', context: 'At ~20 submissions a month' },
+        { number: '145-205', label: 'Hours Saved A Year', context: 'Work that should never touch a person' }
       ]
     },
     cta: {
-      headline: 'Stop hand-sorting inbound requests',
-      description: 'Let\'s build an intake agent that qualifies, answers, logs, and routes every request the moment it lands, so nothing waits and nothing slips.'
+      headline: 'Still processing intake by hand?',
+      description: 'If your team screens applications, checks eligibility, and routes cases manually, let\'s build an intake agent that does it in under two minutes, consistently and fully documented.'
     },
     videoUrl: 'https://www.youtube.com/embed/oxRFshb7-Dw'
   },
