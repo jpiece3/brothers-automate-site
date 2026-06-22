@@ -56,6 +56,190 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'ai-customer-service-chatbot',
+    name: 'AI Customer Service Chatbot',
+    tagline: 'An AI customer service chatbot — and the system behind it that turns conversations into decisions',
+    icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
+    description: 'Most businesses ask for a chatbot. What they need is the system behind it: every customer conversation captured, organized, and turned into decisions.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'video',
+    meta: {
+      title: 'AI Customer Service Chatbot for Business | Brothers Automate',
+      description: 'An AI customer service chatbot for business that answers customers 24/7 and captures every conversation into a system that turns questions into decisions.'
+    },
+    problem: {
+      headline: 'Most people who ask for a chatbot don\'t actually need one',
+      description: 'It usually surfaces through one question: how many customer inquiries do you get in a month? When the answer is "I\'m not sure," that\'s the real problem showing up. The chatbot was just the thing that was easy to ask for. Your business generates information every day through customer conversations, and most of it evaporates the moment the conversation ends.',
+      painPoints: [
+        'Customer conversations happen all day, then evaporate the moment they end',
+        'You can\'t answer "how many inquiries do you get a month?" because nobody\'s tracking it',
+        'A bot that answers questions and forgets them does nothing with what customers tell you',
+        'Phone and chat live scattered across people\'s memories instead of one system'
+      ]
+    },
+    solution: {
+      headline: 'A chatbot is the front door. The system behind it is the product.',
+      description: 'A bot that answers and forgets is just a front door. The opportunity is capturing what\'s already being thrown away and putting it to use. That\'s the difference between a chatbot and a system, and a system has three parts: inputs captured, data organized, and outputs that drive decisions.',
+      features: [
+        { title: 'Inputs Captured Automatically', description: 'Every chat is logged. Add a call recorder and customer conversations land in the same place, so phone and chat live in one system instead of scattered across memories.' },
+        { title: 'Data Organizes Itself', description: 'Nobody opens a spreadsheet. It segregates and logs on its own, so the information is actually usable instead of theoretically available.' },
+        { title: 'Outputs Drive Decisions', description: 'A dashboard goes out to marketing and finance on a schedule, so nobody has to remember to check anything.' },
+        { title: 'Insight That Triggers Action', description: 'If the data shows customers keep asking how to use a product, that insight routes straight to the team who can fix it: add it to the label or the website. One click, and the information becomes a real change.' }
+      ]
+    },
+    results: {
+      headline: 'Inputs captured, data organized, outputs that do something. That loop is the product.',
+      stats: [
+        { number: '24/7', label: 'Answers Customers', context: 'The front door never closes' },
+        { number: '1 place', label: 'Phone + Chat Logged', context: 'Not scattered across memories' },
+        { number: 'Auto', label: 'Dashboard To Your Team', context: 'Marketing + finance, on schedule' }
+      ]
+    },
+    cta: {
+      headline: 'Want a chatbot that actually does something?',
+      description: 'Let\'s build the system behind the front door: capture every conversation, organize it automatically, and turn what your customers tell you into decisions.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/0CiVsCRH-V8'
+  },
+  {
+    slug: 'ai-customer-qualifier',
+    name: 'AI Customer Qualifier',
+    tagline: 'Qualifies, routes, and logs every inbound request in under two minutes',
+    icon: 'M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.879a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z',
+    description: 'Every inbound request checked against your rules, classified, answered, logged, and routed to the right person, end-to-end in under two minutes.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'video',
+    meta: {
+      title: 'AI Customer Qualifier | Automated Intake & Routing | Brothers Automate',
+      description: 'An AI agent that checks every inbound request against your eligibility rules, classifies it, replies instantly, logs it, and routes it to the right team member.'
+    },
+    problem: {
+      headline: 'Inbound requests pile up, get inconsistent answers, and slip through the cracks',
+      description: 'Every request gets handled a little differently depending on who picks it up first. Eligibility decisions live in someone\'s head instead of a consistent rule set, submissions get logged late or not at all, and requests sit unrouted while the person waits for a reply.',
+      painPoints: [
+        'Every request is handled differently depending on who answers it first',
+        'Eligibility rules live in someone\'s head, not a consistent system',
+        'Submissions get logged late, incompletely, or never, so there\'s no audit trail',
+        'Requests sit unrouted while the requester waits and cools off'
+      ]
+    },
+    solution: {
+      headline: 'An AI agent that runs intake end-to-end in under two minutes',
+      description: 'Every time a request comes in, the agent checks the details against your current qualification rules, classifies it, replies to the requester, logs the full submission, routes it to the right person, and notifies your team, all without anyone touching it.',
+      features: [
+        { title: 'Rule-Based Qualification', description: 'Checks each request against your current eligibility rules, kept up to date in a simple internal doc you control.' },
+        { title: 'Clear Classification + Rationale', description: 'Sorts every request into eligible, ineligible, or needs-review, with the reasoning attached so decisions stay consistent.' },
+        { title: 'Instant Personalized Reply', description: 'The requester gets an immediate confirmation or referral message, not a reply hours later.' },
+        { title: 'Logged, Routed, Announced', description: 'A clean structured record gets logged, the case routes to the right team member, and staff get an internal summary with the result and assignment.' }
+      ]
+    },
+    results: {
+      headline: 'Faster responses, consistent decisions, and a clean record for every submission.',
+      stats: [
+        { number: '<2 min', label: 'End To End', context: 'Intake to replied, logged, routed' },
+        { number: '3 buckets', label: 'Consistent Decisions', context: 'Eligible / ineligible / review' },
+        { number: '100%', label: 'Audit-Ready Record', context: 'Every submission, structured' }
+      ]
+    },
+    cta: {
+      headline: 'Stop hand-sorting inbound requests',
+      description: 'Let\'s build an intake agent that qualifies, answers, logs, and routes every request the moment it lands, so nothing waits and nothing slips.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/oxRFshb7-Dw'
+  },
+  {
+    slug: 'ai-sop-knowledge-base',
+    name: 'AI SOP Knowledge Base',
+    tagline: 'Ask your company\'s SOPs a question, get an answer cited to the exact page',
+    icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
+    description: 'Upload your PDF SOPs once, then ask questions in plain English. Every answer is grounded in the docs and cited to the exact page.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'video',
+    meta: {
+      title: 'AI SOP Knowledge Base | Searchable Company Docs | Brothers Automate',
+      description: 'An AI knowledge base for your company\'s SOPs. Upload your PDFs, ask in plain English, and get answers grounded in the docs with clickable page-level citations.'
+    },
+    problem: {
+      headline: 'Your procedures are written down and still impossible to find',
+      description: 'The SOPs exist, but the answer is buried across dozens of PDFs nobody wants to skim. New hires interrupt senior staff for things already documented, and when a generic AI tool does answer, you can\'t tell whether it made something up.',
+      painPoints: [
+        'Answers are buried across dozens of PDF SOPs nobody wants to skim',
+        'New hires interrupt senior staff for things that are already documented',
+        'When a generic AI answers, you can\'t tell if it invented the answer',
+        'Procedures drift as people keep their own private copies'
+      ]
+    },
+    solution: {
+      headline: 'A searchable, cited knowledge base built on your real SOPs',
+      description: 'Upload your SOPs once and ask questions the way you\'d ask a colleague. The assistant answers using only the content of your documents, and every answer links back to the exact page so you\'re never guessing whether it\'s right.',
+      features: [
+        { title: 'Upload Once, Indexed Automatically', description: 'Each PDF is parsed page-by-page and embedded for semantic search. No manual tagging, no prompt engineering.' },
+        { title: 'Ask In Plain English', description: 'Natural-language questions get answered using only the content of your SOPs, not the open internet.' },
+        { title: 'Inline Page-Level Citations', description: 'Every answer includes clickable chips showing the exact document and page. Click one to open the PDF in-app, jumped to that page.' },
+        { title: 'Onboarding Accelerator', description: 'New team members self-serve answers about company process without interrupting senior staff. Your canonical PDFs stay the single source of truth.' }
+      ]
+    },
+    results: {
+      headline: 'Stop hunting through PDFs. Get cited answers in seconds.',
+      stats: [
+        { number: 'Seconds', label: 'To An Answer', context: 'vs. skimming dozens of docs' },
+        { number: 'Every', label: 'Answer Cited', context: 'Down to the document and page' },
+        { number: 'Self-serve', label: 'Onboarding', context: 'No senior-staff interruptions' }
+      ]
+    },
+    cta: {
+      headline: 'Turn your SOPs into answers',
+      description: 'Let\'s stand up a knowledge base on your real procedures, so anyone can ask a question and get a cited answer in seconds.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/TrID0Tz9CBs'
+  },
+  {
+    slug: 'ai-morning-brief',
+    name: 'AI Morning Brief',
+    tagline: 'Your calendar and inbox, summarized into one 30-second briefing every morning',
+    icon: 'M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z',
+    description: 'Every weekday at 7am, one clean email with today\'s calendar and your unread inbox, so you get oriented in a 30-second read.',
+    ctaLabel: 'See How It Works',
+    ctaType: 'video',
+    meta: {
+      title: 'AI Morning Brief | Daily Calendar & Email Summary | Brothers Automate',
+      description: 'An AI automation that emails you one clean morning brief every weekday: today\'s calendar and unread inbox in a 30-second read, plus on-demand triggers.'
+    },
+    problem: {
+      headline: 'You start every morning reconstructing your own day',
+      description: 'Your calendar lives in one app and your inbox in another, so there\'s no single view of what matters today. Important unread emails get buried before you\'ve had coffee, and you burn the first half hour just figuring out where to start.',
+      painPoints: [
+        'Calendar in one app, inbox in another, no single view of the day',
+        'Important unread emails get buried before you\'ve had your coffee',
+        'You burn the first 30 minutes just figuring out what matters today',
+        'On busy days things slip because nothing surfaced them'
+      ]
+    },
+    solution: {
+      headline: 'One briefing email, every weekday at 7am',
+      description: 'Every weekday morning, the automation pulls together your schedule and your inbox and delivers one clean briefing email you can read in 30 seconds. You can also trigger it on demand whenever you want a fresh read.',
+      features: [
+        { title: 'Today\'s Calendar At A Glance', description: 'Times, titles, locations, and attendees for the day, all in one place.' },
+        { title: 'Inbox Triaged', description: 'Unread emails with sender, subject, a quick preview, and any obvious action items pulled out.' },
+        { title: 'No Guessing', description: 'If there\'s nothing in a section, it says so clearly. No filler, no false alarms.' },
+        { title: 'On Demand Too', description: 'Ask for today\'s brief, check your calendar, see unread emails, or change the schedule, any time.' }
+      ]
+    },
+    results: {
+      headline: 'Get oriented in 30 seconds instead of 30 minutes.',
+      stats: [
+        { number: '30 sec', label: 'To Get Oriented', context: 'Calendar + inbox in one read' },
+        { number: '7am', label: 'Every Weekday', context: 'Waiting before you start' },
+        { number: '1 email', label: 'Not Five Apps', context: 'Schedule + inbox combined' }
+      ]
+    },
+    cta: {
+      headline: 'Start every day already oriented',
+      description: 'Let\'s set up a morning brief that pulls your calendar and inbox into one 30-second read, so you start the day knowing exactly what matters.'
+    },
+    videoUrl: 'https://www.youtube.com/embed/JCjSGw_QoK4'
+  },
+  {
     slug: 'inbound-ai-sdr',
     name: 'Inbound AI SDR',
     tagline: 'AI SDR for small business — qualifies inbound leads in under 60 seconds',
