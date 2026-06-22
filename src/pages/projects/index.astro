@@ -6,6 +6,7 @@ import CTA from '../../components/CTA.astro';
 import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
 import EyebrowTag from '../../components/operator/EyebrowTag.astro';
 import SpecStrip from '../../components/operator/SpecStrip.astro';
+import VideoFacade from '../../components/operator/VideoFacade.astro';
 import MonoCTA from '../../components/operator/MonoCTA.astro';
 import { getAllProjects, type Project } from '../../data/projects';
 
@@ -123,29 +124,35 @@ const breadcrumbSchema = {
         </div>
 
         <div class="op-flagship-grid" data-animate-stagger>
-          {featured.map((p, i) => (
-            <a href={`/projects/${p.slug}`} class="op-flagship-card">
+          {featured.map((p, i) => {
+            const videoId = p.videoUrl?.split('/embed/')[1]?.split('?')[0];
+            return (
+            <div class="op-flagship-card">
               <div class="op-flagship-card-header">
                 <span class="op-pulse-dot"></span>
                 <span class="op-mono">BUILD_{String(i + 1).padStart(2, '0')}</span>
               </div>
-              <div class="op-flagship-card-body">
-                <h3>{p.name}</h3>
-                <p class="op-flagship-card-tag">{p.tagline}</p>
-                <div class="op-flagship-card-stats">
-                  {p.results.stats.slice(0, 2).map((s) => (
-                    <div>
-                      <div class="op-flagship-card-stat-num">{s.number}</div>
-                      <div class="op-mono op-flagship-card-stat-label">{s.label}</div>
-                    </div>
-                  ))}
+              {videoId && <VideoFacade videoId={videoId} title={p.name} />}
+              <a href={`/projects/${p.slug}`} class="op-flagship-card-link">
+                <div class="op-flagship-card-body">
+                  <h3>{p.name}</h3>
+                  <p class="op-flagship-card-tag">{p.tagline}</p>
+                  <div class="op-flagship-card-stats">
+                    {p.results.stats.slice(0, 2).map((s) => (
+                      <div>
+                        <div class="op-flagship-card-stat-num">{s.number}</div>
+                        <div class="op-mono op-flagship-card-stat-label">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div class="op-flagship-card-foot op-mono">
-                SEE THE BUILD <span class="op-flagship-card-arrow">→</span>
-              </div>
-            </a>
-          ))}
+                <div class="op-flagship-card-foot op-mono">
+                  SEE THE BUILD <span class="op-flagship-card-arrow">→</span>
+                </div>
+              </a>
+            </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -366,6 +373,17 @@ const breadcrumbSchema = {
     box-shadow: var(--op-shadow-lg);
     color: inherit;
   }
+
+  /* Body + foot wrapped in a link so the card text still navigates,
+     while the video facade above plays inline on click. */
+  .op-flagship-card-link {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+  }
+  .op-flagship-card-link:hover { color: inherit; }
 
   .op-flagship-card-header,
   .op-case-card-header {
