@@ -18,14 +18,11 @@ function getProjectsBySlug(slugs: string[]): Project[] {
     .filter((p): p is Project => p !== undefined);
 }
 
-// The featured 6, same lineup as homepage
+// The 3 builds clients ask for most
 const featured = getProjectsBySlug([
+  'ai-intake-agent',
+  'ai-customer-service-chatbot',
   'quiz-funnels',
-  'cpq-agent',
-  'client-scan',
-  'onboarding-workflow',
-  'screenfast',
-  'inbound-ai-sdr',
 ]);
 
 // Case studies (carry-over)
@@ -78,7 +75,7 @@ const breadcrumbSchema = {
         <div class="op-projhero-util">
           <TopUtilityStrip
             left="BROTHERS_AUTOMATE / PROJECTS · ALL BUILDS"
-            right="06 FLAGSHIP · 10+ TOTAL · ALL LIVE"
+            right="03 FLAGSHIP · 10+ TOTAL · ALL LIVE"
             bordered
           />
         </div>
@@ -116,12 +113,12 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    {/* Flagship 6, same as homepage */}
+    {/* The 3 builds clients ask for most */}
     <section class="op-flagship op-grid-bg" id="flagship">
       <div class="op-flagship-frame">
         <div class="op-flagship-header" data-animate="fade-up">
-          <EyebrowTag label="FLAGSHIP BUILDS · 06 SYSTEMS" />
-          <h2 class="op-flagship-h2">The six builds clients ask for most.</h2>
+          <EyebrowTag label="FLAGSHIP BUILDS · 03 SYSTEMS" />
+          <h2 class="op-flagship-h2">The 3 builds clients ask for most.</h2>
           <p class="op-flagship-sub">Custom-built around your business. Each one shipped in weeks, not months. No template, no agency retainer.</p>
         </div>
 
