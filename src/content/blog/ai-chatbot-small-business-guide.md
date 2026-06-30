@@ -17,6 +17,8 @@ Looking for the done-for-you version instead of a comparison? Jump to our [AI ch
 
 ## What AI Chatbots Actually Do for Small Businesses
 
+**An AI chatbot for business answers customer questions, captures and qualifies leads, books appointments, and handles order-status requests, around the clock and in plain language. For most small businesses that covers 60–65% of daily customer interactions without a human touching them.**
+
 First, some quick definitions. A rule-based chatbot follows a decision tree. If customer says X, respond with Y. These have been around since the early 2010s and they're fine for basic FAQ pages.
 
 An AI chatbot uses natural language processing to understand *intent*. It reads what a customer actually means, not just the exact keywords they typed. It learns from conversations. It handles questions it's never seen before.
@@ -46,6 +48,8 @@ Two more use cases that save a surprising amount of time. Appointment-based busi
 E-commerce businesses get hammered with "where's my order?" messages. That's pure repetition, a chatbot pulls tracking data and delivers it instantly. One e-commerce micro-enterprise in Slovakia tracked [581 customer inquiries alongside 940 orders in a single month](https://www.mdpi.com/2078-2489/16/12/1078), with their chatbot handling the bulk of those support tickets automatically.
 
 ## Best AI Chatbot Platforms Compared
+
+**For most small businesses, the best AI chatbot is Tidio (easiest start, real free tier) or Chatbase (trains on your own docs) for under $30/month, with Intercom Fin the best pick for scaling support teams. The right choice depends on your main goal: support, lead capture, or booking.**
 
 We've tested, researched, and gotten feedback on the platforms that small businesses actually use. Here's what we found. If you want the full head-to-head, we ranked the [9 best AI chatbots for business](/blog/best-ai-chatbots-for-business) by the exact situation you're in.
 
@@ -86,6 +90,8 @@ We'll be honest, most small businesses don't need Intercom. But if you're scalin
 
 ## The Real ROI of AI Chatbots
 
+**AI chatbots cut overall customer-service costs 30–40%, drop the cost per conversation from about $6 to roughly $0.50 (a 92% reduction), and return 200–500% within six months for businesses that configure them properly.**
+
 Numbers talk. Here's what the data says about chatbot ROI for small businesses.
 
 ### Cost Savings by the Numbers
@@ -109,6 +115,8 @@ Chatbots also reduce cart abandonment in e-commerce. A visitor adds items, start
 And there's the $8-for-every-$1-invested stat from [Botpress](https://botpress.com/blog/key-chatbot-statistics) across sales and marketing chatbot deployments. Even if your experience lands at half that, $4 per $1, the investment pays for itself within the first month.
 
 ## How to Set Up an AI Chatbot in a Weekend
+
+**To set up an AI chatbot: (1) list the 10–15 questions you get asked most, (2) pick a no-code platform that matches your main goal, then (3) upload your content, set your escalation rules, and connect your CRM. Most platforms take 1–3 hours and need no developer.**
 
 You don't need a developer. You don't need two weeks. Here's the real process.
 
@@ -146,6 +154,8 @@ Test it yourself first. Then have two or three people who aren't familiar with y
 One mistake we see constantly: businesses launch the chatbot and never check the conversation logs. Set a weekly 15-minute review to read through conversations, spot where the bot struggled, and update its training data. [Chatbots drift over time](https://www.geekmetaverse.com/ai-mistakes-small-businesses-keep-making-in-2026-and-how-to-fix-them-fast/) if you don't maintain them.
 
 ## When a Chatbot Is Not the Answer
+
+**Skip the chatbot (or limit it to first-touch capture) for high-stakes B2B sales, emotionally sensitive conversations, compliance-heavy industries, and complex product configuration. In those cases a canned answer does more harm than good, so route to a human fast.**
 
 We'd be doing you a disservice if we pretended chatbots solve everything. They don't.
 
