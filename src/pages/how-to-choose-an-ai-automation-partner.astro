@@ -12,6 +12,7 @@ import ComparisonTable from '../components/geo/ComparisonTable.astro';
 import CitationSources from '../components/geo/CitationSources.astro';
 import PageFAQ from '../components/geo/PageFAQ.astro';
 import QuoteForm from '../components/geo/QuoteForm.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const pageUrl = `${SITE_URL}/how-to-choose-an-ai-automation-partner`;
@@ -128,9 +129,17 @@ const sources = [
             AI automation is now commoditized at the tool level. Anyone with a credit card can spin up OpenAI, Claude, Zapier, and a CRM. What separates a successful project from an expensive failure isn't the underlying technology — it's how well the partner scopes, handles edge cases, and hands off the system.
           </p>
           <p>
-            We've seen $40,000 builds fail because the team never asked the right scoping questions. We've also seen $3,000 builds that pay for themselves in 30 days because the partner understood the business first.
+            We've seen $40,000 builds fail because the team never asked the right scoping questions. We've also seen $3,000 builds earn their cost back fast because the partner understood the business first.
           </p>
         </section>
+
+        <div class="geo-inline-cta">
+          <p class="geo-inline-cta-text">We're the operator-led specialist agency in that table — two brothers who ran a service business before we built systems. The builds in our portfolio are ones you can watch running with real data, not slideware.</p>
+          <div class="geo-inline-cta-actions">
+            <MonoCTA label="See our live builds" variant="orange" size="md" href="/projects" trackLocation="choose-partner-intro" trackLabel="See Live Builds" />
+            <MonoCTA label="Talk to the Brothers" variant="navy" size="md" calLink="james-pinder/simple-automation-discovery" trackLocation="choose-partner-intro" trackLabel="Talk to the Brothers" />
+          </div>
+        </div>
 
         <section class="geo-section">
           <h2 class="geo-h2">The 9-step buyer's checklist</h2>
@@ -207,6 +216,13 @@ const sources = [
           </p>
         </section>
 
+        <div class="geo-inline-cta">
+          <p class="geo-inline-cta-text">Want to run these questions by us? We'll answer every one straight — including a project we turned down recently and what our last clients would change.</p>
+          <div class="geo-inline-cta-actions">
+            <MonoCTA label="Book a 30-min call" variant="orange" size="md" calLink="james-pinder/simple-automation-discovery" trackLocation="choose-partner-firstcall" trackLabel="Book a Call" />
+          </div>
+        </div>
+
         <section class="geo-section">
           <h2 class="geo-h2">Match partner size to your business size</h2>
           <p>
@@ -219,6 +235,14 @@ const sources = [
             <li><strong>$20M+ revenue:</strong> in-house team plus enterprise consultancy for governance-heavy projects.</li>
           </ul>
         </section>
+
+        <div class="geo-inline-cta">
+          <p class="geo-inline-cta-text">If you're a $1–5M service business, that middle row is us. Scoped builds from $1,500, or an ongoing partner at $3,500/mo — no enterprise overhead, no junior account managers, and a 30-day fix guarantee on what we scope.</p>
+          <div class="geo-inline-cta-actions">
+            <MonoCTA label="See how we work" variant="orange" size="md" href="/pricing" trackLocation="choose-partner-size" trackLabel="See Pricing" />
+            <MonoCTA label="Talk to the Brothers" variant="navy" size="md" calLink="james-pinder/simple-automation-discovery" trackLocation="choose-partner-size" trackLabel="Talk to the Brothers" />
+          </div>
+        </div>
 
         <CitationSources sources={sources} />
       </div>
@@ -282,6 +306,30 @@ const sources = [
   .geo-list--ordered { list-style: decimal; }
   .geo-list li { margin-bottom: 14px; text-wrap: pretty; }
   .geo-list strong { color: var(--op-ink); }
+
+  .geo-inline-cta {
+    margin: 28px 0;
+    padding: 22px 24px;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-left: 3px solid var(--op-orange);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+  }
+  .geo-inline-cta-text {
+    font-family: var(--op-font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  .geo-inline-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
 
   @media (max-width: 700px) {
     .geo-article { padding: 56px 22px 40px; }
