@@ -39,7 +39,7 @@ const howToSchema = {
     { "@type": "HowToStep", "name": "Define the outcome, not the technology", "text": "Write down what business outcome you want — hours saved, leads recovered, customers responded to. Not 'I want an AI.' Without this, every vendor sounds the same." },
     { "@type": "HowToStep", "name": "Check for operator background", "text": "Has the partner ever run a real business? Have they handed off systems before? AI engineers without business experience often build technically correct systems that don't fit how you actually work." },
     { "@type": "HowToStep", "name": "Ask for a fixed-scope quote", "text": "Avoid hourly billing for automation projects. A serious partner can scope and quote in fixed terms. Hourly is fine for tuning, not for the initial build." },
-    { "@type": "HowToStep", "name": "Demand a running example", "text": "Ask to see one live deployment with real data. Slide decks and case studies are easy to fake. A working system you can poke at is not." },
+    { "@type": "HowToStep", "name": "See proof of real work", "text": "Ask to see a real build in action — a walkthrough or demo of a system they've actually shipped, not just a slide deck. Anyone can describe a project; far fewer can show you one working." },
     { "@type": "HowToStep", "name": "Understand the handoff", "text": "What do you receive at the end? A walkthrough call, written documentation, admin access, recovery procedures. If 'just trust us' is the answer, walk away." },
     { "@type": "HowToStep", "name": "Get monthly running-cost numbers", "text": "Demand a line-item estimate of monthly API costs, integration fees, and any platform fees. Surprises here are the most common complaint about agency builds." },
     { "@type": "HowToStep", "name": "Confirm a fix guarantee", "text": "Reputable partners offer 30–60 day fix guarantees on shipped scope. Read the conditions. 'Bug-free' guarantees are red flags; 'we fix what we scoped' guarantees are honest." },
@@ -51,7 +51,7 @@ const howToSchema = {
 const redFlagsRows: (string | number)[][] = [
   ['"We use proprietary AI models"', 'Marketing language, not a real advantage', 'Ask what they actually run under the hood'],
   ['Hourly billing for the build', 'Open-ended cost, no incentive to ship fast', 'Insist on a fixed-scope quote'],
-  ['No live demos, only case studies', 'You can\'t verify it actually works', 'Walk away or get a 1-call demo'],
+  ['Can\'t show any real build, only slides', 'You can\'t verify they\'ve actually shipped', 'Ask for a walkthrough or demo of real work'],
   ['"We can\'t share running costs upfront"', 'You\'ll be surprised by API bills', 'Get a written monthly estimate'],
   ['Vague handoff plan', 'You\'ll be locked in for tuning forever', 'Require docs + admin access at delivery'],
   ['Promises "100% AI, no humans needed"', 'Edge cases will burn you', 'Insist on human checkpoints for high-stakes outputs'],
@@ -66,7 +66,7 @@ const partnerTypeRows: (string | number)[][] = [
 ];
 
 const faqs = [
-  { question: 'What\'s the most important question to ask an AI automation partner?', answer: '"Can I see one live deployment with real data?" Everything else — process, pricing, credentials — matters less than whether they\'ve actually shipped something that runs in production. If the answer is "not yet" or "client confidentiality" without a workaround, that\'s a flag.' },
+  { question: 'What\'s the most important question to ask an AI automation partner?', answer: '"Can you show me a real build you\'ve shipped?" Everything else — process, pricing, credentials — matters less than whether they\'ve actually put working systems into the world. A walkthrough or demo of real work beats any slide deck. If they can\'t show you anything, that\'s a flag.' },
   { question: 'How do I know if a partner is technically capable?', answer: 'Three signals: they can explain how their system handles failure (what happens when the AI gets it wrong?), they tell you what they will not automate (good partners say no), and they give you a fixed-scope quote without flinching. Capability shows up in confidence, not jargon.' },
   { question: 'Is a freelancer cheaper than an agency for AI automation?', answer: 'Often on paper, rarely in practice. A freelancer is great for a single, well-defined automation. The risk is the handoff: what happens 4 months later when something breaks and they\'re unavailable? Agencies cost more but absorb that risk through team continuity and documentation.' },
   { question: 'What should I avoid in an AI automation contract?', answer: 'Open-ended hourly billing, vague scope ("we\'ll figure it out"), no documentation deliverable, no fix guarantee, and IP clauses that lock you out of your own automations. A good contract names exactly what you get and what happens if it breaks.' },
@@ -111,7 +111,7 @@ const sources = [
         </header>
 
         <DirectAnswer>
-          Pick the AI automation partner who can show you a <strong>live working deployment</strong>, gives you a <strong>fixed-scope quote</strong> (not hourly), tells you the <strong>monthly running cost in writing</strong>, and offers a <strong>30-day fix guarantee</strong>. Match the size of the partner to your size: solo freelancer for one-off needs, specialist agency for ongoing builds, enterprise consultancy only if you're past $10M in revenue.
+          Pick the AI automation partner who can <strong>show you a real build they've shipped</strong>, gives you a <strong>fixed-scope quote</strong> (not hourly), tells you the <strong>monthly running cost in writing</strong>, and offers a <strong>30-day fix guarantee</strong>. Match the size of the partner to your size: solo freelancer for one-off needs, specialist agency for ongoing builds, enterprise consultancy only if you're past $10M in revenue.
         </DirectAnswer>
 
         <LastUpdated date={dateModified} />
@@ -134,9 +134,9 @@ const sources = [
         </section>
 
         <div class="geo-inline-cta">
-          <p class="geo-inline-cta-text">We're the operator-led specialist agency in that table — two brothers who ran a service business before we built systems. The builds in our portfolio are ones you can watch running with real data, not slideware.</p>
+          <p class="geo-inline-cta-text">We're the operator-led specialist agency in that table — two brothers who ran a service business before we built systems. Every build in our portfolio comes with a short walkthrough demo, so you can see how we work before you ever book a call.</p>
           <div class="geo-inline-cta-actions">
-            <MonoCTA label="See our live builds" variant="orange" size="md" href="/projects" trackLocation="choose-partner-intro" trackLabel="See Live Builds" />
+            <MonoCTA label="See our builds" variant="orange" size="md" href="/projects" trackLocation="choose-partner-intro" trackLabel="See Builds" />
             <MonoCTA label="Talk to the Brothers" variant="navy" size="md" calLink="james-pinder/simple-automation-discovery" trackLocation="choose-partner-intro" trackLabel="Talk to the Brothers" />
           </div>
         </div>
@@ -158,8 +158,8 @@ const sources = [
               Avoid hourly billing for the initial build. A serious partner can scope and quote in fixed terms after a 30–60 minute call. Hourly is fine for ongoing tuning. Hourly for the initial build means open-ended cost and no incentive to ship fast.
             </li>
             <li>
-              <strong>Demand a live working example.</strong>
-              Ask to see one running deployment with real data — not a screenshot, not a case study. A partner who can't show you something live either hasn't shipped recently or is hiding something.
+              <strong>Ask to see a real build in action.</strong>
+              Ask for a walkthrough or demo of a system they've actually shipped — not just a screenshot or a slide. A partner who can't show you anything they've built either hasn't shipped recently or is hiding something.
             </li>
             <li>
               <strong>Understand the handoff.</strong>
@@ -203,7 +203,7 @@ const sources = [
             We've been on both sides of this call. Here's a tight set of questions that surface the answers you need within 30 minutes:
           </p>
           <ul class="geo-list">
-            <li>Can you walk me through one live deployment, screen-shared, right now?</li>
+            <li>Can you show me a real build you've shipped and walk me through how it works?</li>
             <li>What's a project you turned down recently, and why?</li>
             <li>If our automation breaks at 2am on a Saturday, what happens?</li>
             <li>What's the monthly running cost for a typical lead follow-up build at our volume?</li>
