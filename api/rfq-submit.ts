@@ -16,8 +16,9 @@ interface VercelResponse extends ServerResponse {
 const RFQ_WEBHOOK_URL = process.env.RFQ_WEBHOOK_URL
   || 'https://api.gumloop.com/api/v1/start_pipeline?user_id=hECDCz0xLeYL0xTqi3S7bhbTPlM2&saved_item_id=gWAAn7tZrt5jjGjRWVLZu8';
 
+// Secret lives in Vercel env only — never commit it (this repo is public).
 const RFQ_WEBHOOK_AUTH = process.env.RFQ_WEBHOOK_AUTH
-  || 'Bearer 14fc1dec6b58454e8c528db04f4e744d';
+  || (process.env.GUMLOOP_API_KEY ? `Bearer ${process.env.GUMLOOP_API_KEY}` : '');
 
 function clean(value: unknown, max = 4000): string {
   if (typeof value !== 'string') return '';

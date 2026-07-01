@@ -13,9 +13,10 @@ interface VercelResponse extends ServerResponse {
 
 const GUMLOOP_USER_ID = 'hECDCz0xLeYL0xTqi3S7bhbTPlM2';
 const GUMLOOP_SAVED_ITEM_ID = 'mdFhBuc3fUEdd6ifQskQc5';
-// API key is now sent server-to-server via the Authorization header,
-// per Gumloop's webhook docs. Browser never sees it.
-const GUMLOOP_API_KEY = process.env.GUMLOOP_API_KEY || '14fc1dec6b58454e8c528db04f4e744d';
+// API key is sent server-to-server via the Authorization header, per
+// Gumloop's webhook docs. Secret lives in Vercel env only — never commit
+// it (this repo is public).
+const GUMLOOP_API_KEY = process.env.GUMLOOP_API_KEY || '';
 
 const GUMLOOP_URL = `https://api.gumloop.com/api/v1/start_pipeline?user_id=${GUMLOOP_USER_ID}&saved_item_id=${GUMLOOP_SAVED_ITEM_ID}`;
 
@@ -72,6 +73,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     source,
     submitted_at: new Date().toISOString(),
   };
+
+  if (!GUMLOOP_API_KEY) {
+    console.error('curious-submit: GUMLOOP_API_KEY is not configured', { email: payload.email });
+    res.status(502).json({ error: 'Upstream pipeline error.' });
+    return;
+  }
 
   try {
     const gumloopRes = await fetch(GUMLOOP_URL, {

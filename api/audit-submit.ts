@@ -24,7 +24,9 @@ const OPENAI_MODEL = process.env.OPENAI_AUDIT_MODEL || 'gpt-4o-mini';
 // Gumloop webhook for audit leads. Falls back to logging so the form stays
 // functional before the pipeline is wired up. Mirrors api/rfq-submit.ts.
 const AUDIT_WEBHOOK_URL = process.env.AUDIT_WEBHOOK_URL || '';
-const AUDIT_WEBHOOK_AUTH = process.env.AUDIT_WEBHOOK_AUTH || 'Bearer 14fc1dec6b58454e8c528db04f4e744d';
+// Secret lives in Vercel env only — never commit it (this repo is public).
+const AUDIT_WEBHOOK_AUTH = process.env.AUDIT_WEBHOOK_AUTH
+  || (process.env.GUMLOOP_API_KEY ? `Bearer ${process.env.GUMLOOP_API_KEY}` : '');
 
 // Audit leads live in the dedicated Brothers Automate Supabase project
 // (ghoomqpsgdtvffielnaq), separate from the legacy client-intel project.
@@ -191,7 +193,7 @@ function ruleBasedReport(signals: any, painPoint: string, domain: string): Audit
 async function openAiReport(signals: any, painPoint: string, business: string, domain: string): Promise<AuditReport | null> {
   if (!OPENAI_API_KEY) return null;
 
-  const system = `You are a senior automation consultant at Brothers Automate, a firm that builds AI systems for service businesses doing $1-15M in revenue. You analyze a website audit and a stated pain point, then recommend 5-7 specific, high-leverage AI/automation opportunities. Every recommendation MUST map to one of these Brothers Automate builds (use the exact slug):\n${BUILDS.map((b) => `- ${b.name} (slug: ${b.slug}): ${b.summary}`).join('\n')}\n\nBe concrete and grounded in the audit signals. No fluff. Prioritize quick wins first. Return ONLY valid JSON (no markdown, no code fences) matching exactly:\n{\n  "headline": "string (<=60 chars)",\n  "executiveSummary": "string (2-3 sentences)",\n  "estimatedHoursPerWeek": number,\n  "recommendations": [\n    {\n      "title": "string",\n      "category": "quick-win" | "strategic",\n      "impact": "High" | "Medium" | "Low",\n      "effort": "Low" | "Medium" | "High",\n      "description": "string (1-2 sentences, what it does)",\n      "buildSlug": "one of the slugs above",\n      "reasoning": "string (tie it to a specific audit signal or the pain point)"\n    }\n  ]\n}`;
+  const system = `You are a senior automation consultant at Brothers Automate, a firm that builds AI systems for service businesses doing $1-5M in revenue. You analyze a website audit and a stated pain point, then recommend 5-7 specific, high-impact AI/automation opportunities. Every recommendation MUST map to one of these Brothers Automate builds (use the exact slug):\n${BUILDS.map((b) => `- ${b.name} (slug: ${b.slug}): ${b.summary}`).join('\n')}\n\nBe concrete and grounded in the audit signals. No fluff. Prioritize quick wins first. Return ONLY valid JSON (no markdown, no code fences) matching exactly:\n{\n  "headline": "string (<=60 chars)",\n  "executiveSummary": "string (2-3 sentences)",\n  "estimatedHoursPerWeek": number,\n  "recommendations": [\n    {\n      "title": "string",\n      "category": "quick-win" | "strategic",\n      "impact": "High" | "Medium" | "Low",\n      "effort": "Low" | "Medium" | "High",\n      "description": "string (1-2 sentences, what it does)",\n      "buildSlug": "one of the slugs above",\n      "reasoning": "string (tie it to a specific audit signal or the pain point)"\n    }\n  ]\n}`;
 
   const user = `WEBSITE: ${domain}\nBUSINESS: ${business || 'unknown'}\nSTATED PAIN POINT: ${painPoint || '(none provided)'}\n\nAUDIT SIGNALS (JSON):\n${JSON.stringify(signals).slice(0, 6000)}`;
 
