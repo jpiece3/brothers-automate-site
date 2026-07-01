@@ -90,7 +90,7 @@ At $500/month, you're paying for things like custom voice cloning, HIPAA complia
 
 ## The 5 things AI receptionists do well (and 2 they don't)
 
-After setting these up for around 40 clients, here's what consistently works:
+After setting these up, here's what consistently works:
 
 1. **Answering 24/7**, Every single time. The phone never goes to voicemail.
 2. **Appointment booking**, If your calendar is clean, this works shockingly well.
