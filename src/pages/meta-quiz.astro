@@ -495,9 +495,6 @@ const SITE_URL = 'https://brothersautomate.com';
       renderQuiz();
     }
 
-    var SUPABASE_URL = 'https://nnxbgderdyjanzwgabxl.supabase.co';
-    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGJnZGVyZHlqYW56d2dhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxODA3MzgsImV4cCI6MjA4NDc1NjczOH0.jpjZ_gH1-2GZgyhXPRzPrZzWWnJtAVgU4yui4KM6wZ8';
-
     function setSubmitError(msg) {
       quizState.submitError = msg || '';
       var errEl = document.getElementById('mq-error');
@@ -548,10 +545,12 @@ const SITE_URL = 'https://brothersautomate.com';
       var labelEl = submitBtn.querySelector('.op-mq-btn-label');
       if (labelEl) labelEl.textContent = 'SENDING…';
 
-      // 1. Fire Gumloop via the same-origin proxy. The proxy forwards to
-      // Gumloop server-side using the Authorization Bearer header so we
-      // dodge the CORS preflight that was eating the body.
-      var gumloopBody = JSON.stringify({
+      // Fire the same-origin proxy. It forwards to Gumloop server-side
+      // (dodging the CORS preflight that was eating the body) and also
+      // logs the lead + per-question answers to Supabase server-side,
+      // where failures land in Vercel logs instead of vanishing in the
+      // visitor's console.
+      var submitBody = JSON.stringify({
         name: name,
         email: email,
         quiz_score: String(pct),
@@ -561,63 +560,16 @@ const SITE_URL = 'https://brothersautomate.com';
         answers: JSON.stringify(answersArray)
       });
 
-      var gumloopPromise = fetch('/api/quiz-submit', {
+      fetch('/api/quiz-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: gumloopBody
+        body: submitBody
       }).then(function(res) {
         if (!res.ok) throw new Error('Proxy returned ' + res.status);
         return res.json();
       }).catch(function(e) {
         console.log('Quiz submit error:', e);
-      });
-
-      // 2. Save lead to Supabase (preserved). Same-origin would be ideal,
-      // but Supabase REST is fine cross-origin (it sends proper CORS
-      // headers, unlike Gumloop).
-      var supabaseHeaders = {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-        'Prefer': 'return=representation'
-      };
-      var supabasePromise = fetch(SUPABASE_URL + '/rest/v1/meta_quiz_leads', {
-        method: 'POST',
-        headers: supabaseHeaders,
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          quiz_score: pct,
-          quiz_result: quizState.result,
-          quiz_segment: quizSegment,
-          recommended_automation: rec.title
-        })
-      }).then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (data && data[0] && data[0].id) {
-            var leadId = data[0].id;
-            var responses = answersArray.map(function(a, i) {
-              return {
-                lead_id: leadId,
-                question_index: i,
-                question_text: a.question,
-                answer_text: a.answer,
-                answer_value: a.value
-              };
-            });
-            return fetch(SUPABASE_URL + '/rest/v1/meta_quiz_responses', {
-              method: 'POST',
-              headers: supabaseHeaders,
-              body: JSON.stringify(responses)
-            });
-          }
-        }).catch(function(e) {
-          console.log('Supabase write error:', e);
-        });
-
-      // Wait for the Gumloop call (the most important one); we don't
-      // block on Supabase since it's a logging-only side effect.
-      Promise.all([gumloopPromise, supabasePromise]).finally(function() {
+      }).finally(function() {
         quizState.submitting = false;
         quizState.screen = 'results';
         renderQuiz();

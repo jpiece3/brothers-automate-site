@@ -666,7 +666,7 @@ export const services: Record<string, ServiceData> = {
     },
 
     relatedProjects: [
-      { slug: 'google-review-response', name: 'Google Review Response', description: 'AI-powered review monitoring and response that keeps your Google reputation strong around the clock.' },
+      { slug: 'google-review-response', name: 'Google Review Response', description: 'AI review monitoring and response that keeps your Google reputation strong around the clock.' },
     ],
 
     relatedIndustries: [
@@ -792,7 +792,7 @@ export const services: Record<string, ServiceData> = {
 
     relatedProjects: [
       { slug: 'signal-engine', name: 'Signal Engine', description: 'See how Signal Engine scores and ranks prospect lists using a 4-tier waterfall that checks websites, news, job postings, and funding data.' },
-      { slug: 'brand-research', name: 'Brand Research', description: 'AI-powered competitor analysis and market intelligence delivered in minutes instead of weeks.' },
+      { slug: 'brand-research', name: 'Brand Research', description: 'AI competitor analysis and market intelligence delivered in minutes instead of weeks.' },
     ],
 
     relatedIndustries: [

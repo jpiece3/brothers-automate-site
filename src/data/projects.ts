@@ -337,7 +337,7 @@ export const projects: Project[] = [
   {
     slug: 'equipment-identifier',
     name: 'AI Equipment Cataloger',
-    tagline: 'AI-powered equipment cataloging from photos',
+    tagline: 'AI equipment cataloging from photos',
     icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
     description: 'Auction company: AI identifies heavy equipment from photos in seconds. Lot titles that used to take minutes per item, done in a batch, instantly.',
     ctaLabel: 'Try It Live',
@@ -428,13 +428,13 @@ export const projects: Project[] = [
   {
     slug: 'brand-research',
     name: 'AI Brand Researcher',
-    tagline: 'AI-powered audience and competitor intelligence',
+    tagline: 'AI audience and competitor intelligence',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
     description: 'Agency: completed full brand research, competitor analysis, and positioning strategy in 10 minutes instead of 4 weeks.',
     ctaLabel: 'Try It Live',
     ctaType: 'product-link',
     meta: {
-      title: 'Brand Research | AI-Powered Market Intelligence | Brothers Automate',
+      title: 'Brand Research | AI Market Intelligence | Brothers Automate',
       description: 'Get deep audience insights, competitor analysis, and positioning strategy powered by AI. In minutes, not months.'
     },
     problem: {
@@ -520,7 +520,7 @@ export const projects: Project[] = [
   {
     slug: 'screenfast',
     name: 'AI Resume Screener',
-    tagline: 'AI-powered resume screening and candidate ranking',
+    tagline: 'AI resume screening and candidate ranking',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
     description: 'YMCA: reduced resume screening time by 85% while improving candidate quality for seasonal hiring.',
     ctaLabel: 'Try It Live',
@@ -566,7 +566,7 @@ export const projects: Project[] = [
   {
     slug: 'signal-engine',
     name: 'AI Prospect Scorer',
-    tagline: 'AI-powered prospect scoring and outreach',
+    tagline: 'AI prospect scoring and outreach',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
     description: 'B2B sales: upload your ideal customer profile and a company list. Get back ranked prospects with outreach angles, scored in minutes, not weeks.',
     ctaLabel: 'Try It Live',
@@ -750,7 +750,7 @@ export const projects: Project[] = [
   {
     slug: 'app-validator',
     name: 'AI App Idea Validator',
-    tagline: 'AI-powered app idea validation with live market data',
+    tagline: 'AI app idea validation with live market data',
     icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
     description: 'Founders: validate any app idea with live keyword data, competitor analysis, and an AI-generated go/no-go verdict, in under 2 minutes.',
     ctaLabel: 'Try It Live',
@@ -942,13 +942,13 @@ export const projects: Project[] = [
   {
     slug: 'crisply',
     name: 'Crisply',
-    tagline: 'AI-powered client portals for agencies and operators',
+    tagline: 'AI client portals for agencies and operators',
     icon: 'M9 17v-2a4 4 0 014-4h4M9 7h10M5 12h4m-4 5h4M5 7h4m10 10V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2z',
     description: 'Turn raw data into branded, interactive reports your clients can actually use. Hosted, shareable, chat-enabled portals, built so Claude-generated work ships like a finished product.',
     ctaLabel: 'See the Product',
     ctaType: 'product-link',
     meta: {
-      title: 'Crisply | AI-Powered Client Portals for Agencies | Brothers Automate',
+      title: 'Crisply | AI Client Portals for Agencies | Brothers Automate',
       description: 'Crisply turns raw data into branded, interactive client reports with chat, analytics, and portal access. Ship AI work as a deliverable clients love.'
     },
     problem: {

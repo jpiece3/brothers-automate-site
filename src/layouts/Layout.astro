@@ -9,6 +9,7 @@ interface Props {
   dateModified?: string;
   articleHeadline?: string;
   extraSchemas?: object[];
+  noindex?: boolean;
 }
 
 const SITE_URL = 'https://brothersautomate.com';
@@ -25,6 +26,7 @@ const {
   dateModified,
   articleHeadline,
   extraSchemas = [],
+  noindex = false,
 } = Astro.props;
 
 const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;
@@ -130,6 +132,7 @@ const articleSchema = type === 'article' && datePublished ? {
   /></noscript>
 
   <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
   <title>{title}</title>
 
   <!-- Canonical URL -->

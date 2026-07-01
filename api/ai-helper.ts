@@ -27,8 +27,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Accept either a server-to-server internal key OR a same-origin browser call.
+  // The Anthropic key stays server-side; nothing sensitive ships to the client.
   const internalKey = req.headers['x-internal-key'];
-  if (internalKey !== process.env.INTERNAL_API_KEY) {
+  const ref = String(req.headers['origin'] || req.headers['referer'] || '');
+  const sameOrigin = /([a-z0-9-]+\.)?brothersautomate\.com/i.test(ref) || /localhost|127\.0\.0\.1/.test(ref);
+  const hasInternal = !!process.env.INTERNAL_API_KEY && internalKey === process.env.INTERNAL_API_KEY;
+  if (!hasInternal && !sameOrigin) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 

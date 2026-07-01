@@ -179,7 +179,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Know Your Market Cold',
-          description: "AI-powered brand research gives you competitor analysis, audience profiling, and positioning strategy in 48 hours. Not 4 weeks. Not $10K. Real data you can act on.",
+          description: "AI brand research gives you competitor analysis, audience profiling, and positioning strategy in 48 hours. Not 4 weeks. Not $10K. Real data you can act on.",
           icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
         },
       ],
@@ -192,7 +192,7 @@ export const verticals: Record<string, VerticalData> = {
       subheadline: "These are the specific AI systems we build for coaching businesses. Each one solves a different bottleneck.",
       systems: [
         { slug: 'quiz-funnels', name: 'Quiz Funnels', description: 'Qualify leads automatically with interactive quizzes that score readiness, then route hot leads to your calendar and nurture the rest.' },
-        { slug: 'brand-research', name: 'Brand Research', description: 'AI-powered audience analysis, competitor intel, and positioning strategy delivered in 48 hours.' },
+        { slug: 'brand-research', name: 'Brand Research', description: 'AI audience analysis, competitor intel, and positioning strategy delivered in 48 hours.' },
         { slug: 'daily-ads', name: 'Daily Ads', description: 'Fresh, on-brand ad creative generated daily across 15+ formats. No designer needed.' },
       ],
     },
@@ -357,7 +357,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Know Your Competitive Position',
-          description: "AI-powered brand research gives you competitor analysis, prospect profiling, and positioning strategy in 48 hours. Know exactly where you stand and how to differentiate.",
+          description: "AI brand research gives you competitor analysis, prospect profiling, and positioning strategy in 48 hours. Know exactly where you stand and how to differentiate.",
           icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
         },
       ],
@@ -370,7 +370,7 @@ export const verticals: Record<string, VerticalData> = {
       subheadline: "These are the specific AI systems we build for financial advisory firms. Each one solves a different bottleneck.",
       systems: [
         { slug: 'quiz-funnels', name: 'Quiz Funnels', description: 'Qualify prospects automatically with a financial readiness quiz that scores urgency and routes hot leads to your calendar.' },
-        { slug: 'brand-research', name: 'Brand Research', description: 'AI-powered competitor analysis, prospect profiling, and positioning strategy for your advisory firm.' },
+        { slug: 'brand-research', name: 'Brand Research', description: 'AI competitor analysis, prospect profiling, and positioning strategy for your advisory firm.' },
         { slug: 'google-review-response', name: 'Review Response', description: 'Automated, on-brand replies to every Google review within minutes. Compliance-friendly and personalized.' },
       ],
     },
@@ -879,7 +879,7 @@ export const verticals: Record<string, VerticalData> = {
         },
         {
           title: 'Know Your Competitive Position',
-          description: "AI-powered brand research gives you competitor pricing analysis, audience profiling, and positioning strategy in 48 hours. Know exactly where you stand and how to differentiate.",
+          description: "AI brand research gives you competitor pricing analysis, audience profiling, and positioning strategy in 48 hours. Know exactly where you stand and how to differentiate.",
           icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
         },
       ],
@@ -893,7 +893,7 @@ export const verticals: Record<string, VerticalData> = {
       systems: [
         { slug: 'quiz-funnels', name: 'Quiz Funnels', description: 'Product recommendation quizzes that guide shoppers to the right product, capture emails, and increase AOV by 20-30%.' },
         { slug: 'daily-ads', name: 'Daily Ads', description: 'Fresh, on-brand product creative generated daily across 15+ formats. Stop paying designers $5K/month for ads that go stale.' },
-        { slug: 'brand-research', name: 'Brand Research', description: 'AI-powered competitor analysis, audience profiling, and positioning strategy for your e-commerce brand.' },
+        { slug: 'brand-research', name: 'Brand Research', description: 'AI competitor analysis, audience profiling, and positioning strategy for your e-commerce brand.' },
       ],
     },
 

@@ -7,5 +7,16 @@ export default defineConfig({
   site: 'https://brothersautomate.com',
   output: 'static',
   adapter: vercel(),
-  integrations: [sitemap({ filter: (page) => !page.includes('/clients/') && !page.includes('/clientintel/') && !page.includes('/skills-map') }), react()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes('/clients/') &&
+        !page.includes('/clientintel/') &&
+        !page.includes('/skills-map') &&
+        !page.includes('/test/') &&
+        !page.includes('/agent-spec') &&
+        !page.includes('/projects/hearing-automation'),
+    }),
+    react(),
+  ],
 });

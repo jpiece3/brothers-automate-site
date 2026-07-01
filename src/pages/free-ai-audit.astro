@@ -43,7 +43,7 @@ const audience = [
   { label: 'Home & field service', detail: 'HVAC, plumbing, electrical, remodels, drowning in quotes and follow-up.' },
   { label: 'Engineering & construction', detail: 'Civil, structural, and design firms running complex multi-stage projects.' },
   { label: 'Managed IT & MSPs', detail: 'Help desks and IT providers buried in tickets, intake, and compliance admin.' },
-  { label: 'Local high-margin operators', detail: 'Coaches, agencies, clinics, and pros doing $1-15M who want capacity without hiring.' },
+  { label: 'Local high-margin operators', detail: 'Coaches, agencies, clinics, and pros doing $1-5M who want capacity without hiring.' },
 ];
 
 const stats = [
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: 'Who is this for?',
-    a: 'Service and technical businesses doing roughly $1-15M, home service, engineering, IT/MSPs, agencies, clinics, and similar local operators who are great at the work but losing hours to manual busywork.',
+    a: 'Service and technical businesses doing roughly $1-5M, home service, engineering, IT/MSPs, agencies, clinics, and similar local operators who are great at the work but losing hours to manual busywork.',
   },
 ];
 
@@ -149,7 +149,7 @@ const serviceSchema = {
             <p class="op-audit-sub" data-animate="fade-up">
               Drop in your website and get an instant score, then a prioritized report of the
               5-7 automations that would save you the most time and capture the most leads.
-              Built on the same systems we run for $1-15M service businesses.
+              Built on the same systems we run for $1-5M service businesses.
             </p>
             <ul class="op-audit-bullets op-mono">
               <li><span class="op-pulse-dot"></span><span>INSTANT SCORE · NO SIGNUP TO SEE IT</span></li>
@@ -686,7 +686,7 @@ const serviceSchema = {
             leadBtn.classList.remove('is-loading');
             if (label) label.textContent = 'GET MY AI REPORT';
             setStatus('● SCORE READY');
-            setError(leadError, err.message || "That didn't go through. Email james@simpleflosolutions.com and we'll send it manually.");
+            setError(leadError, err.message || "That didn't go through. Email james@brothersautomate.com and we'll send it manually.");
           });
       });
     })();

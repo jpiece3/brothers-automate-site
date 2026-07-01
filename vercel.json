@@ -5,7 +5,7 @@
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml" }
   ],
   "redirects": [
-    { "source": "/how-we-work", "destination": "/#process", "statusCode": 301 },
+    { "source": "/how-we-work", "destination": "/#how-we-work", "statusCode": 301 },
     { "source": "/compare", "destination": "/pricing", "statusCode": 301 },
     { "source": "/what-you-get", "destination": "/projects", "statusCode": 301 },
     { "source": "/solutions", "destination": "/projects", "statusCode": 301 },

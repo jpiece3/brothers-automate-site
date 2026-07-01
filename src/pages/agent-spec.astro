@@ -6,6 +6,7 @@ import { API_DIRECTORY, CATEGORIES } from '../data/api-directory';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Process Intake Framework | Brothers Automate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -243,8 +244,6 @@ import { API_DIRECTORY, CATEGORIES } from '../data/api-directory';
     }
 
     // --- Auto-fill with Claude ---
-    // Internal API key (this page is not linked from anywhere on the site)
-    var _ak = ['sk-ant-api03-bIQO5pcf7ATNwb9sBExGOmx9AKEJt', '-csOwMh-_cGgFc5F_HSi52D01k-uBpVK5d5dno9YFwGdQhfhnp7fSU2Bg', '-L-DHjQAA'].join('');
 
     function autoFillSpec() {
       var dump = formData.brainDump;
@@ -260,21 +259,14 @@ import { API_DIRECTORY, CATEGORIES } from '../data/api-directory';
 
       var toolNames = API_TOOLS.map(function(t) { return t.name; });
 
-      var systemPrompt = 'You are an automation architect. Given a brain dump describing a business process, extract structured data to fill a process intake form. Return ONLY valid JSON with no markdown, no code fences, no explanation. The JSON must match this exact structure:\n\n{"processName":"string","goalPurpose":"string","notesContext":"string","inputs":[{"name":"string","source":"string","format":"string"}],"outputs":[{"name":"string","destination":"string","format":"string"}],"triggers":["string"],"workflowSteps":[{"description":"string"}],"agents":[{"name":"string","purpose":"string","position":"trigger|middle|final"}],"dataSources":[{"name":"string","type":"string","accessMethod":"string"}],"tools":["string"],"humanGates":[{"name":"string","criteria":"string","escalation":"string"}],"errorCases":[{"scenario":"string","handler":"string","escalate":true|false}]}\n\nFor "triggers", use only from: ' + JSON.stringify(TRIGGER_OPTIONS) + '\nFor "tools", use only from this list (match exact names): ' + JSON.stringify(toolNames) + '\nBe thorough. Infer agents, error cases, and human gates even if not explicitly mentioned. Create at least 2-3 workflow steps, 1-2 agents, and 1-2 error cases.';
 
-      fetch('https://api.anthropic.com/v1/messages', {
+      fetch('/api/ai-helper', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': _ak,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 4000,
-          system: systemPrompt,
-          messages: [{ role: 'user', content: 'Brain dump:\n\n' + dump }]
+          fieldName: '_brainDump',
+          fieldValue: dump,
+          formContext: { triggerOptions: TRIGGER_OPTIONS, toolNames: toolNames }
         })
       })
       .then(function(res) {
@@ -282,7 +274,7 @@ import { API_DIRECTORY, CATEGORIES } from '../data/api-directory';
         return res.json();
       })
       .then(function(data) {
-        var text = (data.content && data.content[0] && data.content[0].text) || '';
+        var text = data.suggestion || '';
         if (!text) throw new Error('No response from AI');
 
         // Parse JSON (strip code fences if present)
