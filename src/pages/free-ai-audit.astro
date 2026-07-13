@@ -8,71 +8,130 @@ import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
 const PAGE_URL = `${SITE_URL}/free-ai-audit/`;
-// Brendan's AI Wins discovery call — only used on this page. All other site CTAs stay on James's Cal.
+// Brendan's calendar. EVERY booking CTA on this page (audit, Workflow Sprint,
+// clinic) uses these values. All other site pages stay on James's Cal.
 const CAL_LINK = 'brendan-pinder-dp3d5v/30min';
 const CAL_NAMESPACE = '30min';
 
-const phases = [
+const anchors = [
+  { href: '#website-score', label: 'WEBSITE SCORE' },
+  { href: '#workflow-scorecard', label: 'WORKFLOW SCORECARD' },
+  { href: '#workflow-sprint', label: 'WORKFLOW SPRINT' },
+  { href: '#host-a-clinic', label: 'HOST A CLINIC' },
+  { href: '#faq', label: 'FAQ' },
+];
+
+const interpretCards = [
   {
-    num: '01',
-    title: 'Instant Site Audit',
-    time: '20 seconds',
-    body: 'Drop in your URL. We scan speed, SEO, mobile, trust, and how well your site captures leads, and score it on the spot.',
+    tag: 'TRAIN',
+    tone: 'navy',
+    title: 'Train the team',
+    body: 'Work your employees should keep owning, where AI speeds up the drafting, summarizing, and lookup parts. The person stays the decision-maker; they just stop typing everything from scratch.',
   },
   {
-    num: '02',
-    title: 'AI Opportunity Analysis',
-    time: 'On submit',
-    body: 'Our engine turns the findings, plus the pain point you tell us, into 5-7 specific automations mapped to systems we actually build.',
+    tag: 'AUTOMATE',
+    tone: 'green',
+    title: 'Automate the process',
+    body: 'Genuinely repeatable, rules-based work with a clear trigger and a clear definition of done. These justify building a system that runs consistently in the background, with an exception queue a person reviews.',
   },
   {
-    num: '03',
-    title: 'Discovery Call',
-    time: '30 minutes',
-    body: "We walk through your day and where time leaks. No pitch, we're pulling problems, not pushing tools.",
+    tag: 'CLARIFY FIRST',
+    tone: 'orange',
+    title: 'Clarify the process first',
+    body: 'Work that is too vague or inconsistent to hand to AI yet. Write down the trigger, the inputs, and what a good output looks like. Often the clarity alone fixes half the problem.',
   },
   {
-    num: '04',
-    title: 'Review & Roadmap',
-    time: '30 minutes',
-    body: 'You get a prioritized roadmap with quick wins, ROI, and a 4-day quick-start. Implement it yourself or have us build it.',
+    tag: 'LEAVE ALONE',
+    tone: 'red',
+    title: 'Leave it alone',
+    body: 'High-risk or low-value work where the cost of a wrong output outweighs the time saved. Regulated records, sensitive judgment calls, and rare one-off tasks usually belong here.',
   },
 ];
 
-const audience = [
-  { label: 'Home & field service', detail: 'HVAC, plumbing, electrical, remodels, drowning in quotes and follow-up.' },
-  { label: 'Engineering & construction', detail: 'Civil, structural, and design firms running complex multi-stage projects.' },
-  { label: 'Managed IT & MSPs', detail: 'Help desks and IT providers buried in tickets, intake, and compliance admin.' },
-  { label: 'Local high-margin operators', detail: 'Coaches, agencies, clinics, and pros doing $1-5M who want capacity without hiring.' },
+const sprintDeliverables = [
+  'Short pre-session team survey',
+  'Review of representative, sanitized work you send ahead',
+  'Two-hour hands-on team session',
+  'Three practical workflows built around your actual work',
+  'Reusable prompt and workflow playbook',
+  'Basic privacy, accuracy, and human-review guardrails',
+  'Ranked automation roadmap',
+  'One follow-up office-hours session',
 ];
 
-const stats = [
-  { value: '<60s', label: 'Inbound lead reply time', context: 'Inbound AI SDR' },
-  { value: '2-3x', label: 'More qualified leads', context: 'Lead Qualification Quiz' },
-  { value: '<2 min', label: 'Quote delivery', context: 'AI Quote Generator' },
-  { value: '6+ hrs', label: 'Freed up per week', context: 'For ~$40/mo in tool costs' },
+const clinicPoints = [
+  'No generic futurism presentation',
+  'No coding required',
+  'Two practical live demonstrations',
+  'Audience participation, not a lecture',
+  'Responsible-use guidance built in',
+  'One actionable workflow identified per attendee',
+  'Designed for service and technical businesses',
+  'Onsite in the Philadelphia region or live online',
+];
+
+const examples = [
+  {
+    name: 'Inbound AI SDR',
+    slug: 'inbound-ai-sdr',
+    body: 'Reads inbound inquiries, drafts scored replies, and logs everything. Hot leads get flagged for a person; nothing goes out unreviewed until the drafts earn trust.',
+  },
+  {
+    name: 'AI Quote Generator',
+    slug: 'cpq-agent',
+    body: 'Turns call or form details into a branded draft quote using the company\u2019s own pricing rules. The estimate owner reviews and sends every one.',
+  },
+  {
+    name: 'After-Hours AI Chat',
+    slug: 'after-hours-agent',
+    body: 'Answers common questions and captures contact details when nobody is at the desk, working from an approved knowledge base, not improvisation.',
+  },
 ];
 
 const faqs = [
   {
     q: 'Is the audit really free?',
-    a: "Yes. The instant site score and the AI opportunity report cost nothing, and the 30-minute discovery and review calls are free too. We give away the audit because it's the fastest way to show you what we'd build. No card, no obligation.",
+    a: 'Yes. The website score, the AI Workflow Scorecard, and the report cost nothing, and there is no card and no obligation. We give the audit away because it is the fastest honest way to show you how we think before you ever pay us anything.',
   },
   {
-    q: 'What do I need to provide?',
-    a: 'To run the instant audit, just your website URL. To get the full report, your name, email, and a sentence on what is eating your time. For the optional discovery call, 30 minutes and access to the tools you already use.',
+    q: 'What is the difference between the website score and the workflow audit?',
+    a: 'The website score only reads what is publicly visible on your site: speed, mobile experience, SEO basics, trust signals, and how well the site captures leads. It cannot see inside your operation. The AI Workflow Scorecard is where you tell us how inquiries, estimates, follow-up, and admin actually get handled, and that is what the real report is built from.',
   },
   {
-    q: 'Will you just try to sell me?',
-    a: "No. The call is built to pull problems, not push tools. You walk away with a roadmap either way. If you want to implement it yourself, great. If you want help, we'll scope it, that's the only upsell.",
+    q: 'Do I need a website?',
+    a: 'No. If you do not have one, or do not care about the website score, skip straight to the AI Workflow Scorecard. The workflow report does not depend on the website scan.',
   },
   {
-    q: 'How accurate is the instant audit?',
-    a: 'It pulls real signals: a live crawl of your page plus Google Lighthouse performance and SEO scores. It is a fast, honest snapshot, the human + AI analysis in the full report is where the real opportunities surface.',
+    q: 'Will the report recommend automation for everything?',
+    a: 'No, and that is the point. Every opportunity gets one of four calls: train the team, automate the process, clarify the process first, or leave it alone. Plenty of work should stay manual, and the report says so when that is the honest answer.',
   },
   {
-    q: 'Who is this for?',
-    a: 'Service and technical businesses doing roughly $1-5M, home service, engineering, IT/MSPs, agencies, clinics, and similar local operators who are great at the work but losing hours to manual busywork.',
+    q: 'What is an AI Workflow Sprint?',
+    a: 'A private, hands-on session for your team, onsite in the Philadelphia region or live online. We work with your actual emails, estimates, reports, and recurring admin, your employees learn to use AI safely on real tasks, and you leave with working examples, a prompt playbook, and a ranked roadmap of what to automate next.',
+  },
+  {
+    q: 'Is this employee training or automation consulting?',
+    a: 'Both, deliberately. Training handles the work your employees should continue to own. Automation handles the repeatable processes that should run consistently in the background. The sprint and the report both separate the two, because treating everything as an automation project is how AI initiatives fail.',
+  },
+  {
+    q: 'Can the session be onsite?',
+    a: 'Yes. We deliver sprints and clinics onsite in the Philadelphia region, or live online for teams elsewhere.',
+  },
+  {
+    q: 'Can a chamber or association host a clinic?',
+    a: 'Yes. We run a free 45-minute AI Workflow Clinic for chambers, trade associations, coworking communities, banks, accountants, MSPs, and similar groups. Members get a practical, hands-on introduction using the work small businesses actually repeat, and everyone leaves with a worksheet they can use with their own team.',
+  },
+  {
+    q: 'What information should we avoid sharing?',
+    a: 'Never send passwords, private customer data, medical information, payment details, regulated records, or anything confidential, not in the scorecard, and not in a sprint. Sanitized examples with the sensitive parts removed or described work just as well.',
+  },
+  {
+    q: 'Who conducts the sprint?',
+    a: 'Brendan Pinder. Brothers Automate is run by two brothers who came up operating service businesses, not selling software. Brendan personally reads every scorecard submission and runs the sprint and clinic sessions.',
+  },
+  {
+    q: 'Where do booking requests go?',
+    a: 'Every booking button on this page opens Brendan\u2019s calendar directly. Brendan handles the audit review, Workflow Sprint, and clinic conversations himself.',
   },
 ];
 
@@ -98,29 +157,29 @@ const faqSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'Free AI Business Audit',
+  serviceType: 'Free AI Workflow Audit',
   provider: { '@type': 'Organization', name: 'Brothers Automate', url: SITE_URL },
   areaServed: 'United States',
   description:
-    'A free AI audit for service and technical businesses. Get an instant website score plus a prioritized report of 5-7 AI automations that save time and capture more leads.',
+    'A free AI workflow audit for service and technical businesses: an instant website and lead-capture score, a 10-question AI Workflow Scorecard, and a prioritized report showing where to train, automate, clarify, or leave a process alone.',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 ---
 
 <Layout
-  title="Free AI Audit for Service Businesses | Brothers Automate"
-  description="Get a free, instant AI audit of your business. Score your website in 20 seconds, then get a prioritized report of 5-7 AI automations that save hours and capture more leads. No cost, no obligation."
+  title="Free AI Workflow Audit for Service Businesses | Brothers Automate"
+  description="Start with a free website and lead-capture score, then map your real workflows with the AI Workflow Scorecard. Get a prioritized report showing where to train your team, automate, or leave a process alone. Free, no obligation."
   canonicalUrl={PAGE_URL}
   extraSchemas={[breadcrumbSchema, faqSchema, serviceSchema]}
 >
   <Header />
   <main>
-    <!-- ============================ HERO + AUDIT ENGINE ============================ -->
-    <section class="op-audit-hero op-grid-bg">
+    <!-- ============================ HERO + WEBSITE SCORE ============================ -->
+    <section class="op-audit-hero op-grid-bg" id="website-score">
       <div class="op-audit-frame">
         <div class="op-audit-util">
           <TopUtilityStrip
-            left="BROTHERS_AUTOMATE / AUDIT · FREE"
+            left="BROTHERS_AUTOMATE / WORKFLOW AUDIT · FREE"
             right="● AUDIT ENGINE ONLINE · NO CARD REQUIRED"
             bordered
           />
@@ -128,46 +187,56 @@ const serviceSchema = {
 
         <div class="op-audit-grid">
           <div class="op-audit-intro">
-            <EyebrowTag label="FREE AI AUDIT · FOR SERVICE & TECHNICAL BUSINESSES" />
+            <EyebrowTag label="FREE AI WORKFLOW AUDIT · FOR SERVICE & TECHNICAL BUSINESSES" />
             <h1 class="op-audit-h1" data-animate="fade-up">
-              How many hours can AI<br />
-              <span class="op-audit-h1-orange">save YOU?</span>
+              Find the AI workflows your team<br />
+              <span class="op-audit-h1-orange">can actually use.</span>
             </h1>
-            <a
-              href="#"
-              class="op-audit-cal-cta op-mono"
-              data-cal-link={CAL_LINK}
-              data-cal-namespace={CAL_NAMESPACE}
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-              data-track="cta_click"
-              data-track-location="audit-hero"
-              data-track-label="Find Your AI Wins"
-              data-animate="fade-up"
-            >
-              FIND YOUR AI WINS <span aria-hidden="true">→</span>
-            </a>
             <p class="op-audit-sub" data-animate="fade-up">
-              Drop in your website and get an instant score, then a prioritized report of the
-              5-7 automations that would save you the most time and capture the most leads.
-              Built on the same systems we run for $1-5M service businesses.
+              Start with a free website and lead-capture score. Then tell us how your team handles
+              inquiries, estimates, follow-up, and admin. We&rsquo;ll map the strongest opportunities,
+              show where a person stays in control, and recommend whether to train, automate, or
+              leave the process alone.
             </p>
-            <ul class="op-audit-bullets op-mono">
-              <li><span class="op-pulse-dot"></span><span>INSTANT SCORE · NO SIGNUP TO SEE IT</span></li>
-              <li><span class="op-pulse-dot"></span><span>5-7 AI OPPORTUNITIES MAPPED TO YOUR GAPS</span></li>
-              <li><span class="op-pulse-dot"></span><span>FREE · NO OBLIGATION · NEVER SHARED</span></li>
-            </ul>
+            <div class="op-audit-hero-ctas" data-animate="fade-up">
+              <a href="#website-score" class="op-audit-cal-cta op-mono" id="hero-run-audit">
+                RUN MY FREE AUDIT <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#workflow-sprint"
+                class="op-audit-hero-secondary op-mono"
+                id="hero-bring-ai"
+                data-track="cta_click"
+                data-track-location="audit-hero"
+                data-track-label="Bring AI To My Team"
+              >
+                BRING AI TO MY TEAM <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <nav class="op-audit-anchor-nav op-mono" aria-label="On this page">
+              <span class="op-audit-anchor-head">ON THIS PAGE</span>
+              {anchors.map((a) => (
+                <a href={a.href}>{a.label}</a>
+              ))}
+            </nav>
           </div>
 
-          <!-- AUDIT CONSOLE -->
+          <!-- WEBSITE & LEAD-CAPTURE SCORE CONSOLE -->
           <div class="op-audit-panel" data-animate="fade-up">
             <div class="op-audit-panel-header">
               <span class="op-pulse-dot"></span>
-              <span class="op-mono op-audit-panel-id">AUDIT_ENGINE · v.2026</span>
+              <span class="op-mono op-audit-panel-id">WEBSITE &amp; LEAD-CAPTURE SCORE</span>
               <span class="op-mono op-audit-panel-status" id="audit-status">● READY</span>
             </div>
 
             <!-- STAGE: input -->
             <div class="op-audit-stage" id="stage-input">
+              <p class="op-audit-stage-intro">
+                Assessment 1 of 2. This scan reads what is publicly visible on your website:
+                speed, mobile experience, SEO basics, trust signals, and how well the site
+                captures leads. It can&rsquo;t see inside your operation &mdash; that&rsquo;s
+                what the Workflow Scorecard below is for.
+              </p>
               <form id="audit-scan-form" novalidate>
                 <label class="op-audit-field">
                   <span class="op-mono op-audit-label">YOUR WEBSITE</span>
@@ -188,6 +257,9 @@ const serviceSchema = {
                 <p class="op-audit-fineprint op-mono">FREE · INSTANT SCORE · ~20 SECONDS · NO SIGNUP TO SEE IT</p>
                 <p class="op-audit-error" id="scan-error" role="alert" aria-live="polite"></p>
               </form>
+              <p class="op-audit-skip">
+                No website? <a href="#workflow-scorecard" id="skip-to-scorecard">Skip to the AI Workflow Scorecard →</a>
+              </p>
             </div>
 
             <!-- STAGE: loading -->
@@ -212,7 +284,7 @@ const serviceSchema = {
                   </div>
                 </div>
                 <div class="op-audit-scoremeta">
-                  <span class="op-mono op-audit-scoremeta-label">OVERALL SCORE · <span id="score-domain"></span></span>
+                  <span class="op-mono op-audit-scoremeta-label">WEBSITE SCORE · <span id="score-domain"></span></span>
                   <span class="op-audit-grade" id="score-grade">B</span>
                   <span class="op-audit-grade-note op-mono" id="score-note"></span>
                 </div>
@@ -228,78 +300,19 @@ const serviceSchema = {
               <div class="op-audit-gate">
                 <div class="op-audit-gate-head">
                   <span class="op-pulse-dot"></span>
-                  <span class="op-mono">UNLOCK YOUR FULL AI OPPORTUNITY REPORT</span>
+                  <span class="op-mono">NEXT: THE AI WORKFLOW SCORECARD</span>
                 </div>
                 <p class="op-audit-gate-sub">
-                  Get the 5-7 specific automations we'd build to fix what we found, with impact, effort, and ROI. Sent free.
+                  That score covers what&rsquo;s visible from the outside. The real opportunities
+                  live in how your team handles inquiries, estimates, follow-up, and admin.
+                  Ten questions, about three minutes, and your report is built from what you
+                  actually tell us &mdash; not from your URL.
                 </p>
-                <form id="audit-lead-form" novalidate>
-                  <div class="op-audit-row">
-                    <label class="op-audit-field">
-                      <span class="op-mono op-audit-label">NAME <span class="op-audit-req">*</span></span>
-                      <input type="text" id="lead-name" name="name" required autocomplete="name" maxlength="120" />
-                    </label>
-                    <label class="op-audit-field">
-                      <span class="op-mono op-audit-label">EMAIL <span class="op-audit-req">*</span></span>
-                      <input type="email" id="lead-email" name="email" required autocomplete="email" inputmode="email" maxlength="160" />
-                    </label>
-                  </div>
-                  <div class="op-audit-row">
-                    <label class="op-audit-field">
-                      <span class="op-mono op-audit-label">PHONE <span class="op-audit-opt">OPTIONAL</span></span>
-                      <input type="tel" id="lead-phone" name="phone" autocomplete="tel" maxlength="40" />
-                    </label>
-                    <label class="op-audit-field">
-                      <span class="op-mono op-audit-label">BUSINESS TYPE <span class="op-audit-opt">OPTIONAL</span></span>
-                      <input type="text" id="lead-biztype" name="business_type" maxlength="120" placeholder="e.g. HVAC, IT MSP, agency" />
-                    </label>
-                  </div>
-                  <label class="op-audit-field">
-                    <span class="op-mono op-audit-label">BIGGEST TIME DRAIN <span class="op-audit-opt">OPTIONAL BUT HELPS</span></span>
-                    <textarea id="lead-pain" name="pain_point" rows="3" maxlength="2000" placeholder="Where do you lose the most time? Slow follow-up, manual quoting, scheduling, hiring..."></textarea>
-                  </label>
-
-                  <div class="op-audit-honeypot" aria-hidden="true">
-                    <label>Website</label>
-                    <input type="text" id="lead-hp" name="website_hp" tabindex="-1" autocomplete="off" />
-                  </div>
-
-                  <button type="submit" id="lead-submit" class="op-audit-submit op-mono">
-                    <span class="op-audit-submit-label">GET MY AI REPORT</span>
-                    <span class="op-audit-submit-arrow" aria-hidden="true">→</span>
-                  </button>
-                  <p class="op-audit-fineprint op-mono">FREE · NO OBLIGATION · WE NEVER SHARE YOUR INFO</p>
-                  <p class="op-audit-error" id="lead-error" role="alert" aria-live="polite"></p>
-                </form>
-              </div>
-            </div>
-
-            <!-- STAGE: report -->
-            <div class="op-audit-stage" id="stage-report" hidden>
-              <div class="op-audit-report-head">
-                <span class="op-mono op-audit-report-eyebrow">● AI OPPORTUNITY REPORT · READY</span>
-                <h2 class="op-audit-report-title" id="report-headline">Your AI opportunity report</h2>
-                <p class="op-audit-report-summary" id="report-summary"></p>
-              </div>
-              <div class="op-audit-recs" id="report-recs"></div>
-              <div class="op-audit-impact">
-                <div class="op-audit-impact-num"><span id="report-hours">6</span><span class="op-audit-impact-unit">hrs/wk</span></div>
-                <p class="op-audit-impact-text">Estimated time these automations could free up, for roughly <strong>$40/mo</strong> in tool costs.</p>
-              </div>
-              <div class="op-audit-report-cta">
-                <a
-                  href="#"
-                  class="op-audit-book op-mono"
-                  data-cal-link={CAL_LINK}
-                  data-cal-namespace={CAL_NAMESPACE}
-                  data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                  data-track="cta_click"
-                  data-track-location="audit-report"
-                  data-track-label="Book Audit Review Call"
-                >
-                  BOOK YOUR FREE REVIEW CALL <span aria-hidden="true">→</span>
-                </a>
-                <a href="/projects" class="op-audit-report-link op-mono">SEE THE BUILDS →</a>
+                <button type="button" id="teaser-continue" class="op-audit-submit op-mono">
+                  <span class="op-audit-submit-label">CONTINUE TO THE SCORECARD</span>
+                  <span class="op-audit-submit-arrow" aria-hidden="true">↓</span>
+                </button>
+                <p class="op-audit-fineprint op-mono">FREE · YOUR ANSWERS STAY PRIVATE · BRENDAN READS EVERY ONE</p>
               </div>
             </div>
           </div>
@@ -307,102 +320,402 @@ const serviceSchema = {
       </div>
     </section>
 
-    <!-- ============================ PROOF METRICS ============================ -->
-    <section class="op-audit-proof">
+    <!-- ============================ AI WORKFLOW SCORECARD ============================ -->
+    <section class="op-audit-scorecard op-grid-bg" id="workflow-scorecard">
       <div class="op-audit-section-frame">
         <div class="op-audit-section-head">
-          <EyebrowTag label="PROOF · FROM SYSTEMS WE ACTUALLY RUN" variant="paper" />
-          <h2 class="op-audit-h2">Not theory. Numbers from live builds.</h2>
-        </div>
-        <div class="op-audit-stats">
-          {stats.map((s) => (
-            <div class="op-audit-stat">
-              <span class="op-audit-stat-num">{s.value}</span>
-              <span class="op-audit-stat-label">{s.label}</span>
-              <span class="op-mono op-audit-stat-context">{s.context}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ WHO IT'S FOR ============================ -->
-    <section class="op-audit-who op-grid-bg">
-      <div class="op-audit-section-frame">
-        <div class="op-audit-section-head">
-          <EyebrowTag label="WHO IT'S FOR" variant="paper" />
-          <h2 class="op-audit-h2">Built for operators buried in repeat work.</h2>
+          <EyebrowTag label="ASSESSMENT 2 OF 2 · AI WORKFLOW SCORECARD" variant="paper" />
+          <h2 class="op-audit-h2">Tell us how the work actually gets done.</h2>
           <p class="op-audit-section-sub">
-            If you're great at the work but losing hours to follow-up, quoting, scheduling, and admin, this audit is built for you.
+            A website scan can&rsquo;t see your inbox, your estimates, or your follow-up. These
+            ten questions can. Answer in plain language &mdash; the more specific you are, the
+            more useful the report. Brendan reads every submission.
           </p>
         </div>
-        <div class="op-audit-who-grid">
-          {audience.map((a, i) => (
-            <div class="op-audit-who-card">
-              <span class="op-mono op-audit-who-num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 class="op-audit-who-label">{a.label}</h3>
-              <p class="op-audit-who-detail">{a.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
-    <!-- ============================ PROCESS ============================ -->
-    <section class="op-audit-process">
-      <div class="op-audit-section-frame">
-        <div class="op-audit-section-head">
-          <EyebrowTag label="THE PROCESS · 04 STEPS" variant="paper" />
-          <h2 class="op-audit-h2">From URL to roadmap.</h2>
-          <p class="op-audit-section-sub">
-            The first two steps happen right here, in seconds. The last two are free calls, only if you want them.
-          </p>
-        </div>
-        <div class="op-audit-steps-grid">
-          {phases.map((p) => (
-            <div class="op-audit-phase">
-              <div class="op-audit-phase-top">
-                <span class="op-mono op-audit-phase-num">{p.num}</span>
-                <span class="op-mono op-audit-phase-time">{p.time}</span>
+        <div class="op-ws-panel" id="ws-panel">
+          <div class="op-audit-panel-header">
+            <span class="op-pulse-dot"></span>
+            <span class="op-mono op-audit-panel-id">AI WORKFLOW SCORECARD</span>
+            <span class="op-mono op-audit-panel-status" id="ws-status">● READY</span>
+          </div>
+
+          <!-- FORM -->
+          <form id="ws-form" novalidate>
+            <div class="op-ws-progress" aria-hidden="false">
+              <span class="op-mono op-ws-progress-label">STEP <span id="ws-step-num">1</span> / 5 · <span id="ws-step-title">YOUR BUSINESS</span></span>
+              <div class="op-ws-progress-bar"><span id="ws-progress-fill" style="width: 20%"></span></div>
+            </div>
+
+            <!-- STEP 1: your business -->
+            <fieldset class="op-ws-step" data-ws-step="1" data-ws-title="YOUR BUSINESS">
+              <legend class="op-ws-legend" tabindex="-1">About your business</legend>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHAT TYPE OF BUSINESS DO YOU OPERATE? <span class="op-audit-req">*</span></span>
+                <input type="text" id="ws-business-type" name="business_type" maxlength="200" placeholder="e.g. HVAC contractor, structural engineering firm, IT MSP" autocomplete="organization-title" />
+              </label>
+
+              <div class="op-ws-field" role="radiogroup" aria-labelledby="ws-team-label">
+                <span class="op-mono op-audit-label" id="ws-team-label">HOW MANY PEOPLE HANDLE OFFICE, ADMIN, SALES, OR COORDINATION WORK? <span class="op-audit-req">*</span></span>
+                <div class="op-ws-pills">
+                  <label class="op-ws-pill"><input type="radio" name="team_size" value="just-me" /><span>Just me</span></label>
+                  <label class="op-ws-pill"><input type="radio" name="team_size" value="2-4" /><span>2&ndash;4</span></label>
+                  <label class="op-ws-pill"><input type="radio" name="team_size" value="5-10" /><span>5&ndash;10</span></label>
+                  <label class="op-ws-pill"><input type="radio" name="team_size" value="11+" /><span>11+</span></label>
+                </div>
               </div>
-              <h3 class="op-audit-phase-title">{p.title}</h3>
-              <p class="op-audit-phase-body">{p.body}</p>
+            </fieldset>
+
+            <!-- STEP 2: where time goes -->
+            <fieldset class="op-ws-step" data-ws-step="2" data-ws-title="WHERE TIME GOES" hidden>
+              <legend class="op-ws-legend" tabindex="-1">Where the time goes</legend>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHAT WORK REGULARLY EATS THE OWNER&rsquo;S TIME AFTER HOURS?</span>
+                <textarea id="ws-after-hours" name="after_hours" rows="3" maxlength="1500" placeholder="e.g. Writing estimates at night, catching up on email, chasing unpaid invoices..."></textarea>
+              </label>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHICH TASKS REPEAT DAILY OR WEEKLY? <span class="op-audit-req">*</span></span>
+                <textarea id="ws-repeat-tasks" name="repeat_tasks" rows="3" maxlength="1500" placeholder="e.g. Scheduling jobs, sending follow-up emails, updating the job spreadsheet, weekly reports..."></textarea>
+              </label>
+            </fieldset>
+
+            <!-- STEP 3: how work moves -->
+            <fieldset class="op-ws-step" data-ws-step="3" data-ws-title="HOW WORK MOVES" hidden>
+              <legend class="op-ws-legend" tabindex="-1">How work moves through the business</legend>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">HOW ARE NEW INQUIRIES RECEIVED, ASSIGNED, AND FOLLOWED UP? <span class="op-audit-req">*</span></span>
+                <textarea id="ws-inquiries" name="inquiries" rows="3" maxlength="1500" placeholder="e.g. Calls go to the office phone, emails sit in one inbox, whoever is free follows up..."></textarea>
+              </label>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">HOW ARE ESTIMATES, PROPOSALS, OR REPORTS CREATED?</span>
+                <textarea id="ws-estimates" name="estimates" rows="3" maxlength="1500" placeholder="e.g. Copy an old Word doc, change the numbers, PDF it, email it out..."></textarea>
+              </label>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHICH TOOLS DOES THE TEAM USE TODAY?</span>
+                <input type="text" id="ws-tools" name="tools" maxlength="500" placeholder="e.g. Gmail, QuickBooks, Jobber, Excel, a shared drive" />
+              </label>
+            </fieldset>
+
+            <!-- STEP 4: friction -->
+            <fieldset class="op-ws-step" data-ws-step="4" data-ws-title="THE FRICTION" hidden>
+              <legend class="op-ws-legend" tabindex="-1">Where the friction is</legend>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHERE IS INFORMATION COPIED BY HAND BETWEEN EMAILS, DOCS, FORMS, CRMS, OR SPREADSHEETS?</span>
+                <textarea id="ws-copying" name="copying" rows="3" maxlength="1500" placeholder="e.g. Form submissions get re-typed into the CRM, invoice details copied from email into QuickBooks..."></textarea>
+              </label>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">WHAT WORK GETS DELAYED, FORGOTTEN, OR DEPENDS ON ONE PERSON?</span>
+                <textarea id="ws-delays" name="delays" rows="3" maxlength="1500" placeholder="e.g. Follow-ups slip when we get busy, only Maria knows how to do the permit paperwork..."></textarea>
+              </label>
+
+              <div class="op-audit-row">
+                <label class="op-audit-field op-ws-field">
+                  <span class="op-mono op-audit-label">HOW OFTEN DOES YOUR MOST TIME-CONSUMING PROCESS HAPPEN?</span>
+                  <select id="ws-frequency" name="frequency" class="op-ws-select">
+                    <option value="not-sure" selected>Not sure</option>
+                    <option value="multiple-daily">Several times a day</option>
+                    <option value="daily">About daily</option>
+                    <option value="few-weekly">A few times a week</option>
+                    <option value="weekly">About weekly</option>
+                    <option value="monthly">About monthly</option>
+                  </select>
+                </label>
+                <label class="op-audit-field op-ws-field">
+                  <span class="op-mono op-audit-label">HOW LONG DOES EACH OCCURRENCE TAKE?</span>
+                  <select id="ws-time-each" name="time_each" class="op-ws-select">
+                    <option value="not-sure" selected>Not sure</option>
+                    <option value="under-15">Under 15 minutes</option>
+                    <option value="15-30">15&ndash;30 minutes</option>
+                    <option value="30-60">30&ndash;60 minutes</option>
+                    <option value="60-120">1&ndash;2 hours</option>
+                    <option value="over-120">More than 2 hours</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">OPTIONAL: DESCRIBE OR PASTE A SANITIZED EXAMPLE OF THE EMAIL, DOCUMENT, OR PROCESS</span>
+                <textarea id="ws-example" name="example" rows="4" maxlength="4000" placeholder="A typical inquiry email, an estimate outline, the steps of the process... with anything sensitive removed."></textarea>
+              </label>
+              <p class="op-ws-privacy">
+                <strong>Please don&rsquo;t paste</strong> passwords, private customer data, medical
+                information, payment details, regulated records, or anything confidential.
+                A described example with the sensitive parts removed works just as well.
+              </p>
+            </fieldset>
+
+            <!-- STEP 5: contact -->
+            <fieldset class="op-ws-step" data-ws-step="5" data-ws-title="GET YOUR REPORT" hidden>
+              <legend class="op-ws-legend" tabindex="-1">Where should the report go?</legend>
+
+              <div class="op-audit-row">
+                <label class="op-audit-field op-ws-field">
+                  <span class="op-mono op-audit-label">NAME <span class="op-audit-req">*</span></span>
+                  <input type="text" id="ws-name" name="name" required autocomplete="name" maxlength="120" />
+                </label>
+                <label class="op-audit-field op-ws-field">
+                  <span class="op-mono op-audit-label">EMAIL <span class="op-audit-req">*</span></span>
+                  <input type="email" id="ws-email" name="email" required autocomplete="email" inputmode="email" maxlength="160" />
+                </label>
+              </div>
+              <label class="op-audit-field op-ws-field">
+                <span class="op-mono op-audit-label">PHONE <span class="op-audit-opt">OPTIONAL</span></span>
+                <input type="tel" id="ws-phone" name="phone" autocomplete="tel" maxlength="40" />
+              </label>
+
+              <div class="op-audit-honeypot" aria-hidden="true">
+                <label>Website</label>
+                <input type="text" id="ws-hp" name="website_hp" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <p class="op-ws-privacy">
+                Your report renders right here when you submit. Brendan reads every submission
+                and handles the follow-up personally. We never share your info.
+              </p>
+            </fieldset>
+
+            <div class="op-ws-controls">
+              <button type="button" id="ws-back" class="op-ws-btn-back op-mono" hidden>← BACK</button>
+              <button type="button" id="ws-next" class="op-audit-submit op-ws-btn-next op-mono">
+                <span class="op-audit-submit-label">NEXT</span>
+                <span class="op-audit-submit-arrow" aria-hidden="true">→</span>
+              </button>
+              <button type="submit" id="ws-submit" class="op-audit-submit op-ws-btn-next op-mono" hidden>
+                <span class="op-audit-submit-label">GET MY WORKFLOW REPORT</span>
+                <span class="op-audit-submit-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p class="op-audit-error" id="ws-error" role="alert" aria-live="polite"></p>
+          </form>
+
+          <!-- REPORT -->
+          <div class="op-ws-report" id="ws-report" hidden>
+            <div class="op-audit-report-head">
+              <span class="op-mono op-audit-report-eyebrow">● YOUR WORKFLOW REPORT · READY</span>
+              <h3 class="op-audit-report-title" id="ws-report-headline">Your workflow report</h3>
+              <p class="op-audit-report-summary" id="ws-report-summary"></p>
+            </div>
+            <div class="op-ws-ops" id="ws-report-ops"></div>
+            <p class="op-ws-report-note">
+              Estimates above are ranges based only on what you submitted, with the assumptions
+              listed on each card. Anything marked &ldquo;Needs confirmation&rdquo; means we&rsquo;d
+              rather verify it with you than guess.
+            </p>
+            <div class="op-audit-report-cta">
+              <a
+                href="#"
+                class="op-audit-book op-mono"
+                data-cal-link={CAL_LINK}
+                data-cal-namespace={CAL_NAMESPACE}
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                data-track="cta_click"
+                data-track-location="workflow-report"
+                data-track-label="Review My Workflow Report"
+                data-intent="workflow_audit"
+              >
+                REVIEW MY WORKFLOW REPORT WITH BRENDAN <span aria-hidden="true">→</span>
+              </a>
+              <a href="/free-ai-audit/worksheet/" class="op-audit-report-link op-mono" data-worksheet target="_blank" rel="noopener">GET THE PRINTABLE WORKSHEET →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HOW TO READ THE REPORT ============================ -->
+    <section class="op-audit-interpret" id="how-to-read">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="HOW TO READ THE REPORT" variant="paper" />
+          <h2 class="op-audit-h2">Train, automate, clarify, or leave it alone.</h2>
+          <p class="op-audit-section-sub">
+            Every opportunity in your report gets exactly one of these four calls. Good AI advice
+            is mostly about knowing which is which.
+          </p>
+        </div>
+        <div class="op-audit-interpret-grid">
+          {interpretCards.map((c) => (
+            <div class="op-audit-interpret-card">
+              <span class={`op-mono op-audit-interpret-tag op-audit-interpret-tag--${c.tone}`}>{c.tag}</span>
+              <h3 class="op-audit-interpret-title">{c.title}</h3>
+              <p class="op-audit-interpret-body">{c.body}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- ============================ WHY FREE ============================ -->
-    <section class="op-audit-whyfree">
+    <!-- ============================ AI WORKFLOW SPRINT ============================ -->
+    <section class="op-audit-sprint" id="workflow-sprint">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-sprint-grid">
+          <div class="op-audit-sprint-intro">
+            <EyebrowTag label="AI WORKFLOW SPRINT · PRIVATE TEAM SESSION" />
+            <h2 class="op-audit-h2 op-audit-h2-light">Bring us the work your team repeats every week.</h2>
+            <p class="op-audit-sprint-body">
+              We work with your actual emails, estimates, reports, SOPs, spreadsheets, and
+              recurring admin work. Your employees learn how to use AI safely on real tasks,
+              and your business leaves with working examples and a prioritized plan for what
+              should be automated next.
+            </p>
+            <p class="op-audit-sprint-body">
+              <strong>Training handles work your employees should continue to own.</strong>
+              Automation handles repeatable processes that should run consistently in the
+              background. The sprint covers both and is honest about which is which.
+            </p>
+            <p class="op-audit-sprint-meta op-mono">ONSITE IN THE PHILADELPHIA REGION · OR LIVE ONLINE</p>
+            <div class="op-audit-sprint-ctas">
+              <a
+                href="#"
+                class="op-audit-cal-cta op-mono"
+                data-cal-link={CAL_LINK}
+                data-cal-namespace={CAL_NAMESPACE}
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                data-track="cta_click"
+                data-track-location="workflow-sprint"
+                data-track-label="Talk To Brendan About A Workflow Sprint"
+                data-intent="workflow_sprint"
+              >
+                TALK TO BRENDAN ABOUT A WORKFLOW SPRINT <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#"
+                class="op-audit-sprint-secondary op-mono"
+                data-cal-link={CAL_LINK}
+                data-cal-namespace={CAL_NAMESPACE}
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                data-track="cta_click"
+                data-track-location="workflow-sprint"
+                data-track-label="Book A Free Workflow Fit Check"
+                data-intent="workflow_sprint"
+              >
+                OR BOOK A FREE WORKFLOW FIT CHECK →
+              </a>
+            </div>
+            <p class="op-audit-sprint-fineprint">
+              If you start an implementation project with us after the sprint, the session fee
+              is credited toward it. We&rsquo;ll confirm the exact window when we scope your session.
+            </p>
+          </div>
+          <div class="op-audit-sprint-deliverables">
+            <p class="op-mono op-audit-sprint-dhead">WHAT YOU LEAVE WITH</p>
+            <ul>
+              {sprintDeliverables.map((d, i) => (
+                <li>
+                  <span class="op-mono op-audit-sprint-dnum">{String(i + 1).padStart(2, '0')}</span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HOST A CLINIC ============================ -->
+    <section class="op-audit-clinic op-grid-bg" id="host-a-clinic">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-clinic-grid">
+          <div>
+            <EyebrowTag label="FOR CHAMBERS, ASSOCIATIONS & BUSINESS GROUPS" variant="paper" />
+            <h2 class="op-audit-h2">Host a free 45-minute AI Workflow Clinic.</h2>
+            <p class="op-audit-section-sub">
+              We give your members a practical, hands-on introduction to AI using the work small
+              businesses repeat every week. Attendees identify one workflow worth improving,
+              learn where human review belongs, and leave with a worksheet they can use with
+              their team.
+            </p>
+            <div class="op-audit-clinic-ctas">
+              <a
+                href="#"
+                class="op-audit-cal-cta op-mono"
+                data-cal-link={CAL_LINK}
+                data-cal-namespace={CAL_NAMESPACE}
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                data-track="cta_click"
+                data-track-location="clinic"
+                data-track-label="Ask Brendan About Hosting A Clinic"
+                data-intent="clinic_host"
+              >
+                ASK BRENDAN ABOUT HOSTING A CLINIC <span aria-hidden="true">→</span>
+              </a>
+              <a href="/free-ai-audit/worksheet/" class="op-audit-report-link op-mono" data-worksheet target="_blank" rel="noopener">PREVIEW THE ATTENDEE WORKSHEET →</a>
+            </div>
+          </div>
+          <ul class="op-audit-clinic-points">
+            {clinicPoints.map((p) => (
+              <li><span class="op-pulse-dot"></span><span>{p}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WHY BROTHERS AUTOMATE ============================ -->
+    <section class="op-audit-whyfree" id="why-us">
       <div class="op-audit-section-frame op-audit-whyfree-inner">
         <div>
-          <EyebrowTag label="WHY IT'S FREE" />
-          <h2 class="op-audit-h2 op-audit-h2-light">We'd rather show you than tell you.</h2>
+          <EyebrowTag label="WHY BROTHERS AUTOMATE" />
+          <h2 class="op-audit-h2 op-audit-h2-light">Operators first. AI second.</h2>
         </div>
         <div class="op-audit-whyfree-body">
           <p>
-            Most operators know AI could help but have no idea where to start, so they do nothing.
-            The audit fixes that. It shows you exactly where automation fits and what it's worth, on your real business, in plain English.
+            We&rsquo;re two brothers who came up running service businesses, not selling software.
+            That&rsquo;s why the audit asks how your inquiries and estimates actually move, and why
+            the report will sometimes tell you a task should stay manual. Recommending automation
+            for everything is how these projects fail.
           </p>
           <p>
-            If you take the roadmap and build it yourself, genuinely great. If you'd rather we handle it,
-            we do project builds and an embedded partnership, but there's never any pressure. The audit stands on its own.
+            The audit and the report are free and stand on their own. If you want hands-on help,
+            the Workflow Sprint is the next step, and if you take the report and run with it
+            yourself, genuinely, good. That was the point.
           </p>
           <MonoCTA
-            label="Find Your AI Wins"
+            label="Book 30 Minutes With Brendan"
             variant="orange"
             size="lg"
             calLink={CAL_LINK}
-            trackLocation="audit-whyfree"
-            trackLabel="Find Your AI Wins"
+            trackLocation="audit-whyus"
+            trackLabel="Book 30 Minutes With Brendan"
           />
         </div>
       </div>
     </section>
 
+    <!-- ============================ WORKING EXAMPLES ============================ -->
+    <section class="op-audit-examples" id="examples">
+      <div class="op-audit-section-frame">
+        <div class="op-audit-section-head">
+          <EyebrowTag label="WORKING EXAMPLES · SYSTEMS WE'VE BUILT" variant="paper" />
+          <h2 class="op-audit-h2">See the kind of thing we mean.</h2>
+          <p class="op-audit-section-sub">
+            These are real builds you can read about, not benchmarks or promises. Every one keeps
+            a person in the review loop, which is exactly what your report will recommend too.
+          </p>
+        </div>
+        <div class="op-audit-examples-grid">
+          {examples.map((ex, i) => (
+            <a class="op-audit-example-card" href={`/projects/${ex.slug}`} data-track="project_card_click" data-track-label={ex.name}>
+              <span class="op-mono op-audit-example-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="op-audit-example-title">{ex.name}</h3>
+              <p class="op-audit-example-body">{ex.body}</p>
+              <span class="op-mono op-audit-example-link">SEE THE BUILD →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- ============================ FAQ ============================ -->
-    <section class="op-audit-faq op-grid-bg">
+    <section class="op-audit-faq op-grid-bg" id="faq">
       <div class="op-audit-section-frame op-audit-faq-frame">
         <div class="op-audit-section-head">
           <EyebrowTag label="FAQ · BEFORE YOU RUN IT" variant="paper" />
@@ -421,30 +734,115 @@ const serviceSchema = {
         </div>
       </div>
     </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section class="op-audit-final">
+      <div class="op-audit-section-frame op-audit-final-inner">
+        <div>
+          <EyebrowTag label="THE NEXT 30 MINUTES" />
+          <h2 class="op-audit-h2 op-audit-h2-light">Not sure which path fits? Ask Brendan.</h2>
+          <p class="op-audit-final-sub">
+            Audit report, Workflow Sprint, or a clinic for your members &mdash; it&rsquo;s one
+            30-minute conversation to figure out which, and every booking on this page goes
+            straight to Brendan&rsquo;s calendar.
+          </p>
+        </div>
+        <div class="op-audit-final-ctas">
+          <a
+            href="#"
+            class="op-audit-cal-cta op-mono"
+            data-cal-link={CAL_LINK}
+            data-cal-namespace={CAL_NAMESPACE}
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            data-track="cta_click"
+            data-track-location="audit-final"
+            data-track-label="Book 30 Minutes With Brendan"
+            data-intent="workflow_audit"
+          >
+            BOOK 30 MINUTES WITH BRENDAN <span aria-hidden="true">→</span>
+          </a>
+          <a href="/free-ai-audit/worksheet/" class="op-audit-final-link op-mono" data-worksheet target="_blank" rel="noopener">DOWNLOAD THE AI WORKFLOW WORKSHEET →</a>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 
   <script is:inline>
     (function () {
       var SCAN_URL = '/api/audit-scan';
-      var SUBMIT_URL = '/api/audit-submit';
+      var WORKFLOW_URL = '/api/workflow-submit';
 
+      var prefersReduced = false;
+      try { prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      function scrollToEl(el) {
+        if (el) el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+      function track(name, params) {
+        if (typeof gtag !== 'undefined') { try { gtag('event', name, params || {}); } catch (e) {} }
+      }
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      // ---- attribution: ?ref=partner&event=name + UTM params, kept for the
+      // session so anchors/refreshes don't lose them. Only categorical values
+      // are stored; no free text.
+      var attribution = (function () {
+        var attr = {};
+        try { attr = JSON.parse(sessionStorage.getItem('ba_audit_attr') || '{}') || {}; } catch (e) { attr = {}; }
+        try {
+          var params = new URLSearchParams(window.location.search);
+          ['ref', 'event', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
+            var v = params.get(k);
+            if (v) attr[k] = String(v).slice(0, 120);
+          });
+          sessionStorage.setItem('ba_audit_attr', JSON.stringify(attr));
+        } catch (e) {}
+        return attr;
+      })();
+      function attributionPayload() {
+        return {
+          lead_source: attribution.ref ? 'partner_referral' : (attribution.utm_source ? 'campaign' : 'direct'),
+          referral_partner: attribution.ref || '',
+          event_name: attribution.event || '',
+          utm_source: attribution.utm_source || '',
+          utm_medium: attribution.utm_medium || '',
+          utm_campaign: attribution.utm_campaign || '',
+        };
+      }
+
+      // ---- Cal open tracking: every Brendan CTA on this page ----
+      document.addEventListener('click', function (e) {
+        var cal = e.target.closest && e.target.closest('[data-cal-link]');
+        if (!cal) return;
+        var loc = cal.getAttribute('data-track-location') || 'unknown';
+        var intent = cal.getAttribute('data-intent') || 'workflow_audit';
+        track('cal_opened', { source: loc, intent: intent, ref: attribution.ref || '(none)' });
+        if (loc === 'workflow-sprint') track('sprint_cta_click', { label: cal.getAttribute('data-track-label') || '' });
+        if (loc === 'clinic') track('clinic_cta_click', { label: cal.getAttribute('data-track-label') || '' });
+      });
+
+      // ---- worksheet download tracking ----
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('[data-worksheet]');
+        if (link) track('worksheet_downloaded', { from: window.location.hash || 'page' });
+      });
+
+      // =====================================================================
+      // WEBSITE & LEAD-CAPTURE SCORE (assessment 1)
+      // =====================================================================
       var scanForm = document.getElementById('audit-scan-form');
-      var leadForm = document.getElementById('audit-lead-form');
-      if (!scanForm || !leadForm) return;
-
       var stages = {
         input: document.getElementById('stage-input'),
         loading: document.getElementById('stage-loading'),
         teaser: document.getElementById('stage-teaser'),
-        report: document.getElementById('stage-report'),
       };
       var statusEl = document.getElementById('audit-status');
       var scanBtn = document.getElementById('audit-scan-btn');
-      var leadBtn = document.getElementById('lead-submit');
       var scanError = document.getElementById('scan-error');
-      var leadError = document.getElementById('lead-error');
-
       var scanData = null;
 
       function show(stage) {
@@ -458,18 +856,12 @@ const serviceSchema = {
         el.textContent = msg || '';
         el.style.display = msg ? 'block' : 'none';
       }
-      function esc(s) {
-        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-        });
-      }
       function bandColor(score) {
         if (score >= 75) return 'var(--green)';
         if (score >= 45) return 'var(--op-orange)';
         return 'var(--red)';
       }
 
-      // ---- loading step animation ----
       var loadingTimer = null;
       function startLoading(domain) {
         var dEl = document.getElementById('loading-domain');
@@ -487,7 +879,6 @@ const serviceSchema = {
       }
       function stopLoading() { if (loadingTimer) clearInterval(loadingTimer); }
 
-      // ---- render teaser ----
       function renderTeaser(data) {
         var num = document.getElementById('score-num');
         var grade = document.getElementById('score-grade');
@@ -500,16 +891,20 @@ const serviceSchema = {
         if (note) {
           note.textContent = data.score >= 80 ? 'Strong, with room to automate' : data.score >= 60 ? 'Decent, real gaps to close' : 'Big opportunities waiting';
         }
-        // animate the number
         if (num) {
-          var target = data.score, start = performance.now(), dur = 900;
-          (function tick(now) {
-            var t = Math.min(1, (now - start) / dur);
-            var eased = 1 - Math.pow(1 - t, 3);
-            num.textContent = Math.round(target * eased);
-            if (gauge) gauge.style.setProperty('--gauge-pct', (target * eased) + '%');
-            if (t < 1) requestAnimationFrame(tick);
-          })(start);
+          if (prefersReduced) {
+            num.textContent = data.score;
+            if (gauge) gauge.style.setProperty('--gauge-pct', data.score + '%');
+          } else {
+            var target = data.score, start = performance.now(), dur = 900;
+            (function tick(now) {
+              var t = Math.min(1, (now - start) / dur);
+              var eased = 1 - Math.pow(1 - t, 3);
+              num.textContent = Math.round(target * eased);
+              if (gauge) gauge.style.setProperty('--gauge-pct', (target * eased) + '%');
+              if (t < 1) requestAnimationFrame(tick);
+            })(start);
+          }
         }
 
         var cats = document.getElementById('score-cats');
@@ -539,156 +934,303 @@ const serviceSchema = {
         }
       }
 
-      function formatRecTags(r) {
-        var type = r.category === 'strategic' ? 'Strategic' : 'Quick Win';
-        var impact = r.impact || 'Medium';
-        var effort = r.effort || 'Medium';
-        return type + ', Impact ' + impact + ' · Effort ' + effort;
+      if (scanForm) {
+        scanForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          setError(scanError, '');
+          var url = (document.getElementById('audit-url').value || '').trim();
+          if (!url || url.indexOf('.') === -1) {
+            setError(scanError, 'Enter your website address, e.g. yourcompany.com');
+            return;
+          }
+          var domainGuess = url.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
+          scanBtn.disabled = true;
+          setStatus('● SCANNING');
+          show('loading');
+          startLoading(domainGuess);
+          track('audit_scan_started', {});
+
+          fetch(SCAN_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                if (!res.ok) throw new Error(data && data.error ? data.error : 'Scan failed.');
+                return data;
+              });
+            })
+            .then(function (data) {
+              scanData = data;
+              stopLoading();
+              renderTeaser(data);
+              setStatus('● SCORE READY');
+              show('teaser');
+              track('audit_scan_complete', { score: data.score });
+              if (typeof fbq !== 'undefined') { try { fbq('trackCustom', 'AuditScan', { score: data.score }); } catch (e) {} }
+              scrollToEl(stages.teaser);
+            })
+            .catch(function (err) {
+              stopLoading();
+              scanBtn.disabled = false;
+              setStatus('● READY');
+              show('input');
+              setError(scanError, err.message || "We couldn't scan that site. Check the address and try again.");
+            });
+        });
       }
 
-      // ---- render report ----
-      function renderReport(report) {
-        var h = document.getElementById('report-headline');
-        var sum = document.getElementById('report-summary');
-        var hours = document.getElementById('report-hours');
-        if (h) h.textContent = report.headline || 'Your AI opportunity report';
-        if (sum) sum.textContent = report.executiveSummary || '';
-        if (hours) hours.textContent = report.estimatedHoursPerWeek || 6;
+      // Hero "RUN MY FREE AUDIT": scroll to the console + focus the URL field.
+      var heroRun = document.getElementById('hero-run-audit');
+      if (heroRun) {
+        heroRun.addEventListener('click', function (e) {
+          e.preventDefault();
+          track('cta_click', { cta_location: 'audit-hero', cta_text: 'Run My Free Audit' });
+          var input = document.getElementById('audit-url');
+          scrollToEl(document.getElementById('website-score'));
+          if (input) setTimeout(function () { input.focus({ preventScroll: true }); }, prefersReduced ? 0 : 450);
+        });
+      }
 
-        var wrap = document.getElementById('report-recs');
+      // =====================================================================
+      // AI WORKFLOW SCORECARD (assessment 2)
+      // =====================================================================
+      var wsForm = document.getElementById('ws-form');
+      var wsReport = document.getElementById('ws-report');
+      if (!wsForm) return;
+
+      var wsSteps = Array.prototype.slice.call(wsForm.querySelectorAll('[data-ws-step]'));
+      var wsBack = document.getElementById('ws-back');
+      var wsNext = document.getElementById('ws-next');
+      var wsSubmit = document.getElementById('ws-submit');
+      var wsError = document.getElementById('ws-error');
+      var wsStatus = document.getElementById('ws-status');
+      var wsStepNum = document.getElementById('ws-step-num');
+      var wsStepTitle = document.getElementById('ws-step-title');
+      var wsProgressFill = document.getElementById('ws-progress-fill');
+      var current = 0;
+      var scorecardStarted = false;
+
+      function markStarted(path) {
+        if (scorecardStarted) return;
+        scorecardStarted = true;
+        track('workflow_scorecard_started', { path: path || 'direct' });
+      }
+
+      function val(id) {
+        var el = document.getElementById(id);
+        return el ? (el.value || '').trim() : '';
+      }
+      function radioVal(name) {
+        var el = wsForm.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : '';
+      }
+
+      function showStep(idx, focusLegend) {
+        current = Math.max(0, Math.min(idx, wsSteps.length - 1));
+        wsSteps.forEach(function (s, i) { s.hidden = i !== current; });
+        var isLast = current === wsSteps.length - 1;
+        wsBack.hidden = current === 0;
+        wsNext.hidden = isLast;
+        wsSubmit.hidden = !isLast;
+        if (wsStepNum) wsStepNum.textContent = String(current + 1);
+        if (wsStepTitle) wsStepTitle.textContent = wsSteps[current].getAttribute('data-ws-title') || '';
+        if (wsProgressFill) wsProgressFill.style.width = (((current + 1) / wsSteps.length) * 100) + '%';
+        setError(wsError, '');
+        if (focusLegend) {
+          var legend = wsSteps[current].querySelector('.op-ws-legend');
+          if (legend) legend.focus({ preventScroll: true });
+        }
+      }
+
+      function validateStep(idx) {
+        if (idx === 0) {
+          if (!val('ws-business-type')) return 'Tell us what type of business you operate.';
+          if (!radioVal('team_size')) return 'Pick how many people handle the office and coordination work.';
+        }
+        if (idx === 1 && !val('ws-repeat-tasks')) return 'List at least a couple of the tasks that repeat every day or week.';
+        if (idx === 2 && !val('ws-inquiries')) return 'Describe how new inquiries come in and get followed up, even one sentence helps.';
+        if (idx === 4) {
+          if (!val('ws-name')) return 'Please enter your name.';
+          var email = val('ws-email');
+          if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) return 'Please enter a valid email.';
+        }
+        return '';
+      }
+
+      wsNext.addEventListener('click', function () {
+        var err = validateStep(current);
+        if (err) { setError(wsError, err); return; }
+        showStep(current + 1, true);
+        track('workflow_scorecard_step', { step: current + 1 });
+      });
+      wsBack.addEventListener('click', function () {
+        showStep(current - 1, true);
+      });
+      wsForm.addEventListener('focusin', function () { markStarted('direct'); });
+
+      // Skip link + teaser continue both route here.
+      function goToScorecard(path) {
+        markStarted(path);
+        scrollToEl(document.getElementById('workflow-scorecard'));
+        setTimeout(function () {
+          var first = document.getElementById('ws-business-type');
+          if (first && current === 0) first.focus({ preventScroll: true });
+        }, prefersReduced ? 0 : 450);
+      }
+      var skipLink = document.getElementById('skip-to-scorecard');
+      if (skipLink) {
+        skipLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          goToScorecard('skipped_website');
+        });
+      }
+      var teaserContinue = document.getElementById('teaser-continue');
+      if (teaserContinue) {
+        teaserContinue.addEventListener('click', function () {
+          goToScorecard('after_website_score');
+        });
+      }
+      // Support /free-ai-audit/?ref=...#workflow-scorecard deep links.
+      if (window.location.hash === '#workflow-scorecard') {
+        setTimeout(function () { goToScorecard('deep_link'); }, 300);
+      }
+
+      function nextStepMeta(step) {
+        switch (step) {
+          case 'train': return { label: 'TRAIN THE TEAM', cls: 'train' };
+          case 'automate': return { label: 'AUTOMATE', cls: 'automate' };
+          case 'leave': return { label: 'LEAVE IT ALONE', cls: 'leave' };
+          default: return { label: 'CLARIFY FIRST', cls: 'clarify' };
+        }
+      }
+
+      function renderWorkflowReport(report) {
+        var h = document.getElementById('ws-report-headline');
+        var sum = document.getElementById('ws-report-summary');
+        if (h) h.textContent = report.headline || 'Your workflow report';
+        if (sum) sum.textContent = report.summary || '';
+
+        var wrap = document.getElementById('ws-report-ops');
         if (wrap) {
-          wrap.innerHTML = (report.recommendations || []).map(function (r, i) {
-            var build = r.build
-              ? '<a class="op-audit-rec-build" href="/projects/' + esc(r.build.slug) + '">' + esc(r.build.name) + ' →</a>'
+          wrap.innerHTML = (report.opportunities || []).map(function (o, i) {
+            var step = nextStepMeta(o.nextStep);
+            var rows = [
+              ['Current process', o.currentProcess],
+              ['Trigger', o.trigger],
+              ['Inputs', o.inputs],
+              ['Proposed AI-assisted workflow', o.proposedWorkflow],
+              ['Where a person stays in control', o.humanReview],
+              ['Volume', o.volume],
+              ['Estimated time saved', o.timeSaving],
+            ];
+            var rowsHtml = rows.map(function (r) {
+              if (!r[1]) return '';
+              var needsFlag = /needs confirmation/i.test(r[1]) ? ' op-ws-op-val--needs' : '';
+              return (
+                '<div class="op-ws-op-row">' +
+                '<span class="op-ws-op-key">' + esc(r[0]) + '</span>' +
+                '<span class="op-ws-op-val' + needsFlag + '">' + esc(r[1]) + '</span>' +
+                '</div>'
+              );
+            }).join('');
+            var assumptions = (o.assumptions && o.assumptions.length)
+              ? '<div class="op-ws-op-assume"><span class="op-ws-op-key">Assumptions behind this</span><ul>' +
+                o.assumptions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') +
+                '</ul></div>'
               : '';
-            var tags = formatRecTags(r);
             return (
-              '<div class="op-audit-rec">' +
-              '<div class="op-audit-rec-head">' +
-              '<span class="op-audit-rec-num">' + String(i + 1).padStart(2, '0') + '</span>' +
-              '<span class="op-audit-rec-tags op-audit-rec-cat--' + (r.category || 'quick-win') + '">' + esc(tags) + '</span>' +
+              '<article class="op-ws-op">' +
+              '<div class="op-ws-op-head">' +
+              '<span class="op-ws-op-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+              '<span class="op-ws-op-chip op-ws-op-chip--' + step.cls + '">' + step.label + '</span>' +
+              '<span class="op-ws-op-chip op-ws-op-chip--risk-' + esc(o.risk || 'medium') + '">RISK ' + esc((o.risk || 'medium').toUpperCase()) + '</span>' +
               '</div>' +
-              '<h3 class="op-audit-rec-title">' + esc(r.title) + '</h3>' +
-              '<p class="op-audit-rec-desc">' + esc(r.description) + '</p>' +
-              (r.reasoning
-                ? '<div class="op-audit-rec-why">' +
-                  '<span class="op-audit-rec-why-label">Why</span>' +
-                  '<p class="op-audit-rec-why-text">' + esc(r.reasoning) + '</p>' +
-                  '</div>'
-                : '') +
-              build +
-              '</div>'
+              '<h4 class="op-ws-op-title">' + esc(o.title) + '</h4>' +
+              rowsHtml +
+              assumptions +
+              '</article>'
             );
           }).join('');
         }
       }
 
-      // ---- scan submit ----
-      scanForm.addEventListener('submit', function (e) {
+      wsForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        setError(scanError, '');
-        var url = (document.getElementById('audit-url').value || '').trim();
-        if (!url || url.indexOf('.') === -1) {
-          setError(scanError, 'Enter your website address, e.g. yourcompany.com');
-          return;
-        }
-        var domainGuess = url.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
-        scanBtn.disabled = true;
-        setStatus('● SCANNING');
-        show('loading');
-        startLoading(domainGuess);
+        var err = validateStep(4);
+        if (err) { setError(wsError, err); return; }
 
-        fetch(SCAN_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: url }),
-        })
-          .then(function (res) {
-            return res.json().then(function (data) {
-              if (!res.ok) throw new Error(data && data.error ? data.error : 'Scan failed.');
-              return data;
-            });
-          })
-          .then(function (data) {
-            scanData = data;
-            stopLoading();
-            renderTeaser(data);
-            setStatus('● SCORE READY');
-            show('teaser');
-            if (typeof gtag !== 'undefined') { try { gtag('event', 'audit_scan_complete', { score: data.score }); } catch (e) {} }
-            if (typeof fbq !== 'undefined') { try { fbq('trackCustom', 'AuditScan', { score: data.score }); } catch (e) {} }
-            stages.teaser.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          })
-          .catch(function (err) {
-            stopLoading();
-            scanBtn.disabled = false;
-            setStatus('● READY');
-            show('input');
-            setError(scanError, err.message || "We couldn't scan that site. Check the address and try again.");
-          });
-      });
+        var honeypot = val('ws-hp');
+        if (honeypot) { wsForm.hidden = true; wsReport.hidden = false; return; }
 
-      // ---- lead submit ----
-      leadForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        setError(leadError, '');
-        var honeypot = (document.getElementById('lead-hp').value || '').trim();
-        if (honeypot) { show('report'); return; }
-
-        var name = (document.getElementById('lead-name').value || '').trim();
-        var email = (document.getElementById('lead-email').value || '').trim();
-        if (!name) { setError(leadError, 'Please enter your name.'); return; }
-        if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-          setError(leadError, 'Please enter a valid email.');
-          return;
-        }
-
-        leadBtn.disabled = true;
-        leadBtn.classList.add('is-loading');
-        var label = leadBtn.querySelector('.op-audit-submit-label');
-        if (label) label.textContent = 'BUILDING REPORT…';
-        setStatus('● ANALYZING');
+        wsSubmit.disabled = true;
+        wsSubmit.classList.add('is-loading');
+        var label = wsSubmit.querySelector('.op-audit-submit-label');
+        if (label) label.textContent = 'BUILDING YOUR REPORT…';
+        if (wsStatus) wsStatus.textContent = '● ANALYZING';
+        setError(wsError, '');
 
         var payload = {
-          name: name,
-          email: email,
-          phone: (document.getElementById('lead-phone').value || '').trim(),
-          business_type: (document.getElementById('lead-biztype').value || '').trim(),
-          pain_point: (document.getElementById('lead-pain').value || '').trim(),
-          url: scanData ? scanData.url : '',
-          domain: scanData ? scanData.domain : '',
-          score: scanData ? scanData.score : null,
-          signals: scanData ? scanData.signals : {},
+          name: val('ws-name'),
+          email: val('ws-email'),
+          phone: val('ws-phone'),
+          answers: {
+            business_type: val('ws-business-type'),
+            team_size: radioVal('team_size'),
+            after_hours: val('ws-after-hours'),
+            repeat_tasks: val('ws-repeat-tasks'),
+            inquiries: val('ws-inquiries'),
+            estimates: val('ws-estimates'),
+            tools: val('ws-tools'),
+            copying: val('ws-copying'),
+            delays: val('ws-delays'),
+            frequency: (document.getElementById('ws-frequency') || {}).value || 'not-sure',
+            time_each: (document.getElementById('ws-time-each') || {}).value || 'not-sure',
+            example: val('ws-example'),
+          },
+          website: scanData ? { url: scanData.url, domain: scanData.domain, score: scanData.score } : null,
+          attribution: attributionPayload(),
+          intent: 'workflow_audit',
           source: 'free-ai-audit',
         };
 
-        fetch(SUBMIT_URL, {
+        fetch(WORKFLOW_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         })
           .then(function (res) {
             return res.json().then(function (data) {
-              if (!res.ok) throw new Error(data && data.error ? data.error : 'Could not build report.');
+              if (!res.ok) throw new Error(data && data.error ? data.error : 'Could not build the report.');
               return data;
             });
           })
           .then(function (data) {
+            // Categorical analytics only, never questionnaire text.
+            track('workflow_scorecard_completed', {
+              had_website: scanData ? 'yes' : 'no',
+              team_size: payload.answers.team_size || '(none)',
+              lead_source: payload.attribution.lead_source,
+            });
             if (typeof fbq !== 'undefined') { try { fbq('track', 'Lead'); } catch (e) {} }
-            if (typeof gtag !== 'undefined') { try { gtag('event', 'audit_report_unlocked', { method: 'free_ai_audit' }); } catch (e) {} }
-            renderReport(data.report || {});
-            setStatus('● REPORT READY');
-            show('report');
-            stages.report.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            renderWorkflowReport((data && data.report) || {});
+            wsForm.hidden = true;
+            wsReport.hidden = false;
+            if (wsStatus) wsStatus.textContent = '● REPORT READY';
+            track('workflow_report_viewed', { opportunities: ((data && data.report && data.report.opportunities) || []).length });
+            scrollToEl(document.getElementById('ws-panel'));
           })
-          .catch(function (err) {
-            leadBtn.disabled = false;
-            leadBtn.classList.remove('is-loading');
-            if (label) label.textContent = 'GET MY AI REPORT';
-            setStatus('● SCORE READY');
-            setError(leadError, err.message || "That didn't go through. Email james@brothersautomate.com and we'll send it manually.");
+          .catch(function (err2) {
+            wsSubmit.disabled = false;
+            wsSubmit.classList.remove('is-loading');
+            if (label) label.textContent = 'GET MY WORKFLOW REPORT';
+            if (wsStatus) wsStatus.textContent = '● READY';
+            setError(wsError, err2.message || "That didn't go through. Try again, or email james@simpleflosolutions.com and we'll run it manually.");
           });
       });
+
+      showStep(0, false);
     })();
   </script>
 
@@ -741,7 +1283,7 @@ const serviceSchema = {
   .op-audit-h1 {
     font-family: var(--op-font-display);
     font-weight: 800;
-    font-size: clamp(38px, 4.8vw, 66px);
+    font-size: clamp(36px, 4.4vw, 60px);
     line-height: 0.98;
     letter-spacing: var(--op-tracking-display);
     color: var(--op-ink);
@@ -749,13 +1291,19 @@ const serviceSchema = {
     text-wrap: balance;
   }
   .op-audit-h1-orange { color: var(--op-orange); }
+
+  .op-audit-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 24px;
+  }
   .op-audit-cal-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    align-self: flex-start;
-    margin: 0 0 20px;
     font-family: var(--op-font-display);
     font-weight: 800;
     font-size: 13px;
@@ -776,22 +1324,45 @@ const serviceSchema = {
     transform: translate(-2px, -3px);
     box-shadow: var(--op-shadow-lg);
   }
+  .op-audit-hero-secondary {
+    font-size: 10px;
+    color: var(--op-navy);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-orange);
+    padding-bottom: 3px;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-hero-secondary:hover { color: var(--op-orange); }
+
   .op-audit-sub {
     font-family: var(--op-font-body);
     font-size: 16px;
     line-height: 1.6;
     font-weight: 500;
     color: var(--op-navy-soft);
-    margin: 0 0 26px;
-    max-width: 520px;
+    margin: 0 0 24px;
+    max-width: 540px;
     text-wrap: pretty;
   }
-  .op-audit-bullets {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 10px;
-    font-size: 10px; color: var(--op-navy);
+
+  .op-audit-anchor-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    font-size: 9px;
+    padding-top: 18px;
+    border-top: 1px solid var(--op-rule);
   }
-  .op-audit-bullets li { display: flex; align-items: center; gap: 10px; }
+  .op-audit-anchor-head { color: var(--op-navy-soft); opacity: 0.75; }
+  .op-audit-anchor-nav a {
+    color: var(--op-navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--op-rule);
+    padding-bottom: 2px;
+    transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-anchor-nav a:hover { color: var(--op-orange); border-color: var(--op-orange); }
 
   /* ============================ CONSOLE PANEL ============================ */
   .op-audit-panel {
@@ -814,6 +1385,14 @@ const serviceSchema = {
   .op-audit-stage { padding: 28px 28px 26px; }
   .op-audit-stage[hidden] { display: none; }
 
+  .op-audit-stage-intro {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0 0 18px;
+  }
+
   .op-audit-field { display: flex; flex-direction: column; gap: 8px; }
   .op-audit-label { font-size: 10px; color: var(--op-navy); display: flex; align-items: center; gap: 8px; }
   .op-audit-req { color: var(--op-orange); }
@@ -822,8 +1401,12 @@ const serviceSchema = {
   .op-audit-panel input[type="text"],
   .op-audit-panel input[type="email"],
   .op-audit-panel input[type="tel"],
-  .op-audit-panel input[type="url"],
-  .op-audit-panel textarea {
+  .op-audit-panel textarea,
+  .op-ws-panel input[type="text"],
+  .op-ws-panel input[type="email"],
+  .op-ws-panel input[type="tel"],
+  .op-ws-panel textarea,
+  .op-ws-panel select {
     font-family: var(--op-font-body);
     font-size: 15px;
     color: var(--op-ink);
@@ -836,10 +1419,19 @@ const serviceSchema = {
     transition: border-color var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
     -webkit-appearance: none; appearance: none;
   }
-  .op-audit-panel textarea { resize: vertical; min-height: 84px; line-height: 1.55; }
-  .op-audit-panel input::placeholder, .op-audit-panel textarea::placeholder { color: var(--op-navy-soft); opacity: 0.55; }
-  .op-audit-panel input:focus, .op-audit-panel textarea:focus {
+  .op-audit-panel textarea, .op-ws-panel textarea { resize: vertical; min-height: 84px; line-height: 1.55; }
+  .op-audit-panel input::placeholder, .op-audit-panel textarea::placeholder,
+  .op-ws-panel input::placeholder, .op-ws-panel textarea::placeholder { color: var(--op-navy-soft); opacity: 0.55; }
+  .op-audit-panel input:focus, .op-audit-panel textarea:focus,
+  .op-ws-panel input:focus, .op-ws-panel textarea:focus, .op-ws-panel select:focus {
     outline: none; border-color: var(--op-orange); box-shadow: 3px 3px 0 var(--op-orange);
+  }
+  .op-ws-panel select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--op-navy) 50%), linear-gradient(135deg, var(--op-navy) 50%, transparent 50%);
+    background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    cursor: pointer;
   }
 
   .op-audit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
@@ -868,6 +1460,18 @@ const serviceSchema = {
     border-left: 3px solid var(--red); padding: 10px 14px; margin: 14px 0 0;
     font-family: var(--op-font-body); font-size: 13.5px; color: var(--op-navy);
   }
+
+  .op-audit-skip {
+    font-family: var(--op-font-body);
+    font-size: 13px;
+    color: var(--op-navy-soft);
+    margin: 18px 0 0;
+    padding-top: 16px;
+    border-top: 1px dashed var(--op-rule);
+    text-align: center;
+  }
+  .op-audit-skip a { color: var(--op-navy); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--op-orange); padding-bottom: 1px; }
+  .op-audit-skip a:hover { color: var(--op-orange); }
 
   .op-audit-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
@@ -971,125 +1575,213 @@ const serviceSchema = {
     margin: 0;
   }
 
-  /* ---- gate ---- */
+  /* ---- teaser gate → scorecard handoff ---- */
   .op-audit-gate { background: var(--op-navy); border-radius: var(--op-radius); padding: 22px 20px; margin: 4px -4px 0; }
   .op-audit-gate-head { display: flex; align-items: center; gap: 8px; color: var(--op-cream); font-size: 10px; }
   .op-audit-gate-head .op-mono { color: var(--op-cream); }
   .op-audit-gate-sub { font-family: var(--op-font-body); font-size: 13px; color: rgba(244,238,226,0.72); margin: 10px 0 18px; line-height: 1.5; }
-  .op-audit-gate .op-audit-label { color: var(--op-cream); }
-  .op-audit-gate .op-audit-opt { color: rgba(244,238,226,0.6); }
-  .op-audit-gate input, .op-audit-gate textarea { background: var(--op-paper) !important; }
   .op-audit-gate .op-audit-fineprint { color: rgba(244,238,226,0.6); }
 
-  /* ---- report ---- */
+  /* ============================ WORKFLOW SCORECARD ============================ */
+  .op-audit-scorecard { padding: var(--op-section-py) 0; border-top: var(--op-border); }
+  .op-ws-panel {
+    max-width: 880px;
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    box-shadow: var(--op-shadow-lg);
+  }
+  #ws-form { padding: 26px 28px 26px; }
+  #ws-form[hidden] { display: none; }
+
+  .op-ws-progress { margin-bottom: 24px; }
+  .op-ws-progress-label { font-size: 10px; color: var(--op-navy); display: block; margin-bottom: 8px; }
+  .op-ws-progress-bar { height: 6px; background: var(--op-rule-soft); border-radius: 99px; overflow: hidden; }
+  .op-ws-progress-bar span { display: block; height: 100%; background: var(--op-orange); border-radius: 99px; transition: width var(--op-dur-base) var(--op-ease); }
+
+  .op-ws-step { border: none; padding: 0; margin: 0; min-width: 0; }
+  .op-ws-step[hidden] { display: none; }
+  .op-ws-legend {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--op-ink);
+    padding: 0;
+    margin: 0 0 18px;
+  }
+  .op-ws-legend:focus { outline: none; }
+  .op-ws-field { margin-bottom: 18px; }
+
+  .op-ws-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .op-ws-pill { position: relative; cursor: pointer; }
+  .op-ws-pill input {
+    position: absolute; opacity: 0; width: 100%; height: 100%; inset: 0; margin: 0; cursor: pointer;
+  }
+  .op-ws-pill span {
+    display: inline-block;
+    font-family: var(--op-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--op-navy);
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: 99px;
+    padding: 9px 18px;
+    transition: background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-ws-pill input:checked + span { background: var(--op-navy); color: var(--op-cream); }
+  .op-ws-pill input:focus-visible + span { outline: none; box-shadow: 3px 3px 0 var(--op-orange); border-color: var(--op-orange); }
+
+  .op-ws-privacy {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    background: var(--op-paper);
+    border: 1px solid var(--op-rule);
+    border-left: 3px solid var(--op-orange);
+    border-radius: var(--op-radius-sm);
+    padding: 10px 14px;
+    margin: 0 0 16px;
+  }
+  .op-ws-privacy strong { color: var(--op-navy); }
+
+  .op-ws-controls { display: flex; gap: 14px; align-items: stretch; margin-top: 6px; }
+  .op-ws-btn-back {
+    font-size: 11px;
+    background: var(--op-paper);
+    color: var(--op-navy);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    padding: 14px 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background var(--op-dur-hover) var(--op-ease), color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-ws-btn-back:hover { color: var(--op-orange); }
+  .op-ws-btn-back[hidden] { display: none; }
+  .op-ws-btn-next { flex: 1; }
+  .op-ws-btn-next[hidden] { display: none; }
+
+  /* ---- workflow report ---- */
+  .op-ws-report { padding: 26px 28px 28px; }
+  .op-ws-report[hidden] { display: none; }
   .op-audit-report-head { margin-bottom: 22px; }
   .op-audit-report-eyebrow { font-family: var(--op-font-mono); font-weight: 700; letter-spacing: var(--op-tracking-mono); text-transform: uppercase; font-size: 9px; color: var(--op-orange); }
   .op-audit-report-title { font-family: var(--op-font-display); font-weight: 800; font-size: clamp(22px, 3vw, 30px); letter-spacing: var(--op-tracking-display); color: var(--op-ink); margin: 12px 0 10px; text-wrap: balance; }
   .op-audit-report-summary { font-family: var(--op-font-body); font-size: 14.5px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; }
 
-  .op-audit-recs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
-  /* :global() — recommendation cards are injected via innerHTML */
-  .op-audit-recs :global(.op-audit-rec) {
+  .op-ws-ops { display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; }
+  /* :global() — opportunity cards are injected via innerHTML */
+  .op-ws-ops :global(.op-ws-op) {
     background: var(--op-paper);
     border: var(--op-border);
     border-radius: var(--op-radius-sm);
-    padding: 16px 16px 15px;
+    padding: 18px 18px 16px;
     box-shadow: var(--op-shadow);
   }
-  .op-audit-recs :global(.op-audit-rec-head) {
+  .op-ws-ops :global(.op-ws-op-head) {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
-  .op-audit-recs :global(.op-audit-rec-num) {
+  .op-ws-ops :global(.op-ws-op-num) {
     font-family: var(--op-font-mono);
     font-size: 10px;
     font-weight: 700;
     color: var(--op-navy-soft);
     letter-spacing: 0.04em;
-    flex-shrink: 0;
   }
-  .op-audit-recs :global(.op-audit-rec-tags) {
-    font-family: var(--op-font-body);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: normal;
-    padding: 4px 10px;
-    border-radius: 99px;
-    border: 1px solid currentColor;
-  }
-  .op-audit-recs :global(.op-audit-rec-cat--quick-win) { color: var(--green); }
-  .op-audit-recs :global(.op-audit-rec-cat--strategic) { color: var(--op-orange); }
-  .op-audit-recs :global(.op-audit-rec-title) {
-    font-family: var(--op-font-display);
-    font-weight: 800;
-    font-size: 16px;
-    color: var(--op-ink);
-    margin: 0 0 7px;
-    letter-spacing: -0.01em;
-  }
-  .op-audit-recs :global(.op-audit-rec-desc) {
-    font-family: var(--op-font-body);
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: var(--op-navy);
-    margin: 0 0 8px;
-  }
-  .op-audit-recs :global(.op-audit-rec-why) {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin: 0 0 10px;
-  }
-  .op-audit-recs :global(.op-audit-rec-why-label) {
+  .op-ws-ops :global(.op-ws-op-chip) {
     font-family: var(--op-font-mono);
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--op-orange);
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid currentColor;
   }
-  .op-audit-recs :global(.op-audit-rec-why-text) {
+  .op-ws-ops :global(.op-ws-op-chip--train) { color: var(--op-navy); }
+  .op-ws-ops :global(.op-ws-op-chip--automate) { color: var(--green); }
+  .op-ws-ops :global(.op-ws-op-chip--clarify) { color: var(--op-orange); }
+  .op-ws-ops :global(.op-ws-op-chip--leave) { color: var(--red); }
+  .op-ws-ops :global(.op-ws-op-chip--risk-low) { color: var(--green); opacity: 0.85; }
+  .op-ws-ops :global(.op-ws-op-chip--risk-medium) { color: var(--op-orange); opacity: 0.85; }
+  .op-ws-ops :global(.op-ws-op-chip--risk-high) { color: var(--red); opacity: 0.85; }
+  .op-ws-ops :global(.op-ws-op-title) {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--op-ink);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .op-ws-ops :global(.op-ws-op-row) {
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 4px 14px;
+    padding: 7px 0;
+    border-top: 1px solid var(--op-rule-soft);
+  }
+  @media (max-width: 640px) {
+    .op-ws-ops :global(.op-ws-op-row) { grid-template-columns: 1fr; }
+  }
+  .op-ws-ops :global(.op-ws-op-key) {
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--op-navy-soft);
+    padding-top: 2px;
+  }
+  .op-ws-ops :global(.op-ws-op-val) {
+    font-family: var(--op-font-body);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--op-navy);
+  }
+  .op-ws-ops :global(.op-ws-op-val--needs) {
+    color: var(--op-orange);
+    font-weight: 600;
+  }
+  .op-ws-ops :global(.op-ws-op-assume) {
+    border-top: 1px solid var(--op-rule-soft);
+    padding: 8px 0 0;
+    margin-top: 2px;
+  }
+  .op-ws-ops :global(.op-ws-op-assume ul) {
+    margin: 6px 0 0;
+    padding-left: 18px;
+  }
+  .op-ws-ops :global(.op-ws-op-assume li) {
     font-family: var(--op-font-body);
     font-size: 12.5px;
     line-height: 1.5;
     color: var(--op-navy-soft);
-    margin: 0;
+    margin-bottom: 3px;
   }
-  .op-audit-recs :global(.op-audit-rec-build) {
-    display: inline-block;
-    font-family: var(--op-font-mono);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--op-navy);
-    border-bottom: 1.5px solid var(--op-orange);
-    padding-bottom: 2px;
-    text-decoration: none;
-    transition: color var(--op-dur-hover) var(--op-ease);
-  }
-  .op-audit-recs :global(.op-audit-rec-build:hover) { color: var(--op-orange); }
 
-  .op-audit-impact { display: flex; align-items: center; gap: 16px; background: var(--op-navy); border-radius: var(--op-radius); padding: 18px 20px; margin-bottom: 20px; }
-  .op-audit-impact-num { font-family: var(--op-font-display); font-weight: 800; font-size: 40px; color: var(--op-orange); line-height: 0.9; display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; }
-  .op-audit-impact-unit { font-size: 13px; color: var(--op-cream); }
-  .op-audit-impact-text { font-family: var(--op-font-body); font-size: 13px; line-height: 1.5; color: rgba(244,238,226,0.8); margin: 0; }
-  .op-audit-impact-text strong { color: var(--op-cream); }
+  .op-ws-report-note {
+    font-family: var(--op-font-body);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    margin: 0 0 20px;
+  }
 
   .op-audit-report-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
-  .op-audit-book,
-  .op-audit-cal-cta {
-    font-family: var(--op-font-display); font-weight: 800; font-size: 13px; letter-spacing: 0.14em;
+  .op-audit-book {
+    font-family: var(--op-font-display); font-weight: 800; font-size: 13px; letter-spacing: 0.1em;
     background: var(--op-orange); color: var(--op-paper);
     border: var(--op-border); border-radius: var(--op-radius);
     padding: 13px 20px; text-decoration: none; box-shadow: var(--op-shadow);
     transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease), background var(--op-dur-hover) var(--op-ease);
   }
-  .op-audit-book:hover,
-  .op-audit-cal-cta:hover { background: var(--op-orange-deep); color: var(--op-paper); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
+  .op-audit-book:hover { background: var(--op-orange-deep); color: var(--op-paper); transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
   .op-audit-report-link { font-size: 10px; color: var(--op-navy); text-decoration: none; border-bottom: 1.5px solid var(--op-navy); padding-bottom: 3px; transition: color var(--op-dur-hover) var(--op-ease), border-color var(--op-dur-hover) var(--op-ease); }
   .op-audit-report-link:hover { color: var(--op-orange); border-color: var(--op-orange); }
 
@@ -1101,44 +1793,115 @@ const serviceSchema = {
   .op-audit-h2-light { color: var(--op-cream); }
   .op-audit-section-sub { font-family: var(--op-font-body); font-size: 16px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; max-width: 620px; }
 
-  /* ---- proof ---- */
-  .op-audit-proof { background: var(--op-paper); padding: var(--op-section-py) 0; border-top: var(--op-border); border-bottom: var(--op-border); }
-  .op-audit-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (min-width: 800px) { .op-audit-stats { grid-template-columns: repeat(4, 1fr); } }
-  .op-audit-stat { background: var(--op-cream); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 22px 20px; display: flex; flex-direction: column; gap: 6px; }
-  .op-audit-stat-num { font-family: var(--op-font-display); font-weight: 800; font-size: clamp(30px, 4vw, 44px); color: var(--op-orange); line-height: 1; letter-spacing: var(--op-tracking-numeric); }
-  .op-audit-stat-label { font-family: var(--op-font-body); font-size: 14px; font-weight: 600; color: var(--op-navy); }
-  .op-audit-stat-context { font-size: 9px; color: var(--op-navy-soft); }
+  /* ---- interpret ---- */
+  .op-audit-interpret { background: var(--op-paper); padding: var(--op-section-py) 0; border-top: var(--op-border); border-bottom: var(--op-border); }
+  .op-audit-interpret-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .op-audit-interpret-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .op-audit-interpret-grid { grid-template-columns: repeat(4, 1fr); } }
+  .op-audit-interpret-card {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    padding: 22px 20px;
+  }
+  .op-audit-interpret-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1.5px solid currentColor;
+  }
+  .op-audit-interpret-tag--navy { color: var(--op-navy); }
+  .op-audit-interpret-tag--green { color: var(--green); }
+  .op-audit-interpret-tag--orange { color: var(--op-orange); }
+  .op-audit-interpret-tag--red { color: var(--red); }
+  .op-audit-interpret-title { font-family: var(--op-font-display); font-weight: 800; font-size: 17px; color: var(--op-ink); margin: 12px 0 8px; }
+  .op-audit-interpret-body { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy-soft); margin: 0; }
 
-  /* ---- who ---- */
-  .op-audit-who { padding: var(--op-section-py) 0; }
-  .op-audit-who-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 700px) { .op-audit-who-grid { grid-template-columns: repeat(2, 1fr); } }
-  .op-audit-who-card { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 24px 22px; transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease); }
-  .op-audit-who-card:hover { transform: translate(-2px, -3px); box-shadow: var(--op-shadow-md); }
-  .op-audit-who-num { font-size: 10px; color: var(--op-orange); }
-  .op-audit-who-label { font-family: var(--op-font-display); font-weight: 800; font-size: 18px; color: var(--op-ink); margin: 10px 0 8px; }
-  .op-audit-who-detail { font-family: var(--op-font-body); font-size: 14px; line-height: 1.55; color: var(--op-navy-soft); margin: 0; }
+  /* ---- sprint ---- */
+  .op-audit-sprint { background: var(--op-navy); padding: var(--op-section-py) 0; }
+  .op-audit-sprint :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-audit-sprint-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+  @media (min-width: 960px) { .op-audit-sprint-grid { grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; } }
+  .op-audit-sprint-body { font-family: var(--op-font-body); font-size: 15.5px; line-height: 1.65; color: rgba(244,238,226,0.82); margin: 0 0 16px; max-width: 600px; }
+  .op-audit-sprint-body strong { color: var(--op-cream); }
+  .op-audit-sprint-meta { font-size: 9.5px; color: var(--op-orange); margin: 4px 0 22px; display: block; }
+  .op-audit-sprint-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+  .op-audit-sprint-secondary {
+    font-size: 10px;
+    color: var(--op-cream);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-orange);
+    padding-bottom: 3px;
+    transition: color var(--op-dur-hover) var(--op-ease);
+    cursor: pointer;
+  }
+  .op-audit-sprint-secondary:hover { color: var(--op-orange); }
+  .op-audit-sprint-fineprint { font-family: var(--op-font-body); font-size: 12.5px; line-height: 1.55; color: rgba(244,238,226,0.6); margin: 0; max-width: 520px; }
+  .op-audit-sprint-deliverables {
+    background: var(--op-navy-deep);
+    border: 1.5px solid rgba(244,238,226,0.16);
+    border-radius: var(--op-radius-md);
+    padding: 24px 24px 20px;
+  }
+  .op-audit-sprint-dhead { font-size: 9.5px; color: var(--op-orange); margin: 0 0 16px; display: block; }
+  .op-audit-sprint-deliverables ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .op-audit-sprint-deliverables li {
+    display: flex; gap: 12px; align-items: baseline;
+    font-family: var(--op-font-body); font-size: 14px; line-height: 1.5; color: rgba(244,238,226,0.86);
+    padding-bottom: 12px; border-bottom: 1px solid rgba(244,238,226,0.1);
+  }
+  .op-audit-sprint-deliverables li:last-child { border-bottom: none; padding-bottom: 0; }
+  .op-audit-sprint-dnum { font-size: 9px; color: var(--op-orange); flex-shrink: 0; }
 
-  /* ---- process ---- */
-  .op-audit-process { background: var(--op-cream); padding: var(--op-section-py) 0; border-top: var(--op-border); }
-  .op-audit-steps-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 700px) { .op-audit-steps-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .op-audit-steps-grid { grid-template-columns: repeat(4, 1fr); } }
-  .op-audit-phase { background: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius); box-shadow: var(--op-shadow); padding: 22px 20px; display: flex; flex-direction: column; }
-  .op-audit-phase-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-  .op-audit-phase-num { font-family: var(--op-font-display); font-weight: 800; font-size: 22px; color: var(--op-orange); }
-  .op-audit-phase-time { font-size: 8.5px; color: var(--op-navy-soft); border: 1px solid var(--op-rule); border-radius: 99px; padding: 4px 8px; }
-  .op-audit-phase-title { font-family: var(--op-font-display); font-weight: 800; font-size: 16px; color: var(--op-ink); margin: 0 0 8px; }
-  .op-audit-phase-body { font-family: var(--op-font-body); font-size: 13.5px; line-height: 1.55; color: var(--op-navy-soft); margin: 0; }
+  /* ---- clinic ---- */
+  .op-audit-clinic { padding: var(--op-section-py) 0; }
+  .op-audit-clinic :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-audit-clinic-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 960px) { .op-audit-clinic-grid { grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; } }
+  .op-audit-clinic-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 24px; }
+  .op-audit-clinic-points {
+    list-style: none; margin: 0; padding: 22px 24px;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .op-audit-clinic-points li {
+    display: flex; gap: 12px; align-items: baseline;
+    font-family: var(--op-font-body); font-size: 14.5px; font-weight: 500; line-height: 1.5; color: var(--op-navy);
+  }
 
-  /* ---- why free ---- */
-  .op-audit-whyfree { background: var(--op-navy); padding: var(--op-section-py) 0; }
+  /* ---- why us ---- */
+  .op-audit-whyfree { background: var(--op-navy); padding: var(--op-section-py) 0; border-top: 1.5px solid rgba(244,238,226,0.14); }
   .op-audit-whyfree :global(.op-eyebrow) { margin-bottom: 18px; }
   .op-audit-whyfree-inner { display: grid; grid-template-columns: 1fr; gap: 28px; }
   @media (min-width: 900px) { .op-audit-whyfree-inner { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; } }
   .op-audit-whyfree-body p { font-family: var(--op-font-body); font-size: 15.5px; line-height: 1.65; color: rgba(244,238,226,0.82); margin: 0 0 18px; }
   .op-audit-whyfree-body :global(.op-cta) { margin-top: 6px; }
+
+  /* ---- examples ---- */
+  .op-audit-examples { background: var(--op-cream); padding: var(--op-section-py) 0; border-top: var(--op-border); }
+  .op-audit-examples-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 800px) { .op-audit-examples-grid { grid-template-columns: repeat(3, 1fr); } }
+  .op-audit-example-card {
+    display: flex; flex-direction: column;
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    padding: 24px 22px;
+    text-decoration: none;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-example-card:hover { transform: translate(-2px, -3px); box-shadow: var(--op-shadow-md); }
+  .op-audit-example-num { font-size: 10px; color: var(--op-orange); }
+  .op-audit-example-title { font-family: var(--op-font-display); font-weight: 800; font-size: 18px; color: var(--op-ink); margin: 10px 0 8px; }
+  .op-audit-example-body { font-family: var(--op-font-body); font-size: 14px; line-height: 1.55; color: var(--op-navy-soft); margin: 0 0 16px; flex: 1; }
+  .op-audit-example-link { font-size: 9px; color: var(--op-navy); border-bottom: 1.5px solid var(--op-orange); padding-bottom: 2px; align-self: flex-start; }
+  .op-audit-example-card:hover .op-audit-example-link { color: var(--op-orange); }
 
   /* ---- faq ---- */
   .op-audit-faq { padding: var(--op-section-py) 0; }
@@ -1151,12 +1914,43 @@ const serviceSchema = {
   .op-audit-faq-item[open] .op-audit-faq-plus { transform: rotate(45deg); }
   .op-audit-faq-item p { font-family: var(--op-font-body); font-size: 14px; line-height: 1.6; color: var(--op-navy-soft); margin: 0; padding: 0 20px 20px; }
 
-  /* ============================ RESPONSIVE ============================ */
+  /* ---- final CTA ---- */
+  .op-audit-final { background: var(--op-navy-deep); padding: var(--op-section-py) 0; }
+  .op-audit-final :global(.op-eyebrow) { margin-bottom: 18px; }
+  .op-audit-final-inner { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; }
+  @media (min-width: 900px) { .op-audit-final-inner { grid-template-columns: 1.2fr 0.8fr; gap: 56px; } }
+  .op-audit-final-sub { font-family: var(--op-font-body); font-size: 15.5px; line-height: 1.65; color: rgba(244,238,226,0.78); margin: 12px 0 0; max-width: 560px; }
+  .op-audit-final-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  @media (min-width: 900px) { .op-audit-final-ctas { align-items: flex-end; } }
+  .op-audit-final-link {
+    font-size: 10px;
+    color: var(--op-cream);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-orange);
+    padding-bottom: 3px;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-audit-final-link:hover { color: var(--op-orange); }
+
+  /* ============================ MOTION & RESPONSIVE ============================ */
+  @media (prefers-reduced-motion: reduce) {
+    .op-audit-cal-cta, .op-audit-submit, .op-audit-book,
+    .op-audit-example-card, .op-audit-interpret-card,
+    .op-ws-progress-bar span,
+    .op-audit-cats :global(.op-audit-cat-bar span) { transition: none; }
+    .op-audit-cal-cta:hover, .op-audit-submit:hover, .op-audit-book:hover,
+    .op-audit-example-card:hover { transform: none; }
+    .op-audit-submit.is-loading .op-audit-submit-arrow { animation: none; }
+  }
+
   @media (max-width: 700px) {
     .op-audit-hero { padding: 96px 20px 64px; }
     .op-audit-stage { padding: 22px 18px 20px; }
+    #ws-form, .op-ws-report { padding: 20px 16px 20px; }
     .op-audit-row { grid-template-columns: 1fr; gap: 14px; }
     .op-audit-section-frame { padding: 0 20px; }
     .op-audit-gate { margin-left: -2px; margin-right: -2px; }
+    .op-ws-controls { flex-direction: column-reverse; }
+    .op-audit-hero-ctas { flex-direction: column; align-items: flex-start; }
   }
 </style>
