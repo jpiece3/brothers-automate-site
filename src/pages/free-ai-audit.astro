@@ -1204,11 +1204,49 @@ const serviceSchema = {
 
       if (wsPrint) {
         wsPrint.addEventListener('click', function () {
+          var existingPrintRoot = document.getElementById('ws-print-root');
+          if (existingPrintRoot && existingPrintRoot.parentNode) {
+            existingPrintRoot.parentNode.removeChild(existingPrintRoot);
+          }
+
+          // Print a top-level clone instead of the live report nested inside
+          // the full landing page. This keeps the rest of the page out of the
+          // print layout and preserves the cards generated after submission.
+          var printRoot = document.createElement('div');
+          printRoot.id = 'ws-print-root';
+
+          var reportClone = wsReport.cloneNode(true);
+          reportClone.removeAttribute('id');
+          reportClone.removeAttribute('hidden');
+          reportClone.classList.add('op-ws-report--print');
+          Array.prototype.forEach.call(reportClone.querySelectorAll('[id]'), function (el) {
+            el.removeAttribute('id');
+          });
+          printRoot.appendChild(reportClone);
+          document.body.appendChild(printRoot);
+          document.body.classList.add('is-printing-workflow-report');
+
           var previousTitle = document.title;
           document.title = 'Brothers Automate - AI Workflow Report';
           track('workflow_report_printed', {});
+
+          var cleanedUp = false;
+          function cleanupPrintRoot() {
+            if (cleanedUp) return;
+            cleanedUp = true;
+            document.body.classList.remove('is-printing-workflow-report');
+            if (printRoot.parentNode) printRoot.parentNode.removeChild(printRoot);
+            document.title = previousTitle;
+          }
+
+          window.addEventListener('afterprint', cleanupPrintRoot, { once: true });
+          // Force layout after inserting the clone so it is ready when the
+          // browser takes its print snapshot.
+          void printRoot.offsetHeight;
           window.print();
-          setTimeout(function () { document.title = previousTitle; }, 500);
+          // `afterprint` is supported by modern browsers; this is an idempotent
+          // fallback for browsers that return from print without firing it.
+          setTimeout(cleanupPrintRoot, 1000);
         });
       }
 
@@ -2090,20 +2128,32 @@ const serviceSchema = {
     .op-ws-sample-grid { grid-template-columns: 1fr; }
   }
 
+  :global(#ws-print-root) { display: none; }
+
   @media print {
     @page { margin: 0.55in; }
-    :global(body *) { visibility: hidden !important; }
-    #ws-report, #ws-report * { visibility: visible !important; }
-    #ws-report {
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
+    :global(body.is-printing-workflow-report) { background: #fff !important; }
+    :global(body.is-printing-workflow-report > :not(#ws-print-root)) { display: none !important; }
+    :global(body.is-printing-workflow-report #ws-print-root) {
+      display: block !important;
+      position: static !important;
+      width: auto !important;
+    }
+    :global(#ws-print-root .op-ws-report--print) {
+      display: block !important;
+      position: static !important;
+      width: auto !important;
+      margin: 0 !important;
       padding: 0 !important;
       background: #fff !important;
       color: #111827 !important;
     }
-    .op-audit-report-cta { display: none !important; }
-    .op-ws-delivery { border: 1px solid #d1d5db; background: #fff; }
-    .op-ws-ops :global(.op-ws-op) { box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
+    :global(#ws-print-root .op-audit-report-cta),
+    :global(#ws-print-root .op-ws-delivery) { display: none !important; }
+    :global(#ws-print-root .op-ws-op) {
+      box-shadow: none !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
   }
 </style>
