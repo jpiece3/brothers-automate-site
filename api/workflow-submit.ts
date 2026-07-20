@@ -1,5 +1,4 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { sendWorkflowReportEmails } from '../src/lib/workflowReportEmail';
 
 interface VercelRequest extends IncomingMessage {
   method: string;
@@ -46,9 +45,9 @@ function isLikelyEmail(email: string): boolean {
   return email.length >= 5 && email.length <= 160 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Best-effort burst protection for report generation and transactional email.
-// Serverless instances are ephemeral, but this still prevents one warm
-// instance from being used as an open email relay.
+// Best-effort burst protection for report generation. Serverless instances
+// are ephemeral, but this still reduces repeated calls against one warm
+// instance.
 const SUBMIT_RATE_WINDOW_MS = 10 * 60_000;
 const SUBMIT_RATE_MAX = 5;
 const submitHits = new Map<string, number[]>();
@@ -473,7 +472,7 @@ async function persistSupabase(row: Record<string, unknown>): Promise<void> {
 
 const VALID_INTENTS = ['website_audit', 'workflow_audit', 'workflow_sprint', 'clinic_host'];
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function workflowSubmitHandler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -548,8 +547,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const intentRaw = clean(body.intent, 40);
   const intent = VALID_INTENTS.includes(intentRaw) ? intentRaw : 'workflow_audit';
   const source = clean(body.source, 80) || 'free-ai-audit';
-  const emailReport = body.email_report === true;
-
   const report = (await openAiReport(answers, website)) || ruleBasedReport(answers);
 
   const submittedAt = new Date().toISOString();
@@ -568,7 +565,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     opportunity_titles: report.opportunities.map((o) => o.title).join('; '),
     notification_type: 'workflow_report_created',
     follow_up_due: 'within_one_business_day',
-    email_report_requested: emailReport,
     answers,
     website,
     report,
@@ -577,49 +573,49 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     submitted_at: submittedAt,
   };
 
-  const [, delivery] = await Promise.all([
-    Promise.allSettled([
-      // The existing webhook receives the complete report and an explicit
-      // notification request so Brendan's current lead workflow can alert him
-      // immediately even when transactional email is not configured.
-      forwardLead(leadPayload),
-      persistSupabase({
-        name,
-        email,
-        phone: phone || null,
-        business: answers.business_type || null,
-        business_type: answers.business_type || null,
-        // Kept for dashboard compatibility with earlier audit leads.
-        pain_point: answers.repeat_tasks || answers.after_hours || null,
-        scanned_url: website?.url || null,
-        audit_score: website?.score ?? null,
-        recommendations: report.opportunities,
-        report_source: report.source,
-        source,
-        intent,
-        metadata: {
-          attribution,
-          answers,
-          website,
-          email_report_requested: emailReport,
-          follow_up_due: 'within_one_business_day',
-        },
-        created_at: submittedAt,
-      }),
-    ]),
-    sendWorkflowReportEmails({
+  await Promise.allSettled([
+    // The complete report is kept with the lead so Brendan can review it
+    // without depending on a separate report-delivery service.
+    forwardLead(leadPayload),
+    persistSupabase({
       name,
       email,
-      phone,
-      businessType: answers.business_type,
-      answers: { ...answers },
-      website,
-      attribution,
-      report,
-      sendLeadCopy: emailReport,
-      submittedAt,
+      phone: phone || null,
+      business: answers.business_type || null,
+      business_type: answers.business_type || null,
+      // Kept for dashboard compatibility with earlier audit leads.
+      pain_point: answers.repeat_tasks || answers.after_hours || null,
+      scanned_url: website?.url || null,
+      audit_score: website?.score ?? null,
+      recommendations: report.opportunities,
+      report_source: report.source,
+      source,
+      intent,
+      metadata: {
+        attribution,
+        answers,
+        website,
+        follow_up_due: 'within_one_business_day',
+      },
+      created_at: submittedAt,
     }),
   ]);
 
-  res.status(200).json({ status: 'ok', report, delivery: { email: delivery.lead } });
+  res.status(200).json({ status: 'ok', report });
+}
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    await workflowSubmitHandler(req, res);
+  } catch (error) {
+    // Always return JSON so the scorecard can show a useful retry message
+    // instead of exposing a platform-generated HTML or plain-text error.
+    console.error('workflow-submit: unhandled request error', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "We couldn't generate the report right now. Your answers are still here, so please try again.",
+        code: 'WORKFLOW_REPORT_FAILED',
+      });
+    }
+  }
 }

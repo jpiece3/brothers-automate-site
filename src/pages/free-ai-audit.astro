@@ -492,7 +492,7 @@ const serviceSchema = {
 
             <!-- STEP 5: contact -->
             <fieldset class="op-ws-step" data-ws-step="5" data-ws-title="GET YOUR REPORT" hidden>
-              <legend class="op-ws-legend" tabindex="-1">Where should the report go?</legend>
+              <legend class="op-ws-legend" tabindex="-1">Who should Brendan follow up with?</legend>
 
               <div class="op-audit-row">
                 <label class="op-audit-field op-ws-field">
@@ -518,13 +518,6 @@ const serviceSchema = {
                 Your report renders right here when you submit. Brendan reads every submission
                 and follows up personally within one business day. We never share your info.
               </p>
-              <label class="op-ws-email-choice">
-                <input type="checkbox" id="ws-email-report" name="email_report" checked />
-                <span>
-                  <strong>Email me this report</strong>
-                  <small>Keep a copy you can forward to a partner or teammate.</small>
-                </span>
-              </label>
             </fieldset>
 
             <div class="op-ws-controls">
@@ -555,7 +548,10 @@ const serviceSchema = {
               rather verify it with you than guess. Brendan reviews every submission and follows
               up within one business day.
             </p>
-            <p class="op-ws-delivery" id="ws-report-delivery" role="status" aria-live="polite"></p>
+            <p class="op-ws-delivery" id="ws-report-delivery" role="status" aria-live="polite">
+              Your report is ready. Use <strong>Save / Print as PDF</strong> below to keep a copy
+              or share it with a partner or teammate.
+            </p>
             <div class="op-audit-report-cta">
               <a
                 href="#"
@@ -570,7 +566,7 @@ const serviceSchema = {
               >
                 REVIEW MY WORKFLOW REPORT WITH BRENDAN <span aria-hidden="true">→</span>
               </a>
-              <button type="button" id="ws-print-report" class="op-audit-report-link op-audit-report-button op-mono">DOWNLOAD / PRINT REPORT →</button>
+              <button type="button" id="ws-print-report" class="op-audit-report-link op-audit-report-button op-mono">SAVE / PRINT AS PDF →</button>
               <a href="/free-ai-audit/worksheet/" class="op-audit-report-link op-mono" data-worksheet target="_blank" rel="noopener">GET THE PRINTABLE WORKSHEET →</a>
             </div>
           </div>
@@ -1253,7 +1249,6 @@ const serviceSchema = {
           attribution: attributionPayload(),
           intent: 'workflow_audit',
           source: 'free-ai-audit',
-          email_report: Boolean(document.getElementById('ws-email-report') && document.getElementById('ws-email-report').checked),
         };
 
         fetch(WORKFLOW_URL, {
@@ -1262,8 +1257,18 @@ const serviceSchema = {
           body: JSON.stringify(payload),
         })
           .then(function (res) {
-            return res.json().then(function (data) {
-              if (!res.ok) throw new Error(data && data.error ? data.error : 'Could not build the report.');
+            return res.text().then(function (bodyText) {
+              var data = null;
+              try { data = bodyText ? JSON.parse(bodyText) : null; } catch (parseError) {}
+              if (!res.ok) {
+                var safeMessage = data && data.error
+                  ? data.error
+                  : "We couldn't generate the report right now. Your answers are still here, so please try again.";
+                throw new Error(safeMessage);
+              }
+              if (!data || typeof data !== 'object') {
+                throw new Error("We couldn't read the completed report. Your answers are still here, so please try again.");
+              }
               return data;
             });
           })
@@ -1276,17 +1281,6 @@ const serviceSchema = {
             });
             if (typeof fbq !== 'undefined') { try { fbq('track', 'Lead'); } catch (e) {} }
             renderWorkflowReport((data && data.report) || {});
-            var delivery = document.getElementById('ws-report-delivery');
-            if (delivery) {
-              var emailStatus = data && data.delivery ? data.delivery.email : 'failed';
-              if (!payload.email_report) {
-                delivery.textContent = 'Your report is ready. Use Download / Print below to save or share a copy.';
-              } else if (emailStatus === 'sent') {
-                delivery.textContent = 'A copy was emailed to ' + payload.email + '. You can also download or print it below.';
-              } else {
-                delivery.textContent = 'Your report is ready here, but the emailed copy could not be delivered. Use Download / Print below; Brendan still has your submission.';
-              }
-            }
             wsForm.hidden = true;
             wsReport.hidden = false;
             if (wsStatus) wsStatus.textContent = '● REPORT READY';
@@ -1775,22 +1769,6 @@ const serviceSchema = {
     margin: 0 0 16px;
   }
   .op-ws-privacy strong { color: var(--op-navy); }
-  .op-ws-email-choice {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-    padding: 13px 14px;
-    margin: 0 0 16px;
-    background: var(--op-paper);
-    border: 1px solid var(--op-rule);
-    border-radius: var(--op-radius-sm);
-    cursor: pointer;
-  }
-  .op-ws-email-choice input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--op-orange); flex-shrink: 0; }
-  .op-ws-email-choice span { display: flex; flex-direction: column; gap: 3px; }
-  .op-ws-email-choice strong { font-family: var(--op-font-body); font-size: 13.5px; color: var(--op-navy); }
-  .op-ws-email-choice small { font-family: var(--op-font-body); font-size: 11.5px; line-height: 1.4; color: var(--op-navy-soft); }
-
   .op-ws-controls { display: flex; gap: 14px; align-items: stretch; margin-top: 6px; }
   .op-ws-btn-back {
     font-size: 11px;
