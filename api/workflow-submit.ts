@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
+import { sendWorkflowReportEmails } from '../src/lib/workflowReportEmail';
 
 interface VercelRequest extends IncomingMessage {
   method: string;
@@ -25,7 +26,9 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const OPENAI_MODEL = process.env.OPENAI_AUDIT_MODEL || 'gpt-4o-mini';
 
 const AUDIT_WEBHOOK_URL = process.env.AUDIT_WEBHOOK_URL || '';
-const AUDIT_WEBHOOK_AUTH = process.env.AUDIT_WEBHOOK_AUTH || 'Bearer 14fc1dec6b58454e8c528db04f4e744d';
+// Secret lives in Vercel env only. Never fall back to a committed credential.
+const AUDIT_WEBHOOK_AUTH = process.env.AUDIT_WEBHOOK_AUTH
+  || (process.env.GUMLOOP_API_KEY ? `Bearer ${process.env.GUMLOOP_API_KEY}` : '');
 
 const AUDIT_SUPABASE_URL =
   process.env.AUDIT_SUPABASE_URL || 'https://ghoomqpsgdtvffielnaq.supabase.co';
@@ -40,7 +43,29 @@ function clean(value: unknown, max = 4000): string {
 }
 
 function isLikelyEmail(email: string): boolean {
-  return email.length >= 5 && email.indexOf('@') > 0 && email.lastIndexOf('.') > email.indexOf('@');
+  return email.length >= 5 && email.length <= 160 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Best-effort burst protection for report generation and transactional email.
+// Serverless instances are ephemeral, but this still prevents one warm
+// instance from being used as an open email relay.
+const SUBMIT_RATE_WINDOW_MS = 10 * 60_000;
+const SUBMIT_RATE_MAX = 5;
+const submitHits = new Map<string, number[]>();
+
+function clientIp(req: VercelRequest): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string') return forwarded.split(',')[0].trim();
+  if (Array.isArray(forwarded) && forwarded.length) return forwarded[0];
+  return req.socket?.remoteAddress || 'unknown';
+}
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (submitHits.get(ip) || []).filter((timestamp) => now - timestamp < SUBMIT_RATE_WINDOW_MS);
+  recent.push(now);
+  submitHits.set(ip, recent);
+  return recent.length > SUBMIT_RATE_MAX;
 }
 
 // ----------------------------- types ---------------------------------------
@@ -454,6 +479,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  if (rateLimited(clientIp(req))) {
+    res.status(429).json({ error: 'Too many report requests from this connection. Wait a few minutes and try again.' });
+    return;
+  }
+
   const body = (req.body ?? {}) as Record<string, unknown>;
 
   // Honeypot: bots fill this; humans never see it. Silently succeed.
@@ -518,6 +548,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const intentRaw = clean(body.intent, 40);
   const intent = VALID_INTENTS.includes(intentRaw) ? intentRaw : 'workflow_audit';
   const source = clean(body.source, 80) || 'free-ai-audit';
+  const emailReport = body.email_report === true;
 
   const report = (await openAiReport(answers, website)) || ruleBasedReport(answers);
 
@@ -535,35 +566,60 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     audit_score: website?.score ?? null,
     report_source: report.source,
     opportunity_titles: report.opportunities.map((o) => o.title).join('; '),
+    notification_type: 'workflow_report_created',
+    follow_up_due: 'within_one_business_day',
+    email_report_requested: emailReport,
+    answers,
+    website,
+    report,
     ...attribution,
     source,
     submitted_at: submittedAt,
   };
 
-  await Promise.allSettled([
-    forwardLead(leadPayload),
-    persistSupabase({
+  const [, delivery] = await Promise.all([
+    Promise.allSettled([
+      // The existing webhook receives the complete report and an explicit
+      // notification request so Brendan's current lead workflow can alert him
+      // immediately even when transactional email is not configured.
+      forwardLead(leadPayload),
+      persistSupabase({
+        name,
+        email,
+        phone: phone || null,
+        business: answers.business_type || null,
+        business_type: answers.business_type || null,
+        // Kept for dashboard compatibility with earlier audit leads.
+        pain_point: answers.repeat_tasks || answers.after_hours || null,
+        scanned_url: website?.url || null,
+        audit_score: website?.score ?? null,
+        recommendations: report.opportunities,
+        report_source: report.source,
+        source,
+        intent,
+        metadata: {
+          attribution,
+          answers,
+          website,
+          email_report_requested: emailReport,
+          follow_up_due: 'within_one_business_day',
+        },
+        created_at: submittedAt,
+      }),
+    ]),
+    sendWorkflowReportEmails({
       name,
       email,
-      phone: phone || null,
-      business: answers.business_type || null,
-      business_type: answers.business_type || null,
-      // Kept for dashboard compatibility with earlier audit leads.
-      pain_point: answers.repeat_tasks || answers.after_hours || null,
-      scanned_url: website?.url || null,
-      audit_score: website?.score ?? null,
-      recommendations: report.opportunities,
-      report_source: report.source,
-      source,
-      intent,
-      metadata: {
-        attribution,
-        answers,
-        website,
-      },
-      created_at: submittedAt,
+      phone,
+      businessType: answers.business_type,
+      answers: { ...answers },
+      website,
+      attribution,
+      report,
+      sendLeadCopy: emailReport,
+      submittedAt,
     }),
   ]);
 
-  res.status(200).json({ status: 'ok', report });
+  res.status(200).json({ status: 'ok', report, delivery: { email: delivery.lead } });
 }

@@ -88,7 +88,8 @@ function ruleBasedReport(signals: any, painPoint: string, domain: string): Audit
   const pain = (painPoint || '').toLowerCase();
 
   const noInstantResponse = !s.hasBookingTool && !s.hasChatWidget;
-  if (!s.hasContactForm || noInstantResponse || /lead|follow.?up|response|reply|inbox|miss/.test(pain)) {
+  const hasContactPath = Boolean(s.hasContactForm || s.hasPhone || s.hasBookingTool || s.hasChatWidget);
+  if (!hasContactPath || /lead|follow.?up|response|reply|inbox|miss/.test(pain)) {
     recs.push({
       title: 'Reply to every inbound lead in under 60 seconds',
       category: 'quick-win',
@@ -96,25 +97,25 @@ function ruleBasedReport(signals: any, painPoint: string, domain: string): Audit
       effort: 'Medium',
       description: 'Auto-score, reply to, and log every inbound inquiry the moment it lands, and ping you on the hot ones.',
       build: BUILD_BY_SLUG['inbound-ai-sdr'],
-      reasoning: !s.hasContactForm
-        ? 'No contact/quote form was detected, so inbound interest has nowhere to land and nothing to respond to it.'
-        : 'No booking link or chat was found, so leads currently wait on a human to reply.',
+      reasoning: !hasContactPath
+        ? 'No form, click-to-call phone number, booking path, or chat was detected, so there is no visible next step for inbound interest.'
+        : 'Lead response or follow-up was identified as a pain point; the opportunity is improving the process behind the existing contact path.',
     });
   }
 
-  if (noInstantResponse) {
+  if (noInstantResponse && hasContactPath) {
     recs.push({
       title: 'Capture after-hours leads with a 24/7 AI chat',
       category: 'quick-win',
-      impact: 'High',
+      impact: 'Medium',
       effort: 'Low',
       description: 'An always-on assistant answers common questions and captures contact details when no one is at the desk.',
       build: BUILD_BY_SLUG['after-hours-agent'],
-      reasoning: 'There is no chat widget or booking tool, so visitors outside business hours leave without a way to engage.',
+      reasoning: 'Your existing form or phone path is valid. Chat or booking is an optional after-hours addition only if it matches how customers buy.',
     });
   }
 
-  if (/quote|estimate|pricing|proposal|bid/.test(pain) || !s.hasBookingTool) {
+  if (/quote|estimate|pricing|proposal|bid/.test(pain)) {
     recs.push({
       title: 'Send quotes before the prospect hangs up',
       category: 'strategic',
@@ -193,7 +194,7 @@ function ruleBasedReport(signals: any, painPoint: string, domain: string): Audit
 async function openAiReport(signals: any, painPoint: string, business: string, domain: string): Promise<AuditReport | null> {
   if (!OPENAI_API_KEY) return null;
 
-  const system = `You are a senior automation consultant at Brothers Automate, a firm that builds AI systems for service businesses doing $1-5M in revenue. You analyze a website audit and a stated pain point, then recommend 5-7 specific, high-impact AI/automation opportunities. Every recommendation MUST map to one of these Brothers Automate builds (use the exact slug):\n${BUILDS.map((b) => `- ${b.name} (slug: ${b.slug}): ${b.summary}`).join('\n')}\n\nBe concrete and grounded in the audit signals. No fluff. Prioritize quick wins first. Return ONLY valid JSON (no markdown, no code fences) matching exactly:\n{\n  "headline": "string (<=60 chars)",\n  "executiveSummary": "string (2-3 sentences)",\n  "estimatedHoursPerWeek": number,\n  "recommendations": [\n    {\n      "title": "string",\n      "category": "quick-win" | "strategic",\n      "impact": "High" | "Medium" | "Low",\n      "effort": "Low" | "Medium" | "High",\n      "description": "string (1-2 sentences, what it does)",\n      "buildSlug": "one of the slugs above",\n      "reasoning": "string (tie it to a specific audit signal or the pain point)"\n    }\n  ]\n}`;
+  const system = `You are a senior automation consultant at Brothers Automate, a firm that builds AI systems for service businesses doing $1-5M in revenue. You analyze a website audit and a stated pain point, then recommend 5-7 specific, high-impact AI/automation opportunities. Every recommendation MUST map to one of these Brothers Automate builds (use the exact slug):\n${BUILDS.map((b) => `- ${b.name} (slug: ${b.slug}): ${b.summary}`).join('\n')}\n\nBe concrete and grounded in the audit signals. A working form, phone number, booking path, or chat is a valid way for interest to land. Never claim there is no contact path unless all four are absent. Treat missing booking/chat as an optional opportunity, not a serious fault, when a form or phone path exists. No fluff. Prioritize quick wins first. Return ONLY valid JSON (no markdown, no code fences) matching exactly:\n{\n  "headline": "string (<=60 chars)",\n  "executiveSummary": "string (2-3 sentences)",\n  "estimatedHoursPerWeek": number,\n  "recommendations": [\n    {\n      "title": "string",\n      "category": "quick-win" | "strategic",\n      "impact": "High" | "Medium" | "Low",\n      "effort": "Low" | "Medium" | "High",\n      "description": "string (1-2 sentences, what it does)",\n      "buildSlug": "one of the slugs above",\n      "reasoning": "string (tie it to a specific audit signal or the pain point)"\n    }\n  ]\n}`;
 
   const user = `WEBSITE: ${domain}\nBUSINESS: ${business || 'unknown'}\nSTATED PAIN POINT: ${painPoint || '(none provided)'}\n\nAUDIT SIGNALS (JSON):\n${JSON.stringify(signals).slice(0, 6000)}`;
 

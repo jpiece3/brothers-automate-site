@@ -16,8 +16,8 @@ interface VercelResponse extends ServerResponse {
 // ---------------------------------------------------------------------------
 // Free, abuse-resistant website audit. Fetches the page HTML, derives SEO /
 // trust / mobile heuristics, and (best-effort) pulls a real Lighthouse score
-// from Google PageSpeed Insights. No paid APIs. The richer LLM analysis runs
-// later in /api/audit-submit once the visitor hands over an email.
+// from Google PageSpeed Insights. No paid APIs. The operational workflow
+// report is generated separately by /api/workflow-submit after the scorecard.
 // ---------------------------------------------------------------------------
 
 const PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
@@ -125,6 +125,8 @@ interface Signals {
   socialLinks: string[];
   hasChatWidget: boolean;
   hasBookingTool: boolean;
+  lighthouseAvailable: boolean;
+  mobileUsabilityScore: number | null;
   performanceScore: number | null;
   seoScore: number | null;
   accessibilityScore: number | null;
@@ -187,6 +189,8 @@ function analyzeHtml(html: string, url: URL, statusCode: number, loadMs: number)
     socialLinks,
     hasChatWidget: CHAT_HINTS.some((h) => lower.includes(h)),
     hasBookingTool: BOOKING_HINTS.some((h) => lower.includes(h)),
+    lighthouseAvailable: false,
+    mobileUsabilityScore: null,
     performanceScore: null,
     seoScore: null,
     accessibilityScore: null,
@@ -203,8 +207,19 @@ async function runPageSpeed(url: string): Promise<Partial<Signals>> {
     if (!res.ok) return {};
     const data: any = await res.json();
     const cats = data?.lighthouseResult?.categories || {};
+    const audits = data?.lighthouseResult?.audits || {};
     const pct = (v: any) => (typeof v?.score === 'number' ? Math.round(v.score * 100) : null);
+    const mobileChecks = ['viewport', 'font-size', 'tap-targets', 'content-width']
+      .map((key) => pct(audits[key]))
+      .filter((score): score is number => score != null);
     return {
+      lighthouseAvailable: Boolean(data?.lighthouseResult),
+      // A viewport tag by itself is only responsive setup, not proof that the
+      // page is usable on a phone. Require at least two mobile checks before
+      // presenting a measured usability score.
+      mobileUsabilityScore: mobileChecks.length >= 2
+        ? Math.round(mobileChecks.reduce((sum, score) => sum + score, 0) / mobileChecks.length)
+        : null,
       performanceScore: pct(cats.performance),
       seoScore: pct(cats.seo),
       accessibilityScore: pct(cats.accessibility),
@@ -229,8 +244,10 @@ function band(score: number): 'pass' | 'warn' | 'fail' {
   return 'fail';
 }
 
-function scoreCategories(s: Signals): Category[] {
-  // Performance: prefer real Lighthouse; otherwise estimate from load time.
+export function scoreCategories(s: Signals): Category[] {
+  // Performance: prefer real Lighthouse. If it is unavailable, score only the
+  // initial server response and label it honestly; that is not a full-page
+  // performance measurement.
   let perf = s.performanceScore;
   if (perf == null) {
     if (s.loadMs <= 800) perf = 90;
@@ -256,55 +273,108 @@ function scoreCategories(s: Signals): Category[] {
     seo = Math.min(100, v);
   }
 
-  // Trust & conversion readiness (heuristic)
+  // Trust & conversion readiness (heuristic). A phone number or form is a
+  // legitimate primary contact path; booking and chat are useful additions,
+  // not requirements for a credible local-service website.
   let trust = 0;
-  if (s.hasSSL) trust += 22;
-  if (s.hasContactForm) trust += 20;
-  if (s.hasPhone) trust += 12;
-  if (s.hasBookingTool) trust += 16;
-  if (s.socialLinks.length >= 2) trust += 14;
-  else if (s.socialLinks.length === 1) trust += 7;
-  if (s.hasOpenGraph) trust += 8;
-  if (s.hasFavicon) trust += 8;
+  if (s.hasSSL) trust += 20;
+  if (s.hasContactForm) trust += 24;
+  if (s.hasPhone) trust += 20;
+  if (s.hasBookingTool) trust += 8;
+  if (s.hasChatWidget) trust += 6;
+  if (s.socialLinks.length >= 2) trust += 10;
+  else if (s.socialLinks.length === 1) trust += 5;
+  if (s.hasOpenGraph) trust += 6;
+  if (s.hasFavicon) trust += 6;
   trust = Math.min(100, trust);
 
-  // Lead capture / automation readiness, the BA-specific lens
+  // Lead capture / automation readiness, the BA-specific lens. A form plus a
+  // click-to-call path is already strong for many home-service businesses.
   let capture = 0;
-  if (s.hasContactForm) capture += 30;
-  if (s.hasBookingTool) capture += 25;
-  if (s.hasChatWidget) capture += 25;
-  if (s.hasPhone) capture += 10;
-  if (s.socialLinks.length >= 1) capture += 10;
+  if (s.hasContactForm) capture += 45;
+  if (s.hasPhone) capture += 35;
+  if (s.hasBookingTool) capture += 20;
+  if (s.hasChatWidget) capture += 15;
+  if (s.socialLinks.length >= 1) capture += 5;
   capture = Math.min(100, capture);
 
-  const mobile = s.hasViewport ? 100 : 30;
+  const mobileMeasured = s.lighthouseAvailable && s.mobileUsabilityScore != null;
+  const mobile = mobileMeasured ? s.mobileUsabilityScore! : (s.hasViewport ? 75 : 30);
 
   return [
-    { key: 'performance', label: 'Speed & Performance', score: perf, status: band(perf), detail: s.performanceScore != null ? 'Measured by Google Lighthouse (mobile).' : `Estimated from a ${(s.loadMs / 1000).toFixed(1)}s server response.` },
+    {
+      key: 'performance',
+      label: s.performanceScore != null ? 'Speed & Performance' : 'Initial Server Response',
+      score: perf,
+      status: band(perf),
+      detail: s.performanceScore != null
+        ? 'Measured by Google Lighthouse (mobile).'
+        : `${(s.loadMs / 1000).toFixed(1)}s initial server response. Lighthouse was unavailable, so full-page speed was not measured.`,
+    },
     { key: 'seo', label: 'SEO Foundations', score: seo, status: band(seo), detail: s.seoScore != null ? 'Measured by Google Lighthouse.' : 'Title, meta description, headings, content depth, and schema.' },
-    { key: 'mobile', label: 'Mobile Readiness', score: mobile, status: band(mobile), detail: s.hasViewport ? 'Responsive viewport detected.' : 'No mobile viewport tag, the site likely breaks on phones.' },
+    {
+      key: 'mobile',
+      label: mobileMeasured ? 'Mobile Usability' : 'Responsive Setup',
+      score: mobile,
+      status: band(mobile),
+      detail: mobileMeasured
+        ? 'Measured from the mobile usability checks returned by Google Lighthouse.'
+        : s.hasViewport
+          ? 'Responsive setup detected (viewport tag). Phone usability was not measured because Lighthouse was unavailable.'
+          : 'No responsive viewport setup detected. Phone usability was not measured because Lighthouse was unavailable.',
+    },
     { key: 'trust', label: 'Trust & Credibility', score: trust, status: band(trust), detail: 'SSL, contact paths, booking, social proof, and link previews.' },
-    { key: 'capture', label: 'Lead Capture & Automation', score: capture, status: band(capture), detail: 'How well the site captures and routes inbound interest, the highest-leverage area for AI.' },
+    { key: 'capture', label: 'Lead Capture & Follow-Up', score: capture, status: band(capture), detail: 'Forms, phone, booking, chat, and other visible ways a prospect can take the next step.' },
   ];
 }
 
-function buildTeaser(categories: Category[], s: Signals): { label: string; severity: string; message: string }[] {
+export function buildTeaser(categories: Category[], s: Signals): { label: string; severity: string; message: string }[] {
   const findings: { label: string; severity: string; message: string }[] = [];
   const weakest = [...categories].sort((a, b) => a.score - b.score);
+  const hasPrimaryContactPath = s.hasContactForm || s.hasPhone || s.hasBookingTool || s.hasChatWidget;
 
-  if (!s.hasContactForm) findings.push({ label: 'Lead Capture', severity: 'high', message: 'No contact or quote form detected, inbound interest has nowhere to land.' });
-  if (!s.hasBookingTool && !s.hasChatWidget) findings.push({ label: 'Instant Response', severity: 'high', message: 'No booking link or chat widget, leads wait on a human to reply.' });
-  if (!s.hasMetaDescription) findings.push({ label: 'SEO', severity: 'medium', message: 'Missing meta description, lower click-through from Google search results.' });
-  if (s.h1Count !== 1) findings.push({ label: 'SEO', severity: 'medium', message: `Found ${s.h1Count} H1 tags, search engines want exactly one clear page headline.` });
+  if (!hasPrimaryContactPath) {
+    findings.push({
+      label: 'Lead Capture',
+      severity: 'high',
+      message: 'Add a clear form, click-to-call phone number, booking path, or chat. No visible place for an interested visitor to take the next step was detected.',
+    });
+  } else if (!s.hasContactForm) {
+    findings.push({
+      label: 'Lead Capture',
+      severity: 'medium',
+      message: 'Your existing phone, booking, or chat path gives visitors a way to respond. A short quote/contact form could also capture people who cannot act immediately.',
+    });
+  }
+  if (!s.hasMetaDescription) findings.push({ label: 'Search Preview', severity: 'medium', message: 'Add a specific meta description so searchers see a clearer reason to click.' });
+  if (s.h1Count !== 1) findings.push({ label: 'Page Clarity', severity: 'medium', message: `Use one clear primary page headline. This scan detected ${s.h1Count}.` });
   if (!s.hasSSL) findings.push({ label: 'Trust', severity: 'high', message: 'No HTTPS/SSL, browsers flag the site as "Not Secure".' });
 
   for (const c of weakest) {
     if (findings.length >= 3) break;
-    if (c.score < 75 && !findings.some((f) => f.label.toLowerCase().includes(c.key))) {
-      findings.push({ label: c.label, severity: c.score < 45 ? 'high' : 'medium', message: `${c.label} scored ${c.score}/100, real room to improve.` });
+    if (c.score >= 75) continue;
+    if (c.key === 'performance') {
+      findings.push({ label: c.label, severity: c.score < 45 ? 'high' : 'medium', message: c.detail });
+    } else if (c.key === 'mobile' && !s.hasViewport) {
+      findings.push({ label: 'Responsive Setup', severity: 'high', message: 'Add a responsive viewport and verify the main call-to-action on a real phone.' });
+    } else if (c.key === 'capture' && hasPrimaryContactPath) {
+      findings.push({ label: 'Lead Follow-Up', severity: 'medium', message: 'A valid contact path exists. The next opportunity is confirming how quickly each inquiry gets acknowledged, assigned, and followed up.' });
     }
   }
-  return findings.slice(0, 3);
+
+  // Booking/chat can improve after-hours response, but their absence should
+  // never outrank a working form or phone path as a critical defect.
+  if (findings.length < 3 && hasPrimaryContactPath && !s.hasBookingTool && !s.hasChatWidget) {
+    findings.push({
+      label: 'Optional After-Hours Path',
+      severity: 'low',
+      message: 'Consider booking or chat only if it fits how customers buy. A working phone or quote form is already a valid lead path.',
+    });
+  }
+  const severityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
+  return findings
+    .sort((a, b) => (severityOrder[a.severity] ?? 3) - (severityOrder[b.severity] ?? 3))
+    .slice(0, 3);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
