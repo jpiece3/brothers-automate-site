@@ -1262,8 +1262,18 @@ const serviceSchema = {
           body: JSON.stringify(payload),
         })
           .then(function (res) {
-            return res.json().then(function (data) {
-              if (!res.ok) throw new Error(data && data.error ? data.error : 'Could not build the report.');
+            return res.text().then(function (bodyText) {
+              var data = null;
+              try { data = bodyText ? JSON.parse(bodyText) : null; } catch (parseError) {}
+              if (!res.ok) {
+                var safeMessage = data && data.error
+                  ? data.error
+                  : "We couldn't generate the report right now. Your answers are still here, so please try again.";
+                throw new Error(safeMessage);
+              }
+              if (!data || typeof data !== 'object') {
+                throw new Error("We couldn't read the completed report. Your answers are still here, so please try again.");
+              }
               return data;
             });
           })

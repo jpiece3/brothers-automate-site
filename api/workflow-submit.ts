@@ -1,5 +1,8 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { sendWorkflowReportEmails } from '../src/lib/workflowReportEmail';
+// This project is native ESM (`package.json` has `type: module`). Keep the
+// runtime extension in relative imports so Vercel's Node loader can resolve
+// the transpiled helper before invoking this function.
+import { sendWorkflowReportEmails } from '../src/lib/workflowReportEmail.js';
 
 interface VercelRequest extends IncomingMessage {
   method: string;
@@ -473,7 +476,7 @@ async function persistSupabase(row: Record<string, unknown>): Promise<void> {
 
 const VALID_INTENTS = ['website_audit', 'workflow_audit', 'workflow_sprint', 'clinic_host'];
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function workflowSubmitHandler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -607,6 +610,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         created_at: submittedAt,
       }),
     ]),
+    // Report delivery is an enhancement, not a prerequisite for showing the
+    // report. Provider/configuration failures must never turn a valid report
+    // submission into a broken page.
     sendWorkflowReportEmails({
       name,
       email,
@@ -618,8 +624,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       report,
       sendLeadCopy: emailReport,
       submittedAt,
-    }),
+    })
+      .catch((error) => {
+        console.error('workflow-submit: report email delivery failed', error);
+        return { lead: 'failed' as const, internal: 'failed' as const };
+      }),
   ]);
 
   res.status(200).json({ status: 'ok', report, delivery: { email: delivery.lead } });
+}
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    await workflowSubmitHandler(req, res);
+  } catch (error) {
+    // Keep unexpected provider/storage/runtime errors from surfacing as an
+    // HTML or plain-text platform error that the browser cannot interpret.
+    console.error('workflow-submit: unhandled request error', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "We couldn't generate the report right now. Your answers are still here, so please try again.",
+        code: 'WORKFLOW_REPORT_FAILED',
+      });
+    }
+  }
 }

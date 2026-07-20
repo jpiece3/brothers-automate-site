@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:workflow-runtime": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --types node --skipLibCheck api/workflow-submit.ts src/lib/workflowReportEmail.ts"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",
