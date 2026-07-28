@@ -28,6 +28,9 @@ const blogCollection = defineCollection({
       'Finance & Admin Automation',
     ]),
     tags: z.array(z.string()).optional(),
+    // Point a near-duplicate post at the version that should rank, so the two
+    // stop splitting the same query between them. Absolute URL.
+    canonicalUrl: z.string().url().optional(),
   }),
 });
 

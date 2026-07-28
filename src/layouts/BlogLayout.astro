@@ -14,6 +14,7 @@ interface Props {
   author?: string;
   image?: string;
   category: string;
+  canonicalUrl?: string;
 }
 
 const SITE_URL = 'https://brothersautomate.com';
@@ -25,6 +26,7 @@ const {
   author = 'Brothers Automate',
   image,
   category,
+  canonicalUrl,
 } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
@@ -73,6 +75,7 @@ const breadcrumbSchema = {
   description={description}
   image={articleImage}
   type="article"
+  canonicalUrl={canonicalUrl}
 >
   <Header />
 

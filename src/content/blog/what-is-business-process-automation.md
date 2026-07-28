@@ -46,7 +46,7 @@ These four terms get used interchangeably, and it causes a lot of confusion. Her
 
 For a small business, the distinctions matter less than the test from earlier. If a task is repetitive and rule-based and a person is doing it, automate it. You don't need to know whether a vendor files their tool under "RPA" or "workflow automation" to get value from it.
 
-If AI is part of the picture, here's the clean line: [AI automation](/blog/ai-automation-business) makes the *decisions* (reading an unstructured invoice, drafting a reply, deciding which lead is hot). BPA makes sure the *process* around those decisions runs without anyone babysitting it. They work together.
+If AI is part of the picture, here's the clean line: [AI automation](/blog/ai-automation-for-small-business) makes the *decisions* (reading an unstructured invoice, drafting a reply, deciding which lead is hot). BPA makes sure the *process* around those decisions runs without anyone babysitting it. They work together.
 
 ## Why Businesses Automate (the Honest Numbers)
 

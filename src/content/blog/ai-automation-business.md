@@ -5,6 +5,7 @@ date: 2026-04-03
 category: "AI for Business"
 author: "Brothers Automate"
 tags: ["AI automation", "AI for business", "business automation", "small business AI", "workflow automation"]
+canonicalUrl: "https://brothersautomate.com/blog/ai-automation-for-small-business"
 ---
 
 Eighty-eight percent of companies now use AI in at least one business function. That's not a prediction, that's a McKinsey finding about what's already happening. And if you're a small business owner who hasn't started yet, you're not too late. But you are behind.

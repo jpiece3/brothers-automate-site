@@ -27,7 +27,7 @@ For small businesses, the distinction matters less than this: if you have a task
 
 The [BPA market hit $16.32 billion in 2025](https://www.thebusinessresearchcompany.com/report/business-process-automation-global-market-report) and is projected to reach $18.83 billion in 2026, a 15.4% growth rate. By 2030, it's expected to hit $33.43 billion. That growth isn't coming from Fortune 500 companies alone. Small and mid-sized businesses are adopting faster, with a [10.19% compound annual growth rate](https://www.mordorintelligence.com/industry-reports/workflow-automation-market) in workflow automation for the SMB segment.
 
-If you're already using [AI automation for your business](/blog/ai-automation-business), BPA is the operational layer underneath. AI makes decisions. BPA makes sure the process around those decisions runs without anyone babysitting it.
+If you're already using [AI automation for your business](/blog/ai-automation-for-small-business), BPA is the operational layer underneath. AI makes decisions. BPA makes sure the process around those decisions runs without anyone babysitting it.
 
 ## Why Small Businesses Need Process Automation Now
 
