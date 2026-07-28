@@ -174,4 +174,4 @@ A traditional chatbot follows scripted rules: if a customer clicks this, show th
 
 ### Should I buy a chatbot or build my own?
 
-Buy if you want a vendor's support team, fast setup, and your needs are standard. Build if your requirements are specific, you want to avoid per-resolution fees, and you want the bot wired into your exact tools. A custom build with Gumloop and Claude runs around $50/month in platform costs versus $300-$2,500/month for premium platforms, but it takes a few days to build and someone has to own the logic.
+Buy if you want a vendor's support team, fast setup, and your needs are standard. Build if your requirements are specific, you want to avoid per-resolution fees, and you want the bot wired into your exact tools. A [custom build](/ai-chatbot-for-small-business) with Gumloop and Claude runs around $50/month in platform costs versus $300-$2,500/month for premium platforms, but it takes a few days to build and someone has to own the logic — which is the part we handle when we build one for you.

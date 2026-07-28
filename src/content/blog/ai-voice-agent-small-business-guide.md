@@ -161,7 +161,7 @@ Quick comparison so you don't buy the wrong thing.
 
 **IVR ("press 1 for sales").** Rigid. Caller has to know what menu option matches their problem. Slow. Generally a worse experience than a voicemail. Dying tech.
 
-**AI chatbot.** Text-based, async, lives on your website. Great for FAQ deflection, lead capture, e-commerce questions. The full breakdown is in our [AI chatbot for small business](/blog/ai-chatbot-small-business-guide) guide. Doesn't help if your business runs on phone calls.
+**AI chatbot.** Text-based, async, lives on your website. Great for FAQ deflection, lead capture, e-commerce questions. The full breakdown is in our [AI chatbot for small business](/blog/ai-chatbot-small-business-guide) guide, and we [build them done-for-you](/ai-chatbot-for-small-business) if you'd rather skip the setup. Doesn't help if your business runs on phone calls.
 
 **AI voice agent.** Phone-first, real-time, can actually take actions (book, qualify, transfer). The right pick if your business has a phone number and that number rings.
 

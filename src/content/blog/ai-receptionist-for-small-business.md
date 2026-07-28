@@ -23,7 +23,7 @@ This is not the same thing as:
 
 - **A basic IVR** ("Press 1 for sales, press 2 for..."), that's a menu tree from 1998.
 - **An answering service**, humans in a call center reading a script. Costs more, inconsistent quality.
-- **A chatbot**, text-based, not voice. Different tool. If that's what you need, read our guide to the [AI chatbot for small business](/blog/ai-chatbot-small-business-guide).
+- **A chatbot**, text-based, not voice. Different tool. If that's what you need, read our guide to the [AI chatbot for small business](/blog/ai-chatbot-small-business-guide), or see what a [done-for-you chatbot build](/ai-chatbot-for-small-business) actually includes.
 
 A good AI receptionist sounds like a person. It understands context. If someone says "I need to reschedule my appointment on Thursday," it pulls up their record, checks the calendar, and offers new times. If they say "my basement is flooding," it flags the call as urgent and texts the owner immediately.
 
