@@ -1094,11 +1094,38 @@ export const services: Record<string, ServiceData> = {
 };
 
 // ─────────────────────────────────────────────
+// Standalone services
+// ─────────────────────────────────────────────
+// Services with their own hand-built page under src/pages/services/ instead of
+// the [service].astro template. They are NOT in the `services` record above, so
+// the dynamic route never tries to generate them, but they still show up on the
+// hub and in the footer via getAllServices().
+
+export interface ServiceCard {
+  slug: string;
+  name: string;
+  shortName: string;
+  icon: string;
+  tagline: string;
+}
+
+export const standaloneServices: ServiceCard[] = [
+  {
+    slug: 'index-engine',
+    name: 'Index Engine',
+    shortName: 'Index Engine',
+    icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+    tagline: 'Own the most complete index in your market, then staff it with agents that keep it running.',
+  },
+];
+
+// ─────────────────────────────────────────────
 // Helper functions
 // ─────────────────────────────────────────────
 
-export function getAllServices(): ServiceData[] {
-  return Object.values(services);
+// Standalone services lead, then the templated ones.
+export function getAllServices(): ServiceCard[] {
+  return [...standaloneServices, ...Object.values(services)];
 }
 
 export function getServiceSlugs() {
