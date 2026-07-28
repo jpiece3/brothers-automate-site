@@ -1,0 +1,839 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import SpecStrip from '../../components/operator/SpecStrip.astro';
+import OperatorPanel from '../../components/operator/OperatorPanel.astro';
+import CalloutBox from '../../components/operator/CalloutBox.astro';
+import MonoCTA from '../../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const title = 'Index Engine, Own the Index for Your Market | Brothers Automate';
+const description =
+  'We build the most complete index in your market, then staff it with AI agents that keep it current, find the openings, and work your leads. You wake up to work already done.';
+
+const stages = [
+  { n: '01', name: 'Ingest', body: 'Agents go get every record worth having. Maps data, feeds, registries, the spreadsheet on your desktop.' },
+  { n: '02', name: 'Enrich', body: 'Each raw row turns into a real page that sounds like you wrote it, with its source stamped on the back.' },
+  { n: '03', name: 'Review', body: 'It all lands as drafts. You flip what you like. This is your whole job now.' },
+  { n: '04', name: 'Publish', body: 'Approved records build into static pages. Nothing waits on a database to load.' },
+  { n: '05', name: 'Link', body: 'Pages find each other on their own. A broken internal link stops the build cold.' },
+  { n: '06', name: 'Refresh', body: 'Rebuilds every two hours. Yesterday falls off by itself while you are asleep.' },
+  { n: '07', name: 'Distribute', body: 'The newsletter writes itself out of the catalog and waits in your drafts.' },
+  { n: '08', name: 'Listen', body: 'Every question a visitor types becomes next month’s pages. That is the loop closing.' },
+];
+
+const roster = [
+  { id: 'AGT_01', name: 'Orchestrator', live: 'Burbs Maestro', tag: 'The one you talk to', body: 'You message it like you would a manager. It answers from your data, handles the small stuff itself, and puts the right specialist on everything else.', icon: 'M12 2v6m0 8v6M2 12h6m8 0h6M6.3 6.3l4.2 4.2m3 3l4.2 4.2m0-11.4l-4.2 4.2m-3 3l-4.2 4.2' },
+  { id: 'AGT_02', name: 'Scout', live: 'Suburb Scout', tag: 'Finds what you are missing', body: 'Goes looking for the records you do not have yet and writes them up for you. Your catalog grows on nights you never thought about it.', icon: 'M11 19a8 8 0 100-16 8 8 0 000 16zm10 2l-4.35-4.35' },
+  { id: 'AGT_03', name: 'Editor', live: 'Happenings Herald', tag: 'Keeps the clock honest', body: 'Handles everything with a date on it, and pulls the cancelled and the finished off your site before a single visitor sees it.', icon: 'M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z' },
+  { id: 'AGT_04', name: 'Watchdog', live: 'Burbhound', tag: 'Catches rot before customers do', body: 'Dead links, closed doors, changed hours, duplicates. It finds them, proposes the fix, and never touches a verified fact without your yes.', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+  { id: 'AGT_05', name: 'Broker', live: 'BrokerBurb', tag: 'Works the money', body: 'Triages every lead that comes in, runs the paid-placement close, switches sponsors on, and sends the monthly report that keeps them renewing.', icon: 'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6' },
+  { id: 'AGT_06', name: 'SEO', live: 'BurbsEO', tag: 'Finds the openings', body: 'Reads your Search Console against live search data and hands you ranking opportunities already scored, so you are picking instead of digging.', icon: 'M3 17l6-6 4 4 8-8m0 0h-5m5 0v5' },
+  { id: 'AGT_07', name: 'Implementer', live: 'SiteChange', tag: 'Ships the approved ones', body: 'Turns the ones you approved into pull requests. It cannot touch your main branch and it cannot merge its own work. On purpose.', icon: 'M6 3v12m0 0a3 3 0 103 3m-3-3a3 3 0 113-3m9-6a3 3 0 11-3 3v9' },
+  { id: 'AGT_08', name: 'Newsletter', live: 'Burbsworth Goodletter', tag: 'Writes the weekly', body: 'Builds each issue out of the catalog, remembers what went out last time so you never repeat yourself, and leaves it in your drafts to send.', icon: 'M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2l8 6 8-6' },
+  { id: 'AGT_09', name: 'Social', live: 'Postburb', tag: 'Feeds the channels', body: 'Pulls from the same catalog for posts, stories, and captions that sound like a person and not like a scheduling tool.', icon: 'M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zm12 7a3 3 0 100-6 3 3 0 000 6zM8.6 13.5l6.8 4M15.4 6.5l-6.8 4' },
+  { id: 'AGT_10', name: 'Reporting', live: 'Dashburbs', tag: 'Ends the guessing', body: 'Turns your scattered sources into one dashboard, so you always know what the index is actually doing without opening six tabs.', icon: 'M3 3v18h18M8 17V10m4.5 7V6m4.5 11v-5' },
+];
+
+const guardrails = [
+  { tool: 'Your database', allowed: 'Add and update records', denied: 'Delete anything, change the structure' },
+  { tool: 'Your email', allowed: 'Write drafts', denied: 'Send, forward, reply' },
+  { tool: 'Your payments', allowed: 'Read what came in', denied: 'Every write, no exceptions' },
+  { tool: 'Your codebase', allowed: 'Open a pull request', denied: 'Push to main, merge its own work' },
+];
+
+const phases = [
+  { n: '01', title: 'Scope it', body: 'We figure out what the index is of, what one record looks like, and the claim you want to be able to prove out loud.', when: 'Week 1' },
+  { n: '02', title: 'Fill it', body: 'You approve the design on screen before we wire a thing. Then the first run fills your catalog. All of it lands as drafts.', when: 'Weeks 2 to 4' },
+  { n: '03', title: 'Launch it', body: 'Structured data on every page type, sitemap, link checker in the build, Search Console hooked up. Then it goes live.', when: 'Week 5' },
+  { n: '04', title: 'Staff it', body: 'Your roster moves in, each one scoped to the smallest set of keys that lets it work. Then you go to bed and it keeps going.', when: 'Weeks 5 to 8' },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Index Engine', item: `${SITE_URL}/services/index-engine` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Index Engine',
+  description:
+    'Done-for-you indexed sites backed by a roster of AI agents that handle ingestion, data quality, SEO, newsletter, and lead follow-up under human approval.',
+  serviceType: 'AI automation and content operations',
+  provider: { '@type': 'Organization', name: 'Brothers Automate', url: SITE_URL },
+  areaServed: 'Worldwide',
+};
+---
+
+<Layout title={title} description={description} canonicalUrl={`${SITE_URL}/services/index-engine`}>
+  <Header />
+  <main>
+    <!-- HERO -->
+    <section class="ie-hero op-grid-bg">
+      <div class="ie-frame">
+        <div class="ie-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / SERVICES · INDEX_ENGINE"
+            right="10 AGENTS · 1 HUMAN STEP"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="SERVICES · INDEX ENGINE" />
+        <h1 class="ie-h1" data-animate="fade-up">
+          Be the one<br />
+          <span class="ie-orange">everybody checks.</span>
+        </h1>
+        <p class="ie-sub" data-animate="fade-up">
+          We build the most complete record of your corner of the world, then staff it with agents
+          that keep it alive while you sleep. You wake up to work already done and a short list of
+          decisions waiting. That is the whole job now.
+        </p>
+        <div class="ie-hero-cta" data-animate="fade-up">
+          <MonoCTA
+            label="Talk to the Brothers"
+            href="/book"
+            size="lg"
+            trackLocation="index-engine-hero"
+            trackLabel="Talk to the Brothers"
+          />
+        </div>
+        <div class="ie-hero-specs">
+          <SpecStrip
+            cells={[
+              { value: '1,900+', label: 'Pages indexed' },
+              { value: '10', label: 'Agents on staff' },
+              { value: '2 hrs', label: 'Refresh cycle' },
+              { value: '1', label: 'Human step' },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IT IS -->
+    <section class="ie-what">
+      <div class="ie-frame">
+        <EyebrowTag label="WHAT YOU GET · TWO HALVES" />
+        <h2 class="ie-h2">
+          The quiet kind<br /><span class="ie-orange">of unbeatable.</span>
+        </h2>
+        <p class="ie-lede">
+          Your competitors publish a few pages a month and hope. You publish the whole market and
+          prove it with a number at the top of the page. Six months in, nobody can catch up without
+          hiring a team, and you will not have hired anyone.
+        </p>
+
+        <div class="ie-halves">
+          <div class="ie-half">
+            <div class="ie-half-num op-mono">HALF_01</div>
+            <h3 class="ie-half-title">The index</h3>
+            <p>
+              Every record in your market gets its own page, and every page knows about the others.
+              Your search footprint grows every time the catalog does, without anyone sitting down to
+              write a word.
+            </p>
+            <ul class="ie-list">
+              <li>One page per entity, built from your data</li>
+              <li>Internal links written by the system, never by hand</li>
+              <li>Structured data on every page type</li>
+              <li>Static pages, so it stays quick at 2,000 or 20,000</li>
+            </ul>
+          </div>
+          <div class="ie-half">
+            <div class="ie-half-num op-mono">HALF_02</div>
+            <h3 class="ie-half-title">The agents</h3>
+            <p>
+              Not another dashboard you have to remember to open. A roster with roles, like staff.
+              They work overnight, they hand things to each other, and they bring you decisions
+              instead of tasks.
+            </p>
+            <ul class="ie-list">
+              <li>One agent you talk to, the rest report to it</li>
+              <li>Each one holding only the keys it needs</li>
+              <li>Everything waits in a queue for your yes or no</li>
+              <li>Version controlled, so your setup is never trapped in a tool</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE ENGINE -->
+    <section class="ie-engine">
+      <div class="ie-frame">
+        <EyebrowTag label="THE ENGINE · 08 STAGES" variant="paper" />
+        <h2 class="ie-h2 ie-h2--light">
+          Runs at 2am.<br /><span class="ie-orange">Waiting for you at 9.</span>
+        </h2>
+        <p class="ie-lede ie-lede--light">
+          The same loop every night, whatever your index is of. The agents work both ends of it. You
+          sit in the middle at stage three, and only there.
+        </p>
+
+        <ol class="ie-stages">
+          {stages.map((s) => (
+            <li class={`ie-stage${s.n === '03' ? ' ie-stage--human' : ''}`}>
+              <div class="ie-stage-n op-mono">{s.n}</div>
+              <div class="ie-stage-body">
+                <div class="ie-stage-name">
+                  {s.name}
+                  {s.n === '03' && <span class="ie-stage-flag op-mono">YOU</span>}
+                </div>
+                <p>{s.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- THE ROSTER -->
+    <section class="ie-roster">
+      <div class="ie-frame">
+        <EyebrowTag label="THE ROSTER · 10 ON STAFF" />
+        <h2 class="ie-h2">
+          You stop being the only one<br /><span class="ie-orange">who knows how it works.</span>
+        </h2>
+        <p class="ie-lede">
+          These ten run The Good Burbs right now, under the names we gave them. Nobody starts with
+          all ten. The first four are the spine of any index, and the rest move in as the thing
+          starts paying for itself.
+        </p>
+
+        <div class="ie-cards" data-animate-stagger>
+          {roster.map((a, i) => (
+            <article class={`ie-card${i < 4 ? ' ie-card--core' : ''}`}>
+              <div class="ie-card-head">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono ie-card-id">{a.id}</span>
+                {i < 4 && <span class="op-mono ie-card-core">CORE</span>}
+              </div>
+              <div class="ie-card-body">
+                <div class="ie-card-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={a.icon}></path>
+                  </svg>
+                </div>
+                <h3 class="ie-card-name">{a.name}</h3>
+                <div class="ie-card-tag op-mono">{a.tag}</div>
+                <p class="ie-card-text">{a.body}</p>
+                <div class="ie-card-live">
+                  <span class="op-mono ie-card-live-label">RUNNING AS</span>
+                  <span class="ie-card-live-name">{a.live}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- A REAL RUN -->
+    <section class="ie-run">
+      <div class="ie-frame">
+        <EyebrowTag label="A REAL RUN · NOBODY ASKED IT TO" />
+        <h2 class="ie-h2">
+          This is the morning<br /><span class="ie-orange">we knew it was working.</span>
+        </h2>
+        <p class="ie-lede">
+          Nobody prompted any of this. Burbs Maestro read what people had been asking Burby, our
+          site's chat, found demand we were not serving, and put two agents on it before anyone sat
+          down at a desk. The whole run, unedited.
+        </p>
+
+        <figure class="ie-video-wrap">
+          <video
+            class="ie-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata"
+            poster="/video/index-engine-run-poster.jpg"
+            aria-label="Burbs Maestro reading visitor questions, then dispatching the SEO and newsletter agents"
+          >
+            <source src="/video/index-engine-run.webm" type="video/webm" />
+            <source src="/video/index-engine-run.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="ie-video-cap op-mono">
+            LIVE RUN · BURBS MAESTRO · GOODBURBS.COM
+          </figcaption>
+        </figure>
+
+        <OperatorPanel
+          id="RUN_LOG · BURBS MAESTRO · 18H WINDOW"
+          headerExtra="■■■"
+          footerCells={[
+            { value: '3', label: 'Recs queued' },
+            { value: '2', label: 'Agents dispatched' },
+            { value: '0', label: 'Changes made' },
+          ]}
+        >
+          <div class="ie-log">
+            <div class="ie-log-row">
+              <span class="ie-log-t op-mono">STEP 01</span>
+              <div>
+                <strong>Read what people asked.</strong> Four questions to Burby in eighteen hours,
+                across two sessions. Ran sentiment on them and built a dashboard nobody requested.
+              </div>
+            </div>
+            <div class="ie-log-row">
+              <span class="ie-log-t op-mono">STEP 02</span>
+              <div>
+                <strong>Spotted the gap.</strong> Real people asking about date night and weekends in
+                Lansdale, a town we barely covered. Demand showing up with no pages behind it.
+              </div>
+            </div>
+            <div class="ie-log-row">
+              <span class="ie-log-t op-mono">STEP 03</span>
+              <div>
+                <strong>Sent two agents at once.</strong> Same signal to BurbsEO and Burbsworth
+                Goodletter, working the same gap from opposite ends, in parallel.
+              </div>
+            </div>
+            <div class="ie-log-row ie-log-row--return">
+              <span class="ie-log-t op-mono">BURBSEO ↩</span>
+              <div>
+                Three recommendations in the queue, each scored on impact and effort with live search
+                volume attached. A heading fix worth 590 searches a month. An internal link to an
+                orphaned page worth 4,400. A new page, fully outlined.
+                <em>Then it named the blocker sitting in front of all three instead of burying it under the good news.</em>
+              </div>
+            </div>
+            <div class="ie-log-row ie-log-row--return">
+              <span class="ie-log-t op-mono">GOODLETTER ↩</span>
+              <div>
+                A date-night trio pulled from the catalog, every rating checked that morning. Then it
+                argued against using it in the next two issues, because Lansdale was already in one
+                and the timing was wrong for the other. It talked itself out of its own idea.
+              </div>
+            </div>
+            <div class="ie-log-row ie-log-row--end">
+              <span class="ie-log-t op-mono">STEP 04</span>
+              <div>
+                <strong>Then it stopped and asked.</strong> "Want me to do anything with any of
+                those?" Three recommendations sitting in a queue. Nothing published, nothing sent,
+                nothing changed.
+              </div>
+            </div>
+          </div>
+        </OperatorPanel>
+
+        <div class="ie-run-callout">
+          <CalloutBox header="WHY THIS ONE STUCK WITH US">
+            They argued with the obvious move, showed their work, checked each other's calendar, and
+            handed the decision back to a human. That is not a workflow firing because a box got
+            ticked. That is the first morning it felt like having staff.
+          </CalloutBox>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARDRAILS -->
+    <section class="ie-guard">
+      <div class="ie-frame">
+        <EyebrowTag label="GUARDRAILS · LEAST PRIVILEGE" variant="paper" />
+        <h2 class="ie-h2 ie-h2--light">
+          Nothing moves<br /><span class="ie-orange">unless you say so.</span>
+        </h2>
+        <p class="ie-lede ie-lede--light">
+          Everybody asks the same thing first, and it is the right question. What stops it doing
+          something stupid at 3am? Not a politely worded instruction. Every agent gets handed the
+          smallest set of keys that lets it work, and the dangerous doors are locked at the hinge.
+        </p>
+
+        <div class="ie-guard-table">
+          <div class="ie-guard-head op-mono">
+            <div>System</div>
+            <div>Can</div>
+            <div>Cannot</div>
+          </div>
+          {guardrails.map((g) => (
+            <div class="ie-guard-row">
+              <div class="ie-guard-tool">{g.tool}</div>
+              <div class="ie-guard-yes">{g.allowed}</div>
+              <div class="ie-guard-no">{g.denied}</div>
+            </div>
+          ))}
+        </div>
+
+        <p class="ie-guard-note">
+          The best guardrail we ever shipped was an accident. Burbsworth Goodletter physically cannot
+          send your newsletter, because the send button lives behind a wall it has no key to. We
+          could have worked around it. We kept it instead. That is the shape to look for every time:
+          a wall beats a sternly worded instruction, every night of the week.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="ie-proof">
+      <div class="ie-frame">
+        <EyebrowTag label="PROOF · TWO LIVE INDEXES" />
+        <h2 class="ie-h2">
+          We ran it on ourselves<br /><span class="ie-orange">before we sold it to anyone.</span>
+        </h2>
+        <p class="ie-lede">
+          Both of these are ours. Both are live right now, and you can go poke at them. We are not
+          describing something we reckon we could build for you.
+        </p>
+
+        <div class="ie-proofs">
+          <article class="ie-proof-card">
+            <div class="ie-proof-head op-mono">INDEX_01 · THE GOOD BURBS</div>
+            <div class="ie-proof-body">
+              <p class="ie-proof-lede">
+                Every restaurant, shop, and thing to do across 24 towns in three Pennsylvania
+                counties. Ten agents on staff, a paid placement tier, and a weekly newsletter that
+                writes itself out of the same catalog.
+              </p>
+              <SpecStrip
+                compact
+                cells={[
+                  { value: '24', label: 'Towns' },
+                  { value: '1,900+', label: 'Places' },
+                  { value: '400', label: 'Events live' },
+                ]}
+              />
+              <p class="ie-proof-note">
+                Live at <a href="https://goodburbs.com/" target="_blank" rel="noopener">goodburbs.com</a>.
+                The owner's only recurring job is the review queue.
+              </p>
+            </div>
+          </article>
+
+          <article class="ie-proof-card">
+            <div class="ie-proof-head op-mono">INDEX_02 · MFM INDEX</div>
+            <div class="ie-proof-body">
+              <p class="ie-proof-lede">
+                Eight hundred-plus hours of audio turned into something you can actually search,
+                where every claim carries a timestamp and the exact words, so you can check it
+                against the tape yourself.
+              </p>
+              <SpecStrip
+                compact
+                cells={[
+                  { value: '877', label: 'Episodes' },
+                  { value: '876', label: 'Transcripts' },
+                  { value: '13,488', label: 'Moments' },
+                ]}
+              />
+              <p class="ie-proof-note">
+                Live at <a href="https://www.mfmindex.com/" target="_blank" rel="noopener">mfmindex.com</a>.
+                Nothing publishes unless the quote matches the source word for word.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILD -->
+    <section class="ie-build">
+      <div class="ie-frame">
+        <EyebrowTag label="THE BUILD · 8 WEEKS" />
+        <h2 class="ie-h2">
+          Live in five weeks.<br /><span class="ie-orange">Staffed by eight.</span>
+        </h2>
+
+        <div class="ie-phases">
+          {phases.map((p) => (
+            <div class="ie-phase">
+              <div class="ie-phase-top">
+                <span class="ie-phase-n op-mono">{p.n}</span>
+                <span class="ie-phase-when op-mono">{p.when}</span>
+              </div>
+              <h3 class="ie-phase-title">{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="ie-honest">
+          <CalloutBox header="ONE THING WE WILL NOT PRETEND">
+            Building the site is the fast part. Checking the facts is not. That first run can drop a
+            thousand draft records in your lap, and every one needs a human eye before it goes live.
+            We scope that work and price it up front, because acting like it is free is exactly how
+            these projects stall out in month three.
+          </CalloutBox>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <CTA />
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <script>
+    // Respect reduced-motion: hold the run video on its poster instead of looping.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const v = document.querySelector('.ie-video');
+      if (v instanceof HTMLVideoElement) {
+        v.autoplay = false;
+        v.loop = false;
+        v.pause();
+      }
+    }
+  </script>
+</Layout>
+
+<style>
+  .ie-frame { max-width: var(--op-max-content); margin: 0 auto; }
+
+  .ie-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(46px, 6.4vw, 88px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 900px;
+    text-wrap: balance;
+  }
+  .ie-orange { color: var(--op-orange); }
+
+  .ie-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.02;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 22px 0 18px;
+    text-wrap: balance;
+  }
+  .ie-h2--light { color: var(--op-cream); }
+
+  .ie-sub, .ie-lede {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 680px;
+    text-wrap: pretty;
+  }
+  .ie-lede--light { color: rgba(244, 238, 226, 0.72); }
+
+  /* HERO */
+  .ie-hero { padding: 120px var(--op-section-px) 72px; }
+  .ie-util { margin-bottom: 32px; }
+  .ie-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+  .ie-hero-cta { margin-top: 30px; }
+  .ie-hero-specs { margin-top: 48px; max-width: 900px; }
+
+  /* WHAT IT IS */
+  .ie-what { padding: var(--op-section-py) var(--op-section-px); background: var(--op-paper); border-top: var(--op-border); }
+  .ie-halves { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 44px; }
+  @media (min-width: 860px) { .ie-halves { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .ie-half {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 28px;
+  }
+  .ie-half-num { font-size: 10px; color: var(--op-orange); }
+  .ie-half-title {
+    font-family: var(--op-font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 10px 0 12px;
+  }
+  .ie-half p { font-size: 15.5px; line-height: 1.6; color: var(--op-navy-soft); margin: 0 0 16px; }
+  .ie-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .ie-list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--op-navy);
+    font-weight: 500;
+  }
+  .ie-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 9px; height: 9px;
+    background: var(--op-orange);
+    border: 1.5px solid var(--op-ink);
+    border-radius: 2px;
+  }
+
+  /* ENGINE */
+  .ie-engine { padding: var(--op-section-py) var(--op-section-px); background: var(--op-navy); border-top: var(--op-border); }
+  .ie-stages {
+    list-style: none;
+    padding: 0;
+    margin: 44px 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1.5px solid rgba(244, 238, 226, 0.22);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+  }
+  @media (min-width: 760px) { .ie-stages { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .ie-stages { grid-template-columns: repeat(4, 1fr); } }
+  .ie-stage {
+    display: flex;
+    gap: 14px;
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(244, 238, 226, 0.16);
+    border-right: 1px solid rgba(244, 238, 226, 0.16);
+    background: var(--op-navy);
+  }
+  .ie-stage--human { background: var(--op-navy-deep); }
+  .ie-stage-n { font-size: 11px; color: var(--op-orange); padding-top: 2px; }
+  .ie-stage-name {
+    font-family: var(--op-font-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--op-cream);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ie-stage-flag {
+    font-size: 9px;
+    background: var(--op-orange);
+    color: var(--op-navy);
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: var(--op-tracking-mono-tight);
+  }
+  .ie-stage p { margin: 0; font-size: 14px; line-height: 1.55; color: rgba(244, 238, 226, 0.66); }
+
+  /* ROSTER */
+  .ie-roster { padding: var(--op-section-py) var(--op-section-px); background: var(--op-cream); border-top: var(--op-border); }
+  .ie-cards { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 44px; }
+  @media (min-width: 700px) { .ie-cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1060px) { .ie-cards { grid-template-columns: repeat(3, 1fr); } }
+  .ie-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 200ms var(--op-ease), box-shadow 200ms var(--op-ease);
+  }
+  .ie-card:hover { transform: translate(-2px, -4px); box-shadow: var(--op-shadow-lg); }
+  .ie-card:hover .ie-card-icon { background: var(--op-orange); color: var(--op-paper); }
+  .ie-card--core { box-shadow: var(--op-shadow-md); }
+  .ie-card-head {
+    background: var(--op-navy-deep);
+    color: var(--op-cream);
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--op-border);
+  }
+  .ie-card-id { font-size: 9px; color: var(--op-orange); }
+  .ie-card-core {
+    font-size: 8px;
+    margin-left: auto;
+    background: var(--op-orange);
+    color: var(--op-navy);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .ie-card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+  .ie-card-icon {
+    width: 42px; height: 42px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: var(--op-radius-sm);
+    background: var(--op-cream);
+    color: var(--op-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    transition: background 200ms var(--op-ease), color 200ms var(--op-ease);
+  }
+  .ie-card-name {
+    font-family: var(--op-font-display);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 5px;
+  }
+  .ie-card-tag { font-size: 9.5px; color: var(--op-orange); margin-bottom: 11px; }
+  .ie-card-text { font-size: 14.5px; line-height: 1.55; color: var(--op-navy-soft); margin: 0 0 16px; flex: 1; }
+  .ie-card-live {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-top: 13px;
+    border-top: 1px dashed var(--op-rule);
+  }
+  .ie-card-live-label { font-size: 8px; color: var(--op-navy-soft); }
+  .ie-card-live-name {
+    font-family: var(--op-font-display);
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--op-navy);
+    letter-spacing: -0.01em;
+  }
+
+  /* RUN */
+  .ie-run { padding: var(--op-section-py) var(--op-section-px); background: var(--op-paper); border-top: var(--op-border); }
+  .ie-video-wrap { margin: 44px 0 0; max-width: 940px; }
+  .ie-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-lg);
+    background: var(--op-navy);
+  }
+  .ie-video-cap {
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ie-run :global(.op-panel) { margin-top: 40px; }
+  .ie-log { display: grid; gap: 2px; }
+  .ie-log-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(244, 238, 226, 0.14);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(244, 238, 226, 0.74);
+  }
+  @media (min-width: 720px) { .ie-log-row { grid-template-columns: 108px 1fr; gap: 20px; } }
+  .ie-log-row:last-child { border-bottom: 0; }
+  .ie-log-row strong { color: var(--op-cream); font-weight: 700; }
+  .ie-log-row em { color: rgba(244, 238, 226, 0.92); font-style: italic; }
+  .ie-log-t { font-size: 9.5px; color: var(--op-orange); padding-top: 4px; }
+  .ie-log-row--return { background: rgba(244, 238, 226, 0.045); padding-left: 14px; padding-right: 14px; border-radius: var(--op-radius-sm); }
+  .ie-log-row--end strong { color: var(--op-orange); }
+  .ie-run-callout { margin-top: 34px; max-width: 760px; }
+
+  /* GUARDRAILS */
+  .ie-guard { padding: var(--op-section-py) var(--op-section-px); background: var(--op-navy); border-top: var(--op-border); }
+  .ie-guard-table {
+    margin-top: 44px;
+    border: 1.5px solid rgba(244, 238, 226, 0.22);
+    border-radius: var(--op-radius-md);
+    overflow: hidden;
+    max-width: 940px;
+  }
+  .ie-guard-head, .ie-guard-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    padding: 14px 18px;
+    align-items: center;
+  }
+  .ie-guard-head {
+    background: var(--op-navy-deep);
+    font-size: 9.5px;
+    color: var(--op-orange);
+    border-bottom: 1.5px solid rgba(244, 238, 226, 0.22);
+  }
+  .ie-guard-row {
+    border-bottom: 1px solid rgba(244, 238, 226, 0.13);
+    font-size: 14.5px;
+  }
+  .ie-guard-row:last-child { border-bottom: 0; }
+  .ie-guard-tool { color: var(--op-cream); font-weight: 700; }
+  .ie-guard-yes { color: rgba(244, 238, 226, 0.7); }
+  .ie-guard-no { color: var(--op-orange); font-weight: 600; }
+  .ie-guard-note {
+    margin: 26px 0 0;
+    max-width: 720px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(244, 238, 226, 0.66);
+  }
+
+  /* PROOF */
+  .ie-proof { padding: var(--op-section-py) var(--op-section-px); background: var(--op-cream); border-top: var(--op-border); }
+  .ie-proofs { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 44px; }
+  @media (min-width: 860px) { .ie-proofs { grid-template-columns: 1fr 1fr; } }
+  .ie-proof-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-md);
+    overflow: hidden;
+  }
+  .ie-proof-head {
+    background: var(--op-navy-deep);
+    color: var(--op-orange);
+    font-size: 9.5px;
+    padding: 10px 16px;
+    border-bottom: var(--op-border);
+  }
+  .ie-proof-body { padding: 24px; }
+  .ie-proof-lede { font-size: 15.5px; line-height: 1.6; color: var(--op-navy-soft); margin: 0 0 20px; }
+  .ie-proof-note { font-size: 14px; line-height: 1.55; color: var(--op-navy-soft); margin: 18px 0 0; }
+  .ie-proof-note a { color: var(--op-orange); font-weight: 700; }
+
+  /* BUILD */
+  .ie-build { padding: var(--op-section-py) var(--op-section-px); background: var(--op-paper); border-top: var(--op-border); }
+  .ie-phases { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 44px; }
+  @media (min-width: 700px) { .ie-phases { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1060px) { .ie-phases { grid-template-columns: repeat(4, 1fr); } }
+  .ie-phase {
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 22px;
+  }
+  .ie-phase-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .ie-phase-n { font-size: 11px; color: var(--op-orange); }
+  .ie-phase-when { font-size: 9px; color: var(--op-navy-soft); }
+  .ie-phase-title {
+    font-family: var(--op-font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+    margin: 0 0 9px;
+  }
+  .ie-phase p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--op-navy-soft); }
+  .ie-honest { margin-top: 34px; max-width: 760px; }
+
+  @media (max-width: 900px) {
+    .ie-hero { padding: 96px 24px 56px; }
+    .ie-what, .ie-engine, .ie-roster, .ie-run, .ie-guard, .ie-proof, .ie-build { padding: 56px 24px 64px; }
+    .ie-guard-head, .ie-guard-row { grid-template-columns: 1fr; gap: 4px; }
+    .ie-guard-head { display: none; }
+    .ie-guard-row { padding: 16px 18px; }
+    .ie-guard-yes::before { content: 'CAN: '; font-family: var(--op-font-mono); font-size: 9px; letter-spacing: .1em; }
+    .ie-guard-no::before { content: 'CANNOT: '; font-family: var(--op-font-mono); font-size: 9px; letter-spacing: .1em; }
+  }
+</style>
