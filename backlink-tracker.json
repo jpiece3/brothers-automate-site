@@ -6,7 +6,7 @@
     "newsletter_name": "The Operator's AI Playbook",
     "newsletter_url": ""
   },
-  "last_updated": "2026-05-22",
+  "last_updated": "2026-07-27",
   "directories": [
     {
       "name": "There's An AI For That",
@@ -617,10 +617,138 @@
       "devto_article_id": 3766121,
       "syndicated_date": "2026-05-27",
       "status": "live"
+    },
+    {
+      "slug": "ai-for-accountants",
+      "original_url": "https://brothersautomate.com/blog/ai-for-accountants/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-for-accountants-the-2026-playbook-for-small-firms-279k",
+      "devto_article_id": 3779973,
+      "syndicated_date": "2026-05-29",
+      "status": "live"
+    },
+    {
+      "slug": "ap-automation-software",
+      "original_url": "https://brothersautomate.com/blog/ap-automation-software/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ap-automation-software-a-small-business-buyers-guide-bo1",
+      "devto_article_id": 3797548,
+      "syndicated_date": "2026-06-01",
+      "status": "live"
+    },
+    {
+      "slug": "ai-agents-for-business",
+      "original_url": "https://brothersautomate.com/blog/ai-agents-for-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-agents-for-business-a-no-hype-guide-4a5m",
+      "devto_article_id": 3829883,
+      "syndicated_date": "2026-06-05",
+      "status": "live"
+    },
+    {
+      "slug": "ai-marketing-agent-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-marketing-agent-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-marketing-agent-small-business-guide-for-2026-327n",
+      "devto_article_id": 3850880,
+      "syndicated_date": "2026-06-08",
+      "status": "live"
+    },
+    {
+      "slug": "ai-agent-platform-small-business-guide",
+      "original_url": "https://brothersautomate.com/blog/ai-agent-platform-small-business-guide/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-agent-platforms-the-small-business-guide-2026-1mna",
+      "devto_article_id": 3867642,
+      "syndicated_date": "2026-06-10",
+      "status": "live"
+    },
+    {
+      "slug": "employee-scheduling-software",
+      "original_url": "https://brothersautomate.com/blog/employee-scheduling-software/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/employee-scheduling-software-small-business-buyers-guide-jg9",
+      "devto_article_id": 3885002,
+      "syndicated_date": "2026-06-12",
+      "status": "live"
+    },
+    {
+      "slug": "ai-appointment-setter",
+      "original_url": "https://brothersautomate.com/blog/ai-appointment-setter/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-appointment-setter-the-small-business-guide-3jpk",
+      "devto_article_id": 3908794,
+      "syndicated_date": "2026-06-15",
+      "status": "live"
+    },
+    {
+      "slug": "ai-inventory-management",
+      "original_url": "https://brothersautomate.com/blog/ai-inventory-management/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-inventory-management-a-small-business-guide-287",
+      "devto_article_id": 3926481,
+      "syndicated_date": "2026-06-17",
+      "status": "live"
+    },
+    {
+      "slug": "ai-for-home-services",
+      "original_url": "https://brothersautomate.com/blog/ai-for-home-services/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-for-home-services-a-contractors-2026-playbook-11aa",
+      "devto_article_id": 3942757,
+      "syndicated_date": "2026-06-19",
+      "status": "live"
+    },
+    {
+      "slug": "ai-email-assistant-small-business",
+      "original_url": "https://brothersautomate.com/blog/ai-email-assistant-small-business/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-email-assistant-the-small-business-guide-for-2026-4klk",
+      "devto_article_id": 3964310,
+      "syndicated_date": "2026-06-22",
+      "status": "live"
+    },
+    {
+      "slug": "business-management-software",
+      "original_url": "https://brothersautomate.com/blog/business-management-software/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/business-management-software-an-automation-first-guide-2k6g",
+      "devto_article_id": 3981576,
+      "syndicated_date": "2026-06-24",
+      "status": "live"
+    },
+    {
+      "slug": "automate-payroll-processing",
+      "original_url": "https://brothersautomate.com/blog/automate-payroll-processing/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/how-to-automate-payroll-processing-small-business-guide-11l8",
+      "devto_article_id": 4000156,
+      "syndicated_date": "2026-06-26",
+      "status": "live"
+    },
+    {
+      "slug": "ai-agents-vs-agentic-ai",
+      "original_url": "https://brothersautomate.com/blog/ai-agents-vs-agentic-ai/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-agents-vs-agentic-ai-what-small-businesses-need-5710",
+      "devto_article_id": 4024345,
+      "syndicated_date": "2026-06-29",
+      "status": "live"
+    },
+    {
+      "slug": "field-service-management-software",
+      "original_url": "https://brothersautomate.com/blog/field-service-management-software/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/field-service-management-software-small-business-guide-33mc",
+      "devto_article_id": 4044195,
+      "syndicated_date": "2026-07-01",
+      "status": "live"
+    },
+    {
+      "slug": "ai-for-excel",
+      "original_url": "https://brothersautomate.com/blog/ai-for-excel/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/ai-for-excel-the-small-business-playbook-for-2026-51nf",
+      "devto_article_id": 4208339,
+      "syndicated_date": "2026-07-22",
+      "status": "live"
+    },
+    {
+      "slug": "automated-sms-messaging",
+      "original_url": "https://brothersautomate.com/blog/automated-sms-messaging/",
+      "devto_url": "https://dev.to/james_pinder_3e5813b28ad5/automated-sms-messaging-what-to-send-and-when-5143",
+      "devto_article_id": 4247360,
+      "syndicated_date": "2026-07-27",
+      "status": "live"
     }
   ],
   "stats": {
-    "total": 26,
+    "total": 41,
     "submitted": 0,
     "live": 0,
     "pending_review": 0
