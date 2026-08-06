@@ -2,6 +2,12 @@
 import EyebrowTag from './operator/EyebrowTag.astro';
 import MonoCTA from './operator/MonoCTA.astro';
 import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+
+interface Props {
+  calLink?: string;
+}
+
+const { calLink = 'james-pinder/simple-automation-discovery' } = Astro.props;
 ---
 
 <section class="op-cta-block op-grid-bg" id="cta">
@@ -40,7 +46,7 @@ import TopUtilityStrip from './operator/TopUtilityStrip.astro';
             label="Talk to the Brothers"
             variant="orange"
             size="lg"
-            calLink="james-pinder/simple-automation-discovery"
+            calLink={calLink}
             trackLocation="cta-section"
             trackLabel="Talk to the Brothers"
           />

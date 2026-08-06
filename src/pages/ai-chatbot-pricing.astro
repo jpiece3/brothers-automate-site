@@ -8,6 +8,7 @@ import EyebrowTag from '../components/operator/EyebrowTag.astro';
 import MonoCTA from '../components/operator/MonoCTA.astro';
 
 const SITE_URL = 'https://brothersautomate.com';
+const CAL_LINK = 'brendan-pinder-dp3d5v/30min';
 
 const plans = [
   {
@@ -172,8 +173,9 @@ const breadcrumbSchema = {
   description="Custom AI chatbot pricing for small business. Compare Answer, Capture, and Convert plans from $49/month for 24/7 answers, qualified leads, bookings, and automation."
   canonicalUrl={`${SITE_URL}/ai-chatbot-pricing`}
   extraSchemas={[serviceSchema, faqSchema, breadcrumbSchema]}
+  calLink={CAL_LINK}
 >
-  <Header />
+  <Header calLink={CAL_LINK} />
   <main>
     <section class="op-cp-hero op-grid-bg">
       <div class="op-cp-frame">
@@ -257,7 +259,7 @@ const breadcrumbSchema = {
                 variant={plan.featured ? 'orange' : 'navy'}
                 size="md"
                 block
-                calLink="james-pinder/simple-automation-discovery"
+                calLink={CAL_LINK}
                 trackLocation={`chatbot-pricing-${plan.id}`}
                 trackLabel={`Choose ${plan.name}`}
               />
@@ -320,9 +322,9 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <CTA />
+    <CTA calLink={CAL_LINK} />
   </main>
-  <Footer />
+  <Footer calLink={CAL_LINK} />
 </Layout>
 
 <style>
