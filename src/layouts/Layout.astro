@@ -10,6 +10,7 @@ interface Props {
   articleHeadline?: string;
   extraSchemas?: object[];
   noindex?: boolean;
+  calLink?: string;
 }
 
 const SITE_URL = 'https://brothersautomate.com';
@@ -27,9 +28,11 @@ const {
   articleHeadline,
   extraSchemas = [],
   noindex = false,
+  calLink = 'james-pinder/simple-automation-discovery',
 } = Astro.props;
 
 const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;
+const calNamespace = calLink.split('/').pop() || 'simple-automation-discovery';
 
 // Organization Schema
 const organizationSchema = {
@@ -78,7 +81,7 @@ const articleSchema = type === 'article' && datePublished ? {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-cal-namespace={calNamespace}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -201,11 +204,12 @@ const articleSchema = type === 'article' && datePublished ? {
     function __initCal() {
       if (window.__calInitDone) return;
       window.__calInitDone = true;
-      Cal("init", "simple-automation-discovery", {origin:"https://app.cal.com"});
-      Cal.ns["simple-automation-discovery"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","useSlotsViewOnSmallScreen":"true"});
+      var calNamespace = document.documentElement.dataset.calNamespace || "simple-automation-discovery";
+      Cal("init", calNamespace, {origin:"https://app.cal.com"});
+      Cal.ns[calNamespace]("ui", {"hideEventTypeDetails":false,"layout":"month_view","useSlotsViewOnSmallScreen":"true"});
 
       // Track Cal.com bookings as Schedule + Lead events (Meta + GA).
-      Cal.ns["simple-automation-discovery"]("on", {
+      Cal.ns[calNamespace]("on", {
         action: "bookingSuccessful",
         callback: function() {
           if (!window.__leadEventFired) {
