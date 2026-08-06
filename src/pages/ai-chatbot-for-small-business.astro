@@ -43,7 +43,7 @@ const howItWorks = [
 const faqs = [
   {
     question: 'How much does an AI chatbot for small business cost?',
-    answer: 'A done-for-you AI chatbot for small business starts around $1,500 for a focused build (lead capture + qualification) and ranges to $4,000-7,000 for a full system with calendar booking, quote logic, and CRM integration. After the build, runtime cost is typically $50-300/month depending on volume. Way less than a part-time receptionist, way more useful than a contact form.',
+    answer: 'A done-for-you AI chatbot for small business starts at $49 per month for accurate 24/7 answers, $99 per month for lead qualification and appointment booking, or $199 per month for advanced integrations and workflows. Standard one-time setup fees are waived through August.',
   },
   {
     question: 'Will the chatbot actually sound like my business, or like a robot?',
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     question: "What's the difference between this and the chatbot widgets I see on big SaaS sites?",
-    answer: 'Big SaaS chatbots (Intercom, Drift, etc.) are built for support tickets and aimed at companies with 50+ employees. They\'re expensive, generic, and require a team to maintain. We build focused AI chatbots for small business — one specific job, done right, no overhead. You pay once for the build, not monthly per-seat fees.',
+    answer: 'Big SaaS chatbots (Intercom, Drift, etc.) are built for support tickets and aimed at companies with 50+ employees. They\'re expensive, generic, and require a team to maintain. We build focused AI chatbots for small business — one specific job, done right, with predictable monthly pricing and no per-seat fees.',
   },
 ];
 
@@ -92,10 +92,11 @@ const serviceSchema = {
   "url": `${SITE_URL}/ai-chatbot-for-small-business`,
   "offers": {
     "@type": "AggregateOffer",
-    "lowPrice": "1500",
-    "highPrice": "7000",
+    "lowPrice": "49",
+    "highPrice": "199",
     "priceCurrency": "USD",
-    "description": "One-time scoped build, $1,500-$7,000 depending on complexity.",
+    "offerCount": "3",
+    "description": "Monthly Answer, Capture, and Convert plans from $49-$199. Standard setup fees are waived through August.",
   },
 };
 
@@ -111,7 +112,7 @@ const breadcrumbSchema = {
 
 <Layout
   title="AI Chatbot for Business | Custom Done-for-You Build | Brothers Automate"
-  description="A custom AI chatbot for business, built on your service data. Turns every conversation into usable data, answers customers 24/7, ships in 1-2 weeks. From $1,500."
+  description="A custom AI chatbot for business, built on your service data. Answers customers 24/7, captures qualified leads, books appointments, and starts at $49/month."
   canonicalUrl={`${SITE_URL}/ai-chatbot-for-small-business`}
   extraSchemas={[serviceSchema, faqSchema, breadcrumbSchema]}
 >
@@ -192,10 +193,10 @@ const breadcrumbSchema = {
     <section class="op-chatbot-pricing">
       <div class="op-chatbot-pricing-frame">
         <CalloutBox header="WHAT IT COSTS">
-          <p><strong>$1,500 to $7,000</strong> as a one-time scoped build, depending on what you need wired up. Lead capture only sits on the low end. Full system with calendar booking, quote logic, and CRM integration sits on the high end. Runtime after that is typically $50-300/month depending on conversation volume.</p>
-          <p>Need ongoing improvements? Move to the $3,500/month retainer and we'll keep tuning, adding flows, and connecting new tools.</p>
+          <p><strong>Answer starts at $49/month</strong> for accurate 24/7 answers and basic lead capture. <strong>Capture is $99/month</strong> for qualification and appointment booking. <strong>Convert is $199/month</strong> when the chatbot needs to calculate, route, update records, or follow up inside your business systems.</p>
+          <p>Standard one-time setup fees are currently waived through August. Each plan includes custom training on your business, installation on one website, and a clear path to upgrade as your needs grow.</p>
           <div class="op-chatbot-pricing-cta">
-            <a href="/pricing" class="op-chatbot-link op-mono">SEE FULL PRICING →</a>
+            <a href="/ai-chatbot-pricing" class="op-chatbot-link op-mono">COMPARE CHATBOT PLANS →</a>
           </div>
         </CalloutBox>
       </div>

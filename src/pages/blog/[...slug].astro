@@ -18,10 +18,16 @@ const { Content } = await post.render();
   title={post.data.title}
   description={post.data.description}
   date={post.data.date}
+  updated={post.data.updated}
   author={post.data.author}
   image={post.data.image}
   category={post.data.category}
   canonicalUrl={post.data.canonicalUrl}
+  videoId={post.data.videoId}
+  videoTitle={post.data.videoTitle}
+  offerText={post.data.offerText}
+  offerLabel={post.data.offerLabel}
+  offerHref={post.data.offerHref}
 >
   <Content />
 </BlogLayout>

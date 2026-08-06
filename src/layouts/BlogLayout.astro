@@ -6,15 +6,22 @@ import CTA from '../components/CTA.astro';
 import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
 import EyebrowTag from '../components/operator/EyebrowTag.astro';
 import MonoCTA from '../components/operator/MonoCTA.astro';
+import VideoFacade from '../components/operator/VideoFacade.astro';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
+  updated?: Date;
   author?: string;
   image?: string;
   category: string;
   canonicalUrl?: string;
+  videoId?: string;
+  videoTitle?: string;
+  offerText?: string;
+  offerLabel?: string;
+  offerHref?: string;
 }
 
 const SITE_URL = 'https://brothersautomate.com';
@@ -23,18 +30,32 @@ const {
   title,
   description,
   date,
+  updated,
   author = 'Brothers Automate',
   image,
   category,
   canonicalUrl,
+  videoId,
+  videoTitle = 'Watch the chatbot demo',
+  offerText,
+  offerLabel,
+  offerHref,
 } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 });
 const isoDate = date.toISOString();
+const modifiedIsoDate = updated?.toISOString() || isoDate;
+const formattedUpdatedDate = updated?.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
 const articleImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/logo.png`;
 
 const articleSchema = {
@@ -44,7 +65,7 @@ const articleSchema = {
   "description": description,
   "image": articleImage,
   "datePublished": isoDate,
-  "dateModified": isoDate,
+  "dateModified": modifiedIsoDate,
   "author": author === 'Brothers Automate'
     ? { "@type": "Organization", "name": "Brothers Automate" }
     : { "@type": "Person", "name": author, "url": "https://brothersautomate.com/about" },
@@ -91,16 +112,50 @@ const breadcrumbSchema = {
           />
         </div>
 
-        <div class="op-article-meta">
-          <span class="op-mono op-article-cat">{category.toUpperCase()}</span>
-          <span class="op-mono op-article-dot">·</span>
-          <time class="op-mono op-article-date" datetime={isoDate}>{formattedDate.toUpperCase()}</time>
+        <div class:list={["op-article-hero-main", videoId && "op-article-hero-main--with-video"]}>
+          <div class="op-article-hero-copy">
+            <div class="op-article-meta">
+              <span class="op-mono op-article-cat">{category.toUpperCase()}</span>
+              <span class="op-mono op-article-dot">·</span>
+              <time class="op-mono op-article-date" datetime={isoDate}>{formattedDate.toUpperCase()}</time>
+              {updated && formattedUpdatedDate && (
+                <>
+                  <span class="op-mono op-article-dot">·</span>
+                  <time class="op-mono op-article-date" datetime={modifiedIsoDate}>UPDATED {formattedUpdatedDate.toUpperCase()}</time>
+                </>
+              )}
+            </div>
+
+            <h1 class="op-article-h1">{title}</h1>
+            <p class="op-article-desc">{description}</p>
+
+            <div class="op-mono op-article-byline">BY {author.toUpperCase()}</div>
+          </div>
+
+          {videoId && (
+            <aside class="op-article-video" aria-label={videoTitle}>
+              <div class="op-mono op-article-video-label"><span class="op-pulse-dot"></span> WATCH THE LIVE BUILD</div>
+              <div class="op-article-video-frame">
+                <VideoFacade videoId={videoId} title={videoTitle} />
+              </div>
+              <a class="op-mono op-article-video-link" href="/projects/ai-customer-service-chatbot">VIEW THE FULL PROJECT →</a>
+            </aside>
+          )}
         </div>
 
-        <h1 class="op-article-h1">{title}</h1>
-        <p class="op-article-desc">{description}</p>
-
-        <div class="op-mono op-article-byline">BY {author.toUpperCase()}</div>
+        {offerText && offerLabel && offerHref && (
+          <div class="op-article-offer">
+            <p>{offerText}</p>
+            <MonoCTA
+              label={offerLabel}
+              href={offerHref}
+              variant="orange"
+              size="sm"
+              trackLocation="blog-hero-offer"
+              trackLabel={offerLabel}
+            />
+          </div>
+        )}
       </div>
     </header>
 
@@ -140,8 +195,16 @@ const breadcrumbSchema = {
     padding: 110px var(--op-section-px) 56px;
     color: var(--op-ink);
   }
-  .op-article-hero-frame { max-width: 920px; margin: 0 auto; }
+  .op-article-hero-frame { max-width: 1120px; margin: 0 auto; }
   .op-article-util { margin-bottom: 28px; }
+
+  .op-article-hero-main--with-video {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+  }
+  .op-article-hero-copy { min-width: 0; }
 
   .op-article-meta {
     display: inline-flex;
@@ -180,6 +243,55 @@ const breadcrumbSchema = {
     color: var(--op-navy-soft);
     padding-top: 14px;
     border-top: 1px solid var(--op-rule);
+  }
+
+  .op-article-video {
+    min-width: 0;
+  }
+  .op-article-video-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 9px;
+    color: var(--op-ink);
+  }
+  .op-article-video-frame {
+    overflow: hidden;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    background: var(--op-navy-deep);
+  }
+  .op-article-video-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--op-orange);
+    font-size: 9px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .op-article-video-link:hover { color: var(--op-orange-deep); }
+
+  .op-article-offer {
+    margin-top: 28px;
+    padding: 14px 16px 14px 20px;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    background: var(--op-paper);
+    box-shadow: var(--op-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .op-article-offer p {
+    margin: 0;
+    font-family: var(--op-font-display);
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 800;
+    color: var(--op-ink);
   }
 
   /* Body */
@@ -285,7 +397,10 @@ const breadcrumbSchema = {
     margin: 22px 0;
   }
   .op-article-body-frame :global(table) {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
     margin: 22px 0;
     font-size: 14px;
@@ -344,5 +459,9 @@ const breadcrumbSchema = {
     .op-article-body,
     .op-article-inline-cta { padding-left: 22px; padding-right: 22px; }
     .op-article-body-frame { font-size: 16px; }
+    .op-article-hero-main--with-video { grid-template-columns: 1fr; gap: 28px; }
+    .op-article-video { max-width: 440px; }
+    .op-article-offer { align-items: stretch; flex-direction: column; }
+    .op-article-offer :global(.op-cta) { justify-content: space-between; }
   }
 </style>

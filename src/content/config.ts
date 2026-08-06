@@ -6,6 +6,7 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.date(),
+    updated: z.date().optional(),
     author: z.string().default('Brothers Automate'),
     image: z.string().optional(),
     category: z.enum([
@@ -28,6 +29,11 @@ const blogCollection = defineCollection({
       'Finance & Admin Automation',
     ]),
     tags: z.array(z.string()).optional(),
+    videoId: z.string().optional(),
+    videoTitle: z.string().optional(),
+    offerText: z.string().optional(),
+    offerLabel: z.string().optional(),
+    offerHref: z.string().optional(),
     // Point a near-duplicate post at the version that should rank, so the two
     // stop splitting the same query between them. Absolute URL.
     canonicalUrl: z.string().url().optional(),

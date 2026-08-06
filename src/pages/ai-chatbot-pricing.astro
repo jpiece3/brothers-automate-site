@@ -1,0 +1,452 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import TopUtilityStrip from '../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../components/operator/EyebrowTag.astro';
+import MonoCTA from '../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+
+const plans = [
+  {
+    id: 'answer',
+    name: 'Answer',
+    price: 49,
+    positioning: 'Give every website visitor an immediate, accurate answer.',
+    summary: 'Handles repetitive questions 24/7',
+    bestFor: 'Small local businesses that mostly need after-hours coverage and relief from repetitive questions.',
+    setupFee: '$299',
+    volume: 'Approximately 200 AI conversations per month',
+    featured: false,
+    note: 'A highly standardized deployment. Custom integrations and complicated workflows are not included in this plan.',
+    features: [
+      'AI answers trained on the company’s website and FAQs',
+      'Custom business name, colors, greeting, and conversational tone',
+      'Answers about services, hours, pricing policies, service areas, and common questions',
+      'Basic lead capture: name, email, and phone',
+      'Immediate email notification when a lead is captured',
+      'Human handoff through phone, email, or contact form',
+      'Conversation transcripts',
+      'Basic monthly activity report',
+      'One website',
+      'Approximately 200 AI conversations per month',
+      'Brothers Automate branding',
+    ],
+  },
+  {
+    id: 'capture',
+    name: 'Capture',
+    price: 99,
+    positioning: 'Turn website conversations into qualified appointments.',
+    summary: 'Captures, qualifies, and books leads',
+    bestFor: 'Contractors, consultants, dental practices, med spas, agencies, and appointment-driven businesses.',
+    setupFee: '$749',
+    volume: 'Approximately 750 AI conversations per month',
+    featured: true,
+    note: 'The best fit for most service businesses because it connects website conversations directly to qualified leads and booked appointments.',
+    features: [
+      'Everything in Answer',
+      'Custom lead-qualification questions',
+      'Qualification by location, service needed, urgency, budget, company size, or other criteria',
+      'Appointment booking through Calendly, Google Calendar, or the company’s existing scheduler',
+      'Hot-lead alerts by email or SMS',
+      'Different routing based on service, location, or lead quality',
+      'One CRM or marketing integration',
+      'UTM and lead-source tracking',
+      'Proactive prompts on important pages',
+      'Removal of Brothers Automate branding',
+      'Conversion analytics: conversations, leads, qualified leads, and bookings',
+      'Approximately 750 AI conversations per month',
+      'Quarterly chatbot tuning',
+    ],
+  },
+  {
+    id: 'convert',
+    name: 'Convert',
+    price: 199,
+    positioning: 'Let the chatbot complete real work, not merely answer questions.',
+    summary: 'Connects to business systems and takes action',
+    bestFor: 'Businesses with meaningful website traffic, multiple services, more complex intake, or existing operational software.',
+    setupFee: '$1,500+',
+    volume: 'Approximately 2,000 AI conversations per month',
+    featured: false,
+    note: 'Built for more complex intake and operations where the chatbot needs to calculate, route, update records, or follow up automatically.',
+    features: [
+      'Everything in Capture',
+      'Dynamic estimates or quote-range calculations',
+      'Order, job, application, or appointment-status requests',
+      'CRM record creation and updating',
+      'Advanced routing by territory, department, availability, or service type',
+      'Automated lead follow-up after an abandoned conversation',
+      'Two business-system integrations',
+      'Multilingual responses',
+      'Multiple departments or locations',
+      'Automated knowledge-base refreshes',
+      'Advanced reports showing common questions, lost opportunities, and knowledge gaps',
+      'Monthly performance review and optimization',
+      'Priority support',
+      'Approximately 2,000 AI conversations per month',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    question: 'How much does a custom AI chatbot for business cost?',
+    answer: 'Brothers Automate chatbot plans start at $49 per month for Answer, $99 per month for Capture, and $199 per month for Convert. Standard one-time setup fees are currently waived through August.',
+  },
+  {
+    question: 'Which AI chatbot plan is best for a small business?',
+    answer: 'Answer is best when you mainly need accurate 24/7 answers and simple lead capture. Capture is the best fit for most appointment-driven service businesses because it qualifies leads and books appointments. Convert is for companies that need the chatbot to work inside a CRM or other operational systems.',
+  },
+  {
+    question: 'What is included in the waived setup fee?',
+    answer: 'Setup covers training the chatbot on your business information, configuring its voice and appearance, building the included conversation flows, testing, and installing it on one website. The normal setup fee is crossed out on each plan while the August offer is active.',
+  },
+  {
+    question: 'Can the chatbot capture leads and book appointments?',
+    answer: 'All plans capture basic lead details. Capture and Convert add custom qualification, hot-lead alerts, routing, lead-source tracking, and appointment booking through Calendly, Google Calendar, or an existing scheduler.',
+  },
+  {
+    question: 'Can an AI chatbot connect to our CRM or business software?',
+    answer: 'Capture includes one CRM or marketing integration. Convert includes two business-system integrations plus CRM record updates, advanced routing, automated follow-up, status requests, and dynamic estimates or quote ranges.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Custom AI Chatbot for Business',
+  serviceType: 'AI chatbot design, training, deployment, and optimization',
+  description: 'Custom AI chatbot plans for small businesses that answer questions, capture and qualify leads, book appointments, and connect to business systems.',
+  provider: {
+    '@type': 'Organization',
+    name: 'Brothers Automate',
+    url: SITE_URL,
+  },
+  areaServed: 'United States',
+  url: `${SITE_URL}/ai-chatbot-pricing`,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'AI Chatbot Pricing Plans',
+    itemListElement: plans.map((plan) => ({
+      '@type': 'Offer',
+      name: plan.name,
+      price: String(plan.price),
+      priceCurrency: 'USD',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: String(plan.price),
+        priceCurrency: 'USD',
+        unitText: 'MONTH',
+      },
+      description: plan.positioning,
+    })),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'AI Chatbot Pricing', item: `${SITE_URL}/ai-chatbot-pricing` },
+  ],
+};
+---
+
+<Layout
+  title="AI Chatbot Pricing for Small Business | Plans from $49"
+  description="Custom AI chatbot pricing for small business. Compare Answer, Capture, and Convert plans from $49/month for 24/7 answers, qualified leads, bookings, and automation."
+  canonicalUrl={`${SITE_URL}/ai-chatbot-pricing`}
+  extraSchemas={[serviceSchema, faqSchema, breadcrumbSchema]}
+>
+  <Header />
+  <main>
+    <section class="op-cp-hero op-grid-bg">
+      <div class="op-cp-frame">
+        <div class="op-cp-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / AI_CHATBOT_PRICING"
+            right="● 03 PLANS · BUILT FOR SMALL BUSINESS"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="CUSTOM AI CHATBOT PRICING · ANSWER → CAPTURE → CONVERT" />
+        <h1 class="op-cp-h1" data-animate="fade-up">
+          AI chatbot pricing that<br />
+          <span>grows with your business.</span>
+        </h1>
+        <p class="op-cp-lede" data-animate="fade-up">
+          Start with accurate 24/7 answers. Add lead qualification and appointment booking when you need it. Connect the chatbot to the systems that run your business when you are ready. Every plan is custom-trained on your website, services, and real customer questions.
+        </p>
+        <div class="op-cp-hero-actions" data-animate="fade-up">
+          <MonoCTA label="Compare the plans" variant="orange" size="lg" href="#plans" trackLocation="chatbot-pricing-hero" trackLabel="Compare Chatbot Plans" />
+          <a class="op-cp-text-link op-mono" href="/blog/ai-chatbot-small-business-guide">READ THE SMALL BUSINESS GUIDE →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="op-cp-waiver" aria-label="Limited-time setup offer">
+      <div class="op-cp-frame op-cp-waiver-inner">
+        <span class="op-mono op-cp-waiver-label">LIMITED-TIME OFFER</span>
+        <strong>Set-Up Fee Waived Thru August!</strong>
+        <span>Choose a plan now and your one-time setup is $0.</span>
+      </div>
+    </section>
+
+    <section id="plans" class="op-cp-plans">
+      <div class="op-cp-frame">
+        <div class="op-cp-section-head" data-animate="fade-up">
+          <span class="op-mono op-cp-kicker"><span>01</span> CHOOSE YOUR CHATBOT</span>
+          <h2>Three plans. One clear next step.</h2>
+          <p>Answer questions, capture qualified demand, or let the chatbot complete real work inside your business systems.</p>
+        </div>
+
+        <div class="op-cp-grid" data-animate-stagger>
+          {plans.map((plan) => (
+            <article class:list={["op-cp-card", plan.featured && "op-cp-card--featured"]}>
+              {plan.featured && <div class="op-mono op-cp-popular">MOST POPULAR</div>}
+              <div class="op-cp-card-head">
+                <span class="op-mono op-cp-plan-code">PLAN / {plan.id.toUpperCase()}</span>
+                <h3>{plan.name}</h3>
+                <p class="op-cp-positioning">“{plan.positioning}”</p>
+                <div class="op-cp-price">
+                  <span class="op-cp-price-currency">$</span>
+                  <strong>{plan.price}</strong>
+                  <span class="op-cp-price-period">/month</span>
+                </div>
+              </div>
+
+              <div class="op-cp-best">
+                <span class="op-mono">BEST FOR</span>
+                <p>{plan.bestFor}</p>
+              </div>
+
+              <ul class="op-cp-features">
+                {plan.features.map((feature) => (
+                  <li><span aria-hidden="true">✓</span>{feature}</li>
+                ))}
+              </ul>
+
+              <p class="op-cp-note">{plan.note}</p>
+
+              <div class="op-cp-setup">
+                <span class="op-mono">ONE-TIME SETUP</span>
+                <div>
+                  <del>{plan.setupFee}</del>
+                  <strong>$0</strong>
+                </div>
+                <small>Waived through August</small>
+              </div>
+
+              <MonoCTA
+                label={`Choose ${plan.name}`}
+                variant={plan.featured ? 'orange' : 'navy'}
+                size="md"
+                block
+                calLink="james-pinder/simple-automation-discovery"
+                trackLocation={`chatbot-pricing-${plan.id}`}
+                trackLabel={`Choose ${plan.name}`}
+              />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="op-cp-ladder op-grid-bg">
+      <div class="op-cp-frame">
+        <div class="op-cp-section-head" data-animate="fade-up">
+          <span class="op-mono op-cp-kicker"><span>02</span> THE DIFFERENCE</span>
+          <h2>Pick the level of work you want the chatbot to do.</h2>
+        </div>
+        <div class="op-cp-ladder-grid" data-animate-stagger>
+          {plans.map((plan, index) => (
+            <div class="op-cp-ladder-item">
+              <span class="op-mono">0{index + 1} / {plan.name.toUpperCase()}</span>
+              <h3>{plan.summary}</h3>
+              <p>{plan.positioning}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="op-cp-seo">
+      <div class="op-cp-frame op-cp-seo-grid">
+        <div>
+          <span class="op-mono op-cp-kicker"><span>03</span> BUILT AROUND YOUR BUSINESS</span>
+          <h2>A custom AI chatbot is more than a website popup.</h2>
+        </div>
+        <div class="op-cp-seo-copy">
+          <p><strong>An AI chatbot for business answers customer questions, captures and qualifies leads, books appointments, and handles requests around the clock in plain language.</strong> The right plan depends on whether you need a better front door, a reliable appointment engine, or an AI assistant that can take action inside your existing software.</p>
+          <p>We train your chatbot on the information customers actually need: services, hours, pricing policies, service areas, qualification rules, scheduling requirements, and common questions. When a conversation needs judgment or empathy, the chatbot hands it to a person with the context intact.</p>
+          <p>That is the same practical approach covered in our <a href="/blog/ai-chatbot-small-business-guide">AI chatbot for business guide</a> and demonstrated in the <a href="/projects/ai-customer-service-chatbot">Hatfield customer service chatbot build</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="op-cp-faq op-grid-bg">
+      <div class="op-cp-frame">
+        <div class="op-cp-section-head" data-animate="fade-up">
+          <span class="op-mono op-cp-kicker"><span>04</span> PRICING FAQ</span>
+          <h2>Questions before you choose.</h2>
+        </div>
+        <div class="op-cp-faq-list" data-animate-stagger>
+          {faqs.map((faq, index) => (
+            <details class="op-cp-faq-item">
+              <summary>
+                <span class="op-mono">{String(index + 1).padStart(2, '0')}</span>
+                <strong>{faq.question}</strong>
+                <span aria-hidden="true">+</span>
+              </summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .op-cp-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .op-cp-hero { padding: 120px var(--op-section-px) 72px; color: var(--op-ink); }
+  .op-cp-util { margin-bottom: 30px; }
+  .op-cp-hero :global(.op-eyebrow) { margin-bottom: 24px; }
+  .op-cp-h1 {
+    margin: 0 0 24px;
+    max-width: 980px;
+    font-family: var(--op-font-display);
+    font-size: clamp(46px, 6.4vw, 88px);
+    line-height: .98;
+    letter-spacing: var(--op-tracking-display);
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .op-cp-h1 span { color: var(--op-orange); }
+  .op-cp-lede {
+    max-width: 760px;
+    margin: 0;
+    color: var(--op-navy-soft);
+    font-family: var(--op-font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+  .op-cp-hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 32px; }
+  .op-cp-text-link { color: var(--op-orange); font-size: 10px; font-weight: 700; text-decoration: none; }
+  .op-cp-text-link:hover { color: var(--op-orange-deep); }
+
+  .op-cp-waiver { padding: 18px var(--op-section-px); background: var(--op-orange); color: var(--op-paper); border-top: var(--op-border); border-bottom: var(--op-border); }
+  .op-cp-waiver-inner { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; text-align: center; }
+  .op-cp-waiver-label { padding: 5px 8px; background: var(--op-navy); border-radius: var(--op-radius-sm); font-size: 9px; }
+  .op-cp-waiver strong { font-family: var(--op-font-display); font-size: clamp(20px, 2.3vw, 30px); }
+  .op-cp-waiver span:last-child { font-family: var(--op-font-body); font-size: 14px; font-weight: 600; }
+
+  .op-cp-plans { padding: 80px var(--op-section-px) 96px; background: var(--op-paper); }
+  .op-cp-section-head { max-width: 760px; margin-bottom: 40px; }
+  .op-cp-kicker { display: inline-flex; gap: 8px; margin-bottom: 16px; color: var(--op-ink); font-size: 10px; }
+  .op-cp-kicker span { color: var(--op-orange); }
+  .op-cp-section-head h2,
+  .op-cp-seo h2 {
+    margin: 0 0 16px;
+    color: var(--op-ink);
+    font-family: var(--op-font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: var(--op-tracking-display);
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .op-cp-section-head > p { max-width: 660px; margin: 0; color: var(--op-navy-soft); font-family: var(--op-font-body); font-size: 16px; line-height: 1.6; }
+
+  .op-cp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .op-cp-card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 28px; border: var(--op-border); border-radius: var(--op-radius); background: var(--op-cream); box-shadow: var(--op-shadow); }
+  .op-cp-card--featured { border-color: var(--op-orange); border-width: 2px; background: var(--op-paper); box-shadow: 7px 7px 0 var(--op-orange); }
+  .op-cp-popular { position: absolute; top: 0; right: 20px; transform: translateY(-50%); padding: 7px 12px; background: var(--op-orange); color: var(--op-paper); border: var(--op-border); border-radius: var(--op-radius-sm); font-size: 9px; font-weight: 700; }
+  .op-cp-plan-code { color: var(--op-orange); font-size: 9px; }
+  .op-cp-card h3 { margin: 10px 0 8px; font-family: var(--op-font-display); font-size: 34px; line-height: 1; color: var(--op-ink); }
+  .op-cp-positioning { min-height: 70px; margin: 0; font-family: var(--op-font-body); font-size: 15px; line-height: 1.5; font-weight: 650; color: var(--op-ink); }
+  .op-cp-price { display: flex; align-items: baseline; margin-top: 18px; color: var(--op-ink); }
+  .op-cp-price-currency { align-self: flex-start; margin-top: 7px; font-family: var(--op-font-display); font-size: 20px; font-weight: 800; }
+  .op-cp-price strong { font-family: var(--op-font-display); font-size: 58px; line-height: .9; letter-spacing: -.05em; }
+  .op-cp-price-period { margin-left: 6px; color: var(--op-navy-soft); font-family: var(--op-font-body); font-size: 14px; font-weight: 700; }
+  .op-cp-best { margin: 24px 0; padding: 16px 0; border-top: 1px solid var(--op-rule); border-bottom: 1px solid var(--op-rule); }
+  .op-cp-best span { color: var(--op-orange); font-size: 9px; }
+  .op-cp-best p { margin: 7px 0 0; color: var(--op-navy-soft); font-family: var(--op-font-body); font-size: 13px; line-height: 1.55; }
+  .op-cp-features { display: grid; gap: 11px; margin: 0 0 22px; padding: 0; list-style: none; }
+  .op-cp-features li { display: grid; grid-template-columns: 18px 1fr; gap: 7px; color: var(--op-ink); font-family: var(--op-font-body); font-size: 13px; line-height: 1.45; }
+  .op-cp-features li span { color: var(--op-orange); font-weight: 800; }
+  .op-cp-note { margin: auto 0 22px; padding: 14px; background: var(--op-paper); border-left: 3px solid var(--op-orange); color: var(--op-navy-soft); font-family: var(--op-font-body); font-size: 12px; line-height: 1.5; }
+  .op-cp-card--featured .op-cp-note { background: var(--op-cream); }
+  .op-cp-setup { margin-bottom: 22px; padding: 15px; border: 1px solid var(--op-rule); border-radius: var(--op-radius-sm); background: var(--op-paper); }
+  .op-cp-card--featured .op-cp-setup { background: var(--op-cream); }
+  .op-cp-setup > span { color: var(--op-navy-soft); font-size: 9px; }
+  .op-cp-setup div { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .op-cp-setup del { color: var(--op-navy-soft); font-family: var(--op-font-display); font-size: 18px; font-weight: 700; text-decoration-color: var(--op-orange); text-decoration-thickness: 3px; }
+  .op-cp-setup strong { color: var(--op-orange); font-family: var(--op-font-display); font-size: 24px; }
+  .op-cp-setup small { display: block; color: var(--op-ink); font-family: var(--op-font-body); font-size: 11px; font-weight: 700; }
+
+  .op-cp-ladder { padding: 80px var(--op-section-px); border-top: var(--op-border); border-bottom: var(--op-border); }
+  .op-cp-ladder-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: var(--op-border); border-radius: var(--op-radius); overflow: hidden; box-shadow: var(--op-shadow); }
+  .op-cp-ladder-item { padding: 28px; background: var(--op-paper); border-right: 1px solid var(--op-rule); }
+  .op-cp-ladder-item:last-child { border-right: 0; }
+  .op-cp-ladder-item > span { color: var(--op-orange); font-size: 9px; }
+  .op-cp-ladder-item h3 { margin: 12px 0 9px; font-family: var(--op-font-display); font-size: 22px; line-height: 1.2; color: var(--op-ink); }
+  .op-cp-ladder-item p { margin: 0; font-family: var(--op-font-body); color: var(--op-navy-soft); font-size: 14px; line-height: 1.55; }
+
+  .op-cp-seo { padding: 88px var(--op-section-px); background: var(--op-paper); }
+  .op-cp-seo-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(36px, 7vw, 92px); }
+  .op-cp-seo-copy p { margin: 0 0 18px; font-family: var(--op-font-body); font-size: 16px; line-height: 1.7; color: var(--op-ink); }
+  .op-cp-seo-copy a { color: var(--op-orange); text-underline-offset: 3px; }
+
+  .op-cp-faq { padding: 80px var(--op-section-px); border-top: var(--op-border); }
+  .op-cp-faq-list { max-width: 900px; border-top: var(--op-border); }
+  .op-cp-faq-item { border-bottom: var(--op-border); background: var(--op-paper); }
+  .op-cp-faq-item summary { display: grid; grid-template-columns: 44px 1fr 24px; align-items: center; gap: 12px; padding: 20px; cursor: pointer; list-style: none; }
+  .op-cp-faq-item summary::-webkit-details-marker { display: none; }
+  .op-cp-faq-item summary > span:first-child { color: var(--op-orange); font-size: 9px; }
+  .op-cp-faq-item summary strong { font-family: var(--op-font-display); font-size: 17px; color: var(--op-ink); }
+  .op-cp-faq-item summary > span:last-child { color: var(--op-orange); font-size: 24px; transition: transform var(--op-dur-hover) var(--op-ease); }
+  .op-cp-faq-item[open] summary > span:last-child { transform: rotate(45deg); }
+  .op-cp-faq-item > p { margin: 0; padding: 0 64px 22px 76px; color: var(--op-navy-soft); font-family: var(--op-font-body); font-size: 15px; line-height: 1.65; }
+
+  @media (max-width: 1000px) {
+    .op-cp-grid { grid-template-columns: 1fr; gap: 30px; }
+    .op-cp-card { max-width: 720px; width: 100%; margin: 0 auto; }
+    .op-cp-positioning { min-height: auto; }
+  }
+  @media (max-width: 760px) {
+    .op-cp-hero,
+    .op-cp-plans,
+    .op-cp-ladder,
+    .op-cp-seo,
+    .op-cp-faq { padding-left: 22px; padding-right: 22px; }
+    .op-cp-hero { padding-top: 106px; }
+    .op-cp-waiver { padding-left: 22px; padding-right: 22px; }
+    .op-cp-ladder-grid,
+    .op-cp-seo-grid { grid-template-columns: 1fr; }
+    .op-cp-ladder-item { border-right: 0; border-bottom: 1px solid var(--op-rule); }
+    .op-cp-ladder-item:last-child { border-bottom: 0; }
+    .op-cp-card { padding: 24px 20px; }
+    .op-cp-faq-item summary { grid-template-columns: 32px 1fr 20px; padding: 18px 12px; }
+    .op-cp-faq-item > p { padding: 0 12px 20px 56px; }
+  }
+</style>
