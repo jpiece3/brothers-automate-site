@@ -16,7 +16,7 @@ import QuoteForm from '../components/geo/QuoteForm.astro';
 const SITE_URL = 'https://brothersautomate.com';
 const pageUrl = `${SITE_URL}/ai-automation-agency-vs-in-house-hire`;
 const datePublished = '2026-05-21';
-const dateModified = '2026-05-21';
+const dateModified = '2026-08-24';
 const title = 'AI Automation Agency vs In-House Hire: Which Is Right for Your Business? (2026)';
 const description = 'Hiring an AI automation agency costs $40K-$100K/year on a retainer. A full-time AI engineer costs $180K-$240K all-in. Here\'s how to decide which is right for your business based on revenue, project volume, and time-to-value.';
 
@@ -62,18 +62,32 @@ const itemListSchema = {
         ],
       },
     },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Thing",
+        "name": "Independent Professional (Single Build)",
+        "description": "Freelance AI engineer or automation specialist hired per scoped build through a platform like Upwork. Under contract in days, roughly $2K-$15K per build, engagement ends when the build ships.",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Typical Cost", "value": "$2K-$15K per build" },
+          { "@type": "PropertyValue", "name": "Time to First Build", "value": "2-6 weeks (under contract in days)" },
+          { "@type": "PropertyValue", "name": "Risk", "value": "Low to medium" },
+        ],
+      },
+    },
   ],
 };
 
 const headToHeadRows: (string | number)[][] = [
-  ['Annual cost', '$40K – $100K (retainer or 6–8 projects)', '$180K – $240K all-in (salary + benefits + tools)'],
-  ['Time to first shipped build', '1–2 weeks', '6–12 weeks (hire + ramp)'],
-  ['Hiring & onboarding risk', 'None (paused/dropped on notice)', 'High (firing AI engineers is slow and expensive)'],
-  ['Range of expertise', 'Multiple specialists rotate in', 'Limited to one person\'s skillset'],
-  ['Long-term cost (3+ years)', '$120K – $300K cumulative', '$540K – $720K cumulative + retention risk'],
-  ['Ownership of IP', 'Yours (negotiated upfront)', 'Yours by default'],
-  ['Best fit revenue', '$1M – $20M', '$10M+'],
-  ['Continuity if person leaves', 'Agency keeps running', 'You start over'],
+  ['Annual cost', '$40K – $100K (retainer or 6–8 projects)', '$180K – $240K all-in (salary + benefits + tools)', 'Per build, roughly $2K – $15K each; nothing between builds'],
+  ['Time to first shipped build', '1–2 weeks', '6–12 weeks (hire + ramp)', 'Under contract in days; build ships in 2–6 weeks'],
+  ['Hiring & onboarding risk', 'None (paused/dropped on notice)', 'High (firing AI engineers is slow and expensive)', 'Low to medium (vetting is on you; a bad pick costs a milestone, not a salary)'],
+  ['Range of expertise', 'Multiple specialists rotate in', 'Limited to one person\'s skillset', 'One specialist per build; no rotating bench'],
+  ['Long-term cost (3+ years)', '$120K – $300K cumulative', '$540K – $720K cumulative + retention risk', 'Scales with build count; cheapest for a few builds, new contract for each fix'],
+  ['Ownership of IP', 'Yours (negotiated upfront)', 'Yours by default', 'Yours on payment (standard contract terms)'],
+  ['Best fit revenue', '$1M – $20M', '$10M+', '$1M – $5M with one specific build to ship'],
+  ['Continuity if person leaves', 'Agency keeps running', 'You start over', 'Ends at delivery by design; rehire per build'],
 ];
 
 const decisionRows: (string | number)[][] = [
@@ -119,7 +133,7 @@ const sources = [
         <div class="geo-article-util">
           <TopUtilityStrip
             left="BROTHERS_AUTOMATE / GUIDE 04 · AGENCY VS HIRE"
-            right="UPDATED MAY 2026 · FOR $1–20M BUSINESSES"
+            right="UPDATED AUG 2026 · FOR $1–20M BUSINESSES"
             bordered
           />
         </div>
@@ -137,7 +151,7 @@ const sources = [
 
         <ComparisonTable
           caption="AI automation agency vs in-house AI engineer hire (2026, US market)"
-          columns={['Factor', 'Agency Retainer', 'Full-Time Hire']}
+          columns={['Factor', 'Agency Retainer', 'Full-Time Hire', 'Independent Pro (Single Build)']}
           rows={headToHeadRows}
         />
 
@@ -158,6 +172,19 @@ const sources = [
           </ul>
           <p>
             That's a $250K–$600K spread over three years. The agency option is only worse if the in-house hire produces materially more output, which depends heavily on what you actually need built.
+          </p>
+        </section>
+
+        <section class="geo-section">
+          <h2 class="geo-h2">The third option: an independent pro for a single build</h2>
+          <p>
+            There is a third staffing model the retainer-versus-hire frame misses: hiring an independent professional for a single build. For a $1M–$5M service business with a specific automation to ship, that often lands between the two costs above without committing to either.
+          </p>
+          <p>
+            Upwork is where a lot of that work happens. A client can post a scoped build, review proposals from vetted <a href="https://www.upwork.com/hire/artificial-intelligence-engineers/" target="_blank" rel="noopener">AI engineers and automation specialists</a>, interview a shortlist, and have someone under contract in days rather than the 6 to 12 weeks a full-time hire takes to ramp. Contracts, milestones, and payments run on the platform, so the engagement ends cleanly when the build ships.
+          </p>
+          <p>
+            This does not replace an agency when you need a bench rotating through prompt design, integrations, and deliverability. It does give operators a way to test the shape of their automation backlog with real work before committing to a retainer or a salary.
           </p>
         </section>
 
@@ -277,6 +304,13 @@ const sources = [
     margin: 0 0 16px;
     text-wrap: pretty;
   }
+  .geo-section p a {
+    color: var(--op-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .geo-section p a:hover { color: var(--op-orange-deep); }
   .geo-list {
     font-family: var(--op-font-body);
     font-size: 16px;
