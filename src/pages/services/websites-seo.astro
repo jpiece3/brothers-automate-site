@@ -1,0 +1,1049 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TopUtilityStrip from '../../components/operator/TopUtilityStrip.astro';
+import EyebrowTag from '../../components/operator/EyebrowTag.astro';
+import MonoCTA from '../../components/operator/MonoCTA.astro';
+
+const SITE_URL = 'https://brothersautomate.com';
+const PAGE_URL = `${SITE_URL}/services/websites-seo`;
+
+const plans = [
+  {
+    id: 'storefront',
+    name: 'Storefront',
+    role: 'Website',
+    price: 74,
+    was: 149,
+    badge: 'Limited run',
+    summary: 'The site itself. Design, trade-specific copy, and room to change it as the work changes.',
+    fit: 'You need a site people trust before search has anything solid to send them to.',
+  },
+  {
+    id: 'pin-drop',
+    name: 'Pin Drop',
+    role: 'Listing',
+    price: 374,
+    was: null,
+    badge: null,
+    summary: 'The site, plus the Google listing, review asks, and directory cleanup around it.',
+    fit: 'You show up on the map sometimes, and the profile has been left alone too long.',
+  },
+  {
+    id: 'call-sheet',
+    name: 'Call Sheet',
+    role: 'Search',
+    price: 749,
+    was: null,
+    badge: 'Where most start',
+    summary: 'Pages, posts, call tracking, and a monthly report, on top of the site and the listing.',
+    fit: 'You want Google sending calls, and you want to see which page produced them.',
+  },
+  {
+    id: 'front-page',
+    name: 'Front Page',
+    role: 'Pace',
+    price: 1124,
+    was: null,
+    badge: null,
+    summary: 'The same search program, shipped faster, with more posts and photos on the listing.',
+    fit: 'You cover several services or towns and the content needs to move quicker.',
+  },
+  {
+    id: 'market-hold',
+    name: 'Market Hold',
+    role: 'Depth',
+    price: 1499,
+    was: null,
+    badge: null,
+    summary: 'The full program, plus the deeper search work once the basics are already compounding.',
+    fit: 'You are already visible and want to hold the searches your competitors are chasing.',
+  },
+];
+
+const features = [
+  { label: 'Phone-first website design', plans: ['storefront', 'pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Copy written for your trade', plans: ['storefront', 'pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Edits whenever the business changes', plans: ['storefront', 'pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'You keep the site if we part ways', plans: ['storefront', 'pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Google Business Profile, built and tended', plans: ['pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Review asks after finished jobs', plans: ['pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Directory listings that match', plans: ['pin-drop', 'call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Plain-English report each month', plans: ['call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Call tracking tied to the page', plans: ['call-sheet', 'front-page', 'market-hold'] },
+  { label: 'A new service page every month', plans: ['call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Posts aimed at real searches', plans: ['call-sheet', 'front-page', 'market-hold'] },
+  { label: 'Keyword research for jobs you want', plans: ['call-sheet', 'front-page', 'market-hold'] },
+  { label: 'More pages shipped each month', plans: ['front-page', 'market-hold'] },
+  { label: 'Extra Google posts and job photos', plans: ['front-page', 'market-hold'] },
+  { label: 'Deeper search work on top', plans: ['market-hold'] },
+];
+
+const offers = [
+  {
+    num: '01',
+    title: 'A website that can take the call.',
+    body: 'The site is where a search ends and a decision starts. We design it for the phone in their hand, write it around the jobs you want, and keep changing it when the business changes.',
+    points: [
+      'Designed for a phone first, and it still holds up on a laptop',
+      'Words that sound like the crew, written around the work you want more of',
+      'Changes whenever a service, town, or offer shifts. No edit meter',
+      'Live in four weeks or sooner',
+      'A first draft within two days of the kickoff call',
+    ],
+  },
+  {
+    num: '02',
+    title: 'Search that keeps working after the invoice.',
+    body: 'Local search is how someone nearby finds you without you renting every click. Kept up, last month’s pages still bring calls. Left alone, they go quiet.',
+    points: [
+      'Research on the phrases people type before they hire a company like yours',
+      'A fresh service page and supporting posts on a monthly cadence',
+      'Call tracking, so a ringing phone can be traced to a page',
+      'A monthly note in normal language, not a pile of charts',
+    ],
+  },
+  {
+    num: '03',
+    title: 'The Google listing they see before the site.',
+    body: 'Beside the website, the Google Business Profile is the card on the map. We fill it in, keep it current, and turn finished jobs into reviews and photos.',
+    points: [
+      'Profile filled out properly, then kept sharp as the business moves',
+      'Review requests that go out when the job is done',
+      'Posts and job photos on a steady rhythm',
+      'Directory listings that agree on your name, address, and phone',
+    ],
+  },
+];
+
+const signals = [
+  {
+    kicker: 'Relevance',
+    title: 'Do you match the search?',
+    body: 'Useful pages and a complete profile tell Google what you do and where you do it. Thin pages and a half-filled listing leave that guess to someone else.',
+  },
+  {
+    kicker: 'Distance',
+    title: 'Are you actually nearby?',
+    body: 'You cannot move the shop. You can make the towns you serve obvious on the site and on the profile, so the right searches connect to you.',
+  },
+  {
+    kicker: 'Prominence',
+    title: 'Do people already trust you?',
+    body: 'Reviews, ratings, and listings that match each other are the public proof. Google has said positive reviews can help both ranking and trust.',
+  },
+];
+
+const objections = [
+  {
+    q: 'We already tried search. Nothing came of it.',
+    a: 'The companies sitting at the top of Google for your service are funding that spot with steady work. A one-time setup, or a handful of posts, does not hold it. The pages, the listing, and the reviews have to keep moving.',
+  },
+  {
+    q: 'I would rather spend this on ads.',
+    a: 'Ads are the right tool when you need calls this week, or you are opening a new area. Search is the part that still answers after an ad budget pauses. Busy shops usually run both, and they do not let rented clicks be the only way the phone rings.',
+  },
+  {
+    q: 'The website is already finished.',
+    a: 'A built site is a brochure until something keeps feeding it. If Google is not sending calls, the site is waiting on new pages, a tended listing, and proof from customers. That is the ongoing work.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Can I start with only the website?',
+    answer: 'Yes. Storefront is the site: phone-first design, copy for your trade, ongoing edits, and you keep it if we stop. Pin Drop and above add the Google Business Profile, reviews, and the search work.',
+  },
+  {
+    question: 'Do I own the site if I cancel?',
+    answer: 'Yes. Every plan includes the site, and you keep it if we part ways. The monthly work stops. The site does not disappear.',
+  },
+  {
+    question: 'How fast does the first version show up?',
+    answer: 'The first draft of the site lands within two days of the kickoff call. Most sites go live in four weeks or sooner. Search and listing work starts alongside that, and it compounds after launch.',
+  },
+  {
+    question: 'Is there a contract?',
+    answer: 'No annual lock. Plans are month to month. Move up when the call volume justifies it, or stop when you want the monthly work to stop.',
+  },
+  {
+    question: 'What if I already have a website and a Google profile?',
+    answer: 'We look at what you have on the call. Sometimes the right move is a rebuild. Sometimes it is keeping the site and putting the monthly search and listing work on top of it. We will say which one before any plan starts.',
+  },
+  {
+    question: 'What is the difference between Pin Drop and Call Sheet?',
+    answer: 'Pin Drop covers the site, the Google Business Profile, review requests, and matching directory listings. Call Sheet adds monthly service pages, posts, keyword research, call tracking, and a written report so you can see what produced the calls.',
+  },
+];
+
+const money = (n: number) => `$${n.toLocaleString('en-US')}`;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Websites, SEO & Google Profile', item: PAGE_URL },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Websites, local SEO, and Google Business Profile',
+  serviceType: 'Local SEO and website services',
+  url: PAGE_URL,
+  description: 'Monthly plans for a trade website, local search, and Google Business Profile management. Plans start at $74 per month and run month to month.',
+  provider: { '@type': 'Organization', name: 'Brothers Automate', url: SITE_URL },
+  areaServed: 'US',
+  offers: plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: plan.price,
+    priceCurrency: 'USD',
+    url: `${PAGE_URL}#plans`,
+    description: plan.summary,
+  })),
+};
+
+const reviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Review',
+  author: { '@type': 'Person', name: 'Mike', worksFor: { '@type': 'Organization', name: 'Dougherty Concrete' } },
+  reviewBody: 'Brendan was very reliable and easy to work with. Helped my business significantly. Highly recommend!',
+  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+  itemReviewed: { '@type': 'Organization', name: 'Brothers Automate', url: SITE_URL },
+};
+---
+
+<Layout
+  title="Websites, SEO & Google Business Profile | Brothers Automate"
+  description="Websites, local SEO, and Google Business Profile management for service businesses. Five month-to-month plans from $74. You keep the site if you leave."
+  canonicalUrl={PAGE_URL}
+  extraSchemas={[serviceSchema, faqSchema, reviewSchema, breadcrumbSchema]}
+>
+  <Header />
+  <main>
+    <section class="lg-hero op-grid-bg">
+      <div class="lg-frame">
+        <div class="lg-util">
+          <TopUtilityStrip
+            left="BROTHERS_AUTOMATE / WEBSITES · SEARCH · GOOGLE PROFILE"
+            right="● MONTH TO MONTH · PLANS FROM $74"
+            bordered
+          />
+        </div>
+        <EyebrowTag label="WEBSITES · LOCAL SEARCH · GOOGLE BUSINESS PROFILE" />
+        <h1 class="lg-h1">
+          More jobs from searches<br />
+          <span>people already make.</span>
+        </h1>
+        <p class="lg-sub">
+          We build the website, run the local search, and keep the Google Business Profile current, so nearby customers find you before they find the next company. Three jobs. Done properly. No annual contract.
+        </p>
+        <div class="lg-actions">
+          <MonoCTA
+            label="Talk to the Brothers"
+            variant="orange"
+            size="md"
+            calLink="james-pinder/simple-automation-discovery"
+            trackLocation="websites-seo-hero"
+            trackLabel="Talk to the Brothers"
+          />
+          <a class="lg-textlink" href="#plans">See the five plans</a>
+        </div>
+        <dl class="lg-specs">
+          <div>
+            <dt>$74<span>/mo</span></dt>
+            <dd>Plans start here</dd>
+          </div>
+          <div>
+            <dt>0 yr</dt>
+            <dd>Annual contracts</dd>
+          </div>
+          <div>
+            <dt>48 hr</dt>
+            <dd>First site draft</dd>
+          </div>
+          <div>
+            <dt>4 wk</dt>
+            <dd>Typical site launch</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="lg-section lg-section--paper">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>01</span> THE WORK</span>
+          <h2 class="lg-h2">Three jobs. That is the whole offer.</h2>
+          <p class="lg-lead">We stay on the work that puts a service business in front of someone who is ready to hire. A site, the search around it, and the Google listing they see first.</p>
+        </div>
+        <div class="lg-offers">
+          {offers.map((offer) => (
+            <article class="lg-offer">
+              <header class="lg-offer-top">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono">{offer.num}</span>
+              </header>
+              <h3>{offer.title}</h3>
+              <p>{offer.body}</p>
+              <ul>
+                {offer.points.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lg-section op-grid-bg">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>02</span> WHY THE PHONE RINGS</span>
+          <h2 class="lg-h2">Customers look you up long before they dial.</h2>
+          <p class="lg-lead">Google describes local results as a mix of relevance, distance, and prominence. Distance is the map. The other two are the parts a business can actually work on.</p>
+        </div>
+        <div class="lg-signals">
+          {signals.map((signal) => (
+            <article class="lg-signal">
+              <span class="op-mono lg-signal-kicker">{signal.kicker}</span>
+              <h3>{signal.title}</h3>
+              <p>{signal.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="lg-source">Google’s own local-ranking guidance is the reference here: relevance, distance, and prominence. Reviews and a complete Business Profile are part of how that gets decided.</p>
+      </div>
+    </section>
+
+    <section class="lg-section lg-section--paper" id="plans">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>03</span> PLANS</span>
+          <h2 class="lg-h2">Five starting points. Move up when the calls justify it.</h2>
+          <p class="lg-lead">One monthly price. No setup fee hiding under it, no year-long lock. Pick a plan, and step up when you want more pages, more listing activity, or deeper search work.</p>
+        </div>
+
+        <div class="lg-board" data-plan="call-sheet">
+          <div class="lg-plan-row" role="tablist" aria-label="Plans">
+            {plans.map((plan) => (
+              <button
+                class="lg-plan"
+                type="button"
+                role="tab"
+                id={`tab-${plan.id}`}
+                aria-controls="plan-detail"
+                aria-selected={plan.id === 'call-sheet' ? 'true' : 'false'}
+                data-plan-btn={plan.id}
+              >
+                {plan.badge && <span class="lg-badge">{plan.badge}</span>}
+                <span class="op-mono lg-plan-role">{plan.role}</span>
+                <span class="lg-plan-name">{plan.name}</span>
+                <span class="lg-plan-price">
+                  {plan.was && <s>{money(plan.was)}</s>}
+                  <strong>{money(plan.price)}</strong>
+                  <span>/mo</span>
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div class="lg-detail" id="plan-detail" role="tabpanel">
+            {plans.map((plan) => (
+              <div class:list={['lg-detail-pane', plan.id === 'call-sheet' && 'is-on']} data-pane={plan.id}>
+                <div>
+                  <h3>{plan.name}</h3>
+                  <p>{plan.summary}</p>
+                  <p class="lg-fit">{plan.fit}</p>
+                  <MonoCTA
+                    label={`Start with ${plan.name}`}
+                    variant="orange"
+                    size="md"
+                    calLink="james-pinder/simple-automation-discovery"
+                    trackLocation="websites-seo-plan"
+                    trackLabel={`Start with ${plan.name}`}
+                  />
+                </div>
+                <ul>
+                  {features.filter((feature) => feature.plans.includes(plan.id)).map((feature) => (
+                    <li>{feature.label}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div class="lg-table-wrap">
+            <table class="lg-table">
+              <caption class="op-mono">What each plan includes</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Included</th>
+                  {plans.map((plan) => (
+                    <th scope="col" class={`c-${plan.id}`}>{plan.name}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {features.map((feature) => (
+                  <tr>
+                    <th scope="row">{feature.label}</th>
+                    {plans.map((plan) => (
+                      <td class={`c-${plan.id}`}>
+                        {feature.plans.includes(plan.id) ? (
+                          <span class="lg-yes" aria-label="Included">✓</span>
+                        ) : (
+                          <span class="lg-no" aria-label="Not included">—</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg-section op-grid-bg">
+      <div class="lg-frame lg-quote-grid">
+        <div>
+          <span class="op-mono lg-label"><span>04</span> FROM THE WORK</span>
+          <h2 class="lg-h2">A real review, from a real job.</h2>
+          <p class="lg-lead">Mike runs Dougherty Concrete. This is the review he left us on Google.</p>
+        </div>
+        <figure class="lg-quote">
+          <div class="lg-quote-top">
+            <span class="lg-avatar" aria-hidden="true">M</span>
+            <div>
+              <figcaption>
+                <strong>Mike</strong>
+                <span>Dougherty Concrete</span>
+              </figcaption>
+              <p class="lg-stars" aria-label="5 out of 5 stars">
+                <span aria-hidden="true">★★★★★</span>
+                <span>5.0 · Google review</span>
+              </p>
+            </div>
+          </div>
+          <blockquote>
+            Brendan was very reliable and easy to work with. Helped my business significantly. Highly recommend!
+          </blockquote>
+        </figure>
+      </div>
+    </section>
+
+    <section class="lg-section lg-section--paper">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>05</span> THE PUSHBACK WE HEAR</span>
+          <h2 class="lg-h2">Three things owners say before they start.</h2>
+        </div>
+        <div class="lg-objections">
+          {objections.map((item, i) => (
+            <article class="lg-objection">
+              <span class="op-mono">0{i + 1}</span>
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lg-section">
+      <div class="lg-frame lg-faq-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>06</span> QUESTIONS</span>
+          <h2 class="lg-h2">Before you book the call.</h2>
+        </div>
+        <div class="lg-faqs">
+          {faqs.map((faq, i) => (
+            <details class="lg-faq">
+              <summary>
+                <span class="op-mono">{String(i + 1).padStart(2, '0')}</span>
+                <span>{faq.question}</span>
+                <span class="lg-faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lg-close op-grid-bg" id="book">
+      <div class="lg-frame">
+        <div class="lg-close-card">
+          <div class="lg-close-bar">
+            <span class="op-pulse-dot op-pulse-dot--lg"></span>
+            <span class="op-mono">PLAN_FIT · 30_MIN</span>
+            <span class="op-mono lg-close-status">● ACCEPTING NEW PLANS</span>
+          </div>
+          <div class="lg-close-body">
+            <EyebrowTag label="NOT SURE WHICH PLAN FITS" />
+            <h2>Bring the website and the towns you serve. We’ll tell you where the calls are leaking.</h2>
+            <p>Thirty minutes. We look at the site, the Google listing, and the searches around your trade. You leave with a starting plan, or with a clear reason to wait.</p>
+            <MonoCTA
+              label="Talk to the Brothers"
+              variant="orange"
+              size="lg"
+              calLink="james-pinder/simple-automation-discovery"
+              trackLocation="websites-seo-close"
+              trackLabel="Talk to the Brothers"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const board = document.querySelector<HTMLElement>('.lg-board');
+  if (board) {
+    const buttons = [...board.querySelectorAll<HTMLButtonElement>('[data-plan-btn]')];
+    const panes = [...board.querySelectorAll<HTMLElement>('[data-pane]')];
+
+    const select = (id: string) => {
+      board.dataset.plan = id;
+      buttons.forEach((button) => {
+        button.setAttribute('aria-selected', button.dataset.planBtn === id ? 'true' : 'false');
+      });
+      panes.forEach((pane) => {
+        pane.classList.toggle('is-on', pane.dataset.pane === id);
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (button.dataset.planBtn) select(button.dataset.planBtn);
+      });
+    });
+  }
+</script>
+
+<style>
+  .lg-frame { max-width: var(--op-max-content); margin: 0 auto; }
+  .lg-hero { padding: 128px var(--op-section-px) 72px; color: var(--op-ink); }
+  .lg-util { margin-bottom: 28px; }
+  .lg-hero :global(.op-eyebrow) { margin-bottom: 22px; }
+
+  .lg-h1 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(46px, 6vw, 84px);
+    line-height: 0.96;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 22px;
+    max-width: 920px;
+    text-wrap: balance;
+  }
+  .lg-h1 span { color: var(--op-orange); }
+
+  .lg-sub, .lg-lead {
+    font-family: var(--op-font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--op-navy-soft);
+    margin: 0;
+    max-width: 680px;
+    text-wrap: pretty;
+  }
+
+  .lg-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .lg-textlink {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--op-ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--op-ink);
+    padding-bottom: 2px;
+  }
+  .lg-textlink:hover { color: var(--op-orange); border-color: var(--op-orange); }
+
+  .lg-specs {
+    margin: 36px 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    background: var(--op-paper);
+    box-shadow: var(--op-shadow);
+    overflow: hidden;
+  }
+  .lg-specs div {
+    padding: 18px 20px 16px;
+    border-right: var(--op-border);
+  }
+  .lg-specs div:last-child { border-right: none; }
+  .lg-specs dt {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 2.4vw, 34px);
+    letter-spacing: -0.04em;
+    color: var(--op-ink);
+    line-height: 1;
+  }
+  .lg-specs dt span {
+    font-size: 0.5em;
+    letter-spacing: 0;
+    color: var(--op-navy-soft);
+  }
+  .lg-specs dd {
+    margin: 8px 0 0;
+    font-family: var(--op-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--op-navy-soft);
+  }
+
+  .lg-section { padding: 80px var(--op-section-px); }
+  .lg-section--paper {
+    background: var(--op-paper);
+    border-top: var(--op-border);
+    border-bottom: var(--op-border);
+  }
+  .lg-section-head { max-width: 760px; margin-bottom: 36px; }
+  .lg-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--op-ink);
+    margin-bottom: 14px;
+  }
+  .lg-label span { color: var(--op-orange); font-size: 9px; }
+  .lg-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.02;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .lg-offers, .lg-signals, .lg-objections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 900px) {
+    .lg-offers, .lg-signals, .lg-objections { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .lg-offer, .lg-signal, .lg-objection {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 22px 22px 20px;
+  }
+  .lg-section--paper .lg-offer,
+  .lg-section--paper .lg-objection { background: var(--op-cream); }
+  .lg-offer-top, .lg-signal-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--op-orange);
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+  .lg-offer h3, .lg-signal h3, .lg-objection h3 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--op-ink);
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .lg-offer p, .lg-signal p, .lg-objection p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--op-navy-soft);
+    font-weight: 500;
+    margin: 0;
+  }
+  .lg-offer ul {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .lg-offer li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 600;
+    color: var(--op-ink);
+  }
+  .lg-offer li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--op-orange);
+  }
+
+  .lg-source {
+    margin: 18px 0 0;
+    max-width: 760px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--op-navy-soft);
+  }
+
+  .lg-plan-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .lg-plan {
+    position: relative;
+    text-align: left;
+    background: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow);
+    padding: 18px 14px 16px;
+    cursor: pointer;
+    color: var(--op-ink);
+    font: inherit;
+    transition: transform var(--op-dur-hover) var(--op-ease), box-shadow var(--op-dur-hover) var(--op-ease);
+  }
+  .lg-plan:hover { transform: translate(-2px, -3px); box-shadow: var(--op-shadow-lg); }
+  .lg-board[data-plan="storefront"] [data-plan-btn="storefront"],
+  .lg-board[data-plan="pin-drop"] [data-plan-btn="pin-drop"],
+  .lg-board[data-plan="call-sheet"] [data-plan-btn="call-sheet"],
+  .lg-board[data-plan="front-page"] [data-plan-btn="front-page"],
+  .lg-board[data-plan="market-hold"] [data-plan-btn="market-hold"] {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    box-shadow: var(--op-shadow-lg);
+  }
+  .lg-badge {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--op-orange);
+    color: var(--op-paper);
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 7px;
+    border-radius: var(--op-radius-sm);
+    border: 1.5px solid var(--op-ink);
+  }
+  .lg-plan-role { display: block; font-size: 9px; color: var(--op-orange); margin-bottom: 8px; }
+  .lg-plan-name {
+    display: block;
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+  .lg-plan-price { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
+  .lg-plan-price s {
+    color: var(--op-navy-soft);
+    font-size: 13px;
+    margin-right: 2px;
+  }
+  .lg-board[data-plan="storefront"] [data-plan-btn="storefront"] .lg-plan-price s { color: rgba(251, 247, 238, 0.62); }
+  .lg-plan-price strong {
+    font-family: var(--op-font-display);
+    font-size: 26px;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+  }
+  .lg-plan-price span { font-size: 13px; font-weight: 600; color: var(--op-navy-soft); }
+  .lg-board[data-plan="storefront"] [data-plan-btn="storefront"] .lg-plan-price span,
+  .lg-board[data-plan="pin-drop"] [data-plan-btn="pin-drop"] .lg-plan-price span,
+  .lg-board[data-plan="call-sheet"] [data-plan-btn="call-sheet"] .lg-plan-price span,
+  .lg-board[data-plan="front-page"] [data-plan-btn="front-page"] .lg-plan-price span,
+  .lg-board[data-plan="market-hold"] [data-plan-btn="market-hold"] .lg-plan-price span { color: rgba(251, 247, 238, 0.72); }
+
+  .lg-detail {
+    margin-top: 16px;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-md);
+    padding: 28px;
+  }
+  .lg-detail-pane { display: none; }
+  .lg-detail-pane.is-on {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 28px 40px;
+    align-items: start;
+  }
+  .lg-detail-pane :global(.op-cta) { margin-top: 18px; }
+  .lg-detail h3 {
+    font-family: var(--op-font-display);
+    font-size: 32px;
+    letter-spacing: -0.04em;
+    margin: 0 0 8px;
+    color: var(--op-cream);
+  }
+  .lg-detail p { margin: 0; color: rgba(251, 247, 238, 0.82); font-size: 15px; line-height: 1.5; font-weight: 500; }
+  .lg-fit { margin-top: 10px !important; color: var(--op-orange) !important; }
+  .lg-detail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .lg-detail li {
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 16px;
+    position: relative;
+  }
+  .lg-detail li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--op-orange);
+    font-weight: 800;
+  }
+
+  .lg-table-wrap {
+    margin-top: 18px;
+    overflow-x: auto;
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    box-shadow: var(--op-shadow);
+    background: var(--op-cream);
+  }
+  .lg-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+  .lg-table caption {
+    caption-side: bottom;
+    text-align: left;
+    padding: 10px 14px 12px;
+    font-size: 9px;
+    color: var(--op-navy-soft);
+  }
+  .lg-table th, .lg-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--op-rule);
+    border-right: 1px solid var(--op-rule);
+    text-align: center;
+    font-size: 13px;
+  }
+  .lg-table thead th {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    font-family: var(--op-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: var(--op-border);
+  }
+  .lg-table tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--op-ink);
+    background: var(--op-paper);
+    min-width: 220px;
+  }
+  .lg-table tr:last-child th, .lg-table tr:last-child td { border-bottom: none; }
+  .lg-table th:last-child, .lg-table td:last-child { border-right: none; }
+  .lg-yes { color: var(--op-orange); font-weight: 800; }
+  .lg-no { color: var(--op-rule); }
+
+  .lg-board[data-plan="storefront"] .c-storefront,
+  .lg-board[data-plan="pin-drop"] .c-pin-drop,
+  .lg-board[data-plan="call-sheet"] .c-call-sheet,
+  .lg-board[data-plan="front-page"] .c-front-page,
+  .lg-board[data-plan="market-hold"] .c-market-hold { background: rgba(224, 112, 60, 0.12); }
+  .lg-board[data-plan="storefront"] thead .c-storefront,
+  .lg-board[data-plan="pin-drop"] thead .c-pin-drop,
+  .lg-board[data-plan="call-sheet"] thead .c-call-sheet,
+  .lg-board[data-plan="front-page"] thead .c-front-page,
+  .lg-board[data-plan="market-hold"] thead .c-market-hold {
+    background: var(--op-orange);
+    color: var(--op-paper);
+  }
+
+  .lg-quote-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .lg-quote {
+    margin: 0;
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-md);
+    box-shadow: var(--op-shadow-lg);
+    padding: 28px 28px 26px;
+  }
+  .lg-quote-top { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+  .lg-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #7c3aed;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .lg-quote figcaption { display: grid; }
+  .lg-quote figcaption strong { font-family: var(--op-font-display); font-size: 18px; }
+  .lg-quote figcaption span { color: rgba(251, 247, 238, 0.7); font-size: 14px; }
+  .lg-stars { margin: 4px 0 0; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+  .lg-stars span:first-child { color: #f5c451; letter-spacing: 2px; font-size: 16px; }
+  .lg-stars span:last-child { color: rgba(251, 247, 238, 0.7); }
+  .lg-quote blockquote {
+    margin: 0;
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+  }
+
+  .lg-faq-frame { max-width: 860px; }
+  .lg-faqs { border-top: var(--op-border); }
+  .lg-faq { border-bottom: var(--op-border); }
+  .lg-faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 4px;
+    font-family: var(--op-font-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--op-ink);
+  }
+  .lg-faq summary::-webkit-details-marker { display: none; }
+  .lg-faq summary .op-mono { font-size: 10px; color: var(--op-navy-soft); width: 28px; }
+  .lg-faq summary span:nth-child(2) { flex: 1; }
+  .lg-faq-icon {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--op-ink);
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+  }
+  .lg-faq[open] .lg-faq-icon { background: var(--op-orange); color: var(--op-paper); transform: rotate(45deg); }
+  .lg-faq p {
+    margin: 0 0 18px 46px;
+    max-width: 680px;
+    color: var(--op-navy-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .lg-close { padding: 28px var(--op-section-px) 88px; }
+  .lg-close-card {
+    background: var(--op-navy);
+    color: var(--op-cream);
+    border: var(--op-border);
+    border-radius: var(--op-radius-lg);
+    box-shadow: var(--op-shadow-lg);
+    overflow: hidden;
+  }
+  .lg-close-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: var(--op-navy-deep);
+    border-bottom: var(--op-border);
+    font-size: 10px;
+  }
+  .lg-close-status { margin-left: auto; color: var(--op-orange); }
+  .lg-close-body { padding: 36px 32px 40px; max-width: 820px; }
+  .lg-close-body :global(.op-eyebrow) { margin-bottom: 18px; }
+  .lg-close h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin: 0 0 14px;
+    color: var(--op-cream);
+    text-wrap: balance;
+  }
+  .lg-close p {
+    margin: 0 0 22px;
+    max-width: 620px;
+    color: rgba(251, 247, 238, 0.8);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1100px) {
+    .lg-plan-row {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(180px, 1fr);
+      overflow-x: auto;
+      padding-top: 12px;
+      scroll-snap-type: x mandatory;
+    }
+    .lg-plan { scroll-snap-align: start; }
+    .lg-detail-pane.is-on, .lg-quote-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .lg-hero, .lg-section, .lg-close { padding-left: 20px; padding-right: 20px; }
+    .lg-hero { padding-top: 112px; }
+    .lg-specs { grid-template-columns: 1fr 1fr; }
+    .lg-specs div:nth-child(1),
+    .lg-specs div:nth-child(2) { border-bottom: var(--op-border); }
+    .lg-specs div:nth-child(odd) { border-right: var(--op-border); }
+    .lg-specs div:nth-child(even) { border-right: none; }
+    .lg-close-status { display: none; }
+    .lg-faq summary { font-size: 16px; }
+  }
+</style>
