@@ -284,57 +284,38 @@ const reviewSchema = {
       </div>
     </section>
 
-    <section class="lg-section lg-section--paper">
-      <div class="lg-frame">
-        <div class="lg-section-head">
-          <span class="op-mono lg-label"><span>01</span> THE WORK</span>
-          <h2 class="lg-h2">Three jobs. That is the whole offer.</h2>
-          <p class="lg-lead">We stay on the work that puts a service business in front of someone who is ready to hire. A site, the search around it, and the Google listing they see first.</p>
-        </div>
-        <div class="lg-offers">
-          {offers.map((offer) => (
-            <article class="lg-offer">
-              <header class="lg-offer-top">
-                <span class="op-pulse-dot"></span>
-                <span class="op-mono">{offer.num}</span>
-              </header>
-              <h3>{offer.title}</h3>
-              <p>{offer.body}</p>
-              <ul>
-                {offer.points.map((point) => (
-                  <li>{point}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section class="lg-section op-grid-bg">
-      <div class="lg-frame">
-        <div class="lg-section-head">
-          <span class="op-mono lg-label"><span>02</span> WHY THE PHONE RINGS</span>
-          <h2 class="lg-h2">Customers look you up long before they dial.</h2>
-          <p class="lg-lead">Google describes local results as a mix of relevance, distance, and prominence. Distance is the map. The other two are the parts a business can actually work on.</p>
+      <div class="lg-frame lg-quote-grid">
+        <div>
+          <span class="op-mono lg-label"><span>01</span> FROM THE WORK</span>
+          <h2 class="lg-h2">A real review, from a real job.</h2>
+          <p class="lg-lead">Mike runs Dougherty Concrete. This is the review he left us on Google.</p>
         </div>
-        <div class="lg-signals">
-          {signals.map((signal) => (
-            <article class="lg-signal">
-              <span class="op-mono lg-signal-kicker">{signal.kicker}</span>
-              <h3>{signal.title}</h3>
-              <p>{signal.body}</p>
-            </article>
-          ))}
-        </div>
-        <p class="lg-source">Google’s own local-ranking guidance is the reference here: relevance, distance, and prominence. Reviews and a complete Business Profile are part of how that gets decided.</p>
+        <figure class="lg-quote">
+          <div class="lg-quote-top">
+            <span class="lg-avatar" aria-hidden="true">M</span>
+            <div>
+              <figcaption>
+                <strong>Mike</strong>
+                <span>Dougherty Concrete</span>
+              </figcaption>
+              <p class="lg-stars" aria-label="5 out of 5 stars">
+                <span aria-hidden="true">★★★★★</span>
+                <span>5.0 · Google review</span>
+              </p>
+            </div>
+          </div>
+          <blockquote>
+            Brendan was very reliable and easy to work with. Helped my business significantly. Highly recommend!
+          </blockquote>
+        </figure>
       </div>
     </section>
 
     <section class="lg-section lg-section--paper" id="plans">
       <div class="lg-frame">
         <div class="lg-section-head">
-          <span class="op-mono lg-label"><span>03</span> PLANS</span>
+          <span class="op-mono lg-label"><span>02</span> PLANS</span>
           <h2 class="lg-h2">Five starting points. Move up when the calls justify it.</h2>
           <p class="lg-lead">One monthly price. No setup fee hiding under it, no year-long lock. Pick a plan, and step up when you want more pages, more listing activity, or deeper search work.</p>
         </div>
@@ -421,31 +402,50 @@ const reviewSchema = {
       </div>
     </section>
 
-    <section class="lg-section op-grid-bg">
-      <div class="lg-frame lg-quote-grid">
-        <div>
-          <span class="op-mono lg-label"><span>04</span> FROM THE WORK</span>
-          <h2 class="lg-h2">A real review, from a real job.</h2>
-          <p class="lg-lead">Mike runs Dougherty Concrete. This is the review he left us on Google.</p>
+    <section class="lg-section lg-section--paper">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>03</span> THE WORK</span>
+          <h2 class="lg-h2">Three jobs. That is the whole offer.</h2>
+          <p class="lg-lead">We stay on the work that puts a service business in front of someone who is ready to hire. A site, the search around it, and the Google listing they see first.</p>
         </div>
-        <figure class="lg-quote">
-          <div class="lg-quote-top">
-            <span class="lg-avatar" aria-hidden="true">M</span>
-            <div>
-              <figcaption>
-                <strong>Mike</strong>
-                <span>Dougherty Concrete</span>
-              </figcaption>
-              <p class="lg-stars" aria-label="5 out of 5 stars">
-                <span aria-hidden="true">★★★★★</span>
-                <span>5.0 · Google review</span>
-              </p>
-            </div>
-          </div>
-          <blockquote>
-            Brendan was very reliable and easy to work with. Helped my business significantly. Highly recommend!
-          </blockquote>
-        </figure>
+        <div class="lg-offers">
+          {offers.map((offer) => (
+            <article class="lg-offer">
+              <header class="lg-offer-top">
+                <span class="op-pulse-dot"></span>
+                <span class="op-mono">{offer.num}</span>
+              </header>
+              <h3>{offer.title}</h3>
+              <p>{offer.body}</p>
+              <ul>
+                {offer.points.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lg-section op-grid-bg">
+      <div class="lg-frame">
+        <div class="lg-section-head">
+          <span class="op-mono lg-label"><span>04</span> WHY THE PHONE RINGS</span>
+          <h2 class="lg-h2">Customers look you up long before they dial.</h2>
+          <p class="lg-lead">Google describes local results as a mix of relevance, distance, and prominence. Distance is the map. The other two are the parts a business can actually work on.</p>
+        </div>
+        <div class="lg-signals">
+          {signals.map((signal) => (
+            <article class="lg-signal">
+              <span class="op-mono lg-signal-kicker">{signal.kicker}</span>
+              <h3>{signal.title}</h3>
+              <p>{signal.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="lg-source">Google’s own local-ranking guidance is the reference here: relevance, distance, and prominence. Reviews and a complete Business Profile are part of how that gets decided.</p>
       </div>
     </section>
 
