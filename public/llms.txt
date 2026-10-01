@@ -16,11 +16,13 @@ Location: USA · Site: https://brothersautomate.com · Founded: 2024
 
 - [About](https://brothersautomate.com/about): The two brothers, their service-business background, and what they build now.
 - [Pricing](https://brothersautomate.com/pricing): $4,000/month retainer + scoped project pricing.
+- [Websites, SEO & Google Business Profile](https://brothersautomate.com/services/websites-seo): Monthly plans for a trade website, local search, and Google Business Profile. Plans start at $74/month, month to month.
 - [Projects](https://brothersautomate.com/projects): Live AI automation deployments across home services, agencies, coaches, and real estate.
 - [Resources](https://brothersautomate.com/resources): Free build guides, frameworks, and the AI ops stack reference.
 
 ## Services
 
+- Websites, local SEO, and Google Business Profile (https://brothersautomate.com/services/websites-seo)
 - AI Lead Follow-Up Automation
 - AI Ad Creative Generation
 - Client Onboarding Automation
