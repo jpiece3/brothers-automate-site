@@ -1,0 +1,230 @@
+---
+/**
+ * HomeTestimonial, a single Google review featured as its own homepage section.
+ */
+import TopUtilityStrip from './operator/TopUtilityStrip.astro';
+import EyebrowTag from './operator/EyebrowTag.astro';
+
+const reviewUrl =
+  'https://www.google.com/search?q=brothers+automate+llc#lrd=0x249e3e77304b4b6f:0xac83ad32168d00c7,1,,,,';
+
+const quote =
+  'Brendan was very reliable and easy to work with. Helped my business significantly. Highly recommend!';
+---
+
+<section class="op-testimonial op-grid-bg" id="testimonial">
+  <div class="op-testimonial-frame">
+    <div class="op-testimonial-util">
+      <TopUtilityStrip
+        left="BROTHERS_AUTOMATE / TESTIMONIAL"
+        right="GOOGLE REVIEW · 5.0"
+        bordered
+      />
+    </div>
+
+    <div class="op-testimonial-header" data-animate="fade-up">
+      <EyebrowTag label="FROM A CLIENT · GOOGLE REVIEW" />
+      <h2 class="op-testimonial-h2">
+        What it's like <span class="op-testimonial-h2-orange">working with us.</span>
+      </h2>
+    </div>
+
+    <article class="op-testimonial-card" data-animate="fade-up">
+      <div class="op-testimonial-card-header">
+        <span class="op-pulse-dot"></span>
+        <span class="op-mono op-testimonial-card-id">GOOGLE_REVIEW · VERIFIED</span>
+        <span class="op-mono op-testimonial-card-flag">5.0 ★</span>
+      </div>
+
+      <div class="op-testimonial-card-body">
+        <div class="op-testimonial-stars" aria-label="5 out of 5 stars">
+          {Array.from({ length: 5 }).map(() => (
+            <span class="op-testimonial-star" aria-hidden="true">★</span>
+          ))}
+        </div>
+
+        <blockquote class="op-testimonial-quote">
+          <p>“{quote}”</p>
+        </blockquote>
+
+        <div class="op-testimonial-meta">
+          <div class="op-testimonial-avatar" aria-hidden="true">M</div>
+          <div class="op-testimonial-attribution">
+            <div class="op-testimonial-name">Mike</div>
+            <div class="op-mono op-testimonial-source">GOOGLE REVIEW</div>
+          </div>
+          <a
+            class="op-mono op-testimonial-link"
+            href={reviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="cta_click"
+            data-track-location="home-testimonial"
+            data-track-label="Read on Google"
+          >
+            READ ON GOOGLE →
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .op-testimonial {
+    padding: 72px var(--op-section-px) 88px;
+  }
+  .op-testimonial-frame {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .op-testimonial-util {
+    margin-bottom: 48px;
+  }
+
+  .op-testimonial-header {
+    margin-bottom: 36px;
+  }
+  .op-testimonial-header > :global(.op-eyebrow) {
+    margin-bottom: 24px;
+    align-self: flex-start;
+  }
+  .op-testimonial-h2 {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: clamp(36px, 4.2vw, 52px);
+    line-height: 0.98;
+    letter-spacing: var(--op-tracking-display);
+    color: var(--op-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .op-testimonial-h2-orange {
+    color: var(--op-orange);
+  }
+
+  .op-testimonial-card {
+    background: var(--op-paper);
+    border: var(--op-border);
+    border-radius: var(--op-radius);
+    overflow: hidden;
+    box-shadow: var(--op-shadow);
+  }
+
+  .op-testimonial-card-header {
+    background: var(--op-navy-deep);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: var(--op-border);
+  }
+  .op-testimonial-card-id {
+    font-size: 9px;
+    color: var(--op-orange);
+    letter-spacing: 0.18em;
+  }
+  .op-testimonial-card-flag {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--op-cream);
+    letter-spacing: 0.16em;
+  }
+
+  .op-testimonial-card-body {
+    padding: 28px 28px 26px;
+  }
+
+  .op-testimonial-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 16px;
+  }
+  .op-testimonial-star {
+    color: var(--op-orange);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .op-testimonial-quote {
+    margin: 0 0 24px;
+  }
+  .op-testimonial-quote p {
+    margin: 0;
+    font-family: var(--op-font-body);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--op-ink);
+    text-wrap: pretty;
+  }
+
+  .op-testimonial-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--op-rule-soft);
+  }
+  .op-testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #7b3fe4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .op-testimonial-attribution {
+    flex: 1;
+    min-width: 0;
+  }
+  .op-testimonial-name {
+    font-family: var(--op-font-display);
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--op-ink);
+    line-height: 1.2;
+  }
+  .op-testimonial-source {
+    font-size: 9px;
+    color: var(--op-navy-soft);
+    letter-spacing: 0.16em;
+    margin-top: 3px;
+  }
+  .op-testimonial-link {
+    font-size: 10px;
+    color: var(--op-navy);
+    text-decoration: none;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    transition: color var(--op-dur-hover) var(--op-ease);
+  }
+  .op-testimonial-link:hover {
+    color: var(--op-orange);
+  }
+
+  @media (max-width: 700px) {
+    .op-testimonial {
+      padding: 56px 22px 64px;
+    }
+    .op-testimonial-util {
+      margin-bottom: 32px;
+    }
+    .op-testimonial-card-body {
+      padding: 22px 20px 20px;
+    }
+    .op-testimonial-meta {
+      flex-wrap: wrap;
+    }
+    .op-testimonial-link {
+      width: 100%;
+      margin-top: 4px;
+    }
+  }
+</style>
