@@ -136,7 +136,7 @@ The packaged tools are faster to start. The build-your-own route fits better whe
 
 Once a small business starts assembling or manufacturing what it sells, the reorder-and-forecast picture gets more complicated. You are not just restocking finished goods, you are tracking components, bills of materials (BOMs), work orders (WOs), and lead times from multiple suppliers, and all of it has to tie back to the books.
 
-Fishbowl is built for exactly that stage. It is an inventory and manufacturing platform for small and midsize businesses on QuickBooks or Xero, with real-time stock control, manufacturing orders (MOs), purchase orders (POs), and order fulfillment in one system. Over 6,000 businesses run on it, and it was named a 2026 Software Advice FrontRunner for Inventory Management.
+[Fishbowl](https://www.fishbowlinventory.com/) is built for exactly that stage. It is an inventory and manufacturing platform for small and midsize businesses on QuickBooks or Xero, with real-time stock control, manufacturing orders (MOs), purchase orders (POs), and order fulfillment in one system. Over 6,000 businesses run on it, and it was named a 2026 Software Advice FrontRunner for Inventory Management.
 
 The part that matters for owners: Fishbowl syncs activity back into QuickBooks or Xero as the system of record, so inventory movements, landed cost, and cost of goods sold (COGS) stay clean. You get the depth without taking on a full ERP project.
 
