@@ -107,6 +107,10 @@ The vendor demo will tell you "you'll be live in two weeks." That's true for the
 
 Most small businesses underestimate the vendor communication piece. You'll be sending "please send invoices to this new email address" notes for 60 days, no matter how clean your migration looks. That's normal. It's also why this is technically a [business process automation](/blog/business-process-automation) project, not a software install.
 
+An AP rollout involves more than connecting software to the accounting system. Supplier enrollment, updating payment information, responding to inquiries, and resolving payment-side exceptions all require clear operational ownership.
+
+<a href="https://www.corpay.com/ap-automation" rel="sponsored noopener" target="_blank">Corpay</a> combines AP automation software with managed supplier-payment services. Its offering supports vendor enrollment, payment execution across virtual card, ACH, and check, payment-side follow-up, and ERP reconciliation support. For businesses evaluating software alongside custom automation, the service model is another factor to compare. Teams should assess which supplier-facing tasks a provider would handle, which responsibilities remain internal, and whether the scope and cost fit their operation.
+
 A 4-person agency we worked with last month was eating 6 hours a week on AP. After cutover: 30 minutes. The savings came less from the tool and more from killing approval bottlenecks that had grown like weeds over two years.
 
 ## AP Automation in a Broader Finance Stack
